@@ -203,7 +203,7 @@ onMounted(() => {
   }
 
   .yk-input-inner {
-    border-color: @ecolor-2;
+    border-color: transparent;
     background: @ecolor-2;
   }
 
