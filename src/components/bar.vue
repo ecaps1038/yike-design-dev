@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 <template>
   <div class="component-bar">
-    <Container class="container" :style="{height:bodyHeight-60+'px'}">
+    <Container class="container">
       <div class="bar-card" v-for="(e, i) in bar" :key="i">
         <div class="bar-title"><Text b>{{ (e as any).title }}</Text></div>
         <RouterLink class="bar-list" v-for="(n, j) in (e as any).list" :key="j" :to="n.src">{{ n.name }}</RouterLink>
@@ -31,7 +31,10 @@ const props = defineProps({
   transition: background-color @animats, border-right @animats;
 
   .container {
+    // fix height error
+    height: calc(100% - 60px);
     padding: @space-s @space-m;
+    // overflow: auto;
   }
 
   .bar-title {
