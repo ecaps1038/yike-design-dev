@@ -7,9 +7,9 @@ import YkMessage from './YkMessage.vue'
 const divVNode = createVNode('div', { class: 'xtx-message-container' })
 render(divVNode, document.body)
 // 🔔 虚拟DOM(对象)成功写入到页面后，可通过 el 属性获取到真实DOM节点
-const div:any = divVNode.el
+const div: any = divVNode.el
 
-const YKMessage = ({ message, type }:any) => {
+const YKMessage = ({ message, type }: any) => {
   // 1. 动态创建虚拟DOM  -  createVNode(h) 函数
   const comVNode = createVNode(YkMessage, { message, type })
   // 2. 渲染到body页面中 -  render 函数

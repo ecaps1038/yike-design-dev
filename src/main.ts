@@ -7,17 +7,15 @@ import store from './store/index'
 import './assets/main.less'
 
 //全局加载组件
-import {install} from '@/yike-design'
-
+import { install } from '@/yike-design'
 
 //highlight 的样式，依赖包，组件
 import 'highlight.js/styles/atom-one-dark.css'
-import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
-import hljsVuePlugin from "@highlightjs/vue-plugin";
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import hljsVuePlugin from '@highlightjs/vue-plugin'
 
-hljs.registerLanguage('javascript', javascript);
-
+hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
 

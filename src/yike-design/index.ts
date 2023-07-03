@@ -33,94 +33,93 @@ import Switch from './components/switch/ykSwitch.vue'
 import Stepper from './components/stepper/ykStepper.vue'
 import Rate from './components/rate/ykRate.vue'
 
-
 import type { Component } from 'vue'
 
 const components: {
-    [propName: string]: Component //字面量类型，每个属性值类型为组件的类型
+  [propName: string]: Component //字面量类型，每个属性值类型为组件的类型
 } = {
-    Theme,
-    Button,
-    Icon,
-    Animate,
-    Title,
-    Text,
-    Paragraph,
-    Container,
-    Space,
-    ButtonGroup,
-    Avatar,
-    AvatarGroup,
-    Badge,
-    Table,
-    Crumb,
-    CrumbItem,
-    Input,
-    InputSearch,
-    InputPassword,
-    InputNumber,
-    InputTag,
-    Textarea,
-    Dropdown,
-    Doption,
-    Submenu,
-    Pagination,
-    Checkbox,
-    CheckboxGroup,
-    Radio,
-    RadioGroup,
-    Switch,
-    Stepper,
-    Rate,
-};
+  Theme,
+  Button,
+  Icon,
+  Animate,
+  Title,
+  Text,
+  Paragraph,
+  Container,
+  Space,
+  ButtonGroup,
+  Avatar,
+  AvatarGroup,
+  Badge,
+  Table,
+  Crumb,
+  CrumbItem,
+  Input,
+  InputSearch,
+  InputPassword,
+  InputNumber,
+  InputTag,
+  Textarea,
+  Dropdown,
+  Doption,
+  Submenu,
+  Pagination,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  Switch,
+  Stepper,
+  Rate,
+}
 
-  const install = (app:any) => {
-    // 全局挂载 原型函数 过组件实例调用的属性   this.$message
-    for (const componentItme in components) {
-        app.component(componentItme, components[componentItme])
-      }
-
-    app.config.globalProperties.$message = Message
+const install = (app: any) => {
+  // 全局挂载 原型函数 过组件实例调用的属性   this.$message
+  for (const componentItme in components) {
+    app.component(componentItme, components[componentItme])
   }
+
+  app.config.globalProperties.$message = Message
+}
 
 //全局引入使用
 // export default install
 
 //按需引入使用
 export {
-    install,//全局
-    Theme,//主题
-    Button,//按钮
-    Message,//全局信息
-    Icon,//图标
-    Animate,//动态
-    Title,//标题
-    Text,//文字
-    Paragraph,//段落
-    Container,//区域块
-    Space,//间距
-    ButtonGroup,
-    Avatar,//头像
-    AvatarGroup,//头像组
-    Badge,//徽标
-    Table,//表格
-    Crumb,//面包屑
-    CrumbItem,//面包屑节点
-    Input,//输入框
-    InputSearch,//搜索框
-    InputPassword,//密码
-    InputNumber,//数字输入
-    InputTag,//标签输入
-    Textarea,//文本域
-    Dropdown,//下拉菜单
-    Doption,//下啦菜单选项
-    Submenu,//子菜单
-    Pagination,//翻页
-    Checkbox,//复选框
-    CheckboxGroup,//复选框组
-    Radio,//单选
-    RadioGroup,//单选组
-    Switch,//开关
-    Stepper,//步进器
-    Rate,//评分
+  install, //全局
+  Theme, //主题
+  Button, //按钮
+  Message, //全局信息
+  Icon, //图标
+  Animate, //动态
+  Title, //标题
+  Text, //文字
+  Paragraph, //段落
+  Container, //区域块
+  Space, //间距
+  ButtonGroup,
+  Avatar, //头像
+  AvatarGroup, //头像组
+  Badge, //徽标
+  Table, //表格
+  Crumb, //面包屑
+  CrumbItem, //面包屑节点
+  Input, //输入框
+  InputSearch, //搜索框
+  InputPassword, //密码
+  InputNumber, //数字输入
+  InputTag, //标签输入
+  Textarea, //文本域
+  Dropdown, //下拉菜单
+  Doption, //下啦菜单选项
+  Submenu, //子菜单
+  Pagination, //翻页
+  Checkbox, //复选框
+  CheckboxGroup, //复选框组
+  Radio, //单选
+  RadioGroup, //单选组
+  Switch, //开关
+  Stepper, //步进器
+  Rate, //评分
 }
