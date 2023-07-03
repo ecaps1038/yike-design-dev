@@ -1,7 +1,14 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
+    "module": "ESNext",
+    "sourceMap": true, // 生成 sourceMap 文件
+    "resolveJsonModule": true, // 允许引入 JSON 文件
+    "isolatedModules": true, // 该属性要求所有文件都是 ES Module 模块
+    "esModuleInterop": true, // 允许使用 import 引入使用 export = 导出的内容
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
@@ -9,10 +16,5 @@
     "typeRoots": ["./src/types"],
     "types": ["node"]
   },
-
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
-    }
-  ]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

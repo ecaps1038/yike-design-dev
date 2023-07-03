@@ -1,8 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-// https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -21,7 +20,7 @@ export default defineConfig({
     },
   },
   build: {
-    minify:'terser',
+    minify: 'terser',
     // 清除console等多余代码
     terserOptions: {
       compress: {
