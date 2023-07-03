@@ -105,6 +105,8 @@ const handleInputChange = async (event: any) => {
     uploading.value = false
   }
 }
+// 删除某一上传文件
+// const handleDelete = async (file) => {}
 </script>
 <template>
   <div class="yk-upload">
@@ -148,7 +150,6 @@ const handleInputChange = async (event: any) => {
 </template>
 <style scoped lang="less">
 @import '../../assets/style/yk-index.less';
-
 .file-upload-icon {
   margin-right: @space-ss;
   line-height: 14px;
@@ -174,5 +175,9 @@ const handleInputChange = async (event: any) => {
   display: block;
   height: 100%;
   background-color: #6ab04c;
+}
+.yk-uploader-list {
+  width: 100%;
+  margin-top: 21px;
 }
 </style>

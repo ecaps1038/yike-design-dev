@@ -13,6 +13,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "typeRoots": ["./src/types"],
     "types": ["node"]
   },
   "references": [{ "path": "./tsconfig.node.json" }]
