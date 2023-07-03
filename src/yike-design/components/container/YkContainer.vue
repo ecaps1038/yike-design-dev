@@ -121,26 +121,37 @@ const mouseup = () => {
   scrolling.value = -1;
 };
 
+let resizeTimer:number|null = null;
+
+function onWindowResize() {
+  // 清除之前的计时器
+  if (resizeTimer) {
+    cancelAnimationFrame(resizeTimer);
+  }
+
+  // 创建一个新的计时器
+  resizeTimer = requestAnimationFrame(() => {
+    boxWidth.value = boxRef.value.clientWidth;
+    ulWidth.value = ulRef.value.clientWidth;
+    scrollBodyWidth.value = (boxWidth.value * boxWidth.value) / ulWidth.value;
+    isx.value=ulWidth.value>boxWidth.value;
+
+    //纵向滚动
+    boxHeight.value = boxRef.value.clientHeight;
+    ulHeight.value = ulRef.value.clientHeight;
+    scrollBodyHeight.value = (boxHeight.value * boxHeight.value) / ulHeight.value;
+    console.log(ulHeight.value, boxHeight.value)
+    isy.value=ulHeight.value>boxHeight.value
+  });
+}
+
+
+
 onMounted(() => {
-  //横向滚动
-  boxWidth.value = boxRef.value.clientWidth;
-  ulWidth.value = ulRef.value.clientWidth;
-  scrollBodyWidth.value = (boxWidth.value * boxWidth.value) / ulWidth.value;
-
-  if(ulWidth.value>boxWidth.value){
-    isx.value=true;
-  }
-
-  //纵向滚动
-  boxHeight.value = boxRef.value.clientHeight;
-  ulHeight.value = ulRef.value.clientHeight;
-  scrollBodyHeight.value = (boxHeight.value * boxHeight.value) / ulHeight.value;
-
-  if(ulHeight.value>boxHeight.value){
-    isy.value=true;
-  }
-
+  
+  onWindowResize()
   // boxRef.value.addEventListener("scroll", scrollLeft);
+  window.addEventListener('resize', onWindowResize)
 });
 
 </script>
