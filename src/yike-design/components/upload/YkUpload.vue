@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, type Ref, toRef } from 'vue'
 import { UploadRequest } from './ajax'
+import YkUploadContent from './YkUploadContent.vue'
+import type { UploadUserFile } from '@/types/upload'
 const props = defineProps({
   accept: {
     type: String,
@@ -24,11 +26,11 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-  // transcode: {
-  //   // 是否开启视频转码按钮
-  //   type: Boolean,
-  //   default: false,
-  // },
+  limit: {
+    // 上传限制数量 0为不限制
+    type: Number,
+    default: 0,
+  },
   downloadable: {
     // 是否可下载
     type: Boolean,
@@ -44,46 +46,57 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
-  // size: {
-  //   type: String,
-  //   default: 'normal',
-  //   validator: (value) => ['small', 'normal', 'large'].includes(value),
-  // },
+  existFileList: {
+    type: Array<UploadUserFile>,
+    default: () => [],
+  },
 })
 const isPicture = ref(false)
 const uploadFile: any = ref(null)
+const { existFileList }: any = toRef(props)
+const uploading = ref(false)
 const inputRef: any = ref(null)
 isPicture.value = props.accept.includes('images')
 const handleUpload = async () => {
-  // console.log('click')
   inputRef.value.click()
 }
 
 const handleInputChange = async (event: any) => {
-  console.log('🚀 ~ file: YkUpload.vue:63 ~ handleInputChange ~ event:', event)
+  uploading.value = true
   uploadFile.value = event.target.files[0]
-  console.log(
-    '🚀 ~ file: YkUpload.vue:65 ~ handleInputChange ~ uploadFiles.value:',
-    uploadFile.value,
-  )
+  const fileName = uploadFile.value.name
   const uploadParams = {
     uploadUrl: props.uploadUrl,
     selectedFile: uploadFile.value,
   }
-  const response = await UploadRequest(uploadParams)
-  console.log(
-    '🚀 ~ file: YkUpload.vue:73 ~ handleInputChange ~ response:',
-    response,
-  )
+  const { res, err }: any = await UploadRequest(uploadParams)
+  if (res) {
+    console.log('文件上传成功')
+    uploading.value = false
+
+    existFileList.value.push({
+      blob: uploadFile.value,
+      src: res?.fileUrl || props.uploadUrl + '/' + fileName,
+    })
+  } else {
+    console.log(err)
+    uploading.value = false
+  }
 }
+// 删除某一上传文件
+// const handleDelete = async (file) => {}
 </script>
 <template>
   <div class="yk-upload">
     <div class="yk-uploader">
       <div class="yk-uploader-file" v-if="isPicture"></div>
       <div class="yk-uploader-picture" v-else>
-        <Button @click="handleUpload">
-          <Icon name="yk-shangchuan" class="file-upload-icon" />
+        <Button @click="handleUpload" :loading="uploading">
+          <Icon
+            name="yk-shangchuan"
+            v-if="!uploading"
+            class="file-upload-icon"
+          />
           上传文件
         </Button>
         <input
@@ -97,27 +110,24 @@ const handleInputChange = async (event: any) => {
         />
       </div>
     </div>
-    <div class="yk-uploader-list"></div>
+    <div class="yk-uploader-list" v-if="multiple && existFileList.length">
+      <div v-for="exiteFile in existFileList" :key="exiteFile.fileUrl">
+        <YkUploadContent
+          :fileContent="exiteFile"
+          :isPicture="isPicture"
+        ></YkUploadContent>
+      </div>
+    </div>
   </div>
 </template>
 <style scoped lang="less">
 @import '../../assets/style/yk-index.less';
-
-// .yk-upload {
-//   font-size: @size-s;
-// }
-// .yk-uploader-file {
-//   width: 107px;
-//   height: 36px;
-//   background-color: @pcolor;
-//   border-radius: @radius-m;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   align-items: center;
-// }
 .file-upload-icon {
   margin-right: @space-ss;
   line-height: 14px;
+}
+.yk-uploader-list {
+  width: 100%;
+  margin-top: 21px;
 }
 </style>

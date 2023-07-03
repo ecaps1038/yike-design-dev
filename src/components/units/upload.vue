@@ -4,7 +4,7 @@ import CaseCard from '@/components/CaseCard.vue'
 
 const uploadUrl: any = ref(null)
 if (process.env.NODE_ENV === 'development') {
-  uploadUrl.value = 'http://127.0.0.1:3000/api/upload'
+  uploadUrl.value = 'http://192.168.1.207:3976/upload'
 }
 //说明部分
 let datas = [
@@ -45,49 +45,18 @@ const columns = [
 ]
 const data = reactive([
   {
-    key: '1',
-    name: 'modelValue(v-model)',
-    expl: '绑定值',
-    type: `number`,
-    normal: 'null',
-  },
-  {
-    key: '2',
-    name: 'disabled',
-    expl: '是否禁用',
-    type: `boolean`,
-    normal: 'false',
-  },
-  {
-    key: '3',
-    name: 'readonly',
-    expl: '是否为只读状态',
-    type: `boolean`,
-    normal: 'false',
-  },
-  {
-    key: '4',
-    name: 'allowHalf',
-    expl: '是否允许半选',
-    type: `boolean`,
-    normal: 'false',
-  },
-  {
-    key: '5',
-    name: 'count',
-    expl: '评分总数',
-    type: `number`,
-    normal: '5',
-  },
-  {
-    key: '6',
-    name: 'color',
-    expl: '颜色',
-    type: `string`,
-    normal: '-',
+    existFileList: [
+      {
+        name: 'food.jpeg',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
+      },
+      {
+        name: 'food2.jpeg',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
+      },
+    ],
   },
 ])
-
 const columns1 = [
   {
     title: '事件名',
@@ -129,19 +98,24 @@ const yike = ref(3.5)
     <div class="top-title">
       <Title :level="2">Upload 文件上传</Title>
       <Paragraph>用于常规文件或图片文件的上传。</Paragraph>
-      <CaseCard
+      <!-- <CaseCard
         :title="datas[0].title"
         :note="datas[0].note"
         :code="datas[0].code"
       >
         <upload accept="images/*" :uploadUrl="uploadUrl"></upload>
-      </CaseCard>
+      </CaseCard> -->
       <CaseCard
         :title="datas[1].title"
         :note="datas[1].note"
         :code="datas[1].code"
       >
-        <upload accept="*" :uploadUrl="uploadUrl"></upload>
+        <upload
+          accept="*"
+          :uploadUrl="uploadUrl"
+          :multiple="true"
+          :existFileList="data[0].existFileList"
+        ></upload>
       </CaseCard>
     </div>
   </div>
