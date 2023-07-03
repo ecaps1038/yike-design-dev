@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "composite": true, // 对于引用项目必须设置该属性
+    "skipLibCheck": true, // 跳过对lib的类型检测
+    "module": "ESNext",
+    "moduleResolution": "bundler", // 模块路径解析 支持ESM
+    "allowSyntheticDefaultImports": true // 允许使用 import 导入使用 export = 导出的默认内容
+  },
+  "include": ["vite.config.ts"]
+}

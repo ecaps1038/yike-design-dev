@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store/index'
+import { createPinia } from 'pinia'
 
 //全局样式
 import './assets/main.less'
@@ -18,10 +18,6 @@ import hljsVuePlugin from '@highlightjs/vue-plugin'
 hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(router)
-app.use(store)
-app.use(install)
-app.use(hljsVuePlugin)
-
-app.mount('#app')
+app.use(install).use(pinia).use(router).use(hljsVuePlugin).mount('#app')
