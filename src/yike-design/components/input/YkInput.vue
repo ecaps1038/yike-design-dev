@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import ykIcon from "../icon/YkIcon.vue";
+import { ref, onMounted } from 'vue'
+import ykIcon from '../icon/YkIcon.vue'
 
 const props = defineProps({
   modelValue: {
@@ -20,7 +20,7 @@ const props = defineProps({
   size: {
     //大小
     type: String,
-    default: "l",
+    default: 'l',
   },
   allowClear: {
     //显示清除
@@ -30,7 +30,7 @@ const props = defineProps({
   placeholder: {
     //默认信息
     type: String,
-    default: "",
+    default: '',
   },
   maxLength: {
     //内容限制
@@ -49,101 +49,130 @@ const props = defineProps({
   type: {
     type: String,
     default: 'text',
-  }
-});
-const emits = defineEmits(["update:modelValue", "focus", "blur", "clear", "pEnter"]);
+  },
+})
+const emits = defineEmits([
+  'update:modelValue',
+  'focus',
+  'blur',
+  'clear',
+  'pEnter',
+])
 
 //计算字符长度
 const valueLength = ref(0)
 const emitValue = (e: any) => {
-  emits("update:modelValue", e.target.value);
+  emits('update:modelValue', e.target.value)
   if (props.maxLength) {
     valueLength.value = e.target.value.length
   }
-};
+}
 
 //监听焦点变化
-const isFocus = ref(false);
+const isFocus = ref(false)
 //聚焦
 const focus = (e: any) => {
-  isFocus.value = true;
-  emits("focus", e.target.value)
-};
+  isFocus.value = true
+  emits('focus', e.target.value)
+}
 
 //失焦
 const blur = (e: any) => {
-  isFocus.value = false;
-  emits("blur", e.target.value)
+  isFocus.value = false
+  emits('blur', e.target.value)
   // console.log(props.modelValue)
-};
+}
 //键盘回车事件
 const keyEnter = () => {
-  emits("pEnter", props.modelValue)
+  emits('pEnter', props.modelValue)
 }
 
 //判断外挂修饰
 const primp = ref([false, false, false, false])
 //获取前缀
-const prefix = ref();
+const prefix = ref()
 //获取后缀
-const suffix = ref();
+const suffix = ref()
 //获取前置标签
-const prepend = ref();
+const prepend = ref()
 //获取后置标签
-const append = ref();
+const append = ref()
 
 //修饰计算
 const getPrimp = () => {
   primp.value = [false, false, false, false]
   if (prefix.value.children.length > 0) {
-    primp.value[0] = true;
+    primp.value[0] = true
   }
   if (suffix.value.children.length > 0) {
-    primp.value[1] = true;
+    primp.value[1] = true
   }
   if (prepend.value.children.length > 0) {
-    primp.value[2] = true;
+    primp.value[2] = true
   }
   if (append.value.children.length > 0) {
-    primp.value[3] = true;
+    primp.value[3] = true
   }
 }
 
 //清空内容
 const clearValue = () => {
-  emits("clear", props.modelValue)
-  emits("update:modelValue", "");
-};
+  emits('clear', props.modelValue)
+  emits('update:modelValue', '')
+}
 
 onMounted(() => {
   //获取原始数据长度
   if (props.modelValue) {
     valueLength.value = props.modelValue.toString().length
   }
-  getPrimp();
-});
+  getPrimp()
+})
 </script>
 <template>
-  <div class="inputs" :class="{ disabled: disabled,readonly: readonly }">
-    <div class="yk-input" :class="{ error: error, normal: !error,  }">
+  <div class="inputs" :class="{ disabled: disabled, readonly: readonly }">
+    <div class="yk-input" :class="{ error: error, normal: !error }">
       <div :class="[size, { focus: isFocus }]" class="yk-input-inner">
-        <div class="prepend" ref="prepend" :class="[size, size + 'r']" v-show="primp[2]">
+        <div
+          class="prepend"
+          ref="prepend"
+          :class="[size, size + 'r']"
+          v-show="primp[2]"
+        >
           <slot name="prepend"></slot>
         </div>
         <div class="prefix fix" ref="prefix" :class="[size]" v-show="primp[0]">
           <slot name="prefix"></slot>
         </div>
-        <input :value="modelValue" :placeholder="placeholder" class="input" :class="[size]" @input="emitValue"
-          @blur="blur" @focus="focus" @keyup.enter="keyEnter" ref="input" :type="type" :maxlength="maxLength"
-          :readonly="readonly" />
+        <input
+          :value="modelValue"
+          :placeholder="placeholder"
+          class="input"
+          :class="[size]"
+          @input="emitValue"
+          @blur="blur"
+          @focus="focus"
+          @keyup.enter="keyEnter"
+          ref="input"
+          :type="type"
+          :maxlength="maxLength"
+          :readonly="readonly"
+        />
         <div class="icon-div" v-show="modelValue && allowClear" :class="[size]">
           <ykIcon @click="clearValue" name="yk-cha" class="clear-icon" />
         </div>
-        <p class="show-length" v-show="maxLength" :class="[size]">{{ valueLength }}/{{ maxLength }}</p>
+        <p class="show-length" v-show="maxLength" :class="[size]">
+          {{ valueLength }}/{{ maxLength }}
+        </p>
         <div class="suffix fix" ref="suffix" :class="[size]" v-show="primp[1]">
           <slot name="suffix"></slot>
         </div>
-        <div class="append" ref="append" :class="[size, size + 'l']" v-show="primp[3]">
+        <div
+          class="append"
+          ref="append"
+          :class="[size, size + 'l']"
+          v-show="primp[3]"
+        >
           <slot name="append"></slot>
         </div>
       </div>
@@ -151,7 +180,7 @@ onMounted(() => {
   </div>
 </template>
 <style lang="less" scoped>
-@import "../../assets/style/yk-index.less";
+@import '../../assets/style/yk-index.less';
 
 .inputs {
   display: inline-flex;
@@ -166,7 +195,6 @@ onMounted(() => {
 
 //状态
 .normal {
-
   &:hover {
     .icon-div {
       display: block;
@@ -190,7 +218,6 @@ onMounted(() => {
 }
 
 .error {
-
   &:hover {
     .icon-div {
       display: block;
@@ -217,8 +244,6 @@ onMounted(() => {
     }
   }
 }
-
-
 //input内部
 .yk-input-inner {
   box-sizing: border-box;
@@ -235,7 +260,6 @@ onMounted(() => {
 }
 
 .prepend {
-
   // background:rgba(0,0,0,0.1);
   &::after {
     content: '';

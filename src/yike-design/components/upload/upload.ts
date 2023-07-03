@@ -1,31 +1,14 @@
-import axios from 'axios'
+export function getArcPath(
+  cx: number,
+  cy: number,
+  r: number,
+  progress: number,
+) {
+  const endAngle = (progress / 100) * Math.PI * 2 // 结束角度（弧度）
+  const x = cx + r * Math.sin(endAngle)
+  const y = cy - r * Math.cos(endAngle)
 
-export default {
-  data() {
-    return {
-      selectedFile: null,
-    }
-  },
-  methods: {
-    handleFileChange(event) {
-      this.selectedFile = event.target.files[0]
-    },
-    uploadFile() {
-      if (this.selectedFile) {
-        const formData = new FormData()
-        formData.append('file', this.selectedFile)
-
-        axios
-          .post('/upload-url', formData)
-          .then((response) => {
-            console.log('File uploaded successfully')
-            // 处理成功响应
-          })
-          .catch((error) => {
-            console.error('Error uploading file:', error)
-            // 处理错误响应
-          })
-      }
-    },
-  },
+  return `M${cx},${cy} L${cx},${cy - r} A${r},${r} 0 ${
+    endAngle < Math.PI ? '0' : '1'
+  },1 ${x},${y} Z`
 }
