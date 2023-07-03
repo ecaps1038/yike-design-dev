@@ -7,13 +7,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
     },
     {
       path: '/hh',
       name: 'hh',
 
-      component: () => import('../views/yikeTt.vue')
+      component: () => import('../views/yikeTt.vue'),
     },
     {
       path: '/module',
@@ -23,61 +23,77 @@ const router = createRouter({
       children: [
         {
           path: 'button',
-          component: () => import('../components/units/Buttons.vue')
-        }, {
+          component: () => import('../components/units/Buttons.vue'),
+        },
+        {
           path: 'icon',
-          component: () => import('../components/units/Icons.vue')
-        }, {
+          component: () => import('../components/units/Icons.vue'),
+        },
+        {
           path: 'typegraphy',
-          component: () => import('../components/units/Typeg.vue')
-        }, {
+          component: () => import('../components/units/Typeg.vue'),
+        },
+        {
           path: 'space',
-          component: () => import('../components/units/Spaces.vue')
-        }, {
+          component: () => import('../components/units/Spaces.vue'),
+        },
+        {
           path: 'avatar',
-          component: () => import('../components/units/avatars.vue')
-        }, {
+          component: () => import('../components/units/avatars.vue'),
+        },
+        {
           path: 'badge',
-          component: () => import('../components/units/badges.vue')
-        }, {
+          component: () => import('../components/units/badges.vue'),
+        },
+        {
           path: 'breadcrumb',
-          component: () => import('../components/units/breadcrumbs.vue')
-        }, {
+          component: () => import('../components/units/breadcrumbs.vue'),
+        },
+        {
           path: 'dropdown',
-          component: () => import('../components/units/dropdown.vue')
-        }, {
+          component: () => import('../components/units/dropdown.vue'),
+        },
+        {
           path: 'pagination',
-          component: () => import('../components/units/paginations.vue')
-        }, {
+          component: () => import('../components/units/paginations.vue'),
+        },
+        {
           path: 'input',
-          component: () => import('../components/units/inputs.vue')
-        }, {
+          component: () => import('../components/units/inputs.vue'),
+        },
+        {
           path: 'textarea',
-          component: () => import('../components/units/textareas.vue')
-        }, {
+          component: () => import('../components/units/textareas.vue'),
+        },
+        {
           path: 'checkbox',
-          component: () => import('../components/units/checkboxs.vue')
-        }, {
+          component: () => import('../components/units/checkboxs.vue'),
+        },
+        {
           path: 'radio',
-          component: () => import('../components/units/radios.vue')
-        }, {
+          component: () => import('../components/units/radios.vue'),
+        },
+        {
           path: 'switch',
-          component: () => import('../components/units/switchs.vue')
-        }
-        , {
+          component: () => import('../components/units/switchs.vue'),
+        },
+        {
           path: 'inputnumber',
-          component: () => import('../components/units/inputnumber.vue')
-        }, {
+          component: () => import('../components/units/inputnumber.vue'),
+        },
+        {
           path: 'stepper',
-          component: () => import('../components/units/steppers.vue')
-        }, {
+          component: () => import('../components/units/steppers.vue'),
+        },
+        {
           path: 'inputtag',
-          component: () => import('../components/units/inputtag.vue')
-        }, {
+          component: () => import('../components/units/inputtag.vue'),
+        },
+        {
           path: 'rate',
-          component: () => import('../components/units/rates.vue')
-        }
-      ]
+          component: () => import('../components/units/rates.vue'),
+        },
+      ],
     },
     {
       path: '/develop',
@@ -87,18 +103,21 @@ const router = createRouter({
       children: [
         {
           path: 'grasp',
-          component: () => import('../components/develops/grasp.vue')
-        }, {
+          component: () => import('../components/develops/grasp.vue'),
+        },
+        {
           path: 'yikedev',
-          component: () => import('../components/develops/yikedev.vue')
-        },{
+          component: () => import('../components/develops/yikedev.vue'),
+        },
+        {
           path: 'dark',
-          component: () => import('../components/develops/dark.vue')
-        },{
+          component: () => import('../components/develops/dark.vue'),
+        },
+        {
           path: 'theme',
-          component: () => import('../components/develops/theme.vue')
-        }
-      ]
+          component: () => import('../components/develops/theme.vue'),
+        },
+      ],
     },
     {
       path: '/design',
@@ -108,14 +127,15 @@ const router = createRouter({
       children: [
         {
           path: 'yikedesign',
-          component: () => import('../components/design/yikedesign.vue')
-        },{
+          component: () => import('../components/design/yikedesign.vue'),
+        },
+        {
           path: 'principle',
-          component: () => import('../components/design/principle.vue')
-        }
-      ]
-    }
-  ]
+          component: () => import('../components/design/principle.vue'),
+        },
+      ],
+    },
+  ],
 })
 
 export default router
