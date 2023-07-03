@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
@@ -21,4 +20,14 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    minify:'terser',
+    // 清除console等多余代码
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
+  }
 })
