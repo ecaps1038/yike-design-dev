@@ -93,6 +93,10 @@ const router = createRouter({
           path: 'rate',
           component: () => import('../components/units/rates.vue'),
         },
+        {
+          path: 'upload',
+          component: () => import('../components/units/upload.vue'),
+        },
       ],
     },
     {

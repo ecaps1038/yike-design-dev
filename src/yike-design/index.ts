@@ -32,6 +32,7 @@ import RadioGroup from './components/radio/ykRadioGroup.vue'
 import Switch from './components/switch/ykSwitch.vue'
 import Stepper from './components/stepper/ykStepper.vue'
 import Rate from './components/rate/ykRate.vue'
+import Upload from './components/upload/YkUpload.vue'
 
 import type { Component } from 'vue'
 
@@ -71,6 +72,7 @@ const components: {
   Switch,
   Stepper,
   Rate,
+  Upload,
 }
 
 const install = (app: any) => {
@@ -122,4 +124,5 @@ export {
   Switch, //开关
   Stepper, //步进器
   Rate, //评分
+  Upload, //文件上传
 }
