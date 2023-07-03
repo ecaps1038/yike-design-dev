@@ -1,42 +1,51 @@
 <template>
   <div class="top-bar">
     <div class="logo" @click="goIndex">
-      <img src="@/assets/icon/logo.svg">
+      <img src="@/assets/icon/logo.svg" />
       <span class="name">Yike Design 开发版</span>
     </div>
     <Space class="net" :size="40" aline="center">
-      <a href="https://docs.qq.com/sheet/DZEd4ZFlTeGx2UkJa?tab=BB08J2">开发文档</a>
+      <a
+        target="_blank"
+        href="https://docs.qq.com/sheet/DZEd4ZFlTeGx2UkJa?tab=BB08J2"
+      >
+        开发文档
+      </a>
       <router-link to="/design">设计</router-link>
       <router-link to="/develop">开发</router-link>
       <router-link to="/module">组件</router-link>
       <a href="http://www.huohuo90.com">主站</a>
-      <div class="zz">赞助
-      <div class="support">
-        <p>感谢您的赞助，您的支持是我最大的动力～</p>
-        <img class="zz-tp" src="@/assets/images/wx.png" />
-        <img class="zz-tp" src="@/assets/images/zfb.png" />
+      <div class="zz">
+        赞助
+        <div class="support">
+          <p>感谢您的赞助，您的支持是我最大的动力～</p>
+          <img class="zz-tp" src="@/assets/images/wx.png" />
+          <img class="zz-tp" src="@/assets/images/zfb.png" />
+        </div>
       </div>
-    </div>
       <a href="https://github.com/ecaps1038/yike-design">
         <Icon name="yike-github" class="github" />
       </a>
       <Theme class="nav" />
-      <Avatar size="m" class="nav" imgUrl="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"/>
+      <Avatar
+        size="m"
+        class="nav"
+        imgUrl="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
+      />
     </Space>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
-const dark = ref(false);
+const dark = ref(false)
 //页面跳转
-const router = useRouter();
+const router = useRouter()
 const goIndex = (): void => {
   router.push({ path: '/' })
 }
-
 </script>
 
 <style lang="less" scoped>
@@ -101,11 +110,11 @@ const goIndex = (): void => {
         border-radius: @radius-m;
         text-align: center;
         display: none;
-        .zz-tp{
-          width:200px;
-          margin:15px;
+        .zz-tp {
+          width: 200px;
+          margin: 15px;
         }
-        p{
+        p {
           font-size: 16px;
           padding-top: 20px;
           line-height: 40px;
@@ -128,6 +137,5 @@ const goIndex = (): void => {
       color: @pcolor;
     }
   }
-
 }
 </style>
