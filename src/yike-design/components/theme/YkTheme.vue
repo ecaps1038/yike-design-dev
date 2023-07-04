@@ -33,41 +33,41 @@ const onChange = () => {
   theme(obj.value)
 }
 //监听系统主题变化
-//  const onThemeListen=()=> {
-//     let match = window.matchMedia('(prefers-color-scheme: dark)').matches;
-//     if (match) {
-//       // console.log("iis");
-//       obj.value = menusModel.themeB;
-//       dark.value = true;
-//     } else {
-//       // console.log("nno");
-//       obj.value = menusModel.themeA;
-//       dark.value = false;
-//     }
-//     theme(obj.value);
-//     // console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
-//     if (window.matchMedia) {
-//       window
-//         .matchMedia("(prefers-color-scheme: dark)")
-//         .addEventListener("change", (e) => {
-//           let status = e.matches ? true : false;
-//           if (status) {
-//             // console.log("is");
-//             obj.value = menusModel.themeB;
-//             dark.value  = true;
-//           } else {
-//             // console.log("no");
-//             obj.value = menusModel.themeA;
-//             dark.value  = false;
-//           }
-//           theme(obj.value);
-//         });
-//     }
-//   }
+const onThemeListen = () => {
+  let match = window.matchMedia('(prefers-color-scheme: dark)').matches
+  if (match) {
+    // console.log("iis");
+    obj.value = menusModel.themeB
+    dark.value = true
+  } else {
+    // console.log("nno");
+    obj.value = menusModel.themeA
+    dark.value = false
+  }
+  theme(obj.value)
+  // console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
+  if (window.matchMedia) {
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', (e) => {
+        let status = e.matches ? true : false
+        if (status) {
+          // console.log("is");
+          obj.value = menusModel.themeB
+          dark.value = true
+        } else {
+          // console.log("no");
+          obj.value = menusModel.themeA
+          dark.value = false
+        }
+        theme(obj.value)
+      })
+  }
+}
 
-//   onMounted(()=>{
-//     onThemeListen();
-//   })
+onMounted(() => {
+  onThemeListen()
+})
 </script>
 
 <style lang="less" scoped>
