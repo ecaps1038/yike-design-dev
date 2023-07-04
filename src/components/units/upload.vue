@@ -10,15 +10,27 @@ let datas = [
   {
     title: '文件上传',
     note: '其他类型文件上传基本用法。',
-    code: `        <upload
-          accept="*"
-          :uploadUrl="uploadUrl"
-          :multiple="true"
-          :fileList="data[0].fileList"
-          @handleSuccess="handleSuccess"
-          @handleDelete="handleDelete"
-          @handleError="handleError"
-        ></upload>`,
+    code: `/* js 模块*/
+const handleSuccess = (e: any, fileList: any) => {
+  console.log('🚀 ~ file: upload.vue:94 ~ handleSuccess ~ fileList:', fileList)
+}
+const handleDelete = (fileList: any) => {
+  console.log('🚀 ~ file: upload.vue:97 ~ handleDelete ~ fileList:', fileList)
+}
+const handleError = (err: any) => {
+  console.log('🚀 ~ file: upload.vue:97 ~ handleError ~ err:', err)
+}
+/* template */
+<upload
+  accept="*"
+  :uploadUrl="uploadUrl"
+  :multiple="true"
+  :fileList="data[0].fileList"
+  @handleSuccess="handleSuccess"
+  @handleDelete="handleDelete"
+  @handleError="handleError"
+></upload>
+        `,
   },
   {
     title: '单文件上传',
@@ -84,6 +96,36 @@ const columns = [
 ]
 const data = reactive([
   {
+    key: '1',
+    name: 'accept',
+    expl: '接收文件类型',
+    type: `string`,
+    normal: '*',
+  },
+  {
+    key: '2',
+    name: 'mutiple',
+    expl: '是否上传多个文件',
+    type: `boolean`,
+    normal: 'true',
+  },
+  {
+    key: '3',
+    name: 'uploadUrl',
+    expl: '文件服务url',
+    type: `string`,
+    normal: '-',
+  },
+  {
+    key: '4',
+    name: 'fileList',
+    expl: '回显文件列表',
+    type: `Array<UploadFile>`,
+    normal: '{}',
+  },
+])
+const mokeFiles = [
+  {
     fileList: [
       {
         name: 'food.jpeg',
@@ -101,7 +143,7 @@ const data = reactive([
       },
     ],
   },
-])
+]
 const columns1 = [
   {
     title: '事件名',
@@ -122,15 +164,21 @@ const columns1 = [
 const data1 = reactive([
   {
     key: '1',
-    name: 'change',
-    expl: '值改变时触发',
-    type: `value: number`,
+    name: 'handleSuccess',
+    expl: '文件上传成功时触发',
+    type: `res:{服务器返回结果},fileList:{当前文件列表`,
   },
   {
     key: '2',
-    name: 'hoverChange',
-    expl: '鼠标移动到数值上时触发',
-    type: `value: number`,
+    name: 'handleDelete',
+    expl: '文件删除时触发',
+    type: `res:{服务器返回结果},fileList:{当前文件列表`,
+  },
+  {
+    key: '3',
+    name: 'handleError',
+    expl: '文件上传失败时触发',
+    type: `err:{服务器返回结果`,
   },
 ])
 
@@ -161,7 +209,7 @@ const handleError = (err: any) => {
           accept="*"
           :uploadUrl="uploadUrl"
           :multiple="true"
-          :fileList="data[0].fileList"
+          :fileList="mokeFiles[0].fileList"
           @handleSuccess="handleSuccess"
           @handleDelete="handleDelete"
           @handleError="handleError"
@@ -204,12 +252,23 @@ const handleError = (err: any) => {
           accept="image/*"
           :uploadUrl="uploadUrl"
           :multiple="false"
-          :file-list="data[0].imageList"
+          :file-list="mokeFiles[0].imageList"
           @handleSuccess="handleSuccess"
           @handleDelete="handleDelete"
           @handleError="handleError"
         ></upload>
       </CaseCard>
+    </div>
+    <div class="api">
+      <Title :level="3">API</Title>
+      <Title :level="4">Textarea . Props</Title>
+      <div class="unit-table">
+        <Table :data="data" :columns="columns"></Table>
+      </div>
+      <Title :level="4">Textarea . Events</Title>
+      <div class="unit-table">
+        <Table :data="data1" :columns="columns1"></Table>
+      </div>
     </div>
   </div>
 </template>

@@ -21,7 +21,7 @@ const props = defineProps({
   },
   multiple: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   preview: {
     // 是否开启预览
