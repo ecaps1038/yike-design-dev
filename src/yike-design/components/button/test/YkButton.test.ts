@@ -1,25 +1,25 @@
-import { mount } from '@vue/test-utils';
-import YkButtonVue from '../YkButton.vue';
+import { mount } from '@vue/test-utils'
+import YkButtonVue from '../YkButton.vue'
 
 describe('YkButtonVue', () => {
   it('renders the button text correctly', () => {
-    const buttonText = 'Click me';
+    const buttonText = 'Click me'
     const wrapper = mount(YkButtonVue, {
       slots: {
         default: buttonText,
       },
-    });
+    })
 
-    expect(wrapper.text()).toBe(buttonText);
-  });
+    expect(wrapper.text()).toBe(buttonText)
+  })
 
   it('emits a click event when clicked', async () => {
-    const wrapper = mount(YkButtonVue);
+    const wrapper = mount(YkButtonVue)
 
-    await wrapper.trigger('click');
+    await wrapper.trigger('click')
 
-    expect(wrapper.emitted('click')).toHaveLength(1);
-  });
+    expect(wrapper.emitted('click')).toHaveLength(1)
+  })
 
   // it('disables the button when disabled prop is true', () => {
   //   const wrapper = mount(YkButtonVue, {
@@ -50,5 +50,4 @@ describe('YkButtonVue', () => {
 
   //   expect(wrapper.classes()).toContain('primary');
   // });
-
-});
+})

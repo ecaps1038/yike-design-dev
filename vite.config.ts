@@ -7,8 +7,8 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
   css: {
     // css预处理器
@@ -16,7 +16,8 @@ export default defineConfig({
       less: {
         charset: false,
         // additionalData: '@import "./src/assets/base.less";',
-        additionalData: '@import "./src/yike-design/assets/style/yk-index.less";',
+        additionalData:
+          '@import "./src/yike-design/assets/style/yk-index.less";',
       },
     },
   },
@@ -26,8 +27,8 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true
-      }
+        drop_debugger: true,
+      },
     },
   },
   test: {
@@ -36,5 +37,5 @@ export default defineConfig({
     // simulate DOM with happy-dom
     // (requires installing happy-dom as a peer dependency)
     environment: 'happy-dom',
-  }
+  },
 })
