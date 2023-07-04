@@ -159,7 +159,7 @@ const handleReUpload = (file: any) => {
           <div>上传文件</div>
         </Button>
       </div>
-      <div class="yk-uploader-list" v-if="multiple || existFileList.length">
+      <div class="yk-uploader-list" v-if="existFileList.length">
         <div v-for="exiteFile in existFileList" :key="exiteFile.url">
           <YkFileContent
             :file-content="exiteFile"
@@ -175,9 +175,9 @@ const handleReUpload = (file: any) => {
       <div
         class="yk-image-uploader"
         @click="handleUpload"
-        v-if="multiple || (!multiple && !existFileList.length)"
+        v-if="showUploadButton"
       ></div>
-      <div class="yk-images-list" v-if="multiple || existFileList.length">
+      <div class="yk-images-list" v-if="existFileList.length">
         <div
           v-for="exiteFile in existFileList"
           class="exist-images"
