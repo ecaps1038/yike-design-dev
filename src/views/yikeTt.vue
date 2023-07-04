@@ -1,104 +1,104 @@
 <script setup lang="ts">
-import { Checkbox, Dropdown, Pagination, Space } from "@/yike-design";
-import { getCurrentInstance, ref, inject } from "vue";
+import { Checkbox, Dropdown, Pagination, Space } from '@/yike-design'
+import { getCurrentInstance, ref, inject } from 'vue'
 
-const { proxy }: any = getCurrentInstance(); //获取全局变量
+const { proxy }: any = getCurrentInstance() //获取全局变量
 
 const handleClick = () => {
-  proxy.$message({ type: "success", message: "感谢你的记录！" });
-};
+  proxy.$message({ type: 'success', message: '感谢你的记录！' })
+}
 
-const url = "http://localhost:5173/src/assets/icon/yike.png";
-const count = ref([12, 4, 234, 32]);
+const url = 'http://localhost:5173/src/assets/icon/yike.png'
+const count = ref([12, 4, 234, 32])
 
 //input
-const idata = ref("yike时光");
-const inputData = ref("逸刻");
-const areaData = ref();
-const check = ref(true);
-const check1 = ref(true);
+const idata = ref('yike时光')
+const inputData = ref('逸刻')
+const areaData = ref()
+const check = ref(true)
+const check1 = ref(true)
 //点击改变选择
 const checkS = () => {
-  check1.value = !check1.value;
-};
+  check1.value = !check1.value
+}
 
 //复选框
-const aaa = ref(["d"]);
-const bbb = ref([1]);
-const ccc = ref(["b"]);
-let op1 = [1, 2, 3, 4, 5];
-let op2 = ["d", "b", "x", "y", "z"];
+const aaa = ref(['d'])
+const bbb = ref([1])
+const ccc = ref(['b'])
+let op1 = [1, 2, 3, 4, 5]
+let op2 = ['d', 'b', 'x', 'y', 'z']
 let op3 = [
-  { label: "a", value: "a" },
-  { label: "b", value: "b" },
-  { label: "c", value: "c" },
-  { label: "d", value: "d", disabled: true },
-];
+  { label: 'a', value: 'a' },
+  { label: 'b', value: 'b' },
+  { label: 'c', value: 'c' },
+  { label: 'd', value: 'd', disabled: true },
+]
 let op4 = [
-  { value: "A" },
-  { value: "B" },
-  { value: "C" },
-  { value: "D", disabled: true },
-];
+  { value: 'A' },
+  { value: 'B' },
+  { value: 'C' },
+  { value: 'D', disabled: true },
+]
 
 //全选
-const indeterminate = ref(false);
-const checkedAll = ref(false);
-const data = ref();
-data.value = [];
-let cdata = [1, 2, 3, 4, 5];
+const indeterminate = ref(false)
+const checkedAll = ref(false)
+const data = ref()
+data.value = []
+let cdata = [1, 2, 3, 4, 5]
 
 const handleChangeAll = (e: any) => {
-  indeterminate.value = false;
+  indeterminate.value = false
   if (e[0]) {
-    checkedAll.value = true;
-    data.value = cdata;
+    checkedAll.value = true
+    data.value = cdata
   } else {
-    checkedAll.value = false;
-    data.value = [];
+    checkedAll.value = false
+    data.value = []
   }
-};
+}
 
 const handleChange = (values: any) => {
   if (values.length === cdata.length) {
-    checkedAll.value = true;
-    indeterminate.value = false;
+    checkedAll.value = true
+    indeterminate.value = false
   } else if (values.length === 0) {
-    checkedAll.value = false;
-    indeterminate.value = false;
+    checkedAll.value = false
+    indeterminate.value = false
   } else {
-    checkedAll.value = true;
-    indeterminate.value = true;
+    checkedAll.value = true
+    indeterminate.value = true
   }
-};
+}
 
 //单选
-const rs = ref(1);
-const rs1 = ref('不一');
-let rl1 = [1, 2, 3, 4, 5];
-let rl2 = ['今天', '会成长', '可是', '如果明天', '会吗'];
+const rs = ref(1)
+const rs1 = ref('不一')
+let rl1 = [1, 2, 3, 4, 5]
+let rl2 = ['今天', '会成长', '可是', '如果明天', '会吗']
 let rl3 = [
-  { value: "jishi" },
-  { label: "aafdf", value: "a" },
-  { label: "可是过", value: "可是过" },
-  { label: "不一", value: "不一", disabled: true },
-];
+  { value: 'jishi' },
+  { label: 'aafdf', value: 'a' },
+  { label: '可是过', value: '可是过' },
+  { label: '不一', value: '不一', disabled: true },
+]
 let rl4 = [
-  { value: "A" },
-  { value: "B" },
-  { value: "C" },
-  { value: "D", disabled: true },
-];
+  { value: 'A' },
+  { value: 'B' },
+  { value: 'C' },
+  { value: 'D', disabled: true },
+]
 
 const radio1 = ref(false)
 //输出结果
 const radioS = (e: any) => {
-  console.log(e);
-  console.log(radio1.value);
-};
+  console.log(e)
+  console.log(radio1.value)
+}
 //改变
 const changeR = () => {
-  radio1.value = !radio1.value;
+  radio1.value = !radio1.value
 }
 
 //开关
@@ -108,10 +108,18 @@ const sw1 = ref(true)
 const number = ref([])
 
 //标签输入框
-const tag = ref(['yike', '逸刻时光']);
+const tag = ref(['yike', '逸刻时光'])
 
 //评分
 const rate = ref(3.5)
+
+//Modal visible
+const visible = ref<boolean>(false)
+
+const onCancel = (val: boolean) => {
+  visible.value = val
+}
+const show = ref(true)
 </script>
 
 <template>
@@ -120,36 +128,40 @@ const rate = ref(3.5)
     <Title :level="3">基本用法</Title>
     <Space direction="vertical">
       <Rate />
-      <Rate disabled/>
+      <Rate disabled />
     </Space>
     <Title :level="3">半分</Title>
     <Rate allowHalf />
     <Title :level="3">打分</Title>
     <space aline="center">
-      <Rate allowHalf v-model="rate" /><span>{{ rate }}分</span>
+      <Rate allowHalf v-model="rate" />
+      <span>{{ rate }}分</span>
     </space>
     <Title :level="3">颜色</Title>
     <space aline="center">
-      <Rate allowHalf v-model="rate" color="#00aaee"/><span>{{ rate }}分</span>
+      <Rate allowHalf v-model="rate" color="#00aaee" />
+      <span>{{ rate }}分</span>
     </space>
     <Title :level="3">只读</Title>
     <space aline="center">
-      <Rate allowHalf v-model="rate" readonly/><span>{{ rate }}分</span>
+      <Rate allowHalf v-model="rate" readonly />
+      <span>{{ rate }}分</span>
     </space>
     <Title :level="3">自定义长度</Title>
     <space aline="center">
-      <Rate allowHalf v-model="rate" :count="10"/><span>{{ rate }}分</span>
+      <Rate allowHalf v-model="rate" :count="10" />
+      <span>{{ rate }}分</span>
     </space>
     <Title>标签输入框</Title>
     <p>{{ tag }}</p>
     <Title :level="3">基本用法</Title>
     <Space direction="vertical">
-      <InputTag v-model="tag" style="width:360px" allowClear size="s" />
-      <InputTag v-model="tag" style="width:360px" allowClear size="m" />
-      <InputTag v-model="tag" style="width:360px" allowClear size="l" />
-      <InputTag v-model="tag" style="width:360px" allowClear size="xl" />
-      <InputTag v-model="tag" style="width:360px" allowClear error />
-      <InputTag v-model="tag" style="width:360px" disabled />
+      <InputTag v-model="tag" style="width: 360px" allowClear size="s" />
+      <InputTag v-model="tag" style="width: 360px" allowClear size="m" />
+      <InputTag v-model="tag" style="width: 360px" allowClear size="l" />
+      <InputTag v-model="tag" style="width: 360px" allowClear size="xl" />
+      <InputTag v-model="tag" style="width: 360px" allowClear error />
+      <InputTag v-model="tag" style="width: 360px" disabled />
     </Space>
     <Title>步进器</Title>
     <Title :level="3">基本用法</Title>
@@ -162,7 +174,12 @@ const rate = ref(3.5)
     <Title>数字输入框</Title>
     <Title :level="3">基本用法</Title>
     <Space>
-      <InputNumber v-model="number[0]" size="xl" :max="10" :min="0"></InputNumber>
+      <InputNumber
+        v-model="number[0]"
+        size="xl"
+        :max="10"
+        :min="0"
+      ></InputNumber>
       <InputNumber v-model="number[1]"></InputNumber>
       <InputNumber v-model="number[2]" size="m"></InputNumber>
       <InputNumber v-model="number[3]" size="s"></InputNumber>
@@ -208,7 +225,9 @@ const rate = ref(3.5)
     </Space>
     <Title :level="3">按钮用法</Title>
     <Space>
-      <Radio value="今天" v-model="radio1" @change="radioS" type="button">单选框</Radio>
+      <Radio value="今天" v-model="radio1" @change="radioS" type="button">
+        单选框
+      </Radio>
     </Space>
     <Title :level="3">组合</Title>
     <Space direction="vertical">
@@ -251,15 +270,26 @@ const rate = ref(3.5)
       <p>{{ aaa }}</p>
       <p>{{ bbb }}</p>
       <p>{{ ccc }}</p>
-      <CheckboxGroup :size="40" :options="op1"> </CheckboxGroup>
+      <CheckboxGroup :size="40" :options="op1"></CheckboxGroup>
       <CheckboxGroup direction="vertical" v-model="aaa" :options="op2" />
       <CheckboxGroup :options="op3" v-model="ccc" />
       <CheckboxGroup :options="op4" />
     </Space>
     <Title :level="3">全选</Title>
     <Space direction="vertical">
-      <Checkbox v-model="checkedAll" :indeterminate="indeterminate" @change="handleChangeAll">全选</Checkbox>
-      <CheckboxGroup :size="40" :options="cdata" v-model="data" @change="handleChange" />
+      <Checkbox
+        v-model="checkedAll"
+        :indeterminate="indeterminate"
+        @change="handleChangeAll"
+      >
+        全选
+      </Checkbox>
+      <CheckboxGroup
+        :size="40"
+        :options="cdata"
+        v-model="data"
+        @change="handleChange"
+      />
     </Space>
     <Title>文本域</Title>
     <Title :level="3">基本用法</Title>
@@ -268,22 +298,46 @@ const rate = ref(3.5)
     <space direction="vertical" style="width: 100%">
       <Textarea v-model="areaData" placeholder="请输入" disabled />
       <Textarea v-model="idata" placeholder="请输入" readonly />
-      <Textarea v-model="areaData" placeholder="请输入" error style="height: 200px" />
+      <Textarea
+        v-model="areaData"
+        placeholder="请输入"
+        error
+        style="height: 200px"
+      />
     </space>
     <Title :level="3">数字统计</Title>
-    <Textarea v-model="areaData" placeholder="请输入" :maxLength="120" showLimit />
+    <Textarea
+      v-model="areaData"
+      placeholder="请输入"
+      :maxLength="120"
+      showLimit
+    />
     <Title :level="3">自适应高度</Title>
     <space direction="vertical" style="width: 100%">
       <Textarea v-model="areaData" placeholder="请输入" autoSize />
-      <Textarea v-model="areaData" placeholder="请输入" :autoSize="{ minRows: 2, maxRows: 4 }" />
+      <Textarea
+        v-model="areaData"
+        placeholder="请输入"
+        :autoSize="{ minRows: 2, maxRows: 4 }"
+      />
     </space>
     <Title>输入框</Title>
     <Title :level="3">基本用法</Title>
     <space>
-      <Input v-model="inputData" placeholder="请输入" allowClear style="width: 180px" />
+      <Input
+        v-model="inputData"
+        placeholder="请输入"
+        allowClear
+        style="width: 180px"
+      />
       <Input placeholder="请输入" allowClear />
     </space>
-    <Input v-model="inputData" placeholder="请输入" allowClear style="width: 180px" />
+    <Input
+      v-model="inputData"
+      placeholder="请输入"
+      allowClear
+      style="width: 180px"
+    />
     <Input placeholder="请输入" allowClear />
     <Title :level="3">状态</Title>
     <space direction="vertical">
@@ -302,68 +356,190 @@ const rate = ref(3.5)
     </space>
     <Title :level="3">前缀与后缀</Title>
     <space direction="vertical">
-      <Input placeholder="请输入" v-model="inputData" style="width: 320px" allowClear>
-      <template #prefix>
-        <Icon name="yk-tianxie" />
-      </template>
+      <Input
+        placeholder="请输入"
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+      >
+        <template #prefix>
+          <Icon name="yk-tianxie" />
+        </template>
       </Input>
-      <Input placeholder="请输入" v-model="inputData" style="width: 320px" allowClear>
-      <template #suffix>
-        <Icon name="yk-touxiang1" />
-      </template>
+      <Input
+        placeholder="请输入"
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+      >
+        <template #suffix>
+          <Icon name="yk-touxiang1" />
+        </template>
       </Input>
     </space>
     <Title :level="3">前置与后置标签</Title>
     <space direction="vertical">
-      <Input placeholder="请输入" v-model="inputData" style="width: 320px" allowClear>
-      <template #prepend>
-        <Icon name="yk-tianxie" />
-      </template>
+      <Input
+        placeholder="请输入"
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+      >
+        <template #prepend>
+          <Icon name="yk-tianxie" />
+        </template>
       </Input>
-      <Input placeholder="请输入" v-model="inputData" style="width: 320px" allowClear>
-      <template #append>
-        <p>¥</p>
-      </template>
+      <Input
+        placeholder="请输入"
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+      >
+        <template #append>
+          <p>¥</p>
+        </template>
       </Input>
     </space>
     <Title :level="3">数字统计</Title>
     <space direction="vertical">
-      <Input v-model="inputData" style="width: 320px" size="xl" :maxLength="12" showLimit />
-      <Input v-model="inputData" style="width: 320px" :maxLength="12" showLimit />
+      <Input
+        v-model="inputData"
+        style="width: 320px"
+        size="xl"
+        :maxLength="12"
+        showLimit
+      />
+      <Input
+        v-model="inputData"
+        style="width: 320px"
+        :maxLength="12"
+        showLimit
+      />
     </space>
     <Title :level="3">搜索框</Title>
     <space direction="vertical">
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="xl" />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="xl"
+      />
       <InputSearch v-model="inputData" style="width: 320px" allowClear />
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="m" />
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="s" />
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="xl" button loading />
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="xl" button />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="m"
+      />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="s"
+      />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="xl"
+        button
+        loading
+      />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="xl"
+        button
+      />
       <InputSearch v-model="inputData" style="width: 320px" allowClear button />
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="m" button />
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="s" button />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="m"
+        button
+      />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="s"
+        button
+      />
 
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="m" loading />
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="s" button loading />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="m"
+        loading
+      />
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="s"
+        button
+        loading
+      />
     </space>
     <Title :level="3">自定义搜索框内容</Title>
     <space direction="vertical">
-      <InputSearch v-model="inputData" style="width: 320px" allowClear size="xl" buttonDefine>
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        size="xl"
+        buttonDefine
+      >
         <template #define>search</template>
       </InputSearch>
-      <InputSearch v-model="inputData" style="width: 320px" allowClear buttonDefine>
+      <InputSearch
+        v-model="inputData"
+        style="width: 320px"
+        allowClear
+        buttonDefine
+      >
         <template #define>
-          <Icon name="yk-sousuo" /><span style="paddingleft: 4px">搜索</span>
+          <Icon name="yk-sousuo" />
+          <span style="paddingleft: 4px">搜索</span>
         </template>
       </InputSearch>
     </space>
     <Title :level="3">密码输入框</Title>
     <space direction="vertical">
-      <InputPassword v-model="inputData" style="width: 320px" size="xl" allowClear />
+      <InputPassword
+        v-model="inputData"
+        style="width: 320px"
+        size="xl"
+        allowClear
+      />
       <InputPassword v-model="inputData" style="width: 320px" allowClear />
-      <InputPassword v-model="inputData" style="width: 320px" size="s" allowClear />
+      <InputPassword
+        v-model="inputData"
+        style="width: 320px"
+        size="s"
+        allowClear
+      />
     </space>
-
+    <Title :level="3">模态框 Modal</Title>
+    <Button @click="visible = !visible">打开Modal</Button>
+    <Modal
+      :visible="visible"
+      :cancel="onCancel"
+      title="Hi,Modal"
+      footerAlign="end"
+      cancel-text="取消"
+      confirm-text="确定"
+      :maskClosable="true"
+    >
+      <template #title>Hello Modal</template>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, mollitia!
+      Corrupti quas asperiores, temporibus delectus eum ipsum amet, vel quo
+      possimus reprehenderit nisi quaerat dicta, fuga consequuntur porro est
+      dolorum?
+    </Modal>
     <Title :level="3">演示</Title>
     <Icon name="yk-xin" style="color: #00aaee; fontsize: 40px" />
   </main>
