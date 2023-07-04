@@ -3,9 +3,8 @@ import { reactive, ref } from 'vue'
 import CaseCard from '@/components/CaseCard.vue'
 
 const uploadUrl: any = ref(null)
-if (process.env.NODE_ENV === 'development') {
-  uploadUrl.value = 'http://192.168.1.207:3976/upload'
-}
+uploadUrl.value = 'http://192.168.1.207:3976/upload'
+
 //说明部分
 let datas = [
   {
@@ -45,7 +44,7 @@ const columns = [
 ]
 const data = reactive([
   {
-    existFileList: [
+    fileList: [
       {
         name: 'food.jpeg',
         url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
@@ -91,6 +90,15 @@ const data1 = reactive([
 
 //复选框内容
 const yike = ref(3.5)
+const handleSuccess = (e: any, fileList: any) => {
+  console.log('🚀 ~ file: upload.vue:94 ~ handleSuccess ~ fileList:', fileList)
+}
+const handleDelete = (fileList: any) => {
+  console.log('🚀 ~ file: upload.vue:97 ~ handleDelete ~ fileList:', fileList)
+}
+const handleError = (err: any) => {
+  console.log('🚀 ~ file: upload.vue:97 ~ handleError ~ err:', err)
+}
 </script>
 
 <template>
@@ -114,7 +122,10 @@ const yike = ref(3.5)
           accept="*"
           :uploadUrl="uploadUrl"
           :multiple="true"
-          :existFileList="data[0].existFileList"
+          :fileList="data[0].fileList"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
         ></upload>
       </CaseCard>
     </div>

@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import {
-  ref,
-  type Ref,
-  toRef,
-  getCurrentInstance,
-  reactive,
-  computed,
-  provide,
-} from 'vue'
+import { ref, type Ref, getCurrentInstance, computed } from 'vue'
 import { UploadRequest } from './ajax'
 import YkUploadContent from './YkUploadContent.vue'
 import type { UploadUserFile } from '@/types/upload'
+import { generateUid, generateListUid, findFileByUid } from './upload'
 const props = defineProps({
   accept: {
     type: String,
@@ -54,18 +47,23 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
-  existFileList: {
+  fileList: {
     type: Array<UploadUserFile>,
     default: () => [],
   },
 })
+const emits = defineEmits([
+  'handleSuccess',
+  'handleDelete',
+  'handleError',
+  'handleBeforeUpload',
+])
 const isPicture = ref(false)
-const uploadFile: any = ref(null)
-const existFileList = ref(props.existFileList)
+const existFileList = ref(generateListUid(props.fileList))
 const uploading = ref(false)
 const inputRef: any = ref(null)
 const uploadProgress: Ref<number> = ref(0)
-
+const abortController: Ref<boolean> = ref(false) //中断上传信号实例
 const fileListLength = computed(() => {
   return existFileList.value.length
 })
@@ -75,35 +73,66 @@ const showUploadButton = computed(() => {
 
 isPicture.value = props.accept.includes('images')
 const { proxy }: any = getCurrentInstance()
-const handleUpload = async () => {
-  inputRef.value.click()
-}
-const handleInputChange = async (event: any) => {
-  uploading.value = true
-  uploadFile.value = event.target.files[0]
-  const fileName = uploadFile.value.name
+const onUploadRequest = async (uploadFile: any) => {
+  const fileName = uploadFile.name
   existFileList.value.push({
     name: fileName,
     status: 'uploading',
-    raw: uploadFile.value,
+    raw: uploadFile,
+    uid: generateUid(),
   })
   const uploadParams = {
     uploadUrl: props.uploadUrl,
-    selectedFile: uploadFile.value,
+    selectedFile: uploadFile,
+    fileName,
   }
-  const { res, err }: any = await UploadRequest(uploadParams, uploadProgress)
-  if (res) {
-    proxy.$message({ type: 'success', message: '文件上传成功' })
-    uploading.value = false
-    existFileList.value[fileListLength.value - 1].url =
-      res?.fileUrl || props.uploadUrl + '/' + fileName
-    existFileList.value
-    existFileList.value[fileListLength.value - 1].status = 'success'
-  } else {
+  try {
+    uploading.value = true
+    const { res, err }: any = await UploadRequest(
+      uploadParams,
+      uploadProgress,
+      abortController,
+    )
+    if (res) {
+      proxy.$message({ type: 'success', message: '文件上传成功' })
+      uploading.value = false
+      existFileList.value[fileListLength.value - 1].url =
+        res?.fileUrl || props.uploadUrl + '/' + uploadParams.fileName
+      existFileList.value[fileListLength.value - 1].status = 'success'
+      emits('handleSuccess', res, existFileList.value)
+    }
+  } catch (error) {
     proxy.$message({ type: 'error', message: '文件上传失败' })
+    abortController.value = false
     existFileList.value[fileListLength.value - 1].status = 'fail'
     uploading.value = false
+    emits('handleError', error, existFileList.value)
   }
+}
+
+const handleUpload = async () => {
+  inputRef.value.click()
+}
+const handleInputChange = (event: any) => {
+  const uploadFile = event.target.files[0]
+  if (uploadFile) {
+    onUploadRequest(uploadFile)
+  }
+}
+
+//中断上传
+const handleAbort = () => {
+  abortController.value = true
+}
+// 删除文件
+const handleRemove = (file: any) => {
+  existFileList.value.splice(existFileList.value.indexOf(file), 1)
+  emits('handleDelete', existFileList.value)
+}
+// 重新上传
+const handleReUpload = (file: any) => {
+  handleRemove(file)
+  onUploadRequest(file.raw)
 }
 </script>
 <template>
@@ -138,9 +167,12 @@ const handleInputChange = async (event: any) => {
     <div class="yk-uploader-list" v-if="multiple && existFileList.length">
       <div v-for="exiteFile in existFileList" :key="exiteFile.url">
         <YkUploadContent
-          :fileContent="exiteFile"
-          :isPicture="isPicture"
+          :file-content="exiteFile"
+          :is-picture="isPicture"
           :progress="uploadProgress"
+          @handle-remove="handleRemove"
+          @handle-re-upload="handleReUpload"
+          @handle-abort="handleAbort"
         ></YkUploadContent>
       </div>
     </div>
