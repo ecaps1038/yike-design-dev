@@ -1,13 +1,28 @@
 const SCOPE = 'YkUpload'
-import type { Ref } from 'vue'
-export const UploadRequest = (option: any, uploadProgress: Ref<number>) => {
-  console.log('🚀 ~ file: ajax.ts:4 ~ UploadRequest ~ option:', option)
+import { watch, type Ref } from 'vue'
+export const UploadRequest = (
+  option: any,
+  uploadProgress: Ref<number>,
+  abortController: Ref<boolean>,
+) => {
+  const xhr = new XMLHttpRequest()
+
+  const uploadUrl = option.uploadUrl
+  const formData = new FormData()
   return new Promise((resolve, reject) => {
-    const uploadUrl = option.uploadUrl
-
-    const xhr = new XMLHttpRequest()
-    const formData = new FormData()
-
+    watch(
+      () => abortController.value,
+      () => {
+        if (abortController.value === true) {
+          xhr.abort()
+          reject({ err: '中断上传' })
+        }
+      },
+      {
+        deep: true,
+        immediate: true,
+      },
+    )
     formData.append('file', option.selectedFile)
     xhr.open('POST', uploadUrl, true)
     // 监听上传进度事件
@@ -23,7 +38,6 @@ export const UploadRequest = (option: any, uploadProgress: Ref<number>) => {
         reject({ err: response.error })
       }
     }
-
     xhr.onerror = function () {
       reject({ err: xhr.responseText })
     }

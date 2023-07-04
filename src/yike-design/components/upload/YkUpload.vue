@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import {
-  ref,
-  type Ref,
-  toRef,
-  getCurrentInstance,
-  reactive,
-  computed,
-  provide,
-} from 'vue'
+import { ref, type Ref, getCurrentInstance, computed } from 'vue'
 import { UploadRequest } from './ajax'
-import YkUploadContent from './YkUploadContent.vue'
+import YkFileContent from './YkFileContent.vue'
+import YkImageContent from './YkImageContent.vue'
 import type { UploadUserFile } from '@/types/upload'
+import { generateUid, generateListUid, imageTypes } from './upload'
 const props = defineProps({
   accept: {
     type: String,
@@ -27,7 +21,7 @@ const props = defineProps({
   },
   multiple: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   preview: {
     // 是否开启预览
@@ -54,70 +48,108 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
-  existFileList: {
+  fileList: {
     type: Array<UploadUserFile>,
     default: () => [],
   },
 })
+const emits = defineEmits(['handleSuccess', 'handleDelete', 'handleError'])
 const isPicture = ref(false)
-const uploadFile: any = ref(null)
-const existFileList = ref(props.existFileList)
+const existFileList = ref(generateListUid(props.fileList))
 const uploading = ref(false)
 const inputRef: any = ref(null)
 const uploadProgress: Ref<number> = ref(0)
-
+const abortController: Ref<boolean> = ref(false) //中断上传信号实例
 const fileListLength = computed(() => {
   return existFileList.value.length
 })
 const showUploadButton = computed(() => {
   return props.multiple || !fileListLength.value
 })
-
-isPicture.value = props.accept.includes('images')
+isPicture.value = imageTypes.some((type: any) => props.accept.includes(type))
 const { proxy }: any = getCurrentInstance()
-const handleUpload = async () => {
-  inputRef.value.click()
-}
-const handleInputChange = async (event: any) => {
-  uploading.value = true
-  uploadFile.value = event.target.files[0]
-  const fileName = uploadFile.value.name
-  existFileList.value.push({
+const onUploadRequest = async (uploadFile: any) => {
+  const fileName = uploadFile.name
+  existFileList.value.unshift({
     name: fileName,
     status: 'uploading',
-    raw: uploadFile.value,
+    raw: uploadFile,
+    uid: generateUid(),
   })
   const uploadParams = {
     uploadUrl: props.uploadUrl,
-    selectedFile: uploadFile.value,
+    selectedFile: uploadFile,
+    fileName,
   }
-  const { res, err }: any = await UploadRequest(uploadParams, uploadProgress)
-  if (res) {
-    proxy.$message({ type: 'success', message: '文件上传成功' })
-    uploading.value = false
-    existFileList.value[fileListLength.value - 1].url =
-      res?.fileUrl || props.uploadUrl + '/' + fileName
-    existFileList.value
-    existFileList.value[fileListLength.value - 1].status = 'success'
-  } else {
+  try {
+    uploading.value = true
+    const { res, err }: any = await UploadRequest(
+      uploadParams,
+      uploadProgress,
+      abortController,
+    )
+    if (res) {
+      proxy.$message({ type: 'success', message: '文件上传成功' })
+      uploading.value = false
+      existFileList.value[0].url =
+        res?.fileUrl || props.uploadUrl + '/' + uploadParams.fileName
+      existFileList.value[0].status = 'success'
+      emits('handleSuccess', res, existFileList.value)
+    }
+  } catch (error) {
     proxy.$message({ type: 'error', message: '文件上传失败' })
-    existFileList.value[fileListLength.value - 1].status = 'fail'
+    abortController.value = false
+    existFileList.value[0].status = 'fail'
     uploading.value = false
+    emits('handleError', error, existFileList.value)
   }
 }
-// 删除某一上传文件
-// const handleDelete = async (file) => {}
+
+const handleUpload = async () => {
+  if (showUploadButton.value) {
+    inputRef.value.click()
+  }
+}
+const handleInputChange = (event: any) => {
+  const uploadFile = event.target.files[0]
+  event.target.value = ''
+  if (uploadFile) {
+    onUploadRequest(uploadFile)
+  }
+}
+
+//中断上传
+const handleAbort = () => {
+  abortController.value = true
+}
+// 删除文件
+const handleRemove = (file: any) => {
+  existFileList.value.splice(existFileList.value.indexOf(file), 1)
+  emits('handleDelete', existFileList.value)
+}
+// 重新上传
+const handleReUpload = (file: any) => {
+  handleRemove(file)
+  onUploadRequest(file.raw)
+}
 </script>
 <template>
   <div class="yk-upload">
-    <div class="yk-uploader">
-      <div class="yk-uploader-picture" v-if="isPicture"></div>
-      <div class="yk-uploader-file" v-else>
+    <input
+      style="display: none"
+      ref="inputRef"
+      :accept="accept"
+      type="file"
+      @change="handleInputChange"
+      @click.stop
+    />
+    <div class="yk-uploader-files" v-if="!isPicture">
+      <div class="yk-uploader-file">
         <Button
           class="yk-uploader-button"
           @click="handleUpload"
           :loading="uploading"
-          v-if="showUploadButton"
+          :disabled="!showUploadButton"
         >
           <Icon
             name="yk-shangchuan"
@@ -126,30 +158,85 @@ const handleInputChange = async (event: any) => {
           />
           <div>上传文件</div>
         </Button>
-        <input
-          style="display: none"
-          ref="inputRef"
-          :multiple="props.multiple"
-          :accept="props.accept"
-          type="file"
-          @change="handleInputChange"
-          @click.stop
-        />
+      </div>
+      <div class="yk-uploader-list" v-if="multiple || existFileList.length">
+        <div v-for="exiteFile in existFileList" :key="exiteFile.url">
+          <YkFileContent
+            :file-content="exiteFile"
+            :progress="uploadProgress"
+            @handle-remove="handleRemove"
+            @handle-re-upload="handleReUpload"
+            @handle-abort="handleAbort"
+          ></YkFileContent>
+        </div>
       </div>
     </div>
-    <div class="yk-uploader-list" v-if="multiple && existFileList.length">
-      <div v-for="exiteFile in existFileList" :key="exiteFile.url">
-        <YkUploadContent
-          :fileContent="exiteFile"
-          :isPicture="isPicture"
-          :progress="uploadProgress"
-        ></YkUploadContent>
+    <div class="yk-uploader-pictures" v-else>
+      <div
+        class="yk-image-uploader"
+        @click="handleUpload"
+        v-if="multiple || (!multiple && !existFileList.length)"
+      ></div>
+      <div class="yk-images-list" v-if="multiple || existFileList.length">
+        <div
+          v-for="exiteFile in existFileList"
+          class="exist-images"
+          :key="exiteFile.url"
+        >
+          <YkImageContent
+            :file-content="exiteFile"
+            :is-picture="isPicture"
+            :progress="uploadProgress"
+            @handle-remove="handleRemove"
+            @handle-re-upload="handleReUpload"
+            @handle-abort="handleAbort"
+          ></YkImageContent>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <style scoped lang="less">
 @import '../../assets/style/yk-index.less';
+.yk-uploader-pictures {
+  display: flex;
+  flex-direction: row;
+
+  .yk-image-uploader {
+    min-width: 80px;
+    height: 80px;
+    margin-right: 40px;
+    background: @bg-color-m;
+    border: 1px dashed @line-color-m;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: @line-color-l;
+    }
+    &::before {
+      width: 20px;
+      height: 2px;
+      top: 39px;
+      left: 30px;
+    }
+    &::after {
+      width: 2px;
+      height: 20px;
+      top: 30px;
+      left: 39px;
+    }
+  }
+}
+.yk-images-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
 .file-upload-icon {
   margin-right: @space-ss;
   line-height: 14px;
@@ -161,7 +248,7 @@ const handleInputChange = async (event: any) => {
   width: 100%;
   margin-top: 21px;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 .progress-bar {
   width: 100%;

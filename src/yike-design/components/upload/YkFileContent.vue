@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import type { UploadUserFile, UploadStatus } from '@/types/upload'
 import { getArcPath } from './upload'
-import { toRef } from 'vue'
 
 const props = defineProps({
   fileContent: {
     type: Object,
     default: () => {
-      return { url: '', name: '', status: 'success' }
+      return {}
     },
-  },
-  isPicture: {
-    // 是否展示图片专属UI
-    type: Boolean,
-    default: false,
   },
   progress: {
     type: Number,
     default: 0,
   },
 })
+const emits = defineEmits(['handleAbort', 'handleRemove', 'handleReUpload'])
+const handlePause = () => {
+  emits('handleAbort')
+}
+const handleRemove = () => {
+  emits('handleRemove', props.fileContent)
+}
+const handleReUpload = () => {
+  emits('handleReUpload', props.fileContent)
+}
 </script>
 <template>
   <div class="yk-file-content">
-    <!-- <div class="progress-bar-container">
-      <div class="progress-bar" :style="{ width: uploadProgress + '%' }"></div>
-    </div> -->
     <div class="file-content-main">
       <div class="content-left">
         <Icon
@@ -40,34 +40,45 @@ const props = defineProps({
           name="yk-gou1"
           v-if="fileContent.status === 'success' || !fileContent.status"
         />
-        <Icon name="yk-shuaxin" v-if="fileContent.status === 'fail'" />
-
-        <svg
-          width="21.639"
-          height="21.639"
-          v-if="fileContent.status === 'uploading'"
-        >
-          <!-- 背景扇形 -->
-          <circle
-            cx="10.8195"
-            cy="10.8195"
-            r="10.8195"
-            fill="#2B5AED"
-            fill-opacity="0.6"
-          />
-
-          <!-- 进度扇形 -->
-          <path :d="getArcPath(11, 11, 11, progress)" fill="#2B5AED" />
-          <rect width="2" height="6" x="7.819" y="7.819" fill="#FFF" rx="1" />
-          <rect width="2" height="6" x="11.819" y="7.819" fill="#FFF" rx="1" />
-        </svg>
-        <!-- <Icon name="yike-bofang" v-if="fileContent.status === 'uploading'" /> -->
+        <Icon
+          class="re-upload-icon"
+          name="yk-shuaxin"
+          v-if="fileContent.status === 'fail'"
+          @click="handleReUpload"
+        />
+        <div @click="handlePause" class="abort-icon-container">
+          <svg
+            width="21.639"
+            height="21.639"
+            v-if="fileContent.status === 'uploading'"
+          >
+            <!-- 背景圆形 -->
+            <circle
+              cx="10.8195"
+              cy="10.8195"
+              r="10.8195"
+              class="default-bg"
+              fill-opacity="0.6"
+            />
+            <!-- 进度扇形 -->
+            <path :d="getArcPath(11, 11, 11, progress)" class="default-bg" />
+            <rect width="2" height="6" x="7.819" y="7.819" fill="#FFF" rx="1" />
+            <rect
+              width="2"
+              height="6"
+              x="11.819"
+              y="7.819"
+              fill="#FFF"
+              rx="1"
+            />
+          </svg>
+        </div>
       </div>
     </div>
-    <div class="delete-container">
+    <div class="delete-container" @click="handleRemove">
       <Icon
         name="yk-shanchu"
-        v-if="!fileContent.uploading"
+        v-if="fileContent.status !== 'uploading'"
         class="delete-icon"
       />
     </div>
@@ -78,7 +89,7 @@ const props = defineProps({
 
 .yk-file-content {
   width: 100%;
-  height: 30px;
+  min-height: 30px;
   margin-top: 10px;
   display: flex;
   flex-direction: row;
@@ -86,7 +97,7 @@ const props = defineProps({
   color: pcolor;
   .file-content-main {
     width: 100%;
-    padding: 0px 8px;
+    padding: 5px 8px;
     background-color: @bg-color-m;
     display: flex;
     flex-direction: row;
@@ -94,7 +105,6 @@ const props = defineProps({
     align-items: center;
   }
   .delete-container {
-    height: 30px;
     width: 24px;
     padding-left: 10px;
     display: flex;
@@ -117,10 +127,24 @@ const props = defineProps({
   }
   .annex-icon {
     margin-right: 6px;
-    width: 14px;
-    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+  }
+  .yk-kaobei {
+    min-width: 14px;
+    min-height: 14px;
   }
   .delete-icon {
+    cursor: pointer;
+  }
+  .re-upload-icon {
+    color: @ecolor;
+    cursor: pointer;
+  }
+  .default-bg {
+    fill: @pcolor;
+  }
+  .abort-icon-container {
     cursor: pointer;
   }
 }
