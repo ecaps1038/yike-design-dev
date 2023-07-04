@@ -1,4 +1,5 @@
 import type { UploadUserFile } from '@/types/upload'
+export const imageTypes = ['image', 'jpeg', 'png', 'gif']
 export function getArcPath(
   cx: number,
   cy: number,

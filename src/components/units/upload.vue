@@ -8,14 +8,54 @@ uploadUrl.value = 'http://192.168.1.207:3976/upload'
 //说明部分
 let datas = [
   {
-    title: '基本用法',
-    note: '单图片上传基本用法。',
-    code: `<Rate />`,
+    title: '文件上传',
+    note: '其他类型文件上传基本用法。',
+    code: `        <upload
+          accept="*"
+          :uploadUrl="uploadUrl"
+          :multiple="true"
+          :fileList="data[0].fileList"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
+        ></upload>`,
   },
   {
-    title: '文件上传',
-    note: '其他文件上传基本用法。',
-    code: `<Rate />`,
+    title: '单文件上传',
+    note: '通过multiple参数控制',
+    code: `       <upload
+          accept="*"
+          :uploadUrl="uploadUrl"
+          :multiple="false"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
+      ></upload>`,
+  },
+  {
+    title: '图片文件上传',
+    note: '若接受参数为images，即仅接受图片文件，将用图片UI进行文件交互',
+    code: `      <upload
+          accept="image/*"
+          :uploadUrl="uploadUrl"
+          :multiple="true"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
+        ></upload>`,
+  },
+  {
+    title: '单张文件上传',
+    note: '通过multiple参数控制',
+    code: `       <upload
+          accept="image/*"
+          :uploadUrl="uploadUrl"
+          :multiple="false"
+          :file-list="data[0].imageList"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
+        ></upload>`,
   },
 ]
 
@@ -51,6 +91,12 @@ const data = reactive([
       },
       {
         name: 'food2.jpeg',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
+      },
+    ],
+    imageList: [
+      {
+        name: 'food.jpeg',
         url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
       },
     ],
@@ -106,13 +152,21 @@ const handleError = (err: any) => {
     <div class="top-title">
       <Title :level="2">Upload 文件上传</Title>
       <Paragraph>用于常规文件或图片文件的上传。</Paragraph>
-      <!-- <CaseCard
+      <CaseCard
         :title="datas[0].title"
         :note="datas[0].note"
         :code="datas[0].code"
       >
-        <upload accept="images/*" :uploadUrl="uploadUrl"></upload>
-      </CaseCard> -->
+        <upload
+          accept="*"
+          :uploadUrl="uploadUrl"
+          :multiple="true"
+          :fileList="data[0].fileList"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
+        ></upload>
+      </CaseCard>
       <CaseCard
         :title="datas[1].title"
         :note="datas[1].note"
@@ -121,8 +175,36 @@ const handleError = (err: any) => {
         <upload
           accept="*"
           :uploadUrl="uploadUrl"
+          :multiple="false"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
+        ></upload>
+      </CaseCard>
+      <CaseCard
+        :title="datas[2].title"
+        :note="datas[2].note"
+        :code="datas[2].code"
+      >
+        <upload
+          accept="image/*"
+          :uploadUrl="uploadUrl"
           :multiple="true"
-          :fileList="data[0].fileList"
+          @handleSuccess="handleSuccess"
+          @handleDelete="handleDelete"
+          @handleError="handleError"
+        ></upload>
+      </CaseCard>
+      <CaseCard
+        :title="datas[3].title"
+        :note="datas[3].note"
+        :code="datas[3].code"
+      >
+        <upload
+          accept="image/*"
+          :uploadUrl="uploadUrl"
+          :multiple="false"
+          :file-list="data[0].imageList"
           @handleSuccess="handleSuccess"
           @handleDelete="handleDelete"
           @handleError="handleError"

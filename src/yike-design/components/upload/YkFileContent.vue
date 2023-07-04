@@ -8,11 +8,6 @@ const props = defineProps({
       return {}
     },
   },
-  isPicture: {
-    // 是否展示图片专属UI
-    type: Boolean,
-    default: false,
-  },
   progress: {
     type: Number,
     default: 0,
@@ -22,11 +17,11 @@ const emits = defineEmits(['handleAbort', 'handleRemove', 'handleReUpload'])
 const handlePause = () => {
   emits('handleAbort')
 }
-const handleRemove = (fileContent: any) => {
-  emits('handleRemove', fileContent)
+const handleRemove = () => {
+  emits('handleRemove', props.fileContent)
 }
-const handleReUpload = (fileContent: any) => {
-  emits('handleReUpload', fileContent)
+const handleReUpload = () => {
+  emits('handleReUpload', props.fileContent)
 }
 </script>
 <template>
@@ -49,7 +44,7 @@ const handleReUpload = (fileContent: any) => {
           class="re-upload-icon"
           name="yk-shuaxin"
           v-if="fileContent.status === 'fail'"
-          @click="handleReUpload(fileContent)"
+          @click="handleReUpload"
         />
         <div @click="handlePause" class="abort-icon-container">
           <svg
@@ -80,7 +75,7 @@ const handleReUpload = (fileContent: any) => {
         </div>
       </div>
     </div>
-    <div class="delete-container" @click="handleRemove(fileContent)">
+    <div class="delete-container" @click="handleRemove">
       <Icon
         name="yk-shanchu"
         v-if="fileContent.status !== 'uploading'"
