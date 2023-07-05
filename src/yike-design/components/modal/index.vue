@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="yk-modal-wrap" v-if="modalVisible">
         <div class="yk-modal">
-          <div class="yk-modal-header">
+          <div :class="['yk-modal-header', alignCenter ? 'center' : '']">
             <template v-if="title">{{ title }}</template>
             <slot name="title" v-else />
             <Icon name="yk-cha" class="yk-modal-close" @click="onClose" />
@@ -21,15 +21,7 @@
       </div>
     </transition>
     <transition>
-      <div
-        v-if="mask && modalVisible"
-        class="yk-mask"
-        @click="maskClosable ? onClose : null"
-      >
-        <span style="font-size: 50px; color: #fff">
-          {{ maskClosable }}
-        </span>
-      </div>
+      <div v-if="mask && modalVisible" class="yk-mask" />
     </transition>
   </teleport>
 </template>
@@ -51,11 +43,11 @@ export default defineComponent({
       type: String as PropType<'start' | 'center' | 'end'>,
       default: 'center',
     },
-    mask: {
+    alignCenter: {
       type: Boolean as PropType<boolean>,
-      default: true,
+      default: false,
     },
-    maskClosable: {
+    mask: {
       type: Boolean as PropType<boolean>,
       default: true,
     },
@@ -133,6 +125,7 @@ export default defineComponent({
 <style scoped lang="less">
 .yk-mask {
   z-index: 998 !important;
+  background-color: #00000040;
 }
 .yk-modal-wrap,
 .yk-mask {
@@ -146,13 +139,13 @@ export default defineComponent({
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #00000040;
-  z-index: 99999;
+  z-index: 9999;
 
   .yk-modal {
     width: 33%;
     min-width: 375px;
     background-color: @bg-color-l;
+    position: absolute;
     z-index: 99999;
     .yk-modal-header {
       padding: 12px 20px;
@@ -161,6 +154,10 @@ export default defineComponent({
       align-items: center;
       justify-content: center;
       box-shadow: 0 1px 0 0 @line-color-s;
+
+      &.center {
+        align-items: center;
+      }
 
       .yk-modal-close {
         width: 18px;

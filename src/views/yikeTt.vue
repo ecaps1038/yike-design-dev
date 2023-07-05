@@ -122,7 +122,7 @@ const handleConfirm = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(false)
-    }, 3000)
+    }, 10)
   })
 }
 </script>
@@ -535,7 +535,8 @@ const handleConfirm = () => {
       @close="handleColse"
       :confirm="handleConfirm"
       title="Hi,Modal"
-      footerAlign="end"
+      footer-align="end"
+      :align-center="true"
       cancel-text="取消"
       confirm-text="确定"
       :maskClosable="true"
