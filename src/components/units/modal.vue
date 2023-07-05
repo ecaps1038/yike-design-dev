@@ -42,6 +42,29 @@ const handleConfirm = () => {
 
 `,
   },
+  {
+    title: '异步关闭',
+    note: '在Modal中进行接口的调用可以通过接口返回状态修改模态框状态',
+    code: `<Modal :visible="visible" @close="handleColse" :confirm="handleAsyncConfirm">
+  这个世界最需要的就是爱与和平
+</Modal>
+
+
+const visible = ref<boolean>(false)
+
+const handleColse = (modalVisible: boolean) => {
+  visible.value = modalVisible
+}
+
+const handleAsyncConfirm = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(false)
+    }, 1500)
+  })
+}
+`,
+  },
 ]
 
 //api部分
@@ -91,45 +114,45 @@ const data = reactive([
   },
   {
     key: '4',
-    name: 'readonly',
-    expl: '是否为只读状态',
-    type: `boolean`,
-    normal: 'false',
+    name: 'confirm',
+    expl: '确定（可进行异步关闭）',
+    type: `Function<() => Promise<boolean> | boolean`,
+    normal: '-',
   },
   {
     key: '5',
-    name: 'error',
-    expl: '是否为错误状态',
+    name: 'align-center',
+    expl: '模态框标题是否剧中',
     type: `boolean`,
     normal: 'false',
   },
   {
     key: '6',
-    name: 'placeholder',
-    expl: '提示文字',
-    type: `string`,
-    normal: '-',
+    name: 'mask-closable',
+    expl: '是否可以通过点击模态框遮照层关闭',
+    type: `boolean`,
+    normal: 'true',
   },
   {
     key: '7',
-    name: 'size',
-    expl: '输入框大小',
-    type: `'s' | 'm' | 'l' | 'xl'`,
-    normal: 'l',
+    name: 'mask',
+    expl: '是否显示遮照层',
+    type: `boolean`,
+    normal: 'true',
   },
   {
     key: '8',
-    name: 'maxLength',
-    expl: '输入值的最大长度',
-    type: `number`,
-    normal: '-',
+    name: 'cancel-text',
+    expl: '取消的文字描述',
+    type: `string`,
+    normal: 'cancel',
   },
   {
     key: '9',
-    name: 'showLimit',
-    expl: '是否显示字数统计',
-    type: `boolean`,
-    normal: 'false',
+    name: 'confirm-text',
+    expl: '确认的文字描述',
+    type: `string`,
+    normal: 'confirm',
   },
 ])
 
@@ -153,27 +176,9 @@ const columns1 = [
 const data1 = reactive([
   {
     key: '1',
-    name: 'focus',
-    expl: '输入框获取焦点时触发',
-    type: `value `,
-  },
-  {
-    key: '2',
-    name: 'blur',
-    expl: '输入框失去焦点时触发',
-    type: `value `,
-  },
-  {
-    key: '3',
-    name: 'clear',
-    expl: '用户点击清除按钮时触发',
-    type: `- `,
-  },
-  {
-    key: '4',
-    name: 'pEnter',
-    expl: '用户按下回车时触发',
-    type: `- `,
+    name: 'close',
+    expl: '关闭Modal模态框之后触发',
+    type: ``,
   },
 ])
 
@@ -197,26 +202,14 @@ const columns2 = [
 const data2 = reactive([
   {
     key: '1',
-    name: 'prefix',
-    expl: '前缀元素',
-    type: `-`,
+    name: 'title',
+    expl: '模态框标题',
+    type: `Hello yike`,
   },
   {
     key: '2',
-    name: 'suffix',
-    expl: '后缀元素',
-    type: `-`,
-  },
-  {
-    key: '3',
-    name: 'prepend',
-    expl: '前置标签',
-    type: `-`,
-  },
-  {
-    key: '4',
-    name: 'append',
-    expl: '后置标签',
+    name: '-',
+    expl: 'ModalContent',
     type: `-`,
   },
 ])
@@ -270,15 +263,25 @@ const data6 = reactive([
     type: `value`,
   },
 ])
-//input内容
+const loading = ref<boolean>(false)
 const yike = ref([])
 const yk = '逸刻时光只读'
 const visible = ref(false)
+const visible1 = ref(false)
+const visible2 = ref(false)
 const handleColse = (modalVisible: boolean) => {
   visible.value = modalVisible
 }
 const handleConfirm = () => {
   return false
+}
+
+const handleAsyncConfirm = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(false)
+    }, 1500)
+  })
 }
 </script>
 <template>
@@ -302,45 +305,47 @@ const handleConfirm = () => {
       :note="datas[1].note"
       :code="datas[1].code"
     >
-      <Button @click="visible = true">打开</Button>
+      <Button @click="visible1 = true">打开</Button>
       <Modal
-        :visible="visible"
-        :confirm="handleConfirm"
-        @close="handleColse"
+        :visible="visible1"
+        :confirm="() => false"
+        @close="(visible:boolean) => visible1 = visible"
         footer-align="end"
       >
         这个世界最需要的就是爱与和平
       </Modal>
     </CaseCard>
+    <CaseCard
+      :title="datas[2].title"
+      :note="datas[2].note"
+      :code="datas[2].code"
+    >
+      <Button @click="visible2 = true">打开</Button>
+      <Modal
+        :visible="visible2"
+        :confirm="handleAsyncConfirm"
+        @close="(visible:boolean) => visible2 = visible"
+        footer-align="end"
+      >
+        这个世界最需要的就是爱与和平
+        <br />
+        <br />
+        Modal 模态框将在1.5s后关闭
+      </Modal>
+    </CaseCard>
     <div class="api">
       <Title :level="3">API</Title>
-      <Title :level="4">Input . Props</Title>
+      <Title :level="4">Modal . Props</Title>
       <div class="unit-table">
         <Table :data="data" :columns="columns"></Table>
       </div>
-      <Title :level="4">Input . Events</Title>
+      <Title :level="4">Modal . Events</Title>
       <div class="unit-table">
         <Table :data="data1" :columns="columns1"></Table>
       </div>
-      <Title :level="4">Input . Slots</Title>
+      <Title :level="4">Modal . Slots</Title>
       <div class="unit-table">
         <Table :data="data2" :columns="columns2"></Table>
-      </div>
-      <Title :level="4">InputPassword . Props</Title>
-      <div class="unit-table">
-        <Table :data="data3" :columns="columns"></Table>
-      </div>
-      <Title :level="4">InputSearch . Props</Title>
-      <div class="unit-table">
-        <Table :data="data4" :columns="columns"></Table>
-      </div>
-      <Title :level="4">InputSearch . Events</Title>
-      <div class="unit-table">
-        <Table :data="data6" :columns="columns1"></Table>
-      </div>
-      <Title :level="4">InputSearch . Slots</Title>
-      <div class="unit-table">
-        <Table :data="data5" :columns="columns2"></Table>
       </div>
     </div>
   </div>

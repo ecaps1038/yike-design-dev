@@ -2,7 +2,11 @@
   <teleport to="body" :disabled="!modalVisible">
     <transition name="fade">
       <div class="yk-modal-wrap" v-if="modalVisible">
-        <div v-if="mask && modalVisible" class="yk-mask" @click="onClose" />
+        <div
+          v-if="mask && modalVisible"
+          class="yk-mask"
+          @click="maskClosable && onClose()"
+        />
         <div class="yk-modal">
           <div :class="['yk-modal-header', alignCenter ? 'center' : '']">
             <template v-if="title">{{ title }}</template>
@@ -15,7 +19,9 @@
           <div :class="['yk-modal-footer', footerAlign]">
             <Space>
               <Button type="outline" @click="onClose">{{ cancelText }}</Button>
-              <Button @click="handleConfirm">{{ confirmText }}</Button>
+              <Button @click="handleConfirm" :loading="loading">
+                {{ confirmText }}
+              </Button>
             </Space>
           </div>
         </div>
@@ -77,6 +83,8 @@ export default defineComponent({
 
   setup(props, ctx) {
     const modalVisible = ref<boolean>(props.visible)
+    const loading = ref<boolean>(false)
+
     // 监听
     watch(
       () => props.visible,
@@ -95,13 +103,15 @@ export default defineComponent({
 
     // 异步关闭
     const handleConfirm = async () => {
+      loading.value = true
       const visible = await props.confirm()
-      console.log(visible)
+      loading.value = false
       close(visible)
     }
 
     return {
       modalVisible,
+      loading,
       ...toRefs(props),
 
       onClose,
