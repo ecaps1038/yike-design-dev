@@ -1,19 +1,26 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
+import { RouterLink } from 'vue-router'
 const props = defineProps({
   bar: {
     type: Array,
-  }
+  },
 })
-  //获取屏幕body高度
-  let bodyHeight=document.body.clientHeight;
 </script>
 <template>
   <div class="component-bar">
     <Container class="container">
       <div class="bar-card" v-for="(e, i) in bar" :key="i">
-        <div class="bar-title"><Text b>{{ (e as any).title }}</Text></div>
-        <RouterLink class="bar-list" v-for="(n, j) in (e as any).list" :key="j" :to="n.src">{{ n.name }}</RouterLink>
+        <div class="bar-title">
+          <Text b>{{ (e as any).title }}</Text>
+        </div>
+        <RouterLink
+          class="bar-list"
+          v-for="(n, j) in (e as any).list"
+          :key="j"
+          :to="n.src"
+        >
+          {{ n.name }}
+        </RouterLink>
       </div>
     </Container>
   </div>
@@ -57,7 +64,6 @@ const props = defineProps({
     font-weight: 600;
     color: @pcolor;
     background-color: rgba(21, 114, 255, 0.1);
-
   }
 
   .select {

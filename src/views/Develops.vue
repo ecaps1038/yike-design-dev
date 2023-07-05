@@ -1,36 +1,36 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import Bar from "@/components/bar.vue";
+import { RouterView } from 'vue-router'
+import Bar from '@/components/bar.vue'
 
 //菜单
 //制作目录数组
 let bar = [
   {
-    title: "开发指南",
+    title: '开发指南',
     list: [
       {
-        name: "Yike Design",
-        src: "yikedev",
+        name: 'Yike Design',
+        src: 'yikedev',
       },
       {
-        name: "快速上手",
-        src: "grasp",
+        name: '快速上手',
+        src: 'grasp',
       },
       {
-        name: "暗黑模式",
-        src: "dark",
+        name: '暗黑模式',
+        src: 'dark',
       },
       {
-        name: "定制主题",
-        src: "theme",
+        name: '定制主题',
+        src: 'theme',
       },
     ],
   },
-];
+]
 </script>
 <template>
   <div class="module-b">
-    <Bar :bar="bar"/>
+    <Bar :bar="bar" />
     <div class="main">
       <RouterView />
     </div>
@@ -43,7 +43,7 @@ let bar = [
     max-width: 1200px;
   }
 }
-.mmain{
-  padding:24px;
+.mmain {
+  padding: 24px;
 }
 </style>

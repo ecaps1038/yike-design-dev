@@ -534,7 +534,6 @@ const handleConfirm = () => {
       :visible="visible"
       @close="handleColse"
       :confirm="handleConfirm"
-      title="Hi,Modal"
       footer-align="end"
       :align-center="true"
       cancel-text="取消"

@@ -2,6 +2,7 @@
   <teleport to="body" :disabled="!modalVisible">
     <transition name="fade">
       <div class="yk-modal-wrap" v-if="modalVisible">
+        <div v-if="mask && modalVisible" class="yk-mask" @click="onClose" />
         <div class="yk-modal">
           <div :class="['yk-modal-header', alignCenter ? 'center' : '']">
             <template v-if="title">{{ title }}</template>
@@ -20,14 +21,12 @@
         </div>
       </div>
     </transition>
-    <transition>
-      <div v-if="mask && modalVisible" class="yk-mask" />
-    </transition>
   </teleport>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, toRefs, watch, type PropType } from 'vue'
+type AlignOptions = 'start' | 'center' | 'end'
 export default defineComponent({
   name: 'Modal',
   props: {
@@ -37,10 +36,10 @@ export default defineComponent({
     },
     title: {
       type: String as PropType<string>,
-      default: '',
+      default: '这是一个模态框',
     },
     footerAlign: {
-      type: String as PropType<'start' | 'center' | 'end'>,
+      type: String as PropType<AlignOptions>,
       default: 'center',
     },
     alignCenter: {
@@ -48,6 +47,10 @@ export default defineComponent({
       default: false,
     },
     mask: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    maskClosable: {
       type: Boolean as PropType<boolean>,
       default: true,
     },
@@ -70,9 +73,7 @@ export default defineComponent({
       default: () => true,
     },
   },
-  emits: {
-    close: (visible: boolean) => visible,
-  },
+  emits: ['close'],
 
   setup(props, ctx) {
     const modalVisible = ref<boolean>(props.visible)
@@ -89,7 +90,6 @@ export default defineComponent({
     }
 
     const onClose = async () => {
-      console.log(1)
       close(false)
     }
 
@@ -119,7 +119,7 @@ export default defineComponent({
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: scale(1.1);
+  transform: scale(1.1); //translateY(0px)
 }
 </style>
 <style scoped lang="less">
@@ -129,16 +129,16 @@ export default defineComponent({
 }
 .yk-modal-wrap,
 .yk-mask {
-  width: 100vw;
-  height: 100vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 9999;
 
   .yk-modal {
@@ -147,6 +147,7 @@ export default defineComponent({
     background-color: @bg-color-l;
     position: absolute;
     z-index: 99999;
+    border-radius: @radius-m;
     .yk-modal-header {
       padding: 12px 20px;
       display: flex;

@@ -93,6 +93,10 @@ const router = createRouter({
           path: 'rate',
           component: () => import('../components/units/rates.vue'),
         },
+        {
+          path: 'modal',
+          component: () => import('../components/units/modal.vue'),
+        },
       ],
     },
     {
