@@ -14,15 +14,21 @@
           <div :class="['yk-modal-footer', footerAlign]">
             <Space>
               <Button type="outline" @click="onClose">{{ cancelText }}</Button>
-              <Button @click="onClose">{{ confirmText }}</Button>
+              <Button @click="handleConfirm">{{ confirmText }}</Button>
             </Space>
           </div>
         </div>
-        <div
-          v-if="mask"
-          class="yk-mask"
-          @click="maskClosable ? onClose : null"
-        ></div>
+      </div>
+    </transition>
+    <transition>
+      <div
+        v-if="mask && modalVisible"
+        class="yk-mask"
+        @click="maskClosable ? onClose : null"
+      >
+        <span style="font-size: 50px; color: #fff">
+          {{ maskClosable }}
+        </span>
       </div>
     </transition>
   </teleport>
@@ -30,7 +36,6 @@
 
 <script lang="ts">
 import { defineComponent, ref, toRefs, watch, type PropType } from 'vue'
-
 export default defineComponent({
   name: 'Modal',
   props: {
@@ -69,18 +74,17 @@ export default defineComponent({
       default: () => true,
     },
     confirm: {
-      type: Function as PropType<
-        (visible: boolean) => Promise<boolean> | boolean
-      >,
+      type: Function as PropType<() => Promise<boolean> | boolean>,
       default: () => true,
     },
   },
   emits: {
-    'update:visible': (visible: boolean) => true,
+    close: (visible: boolean) => visible,
   },
 
   setup(props, ctx) {
-    const modalVisible = ref(props.visible)
+    const modalVisible = ref<boolean>(props.visible)
+    // 监听
     watch(
       () => props.visible,
       (val) => {
@@ -88,9 +92,20 @@ export default defineComponent({
       },
     )
 
-    const onClose = () => {
-      modalVisible.value = false
-      props.cancel(modalVisible.value)
+    const close = (visible: boolean) => {
+      ctx.emit('close', visible)
+    }
+
+    const onClose = async () => {
+      console.log(1)
+      close(false)
+    }
+
+    // 异步关闭
+    const handleConfirm = async () => {
+      const visible = await props.confirm()
+      console.log(visible)
+      close(visible)
     }
 
     return {
@@ -98,6 +113,7 @@ export default defineComponent({
       ...toRefs(props),
 
       onClose,
+      handleConfirm,
     }
   },
 })
@@ -105,12 +121,13 @@ export default defineComponent({
 <style lang="less">
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity @animatf ease;
+  transition: all @animatf ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+  transform: scale(1.1);
 }
 </style>
 <style scoped lang="less">

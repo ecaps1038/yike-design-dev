@@ -116,10 +116,15 @@ const rate = ref(3.5)
 //Modal visible
 const visible = ref<boolean>(false)
 
-const onCancel = (val: boolean) => {
-  visible.value = val
+const handleColse = (mvisible: boolean) => (visible.value = mvisible)
+const handleConfirm = () => {
+  // return false
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(false)
+    }, 3000)
+  })
 }
-const show = ref(true)
 </script>
 
 <template>
@@ -524,10 +529,11 @@ const show = ref(true)
       />
     </space>
     <Title :level="3">模态框 Modal</Title>
-    <Button @click="visible = !visible">打开Modal</Button>
+    <Button @click="visible = true">打开Modal</Button>
     <Modal
       :visible="visible"
-      :cancel="onCancel"
+      @close="handleColse"
+      :confirm="handleConfirm"
       title="Hi,Modal"
       footerAlign="end"
       cancel-text="取消"
