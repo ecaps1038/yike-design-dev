@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { nextTick, ref, watch } from "vue";
 import ykRaido from "./ykRadio.vue";
 import ykSpace from "../space/YkSpace.vue";
 
@@ -43,10 +43,12 @@ const isSelect = (e: any) => {
 	selectChecks.value=e;
 }
 
-const emitValue = (e: any) => {
+const emitValue = async (e: any) => {
 	isSelect(e)
 	emits("update:modelValue", selectChecks.value);
 	emits("change", selectChecks.value);
+	await nextTick()
+	changeCheck()
 };
 
 //渲染check列表数组
@@ -55,7 +57,7 @@ const checks = ref();
 //判断元素是否初始化选中
 const defineSelect = (e:any):boolean => {
 	let back=false;
-	if (props.modelValue==e) {
+	if ( selectChecks.value == e ) {
 		back= true;
 	}
 	return back;
@@ -68,7 +70,7 @@ const gitCheck = () => {
 		for (var item of props.options) {
 			if (typeof item != "object") {
 				mod=defineSelect(item)
-				let data = { label: item, value: item,mod:mod };
+				let data = { label: item, value: item, mod: mod };
 				checks.value.push(data);
 			} else {
 				//判断某个属性是否在object中
@@ -100,10 +102,10 @@ const changeCheck=()=>{
 }
 
 //监听父级点击
-watch(props, () => {
-  selectChecks.value = props.modelValue;
-	changeCheck();
-});
+// watch(props, () => {
+//   selectChecks.value = props.modelValue;
+// 	changeCheck();
+// });
 </script>
 
 <template>
