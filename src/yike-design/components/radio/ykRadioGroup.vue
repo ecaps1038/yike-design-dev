@@ -5,7 +5,8 @@ import ykSpace from "../space/YkSpace.vue";
 
 const props = defineProps({
 	modelValue: {
-		type: [String,Number,Boolean]
+		type: [String,Number,Boolean],
+		default: undefined
 	},
 	options: {
 		type: Array,
@@ -43,12 +44,17 @@ const isSelect = (e: any) => {
 	selectChecks.value=e;
 }
 
+
+// 子级给组件传值，并通知父级
+// 如果父组件没有model值，则直接驱动视图更新
 const emitValue = async (e: any) => {
 	isSelect(e)
 	emits("update:modelValue", selectChecks.value);
 	emits("change", selectChecks.value);
-	await nextTick()
-	changeCheck()
+	if ( props.modelValue === undefined ) {
+		await nextTick()
+		changeCheck()
+	}
 };
 
 //渲染check列表数组
@@ -92,7 +98,7 @@ const gitCheck = () => {
 };
 gitCheck();
 
-//替换选项
+// 视图更新
 const changeCheck=()=>{
 	let mod:boolean;
 	for(let item of checks.value){
@@ -101,11 +107,11 @@ const changeCheck=()=>{
 	}
 }
 
-//监听父级点击
-// watch(props, () => {
-//   selectChecks.value = props.modelValue;
-// 	changeCheck();
-// });
+// 父级给组件传值，驱动视图更新
+watch(props, () => {
+  selectChecks.value = props.modelValue;
+	changeCheck();
+});
 </script>
 
 <template>
