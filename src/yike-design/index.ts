@@ -12,6 +12,8 @@ import Space from './components/space/YkSpace.vue'
 import Avatar from './components/avatar/YkAvatar.vue'
 import AvatarGroup from './components/avatar/YkAvatarGroup.vue'
 import Badge from './components/badge/YkBadge.vue'
+import Carousel from './components/carousel/ykCarousel.vue'
+import CarouselItem from './components/carousel/ykCarouselItem.vue'
 import Table from './components/table/YkTable.vue'
 import Crumb from './components/crumb/YkCrumb.vue'
 import CrumbItem from './components/crumb/CrumbItem.vue'
@@ -51,6 +53,8 @@ const components: {
   Avatar,
   AvatarGroup,
   Badge,
+  Carousel,
+  CarouselItem,
   Table,
   Crumb,
   CrumbItem,
@@ -101,6 +105,8 @@ export {
   ButtonGroup,
   Avatar, //头像
   AvatarGroup, //头像组
+  Carousel, // 图片轮播
+  CarouselItem, // 图片轮播
   Badge, //徽标
   Table, //表格
   Crumb, //面包屑

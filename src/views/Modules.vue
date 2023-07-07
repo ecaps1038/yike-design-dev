@@ -100,6 +100,10 @@ let bar = [
         name: "Badge 徽标数",
         src: "badge",
       },
+      {
+        name: "Carousel 图片轮播",
+        src: "carousel",
+      },
     ],
   },
 ];

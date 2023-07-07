@@ -50,6 +50,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../components/units/badges.vue'),
       },
       {
+        path: 'carousel',
+        component: () => import('../components/units/carousel.vue'),
+      },
+      {
         path: 'breadcrumb',
         component: () => import('../components/units/breadcrumbs.vue'),
       },
