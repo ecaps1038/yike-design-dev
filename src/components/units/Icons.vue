@@ -1538,10 +1538,12 @@ const data = reactive([
   margin: 0px auto 10px;
   color: @font-color-l;
   transition: font-size @animatf linear, width @animatf linear;
+  cursor: pointer;
 }
 
 .icon_lists .icon:hover {
   font-size: 42px;
+  color: @pcolor;
 }
 
 .icon_lists .svg-icon {
