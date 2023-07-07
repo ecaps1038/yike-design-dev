@@ -126,7 +126,7 @@ watch(props, () => {
 .ui-radio {
   --secondary-color: #fff;
   /* radio */
-  --radio-diameter: 17px;
+  --radio-diameter: 16px;
   --radio-border-width: 1px;
   --radio-border-style: solid;
   /* checkmark */
