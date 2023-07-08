@@ -275,7 +275,7 @@ const data = reactive([{
 <style lang="less" scoped>
   .unit-table{
     width:100%;
-    // overflow: hidden;
-    overflow-x: auto;
+    overflow: hidden;
+    // overflow-x: auto;
   }
 </style>

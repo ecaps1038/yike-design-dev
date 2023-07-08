@@ -8,8 +8,6 @@ import {
   ref,
   watch,
 } from 'vue'
-import carouselItem from './ykCarouselItem.vue'
-
 const props = defineProps({
   images: {
     type: Array,
@@ -19,57 +17,61 @@ const props = defineProps({
     default: 0,
   },
   width: {
-    type: String,
-    default: 'auto',
+    type: Number,
+    default: 0,
   },
   height: {
-    type: String,
-    default: 'auto',
+    type: Number,
+    default: 0,
   },
   direction: {
     type: String,
     default: 'horizontal',
   },
-  showtype: {
+  showType: {
     type: String,
     default: 'slide',
   },
-  autoplay: {
+  autoPlay: {
     type: Boolean,
     default: true,
   },
-  movetime: {
+  duration: {
     type: Number,
-    default: 3000,
+    default: 2000,
   },
 
-  arrowshow: {
+  arrowShow: {
     type: String,
     default: 'always',
   },
-  arrowstyle: {
+  arrowStyle: {
     type: String,
     default: '',
   },
-  indicatortype: {
+  indicatorType: {
     type: String,
     default: 'dot',
   },
-  indicatorshow: {
+  indicatorShow: {
     type: String,
     default: 'always',
   },
-  indicatorpos: {
+  indicatorPosition: {
     type: String,
     default: 'bottom',
   },
-  indicatorstyle: {
+  indicatorStyle: {
+    type: String,
+    default: '',
+  },
+  indicatorActiveStyle: {
     type: String,
     default: '',
   },
   transition: {
     type: String,
-    default: 'cubic-bezier(0.34, 0.69, 0.1, 1)',
+    default: 'all 0.3s cubic-bezier(0.34, 0.69, 0.1, 1)',
   },
 })
 
@@ -77,109 +79,311 @@ const emit = defineEmits(['change'])
 
 console.log(props)
 
-const instance = getCurrentInstance();
+const instance = getCurrentInstance()
 const indicatorsLength = ref<number>(0)
 
-const currentIndext = ref(0);
+const currentIndex = ref(0)
+const prevIndex = ref(0)
+const nextIndex = ref(0)
+
+const imagesRef = ref(null)
 
 let carouselStyle = ''
+let carouselWidth = ''
+let carouselHeight = ''
 
+let ARROWSCLICK = true
+/**
+ * @description 轮播图组件样式初始化
+ */
 const initCarouselStyle = () => {
-  if (props.indicatorpos === 'outer-top') {
+  if (props.indicatorPosition === 'outer-top') {
     carouselStyle = 'margin-top:32px;'
-  } else if (props.indicatorpos === 'outer-bottom') {
+  } else if (props.indicatorPosition === 'outer-bottom') {
     carouselStyle = 'margin-bottom:32px;'
-  } else if (props.indicatorpos === 'outer-left') {
+  } else if (props.indicatorPosition === 'outer-left') {
     carouselStyle = 'margin-left:32px;'
-  } else if (props.indicatorpos === 'outer-right') {
+  } else if (props.indicatorPosition === 'outer-right') {
     carouselStyle = 'margin-right:32px;'
   }
-  carouselStyle += `width:${props.width}px;height:${props.height}px`
-  console.log(carouselStyle)
-}
-const initIndicators = () => {
-  if (typeof (instance?.slots._) !== 'undefined') {
-    indicatorsLength.value = instance?.slots.default().length as number;
-  } else if (props?.images) {
-    indicatorsLength.value = props?.images?.length
+  carouselWidth = `${parseInt(props.width)}px`
+  carouselHeight = `${parseInt(props.height)}px`
+  if (isNaN(parseInt(props.width))) {
+    carouselWidth = '100%'
   }
+  if (isNaN(parseInt(props.height))) {
+    carouselHeight = '100%'
+  }
+  carouselStyle += `width:${carouselWidth};height:${carouselHeight};`
 
-  currentIndext.value = props.current
+  // console.log(carouselStyle)
 }
 
+/**
+ * @description 轮播图指示器初始化
+ */
+const initIndicators = () => {
+  indicatorsLength.value = imagesRef.value.children.length
 
+  imagesRef.value.children[props.current].classList.add('active')
+}
+
+/**
+ * @description 初始化轮播图片位置
+ */
+const initImagesPos = () => {
+  let prevEl = imagesRef.value.children[indicatorsLength.value - 1]
+  let nextEl = imagesRef.value.children[currentIndex.value + 1]
+  let curEl = imagesRef.value.children[currentIndex.value]
+  if (props.direction === 'horizontal') {
+    if (props.showType === 'slide' || props.showType === 'multiSlide') {
+      prevEl.style.left = -props.width + 'px'
+      nextEl.style.left = props.width + 'px'
+      curEl.style.left = 0 + 'px'
+    }
+  } else if (props.direction === 'vertical') {
+    if (props.showType === 'slide' || props.showType === 'multiSlide') {
+      prevEl.style.top = -props.height + 'px'
+      nextEl.style.top = props.height + 'px'
+      curEl.style.top = 0 + 'px'
+    }
+  }
+}
+
+/**
+ * @description 自动播放
+ */
+const initAutoPlay = () => {
+  if (props.autoPlay === true) {
+    setInterval(() => {
+      nextMove()
+    }, props.duration)
+  }
+}
+
+/**
+ * @description 初始化播放动画曲线
+ */
+const initTransition = () => {
+  let images = imagesRef.value.children
+  for (let item of images) {
+    item.style.transition = props.transition
+  }
+}
 onMounted(() => {
   initCarouselStyle()
   initIndicators()
-});
-
-onUpdated(() => {
-
+  initImagesPos()
+  initAutoPlay()
+  initTransition()
 })
 
-onUnmounted(() => {
+onUpdated(() => {})
 
-})
+onUnmounted(() => {})
 
-watch(props, () => {
-
-})
+watch(props, () => {})
 
 const indicatorsLengthArray = computed(() => {
-  return Array.from(Array(indicatorsLength.value).keys()).map((_, index) => index); // 创建包含指定长度数字的数组
+  return Array.from(Array(indicatorsLength.value).keys()).map(
+    (_, index) => index,
+  ) // 创建包含指定长度数字的数组
 })
 
 const prevMove = () => {
-
-  if (currentIndext.value <= 0) {
-    currentIndext.value = indicatorsLength.value - 1
-  } else {
-    currentIndext.value -= 1
+  if (ARROWSCLICK === true) {
+    ARROWSCLICK = false
+    prevIndex.value = currentIndex.value
+    currentIndex.value =
+      currentIndex.value > 0
+        ? currentIndex.value - 1
+        : indicatorsLength.value - 1
+    nextIndex.value =
+      currentIndex.value > 0
+        ? currentIndex.value - 1
+        : indicatorsLength.value - 1
+    arrowsSwitchIndex(
+      'prev',
+      prevIndex.value,
+      currentIndex.value,
+      nextIndex.value,
+    )
+    setTimeout(() => {
+      ARROWSCLICK = true
+    }, 300)
   }
-
-  console.log('后退', currentIndext.value)
-
 }
 
 const nextMove = () => {
-  if (currentIndext.value >= indicatorsLength.value - 1) {
-    currentIndext.value = 0
-  } else {
-    currentIndext.value += 1
+  if (ARROWSCLICK === true) {
+    ARROWSCLICK = false
+    prevIndex.value = currentIndex.value
+    currentIndex.value =
+      currentIndex.value < indicatorsLength.value - 1
+        ? currentIndex.value + 1
+        : 0
+    nextIndex.value =
+      currentIndex.value < indicatorsLength.value - 1
+        ? currentIndex.value + 1
+        : 0
+    arrowsSwitchIndex(
+      'next',
+      prevIndex.value,
+      currentIndex.value,
+      nextIndex.value,
+    )
+    setTimeout(() => {
+      ARROWSCLICK = true
+    }, 300)
   }
-  console.log('前进', currentIndext.value)
+}
 
+const arrowsSwitchIndex = (
+  arrow: string,
+  prev: number,
+  cur: number,
+  next: number,
+) => {
+  console.log(arrow, prev, cur, next)
+  let prevEl = imagesRef.value.children[prev]
+  let curEl = imagesRef.value.children[cur]
+  let nextEl = imagesRef.value.children[next]
+  if (props.direction === 'horizontal') {
+    if (props.showType === 'slide' || props.showType === 'multiSlide') {
+      prevEl.style.opacity = 1
+      curEl.style.opacity = 1
+      nextEl.style.opacity = 0
+      if (arrow === 'prev') {
+        prevEl.style.left = props.width + 'px'
+        curEl.style.left = 0 + 'px'
+        nextEl.style.left = -props.width + 'px'
+      } else if (arrow === 'next') {
+        prevEl.style.left = -props.width + 'px'
+        curEl.style.left = 0 + 'px'
+        nextEl.style.left = props.width + 'px'
+      }
+    }
+  } else if (props.direction === 'vertical') {
+    if (props.showType === 'slide' || props.showType === 'multiSlide') {
+      prevEl.style.zIndex = '1000'
+      curEl.style.zIndex = '1000'
+      nextEl.style.zIndex = '1000'
+      prevEl.style.opacity = 1
+      curEl.style.opacity = 1
+      nextEl.style.opacity = 0
+      if (arrow === 'prev') {
+        prevEl.style.top = props.height + 'px'
+        curEl.style.top = 0 + 'px'
+        nextEl.style.top = -props.height + 'px'
+      } else if (arrow === 'next') {
+        prevEl.style.top = -props.height + 'px'
+        curEl.style.top = 0 + 'px'
+        nextEl.style.top = props.height + 'px'
+      }
+    }
+  }
+
+  imagesRef.value.children[cur].classList.add('active')
+  imagesRef.value.children[prev].classList.remove('active')
 }
 
 const switchIndicator = (index: number) => {
-  currentIndext.value = index
+  if (ARROWSCLICK === true) {
+    ARROWSCLICK = false
+    prevIndex.value = currentIndex.value
+    currentIndex.value = index
+    imagesRef.value.children[prevIndex.value].classList.add('active')
+    imagesRef.value.children[currentIndex.value].classList.remove('active')
+    setTimeout(() => {
+      ARROWSCLICK = true
+    }, 300)
+  }
 }
-
 </script>
 
 <template>
-  <div class="yk-carousel" ref="carousel" :style="carouselStyle"
-    :class="['arrows-' + arrowshow, 'indicators-' + indicatorshow]">
+  <div
+    class="yk-carousel"
+    ref="carousel"
+    :style="carouselStyle"
+    :class="['arrows-' + arrowShow, 'indicators-' + indicatorShow]"
+  >
     <div class="arrows" :class="['arrows-' + direction]">
-      <div :style="arrowstyle" class="arrows-item" :class="direction === 'horizontal' ? 'arrows-left' : 'arrows-top'"
-        @click="prevMove">
-        <Icon class="arrows-icon" :name="direction === 'horizontal' ? 'yk-xiangzuo' : 'yk-xiangshang'" />
+      <div
+        :style="arrowStyle"
+        class="arrows-item"
+        :class="direction === 'horizontal' ? 'arrows-left' : 'arrows-top'"
+        @click="prevMove"
+      >
+        <Icon
+          class="arrows-icon"
+          :name="direction === 'horizontal' ? 'yk-xiangzuo' : 'yk-xiangshang'"
+        />
       </div>
-      <div class="arrows-item" :class="direction === 'horizontal' ? 'arrows-right' : 'arrows-bottom'" @click="nextMove">
-        <Icon class="arrows-icon" :name="direction === 'horizontal' ? 'yk-xiangyou' : 'yk-xiangxia'" />
+      <div
+        :style="arrowStyle"
+        class="arrows-item"
+        :class="direction === 'horizontal' ? 'arrows-right' : 'arrows-bottom'"
+        @click="nextMove"
+      >
+        <Icon
+          class="arrows-icon"
+          :name="direction === 'horizontal' ? 'yk-xiangyou' : 'yk-xiangxia'"
+        />
       </div>
     </div>
 
-    <div v-if="indicatorsLength > 0" class="indicators"
-      :class="['indicators-' + indicatortype, arrowshow !== 'never' ? direction === 'horizontal' ? (indicatorpos === 'top' || indicatorpos === 'outer-top' || indicatorpos === 'bottom' || indicatorpos === 'outer-bottom') ? 'indicatorpos-' + indicatorpos : 'indicatorpos-bottom' : (indicatorpos === 'left' || indicatorpos === 'outer-left' || indicatorpos === 'right' || indicatorpos === 'outer-right') ? 'indicatorpos-' + indicatorpos : 'indicatorpos-left' : 'indicatorpos-' + indicatorpos]">
-      <div v-for="(item, index) in  indicatorsLengthArray " class="indicators-item" :style="indicatorstyle"
-        :class="[{ 'indicators-active': item === currentIndext }]" @click="switchIndicator(item)"></div>
+    <div
+      v-if="indicatorsLength > 0"
+      class="indicators"
+      :class="[
+        'indicators-' + indicatorType,
+        arrowShow !== 'hidden'
+          ? direction === 'horizontal'
+            ? indicatorPosition === 'top' ||
+              indicatorPosition === 'outer-top' ||
+              indicatorPosition === 'bottom' ||
+              indicatorPosition === 'outer-bottom'
+              ? 'indicatorPosition-' + indicatorPosition
+              : 'indicatorPosition-bottom'
+            : indicatorPosition === 'left' ||
+              indicatorPosition === 'outer-left' ||
+              indicatorPosition === 'right' ||
+              indicatorPosition === 'outer-right'
+            ? 'indicatorPosition-' + indicatorPosition
+            : 'indicatorPosition-left'
+          : 'indicatorPosition-' + indicatorPosition,
+      ]"
+    >
+      <div
+        v-for="(item, index) in indicatorsLengthArray"
+        :key="index"
+        class="indicators-item"
+        :style="[
+          indicatorStyle,
+          { indicatorActiveStyle: item === currentIndex },
+        ]"
+        :class="[{ 'indicators-active': item === currentIndex }]"
+        @click="switchIndicator(item)"
+      ></div>
     </div>
 
-    <div class="images" v-if="images">
-      <CarouselItem v-for="( item, index ) in  images " :key="index" :src="item"></CarouselItem>
+    <div class="images" :class="'showType-' + showType">
+      <div
+        class="images-container"
+        :class="`showType-` + showType + '-' + direction"
+        ref="imagesRef"
+      >
+        <CarouselItem
+          v-if="images"
+          v-for="(item, index) in images"
+          :key="index"
+        >
+          <img :src="item" alt="" />
+        </CarouselItem>
+        <slot v-if="!images"></slot>
+      </div>
     </div>
-    <slot v-else></slot>
   </div>
 </template>
 
@@ -188,7 +392,7 @@ const switchIndicator = (index: number) => {
 
 .yk-carousel {
   position: relative;
-  background-color: #2B5AED;
+  background-color: #2b5aed;
 
   .arrows {
     position: absolute;
@@ -198,7 +402,7 @@ const switchIndicator = (index: number) => {
     justify-content: space-between;
     align-items: center;
     pointer-events: none;
-
+    z-index: 999;
 
     &-item {
       display: flex;
@@ -209,7 +413,6 @@ const switchIndicator = (index: number) => {
       pointer-events: all;
       padding: 8px;
       border-radius: 50%;
-      z-index: 999;
     }
 
     &-left {
@@ -229,11 +432,12 @@ const switchIndicator = (index: number) => {
     }
 
     &-icon {
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 
-  .arrows-horizontal {}
+  .arrows-horizontal {
+  }
 
   .arrows-vertical {
     flex-direction: column;
@@ -246,6 +450,7 @@ const switchIndicator = (index: number) => {
     align-items: center;
     pointer-events: none;
     transition: all 0.5s;
+    z-index: 999;
   }
 
   .indicators-dot {
@@ -256,12 +461,9 @@ const switchIndicator = (index: number) => {
       background-color: rgba(255, 255, 255, 0.3);
       pointer-events: all;
       cursor: pointer;
-      z-index: 999;
     }
 
     .indicators-active {
-      width: 9px;
-      height: 9px;
       background: rgba(255, 255, 255, 1);
     }
   }
@@ -274,27 +476,23 @@ const switchIndicator = (index: number) => {
       background-color: rgba(255, 255, 255, 0.3);
       pointer-events: all;
       cursor: pointer;
-      z-index: 999;
     }
 
     .indicators-active {
-      width: 15px;
-      height: 5px;
       background: rgba(255, 255, 255, 1);
     }
   }
 
-  .indicatorpos-bottom {
+  .indicatorPosition-bottom {
     width: 100%;
     bottom: 16px;
 
     .indicators-item {
       margin: 0 4px;
     }
-
   }
 
-  .indicatorpos-top {
+  .indicatorPosition-top {
     width: 100%;
     top: 16px;
 
@@ -303,7 +501,7 @@ const switchIndicator = (index: number) => {
     }
   }
 
-  .indicatorpos-left {
+  .indicatorPosition-left {
     height: 100%;
     flex-direction: column;
     left: 16px;
@@ -313,7 +511,7 @@ const switchIndicator = (index: number) => {
     }
   }
 
-  .indicatorpos-right {
+  .indicatorPosition-right {
     height: 100%;
     flex-direction: column;
     right: 16px;
@@ -323,8 +521,7 @@ const switchIndicator = (index: number) => {
     }
   }
 
-
-  .indicatorpos-outer-top {
+  .indicatorPosition-outer-top {
     width: 100%;
     top: -16px;
 
@@ -335,11 +532,10 @@ const switchIndicator = (index: number) => {
 
     .indicators-active {
       background: rgb(80, 80, 80);
-
     }
   }
 
-  .indicatorpos-outer-bottom {
+  .indicatorPosition-outer-bottom {
     width: 100%;
     bottom: -16px;
 
@@ -353,7 +549,7 @@ const switchIndicator = (index: number) => {
     }
   }
 
-  .indicatorpos-outer-left {
+  .indicatorPosition-outer-left {
     height: 100%;
     flex-direction: column;
     left: -16px;
@@ -369,7 +565,7 @@ const switchIndicator = (index: number) => {
     }
   }
 
-  .indicatorpos-outer-right {
+  .indicatorPosition-outer-right {
     height: 100%;
     flex-direction: column;
     right: -16px;
@@ -383,46 +579,135 @@ const switchIndicator = (index: number) => {
       background: rgb(80, 80, 80);
     }
   }
-
 }
 
-.arrows-always {}
+.arrows-always {
+}
 
 .arrows-hover {
   .arrows {
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease-in-out;
   }
 
-  &:hover>.arrows {
+  &:hover > .arrows {
     opacity: 1;
   }
 }
 
-.arrows-never {
+.arrows-hidden {
   .arrows {
     display: none;
   }
 }
 
-.indicators-always {}
-
-
+.indicators-always {
+}
 
 .indicators-hover {
   .indicators {
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease-in-out;
   }
 
-  &:hover>.indicators {
+  &:hover > .indicators {
     opacity: 1;
   }
 }
 
-.indicators-never {
+.indicators-hidden {
   .indicators {
     display: none;
+  }
+}
+
+.images {
+  z-index: 888;
+  overflow: hidden;
+}
+
+.showType-slide {
+  width: 100%;
+  height: 100%;
+
+  .images-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .yk-carouselItem {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .active {
+    z-index: 999;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-horizontal {
+    .yk-carouselItem {
+      transition: left 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
+    }
+  }
+
+  &-vertical {
+    .yk-carouselItem {
+      transition: top 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
+    }
+  }
+}
+
+.showType-fade {
+  width: 100%;
+  height: 100%;
+
+  .images-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .yk-carouselItem {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
+    opacity: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .active {
+    opacity: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-horizontal {
+  }
+
+  &-vertical {
   }
 }
 </style>

@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const props = defineProps({
-  width: {
-    type: String,
-    default: 'auto',
-  },
-  height: {
-    type: String,
-    default: 'auto',
-  },
-  src: {
-    type: String,
-    default: null,
-  },
-  style: {
-    type: String,
-    default: '',
-  },
+
 })
+
+
+onMounted(() => {
+})
+
 </script>
 
 <template>
@@ -27,4 +17,6 @@ const props = defineProps({
   </div>
 </template>
 
-<style lang="less"></style>
+<style lang="less">
+
+</style>
