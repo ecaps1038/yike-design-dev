@@ -154,10 +154,13 @@ const initImagesPos = () => {
  * @description 自动播放
  */
 const initAutoPlay = () => {
+  let timer;
   if (props.autoPlay === true) {
-    setInterval(() => {
+    timer = setInterval(() => {
       nextMove()
     }, props.duration)
+  } else if (props.autoPlay === false) {
+    timer = null;
   }
 }
 
@@ -178,11 +181,13 @@ onMounted(() => {
   initTransition()
 })
 
-onUpdated(() => {})
+onUpdated(() => { })
 
-onUnmounted(() => {})
+onUnmounted(() => { })
 
-watch(props, () => {})
+watch(props, (newVal, oldVal) => {
+  initAutoPlay()
+})
 
 const indicatorsLengthArray = computed(() => {
   return Array.from(Array(indicatorsLength.value).keys()).map(
@@ -244,7 +249,7 @@ const arrowsSwitchIndex = (
   cur: number,
   next: number,
 ) => {
-  console.log(arrow, prev, cur, next)
+  // console.log(arrow, prev, cur, next)
   let prevEl = imagesRef.value.children[prev]
   let curEl = imagesRef.value.children[cur]
   let nextEl = imagesRef.value.children[next]
@@ -302,83 +307,46 @@ const switchIndicator = (index: number) => {
 </script>
 
 <template>
-  <div
-    class="yk-carousel"
-    ref="carousel"
-    :style="carouselStyle"
-    :class="['arrows-' + arrowShow, 'indicators-' + indicatorShow]"
-  >
+  <div class="yk-carousel" ref="carousel" :style="carouselStyle"
+    :class="['arrows-' + arrowShow, 'indicators-' + indicatorShow]">
     <div class="arrows" :class="['arrows-' + direction]">
-      <div
-        :style="arrowStyle"
-        class="arrows-item"
-        :class="direction === 'horizontal' ? 'arrows-left' : 'arrows-top'"
-        @click="prevMove"
-      >
-        <Icon
-          class="arrows-icon"
-          :name="direction === 'horizontal' ? 'yk-xiangzuo' : 'yk-xiangshang'"
-        />
+      <div :style="arrowStyle" class="arrows-item" :class="direction === 'horizontal' ? 'arrows-left' : 'arrows-top'"
+        @click="prevMove">
+        <Icon class="arrows-icon" :name="direction === 'horizontal' ? 'yk-xiangzuo' : 'yk-xiangshang'" />
       </div>
-      <div
-        :style="arrowStyle"
-        class="arrows-item"
-        :class="direction === 'horizontal' ? 'arrows-right' : 'arrows-bottom'"
-        @click="nextMove"
-      >
-        <Icon
-          class="arrows-icon"
-          :name="direction === 'horizontal' ? 'yk-xiangyou' : 'yk-xiangxia'"
-        />
+      <div :style="arrowStyle" class="arrows-item" :class="direction === 'horizontal' ? 'arrows-right' : 'arrows-bottom'"
+        @click="nextMove">
+        <Icon class="arrows-icon" :name="direction === 'horizontal' ? 'yk-xiangyou' : 'yk-xiangxia'" />
       </div>
     </div>
 
-    <div
-      v-if="indicatorsLength > 0"
-      class="indicators"
-      :class="[
-        'indicators-' + indicatorType,
-        arrowShow !== 'hidden'
-          ? direction === 'horizontal'
-            ? indicatorPosition === 'top' ||
-              indicatorPosition === 'outer-top' ||
-              indicatorPosition === 'bottom' ||
-              indicatorPosition === 'outer-bottom'
-              ? 'indicatorPosition-' + indicatorPosition
-              : 'indicatorPosition-bottom'
-            : indicatorPosition === 'left' ||
-              indicatorPosition === 'outer-left' ||
-              indicatorPosition === 'right' ||
-              indicatorPosition === 'outer-right'
+    <div v-if="indicatorsLength > 0" class="indicators" :class="[
+      arrowShow !== 'hidden'
+        ? direction === 'horizontal'
+          ? indicatorPosition === 'top' ||
+            indicatorPosition === 'outer-top' ||
+            indicatorPosition === 'bottom' ||
+            indicatorPosition === 'outer-bottom'
+            ? 'indicatorPosition-' + indicatorPosition
+            : 'indicatorPosition-bottom'
+          : indicatorPosition === 'left' ||
+            // eslint-disable-next-line prettier/prettier
+            indicatorPosition === 'outer-left' ||
+            indicatorPosition === 'right' ||
+            indicatorPosition === 'outer-right'
             ? 'indicatorPosition-' + indicatorPosition
             : 'indicatorPosition-left'
-          : 'indicatorPosition-' + indicatorPosition,
-      ]"
-    >
-      <div
-        v-for="(item, index) in indicatorsLengthArray"
-        :key="index"
-        class="indicators-item"
-        :style="[
-          indicatorStyle,
-          { indicatorActiveStyle: item === currentIndex },
-        ]"
-        :class="[{ 'indicators-active': item === currentIndex }]"
-        @click="switchIndicator(item)"
-      ></div>
+        : 'indicatorPosition-' + indicatorPosition,
+    ]">
+      <div :class="['indicators-' + indicatorType]">
+        <div v-for="(item, index) in indicatorsLengthArray" :key="index" class="indicators-item"
+          :style="[item === currentIndex ? indicatorActiveStyle : indicatorStyle]"
+          :class="[{ 'indicators-active': item === currentIndex }]" @click="switchIndicator(item)"></div>
+      </div>
     </div>
-
     <div class="images" :class="'showType-' + showType">
-      <div
-        class="images-container"
-        :class="`showType-` + showType + '-' + direction"
-        ref="imagesRef"
-      >
-        <CarouselItem
-          v-if="images"
-          v-for="(item, index) in images"
-          :key="index"
-        >
+      <div class="images-container" :class="`showType-` + showType + '-' + direction" ref="imagesRef">
+        <CarouselItem v-if="images" v-for="(item, index) in images" :key="index">
           <img :src="item" alt="" />
         </CarouselItem>
         <slot v-if="!images"></slot>
@@ -405,14 +373,16 @@ const switchIndicator = (index: number) => {
     z-index: 999;
 
     &-item {
+      cursor: pointer;
+      pointer-events: all;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.5);
-      cursor: pointer;
-      pointer-events: all;
       padding: 8px;
+      background-color: rgba(255, 255, 255, 0.5);
       border-radius: 50%;
+      color: #ffffff;
     }
 
     &-left {
@@ -430,14 +400,9 @@ const switchIndicator = (index: number) => {
     &-bottom {
       margin-bottom: 16px;
     }
-
-    &-icon {
-      color: #ffffff;
-    }
   }
 
-  .arrows-horizontal {
-  }
+  .arrows-horizontal {}
 
   .arrows-vertical {
     flex-direction: column;
@@ -454,13 +419,18 @@ const switchIndicator = (index: number) => {
   }
 
   .indicators-dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .indicators-item {
+      pointer-events: all;
+      cursor: pointer;
+
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background-color: rgba(255, 255, 255, 0.3);
-      pointer-events: all;
-      cursor: pointer;
     }
 
     .indicators-active {
@@ -469,13 +439,47 @@ const switchIndicator = (index: number) => {
   }
 
   .indicators-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .indicators-item {
-      width: 12px;
-      height: 4px;
-      border-radius: 30%;
-      background-color: rgba(255, 255, 255, 0.3);
       pointer-events: all;
       cursor: pointer;
+
+      width: 12px;
+      height: 4px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .indicators-active {
+      background: rgba(255, 255, 255, 1);
+    }
+  }
+
+  .indicators-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .indicators-item {
+      pointer-events: all;
+      cursor: pointer;
+
+      width: 12px;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      margin: 0 !important;
+      transition: all 0.3s ease-in-out;
+    }
+
+    :first-child {
+      border-radius: 8px 0 0 8px;
+    }
+
+    :last-child {
+      border-radius: 0 8px 8px 0;
     }
 
     .indicators-active {
@@ -503,8 +507,20 @@ const switchIndicator = (index: number) => {
 
   .indicatorPosition-left {
     height: 100%;
-    flex-direction: column;
     left: 16px;
+
+    .indicators-dot,
+    .indicators-line,
+    .indicators-slider {
+      flex-direction: column;
+    }
+
+    .indicators-slider {
+      .indicators-item {
+        width: 4px;
+        height: 12px;
+      }
+    }
 
     .indicators-item {
       margin: 4px 0;
@@ -513,8 +529,20 @@ const switchIndicator = (index: number) => {
 
   .indicatorPosition-right {
     height: 100%;
-    flex-direction: column;
     right: 16px;
+
+    .indicators-dot,
+    .indicators-line,
+    .indicators-slider {
+      flex-direction: column;
+    }
+
+    .indicators-slider {
+      .indicators-item {
+        width: 4px;
+        height: 12px;
+      }
+    }
 
     .indicators-item {
       margin: 4px 0;
@@ -551,9 +579,21 @@ const switchIndicator = (index: number) => {
 
   .indicatorPosition-outer-left {
     height: 100%;
-    flex-direction: column;
     left: -16px;
     padding-right: 8px;
+
+    .indicators-dot,
+    .indicators-line,
+    .indicators-slider {
+      flex-direction: column;
+    }
+
+    .indicators-slider {
+      .indicators-item {
+        width: 4px;
+        height: 12px;
+      }
+    }
 
     .indicators-item {
       margin: 4px 0;
@@ -567,8 +607,20 @@ const switchIndicator = (index: number) => {
 
   .indicatorPosition-outer-right {
     height: 100%;
-    flex-direction: column;
     right: -16px;
+
+    .indicators-dot,
+    .indicators-line,
+    .indicators-slider {
+      flex-direction: column;
+    }
+
+    .indicators-slider {
+      .indicators-item {
+        width: 4px;
+        height: 12px;
+      }
+    }
 
     .indicators-item {
       margin: 4px 0;
@@ -581,8 +633,7 @@ const switchIndicator = (index: number) => {
   }
 }
 
-.arrows-always {
-}
+.arrows-always {}
 
 .arrows-hover {
   .arrows {
@@ -590,7 +641,7 @@ const switchIndicator = (index: number) => {
     transition: opacity 0.3s ease-in-out;
   }
 
-  &:hover > .arrows {
+  &:hover>.arrows {
     opacity: 1;
   }
 }
@@ -601,8 +652,7 @@ const switchIndicator = (index: number) => {
   }
 }
 
-.indicators-always {
-}
+.indicators-always {}
 
 .indicators-hover {
   .indicators {
@@ -610,7 +660,7 @@ const switchIndicator = (index: number) => {
     transition: opacity 0.3s ease-in-out;
   }
 
-  &:hover > .indicators {
+  &:hover>.indicators {
     opacity: 1;
   }
 }
@@ -704,10 +754,8 @@ const switchIndicator = (index: number) => {
     }
   }
 
-  &-horizontal {
-  }
+  &-horizontal {}
 
-  &-vertical {
-  }
+  &-vertical {}
 }
 </style>

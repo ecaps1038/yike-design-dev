@@ -25,3 +25,4 @@ export const debounce = (fn: () => void, delay: number) => {
         }, delay);
     };
 };
+
