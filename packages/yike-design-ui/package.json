@@ -30,6 +30,9 @@
     "build": "vite build",
     "lint": "eslint . --fix "
   },
+  "dependencies": {
+    "@yike/utils": "workspace:*"
+  },
   "devDependencies": {
     "@vitest/coverage-v8": "^0.32.4",
     "@vue/test-utils": "^2.4.0",
