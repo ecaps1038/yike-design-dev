@@ -1,9 +1,11 @@
 import { resolve } from 'node:url'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import createVuePlugin from '@vitejs/plugin-vue';
+import vitePluginMarkdown from './plugins/vite-plugin-md'
+const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }); // 配置可编译 .vue 与 .md 文件
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vitePluginMarkdown(), vuePlugin],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'demo/src')

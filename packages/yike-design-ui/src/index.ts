@@ -7,9 +7,6 @@ import YkIcon from './components/icon/Icon.vue'
 import YkAvatar from './components/avatar/Avatar.vue'
 import YkAvatarGroup from './components/avatar/AvatarGroup.vue'
 import YkSpace from './components/space/Space.vue'
-import YkText from './components/typography/Text.vue'
-import YkTitle from './components/typography/Title.vue'
-import YkParagraph from './components/typography/Paragraph.vue'
 import YkContainer from './components/container/Container.vue'
 import YkTable from './components/table/Table.vue'
 
@@ -23,9 +20,6 @@ const components: {
   YkAvatar,
   YkAvatarGroup,
   YkSpace,
-  YkText,
-  YkTitle,
-  YkParagraph,
   YkContainer,
   YkTable
 }
@@ -38,9 +32,6 @@ export {
   YkAvatar,
   YkAvatarGroup,
   YkSpace,
-  YkText,
-  YkTitle,
-  YkParagraph,
   YkContainer,
   YkTable
 }

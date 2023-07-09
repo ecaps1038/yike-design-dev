@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
-
+import CaseCard from './components/CaseCard.vue';
 // 加载yike-design-ui组件资源
 // import YikeDesignUI from '../../packages/yike-design-ui/src/index'
 // 加载yike-design-ui打包资源
@@ -23,6 +23,8 @@ import hljsVuePlugin from '@highlightjs/vue-plugin'
 hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
+app.component('CaseCard', CaseCard);
+
 const pinia = createPinia()
 
 app.use(YikeDesignUI).use(pinia).use(router).use(hljsVuePlugin).mount('#app')

@@ -22,7 +22,8 @@ const router = createRouter({
       children: [
         {
           path: 'button',
-          component: () => import('@/components/units/Buttons.vue'),
+          // component: () => import('@/components/units/Buttons.vue'),
+          component: () => import('@/example/button/doc.md'),
         },
         {
           path: 'icon',
@@ -35,7 +36,7 @@ const router = createRouter({
         {
           path: 'avatar',
           component: () => import('@/components/units/Avatars.vue'),
-        }
+        },
       ],
     },
     {
