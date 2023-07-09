@@ -55,6 +55,9 @@
 
 |参数      | 描述     | 类型     | 默认值 |
 | ------------------ | ----------------- | ---------------| ---------------- |
-| type | 按钮的类型	 | 'primary'或'secondary'或'outline'	 | primary |
-| 单元格信息 | 单元格信息 | 单元格信息 | 单元格信息 |
-| 单元格信息 | 单元格信息 | 单元格信息 | 单元格信息 |
+| type     | 按钮的类型	 | 'primary'｜'secondary'｜'outline'	 | primary |
+| shape    | 单元格信息 | 单元格信息 | 单元格信息 |
+|stauts	   |按钮的状态 |	'primary' | 'success' | 'warning' | 'danger'	-
+|disabled  |	按钮是否被禁用 |	false ｜ true| false|
+|loading	|按钮是否加载中|	false ｜ true	|false|
+|long	    |按钮是否通栏|	false｜true	|false|
