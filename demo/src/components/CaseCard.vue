@@ -3,7 +3,7 @@
     <yk-title :level="3">{{ title }}</yk-title>
     <yk-text type="secondary">{{ note }}</yk-text>
     <div class="container">
-      <slot></slot>
+      <slot name="demo"></slot>
     </div>
 
     <yk-space class="space" :size="8">
@@ -15,8 +15,7 @@
       </div>
     </yk-space>
     <div class="codes" ref="codes" v-show="showCode">
-      <highlightjs autodetect :code="code" />
-      <!-- <slot name="code"></slot> -->
+      <slot name="code"></slot>
     </div>
   </div>
 </template>
