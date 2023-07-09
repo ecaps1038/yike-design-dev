@@ -12,8 +12,7 @@
     "yike-design-ui": "workspace:*",
     "pinia": "^2.1.4",
     "vue-router": "^4.1.6",
-    "markdown-it": "^12.3.2",
-    "markdown-it-container": "^3.0.0"
+    "markdown-it": "^12.3.2"
   },
   "devDependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",

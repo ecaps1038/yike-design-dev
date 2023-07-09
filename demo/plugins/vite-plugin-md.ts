@@ -44,14 +44,15 @@ export default () => ({
         const demoCode = fetchDemoCode(demoComponentName, id).replace(/ /g, '\u00A0')
         const html = hljs.highlightAuto(demoCode).value
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`
-        const caseCardContent = `<CaseCard
+        const caseCardContent = `<Snippet
         title="${title}"
        >
           <template v-slot:demo>${demoName}</template>
+          <template v-slot:desc>${markdownIt.render(desc)}</template>
           <template v-slot:code>
             <pre><code class='hljs'>${html}</code></pre>
           </template>
-        </CaseCard>
+        </Snippet>
         `
         src = src.replace(match[0], caseCardContent)
       }

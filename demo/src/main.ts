@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
-import CaseCard from './components/CaseCard.vue';
+import Snippet from './components/Snippet.vue';
 import Title from './components/typography/Title.vue'
 import Text from './components/typography/Text.vue'
 
@@ -26,7 +26,7 @@ import hljsVuePlugin from '@highlightjs/vue-plugin'
 hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
-app.component('CaseCard', CaseCard).component('yk-title', Title).component('yk-text', Text);
+app.component('Snippet', Snippet).component('yk-title', Title).component('yk-text', Text);
 const pinia = createPinia()
 
 app.use(YikeDesignUI).use(pinia).use(router).use(hljsVuePlugin).mount('#app')
