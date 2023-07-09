@@ -13,7 +13,7 @@ defineProps({
     <yk-container class="container">
       <div class="bar-card" v-for="(e, i) in bar" :key="i">
         <div class="bar-title">
-          <Text b>{{ (e as any).title }}</Text>
+          <yk-text b>{{ (e as any).title }}</yk-text>
         </div>
         <RouterLink
           class="bar-list"

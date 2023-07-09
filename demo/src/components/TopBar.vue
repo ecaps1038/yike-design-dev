@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { provide, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const dark = ref(false)
@@ -43,6 +43,8 @@ const router = useRouter()
 const goIndex = (): void => {
   router.push({ path: '/' })
 }
+provide('size', 'm')
+provide('shape', 'circle')
 </script>
 
 <style lang="less" scoped>
