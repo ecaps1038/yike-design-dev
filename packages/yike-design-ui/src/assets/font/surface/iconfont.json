@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "36356346",
+      "name": "txt",
+      "font_class": "txt",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
+      "icon_id": "36356347",
+      "name": "音频",
+      "font_class": "yinpin",
+      "unicode": "e6f3",
+      "unicode_decimal": 59123
+    },
+    {
+      "icon_id": "36356348",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e6f4",
+      "unicode_decimal": 59124
+    },
+    {
+      "icon_id": "36356349",
+      "name": "ppt",
+      "font_class": "ppt",
+      "unicode": "e6f5",
+      "unicode_decimal": 59125
+    },
+    {
+      "icon_id": "36356350",
+      "name": "excel",
+      "font_class": "excel",
+      "unicode": "e6f6",
+      "unicode_decimal": 59126
+    },
+    {
+      "icon_id": "36356351",
+      "name": "pdf",
+      "font_class": "pdf",
+      "unicode": "e6f7",
+      "unicode_decimal": 59127
+    },
+    {
+      "icon_id": "36356352",
+      "name": "word",
+      "font_class": "word",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
       "icon_id": "36104388",
       "name": "排行@3x",
       "font_class": "paihang",
