@@ -67,6 +67,72 @@ const data = reactive([
           <ul class="icon_lists dib-box">
             <li class="dib">
               <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-ppt"></use>
+              </svg>
+              <div class="code-name">yk-ppt</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-shipin"></use>
+              </svg>
+              <div class="code-name">yk-shipin</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-excel"></use>
+              </svg>
+              <div class="code-name">yk-excel</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-yinpin"></use>
+              </svg>
+              <div class="code-name">yk-yinpin</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-txt"></use>
+              </svg>
+              <div class="code-name">yk-txt</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-word"></use>
+              </svg>
+              <div class="code-name">yk-word</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-pdf"></use>
+              </svg>
+              <div class="code-name">yk-pdf</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-tushangchuanshibai"></use>
+              </svg>
+              <div class="code-name">yk-tushangchuanshibai</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-jiazai1"></use>
+              </svg>
+              <div class="code-name">yk-jiazai1</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-fujian"></use>
+              </svg>
+              <div class="code-name">yk-fujian</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
+                <use xlink:href="#yk-shangchuan2"></use>
+              </svg>
+              <div class="code-name">yk-shangchuan2</div>
+            </li>
+            <li class="dib">
+              <svg class="icon svg-icon" aria-hidden="true">
                 <use xlink:href="#yk-jingbao"></use>
               </svg>
               <div class="code-name">yk-jingbao</div>
@@ -893,6 +959,48 @@ const data = reactive([
     <div class="main">
       <div class="content symbol">
         <ul class="icon_lists dib-box">
+          <li class="dib">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#yike-txt"></use>
+            </svg>
+            <div class="code-name">yike-txt</div>
+          </li>
+          <li class="dib">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#yike-yinpin"></use>
+            </svg>
+            <div class="code-name">yike-yinpin</div>
+          </li>
+          <li class="dib">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#yike-shipin"></use>
+            </svg>
+            <div class="code-name">yike-shipin</div>
+          </li>
+          <li class="dib">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#yike-ppt"></use>
+            </svg>
+            <div class="code-name">yike-ppt</div>
+          </li>
+          <li class="dib">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#yike-excel"></use>
+            </svg>
+            <div class="code-name">yike-excel</div>
+          </li>
+          <li class="dib">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#yike-pdf"></use>
+            </svg>
+            <div class="code-name">yike-pdf</div>
+          </li>
+          <li class="dib">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#yike-word"></use>
+            </svg>
+            <div class="code-name">yike-word</div>
+          </li>
           <li class="dib">
             <svg class="icon svg-icon" aria-hidden="true">
               <use xlink:href="#yike-paihang"></use>

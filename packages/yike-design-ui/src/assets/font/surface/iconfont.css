@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3957844 */
-  src: url('iconfont.woff2?t=1687333306603') format('woff2'),
-       url('iconfont.woff?t=1687333306603') format('woff'),
-       url('iconfont.ttf?t=1687333306603') format('truetype');
+  src: url('iconfont.woff2?t=1688888190490') format('woff2'),
+       url('iconfont.woff?t=1688888190490') format('woff'),
+       url('iconfont.ttf?t=1688888190490') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.yike-txt:before {
+  content: "\e6f2";
+}
+
+.yike-yinpin:before {
+  content: "\e6f3";
+}
+
+.yike-shipin:before {
+  content: "\e6f4";
+}
+
+.yike-ppt:before {
+  content: "\e6f5";
+}
+
+.yike-excel:before {
+  content: "\e6f6";
+}
+
+.yike-pdf:before {
+  content: "\e6f7";
+}
+
+.yike-word:before {
+  content: "\e6f8";
 }
 
 .yike-paihang:before {

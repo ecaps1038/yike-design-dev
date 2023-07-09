@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3952736 */
-  src: url('iconfont.woff2?t=1687331809431') format('woff2'),
-       url('iconfont.woff?t=1687331809431') format('woff'),
-       url('iconfont.ttf?t=1687331809431') format('truetype');
+  src: url('iconfont.woff2?t=1688888196559') format('woff2'),
+       url('iconfont.woff?t=1688888196559') format('woff'),
+       url('iconfont.ttf?t=1688888196559') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,50 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.yk-ppt:before {
+  content: "\e710";
+}
+
+.yk-shipin:before {
+  content: "\e711";
+}
+
+.yk-excel:before {
+  content: "\e712";
+}
+
+.yk-yinpin:before {
+  content: "\e713";
+}
+
+.yk-txt:before {
+  content: "\e714";
+}
+
+.yk-word:before {
+  content: "\e715";
+}
+
+.yk-pdf:before {
+  content: "\e716";
+}
+
+.yk-tushangchuanshibai:before {
+  content: "\e70f";
+}
+
+.yk-jiazai1:before {
+  content: "\e70c";
+}
+
+.yk-fujian:before {
+  content: "\e70d";
+}
+
+.yk-shangchuan2:before {
+  content: "\e70e";
 }
 
 .yk-fangda1:before {

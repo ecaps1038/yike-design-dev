@@ -6,6 +6,83 @@
   "description": "线性基础图标",
   "glyphs": [
     {
+      "icon_id": "36356331",
+      "name": "ppt",
+      "font_class": "ppt",
+      "unicode": "e710",
+      "unicode_decimal": 59152
+    },
+    {
+      "icon_id": "36356332",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e711",
+      "unicode_decimal": 59153
+    },
+    {
+      "icon_id": "36356333",
+      "name": "excel",
+      "font_class": "excel",
+      "unicode": "e712",
+      "unicode_decimal": 59154
+    },
+    {
+      "icon_id": "36356334",
+      "name": "音频",
+      "font_class": "yinpin",
+      "unicode": "e713",
+      "unicode_decimal": 59155
+    },
+    {
+      "icon_id": "36356335",
+      "name": "txt",
+      "font_class": "txt",
+      "unicode": "e714",
+      "unicode_decimal": 59156
+    },
+    {
+      "icon_id": "36356336",
+      "name": "word",
+      "font_class": "word",
+      "unicode": "e715",
+      "unicode_decimal": 59157
+    },
+    {
+      "icon_id": "36356337",
+      "name": "pdf",
+      "font_class": "pdf",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "36348427",
+      "name": "图上传失败",
+      "font_class": "tushangchuanshibai",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "36333898",
+      "name": "加载1",
+      "font_class": "jiazai1",
+      "unicode": "e70c",
+      "unicode_decimal": 59148
+    },
+    {
+      "icon_id": "36333899",
+      "name": "附件",
+      "font_class": "fujian",
+      "unicode": "e70d",
+      "unicode_decimal": 59149
+    },
+    {
+      "icon_id": "36333900",
+      "name": "上传2",
+      "font_class": "shangchuan2",
+      "unicode": "e70e",
+      "unicode_decimal": 59150
+    },
+    {
       "icon_id": "36104435",
       "name": "放大",
       "font_class": "fangda1",
