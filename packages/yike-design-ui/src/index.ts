@@ -4,8 +4,7 @@ import YkButton from './components/button/Button.vue'
 import YkButtonGroup from './components/button/BtGroup.vue'
 import YkTheme from './components/theme/Theme.vue'
 import YkIcon from './components/icon/Icon.vue'
-import YkAvatar from './components/avatar/Avatar.vue'
-import YkAvatarGroup from './components/avatar/AvatarGroup.vue'
+import { YkAvatar, YkAvatarGroup } from './components/avatar'
 import YkSpace from './components/space/Space.vue'
 import YkContainer from './components/container/Container.vue'
 import YkTable from './components/table/Table.vue'
@@ -46,9 +45,9 @@ export default {
 }
 
 // 局部注册
-for (const c in components) {
-  const component = Object.assign(components[c], { install: {} })
-  component.install = (app: App) => {
-    app.component(c, component)
-  }
-}
+// for (const c in components) {
+//   const component = Object.assign(components[c], { install: {} })
+//   component.install = (app: App) => {
+//     app.component(c, component)
+//   }
+// }

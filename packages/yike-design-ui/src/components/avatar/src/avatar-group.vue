@@ -17,22 +17,18 @@
 </template>
 <script setup lang="ts">
 import { ref, provide, onMounted, h } from 'vue'
-import { getSize, getShape } from './avatar.js'
+import { getSize, getShape } from './util'
+import { AvatarGroupProps } from './avatar'
+import '../style'
 
-const props = defineProps({
-  shape: {
-    //头像形状circle'圆 | 'square方
-    type: [Number, String],
-    default: 'circle',
-  },
-  size: {
-    type: [Number, String],
-    default: 40,
-  },
-  max: {
-    type: Number,
-    default: 3,
-  },
+defineOptions({
+  name: 'YkAvatarGroup',
+})
+
+const props = withDefaults(defineProps<AvatarGroupProps>(), {
+  max: 3,
+  shape: 'circle',
+  size: 40,
 })
 //传递给头像信息
 provide('size', props.size)
@@ -61,19 +57,3 @@ onMounted(() => {
   addStyle()
 })
 </script>
-
-<style lang="less">
-
-.yk-avatar-group {
-  display: flex;
-
-  .more-avatar {
-    background-color: @pcolor;
-    color: #fff;
-    text-align: center;
-    font-weight: 500;
-    border: 2px solid @bg-color-l;
-    transition: border @animats;
-  }
-}
-</style>

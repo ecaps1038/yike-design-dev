@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "sourceMap": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
     }
   },
   "exclude": ["**/dist/**"],
