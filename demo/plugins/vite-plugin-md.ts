@@ -11,7 +11,7 @@ export function fetchDemoCode(componentName, id) {
   try {
     // 读取文件内容
     const content = fs.readFileSync(absolutePath, 'utf-8');
-    return escapeString(content);
+    return content;
   } catch (error) {
     // 处理错误
     console.error(`Failed to read file "${componentName}": ${error}`);
@@ -32,17 +32,7 @@ export default () => ({
       // 初始还MarkdownIt用于转换md文件为html
       const markdownIt = MarkdownIt({
         html: true,
-        xhtmlOut: true,
-        // 将markdown中的代码块用hljs高亮显示
-        highlight(str, lang) {
-          if (lang && hljs.getLanguage(lang)) {
-            return `<pre class="hljs"><code>${hljs.highlight(str, { language: lang }).value
-              }</code></pre>`;
-          }
-          return `<pre class="hljs"><code>${markdownIt.utils.escapeHtml(
-            str,
-          )}</code></pre>`;
-        },
+        xhtmlOut: false,
       });
       const snappetPattern = /:::snippet\s+(.*?)\s+:::/gs;
       const matchs = src.matchAll(snappetPattern)
@@ -51,13 +41,18 @@ export default () => ({
         const tagPattern = /<(\w+)\/>/;
         const demoTagName = demoName.match(tagPattern)[1]
         const demoComponentName = camelToDashCase(demoTagName)
-        const demoCode = fetchDemoCode(demoComponentName, id)
+        const demoCode = fetchDemoCode(demoComponentName, id).replace(/ /g, '\u00A0')
+        const html = hljs.highlightAuto(demoCode).value
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`
         const caseCardContent = `<CaseCard
         title="${title}"
-        note="${desc}"
-        code="123">
-        ${demoName}</CaseCard>`
+       >
+          <template v-slot:demo>${demoName}</template>
+          <template v-slot:code>
+            <pre><code class='hljs'>${html}</code></pre>
+          </template>
+        </CaseCard>
+        `
         src = src.replace(match[0], caseCardContent)
       }
       return {
@@ -66,7 +61,9 @@ export default () => ({
           ${importContent}
         </script>
         <template>
-          ${markdownIt.render(src)}
+          <div class='yk-demo-doc'>
+            ${markdownIt.render(src)}
+          </div>
         </template>`,
         map: null,
       };
