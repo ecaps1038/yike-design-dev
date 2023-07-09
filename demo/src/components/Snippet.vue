@@ -1,9 +1,9 @@
 <template>
   <div class="case-card">
-    <Title :level="3">{{ title }}</Title>
-    <Text type="secondary">{{ note }}</Text>
+    <yk-title :level="3">{{ title }}</yk-title>
+    <slot name="desc"></slot>
     <div class="container">
-      <slot></slot>
+      <slot name="demo"></slot>
     </div>
 
     <yk-space class="space" :size="8">
@@ -15,7 +15,7 @@
       </div>
     </yk-space>
     <div class="codes" ref="codes" v-show="showCode">
-      <highlightjs autodetect :code="code" />
+      <slot name="code"></slot>
     </div>
   </div>
 </template>
@@ -28,14 +28,6 @@ const props = defineProps({
   title: {
     type: String,
     default: '标题',
-  },
-  note: {
-    type: String,
-    default: '这里是注释',
-  },
-  code: {
-    type: String,
-    default: ``,
   },
 })
 
