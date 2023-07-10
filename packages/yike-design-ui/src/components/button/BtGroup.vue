@@ -85,7 +85,7 @@ ykShape.value = btShape(props.shape)
       :style="{ width: long ? '100%' : 'auto' }"
     >
       <div class="yk-button-bg" :style="{ borderRadius: ykShape[0] }"></div>
-      <p class="yk-buton-name" :style="{ padding: ykShape[1] }">
+      <p class="yk-button-name" :style="{ padding: ykShape[1] }">
         <svg viewBox="25 25 50 50" v-show="loading">
           <circle r="20" cy="50" cx="50"></circle>
         </svg>
@@ -105,7 +105,7 @@ ykShape.value = btShape(props.shape)
   cursor: pointer;
   text-align: center;
 
-  .yk-buton-name {
+  .yk-button-name {
     width: auto;
     transition: color @animatf;
     display: flex;
@@ -139,7 +139,7 @@ ykShape.value = btShape(props.shape)
 
   height: 24px;
 
-  .yk-buton-name {
+  .yk-button-name {
     padding: 0 8px;
     min-width: 24px;
     font-size: @size-ss;
@@ -150,7 +150,7 @@ ykShape.value = btShape(props.shape)
     border-radius: @radius-s;
   }
 
-  .yk-buton-name {
+  .yk-button-name {
     padding: 0 16px;
     min-width: 32px;
   }
@@ -161,7 +161,7 @@ ykShape.value = btShape(props.shape)
 .l {
   height: 36px;
 
-  .yk-buton-name {
+  .yk-button-name {
     min-width: 36px;
     padding: 0 16px;
   }
@@ -174,7 +174,7 @@ ykShape.value = btShape(props.shape)
 .xl {
   height: 48px;
 
-  .yk-buton-name {
+  .yk-button-name {
     font-size: @size-m;
     padding: 0 24px;
     min-width: 48px;
@@ -192,7 +192,7 @@ ykShape.value = btShape(props.shape)
     border-color: @pcolor;
   }
 
-  .yk-buton-name {
+  .yk-button-name {
     color: @pcolor;
     circle {
       stroke: @pcolor;
@@ -206,7 +206,7 @@ ykShape.value = btShape(props.shape)
     border-color: @font-color-l;
   }
 
-  .yk-buton-name {
+  .yk-button-name {
     color: @font-color-l;
     circle {
       stroke: @font-color-l;
@@ -220,7 +220,7 @@ ykShape.value = btShape(props.shape)
     border-color: @scolor;
   }
 
-  .yk-buton-name {
+  .yk-button-name {
     color: @scolor;
     circle {
       stroke: @scolor;
@@ -234,7 +234,7 @@ ykShape.value = btShape(props.shape)
     border-color: @wcolor;
   }
 
-  .yk-buton-name {
+  .yk-button-name {
     color: @wcolor;
     circle {
       stroke: @wcolor;
@@ -248,7 +248,7 @@ ykShape.value = btShape(props.shape)
     border-color: @ecolor;
   }
 
-  .yk-buton-name {
+  .yk-button-name {
     color: @ecolor;
     circle {
       stroke: @ecolor;
@@ -258,7 +258,7 @@ ykShape.value = btShape(props.shape)
 
 //type基本样式
 .primary {
-  .yk-buton-name {
+  .yk-button-name {
     color: #fff;
     circle {
       stroke: #fff;
@@ -278,7 +278,7 @@ ykShape.value = btShape(props.shape)
   }
 }
 
-.sceondary {
+.secondary {
   .yk-button-bg {
     opacity: 0.08;
   }

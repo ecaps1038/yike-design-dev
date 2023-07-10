@@ -39,9 +39,9 @@ const avator = ref(null)
 const overstep = ref(0) //是否超出max
 //获取dome元素添加特定样式
 const addStyle = () => {
-  let boxid: any = avator.value
+  let boxId: any = avator.value
   //将获取的dome转为数组
-  let arr = Array.from(boxid.children)
+  let arr = Array.from(boxId.children)
 
   arr.map((child: any, index: number) => {
     child.style.marginRight = -getSize(props.size) / 3 + 'px'

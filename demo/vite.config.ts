@@ -16,7 +16,7 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         charset: false,
-        additionalData: '@import "./src/style/yk-index.less";',
+        additionalData: '@import "./src/style/index.less";',
       }
     }
   },

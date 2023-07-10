@@ -68,8 +68,8 @@ ykShape.value = btShape(props.shape)
       :style="{ width: long ? '100%' : 'auto' }"
     >
       <div class="yk-button-bg" :style="{ borderRadius: ykShape[0] }"></div>
-      <p class="yk-buton-name" :style="{ padding: ykShape[1] }">
-        <svg viewBox="25 25 50 50" v-show="loading">
+      <p class="yk-button-name" :style="{ padding: ykShape[1] }">
+        <svg viewBox="25 25 50 50" class="yk-loading-button" v-show="loading">
           <circle r="20" cy="50" cx="50"></circle>
         </svg>
         <slot></slot>

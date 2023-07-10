@@ -66,12 +66,12 @@ const badge = ref(null)
 
 //获取dome元素添加特定样式
 const addStyle = () => {
-  let boxid: any = badge.value
+  let boxId: any = badge.value
   //将获取的dome转为数组
-  let arr = Array.from(boxid.children)
-  // console.log(boxid.children)
+  let arr = Array.from(boxId.children)
+  // console.log(boxId.children)
   if (arr.length == 1) {
-    // console.log(boxid.firstChild)
+    // console.log(boxId.firstChild)
     arr.map((child: any, index: number) => {
       child.style.right = 'auto'
       child.style.top = 'auto'
