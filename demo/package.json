@@ -1,0 +1,21 @@
+{
+  "name": "demo",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "yike-design-ui": "workspace:*",
+    "pinia": "^2.1.4",
+    "vue-router": "^4.1.6",
+    "markdown-it": "^12.3.2"
+  },
+  "devDependencies": {
+    "@highlightjs/vue-plugin": "^2.1.0",
+    "highlight.js": "^11.7.0"
+  }
+}
