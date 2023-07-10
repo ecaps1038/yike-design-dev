@@ -11,20 +11,11 @@ let bar = [
         name: 'Button 按钮',
         src: 'button',
       },
-      {
-        name: 'Icon 图标',
-        src: 'icon',
-      },
     ],
   },
   {
     title: '布局',
-    list: [
-      {
-        name: 'Space 间距',
-        src: 'space',
-      },
-    ],
+    list: [],
   },
   {
     title: '导航',
@@ -36,12 +27,7 @@ let bar = [
   },
   {
     title: '数据展示',
-    list: [
-      {
-        name: 'Avatar 头像',
-        src: 'avatar',
-      },
-    ],
+    list: [],
   },
 ]
 </script>

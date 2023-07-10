@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import { Plugin } from 'vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,12 +9,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-    },
-    {
-      path: '/hh',
-      name: 'hh',
-      component: () => import('@/views/yikeTt.vue'),
-    },
+    } as any,
     {
       path: '/module',
       redirect: '/module/button',
@@ -22,20 +18,8 @@ const router = createRouter({
       children: [
         {
           path: 'button',
-          // component: () => import('@/components/units/Buttons.vue'),
-          component: () => import('@/example/button/doc.md'),
-        },
-        {
-          path: 'icon',
-          component: () => import('@/components/units/Icons.vue'),
-        },
-        {
-          path: 'space',
-          component: () => import('@/components/units/Spaces.vue'),
-        },
-        {
-          path: 'avatar',
-          component: () => import('@/components/units/Avatars.vue'),
+          // @ts-ignore
+          component: () => import('@/examples/button/doc.md'),
         },
       ],
     },
