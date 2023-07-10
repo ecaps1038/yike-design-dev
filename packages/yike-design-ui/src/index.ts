@@ -1,6 +1,6 @@
 import type { Component, App } from 'vue'
 
-import YkButton from './components/button/Button.vue'
+import YkButton from './components/button/src/index.vue'
 import YkButtonGroup from './components/button/BtGroup.vue'
 import YkTheme from './components/theme/Theme.vue'
 import YkIcon from './components/icon/Icon.vue'
