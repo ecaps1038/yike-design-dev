@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { tryCopy } from '../../utils/tools'
-import ykIcon from '../icon/Icon.vue'
+import { YkIcon } from '../../index'
 
 const props = defineProps({
   b: {
