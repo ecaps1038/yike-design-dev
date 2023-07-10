@@ -56,6 +56,16 @@ export default () => ({
         `
         src = src.replace(match[0], caseCardContent)
       }
+      const purePattern = /:::pure\s+(.*?)\s+:::/gs;
+      const pureMatches = src.matchAll(purePattern)
+      for (const match of pureMatches) {
+        const demoName = match[1]
+        const tagPattern = /<(\w+)\/>/;
+        const demoTagName = demoName.match(tagPattern)[1]
+        const demoComponentName = camelToDashCase(demoTagName)
+        importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`
+        src = src.replace(match[0], `\n<div class='yk-pure-doc'>${demoName}</div>`)
+      }
       return {
         code: `
         <script setup>

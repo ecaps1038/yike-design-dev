@@ -17,12 +17,15 @@ const router = createRouter({
       children: [
         {
           path: 'button',
-          // @ts-ignore
           component: () => import('@/examples/button/doc.md'),
         },
         {
           path: 'message',
           component: () => import('@/examples/message/doc.md')
+        },
+        {
+          path: 'icon',
+          component: () => import('@/examples/icon/doc.md')
         }
       ],
     },
