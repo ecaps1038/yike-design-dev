@@ -9,7 +9,7 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { tryCopy } from '../../utils/tools.js'
+import { tryCopy } from '../../utils/tools'
 import ykIcon from '../icon/Icon.vue'
 
 const props = defineProps({

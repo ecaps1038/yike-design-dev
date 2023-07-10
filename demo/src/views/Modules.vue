@@ -27,7 +27,12 @@ let bar = [
   },
   {
     title: '数据展示',
-    list: [],
+    list: [
+      {
+        name: 'Message 消息提示',
+        src: 'message',
+      },
+    ],
   },
 ]
 </script>

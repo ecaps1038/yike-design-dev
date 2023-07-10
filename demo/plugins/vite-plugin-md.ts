@@ -34,9 +34,9 @@ export default () => ({
         html: true,
         xhtmlOut: false,
       });
-      const snappetPattern = /:::snippet\s+(.*?)\s+:::/gs;
-      const matchs = src.matchAll(snappetPattern)
-      for (const match of matchs) {
+      const snippetPattern = /:::snippet\s+(.*?)\s+:::/gs;
+      const matches = src.matchAll(snippetPattern)
+      for (const match of matches) {
         const [title, desc, demoName] = match[1].split('\n')
         const tagPattern = /<(\w+)\/>/;
         const demoTagName = demoName.match(tagPattern)[1]

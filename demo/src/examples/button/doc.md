@@ -1,4 +1,4 @@
-## yk-button 按钮
+## YkButton 按钮
 
 
 :::snippet 
@@ -53,11 +53,11 @@
 
 通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> size -> shape -> status -> disabled。
 
-|参数      | 描述     | 类型     | 默认值 |
-| ------------------ | ----------------- | ---------------| ---------------- |
-| type     | 按钮的类型	 | 'primary'｜'secondary'｜'outline'	 | primary |
-| shape    | 单元格信息 | 单元格信息 | 单元格信息 |
-|stauts	   |按钮的状态 |	'primary' | 'success' | 'warning' | 'danger'	-
-|disabled  |	按钮是否被禁用 |	false ｜ true| false|
-|loading	|按钮是否加载中|	false ｜ true	|false|
-|long	    |按钮是否通栏|	false｜true	|false|
+| 参数     | 描述           | 类型                                   | 默认值  |
+|----------|--------------|----------------------------------------|---------|
+| type     | 按钮的类型     | 'primary'｜'secondary'｜'outline'        | primary |
+| shape    | 按钮的形状     | 'round' ｜ 'circle' ｜ 'square'          | -       |
+| status   | 按钮的状态     | 'primary'｜'success'｜'warning'｜'danger' | -       |
+| disabled | 按钮是否被禁用 | false ｜ true                           | false   |
+| loading  | 按钮是否加载中 | false ｜ true                           | false   |
+| long     | 按钮是否通栏   | false｜true                             | false   |
