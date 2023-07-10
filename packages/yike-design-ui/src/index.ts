@@ -1,12 +1,12 @@
 import type { Component, App } from 'vue'
 
-import YkButton from './components/button/Button.vue'
+import { YkButton } from './components/button'
 import YkButtonGroup from './components/button/BtGroup.vue'
 import YkTheme from './components/theme/Theme.vue'
 import YkIcon from './components/icon/Icon.vue'
 import { YkAvatar, YkAvatarGroup } from './components/avatar'
 import YkSpace from './components/space/Space.vue'
-import YkContainer from './components/container/Container.vue'
+import { YkContainer } from './components/container'
 import YkTable from './components/table/Table.vue'
 
 const components: {

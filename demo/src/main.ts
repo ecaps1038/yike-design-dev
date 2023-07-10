@@ -1,18 +1,13 @@
-import { createApp } from 'vue'
+import { Plugin, createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import { createPinia } from 'pinia'
 import Snippet from './components/Snippet.vue';
 import Title from './components/typography/Title.vue'
 import Text from './components/typography/Text.vue'
 
 // 加载yike-design-ui组件资源
-// import YikeDesignUI from '../../packages/yike-design-ui/src/index'
-// 加载yike-design-ui打包资源
-import YikeDesignUI from 'yike-design-ui'
+import YikeDesignUI from '../../packages/yike-design-ui/src/index'
 
-// 加载yike-design-ui的样式
-import 'yike-design-ui/dist/style.css'
 // 加载项目全局样式
 import '@/style/main.less'
 
@@ -27,6 +22,4 @@ hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
 app.component('Snippet', Snippet).component('yk-title', Title).component('yk-text', Text);
-const pinia = createPinia()
-
-app.use(YikeDesignUI).use(pinia).use(router).use(hljsVuePlugin).mount('#app')
+app.use(YikeDesignUI).use(router as Plugin).use(hljsVuePlugin as Plugin).mount('#app')
