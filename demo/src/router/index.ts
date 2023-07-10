@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import { Plugin } from 'vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +20,10 @@ const router = createRouter({
           // @ts-ignore
           component: () => import('@/examples/button/doc.md'),
         },
+        {
+          path: 'message',
+          component: () => import('@/examples/message/doc.md')
+        }
       ],
     },
     {
