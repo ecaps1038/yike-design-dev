@@ -1,9 +1,8 @@
 import type { Component, App } from 'vue'
 
 import { YkButton } from './components/button'
-import YkButtonGroup from './components/button/BtGroup.vue'
 import YkTheme from './components/theme/Theme.vue'
-import YkIcon from './components/icon/Icon.vue'
+import { YkIcon } from './components/icon'
 import { YkAvatar, YkAvatarGroup } from './components/avatar'
 import YkSpace from './components/space/Space.vue'
 import { YkContainer } from './components/container'
@@ -15,7 +14,6 @@ const components: {
   [propName: string]: Component
 } = {
   YkButton,
-  YkButtonGroup,
   YkTheme,
   YkIcon,
   YkAvatar,
@@ -29,7 +27,6 @@ const components: {
 
 export {
   YkButton,
-  YkButtonGroup,
   YkTheme,
   YkIcon,
   YkAvatar,

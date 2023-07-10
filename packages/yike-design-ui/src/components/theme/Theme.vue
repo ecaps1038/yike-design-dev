@@ -9,7 +9,7 @@
 import { menusModel } from './model'
 import { ref, onMounted } from 'vue'
 
-import ykIcon from '../icon/Icon.vue'
+import { YkIcon } from '../icon'
 
 const dark = ref(false)
 let obj = ref({})
