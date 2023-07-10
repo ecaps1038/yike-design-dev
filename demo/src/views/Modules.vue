@@ -11,6 +11,10 @@ let bar = [
         name: 'Button 按钮',
         src: 'button',
       },
+      {
+        name: 'Icon 图标',
+        src: 'icon',
+      },
     ],
   },
   {
