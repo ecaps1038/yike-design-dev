@@ -7,7 +7,7 @@
     </div>
 
     <yk-space class="space" :size="8">
-      <div class="icons" @click="tryCopys" v-show="showCode">
+      <div class="icons" @click="onCopy" v-show="showCode">
         <yk-icon name="yk-kaobei"></yk-icon>
       </div>
       <div class="icons" :class="{ select: showCode }" @click="clickShow">
@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
 
-import { tryCopy } from '@/utils/yikeFunc'
+import { tryCopy } from '@/utils/tools'
 
 const props = defineProps({
   title: {
@@ -36,7 +36,7 @@ const codes = ref(null)
 //信息模块
 const { proxy }: any = getCurrentInstance()
 //拷贝内容
-const tryCopys = (): void => {
+const onCopy = (): void => {
   tryCopy(codes.value)
   proxy.$message({ type: 'success', message: '拷贝成功' })
 }
