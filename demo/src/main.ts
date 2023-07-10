@@ -5,7 +5,6 @@ import Snippet from './components/Snippet.vue';
 
 // 加载yike-design-ui组件资源
 import YikeDesignUI from '../../packages/yike-design-ui/src/index'
-
 // 加载项目全局样式
 import '@/style/main.less'
 
