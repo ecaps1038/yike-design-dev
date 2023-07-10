@@ -68,3 +68,10 @@ export const $on = (name: any, work: any) => {
     work(map[name].detail)
   })
 }
+let zIndex = 2000
+
+export const popupManager = {
+  nextIndex() {
+    return zIndex++
+  }
+}
