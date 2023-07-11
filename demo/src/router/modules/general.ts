@@ -7,7 +7,7 @@ const generalRoutes: Array<RouteRecordRaw> = [
   },
   {
     path: 'icon',
-    component: () => import('@/components/units/Icons.vue'),
+    component: () => import('@/examples/icon/doc.md'),
   },
   {
     path: 'space',
