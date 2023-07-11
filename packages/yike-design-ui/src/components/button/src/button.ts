@@ -1,46 +1,11 @@
-import { PropType, ExtractPropTypes } from "vue"
-import { ROUNDS, Round, SIZES, STATUS, Size, Status, TYPES, Type } from '../../../utils/constant'
+import { Shape, Size, Status, Type } from '../../../utils/constant';
 
-export const buttonProps = {
-  type: {
-    type: String as PropType<Type>,
-    default: 'primary',
-    vildate(value: Type) {
-      return TYPES.includes(value)
-    },
-  },
-  status: {
-    type: String as PropType<Type>,
-    default: '',
-    vildate(value: Status) {
-      return STATUS.includes(value)
-    },
-  },
-  size: {
-    type: String as PropType<Size>,
-    default: 'l',
-    vildate(value: Size) {
-      return SIZES.includes(value)
-    },
-  },
-  shape: {
-    type: String as PropType<Round>,
-    vildate(value: Round) {
-      return ROUNDS.includes(value)
-    },
-  },
-  long: {
-    type: Boolean as PropType<boolean>,
-    default: false
-  },
-  loading: {
-    type: Boolean as PropType<boolean>,
-    default: false
-  },
-  disabled: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
-} as const;
-
-export type ButtonProps = ExtractPropTypes<typeof buttonProps>;
+export type ButtonProps = {
+  type?: Type;
+  status?: Status;
+  size?: Size;
+  shape?: Shape;
+  long?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+}
