@@ -2,7 +2,6 @@ export const TYPES = [
   'primary',
   'secondary',
   'outline',
-  'undefined',
 ] as const;
 export type Type = (typeof TYPES)[number]
 
