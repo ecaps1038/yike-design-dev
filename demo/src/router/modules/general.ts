@@ -13,14 +13,6 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'message',
     component: () => import('@/examples/message/doc.md'),
   },
-  {
-    path: 'space',
-    component: () => import('@/components/units/Spaces.vue'),
-  },
-  {
-    path: 'avatar',
-    component: () => import('@/components/units/Avatars.vue'),
-  },
 ]
 
 export default generalRoutes;

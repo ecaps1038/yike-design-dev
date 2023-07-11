@@ -1,19 +1,31 @@
 <template>
   <div class="yk-icon-list">
-    <div v-for="icon in ykIconList" class="yk-icon-container">
-      <yk-icon :name="icon"></yk-icon>
-      <div class="yk-icon-name">{{ icon }}</div>
+    <div
+      v-for="iconName in ykIconList"
+      class="yk-icon-container"
+      @click="onCopy(iconName)"
+    >
+      <yk-icon :name="iconName"></yk-icon>
+      <div class="yk-icon-name">{{ iconName }}</div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { copyText } from '@/utils/tools'
+import { getCurrentInstance } from 'vue'
+const proxy: any = getCurrentInstance()?.proxy
+
+const onCopy = (iconName: string) => {
+  copyText(iconName)
+  proxy.$message({ type: 'success', message: '已复制' })
+}
 const ykIconList = [
   'yike-paihang',
   'yike-geshishua',
   'yike-jingbao',
   'yike-huangguan',
   'yike-vip',
-  'yike-renzhengy',
+  'yike-renzheng',
   'yike-jiangbei',
   'yike-yuedu',
   'yike-anquan',
@@ -88,37 +100,3 @@ const ykIconList = [
   'yike-zhuce',
 ]
 </script>
-<style lang="less">
-@import '@/style/base.less';
-.yk-icon-list {
-  width: 100% !important;
-  overflow: hidden;
-  *zoom: 1;
-  display: flex;
-  flex-wrap: wrap;
-  padding-inline-start: 0px;
-  .yk-icon-container {
-    width: 160px;
-    padding: 16px;
-    text-align: center;
-    list-style: none !important;
-    border: 0.8px solid @line-color-s;
-    cursor: default;
-    svg {
-      display: block;
-      height: 64px;
-      line-height: 64px;
-      font-size: 32px;
-      margin: 0 auto 10px;
-      color: @font-color-l;
-      transition: font-size 0.1s linear, width 0.1s linear;
-    }
-    svg:hover {
-      font-size: 42px;
-    }
-  }
-  .yk-icon-name {
-    color: @font-color-m;
-  }
-}
-</style>
