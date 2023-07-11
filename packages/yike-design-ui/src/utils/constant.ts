@@ -1,6 +1,6 @@
 export const TYPES = [
   'primary',
-  'sceondary',
+  'secondary',
   'outline',
   'undefined',
 ] as const;
