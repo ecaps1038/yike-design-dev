@@ -1,8 +1,8 @@
 import { RouteRecordRaw } from 'vue-router';
 const feedbackRoutes: Array<RouteRecordRaw> = [
   {
-    path: 'modal',
-    component: () => import('@/example/button/doc.md'),
+    path: 'message',
+    component: () => import('@/examples/message/doc.md'),
   },
 ]
 
