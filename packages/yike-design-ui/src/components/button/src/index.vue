@@ -27,7 +27,7 @@ const ykButtonClass = computed(() => {
     'yk-button': true,
     'yk-button--long': props.long,
     'yk-button--disabled': props.disabled || props.loading,
-    [`yk-button--${props.status}`]: props.status,
+    [`yk-button--${props.status}`]: true,
     [`yk-button--${props.type}`]: props.type,
     [`yk-button--${props.size}`]: props.size,
     [`yk-button--${props.round}`]: props.round,
@@ -36,32 +36,79 @@ const ykButtonClass = computed(() => {
 </script>
 
 <style scoped lang="less">
+@import 'index.less';
+
 .automatic(@color, @textColor: #FFF) {
   background-color: @color;
-  border-color: @color;
+  border-color: transparent;
   color: @textColor;
 }
 .yk-button {
   padding: 6px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+  outline: none;
   border-radius: 8px;
   border-width: 1px;
   border-style: solid;
   border-color: @line-color-s;
-  color: @gray;
-  box-sizing: border-box;
+  color: @font-color-l;
+  cursor: pointer;
+  transition: all @animatb ease-in-out;
+  user-select: none;
 
-  // 类型 type
+  // .btn-type(@type: primary) {
+  //   .normal() {
+  //     color: ~'@{btn-text-@{type}-default}';
+  //     background-color: ~'@{btn-bg-@{type}-default}';
+  //     border-color: ~'@{btn-line-@{type}-default}';
+  //   }
+  //   &--@{type} {
+  //     .normal();
+  //   }
+  // }
+
+  // .btn-status(@type: primary, @status: primary) {
+  //   .normal() {
+  //     color: ~'@{btn-text-@{type}-@{status}}';
+  //     background-color: ~'@{btn-bg-@{type}-@{status}}';
+  //     border-color: ~'@{btn-line-@{type}-@{status}}';
+  //   }
+  //   &--@{status} {
+  //     .normal();
+  //   }
+  // }
+
+  // .btn-type(primary);
+  // .btn-type(sceondary);
+  // .btn-type(outline);
+
+  // .btn-status(outline);
+  // .btn-status(outline, success);
+  // .btn-status(outline, warning);
+  // .btn-status(outline, danger);
+
+  // .btn-status(sceondary, success);
+  // .btn-status(sceondary, success);
+  // .btn-status(sceondary, warning);
+  // .btn-status(sceondary, danger);
+
+  // // 类型 type
   &--primary {
     .automatic(@pcolor);
   }
   &--sceondary {
-    .automatic(@font-color-l, @font-color-l);
-    opacity: 0.8;
+    opacity: 0.08;
+    background-color: transparent;
+    color: transparent;
   }
-
   &--outline {
-    .automatic(@font-color-l, @font-color-l);
     opacity: 0.16;
+    background-color: transparent;
+    color: transparent;
   }
 
   // 状态 status
@@ -100,14 +147,15 @@ const ykButtonClass = computed(() => {
 
   // 禁用
   &--disabled {
-    cursor: disabled;
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 
   // 伪类
-  &:hover {
+  &:not(:disabled):hover {
     opacity: 0.9;
   }
-  &:active {
+  &:not(:disabled):active {
     opacity: 0.7;
   }
 }

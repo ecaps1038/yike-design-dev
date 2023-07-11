@@ -27,7 +27,7 @@ const ButtonProps = {
   },
   status: {
     type: String as PropType<Type>,
-    default: '',
+    default: 'primary',
     vildate(value: Status) {
       return STATUS.includes(value)
     },
