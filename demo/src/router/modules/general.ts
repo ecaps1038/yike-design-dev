@@ -10,6 +10,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/icon/doc.md'),
   },
   {
+    path: 'message',
+    component: () => import('@/examples/message/doc.md'),
+  },
+  {
     path: 'space',
     component: () => import('@/components/units/Spaces.vue'),
   },
