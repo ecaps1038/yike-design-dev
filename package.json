@@ -17,6 +17,7 @@
     "@babel/eslint-parser": "^7.22.5",
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
+    "@testing-library/vue": "^7.0.0",
     "@types/node": "^18.11.12",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
