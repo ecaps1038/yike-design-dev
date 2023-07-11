@@ -19,6 +19,7 @@ import { ButtonProps } from './button'
 import '../style'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
+  type: 'primary',
   size: 'l',
   shape: 'round',
   long: false,
