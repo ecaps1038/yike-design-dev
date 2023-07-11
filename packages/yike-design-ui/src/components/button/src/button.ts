@@ -25,8 +25,6 @@ export const buttonProps = {
   },
   shape: {
     type: String as PropType<Round>,
-    default: null,
-    required: true,
     vildate(value: Round) {
       return ROUNDS.includes(value)
     },
