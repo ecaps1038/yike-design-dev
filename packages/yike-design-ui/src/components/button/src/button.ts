@@ -23,7 +23,7 @@ export const buttonProps = {
       return SIZES.includes(value)
     },
   },
-  round: {
+  shape: {
     type: String as PropType<Round>,
     default: null,
     required: true,
