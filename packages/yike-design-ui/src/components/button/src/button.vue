@@ -15,10 +15,16 @@ export default {
 </script>
 <script setup lang="ts">
 import { computed } from 'vue'
-import { buttonProps } from './button'
+import { ButtonProps } from './button'
 import '../style'
 
-const props = defineProps(buttonProps)
+const props = withDefaults(defineProps<ButtonProps>(), {
+  size: 'l',
+  shape: 'round',
+  long: false,
+  loading: false,
+  disabled: false,
+})
 
 const ykButtonClass = computed(() => {
   return {
