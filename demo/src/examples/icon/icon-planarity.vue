@@ -1,19 +1,31 @@
 <template>
   <div class="yk-icon-list">
-    <div v-for="icon in ykIconList" class="yk-icon-container">
-      <yk-icon :name="icon"></yk-icon>
-      <div class="yk-icon-name">{{ icon }}</div>
+    <div
+      v-for="iconName in ykIconList"
+      class="yk-icon-container"
+      @click="onCopy(iconName)"
+    >
+      <yk-icon :name="iconName"></yk-icon>
+      <div class="yk-icon-name">{{ iconName }}</div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { copyText } from '@/utils/tools'
+import { getCurrentInstance } from 'vue'
+const proxy: any = getCurrentInstance()?.proxy
+
+const onCopy = (iconName: string) => {
+  copyText(iconName)
+  proxy.$message({ type: 'success', message: '已复制' })
+}
 const ykIconList = [
   'yike-paihang',
   'yike-geshishua',
   'yike-jingbao',
   'yike-huangguan',
   'yike-vip',
-  'yike-renzhengy',
+  'yike-renzheng',
   'yike-jiangbei',
   'yike-yuedu',
   'yike-anquan',
@@ -103,7 +115,7 @@ const ykIconList = [
     text-align: center;
     list-style: none !important;
     border: 0.8px solid @line-color-s;
-    cursor: default;
+    cursor: pointer;
     svg {
       display: block;
       height: 64px;

@@ -50,6 +50,15 @@ export const tryCopy = (copyWrapper: any): void => {
   selection.removeAllRanges()
 }
 
+export const copyText = (copyStr: string) => {
+  var textarea = document.createElement("textarea");
+  textarea.value = copyStr;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+}
+
 //自定义$emit和$on函数
 const map: any = {}
 export const $emit = (name: any, params: any) => {
