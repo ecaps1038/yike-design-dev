@@ -98,5 +98,12 @@ const ykIconList = [
   'yike-yike1',
   'yike-tupian',
   'yike-zhuce',
+  'yike-word',
+  'yike-pdf',
+  'yike-excel',
+  'yike-ppt',
+  'yike-shipin',
+  'yike-yinpin',
+  'yike-txt',
 ]
 </script>
