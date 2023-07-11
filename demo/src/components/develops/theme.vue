@@ -26,7 +26,7 @@
       ->
       <yk-text type="pcolor">style</yk-text>
       ->
-      <yk-text type="pcolor">yk-index.less</yk-text>
+      <yk-text type="pcolor">index.less</yk-text>
     </yk-paragraph>
     <yk-text b>Vite引入方法：</yk-text>
     <yk-text type="secondary">在</yk-text>
@@ -64,7 +64,7 @@ const datas = [
     preprocessorOptions: {
       less: {
         charset: false,
-        additionalData: '@import "./src/yike-design/assets/style/yk-index.less";',
+        additionalData: '@import "./src/yike-design/assets/style/index.less";',
       },
     },
   },
@@ -76,7 +76,7 @@ const datas = [
      "style-resources-loader": {
        preProcessor: "less",
        patterns: [
-         path.resolve(__dirname, "./src/yike-design/assets/style/yk-index.less"),
+         path.resolve(__dirname, "./src/yike-design/assets/style/index.less"),
        ], // 引入全局样式变量
      },
    },

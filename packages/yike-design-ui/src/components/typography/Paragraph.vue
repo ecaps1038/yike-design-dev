@@ -2,15 +2,15 @@
   <div class="yk-paragraph">
     <p :class="[type, { strong: b }]" ref="getDivRef">
       <slot></slot>
-      <ykIcon @click="tryCopys" name="yk-kaobei" v-show="copyable" />
+      <ykIcon @click="onCopy" name="yk-kaobei" v-show="copyable" />
     </p>
-    <div class="more" @click="getMore" v-show="ismore">展开</div>
+    <div class="more" @click="getMore" v-show="isMore">展开</div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { tryCopy } from '../../utils/yikeFunc.js'
-import ykIcon from '../icon/Icon.vue'
+import { tryCopy } from '../../utils/tools'
+import { YkIcon } from '../../index'
 
 const props = defineProps({
   b: {
@@ -33,69 +33,69 @@ const props = defineProps({
 })
 
 let str: string
-let ismore = ref(false)
+let isMore = ref(false)
 //获取dome元素
 const getDivRef = ref(null)
 
 //进行多行隐藏处理
-const moreline = (rows: number) => {
+const moreLine = (rows: number) => {
   let lines = 2
   if (rows) {
     lines = rows
-    let boxid: any = getDivRef.value
+    let boxId: any = getDivRef.value
     // console.log(getDivRef);
     //js获取元素所有样式
-    let computedStyle = getComputedStyle(boxid)
+    let computedStyle = getComputedStyle(boxId)
     let lineHeight = computedStyle.lineHeight
 
     let top = lines * parseInt(lineHeight)
 
     //获取原始数据不跟随元数据改变
-    str = JSON.parse(JSON.stringify(boxid.innerHTML))
-    let tempstr = str
+    str = JSON.parse(JSON.stringify(boxId.innerHTML))
+    let tempStr = str
     // console.log(str)
 
-    let len = tempstr.length
+    let len = tempStr.length
     let i = 0
-    if (boxid.offsetHeight > top) {
+    if (boxId.offsetHeight > top) {
       if (props.ellipsis.showMore) {
-        ismore.value = true
+        isMore.value = true
       }
 
       let temp = ''
-      boxid.innerHTML = temp
-      // console.log(tempstr)
-      while (boxid.offsetHeight <= top) {
-        temp = tempstr.substring(0, i + 1)
+      boxId.innerHTML = temp
+      // console.log(tempStr)
+      while (boxId.offsetHeight <= top) {
+        temp = tempStr.substring(0, i + 1)
         i++
-        boxid.innerHTML = temp
+        boxId.innerHTML = temp
       }
-      tempstr = temp.substring(0, temp.length - 1)
-      len = tempstr.length
-      if (ismore.value) {
-        boxid.innerHTML = tempstr.substring(0, len - 3) + '...'
+      tempStr = temp.substring(0, temp.length - 1)
+      len = tempStr.length
+      if (isMore.value) {
+        boxId.innerHTML = tempStr.substring(0, len - 3) + '...'
       } else {
-        boxid.innerHTML = tempstr.substring(0, len - 1) + '...'
+        boxId.innerHTML = tempStr.substring(0, len - 1) + '...'
       }
-      boxid.height = top + 'rem'
+      boxId.height = top + 'rem'
     }
   }
 }
 
 //显示全部内容
 const getMore = () => {
-  let boxid: any = getDivRef.value
-  boxid.innerHTML = str
-  ismore.value = false
+  let boxId: any = getDivRef.value
+  boxId.innerHTML = str
+  isMore.value = false
 }
 
 //拷贝内容
-const tryCopys = (): void => {
+const onCopy = (): void => {
   tryCopy(getDivRef.value)
 }
 
 onMounted(() => {
-  moreline(props.ellipsis.rows)
+  moreLine(props.ellipsis.rows)
 })
 </script>
 <style lang="less" scoped>

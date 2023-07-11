@@ -16,7 +16,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import ykIcon from '../../icon/Icon.vue'
+import { YkIcon } from '../../../index'
 import { ref, inject } from 'vue'
 import { getSize, getShape } from './util'
 import { AvatarProps } from './avatar'

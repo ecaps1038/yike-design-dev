@@ -21,7 +21,7 @@ const goPage = (e: string): void => {
       </div>
       <yk-space class="bt">
         <yk-button @click="goPage('develop')" size="l">开始使用</yk-button>
-        <yk-button type="sceondary" @click="goPage('design')" size="l">
+        <yk-button type="secondary" @click="goPage('design')" size="l">
           设计文件
         </yk-button>
       </yk-space>

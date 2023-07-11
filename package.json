@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:components": "pnpm --filter yike-design-ui build",
     "dev:demo": "pnpm --filter demo dev",
     "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",

@@ -1,0 +1,129 @@
+@import './variables.less';
+.automatic(@color, @textColor: #fff) {
+  background-color: @color;
+  border-color: transparent;
+  color: @textColor;
+}
+.yk-button {
+  padding: 6px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+  outline: none;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: @line-color-s;
+  color: @font-color-l;
+  cursor: pointer;
+  transition: all @animatb ease-in-out;
+  user-select: none;
+  color: @btn-primary-color-text;
+  background-color: @btn-primary-color-bg;
+  border-color: @btn-primary-color-border;
+
+  .btn-type(@type) {
+    .normal() {
+      color: ~'@{btn-@{type}-color-text}';
+      background-color: ~'@{btn-@{type}-color-bg}';
+      border-color: ~'@{btn-@{type}-color-border}';
+    }
+    &--@{type} {
+      .normal();
+    }
+  }
+
+  .btn-status(@type: primary, @status: primary) {
+    .normal() {
+      color: ~'@{btn-@{type}-color-text_@{status}}';
+      background-color: ~'@{btn-@{type}-color-bg_@{status}}';
+      border-color: ~'@{btn-@{type}-color-border_@{status}}';
+    }
+    &.yk-button--@{type}.yk-button--@{status} {
+      .normal();
+    }
+  }
+
+  .btn-type(primary);
+  .btn-type(secondary);
+  .btn-type(outline);
+
+  .btn-status(primary);
+  .btn-status(primary, success);
+  .btn-status(primary, warning);
+  .btn-status(primary, danger);
+
+  .btn-status(secondary);
+  .btn-status(secondary, success);
+  .btn-status(secondary, warning);
+  .btn-status(secondary, danger);
+
+  .btn-status(outline);
+  .btn-status(outline, success);
+  .btn-status(outline, warning);
+  .btn-status(outline, danger);
+
+  // // 类型 type
+  // &--primary {
+  //   .automatic(@pcolor);
+  // }
+  // &--sceondary {
+  //   opacity: 0.08;
+  //   background-color: transparent;
+  //   color: transparent;
+  // }
+  // &--outline {
+  //   opacity: 0.16;
+  //   background-color: transparent;
+  //   color: transparent;
+  // }
+
+  // // 状态 status
+  // &--success {
+  //   .automatic(@scolor);
+  // }
+  // &--warning {
+  //   .automatic(@wcolor);
+  // }
+  // &--danger {
+  //   .automatic(@ecolor);
+  // }
+
+  // 尺寸 size
+  &--s {
+    height: 24px;
+    padding: 0px 8px;
+  }
+  &--m {
+    height: 32px;
+    padding: 0px 16px;
+  }
+  &--l {
+    height: 36px;
+    padding: 0px 16px;
+  }
+  &--xl {
+    height: 48px;
+    padding: 0px 24px;
+  }
+  &--long {
+    width: 100%;
+    display: block;
+  }
+
+  // 禁用
+  &--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  // 伪类
+  &:not(:disabled):hover {
+    opacity: 0.9;
+  }
+  &:not(:disabled):active {
+    opacity: 0.7;
+  }
+}

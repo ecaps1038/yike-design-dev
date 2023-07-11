@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const generalRoutes: Array<RouteRecordRaw> = [
   {
     path: 'button',
-    component: () => import('@/example/button/doc.md'),
+    component: () => import('@/examples/button/doc.md'),
   },
   {
     path: 'icon',

@@ -34,9 +34,9 @@ export default () => ({
         html: true,
         xhtmlOut: false,
       });
-      const snappetPattern = /:::snippet\s+(.*?)\s+:::/gs;
-      const matchs = src.matchAll(snappetPattern)
-      for (const match of matchs) {
+      const snippetPattern = /:::snippet\s+(.*?)\s+:::/gs;
+      const matches = src.matchAll(snippetPattern)
+      for (const match of matches) {
         const [title, desc, demoName] = match[1].split('\n')
         const tagPattern = /<(\w+)\/>/;
         const demoTagName = demoName.match(tagPattern)[1]
@@ -55,6 +55,16 @@ export default () => ({
         </Snippet>
         `
         src = src.replace(match[0], caseCardContent)
+      }
+      const purePattern = /:::pure\s+(.*?)\s+:::/gs;
+      const pureMatches = src.matchAll(purePattern)
+      for (const match of pureMatches) {
+        const demoName = match[1]
+        const tagPattern = /<(\w+)\/>/;
+        const demoTagName = demoName.match(tagPattern)[1]
+        const demoComponentName = camelToDashCase(demoTagName)
+        importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`
+        src = src.replace(match[0], `\n<div class='yk-pure-doc'>${demoName}</div>`)
       }
       return {
         code: `
