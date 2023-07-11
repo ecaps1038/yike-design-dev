@@ -16,7 +16,7 @@
     "types": ["node", "vite/client"],
     "lib": ["esnext", "dom"],
     "paths": {
-      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"],
+      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
     }
   },
   "exclude": ["**/node_modules/**", "**/demo/**", "**/example/**"]

@@ -1,5 +1,4 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "sourceMap": true,
@@ -9,5 +8,5 @@
     }
   },
   "exclude": ["**/dist/**"],
-  "include": ["**/*.ts", "**/*.vue", "**/**/*.vue"]
+  "include": ["**/*.ts", "**/*.vue", "**/**/*.vue", "components.d.ts"]
 }
