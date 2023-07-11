@@ -100,37 +100,3 @@ const ykIconList = [
   'yike-zhuce',
 ]
 </script>
-<style lang="less">
-@import '@/style/base.less';
-.yk-icon-list {
-  width: 100% !important;
-  overflow: hidden;
-  *zoom: 1;
-  display: flex;
-  flex-wrap: wrap;
-  padding-inline-start: 0px;
-  .yk-icon-container {
-    width: 160px;
-    padding: 16px;
-    text-align: center;
-    list-style: none !important;
-    border: 0.8px solid @line-color-s;
-    cursor: pointer;
-    svg {
-      display: block;
-      height: 64px;
-      line-height: 64px;
-      font-size: 32px;
-      margin: 0 auto 10px;
-      color: @font-color-l;
-      transition: font-size 0.1s linear, width 0.1s linear;
-    }
-    svg:hover {
-      font-size: 42px;
-    }
-  }
-  .yk-icon-name {
-    color: @font-color-m;
-  }
-}
-</style>
