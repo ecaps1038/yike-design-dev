@@ -5,7 +5,6 @@
     <div class="container">
       <slot name="demo"></slot>
     </div>
-
     <yk-space class="space" :size="8">
       <div class="icons" @click="onCopy" v-show="showCode">
         <yk-icon name="yk-kaobei"></yk-icon>
@@ -77,7 +76,7 @@ const clickShow = (): void => {
 
     .icon {
       color: @font-color-m;
-      font-size: 16px;
+      font-size: @size-m;
       transition: all @animats;
     }
 
@@ -115,10 +114,6 @@ const clickShow = (): void => {
     overflow: hidden;
     text-align: left;
     max-width: 800px;
-
-    code.hljs {
-      padding: 20px 30px;
-    }
   }
 }
 </style>
