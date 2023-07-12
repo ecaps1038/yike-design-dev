@@ -8,9 +8,7 @@
       <a href="https://dwawvfgxvzk.feishu.cn/wiki/PDRLwW2BdiUh07kBs86cLYfjnic">
         开发规范
       </a>
-      <a
-        href="https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK"
-      >
+      <a href="https://docs.qq.com/sheet/DZEd4ZFlTeGx2UkJa?tab=BB08J2">
         任务文档
       </a>
       <router-link to="/design">设计</router-link>
