@@ -23,7 +23,7 @@
           <img class="zz-tp" src="@/assets/images/zfb.png" />
         </div>
       </div>
-      <a href="https://github.com/ecaps1038/yike-design">
+      <a href="https://github.com/ecaps1038/yike-design-dev">
         <yk-icon name="yike-github" class="github" />
       </a>
       <yk-theme class="nav" skin="light"></yk-theme>
