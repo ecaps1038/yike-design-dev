@@ -6,17 +6,13 @@ import Components from 'unplugin-vue-components/vite'
 import path from 'path'
 const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }); // 配置可编译 .vue 与 .md 文件
 
-const compDir = path.resolve(__dirname, '..\\packages\\yike-design-ui\\src\\index.ts').replaceAll('\\', '/')
+const compDir = path.resolve(__dirname, '..\\packages\\yike-design-ui\\src\\index.ts').replace(/\\/g, '/')
 const aliasDir = fileURLToPath(new URL('./src', import.meta.url));
 
 
 export default defineConfig({
   plugins: [vitePluginMarkdown(), vuePlugin, Components({
     resolvers: [
-      // (componentName) => {
-      //   if (componentName.startsWith('Yk'))
-      //     return { name: componentName, from: compDir }
-      // },
       (componentName) => {
         if (componentName.startsWith('Yk'))
           return { name: componentName, from: compDir }
