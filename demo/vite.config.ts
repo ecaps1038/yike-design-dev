@@ -29,7 +29,7 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         charset: false,
-        additionalData: '@import "./src/style/index.less";',
+        additionalData: '@import "../packages/yike-design-ui/src/styles/index.less";',
       }
     }
   },

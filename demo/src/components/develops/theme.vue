@@ -10,45 +10,45 @@
     <yk-title :level="3">变量修改</yk-title>
     <yk-paragraph type="secondary">
       Yike Design 使用
-      <yk-text type="pcolor">Less</yk-text>
+      <yk-text type="primary">Less</yk-text>
       作为预编译语言。为寻求最合理最少的变量，我已将涉及组题变量全部放在同一个
-      <yk-text type="pcolor">Less</yk-text>
+      <yk-text type="primary">Less</yk-text>
       文件中，使用时直接修改该文档即可。作为全局变量，建议您全局引入该
-      <yk-text type="pcolor">Less</yk-text>
+      <yk-text type="primary">Less</yk-text>
       文件。
     </yk-paragraph>
     <yk-paragraph type="secondary">
       <yk-text b>全局引入：</yk-text>
       文件在
-      <yk-text type="pcolor">yike-design</yk-text>
+      <yk-text type="primary">yike-design</yk-text>
       ->
-      <yk-text type="pcolor">assets</yk-text>
+      <yk-text type="primary">assets</yk-text>
       ->
-      <yk-text type="pcolor">style</yk-text>
+      <yk-text type="primary">style</yk-text>
       ->
-      <yk-text type="pcolor">index.less</yk-text>
+      <yk-text type="primary">index.less</yk-text>
     </yk-paragraph>
     <yk-text b>Vite引入方法：</yk-text>
     <yk-text type="secondary">在</yk-text>
-    <yk-text type="pcolor">vite.config.ts</yk-text>
+    <yk-text type="primary">vite.config.ts</yk-text>
     <yk-text type="secondary">文件内加入：</yk-text>
     <codesVue :code="datas[0]" />
     <yk-text b>vue-cli引入方法：</yk-text>
     <yk-text type="secondary">在</yk-text>
-    <yk-text type="pcolor">vue.config.ts</yk-text>
+    <yk-text type="primary">vue.config.ts</yk-text>
     <yk-text type="secondary">文件内加入：</yk-text>
     <codesVue :code="datas[1]" />
 
     <yk-title :level="3">源码</yk-title>
     <yk-paragraph type="secondary">
       其中
-      <yk-text type="pcolor">yike-design</yk-text>
+      <yk-text type="primary">yike-design</yk-text>
       ->
-      <yk-text type="pcolor">assets</yk-text>
+      <yk-text type="primary">assets</yk-text>
       ->
-      <yk-text type="pcolor">style</yk-text>
+      <yk-text type="primary">style</yk-text>
       ->
-      <yk-text type="pcolor">base.less</yk-text>
+      <yk-text type="primary">base.less</yk-text>
       文件存放所有全局变量，在项目使用上，全局变量完全可以直接修改该文档内容。
     </yk-paragraph>
     <codesVue :code="datas[2]" />

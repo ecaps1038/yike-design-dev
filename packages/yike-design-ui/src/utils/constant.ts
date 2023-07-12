@@ -16,3 +16,6 @@ export type Status = (typeof STATUS)[number]
 
 export const MESSAGETYPE = ['success', 'info', 'warning', 'error'] as const
 export type MessageType = (typeof MESSAGETYPE)[number]
+
+export const SKIN = ['auto', 'light', 'dark'] as const
+export type Skin = (typeof SKIN)[number]

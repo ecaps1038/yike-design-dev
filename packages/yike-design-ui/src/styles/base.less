@@ -1,10 +1,52 @@
-// -------- Colors -----------
-@pcolor: #2b5aed; // 全局主色
-@lcolor: #1890ff; // 链接色
-@scolor: #1fb4a2; // 成功色
-@wcolor: #f5ac08; // 警告色
-@ecolor: #fa5247; // 错误色
-@gray: #1e2025;
+// -------- Functional color light -----------
+@pcolor-light: #2b5aed; // 全局主色
+@lcolor-light: #1890ff; // 链接色
+@scolor-light: #1fb4a2; // 成功色
+@wcolor-light: #f5ac08; // 警告色
+@ecolor-light: #fa5247; // 错误色
+
+// -------- Functional color dark -----------
+@pcolor-dark: #3575f6; // 全局主色
+@lcolor-dark: #308ce1; // 链接色
+@scolor-dark: #3dc799; // 成功色
+@wcolor-dark: #fbad3b; // 警告色
+@ecolor-dark: #df4d43; // 错误色
+
+//----中性色----
+@gray1: #1e2025;
+@gray2: #24262b;
+@gray3: #282a2f;
+@gray4: #33353b;
+// @gray5: #cfd0d2;
+// @gray6: #dededf;
+@gray7: #e8e9eb;
+@gray8: #f3f3f4;
+@gray9: #f6f6f8;
+@gray10: #ffffff;
+
+//function-color
+@pcolor: var(--pcolor, @pcolor-light); // 全局主色
+@lcolor: var(--lcolor, @lcolor-light); // 链接色
+@scolor: var(--scolor, @scolor-light); // 成功色
+@wcolor: var(--wcolor, @wcolor-light); // 警告色
+@ecolor: var(--ecolor, @ecolor-light); // 错误色
+
+//font-color
+@font-color-l: var(--fontcolorl, rgba(@gray1, 1));
+@font-color-m: var(--fontcolorm, rgba(@gray1, 0.8));
+@font-color-s: var(--fontcolors, rgba(@gray1, 0.5));
+@font-color-ss: var(--fontcolorss, rgba(@gray1, 0.3));
+
+//bg-color
+@bg-color-l: var(--bgcolorl, @gray10);
+@bg-color-m: var(--bgcolorm, @gray9);
+@bg-color-s: var(--bgcolors, @gray8);
+@bg-color-ss: var(--bgcolorss, @gray7);
+
+//line-color
+@line-color-s: var(--linecolors, rgba(@gray1, 0.08));
+@line-color-m: var(--linecolorm, rgba(@gray1, 0.16));
+@line-color-l: var(--linecolorl, rgba(@gray1, 0.24));
 
 // Animation
 @animats: 0.3s; // Modal
@@ -17,23 +59,6 @@
 @size-m: 16px; // 大一号
 @size-l: 20px; // 大二号
 @size-xl: 32px; // 特大号
-
-//font-color
-@font-color-l: var(--fontcolorl, rgba(30, 32, 37, 1));
-@font-color-m: var(--fontcolorm, rgba(30, 32, 37, 0.8));
-@font-color-s: var(--fontcolors, rgba(30, 32, 37, 0.5));
-@font-color-ss: var(--fontcolorss, rgba(30, 32, 37, 0.3));
-
-//bg-color
-@bg-color-l: var(--bgcolorl, #fff);
-@bg-color-m: var(--bgcolorm, #f6f6f8);
-@bg-color-s: var(--bgcolors, #f3f3f4);
-@bg-color-ss: var(--bgcolorss, #e8e8e8);
-
-//line-color
-@line-color-s: var(--linecolorm, #e8e8e8);
-@line-color-m: var(--linecolors, #d1d1d2);
-// @line-color-l: var(--linecolorl, #9EA2AB);
 
 //radius
 @radius-l: 12px;
