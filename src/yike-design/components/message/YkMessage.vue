@@ -1,53 +1,91 @@
 <template>
   <transition name="down">
-    <div class="Yk-message" v-if="isShow">
-      <div class="yk-m-i">
-        <!-- <i class="iconfont" :class="style[type].icon"></i> -->
+    <div
+      class="Yk-message"
+      v-if="isShow"
+      :style="{ top: offset + 'px' }"
+      :class="style[type].icon"
+    >
+      <div :class="'yk-m-i ' + typeClass[props.type]">
+        <Icon :name="style[type].name" :class="style[type].icon" />
         <span class="text">{{ message }}</span>
       </div>
     </div>
   </transition>
 </template>
-<script lang="ts">
-import { onMounted, ref } from "vue";
-export default {
-  name: "YkMessage",
-  props: {
-    message: {
-      type: String,
-      default: "",
-    },
-    type: {
-      type: String,
-      // warn 警告  error 错误  success 成功
-      default: "warn",
-    },
+<script lang="ts" setup>
+import { onMounted, ref, computed } from 'vue'
+import type { TType } from './Message.type'
+import { Icon } from '@/yike-design'
+// 定义一个数据控制显示隐藏，默认是隐藏，组件挂载完毕显示
+const isShow = ref<boolean>(false)
+const props = defineProps({
+  message: {
+    type: String,
+    default: '',
   },
-  setup() {
-    // 定义一个对象，包含三种情况的样式，对象key就是类型字符串
-    const style = {
-      warning: {
-        icon: "icon-warning",
-      },
-      error: {
-        icon: "icon-error",
-      },
-      success: {
-        icon: "icon-success",
-      },
-    };
-    // 定义一个数据控制显示隐藏，默认是隐藏，组件挂载完毕显示
-    const isShow = ref(false);
-    onMounted(() => {
-      // 需调用钩子函数，等dom渲染完成后，再进行赋值，如果在setup中直接赋值，则会被直接渲染成true
-      isShow.value = true;
-      setTimeout(() => {
-        isShow.value = false;
-      }, 3000)
-    });
-    return { style, isShow };
+  type: {
+    type: String as () => TType,
+    default: 'success',
   },
-};
+  offset: {
+    type: Number,
+    default: 20,
+  },
+  onClose: {
+    type: Function,
+    default: () => ({}),
+  },
+  id: {
+    type: String,
+    defaule: '',
+  },
+  onDestroy: {
+    type: Function,
+    default: () => ({}),
+  },
+  duration: {
+    type: Number,
+    default: 3000,
+  },
+})
+const typeClass = computed(() => {
+  return {
+    success: 'success',
+    error: 'error',
+    warning: 'warning',
+  }
+})
+// 定义一个对象，包含三种情况的样式，对象key就是类型字符串
+const style: any = {
+  warning: {
+    icon: 'icon-warning',
+    name: 'yike-jinggao',
+  },
+  error: {
+    icon: 'icon-error',
+    name: 'yike-cha',
+  },
+  success: {
+    icon: 'icon-success',
+    name: 'yike-gou',
+  },
+}
+
+onMounted(() => {
+  // 需调用钩子函数，等dom渲染完成后，再进行赋值，如果在setup中直接赋值，则会被直接渲染成true
+  isShow.value = true
+  setTimeout(() => {
+    close()
+    setTimeout(() => {
+      props.onDestroy()
+    }, 300)
+  }, props.duration)
+})
+const close = () => {
+  isShow.value = false
+  props.onClose()
+}
 </script>
 <style scoped lang="less">
 @import '../../assets/style/yk-index.less';
@@ -87,20 +125,23 @@ export default {
 }
 
 .Yk-message {
-  width: 100%;
+  user-select: none;
   height: 40px;
   position: fixed;
   z-index: 9999;
-  top: 20px;
   line-height: 40px;
   display: flex;
   justify-content: center;
-
+  transition: all 0.3s;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: max-content;
   .yk-m-i {
     padding: 0 20px;
-    // border-radius: 8px;
-    color: @font-color-l;
-    background: @bg-color-l;
+    border-radius: 8px;
+    // color: @font-color-l;
+    // background: @bg-color-l;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
 
@@ -112,12 +153,13 @@ export default {
 
   .text {
     vertical-align: middle;
+    margin-left: 8px;
   }
 }
 
 //icon颜色
 .icon-success {
-  color: @pcolor;
+  color: @scolor;
 }
 
 .icon-warning {
@@ -125,6 +167,18 @@ export default {
 }
 
 .icon-error {
+  color: @ecolor;
+}
+.success {
+  background-color: @scolor-9;
+  color: @scolor;
+}
+.warning {
+  background-color: @wcolor-9;
+  color: @wcolor;
+}
+.error {
+  background-color: @ecolor-9;
   color: @ecolor;
 }
 </style>
