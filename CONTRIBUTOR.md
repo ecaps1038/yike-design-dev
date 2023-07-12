@@ -3,12 +3,13 @@
 ### Run it
 ---
 要运行组件库，请执行以下步骤：
-1. 克隆项目到本地 
-`git clone https://github.com/ecaps1038/yike-design-dev.git`
-2. 切换至monorepo-dev分支 `git checkout monorepo-dev`
-3. 安装依赖：`pnpm i`
-4. 启动开发服务器：`npm run dev:demo` 
-5. 在浏览器中访问：`http://localhost:5173`
+1. 推荐先fork项目并给予此仓库进行操作
+2. 克隆fork后的项目到本地 
+`git clone https://github.com/xxxxxx/yike-design-dev.git`
+3. 切换至monorepo-dev分支 `git checkout monorepo-dev`
+4. 安装依赖：`pnpm i`
+5. 启动开发服务器：`npm run dev:demo` 
+6. 在浏览器中访问：`http://localhost:5173`
 
 ### 如何贡献
 ---
