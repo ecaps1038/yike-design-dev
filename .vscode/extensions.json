@@ -1,0 +1,4 @@
+{
+  // 1.6.5 版本才有类型提示
+  "recommendations": ["vue.volar", "vue.vscode-typescript-vue-plugin"]
+}
