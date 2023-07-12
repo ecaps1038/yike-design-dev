@@ -24,7 +24,6 @@ declare module 'vue' {
     YkButton: typeof import('./../packages/yike-design-ui/src/index.ts')['YkButton']
     YkContainer: typeof import('./../packages/yike-design-ui/src/index.ts')['YkContainer']
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
-    YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
