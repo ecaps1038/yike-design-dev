@@ -15,6 +15,10 @@ let bar = [
         name: 'Icon 图标',
         src: 'icon',
       },
+      {
+        name: 'Space 间距',
+        src: 'space',
+      },
     ],
   },
   {

@@ -1,6 +1,6 @@
-import Icon from "./src/icon.vue";
-import { withInstall } from "@yike/utils";
+import Icon from './src/icon.vue'
+import { withInstall } from '@yike/utils'
 
-export const YkIcon = withInstall(Icon);
-
-export * from './src/icon';
+export const YkIcon = withInstall(Icon)
+export default YkIcon
+export * from './src/icon'
