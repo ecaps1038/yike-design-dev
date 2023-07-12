@@ -1,10 +1,10 @@
 import type { Component, App } from 'vue'
 
-import YkButton from './components/button/src/button.vue'
-import { YkTheme } from './components/theme'
-import { YkIcon } from './components/icon'
+import YkButton from './components/button'
+import YkTheme from './components/theme'
+import YkIcon from './components/icon'
 import { YkAvatar, YkAvatarGroup } from './components/avatar'
-import YkSpace from './components/space/Space.vue'
+import YkSpace from './components/space'
 import { YkContainer } from './components/container'
 import YkTable from './components/table/Table.vue'
 import YkMessage from './components/message'
@@ -41,7 +41,7 @@ export {
   YkTable,
   YkTitle,
   YkText,
-  YkMessage
+  YkMessage,
 }
 
 // 全局注册
@@ -51,7 +51,7 @@ export default {
       app.component(c, components[c])
     }
     app.config.globalProperties.$message = YkMessage
-  }
+  },
 }
 // 局部注册
 // for (const c in components) {

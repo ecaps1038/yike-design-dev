@@ -1,0 +1,23 @@
+<template>
+  <yk-space wrap>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+  </yk-space>
+</template>
