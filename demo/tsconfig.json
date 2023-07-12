@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "sourceMap": true,
+    "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"],
       "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]

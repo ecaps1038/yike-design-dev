@@ -40,4 +40,3 @@ const ykButtonClass = computed(() => {
   }
 })
 </script>
-./button
