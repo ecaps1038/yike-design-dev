@@ -8,7 +8,7 @@ if (!msg.startsWith('Merge branch')) {
     /^(v\d+\.\d+\.\d+(-(alpha|beta|rc.\d+))?)|((revert: )?(feat|fix|docs|refactor)(\(.+\))?!?: .{1,50})/
   if (!commitRE.test(msg)) {
     console.error(
-      chalk.red(`\ncommit存在格式错误,请使用正确的格式编写提交信息. 例如:\n`) +
+      chalk.red(`\n请使用正确的格式提交 commits. 例如:\n`) +
         `${chalk.green(`feat(compiler): 增加了 commit 参数`)}\n` +
         `${chalk.green(`fix(button): 修复按钮禁用失效问题 (close #28)`)}\n`,
     )
