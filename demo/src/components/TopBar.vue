@@ -5,8 +5,13 @@
       <span class="name">Yike Design 开发版</span>
     </div>
     <yk-space class="net" :size="40" aline="center">
-      <a href="https://docs.qq.com/sheet/DZEd4ZFlTeGx2UkJa?tab=BB08J2">
-        开发文档
+      <a href="https://dwawvfgxvzk.feishu.cn/wiki/PDRLwW2BdiUh07kBs86cLYfjnic">
+        开发规范
+      </a>
+      <a
+        href="https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK"
+      >
+        任务文档
       </a>
       <router-link to="/design">设计</router-link>
       <router-link to="/develop">开发</router-link>
