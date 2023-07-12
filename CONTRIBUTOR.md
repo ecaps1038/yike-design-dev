@@ -3,7 +3,7 @@
 ### Run it
 ---
 要运行组件库，请执行以下步骤：
-1. 推荐先fork项目并给予此仓库进行操作
+1. 推荐先fork项目并基于此仓库进行操作
 2. 克隆fork后的项目到本地 
 `git clone https://github.com/xxxxxx/yike-design-dev.git`
 3. 切换至monorepo-dev分支 `git checkout monorepo-dev`
