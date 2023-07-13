@@ -1,3 +1,4 @@
+import { CSSProperties } from 'vue'
 import { GapSize, Direction, Align } from './space'
 export const getMargin = (size: GapSize) => {
   if (typeof size === 'number') {
@@ -18,7 +19,9 @@ export const getMargin = (size: GapSize) => {
 }
 
 //排列方式
-export const flexDirection = (dir: Direction): string => {
+export const flexDirection = (
+  dir: Direction,
+): CSSProperties['flexDirection'] => {
   if (dir == 'vertical') {
     return 'column'
   } else {
