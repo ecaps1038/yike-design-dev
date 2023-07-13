@@ -1,6 +1,6 @@
 <template>
   <transition name="down" @before-leave="close">
-    <div class="yk-message" v-if="isShow" :style="Style">
+    <div v-if="isShow" class="yk-message" :style="Style">
       <div class="message-container">
         <YkIcon
           :name="statusIconName"
