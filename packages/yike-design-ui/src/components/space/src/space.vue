@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import { getMargin, getAlign, flexDirection } from './utils'
 import { SpaceProps } from './space'
-import { computed, toRefs } from 'vue'
+import { CSSProperties, computed, toRefs } from 'vue'
 
 // FIXME 之后不需要在这边引样式
 import '../style'
@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<SpaceProps>(), {
 })
 const { aline, wrap, size, rsize, direction } = toRefs(props)
 
-const spaceStyle: any = computed(() => {
+const spaceStyle = computed<CSSProperties>(() => {
   return {
     columnGap: getMargin(size.value) + 'px',
     rowGap: getMargin(rsize.value) + 'px',
