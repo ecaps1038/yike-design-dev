@@ -11,10 +11,9 @@
     "lint:fix": "eslint --fix . && stylelint --fix ."
   },
   "dependencies": {
-    "vue": "^3.3.0"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.22.5",
     "@testing-library/vue": "^7.0.0",
     "@types/node": "^18.11.12",
     "@typescript-eslint/eslint-plugin": "^5.60.1",

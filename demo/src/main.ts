@@ -17,7 +17,4 @@ hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
 app.component('Snippet', Snippet)
-app
-  .use(YikeDesignUI)
-  .use(router as Plugin)
-  .mount('#app')
+app.use(YikeDesignUI).use(router).mount('#app')
