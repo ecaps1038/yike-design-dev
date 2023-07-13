@@ -6,6 +6,7 @@
     "node": true,
     "jest": true
   },
+  "root": true,
   /* 指定如何解析语法 */
   "parser": "vue-eslint-parser",
   /** 优先级低于 parse 的语法解析配置 */
@@ -17,9 +18,9 @@
   /* 继承已有的规则 */
   "extends": [
     "eslint:recommended",
-    "plugin:vue/vue3-essential",
+    "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "plugins": ["vue", "@typescript-eslint"],
   /*
