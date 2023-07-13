@@ -20,6 +20,7 @@ declare module 'vue' {
     TopBar: typeof import('./src/components/TopBar.vue')['default']
     Yikedesign: typeof import('./src/components/design/yikedesign.vue')['default']
     Yikedev: typeof import('./src/components/develops/yikedev.vue')['default']
+    YkAlert: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAlert']
     YkAvatar: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAvatar']
     YkButton: typeof import('./../packages/yike-design-ui/src/index.ts')['YkButton']
     YkContainer: typeof import('./../packages/yike-design-ui/src/index.ts')['YkContainer']
