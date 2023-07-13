@@ -15,21 +15,29 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.5",
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
     "@testing-library/vue": "^7.0.0",
     "@types/node": "^18.11.12",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "@vitejs/plugin-vue": "^4.2.2",
     "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^9.0.1",
     "husky": "^8.0.0",
     "less": "^4.0.0",
+    "lint-staged": "^13.2.3",
+    "pnpm": "^8.5.0",
     "prettier": "^2.8.8",
     "stylelint": "^15.9.0",
     "typescript": "^5.1.6",
     "vite": "^4.0.0",
-    "vue-tsc": "^1.6.4",
-    "pnpm": "^8.5.0"
+    "vue-tsc": "^1.6.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,vue}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }

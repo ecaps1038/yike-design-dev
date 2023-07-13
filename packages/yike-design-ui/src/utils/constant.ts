@@ -11,5 +11,11 @@ export type Size = (typeof SIZES)[number]
 export const SHAPES = ['round', 'circle', 'square'] as const;
 export type Shape = (typeof SHAPES)[number]
 
-export const STATUS = ['success', 'warning', 'danger'] as const;
-export type Status = typeof STATUS[number]
+export const STATUS = ['success', 'warning', 'danger', 'primary'] as const;
+export type Status = (typeof STATUS)[number]
+
+export const MESSAGETYPE = ['success', 'info', 'warning', 'error'] as const
+export type MessageType = (typeof MESSAGETYPE)[number]
+
+export const SKIN = ['auto', 'light', 'dark'] as const
+export type Skin = (typeof SKIN)[number]

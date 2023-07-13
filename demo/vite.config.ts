@@ -3,9 +3,10 @@ import { defineConfig } from 'vite'
 import createVuePlugin from '@vitejs/plugin-vue';
 import vitePluginMarkdown from './plugins/vite-plugin-md'
 import Components from 'unplugin-vue-components/vite'
+import path from 'path'
 const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }); // 配置可编译 .vue 与 .md 文件
 
-const compDir = fileURLToPath(new URL('../packages/yike-design-ui/src/index.ts', import.meta.url));
+const compDir = path.resolve(__dirname, '..\\packages\\yike-design-ui\\src\\index.ts').replace(/\\/g, '/')
 const aliasDir = fileURLToPath(new URL('./src', import.meta.url));
 
 
@@ -29,7 +30,7 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         charset: false,
-        additionalData: '@import "./src/style/index.less";',
+        additionalData: '@import "../packages/yike-design-ui/src/styles/index.less";',
       }
     }
   },

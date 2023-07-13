@@ -1,5 +1,5 @@
-import { RouteRecordRaw } from 'vue-router';
-const desingRoutes: Array<RouteRecordRaw> = [
+import { RouteRecordRaw } from 'vue-router'
+const designRoutes: Array<RouteRecordRaw> = [
   {
     path: '/design',
     redirect: '/design/yikedesign',
@@ -18,4 +18,4 @@ const desingRoutes: Array<RouteRecordRaw> = [
   },
 ]
 
-export default desingRoutes;
+export default designRoutes

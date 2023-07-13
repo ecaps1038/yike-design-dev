@@ -20,6 +20,9 @@ const onCopy = (iconName: string) => {
   proxy.$message({ type: 'success', message: '已复制' })
 }
 const ykIconList = [
+  'yk-jiazai1',
+  'yk-fujian',
+  'yk-shangchuan2',
   'yk-jingbao',
   'yk-yifu',
   'yk-jiangbei',
@@ -130,5 +133,13 @@ const ykIconList = [
   'yk-zhuye',
   'yk-yike2',
   'yk-yike1',
+  'yk-tushangchuanshibai',
+  'yk-pdf',
+  'yk-word',
+  'yk-txt',
+  'yk-yinpin',
+  'yk-excel',
+  'yk-shipin',
+  'yk-ppt',
 ]
 </script>

@@ -12,7 +12,7 @@ const url = 'http://localhost:5173/src/assets/icon/yike.png'
 const count = ref([12, 4, 234, 32])
 
 //input
-const idata = ref('yike时光')
+const iData = ref('yike时光')
 const inputData = ref('逸刻')
 const areaData = ref()
 const check = ref(true)
@@ -302,7 +302,7 @@ const handleConfirm = () => {
     <Title :level="3">基本用法</Title>
     <space direction="vertical" style="width: 100%">
       <Textarea v-model="areaData" placeholder="请输入" disabled />
-      <Textarea v-model="idata" placeholder="请输入" readonly />
+      <Textarea v-model="iData" placeholder="请输入" readonly />
       <Textarea
         v-model="areaData"
         placeholder="请输入"
@@ -348,9 +348,9 @@ const handleConfirm = () => {
     <space direction="vertical">
       <Input v-model="inputData" />
       <Input placeholder="请输入" style="width: 320px" disabled />
-      <Input v-model="idata" style="width: 320px" allowClear disabled error />
-      <Input v-model="idata" style="width: 320px" error />
-      <p>{{ idata }}</p>
+      <Input v-model="iData" style="width: 320px" allowClear disabled error />
+      <Input v-model="iData" style="width: 320px" error />
+      <p>{{ iData }}</p>
     </space>
     <Title :level="3">尺寸</Title>
     <space direction="vertical">

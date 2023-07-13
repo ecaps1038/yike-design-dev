@@ -20,13 +20,9 @@
 <IconPlanarity/>
 :::
 
-
-
 ### 自定义图标
 
-本组件使用了 confront 打包的字体图标库，在项目中建议项目图标也同样经由 confront 打包为字体图标。其中在 yike-design -> components -> icon 中可以查阅到图标引入方法，可自己自由增减图标库。
-
-
+本组件使用了 iconfront 打包的字体图标库，在项目中建议项目图标也同样经由 iconfront 打包为字体图标。其中在 yike-design-ui -> components -> icon 中可以查阅到图标引入方法，可自己自由增减图标库。
 
 ### API
 
