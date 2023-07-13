@@ -25,7 +25,8 @@ const props = withDefaults(defineProps<MessageProps>(), {
   duration: 600,
   offset: 20,
   zIndex: 100,
-  onDestroy: () => {},
+  onDestroy: () => ({}),
+  onClose: () => ({}),
 })
 const statusIconName = computed(() => {
   return iconStatusMap[props.type]
@@ -42,6 +43,7 @@ const iconStatusMap = {
 const isShow = ref(false)
 function startTimer() {
   setTimeout(() => {
+    props.onClose && props.onClose()
     close()
   }, props.duration)
 }
