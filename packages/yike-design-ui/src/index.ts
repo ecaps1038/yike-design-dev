@@ -11,6 +11,7 @@ import YkMessage from './components/message'
 import YkParagraph from './components/typography/Paragraph.vue'
 import YkTitle from './components/typography/Title.vue'
 import YkText from './components/typography/Text.vue'
+import { YkBackTop } from './components/back-top'
 import './styles/index.less'
 
 const components: {
@@ -27,6 +28,7 @@ const components: {
   YkParagraph,
   YkTitle,
   YkText,
+  YkBackTop,
 }
 
 export {
@@ -42,6 +44,7 @@ export {
   YkTitle,
   YkText,
   YkMessage,
+  YkBackTop,
 }
 
 // 全局注册

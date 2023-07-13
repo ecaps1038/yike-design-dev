@@ -42,6 +42,15 @@ let bar = [
       },
     ],
   },
+  {
+    title: '其他',
+    list: [
+      {
+        name: 'BackTop 返回顶部',
+        src: 'back-top',
+      },
+    ],
+  },
 ]
 </script>
 <template>
