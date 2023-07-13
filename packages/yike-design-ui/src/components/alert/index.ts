@@ -3,4 +3,4 @@ import { withInstall } from '@yike/utils'
 
 export const YkAlert = withInstall(Alert)
 export default YkAlert
-export * from './src/Alert'
+export * from './src/alert'
