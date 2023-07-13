@@ -1,23 +1,16 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
   "compilerOptions": {
-    "outDir": "dist",
-    "allowJs": true,
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "noImplicitAny": false,
-    "strictNullChecks": true,
-    "resolveJsonModule": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "jsx": "preserve",
-    "types": ["node", "vite/client"],
-    "lib": ["esnext", "dom"],
+    "baseUrl": ".",
     "paths": {
-      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
+      "@/*": ["./src/*"]
     }
   },
-  "exclude": ["**/node_modules/**", "**/demo/**", "**/example/**"]
+
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ]
 }
