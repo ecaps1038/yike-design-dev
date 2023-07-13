@@ -1,0 +1,44 @@
+.yk-message {
+  position: fixed;
+  top: @space-l;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  .message-container {
+    padding: @space-s 12px;
+    color: @font-color-l;
+    background: @bg-color-l;
+    box-shadow: @shadow-m;
+    border-radius: @radius-m;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  i {
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .text {
+    vertical-align: middle;
+    margin-left: 12px;
+  }
+  .message-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+//icon颜色
+.icon-success {
+  color: @scolor;
+}
+
+.icon-warning {
+  color: @wcolor;
+}
+
+.icon-error {
+  color: @ecolor;
+}

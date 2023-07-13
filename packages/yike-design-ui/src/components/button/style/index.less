@@ -1,0 +1,154 @@
+@import './variables.less';
+.yk-button--loading {
+  opacity: 0.7 !important;
+  svg {
+    width: 16px;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+    margin-right: 4px;
+  }
+
+  circle {
+    fill: none;
+    stroke: hsl(227, 16%, 89%);
+    stroke-width: 3;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+}
+
+.yk-button {
+  padding: 6px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+  outline: none;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  transition: all @animatb ease-in-out;
+  user-select: none;
+  // 默认按钮状态
+  color: @btn-primary-color-text;
+  background-color: @btn-primary-color-bg;
+  border-color: @btn-primary-color-border;
+
+  .btn-type(@type) {
+    .normal() {
+      color: ~'@{btn-@{type}-color-text}';
+      background-color: ~'@{btn-@{type}-color-bg}';
+      border-color: ~'@{btn-@{type}-color-border}';
+    }
+    &--@{type} {
+      .normal();
+    }
+  }
+
+  .btn-status(@type: primary, @status: primary) {
+    .normal() {
+      color: ~'@{btn-@{type}-color-text_@{status}}';
+      background-color: ~'@{btn-@{type}-color-bg_@{status}}';
+      border-color: ~'@{btn-@{type}-color-border_@{status}}';
+    }
+    &.yk-button--@{type}.yk-button--@{status} {
+      .normal();
+    }
+  }
+
+  .btn-type(primary);
+  .btn-type(secondary);
+  .btn-type(outline);
+
+  .btn-status(primary);
+  .btn-status(primary, success);
+  .btn-status(primary, warning);
+  .btn-status(primary, danger);
+
+  .btn-status(secondary);
+  .btn-status(secondary, success);
+  .btn-status(secondary, warning);
+  .btn-status(secondary, danger);
+
+  .btn-status(outline);
+  .btn-status(outline, success);
+  .btn-status(outline, warning);
+  .btn-status(outline, danger);
+
+  // 尺寸 size
+  &--s {
+    height: 24px;
+    padding: 0px 8px;
+  }
+  &--m {
+    height: 32px;
+    padding: 0px 16px;
+  }
+  &--l {
+    height: 36px;
+    padding: 0px 16px;
+  }
+  &--xl {
+    height: 48px;
+    padding: 0px 24px;
+  }
+  &--long {
+    width: 100%;
+    display: block;
+  }
+
+  // 圆角样式
+  .shape(@size, @round) {
+    width: @size;
+    height: @size;
+    border-radius: @round;
+    padding: 0;
+  }
+  &--circle {
+    .shape(36px, 50%);
+  }
+
+  &--square {
+    .shape(36px, 8px);
+  }
+
+  // 禁用
+  &--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  // 伪类
+  &:not(:disabled):hover {
+    opacity: 0.9;
+  }
+  &:not(:disabled):active {
+    opacity: 0.7;
+  }
+}

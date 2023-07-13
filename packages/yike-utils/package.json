@@ -1,0 +1,5 @@
+{
+  "name": "@yike/utils",
+  "main": "./index.ts",
+  "module": "./index.ts"
+}
