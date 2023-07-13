@@ -1,14 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue';
+import HomeView from '@/views/HomeView.vue'
 // 通用组件路由
-import generalRoutes from './modules/general';
+import generalRoutes from './modules/general'
 // 反馈
-import feedbackRoutes from './modules/feedback';
+import feedbackRoutes from './modules/feedback'
 
-
-import developRoutes from './modules/develop';
-import desingRoutes from './modules/design';
-
+import developRoutes from './modules/develop'
+import desingRoutes from './modules/design'
 
 // 组件文档路由
 const componentModelRouter = {
@@ -16,13 +14,8 @@ const componentModelRouter = {
   redirect: '/module/button',
   name: 'module',
   component: () => import('@/views/Modules.vue'),
-  children: [
-    ...generalRoutes,
-    ...feedbackRoutes
-  ]
+  children: [...generalRoutes, ...feedbackRoutes],
 }
-
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,15 +25,10 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
-      path: '/hh',
-      name: 'hh',
-      component: () => import('@/views/yikeTt.vue'),
-    },
     componentModelRouter,
 
     ...developRoutes,
-    ...desingRoutes
+    ...desingRoutes,
   ],
 })
 
