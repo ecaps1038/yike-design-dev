@@ -40,6 +40,10 @@ let bar = [
         name: 'Message 消息提示',
         src: 'message',
       },
+      {
+        name: 'Empty 空状态',
+        src: 'empty',
+      },
     ],
   },
 ]
