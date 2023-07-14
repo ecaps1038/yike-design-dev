@@ -3,7 +3,7 @@
     <yk-text>Yike Design</yk-text>
     <yk-text type="secondary">Secondary</yk-text>
     <yk-text type="third">third</yk-text>
-    <yk-text type="primary">Secondary</yk-text>
+    <yk-text type="primary">Primary</yk-text>
     <yk-text type="success">Success</yk-text>
     <yk-text type="warning">Warning</yk-text>
     <yk-text type="danger">Danger</yk-text>
