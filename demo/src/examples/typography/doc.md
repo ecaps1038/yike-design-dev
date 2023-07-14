@@ -1,4 +1,4 @@
-### Typography 排版
+## Typography 排版
 
 用户展示段落、标题、文本内容
 
@@ -46,7 +46,7 @@ Paragraph 段落
 | 参数名    | 描述     | 类型                                                                             | 默认值 |
 |-----------|--------|----------------------------------------------------------------------------------|--------|
 | type      | 标题类型 | 'default' ｜ 'primary' ｜ 'third' ｜ 'secondary' ｜ 'success' ｜ 'warning' ｜ 'danger' | -      |
-| b         | 文字加粗 | false \| true                                                                    | false  |
+| strong         | 文字加粗 | false \| true                                                                    | false  |
 | mark      | 标记样式 | false \| true                                                                    | false  |
 | underline | 下划线   | false \| true                                                                    | false  |
 | del       | 删除线   | false \| true                                                                    | false  |
@@ -56,7 +56,7 @@ Paragraph 段落
 | 参数名   | 描述                                         | 类型                                                                             | 默认值                  |
 |----------|----------------------------------------------|----------------------------------------------------------------------------------|-------------------------|
 | type     | 标题类型                                     | 'default' ｜ 'primary' ｜ 'third' ｜ 'secondary' ｜ 'success' ｜ 'warning' ｜ 'danger' | -                       |
-| b        | 文字加粗                                     | false \| true                                                                    | false                   |
+| strong        | 文字加粗                                     | false \| true                                                                    | false                   |
 | ellipsis | 自动溢出省略，rows 显示行数，showMore 展开按钮 | object                                                                           | {rows:0,showMore:false} |
 | copyable | 拷贝文案按钮                                 | false \| true                                                                    | false                   |
 | ---      | ---                                          | ---                                                                              | ---                     |

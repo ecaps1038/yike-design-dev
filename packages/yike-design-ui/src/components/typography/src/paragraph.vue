@@ -1,7 +1,7 @@
 <template>
   <div class="yk-typography">
     <div class="yk-paragraph">
-      <p ref="getDivRef" :class="[type, { strong: b }]">
+      <p ref="getDivRef" :class="[type, { strong: strong }]">
         <slot></slot>
         <yk-icon v-show="copyable" name="yk-kaobei" @click="onCopy" />
       </p>
@@ -16,7 +16,7 @@ import { paragraphProps, ellipsisType } from './typography'
 import { tryCopy } from '../../../utils/tools'
 import '../style'
 const props = withDefaults(defineProps<paragraphProps>(), {
-  b: false,
+  strong: false,
   type: 'default',
   ellipsis: (props: paragraphProps): ellipsisType => {
     return { rows: 0, showMore: false }

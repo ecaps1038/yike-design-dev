@@ -19,5 +19,11 @@ export type Skin = (typeof SKIN)[number]
 export const TITLETYPE = [...STATUS, 'secondary', 'default'] as const
 export type TitleType = (typeof TITLETYPE)[number]
 
-export const TEXTTYPE = [...STATUS, 'secondary', 'default', 'third'] as const
+export const TEXTTYPE = [
+  ...STATUS,
+  'secondary',
+  'default',
+  'third',
+  'disabled',
+] as const
 export type TextType = (typeof TEXTTYPE)[number]

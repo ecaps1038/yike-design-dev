@@ -7,7 +7,7 @@
   <yk-paragraph>
     QQ群：740076696 欢迎加入交流；本人QQ：1334785356 加我请注明 “yike
     Design”。微信群不好分享，可加本人微信：
-    <yk-text type="pcolor">yikeyikech</yk-text>
+    <yk-text type="primary">yikeyikech</yk-text>
     加我请注明 “yike Design” 之后将邀请进入相关群内，谢谢。
   </yk-paragraph>
   <yk-paragraph>

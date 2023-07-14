@@ -26,44 +26,17 @@
   .disabled {
     color: @font-color-ss;
   }
-  .strong {
-    font-weight: bold;
+  strong {
+    font-weight: 700;
   }
-  .mark {
+  mark {
     background-color: rgba(255, 214, 28, 0.48);
   }
-  .underline {
+  underline {
     text-decoration: underline;
   }
-  .delete {
+  del {
     text-decoration: line-through;
-  }
-  .yk-title {
-    p {
-      font-weight: 600;
-      margin-bottom: 0.5em;
-      margin-top: 1em;
-    }
-    .lv1 {
-      font-size: 40px;
-      line-height: 1.24;
-    }
-    .lv2 {
-      font-size: 32px;
-      line-height: 1.28;
-    }
-    .lv3 {
-      font-size: 24px;
-      line-height: 1.34;
-    }
-    .lv4 {
-      font-size: 18px;
-      line-height: 1.4;
-    }
-    .lv5 {
-      font-size: 16px;
-      line-height: 1.5;
-    }
   }
   .yk-paragraph {
     margin-bottom: 1em;
@@ -94,5 +67,35 @@
       bottom: 0;
       color: @lcolor;
     }
+  }
+}
+.yk-title {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+  p {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 1.24;
+  }
+  h2 {
+    font-size: 32px;
+    line-height: 1.28;
+  }
+  h3 {
+    font-size: 24px;
+    line-height: 1.34;
+  }
+  h4 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  h5 {
+    font-size: 16px;
+    line-height: 1.5;
   }
 }

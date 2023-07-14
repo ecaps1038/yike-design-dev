@@ -1,7 +1,7 @@
 import { TitleType, TextType } from '../../../utils/constant'
 import { ExtractPropTypes } from 'vue'
 export type textProps = {
-  b?: boolean
+  strong?: boolean
   type?: TextType
   mark?: boolean
   underline?: boolean
@@ -21,8 +21,15 @@ export type ellipsisType = {
 export type EllipsisType = ExtractPropTypes<ellipsisType>
 
 export interface paragraphProps {
-  b?: boolean
+  strong?: boolean
   type?: TextType
   ellipsis?: ellipsisType
   copyable?: boolean
+}
+
+export type BlockProps = {
+  mark?: boolean
+  underline?: boolean
+  delete?: boolean
+  strong?: boolean
 }
