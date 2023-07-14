@@ -29,14 +29,12 @@ const props = withDefaults(defineProps<ThemeProps>(), {
 })
 
 const nowSkin = ref()
-console.log(props.skin)
 let obj = ref({})
 
 //本地存储主题
 const setLocalTheme = (theme: string) => {
   //本次存储
   localStorage.setItem('YKTHEME', theme)
-  console.log(theme)
 }
 //获取本地主题
 const getLocalTheme = () => {

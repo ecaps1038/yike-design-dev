@@ -25,11 +25,6 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
-      path: '/hh',
-      name: 'hh',
-      component: () => import('@/views/yikeTt.vue'),
-    },
     componentModelRouter,
 
     ...developRoutes,

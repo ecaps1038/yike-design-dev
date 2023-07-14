@@ -1,5 +1,6 @@
 import type { Component, App } from 'vue'
 
+import YkAlert from './components/alert'
 import YkButton from './components/button'
 import YkTheme from './components/theme'
 import YkIcon from './components/icon'
@@ -17,34 +18,36 @@ import './styles/index.less'
 const components: {
 	[propName: string]: Component
 } = {
-	YkButton,
-	YkTheme,
-	YkIcon,
-	YkAvatar,
-	YkAvatarGroup,
-	YkSpace,
-	YkContainer,
-	YkTable,
-	YkParagraph,
-	YkTitle,
-	YkText,
+  YkAlert,
+  YkButton,
+  YkTheme,
+  YkIcon,
+  YkAvatar,
+  YkAvatarGroup,
+  YkSpace,
+  YkContainer,
+  YkTable,
+  YkParagraph,
+  YkTitle,
+  YkText,
 	YKEmpty
 }
 
 export {
-	YkButton,
-	YkTheme,
-	YkIcon,
-	YkParagraph,
-	YkAvatar,
-	YkAvatarGroup,
-	YkSpace,
-	YkContainer,
-	YkTable,
-	YkTitle,
-	YkText,
-	YkMessage,
-	YKEmpty
+  YkAlert,
+  YkButton,
+  YkTheme,
+  YkIcon,
+  YkParagraph,
+  YkAvatar,
+  YkAvatarGroup,
+  YkSpace,
+  YkContainer,
+  YkTable,
+  YkTitle,
+  YkText,
+  YkMessage,
+  YKEmpty,
 }
 
 // 全局注册
