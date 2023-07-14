@@ -9,7 +9,7 @@ export function wrapperDecorations(
     if (!decorateNeeded) return
     currentContent = `<${Tag}>${currentContent}</${Tag}>`
   }
-  wrap(mark, 'mask')
+  wrap(mark, 'mark')
   wrap(underline, 'underline')
   wrap(del, 'del')
   wrap(strong, 'strong')
