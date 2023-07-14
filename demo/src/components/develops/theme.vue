@@ -1,7 +1,7 @@
 <template>
   <div class="module">
     <div class="top-title">
-      <Title>定制主题</Title>
+      <yk-title>定制主题</yk-title>
       <yk-paragraph type="secondary">
         Yike Design
         从本人一个笔记项目中提炼，采用蓝色主题，可符合一般开发使用，但这套组件库就思想就是为了适应设计任何想法而设计，改它就得了。

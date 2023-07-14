@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router'
 
 const developRoutes: Array<RouteRecordRaw> = [
   {
@@ -9,7 +9,7 @@ const developRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'grasp',
-        component: () => import('@/components/develops/grasp.vue'),
+        component: () => import('../../../../CONTRIBUTING.md'),
       },
       {
         path: 'yikedev',
@@ -27,4 +27,4 @@ const developRoutes: Array<RouteRecordRaw> = [
   },
 ]
 
-export default developRoutes;
+export default developRoutes

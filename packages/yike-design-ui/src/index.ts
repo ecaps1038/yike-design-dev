@@ -9,9 +9,7 @@ import YkSpace from './components/space'
 import { YkContainer } from './components/container'
 import YkTable from './components/table/Table.vue'
 import YkMessage from './components/message'
-import YkParagraph from './components/typography/Paragraph.vue'
-import YkTitle from './components/typography/Title.vue'
-import YkText from './components/typography/Text.vue'
+import { YkParagraph, YkTitle, YkText } from './components/typography'
 import './styles/index.less'
 
 const components: {

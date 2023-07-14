@@ -1,0 +1,98 @@
+.yk-typography {
+  .default {
+    color: @font-color-l;
+  }
+  .primary {
+    color: @pcolor;
+  }
+  .secondary {
+    color: @font-color-m;
+  }
+  .success {
+    color: @scolor;
+  }
+  .warning {
+    color: @wcolor;
+  }
+  .danger {
+    color: @ecolor;
+  }
+  .secondary {
+    color: @font-color-m;
+  }
+  .third {
+    color: @font-color-s;
+  }
+  .disabled {
+    color: @font-color-ss;
+  }
+  .strong {
+    font-weight: bold;
+  }
+  .mark {
+    background-color: rgba(255, 214, 28, 0.48);
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  .delete {
+    text-decoration: line-through;
+  }
+  .yk-title {
+    p {
+      font-weight: 600;
+      margin-bottom: 0.5em;
+      margin-top: 1em;
+    }
+    .lv1 {
+      font-size: 40px;
+      line-height: 1.24;
+    }
+    .lv2 {
+      font-size: 32px;
+      line-height: 1.28;
+    }
+    .lv3 {
+      font-size: 24px;
+      line-height: 1.34;
+    }
+    .lv4 {
+      font-size: 18px;
+      line-height: 1.4;
+    }
+    .lv5 {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+  .yk-paragraph {
+    margin-bottom: 1em;
+    position: relative;
+    .icon {
+      fill: @lcolor;
+      cursor: pointer;
+    }
+    .more-par {
+      position: absolute;
+      right: 0;
+      bottom: 0px;
+      padding-left: 20px;
+      background-color: #fff;
+    }
+
+    .ellipsis {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .more {
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      color: @lcolor;
+    }
+  }
+}
