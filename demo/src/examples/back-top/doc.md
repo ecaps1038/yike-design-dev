@@ -14,12 +14,13 @@
 
 ### API
 
-| 参数             | 描述                         | 类型                         | 默认值 |
-| ---------------- | ---------------------------- | ---------------------------- | ------ |
-| right            | 距离页面右侧的宽度           | string                       | 50     |
-| bottom           | 距离页面底部的高度           | string                       | 50     |
-| target           | 监听滚动的元素               | string ｜ `Ref<HTMLElement>` | -      |
-| visibilityHeight | 滚动时触发显示回到顶部的高度 | string                       | 200    |
-| animation        | 动画效果                     | 'fade' ｜ 'move'             | fade   |
+| 参数             | 描述                         | 类型                         | 默认值        |
+| ---------------- | ---------------------------- | ---------------------------- | ------------- |
+| right            | 距离页面右侧的宽度           | string                       | 50            |
+| bottom           | 距离页面底部的高度           | string                       | 50            |
+| target           | 监听滚动的元素               | string ｜ `Ref<HTMLElement>` | -             |
+| visibilityHeight | 滚动时触发显示回到顶部的高度 | string                       | 200           |
+| animation        | 动画效果                     | 'fade' ｜ 'move'             | fade          |
+| icon             | 图标 name                    | 详情见 Icon 组件             | yk-xiangshang |
 
 <!-- | to               | 渲染的容器节点               | string ｜ `Ref<HTMLElement>` | body   | -->

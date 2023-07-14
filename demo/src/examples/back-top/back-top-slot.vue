@@ -1,18 +1,12 @@
 <template>
-  <div style="position: relative">
-    <ul id="list" style="height: 200px; overflow-y: auto">
-      <li
-        style="line-height: 30px"
-        v-for="(_, index) of Array(40)"
-        :key="index"
-      >
-        This is the content
-      </li>
+  <div class="container">
+    <ul id="list" class="list">
+      <li v-for="(_, index) of Array(40)" :key="index">This is the content</li>
     </ul>
     <yk-back-top
       target="#list"
       :style="{ position: 'absolute' }"
-      @onClick="click"
+      @on-click="handleClick"
     >
       <yk-button size="s">UP</yk-button>
     </yk-back-top>
@@ -21,7 +15,19 @@
 <script setup lang="ts">
 import { getCurrentInstance } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
-const click = () => {
+const handleClick = () => {
   proxy.$message({ type: 'success', message: '点击了自定义按钮' })
 }
 </script>
+<style>
+.container {
+  position: relative;
+}
+.list {
+  height: 200px;
+  overflow-y: auto;
+}
+li {
+  line-height: 30px;
+}
+</style>

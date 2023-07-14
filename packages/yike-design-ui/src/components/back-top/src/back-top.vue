@@ -11,19 +11,7 @@
       @click="clickIt"
     >
       <slot>
-        <!-- <yk-icon :name="icon" class="yk-backtop__icon" /> -->
-        <svg
-          class="yk-backtop__icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="100%"
-          height="100%"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="#fff"
-            d="M13 19V7.83l4.88 4.88c.39.39 1.03.39 1.42 0a.996.996 0 0 0 0-1.41l-6.59-6.59a.996.996 0 0 0-1.41 0l-6.6 6.58a.996.996 0 1 0 1.41 1.41L11 7.83V19c0 .55.45 1 1 1s1-.45 1-1z"
-          ></path>
-        </svg>
+        <yk-icon :name="icon" class="yk-backtop__icon" />
       </slot>
     </div>
   </Transition>
@@ -31,42 +19,20 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, Ref, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import { Ref, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import '../style'
+import { BackTopProps } from './back-top'
 
 defineOptions({
   name: 'YkBackTop',
 })
 
-type animationType = 'fade' | 'move'
-
-const props = defineProps({
-  animation: {
-    type: String as PropType<animationType>,
-    default: 'fade',
-  },
-  right: {
-    type: String,
-    default: '50',
-  },
-  bottom: {
-    type: String,
-    default: '50',
-  },
-  to: {
-    type: [String, Object] as PropType<string | HTMLElement>,
-    default: 'body',
-  },
-  target: {
-    type: [String, Object] as PropType<string | HTMLElement>,
-  },
-  visibilityHeight: {
-    type: String,
-    default: '200',
-  },
-  icon: {
-    type: String,
-    default: 'yk-xiangshang',
-  },
+const props = withDefaults(defineProps<BackTopProps>(), {
+  animation: 'fade',
+  right: '50',
+  bottom: '50',
+  visibilityHeight: '200',
+  icon: 'yk-xiangshang',
 })
 
 const typeOfTest = (type: string) => (thing: unknown) => typeof thing === type
@@ -93,7 +59,6 @@ onBeforeUnmount(() => {
 
 const handleScroll = () => {
   const scrollTop = (el.value || document.documentElement).scrollTop
-  console.log(scrollTop)
   if (scrollTop >= props.visibilityHeight) {
     visible.value = true
   } else {
@@ -107,49 +72,9 @@ const backToTop = () => {
     behavior: 'smooth',
   })
 }
-const emit = defineEmits(['onClick'])
+const emit = defineEmits(['on-click'])
 const clickIt = (e: MouseEvent) => {
   backToTop()
-  emit('onClick', e)
+  emit('on-click', e)
 }
 </script>
-<style scoped lang="less">
-.yk-backtop {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 999;
-
-  .yk-backtop__icon {
-    width: 3rem;
-    height: 3rem;
-    padding: 0.5rem;
-    background-color: @pcolor;
-    border-radius: 25%;
-    box-shadow: @shadow-s;
-  }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.move-enter-active,
-.move-leave-active {
-  transition: all 0.5s ease;
-}
-
-.move-enter-from,
-.move-leave-to {
-  transform: translateY(100%);
-  opacity: 0;
-}
-</style>
