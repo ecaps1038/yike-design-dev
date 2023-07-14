@@ -8,6 +8,7 @@ import TopBar from './components/TopBar.vue'
     <TopBar />
     <RouterView />
     <!-- <RouterLink to="hh">hh</RouterLink> -->
+    <yk-back-top />
   </div>
 </template>
 
