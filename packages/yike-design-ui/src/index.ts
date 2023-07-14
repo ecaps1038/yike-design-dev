@@ -10,6 +10,7 @@ import { YkContainer } from './components/container'
 import YkTable from './components/table/Table.vue'
 import YkMessage from './components/message'
 import { YkParagraph, YkTitle, YkText } from './components/typography'
+import { YkBackTop } from './components/back-top'
 import './styles/index.less'
 
 const components: {
@@ -27,6 +28,7 @@ const components: {
   YkParagraph,
   YkTitle,
   YkText,
+  YkBackTop,
 }
 
 export {
@@ -43,6 +45,7 @@ export {
   YkTitle,
   YkText,
   YkMessage,
+  YkBackTop,
 }
 
 // 全局注册
