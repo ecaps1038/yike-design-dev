@@ -17,6 +17,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'space',
     component: () => import('@/examples/space/doc.md'),
   },
+  {
+    path: 'back-top',
+    component: () => import('@/examples/back-top/doc.md'),
+  },
 ]
 
 export default generalRoutes
