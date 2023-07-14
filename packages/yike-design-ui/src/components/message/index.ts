@@ -1,2 +1,2 @@
-import YkMessage from "./src/utils";
-export default YkMessage
+import YkMessage from './src/utils';
+export default YkMessage;
