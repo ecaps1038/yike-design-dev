@@ -1,3 +1,3 @@
 <template>
-  <YKEmpty :image-size="200"></YKEmpty>
+  <yk-empty :image-size="200"></yk-empty>
 </template>

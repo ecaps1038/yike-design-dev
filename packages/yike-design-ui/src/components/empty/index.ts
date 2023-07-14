@@ -1,4 +1,4 @@
-import Empty from './src/Empty.vue'
+import Empty from './src/empty.vue'
 import { withInstall } from '@yike/utils'
 
 export const YkEmpty = withInstall(Empty)

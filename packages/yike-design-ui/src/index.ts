@@ -12,11 +12,11 @@ import YkMessage from './components/message'
 import YkParagraph from './components/typography/Paragraph.vue'
 import YkTitle from './components/typography/Title.vue'
 import YkText from './components/typography/Text.vue'
-import YKEmpty from './components/empty/src/Empty.vue'
+import YkEmpty from './components/empty'
 import './styles/index.less'
 
 const components: {
-	[propName: string]: Component
+  [propName: string]: Component
 } = {
   YkAlert,
   YkButton,
@@ -30,7 +30,7 @@ const components: {
   YkParagraph,
   YkTitle,
   YkText,
-	YKEmpty
+  YkEmpty,
 }
 
 export {
@@ -47,17 +47,17 @@ export {
   YkTitle,
   YkText,
   YkMessage,
-  YKEmpty,
+  YkEmpty,
 }
 
 // 全局注册
 export default {
-	install: (app: App) => {
-		for (const c in components) {
-			app.component(c, components[c])
-		}
-		app.config.globalProperties.$message = YkMessage
-	},
+  install: (app: App) => {
+    for (const c in components) {
+      app.component(c, components[c])
+    }
+    app.config.globalProperties.$message = YkMessage
+  },
 }
 // 局部注册
 // for (const c in components) {

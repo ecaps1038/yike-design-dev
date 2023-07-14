@@ -20,6 +20,7 @@
 import '../style'
 import { useSlots } from 'vue'
 import { EmptyProps } from './empty'
+
 defineOptions({
   name: 'YkEmpty',
 })
@@ -27,7 +28,7 @@ const slotDefault = !!useSlots().default
 
 const props = withDefaults(defineProps<EmptyProps>(), {
   description: 'No Data',
-  image: '/src/assets/icon/玉子(empty).svg',
+  image: '/src/assets/icon/empty.svg',
   imageSize: 160,
 })
 </script>

@@ -20,6 +20,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-	"references.preferredLocation": "peek",
-	"vue.codeActions.enabled": false
+  "references.preferredLocation": "peek",
+  "vue.codeActions.enabled": false
 }
