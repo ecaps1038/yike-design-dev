@@ -18,6 +18,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/space/doc.md'),
   },
   {
+    path: 'typography',
+    component: () => import('@/examples/typography/doc.md'),
+  },
+  {
     path: 'back-top',
     component: () => import('@/examples/back-top/doc.md'),
   },

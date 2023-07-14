@@ -2,10 +2,10 @@
   <transition name="down" @before-leave="close">
     <div v-if="isShow" class="yk-message" :style="Style">
       <div class="message-container">
-        <YkIcon
+        <yk-icon
           :name="statusIconName"
           :class="`icon-${props.type} message-icon`"
-        ></YkIcon>
+        ></yk-icon>
         <span class="text">{{ message }}</span>
       </div>
     </div>
@@ -41,14 +41,14 @@ const iconStatusMap = {
   success: 'yike-gou',
 }
 const isShow = ref(false)
-function startTimer() {
+const startTimer = () => {
   setTimeout(() => {
     props.onClose && props.onClose()
     close()
   }, props.duration)
 }
 
-function close() {
+const close = () => {
   isShow.value = false
 }
 onMounted(() => {

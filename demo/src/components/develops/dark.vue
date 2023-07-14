@@ -12,10 +12,10 @@
       <yk-text type="pcolor">Theme</yk-text>
       组件，如需要可以在全局引入该组件，或者在您项目最外层引入组件，组件设有开关，本文档顶部的“太阳”和“月亮”就是该组件的一个展示模式。您可以点击看下效果。
     </yk-paragraph>
-    <yk-text b>引入：</yk-text>
+    <yk-text strong>引入：</yk-text>
     <yk-text>按需引入时在 script 模块引入</yk-text>
     <codes-vue :code="datas[0]" />
-    <yk-text b>使用：</yk-text>
+    <yk-text strong>使用：</yk-text>
     <codes-vue :code="datas[1]" />
 
     <yk-title :level="3">源码原理</yk-title>

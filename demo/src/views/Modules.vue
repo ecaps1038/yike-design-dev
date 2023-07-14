@@ -19,6 +19,10 @@ let bar = [
         name: 'Space 间距',
         src: 'space',
       },
+      {
+        name: 'Typography 排版',
+        src: 'typography',
+      },
     ],
   },
   {

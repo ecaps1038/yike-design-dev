@@ -30,10 +30,30 @@ export default () => ({
       // 导入demo组件依赖
       let importContent = ''
       // 初始还MarkdownIt用于转换md文件为html
+
       const markdownIt = MarkdownIt({
         html: true,
         xhtmlOut: false,
+        highlight(str, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            return `<pre class="hljs"><code>${
+              hljs.highlightAuto(str).value
+            }</code></pre>`
+          }
+          return `<pre class="hljs"><code>${markdownIt.utils.escapeHtml(
+            str,
+          )}</code></pre>`
+        },
       })
+      if (!id.includes('demo/src')) {
+        return {
+          code: `<template>
+          <div class='yk-demo-doc'>
+          ${markdownIt.render(src)}
+        </div>
+        </template>`,
+        }
+      }
       const snippetPattern = /:::snippet\s+(.*?)\s+:::/gs
       const matches = src.matchAll(snippetPattern)
       for (const match of matches) {
