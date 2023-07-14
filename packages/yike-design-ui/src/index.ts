@@ -1,5 +1,6 @@
 import type { Component, App } from 'vue'
 
+import YkAlert from './components/alert'
 import YkButton from './components/button'
 import YkTheme from './components/theme'
 import YkIcon from './components/icon'
@@ -17,6 +18,7 @@ import './styles/index.less'
 const components: {
   [propName: string]: Component
 } = {
+  YkAlert,
   YkButton,
   YkTheme,
   YkIcon,
@@ -32,6 +34,7 @@ const components: {
 }
 
 export {
+  YkAlert,
   YkButton,
   YkTheme,
   YkIcon,

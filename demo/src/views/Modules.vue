@@ -34,8 +34,12 @@ let bar = [
     list: [],
   },
   {
-    title: '数据展示',
+    title: '反馈',
     list: [
+      {
+        name: 'Alert 警告提示',
+        src: 'alert',
+      },
       {
         name: 'Message 消息提示',
         src: 'message',

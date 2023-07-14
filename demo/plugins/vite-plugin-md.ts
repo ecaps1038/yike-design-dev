@@ -46,7 +46,7 @@ export default () => ({
         )
         const demoCode = fetchDemoCode(demoComponentName, id).replace(
           / /g,
-          '\u00A0',
+          '\u2008',
         )
         const html = hljs.highlightAuto(demoCode).value
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`
