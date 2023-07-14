@@ -12,7 +12,7 @@ import '../style'
 
 const props = withDefaults(defineProps<textProps>(), {
   b: false,
-  type: '',
+  type: 'default',
   mark: false,
   underline: false,
   del: false,
