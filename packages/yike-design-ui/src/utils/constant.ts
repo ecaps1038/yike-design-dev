@@ -4,7 +4,11 @@ export type Type = (typeof TYPES)[number]
 export const SIZES = ['s', 'm', 'l', 'xl'] as const
 export type Size = (typeof SIZES)[number]
 
+<<<<<<< HEAD
 export const SHAPES = ['round', 'circle', 'square'] as const
+=======
+export const SHAPES = ['default', 'round', 'circle', 'square'] as const
+>>>>>>> fix/theme
 export type Shape = (typeof SHAPES)[number]
 
 export const STATUS = ['success', 'warning', 'danger', 'primary'] as const

@@ -49,7 +49,6 @@
   box-sizing: border-box;
   white-space: nowrap;
   outline: none;
-  border-radius: 8px;
   border-width: 1px;
   border-style: solid;
   cursor: pointer;
@@ -57,14 +56,26 @@
   user-select: none;
   // 默认按钮状态
   color: @btn-primary-color-text;
+  circle {
+    stroke: @btn-primary-color-text;
+  }
   background-color: @btn-primary-color-bg;
   border-color: @btn-primary-color-border;
 
   .btn-type(@type) {
     .normal() {
       color: ~'@{btn-@{type}-color-text}';
+      circle {
+        stroke: ~'@{btn-@{type}-color-text}';
+      }
       background-color: ~'@{btn-@{type}-color-bg}';
       border-color: ~'@{btn-@{type}-color-border}';
+      &:not(:disabled):hover {
+        background-color: ~'@{btn-@{type}-color-hover}';
+      }
+      &:not(:disabled):active {
+        background-color: ~'@{btn-@{type}-color-bg}';
+      }
     }
     &--@{type} {
       .normal();
@@ -74,8 +85,17 @@
   .btn-status(@type: primary, @status: primary) {
     .normal() {
       color: ~'@{btn-@{type}-color-text_@{status}}';
+      circle {
+        stroke: ~'@{btn-@{type}-color-text_@{status}}';
+      }
       background-color: ~'@{btn-@{type}-color-bg_@{status}}';
       border-color: ~'@{btn-@{type}-color-border_@{status}}';
+      &:not(:disabled):hover {
+        background-color: ~'@{btn-@{type}-color-hover_@{status}}';
+      }
+      &:not(:disabled):active {
+        background-color: ~'@{btn-@{type}-color-bg_@{status}}';
+      }
     }
     &.yk-button--@{type}.yk-button--@{status} {
       .normal();
@@ -104,19 +124,29 @@
   // 尺寸 size
   &--s {
     height: 24px;
-    padding: 0px 8px;
+    padding: 0px @space-s;
+    border-radius: @radius-s;
+    font-size: @size-ss;
+    min-width: 24px;
   }
   &--m {
     height: 32px;
-    padding: 0px 16px;
+    min-width: 32px;
+    padding: 0px @space-l;
+    border-radius: @radius-s;
   }
   &--l {
     height: 36px;
-    padding: 0px 16px;
+    min-width: 36px;
+    padding: 0px @space-l;
+    border-radius: @radius-m;
   }
   &--xl {
     height: 48px;
-    padding: 0px 24px;
+    min-width: 48px;
+    padding: 0px @space-xl;
+    border-radius: @radius-m;
+    font-size: @size-m;
   }
   &--long {
     width: 100%;
@@ -124,31 +154,21 @@
   }
 
   // 圆角样式
-  .shape(@size, @round) {
-    width: @size;
-    height: @size;
-    border-radius: @round;
-    padding: 0;
+  &--round {
+    border-radius: @radius-r;
   }
   &--circle {
-    .shape(36px, 50%);
+    border-radius: @radius-r;
+    padding: 0;
   }
 
   &--square {
-    .shape(36px, 8px);
+    padding: 0;
   }
 
   // 禁用
   &--disabled {
     opacity: 0.4;
     cursor: not-allowed;
-  }
-
-  // 伪类
-  &:not(:disabled):hover {
-    opacity: 0.9;
-  }
-  &:not(:disabled):active {
-    opacity: 0.7;
   }
 }
