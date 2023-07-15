@@ -11,6 +11,11 @@ const packagePath = 'packages/yike-design-ui/src'
 
 function mkdirSync(dirname) {
   if (fs.existsSync(dirname)) {
+    console.warn(
+      chalk.bgRed.black(`[ERROR]`),
+      `${dirname}文件已存在\n请检查组件是否重复`,
+    )
+    process.exit(233)
     return true
   }
   if (mkdirSync(path.dirname(dirname))) {
@@ -25,6 +30,7 @@ function log(...rest) {
 }
 function warn(msg) {
   console.warn(chalk.bgRed.black(`[ERROR]`), msg)
+  process.exit(233)
 }
 
 function logCreateFile(filename) {
