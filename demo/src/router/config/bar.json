@@ -1,0 +1,59 @@
+{
+  "bar": [
+    {
+      "title": "通用",
+      "list": [
+        {
+          "name": "Button 按钮",
+          "src": "button"
+        },
+        {
+          "name": "Icon 图标",
+          "src": "icon"
+        },
+        {
+          "name": "Space 间距",
+          "src": "space"
+        },
+        {
+          "name": "Typography 排版",
+          "src": "typography"
+        }
+      ]
+    },
+    {
+      "title": "布局",
+      "list": []
+    },
+    {
+      "title": "导航",
+      "list": []
+    },
+    {
+      "title": "数据输入",
+      "list": []
+    },
+    {
+      "title": "反馈",
+      "list": [
+        {
+          "name": "Alert 警告提示",
+          "src": "alert"
+        },
+        {
+          "name": "Message 消息提示",
+          "src": "message"
+        }
+      ]
+    },
+    {
+      "title": "其他",
+      "list": [
+        {
+          "name": "BackTop 返回顶部",
+          "src": "back-top"
+        }
+      ]
+    }
+  ]
+}
