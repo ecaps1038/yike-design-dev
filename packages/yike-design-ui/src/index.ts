@@ -14,6 +14,7 @@ import YkMessage from './components/message';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import YkEmpty from './components/empty';
+import YkTooltip from './components/tooltip';
 import './styles/index.less';
 
 const components: {
@@ -36,6 +37,7 @@ const components: {
   YkText,
   YkEmpty,
   YkBackTop,
+  YkTooltip,
 };
 
 export {
@@ -57,6 +59,7 @@ export {
   YkMessage,
   YkEmpty,
   YkBackTop,
+  YkTooltip,
 };
 
 // 全局注册
