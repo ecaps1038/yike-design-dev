@@ -4,12 +4,12 @@
 
 要运行组件库，请执行以下步骤：
 
-1. 推荐先fork项目并基于此仓库进行操作
-2. 克隆fork后的项目到本地 
-`git clone https://github.com/xxxxxx/yike-design-dev.git`
-3. 切换至monorepo-dev分支 `git checkout monorepo-dev`
+1. 推荐先 fork 项目并基于此仓库进行操作
+2. 克隆 fork 后的项目到本地
+   `git clone https://github.com/xxxxxx/yike-design-dev.git`
+3. 切换至 monorepo-dev 分支 `git checkout monorepo-dev`
 4. 安装依赖：`pnpm i`
-5. 启动开发服务器：`npm run dev:demo` 
+5. 启动开发服务器：`npm run dev:demo`
 6. 在浏览器中访问：`http://localhost:5173`
 
 ### 如何贡献
@@ -67,8 +67,9 @@ feat为你需要具体修改的内容
 - `docs/upload/add-picture-demo`
 - `refactor/base/refactor-router`
 
-5. 在编写完代码后，在确保与目标分支不存在冲突的前提下可以将该功能分支提交 PR 到主仓库的对应分支（目前主要的开发分支为 monorepo-dev 分支）
-6. PR 将由具备权限的贡献者 CR 后进行 merge,若提交的功能影响面较广，CR 人员应当及时同其他成员共同参与讨论和检验
+5. 使用指令 `npm run new component-name 组件名` 如 npm run new checkbox 复选框 即可自动创建组件目录及文件
+6. 在编写完代码后，在确保与目标分支不存在冲突的前提下可以将该功能分支提交 PR 到主仓库的对应分支（目前主要的开发分支为 monorepo-dev 分支）
+7. PR 将由具备权限的贡献者 CR 后进行 merge,若提交的功能影响面较广，CR 人员应当及时同其他成员共同参与讨论和检验
 
 #### Commit 规范
 
@@ -219,7 +220,6 @@ desc
 :::
 
 ```
-
 
 #### ⚠️ 组件开发目录结构标准
 
