@@ -48,6 +48,10 @@ let bar = [
         name: 'Message 消息提示',
         src: 'message',
       },
+      {
+        name: 'tooltip 文字提示',
+        src: 'tooltip',
+      },
     ],
   },
   {

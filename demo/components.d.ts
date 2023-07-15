@@ -20,6 +20,7 @@ declare module 'vue' {
     TopBar: typeof import('./src/components/TopBar.vue')['default']
     Yikedesign: typeof import('./src/components/design/yikedesign.vue')['default']
     Yikedev: typeof import('./src/components/develops/yikedev.vue')['default']
+    Yk: typeof import('./../packages/yike-design-ui/src/index.ts')['Yk']
     YkAlert: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAlert']
     YkAvatar: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAvatar']
     YkBackTop: typeof import('./../packages/yike-design-ui/src/index.ts')['YkBackTop']
@@ -31,5 +32,7 @@ declare module 'vue' {
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTitle']
+    YkTooltip: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTooltip']
+    YkToolTip: typeof import('./../packages/yike-design-ui/src/index.ts')['YkToolTip']
   }
 }
