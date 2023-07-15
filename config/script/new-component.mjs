@@ -219,8 +219,7 @@ function addRouter() {
     path: '${componentLowDashName}',
     component: () => import('@/examples/${componentLowDashName}/doc.md'),
   },
-]
-  `
+]`
   fs.readFile(generalRouterPath, 'utf8', (err, data) => {
     if (err) {
       console.warn(chalk.bgRed.black(`[ERROR]`), err)
