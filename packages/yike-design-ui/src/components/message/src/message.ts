@@ -1,4 +1,4 @@
-import type { VNode } from 'vue';
+import type { VNode, ComponentInternalInstance } from 'vue';
 import { MessageType } from '../../../utils/constant';
 export type MessageProps = {
   message: string | VNode;
@@ -7,10 +7,17 @@ export type MessageProps = {
   offset?: number;
   zIndex?: number;
   onClose?: () => void;
+  onDestroy?: () => void;
 };
 
 export interface MessageOptions extends MessageProps {
   id?: number;
   appendTo?: HTMLElement | string;
-  onDestroy?: () => void;
+}
+
+export interface MessageHandler {
+  /**
+   * @description close the Message
+   */
+  close: () => void;
 }

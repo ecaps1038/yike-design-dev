@@ -26,18 +26,24 @@
 
 :::snippet
 静态方法
-提供 `success`,`error`,`warning` 静态方法直接调用全局消息
+提供 `success`,`error`,`warning`,`loading`,`primary` 静态方法直接调用全局消息
 <MessageMethods/>
+:::
+
+:::snippet
+关闭实例
+通过 proxy.$message 创建的消息将返回一个实例，其中提供了 close 方法，能够提前关闭消息
+<MessageClose/>
 :::
 
 ### API
 
-| 参数     | 描述             | 类型                          | 默认值  |
-| -------- | ---------------- | ----------------------------- | ------- |
-| type     | 消息的类型       | 'success'｜'warning'｜'error' | success |
-| message  | 消息的内容       | string                        | ''      |
-| duration | 持续时长         | number                        | 600     |
-| onClose  | 关闭时的回调函数 | Function                      | ()=>{}  |
+| 参数     | 描述                  | 类型                                                | 默认值  |
+| -------- | --------------------- | --------------------------------------------------- | ------- |
+| type     | 消息的类型            | 'primary'\|'success'\|'warning'\|'error'\|'loading' | success |
+| message  | 消息的内容            | string                                              | ''      |
+| duration | 持续时长，为 0 时驻留 | number                                              | 600     |
+| onClose  | 关闭时的回调函数      | Function                                            | ()=>{}  |
 
 ### Methods
 

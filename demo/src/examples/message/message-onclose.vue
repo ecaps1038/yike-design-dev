@@ -9,10 +9,10 @@ const proxy: any = getCurrentInstance()?.proxy
 const handleSuccess = () => {
   proxy.$message({
     type: 'success',
-    message: '这里是全局提示关闭时的回掉函数',
+    message: '这里是全局提示关闭时的回调函数',
     duration: 2000,
     onClose: () => {
-      proxy.$message.success('这里是回掉函数', 2000)
+      proxy.$message.success('这里是回调函数', 2000)
     },
   })
 }
