@@ -29,4 +29,26 @@
     <yk-button>按钮2</yk-button>
     <yk-button>按钮3</yk-button>
   </yk-space>
+  <yk-title :level="5">自定义水平和竖直间距 :size="[10, 30]"</yk-title>
+  <yk-space wrap :size="[10, 30]">
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+    <yk-button>按钮</yk-button>
+  </yk-space>
 </template>
