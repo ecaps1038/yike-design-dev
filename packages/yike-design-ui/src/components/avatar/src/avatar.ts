@@ -1,13 +1,14 @@
+import { Size } from '../../../utils/constant';
 
 export type AvatarProps = {
   shape?: 'circle' | 'square';
-  size?: number | string;
+  size?: number | Size;
   icon?: string;
-  imgUrl: string;
-}
+  imgUrl?: string;
+};
 
 export type AvatarGroupProps = {
   shape?: 'circle' | 'square';
-  size?: number | string;
+  size?: number | Size;
   max?: number;
-}
+};

@@ -13,9 +13,9 @@
 :::
 
 :::snippet
-对齐 aline
+对齐 align
 内置 4 种对齐方式，分别为 `'start'｜'center'｜'end'｜'baseline' `，在水平模式下默认为 start。
-<SpaceAline/>
+<SpaceAlign/>
 :::
 
 :::snippet
@@ -35,7 +35,7 @@
 | 参数        | 描述     | 类型                                             | 默认值         |
 | ----------- | -------- | ------------------------------------------------ | -------------- |
 | `size`      | 间距尺寸 | ` 's'｜'m'｜'l'｜'xl'｜number｜[number, number]` | `'l'`          |
-| `aline`     | 对齐     | `'start'｜'center'｜'end'｜'baseline'`           | `'start'`      |
+| `align`     | 对齐     | `'start'｜'center'｜'end'｜'baseline'`           | `'start'`      |
 | `wrap`      | 换行     | `boolean`                                        | `true`         |
 | `direction` | 方向     | `'vertical'｜'horizontal'`                       | `'horizontal'` |
 | `rate`      | 宽度占比 | `number`                                         | `100`          |

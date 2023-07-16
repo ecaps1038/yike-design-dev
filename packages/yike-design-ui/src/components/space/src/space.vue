@@ -16,12 +16,12 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<SpaceProps>(), {
-  aline: 'start',
+  align: 'start',
   wrap: false,
   size: 'l',
   direction: 'horizontal',
 })
-const { aline, wrap, size, direction } = toRefs(props)
+const { align, wrap, size, direction } = toRefs(props)
 
 const resolveGap = (): CSSProperties => {
   if (Array.isArray(size.value)) {
@@ -37,11 +37,10 @@ const resolveGap = (): CSSProperties => {
 }
 
 const spaceStyle = computed<CSSProperties>(() => {
-  console.log(resolveGap())
   return {
     flexWrap: wrap.value ? 'wrap' : 'nowrap',
     flexDirection: flexDirection(direction.value),
-    alignItems: getAlign(aline.value),
+    alignItems: getAlign(align.value),
     ...resolveGap(),
   }
 })

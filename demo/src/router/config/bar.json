@@ -18,6 +18,10 @@
         {
           "name": "Typography 排版",
           "src": "typography"
+        },
+        {
+          "name": "Avatar  头像",
+          "src": "avatar"
         }
       ]
     },

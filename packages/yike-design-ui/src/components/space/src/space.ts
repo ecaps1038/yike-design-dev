@@ -12,7 +12,7 @@ export type GapSize = Size | number | [number, number];
 
 export type SpaceProps = {
   direction?: Direction;
-  aline?: Align;
+  align?: Align;
   wrap?: boolean;
   /**
    * constant: s|m|l|xl
