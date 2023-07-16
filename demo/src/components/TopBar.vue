@@ -4,7 +4,7 @@
       <img src="@/assets/icon/logo.svg" />
       <span class="name">Yike Design 开发版</span>
     </div>
-    <yk-space class="net" :size="40" aline="center">
+    <yk-space class="net" :size="40" align="center">
       <a href="https://dwawvfgxvzk.feishu.cn/wiki/PDRLwW2BdiUh07kBs86cLYfjnic">
         开发规范
       </a>
@@ -30,7 +30,7 @@
       <yk-avatar
         size="m"
         class="nav"
-        imgUrl="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
+        img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
       ></yk-avatar>
     </yk-space>
   </div>
