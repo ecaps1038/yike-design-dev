@@ -1,12 +1,12 @@
 <template>
-  <YkSpace align="center">
-    <YkAvatar icon="yk-fujian" size="s"></YkAvatar>
-    <YkAvatar icon="yk-yike1" size="m"></YkAvatar>
-    <YkAvatar
+  <yk-space align="center">
+    <yk-avatar icon="yk-fujian" size="s"></yk-avatar>
+    <yk-avatar icon="yk-yike1" size="m"></yk-avatar>
+    <yk-avatar
       icon="yk-xin"
       size="l"
       :style="{ backgroundColor: '#14a9f8' }"
-    ></YkAvatar>
-    <YkAvatar icon="yike-xin" size="xl"></YkAvatar>
-  </YkSpace>
+    ></yk-avatar>
+    <yk-avatar icon="yike-xin" size="xl"></yk-avatar>
+  </yk-space>
 </template>

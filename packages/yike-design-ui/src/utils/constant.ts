@@ -10,7 +10,13 @@ export type Shape = (typeof SHAPES)[number];
 export const STATUS = ['success', 'warning', 'danger', 'primary'] as const;
 export type Status = (typeof STATUS)[number];
 
-export const MESSAGETYPE = ['success', 'info', 'warning', 'error'] as const;
+export const MESSAGETYPE = [
+  'success',
+  'warning',
+  'error',
+  'primary',
+  'loading',
+] as const;
 export type MessageType = (typeof MESSAGETYPE)[number];
 
 export const SKIN = ['auto', 'light', 'dark'] as const;

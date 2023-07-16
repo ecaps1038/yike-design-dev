@@ -1,7 +1,12 @@
+.yk-message-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .yk-message {
   position: fixed;
   top: @space-l;
-  left: 50%;
   display: flex;
   justify-content: center;
   .message-container {
@@ -29,17 +34,23 @@
     width: 14px;
     height: 14px;
   }
-}
+  .icon-primary,
+  .icon-loading {
+    color: @pcolor;
+  }
+  .icon-loading {
+    animation: rotate4 2s linear infinite;
+  }
+  //icon颜色
+  .icon-success {
+    color: @scolor;
+  }
 
-//icon颜色
-.icon-success {
-  color: @scolor;
-}
+  .icon-warning {
+    color: @wcolor;
+  }
 
-.icon-warning {
-  color: @wcolor;
-}
-
-.icon-error {
-  color: @ecolor;
+  .icon-error {
+    color: @ecolor;
+  }
 }
