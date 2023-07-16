@@ -14,20 +14,7 @@ export const calculateOffset = (vmId: number) => {
   for (let i = idx; i < instances.length; i++) {
     const vm = instances[i];
   }
-  // if (idx === -1) {
-  //   return;
-  // }
-  // const vm = instances[idx];
-  // const removedHeight = vm.el!.offsetHeight;
-  // instances.splice(idx, 1);
-  // const len = instances.length;
-  // if (len === 0) {
-  //   return;
-  // }
-  // for (let i = 0; i < len; i++) {
-  //   const pos = parseInt(instances[i].el!.style.top, 10) - removedHeight - 16;
-  //   instances[i].component!.props.offset = pos;
-  // }
+  // TODO use message-list hooks manage instances
 };
 
 const message = (options: MessageOptions) => {
@@ -52,9 +39,7 @@ const message = (options: MessageOptions) => {
       render(null, container);
     },
   };
-  // const verticalOffset: number = options.offset || 20;
-  // props.offset = prefixSum[seed - 1] + verticalOffset;
-  // prefixSum[seed] = props.offset;
+  // TODO use message-list hooks manage instances
   const vm: VNode = createVNode(
     MessageConstructor,
     props,

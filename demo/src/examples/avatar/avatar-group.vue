@@ -1,72 +1,72 @@
 <template>
-  <YkSpace align="center" :size="50" wrap>
-    <YkAvatarGroup>
-      <YkAvatar
+  <yk-space align="center" :size="50" wrap>
+    <yk-avatar-group>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-    </YkAvatarGroup>
-    <YkAvatarGroup size="m">
-      <YkAvatar
+      ></yk-avatar>
+    </yk-avatar-group>
+    <yk-avatar-group size="m">
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-    </YkAvatarGroup>
-    <YkAvatarGroup shape="square" :max="5">
-      <YkAvatar
+      ></yk-avatar>
+    </yk-avatar-group>
+    <yk-avatar-group shape="square" :max="5">
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-    </YkAvatarGroup>
-    <YkAvatarGroup shape="square" :max="3" size="m">
-      <YkAvatar
+      ></yk-avatar>
+    </yk-avatar-group>
+    <yk-avatar-group shape="square" :max="3" size="m">
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-      <YkAvatar
+      ></yk-avatar>
+      <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></YkAvatar>
-    </YkAvatarGroup>
-  </YkSpace>
+      ></yk-avatar>
+    </yk-avatar-group>
+  </yk-space>
 </template>
