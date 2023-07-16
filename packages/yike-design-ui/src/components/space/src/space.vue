@@ -19,18 +19,30 @@ const props = withDefaults(defineProps<SpaceProps>(), {
   aline: 'start',
   wrap: false,
   size: 'l',
-  rsize: 'l',
   direction: 'horizontal',
 })
-const { aline, wrap, size, rsize, direction } = toRefs(props)
+const { aline, wrap, size, direction } = toRefs(props)
+
+const resolveGap = (): CSSProperties => {
+  if (Array.isArray(size.value)) {
+    return {
+      rowGap: `${size.value[1]}px`,
+      columnGap: `${size.value[0]}px`,
+    }
+  } else {
+    return {
+      gap: `${getMargin(size.value)}px`,
+    }
+  }
+}
 
 const spaceStyle = computed<CSSProperties>(() => {
+  console.log(resolveGap())
   return {
-    columnGap: getMargin(size.value) + 'px',
-    rowGap: getMargin(rsize.value) + 'px',
     flexWrap: wrap.value ? 'wrap' : 'nowrap',
     flexDirection: flexDirection(direction.value),
     alignItems: getAlign(aline.value),
+    ...resolveGap(),
   }
 })
 </script>
