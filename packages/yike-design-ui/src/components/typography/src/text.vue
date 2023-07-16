@@ -1,14 +1,11 @@
 <template>
-  <span class="yk-typography yk-text">
-    <span ref="textRef" :class="[type]">
-      <slot></slot>
-    </span>
-  </span>
+  <component :is="wrapDecoration" :class="textClass">
+    <slot></slot>
+  </component>
 </template>
 <script setup lang="ts">
-import { computed, toRefs, ref, onMounted, watch, nextTick } from 'vue'
+import { computed, toRefs, useSlots } from 'vue'
 import { textProps } from './typography'
-import { wrapperDecorations } from './utils'
 import '../style'
 
 const props = withDefaults(defineProps<textProps>(), {
@@ -19,44 +16,31 @@ const props = withDefaults(defineProps<textProps>(), {
   del: false,
 })
 
-const textRef = ref<HTMLElement | undefined>()
-
-const originElement = ref()
-
 const { strong, mark, underline, del } = toRefs(props)
 
-const initWrapper = () => {
-  if (!textRef.value) {
-    return
+const textClass = computed(() => {
+  return {
+    [`yk-text--${props.type}`]: props.type,
+    'yk-text': true,
+    'yk-typography': true,
   }
-  textRef.value.innerHTML = wrapperDecorations(
-    {
-      strong: strong.value,
-      mark: mark.value,
-      underline: underline.value,
-      delete: del.value,
-    },
-    originElement.value,
-  )
+})
+
+const slots = useSlots()
+
+const wrap = (dec: boolean, tag: string) => {
+  return dec ? tag : ''
 }
 
-watch(
-  () => props,
-  (val) => {
-    nextTick(() => {
-      initWrapper()
-    })
-  },
-  {
-    deep: true,
-  },
-)
-
-onMounted(() => {
-  if (!textRef.value) {
-    return
+const wrapDecoration = computed(() => {
+  if (slots && slots.length) {
+    return 'div'
   }
-  originElement.value = textRef.value.innerHTML
-  initWrapper()
+  const decorateWrap =
+    wrap(mark.value, 'mark') +
+    wrap(underline.value, 'underline') +
+    wrap(del.value, 'del') +
+    wrap(strong.value, 'strong')
+  return decorateWrap || 'span'
 })
 </script>
