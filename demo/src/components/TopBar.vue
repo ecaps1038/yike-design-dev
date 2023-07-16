@@ -26,7 +26,7 @@
       <a href="https://github.com/ecaps1038/yike-design-dev">
         <yk-icon name="yike-github" class="github" />
       </a>
-      <yk-theme class="nav" skin="light"></yk-theme>
+      <yk-theme class="nav"></yk-theme>
       <yk-avatar
         size="m"
         class="nav"
