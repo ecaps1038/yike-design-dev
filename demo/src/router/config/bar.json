@@ -18,10 +18,6 @@
         {
           "name": "Typography 排版",
           "src": "typography"
-        },
-        {
-          "name": "Avatar  头像",
-          "src": "avatar"
         }
       ]
     },
@@ -34,8 +30,17 @@
       "list": []
     },
     {
-      "title": "数据输入",
+      "title": "数据录入",
       "list": []
+    },
+    {
+      "title": "数据展示",
+      "list": [
+        {
+          "name": "Avatar  头像",
+          "src": "avatar"
+        }
+      ]
     },
     {
       "title": "反馈",
