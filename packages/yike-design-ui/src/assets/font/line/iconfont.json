@@ -6,6 +6,13 @@
   "description": "线性基础图标",
   "glyphs": [
     {
+      "icon_id": "36464218",
+      "name": "top",
+      "font_class": "top",
+      "unicode": "e717",
+      "unicode_decimal": 59159
+    },
+    {
       "icon_id": "36356331",
       "name": "ppt",
       "font_class": "ppt",
