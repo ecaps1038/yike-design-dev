@@ -51,4 +51,10 @@
 | ------- | -------- | -------- | ------ |
 | success | 成功消息 | string   | ''     |
 | error   | 失败消息 | string   | ''     |
-| info    | 提示消息 | string   | ''     |
+| primary | 提示消息 | string   | ''     |
+| warning | 警告消息 | string   | ''     |
+| loading | 加载消息 | string   | ''     |
+
+### Instance
+
+可以通过返回的实例调用 close 方法提前关闭
