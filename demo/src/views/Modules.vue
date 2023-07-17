@@ -2,68 +2,6 @@
 import { RouterView } from 'vue-router'
 import Bar from '@/components/Bar.vue'
 import * as barData from '../router/config/bar.json'
-//制作目录数组
-let bar = [
-  {
-    title: '通用',
-    list: [
-      {
-        name: 'Button 按钮',
-        src: 'button',
-      },
-      {
-        name: 'Icon 图标',
-        src: 'icon',
-      },
-      {
-        name: 'Space 间距',
-        src: 'space',
-      },
-      {
-        name: 'Typography 排版',
-        src: 'typography',
-      },
-    ],
-  },
-  {
-    title: '布局',
-    list: [],
-  },
-  {
-    title: '导航',
-    list: [],
-  },
-  {
-    title: '数据输入',
-    list: [],
-  },
-  {
-    title: '反馈',
-    list: [
-      {
-        name: 'Alert 警告提示',
-        src: 'alert',
-      },
-      {
-        name: 'Message 消息提示',
-        src: 'message',
-      },
-      {
-        name: 'tooltip 文字提示',
-        src: 'tooltip',
-      },
-    ],
-  },
-  {
-    title: '其他',
-    list: [
-      {
-        name: 'BackTop 返回顶部',
-        src: 'back-top',
-      },
-    ],
-  },
-]
 
 //菜单
 </script>
