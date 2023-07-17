@@ -1,5 +1,6 @@
 import type { Component, App } from 'vue';
 
+import YkPagination from './components/pagination';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -16,7 +17,8 @@ import './styles/index.less';
 const components: {
   [propName: string]: Component;
 } = {
-  YkAlert,
+  YkPagination,
+	YkAlert,
   YkButton,
   YkTheme,
   YkIcon,
@@ -32,7 +34,8 @@ const components: {
 };
 
 export {
-  YkAlert,
+  YkPagination,
+	YkAlert,
   YkButton,
   YkTheme,
   YkIcon,

@@ -31,7 +31,12 @@
     },
     {
       "title": "导航",
-      "list": []
+      "list": [
+        {
+          "name": "Pagination 分页",
+          "src": "pagination"
+        }
+      ]
     },
     {
       "title": "数据输入",
