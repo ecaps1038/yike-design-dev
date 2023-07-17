@@ -1,5 +1,5 @@
 <template>
-  <transition name="down" @before-leave="close">
+  <transition name="down" @before-leave="close" @after-leave="destroy">
     <div v-if="isShow" class="yk-message" :style="Style">
       <yk-icon
         :name="statusIconName"
@@ -55,8 +55,7 @@ const close = () => {
   isShow.value = false
 }
 const destroy = () => {
-  props.onClose()
-  isShow.value = false
+  props.onDestroy()
 }
 
 onMounted(() => {
@@ -65,6 +64,6 @@ onMounted(() => {
 })
 
 defineExpose({
-  destroy,
+  close,
 })
 </script>

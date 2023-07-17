@@ -53,6 +53,8 @@ const message = (options: MessageOptions) => {
     ...options,
     onClose: () => {
       options.onClose && options.onClose();
+    },
+    onDestroy: () => {
       removeInstance(id);
     },
   };
@@ -66,7 +68,7 @@ const message = (options: MessageOptions) => {
   render(vm, container);
   appendTo.appendChild(container);
   const close = () => {
-    vm.component?.exposed?.destroy();
+    vm.component?.exposed?.close();
   };
   return {
     close,
