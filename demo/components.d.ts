@@ -26,12 +26,16 @@ declare module 'vue' {
     YkBackTop: typeof import('./../packages/yike-design-ui/src/index.ts')['YkBackTop']
     YkButton: typeof import('./../packages/yike-design-ui/src/index.ts')['YkButton']
     YkContainer: typeof import('./../packages/yike-design-ui/src/index.ts')['YkContainer']
+    YkFileContent: typeof import('./../packages/yike-design-ui/src/index.ts')['YkFileContent']
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
+    YkImageContent: typeof import('./../packages/yike-design-ui/src/index.ts')['YkImageContent']
     YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTitle']
     YkTooltip: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTooltip']
+    YkUpload: typeof import('./../packages/yike-design-ui/src/index.ts')['YkUpload']
+    YkYkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkYkIcon']
   }
 }
