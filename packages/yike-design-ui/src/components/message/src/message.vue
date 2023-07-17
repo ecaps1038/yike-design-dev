@@ -1,13 +1,11 @@
 <template>
-  <transition name="down" @before-leave="close" @after-leave="destroy">
+  <transition name="down" @before-leave="close">
     <div v-if="isShow" class="yk-message" :style="Style">
-      <div class="message-container">
-        <yk-icon
-          :name="statusIconName"
-          :class="`icon-${props.type} message-icon`"
-        ></yk-icon>
-        <span class="text">{{ message }}</span>
-      </div>
+      <yk-icon
+        :name="statusIconName"
+        :class="`icon-${props.type} message-icon`"
+      ></yk-icon>
+      <span class="text">{{ message }}</span>
     </div>
   </transition>
 </template>
@@ -23,7 +21,7 @@ const props = withDefaults(defineProps<MessageProps>(), {
   message: '',
   type: 'success',
   duration: 3000,
-  offset: 20,
+  offset: 5,
   zIndex: 100,
   onDestroy: () => ({}),
   onClose: () => ({}),
@@ -32,7 +30,7 @@ const statusIconName = computed(() => {
   return iconStatusMap[props.type]
 })
 const Style = computed(() => ({
-  top: `${props.offset}px`,
+  marginTop: `${props.offset}px`,
   zIndex: props.zIndex,
 }))
 const iconStatusMap = {
@@ -57,7 +55,8 @@ const close = () => {
   isShow.value = false
 }
 const destroy = () => {
-  // props.onDestroy()
+  props.onClose()
+  isShow.value = false
 }
 
 onMounted(() => {
@@ -66,6 +65,6 @@ onMounted(() => {
 })
 
 defineExpose({
-  close,
+  destroy,
 })
 </script>
