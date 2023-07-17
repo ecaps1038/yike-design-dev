@@ -9,7 +9,7 @@ const developRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'grasp',
-        component: () => import('@/components/develops/grasp.vue'),
+        component: () => import('../../../../CONTRIBUTING.md'),
       },
       {
         path: 'yikedev',
@@ -25,6 +25,6 @@ const developRoutes: Array<RouteRecordRaw> = [
       },
     ],
   },
-]
+];
 
 export default developRoutes;

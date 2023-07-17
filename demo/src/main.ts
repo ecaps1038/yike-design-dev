@@ -12,9 +12,10 @@ import '@/style/main.less'
 import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
+import hljsVuePlugin from '@highlightjs/vue-plugin'
 
 hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
 app.component('Snippet', Snippet)
-app.use(YikeDesignUI).use(router).mount('#app')
+app.use(YikeDesignUI).use(hljsVuePlugin).use(router).mount('#app')

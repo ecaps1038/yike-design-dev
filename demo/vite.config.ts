@@ -1,15 +1,15 @@
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
-import createVuePlugin from '@vitejs/plugin-vue'
-import vitePluginMarkdown from './plugins/vite-plugin-md'
-import Components from 'unplugin-vue-components/vite'
-import path from 'path'
-const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }) // 配置可编译 .vue 与 .md 文件
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import createVuePlugin from '@vitejs/plugin-vue';
+import vitePluginMarkdown from './plugins/vite-plugin-md';
+import Components from 'unplugin-vue-components/vite';
+import path from 'path';
+const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }); // 配置可编译 .vue 与 .md 文件
 
 const compDir = path
   .resolve(__dirname, '..\\packages\\yike-design-ui\\src\\index.ts')
-  .replace(/\\/g, '/')
-const aliasDir = fileURLToPath(new URL('./src', import.meta.url))
+  .replace(/\\/g, '/');
+const aliasDir = fileURLToPath(new URL('./src', import.meta.url));
 
 export default defineConfig({
   plugins: [
@@ -19,7 +19,7 @@ export default defineConfig({
       resolvers: [
         (componentName) => {
           if (componentName.startsWith('Yk'))
-            return { name: componentName, from: compDir }
+            return { name: componentName, from: compDir };
         },
       ],
     }),
@@ -35,8 +35,8 @@ export default defineConfig({
       less: {
         charset: false,
         additionalData:
-          '@import "../packages/yike-design-ui/src/styles/index.less";',
+          '@import (reference) "../packages/yike-design-ui/src/styles/index.less";',
       },
     },
   },
-})
+});

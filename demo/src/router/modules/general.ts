@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router';
 
 const generalRoutes: Array<RouteRecordRaw> = [
   {
@@ -18,9 +18,17 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/space/doc.md'),
   },
   {
+    path: 'typography',
+    component: () => import('@/examples/typography/doc.md'),
+  },
+  {
     path: 'back-top',
     component: () => import('@/examples/back-top/doc.md'),
   },
-]
+  {
+    path: 'avatar',
+    component: () => import('@/examples/avatar/doc.md'),
+  },
+];
 
-export default generalRoutes
+export default generalRoutes;

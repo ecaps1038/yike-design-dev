@@ -1,11 +1,11 @@
 <template>
-  <transition name="down" @before-leave="close">
+  <transition name="down" @before-leave="close" @after-leave="destroy">
     <div v-if="isShow" class="yk-message" :style="Style">
       <div class="message-container">
-        <YkIcon
+        <yk-icon
           :name="statusIconName"
           :class="`icon-${props.type} message-icon`"
-        ></YkIcon>
+        ></yk-icon>
         <span class="text">{{ message }}</span>
       </div>
     </div>
@@ -22,7 +22,7 @@ defineOptions({
 const props = withDefaults(defineProps<MessageProps>(), {
   message: '',
   type: 'success',
-  duration: 600,
+  duration: 3000,
   offset: 20,
   zIndex: 100,
   onDestroy: () => ({}),
@@ -36,23 +36,36 @@ const Style = computed(() => ({
   zIndex: props.zIndex,
 }))
 const iconStatusMap = {
-  warning: 'yike-tixing',
+  primary: 'yike-tixing',
+  warning: 'yike-jinggao',
   error: 'yike-cha',
   success: 'yike-gou',
+  loading: 'yk-jiazai',
 }
 const isShow = ref(false)
-function startTimer() {
+const startTimer = () => {
+  if (!props.duration || props.type === 'loading') {
+    return
+  }
   setTimeout(() => {
     props.onClose && props.onClose()
     close()
   }, props.duration)
 }
 
-function close() {
+const close = () => {
   isShow.value = false
 }
+const destroy = () => {
+  // props.onDestroy()
+}
+
 onMounted(() => {
   startTimer()
   isShow.value = true
+})
+
+defineExpose({
+  close,
 })
 </script>

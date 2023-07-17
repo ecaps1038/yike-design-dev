@@ -11,32 +11,32 @@
       </div>
     </div>
     <div
-      class="scrollx"
       v-show="isx && show"
+      class="scrollx"
       :style="{ bottom: space + 'px', height: size + 'px' }"
     >
       <div
         class="scroll-body"
-        @mousedown="mousedownX"
         :style="{
           width: scrollBodyWidth + 'px',
           left: (boxScrollLeft * boxWidth) / ulWidth + 'px',
         }"
-      />
+        @mousedown="mousedownX"
+      ></div>
     </div>
     <div
-      class="scrolly"
       v-show="isy && show"
+      class="scrolly"
       :style="{ right: space + 'px', width: size + 'px' }"
     >
       <div
         class="scroll-body"
-        @mousedown="mousedownY"
         :style="{
           height: scrollBodyHeight + 'px',
           top: (boxScrollTop * boxHeight) / ulHeight + 'px',
         }"
-      />
+        @mousedown="mousedownY"
+      ></div>
     </div>
   </div>
 </template>
@@ -162,7 +162,7 @@ function onWindowResize() {
     ulHeight.value = ulRef.value.clientHeight
     scrollBodyHeight.value =
       (boxHeight.value * boxHeight.value) / ulHeight.value
-    console.log(ulHeight.value, boxHeight.value)
+    // console.log(ulHeight.value, boxHeight.value)
     isy.value = ulHeight.value > boxHeight.value
   })
 }

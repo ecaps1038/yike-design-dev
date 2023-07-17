@@ -1,65 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Bar from '@/components/Bar.vue'
-//菜单
+import * as barData from '../router/config/bar.json'
 //制作目录数组
-let bar = [
-  {
-    title: '通用',
-    list: [
-      {
-        name: 'Button 按钮',
-        src: 'button',
-      },
-      {
-        name: 'Icon 图标',
-        src: 'icon',
-      },
-      {
-        name: 'Space 间距',
-        src: 'space',
-      },
-    ],
-  },
-  {
-    title: '布局',
-    list: [],
-  },
-  {
-    title: '导航',
-    list: [],
-  },
-  {
-    title: '数据输入',
-    list: [],
-  },
-  {
-    title: '反馈',
-    list: [
-      {
-        name: 'Alert 警告提示',
-        src: 'alert',
-      },
-      {
-        name: 'Message 消息提示',
-        src: 'message',
-      },
-    ],
-  },
-  {
-    title: '其他',
-    list: [
-      {
-        name: 'BackTop 返回顶部',
-        src: 'back-top',
-      },
-    ],
-  },
-]
+
+//菜单
 </script>
 <template>
   <div class="module-b">
-    <Bar :bar="bar" />
+    <Bar :bar="barData.bar" />
     <div class="main">
       <RouterView />
     </div>

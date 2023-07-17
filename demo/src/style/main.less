@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   position: relative;
-  font-weight: normal;
+  // font-weight: normal;
   border-spacing: 0;
 }
 
@@ -13,7 +13,7 @@ body {
   color: @font-color-l;
   background: @bg-color-l;
   transition: color @animats, background-color @animats;
-  line-height: 20px;
+  line-height: 1.8;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -82,20 +82,51 @@ img {
 }
 
 .yk-demo-doc {
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+  p {
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.24;
+  }
   h2 {
     font-weight: 600;
-    margin-bottom: 0.5em;
-    margin-top: 1em;
     font-size: 32px;
     line-height: 1.28;
-    padding-bottom: 20px;
   }
   h3 {
+    font-weight: 600;
     font-size: 24px;
     line-height: 1.34;
+  }
+  h4 {
     font-weight: 600;
-    margin-bottom: 0.5em;
-    margin-top: 1em;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  h5 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  > .hljs {
+    padding: @space-s @space-m;
+    margin: @space-m 0;
+  }
+
+  li {
+    margin: @space-m 0 @space-m @space-l;
+    padding-left: 0;
+    list-style-type: decimal;
+    line-height: 1.6;
+  }
+  a:not(.n-link) {
+    text-decoration: none;
+    color: #333333;
   }
   pre {
     border-radius: 8px;
@@ -117,6 +148,7 @@ img {
     overflow: hidden;
     margin-top: @space-m;
     transition: border @animats;
+    border-spacing: 0;
 
     tr {
       &:hover {
