@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Bar from '@/components/Bar.vue'
-//菜单
+import * as barData from '../router/config/bar.json'
 //制作目录数组
 let bar = [
   {
@@ -64,10 +64,12 @@ let bar = [
     ],
   },
 ]
+
+//菜单
 </script>
 <template>
   <div class="module-b">
-    <Bar :bar="bar" />
+    <Bar :bar="barData.bar" />
     <div class="main">
       <RouterView />
     </div>

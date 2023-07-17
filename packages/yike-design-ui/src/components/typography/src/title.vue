@@ -1,48 +1,28 @@
 <template>
-  <div class="yk-typography">
-    <div ref="titleRef" class="yk-title" :class="[type]">
-      <slot></slot>
-    </div>
-  </div>
+  <component :is="wrapTitle" :class="titleClass">
+    <slot></slot>
+  </component>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, watch, nextTick } from 'vue'
+import { useSlots, computed } from 'vue'
 import { titleProps } from './typography'
 import '../style'
-import { wrapperTitles } from './utils'
 const props = withDefaults(defineProps<titleProps>(), {
   level: 1,
   type: 'default',
 })
 
-const titleRef = ref<HTMLElement | undefined>()
-const originElement = ref()
+const slots = useSlots()
 
-const initWrapper = () => {
-  if (!titleRef.value) {
-    return
+const titleClass = computed(() => {
+  return {
+    [`yk-title--${props.type}`]: props.type,
+    'yk-title': true,
+    'yk-typography': true,
   }
-  titleRef.value.innerHTML = wrapperTitles(props.level, originElement.value)
-}
+})
 
-watch(
-  () => props.level,
-  (val) => {
-    nextTick(() => {
-      initWrapper()
-    })
-  },
-  {
-    deep: true,
-  },
-)
-
-onMounted(() => {
-  if (!titleRef.value) {
-    return
-  }
-  originElement.value = titleRef.value.innerHTML
-
-  initWrapper()
+const wrapTitle = computed(() => {
+  return slots && slots.length ? 'div' : `h${props.level}`
 })
 </script>

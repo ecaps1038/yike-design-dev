@@ -8,18 +8,16 @@ export const ALIGN = ['start', 'end', 'center', 'baseline'] as const;
 
 export type Align = (typeof ALIGN)[number];
 
-export type GapSize = Size | number;
+export type GapSize = Size | number | [number, number];
 
 export type SpaceProps = {
   direction?: Direction;
-  aline?: Align;
+  align?: Align;
   wrap?: boolean;
   /**
-   * horizontal gap size, several values supported: s: 4px,m:8px,l:16px,xl:24px
+   * constant: s|m|l|xl
+   * number
+   * array: [x, y]
    */
   size?: GapSize;
-  /**
-   * vertical gap size, several values supported: s: 4px,m:8px,l:16px,xl:24px
-   */
-  rsize?: GapSize;
 };

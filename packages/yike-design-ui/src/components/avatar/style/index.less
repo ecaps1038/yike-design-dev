@@ -12,6 +12,10 @@
     float: left;
   }
 
+  &-group {
+    border: 2px solid @bg-color-l;
+  }
+
   .disembark {
     width: 100%;
     height: 100%;
@@ -27,17 +31,18 @@
     }
   }
 }
-.group {
-  border: 2px solid @bg-color-l;
-}
+
 .yk-avatar-group {
   display: flex;
 
-  .more-avatar {
+  &-more {
     background-color: @pcolor;
     color: #fff;
     text-align: center;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid @bg-color-l;
     transition: border @animats;
   }

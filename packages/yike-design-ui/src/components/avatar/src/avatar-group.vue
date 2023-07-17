@@ -1,17 +1,16 @@
 <template>
-  <div class="yk-avatar-group" ref="avator">
+  <div ref="$avatarGroup" class="yk-avatar-group">
     <slot></slot>
     <div
-      class="more-avatar"
+      class="yk-avatar-group-more"
       :style="{
-        width: getSize(size) + 'px',
-        height: getSize(size) + 'px',
-        lineHeight: getSize(size) - 4 + 'px',
-        borderRadius: getShape(shape) + 'px',
-        display: overstep > 1 ? 'block' : 'none',
+        width: size,
+        height: size,
+        borderRadius: shape,
+        display: overstep > 1 ? 'flex' : 'none',
       }"
     >
-      +{{ overstep - 1 }}
+      <span>+{{ overstep - 1 }}</span>
     </div>
   </div>
 </template>
@@ -34,26 +33,27 @@ const props = withDefaults(defineProps<AvatarGroupProps>(), {
 provide('size', props.size)
 provide('shape', props.shape)
 
+const size = getSize(props.size) + 'px'
+const shape = getShape(props.shape) + 'px'
+
 //获取dome元素
-const avator = ref(null)
+const $avatarGroup = ref()
 const overstep = ref(0) //是否超出max
 //获取dome元素添加特定样式
 const addStyle = () => {
-  let boxId: any = avator.value
+  let boxId: HTMLDivElement = $avatarGroup.value
   //将获取的dome转为数组
-  let arr = Array.from(boxId.children)
 
-  arr.map((child: any, index: number) => {
-    child.style.marginRight = -getSize(props.size) / 3 + 'px'
+  Array.from(boxId.children).map((child, index) => {
+    const avatar: HTMLDivElement = child as HTMLDivElement
+    avatar.style.marginRight = -getSize(props.size) / 3 + 'px'
     if (index >= props.max) {
       overstep.value++
       //如果大于最大值隐藏
-      child.style.display = 'none'
+      avatar.style.display = 'none'
     }
   })
 }
 
-onMounted(() => {
-  addStyle()
-})
+onMounted(addStyle)
 </script>

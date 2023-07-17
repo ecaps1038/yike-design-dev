@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   position: relative;
-  font-weight: normal;
+  // font-weight: normal;
   border-spacing: 0;
 }
 
@@ -13,7 +13,7 @@ body {
   color: @font-color-l;
   background: @bg-color-l;
   transition: color @animats, background-color @animats;
-  line-height: 20px;
+  line-height: 1.8;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -148,6 +148,7 @@ img {
     overflow: hidden;
     margin-top: @space-m;
     transition: border @animats;
+    border-spacing: 0;
 
     tr {
       &:hover {

@@ -2,32 +2,26 @@
 
 :::snippet
 基本用法
-Space 组件以横向排列间距为基本用法
+
 <SpacePrimary/>
 :::
 
 :::snippet
-垂直 direction
-Space 组件可以设置垂直方向排列的间距。
+间距尺寸 size
+内置 4 个尺寸，分别是 `s - 4px`，`m - 8px`，`l - 16px`，`xl -24px`，默认为 `l`，为数字或枚举值时，是水平和垂直间距；为数组时，是 `[水平间距, 垂直间距]`。
+<SpaceSize/>
+:::
+
+:::snippet
+对齐 align
+内置 4 种对齐方式，分别为 `'start'｜'center'｜'end'｜'baseline' `，在水平模式下默认为 start。
+<SpaceAlign/>
+:::
+
+:::snippet
+方向
+可以设置横排或竖排，默认横排：`'vertical'｜'horizontal'`
 <SpaceVertical/>
-:::
-
-:::snippet
-水平间距尺寸 size
-内置 4 个尺寸，分别是 `s - 4px` , `m - 8px` , `l - 16px` , `xl -24px` ,默认为 `m` ,也可以输入数字自定义尺寸
-<SpaceHorizontalSize/>
-:::
-
-:::snippet
-垂直间距尺寸 rsize
-内置 4 个尺寸，分别是 `s - 4px` , `m - 8px` , `l - 16px` , `xl -24px` ,默认为 `m` ,也可以输入数字自定义尺寸
-<SpaceVerticalSize/>
-:::
-
-:::snippet
-对齐 aline
-内置 4 种对齐方式，分别为 start center end baseline，在水平模式下默认为 start。
-<SpaceAline/>
 :::
 
 :::snippet
@@ -36,14 +30,12 @@ Space 组件可以设置垂直方向排列的间距。
 <SpaceWrap/>
 :::
 
-
 ### API
 
-| 参数      | 描述     | 类型                                       | 默认值       |
-| --------- | -------- | ---------------------------------------- | ------------ |
-| size      | 水平尺寸 | 's' ｜ 'm' ｜'l' ｜'xl' ｜ number          | l            |
-| rsize     | 垂直尺寸 | 's' ｜ 'm' ｜'l' ｜'xl' ｜ number          | l            |
-| aline     | 对齐     | 'start' ｜ 'center' ｜ 'end' ｜ 'baseline' | 'start'      |     | 600 |
-| warp      | 换行     | boolean                                    | true         |
-| direction | 方向     | 'vertical' ｜ 'horizontal'                 | 'horizontal' |
-| rate      | 宽度占比 | number                                     | 100          |
+| 参数        | 描述     | 类型                                             | 默认值         |
+| ----------- | -------- | ------------------------------------------------ | -------------- |
+| `size`      | 间距尺寸 | ` 's'｜'m'｜'l'｜'xl'｜number｜[number, number]` | `'l'`          |
+| `align`     | 对齐     | `'start'｜'center'｜'end'｜'baseline'`           | `'start'`      |
+| `wrap`      | 换行     | `boolean`                                        | `true`         |
+| `direction` | 方向     | `'vertical'｜'horizontal'`                       | `'horizontal'` |
+| `rate`      | 宽度占比 | `number`                                         | `100`          |
