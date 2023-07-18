@@ -1,5 +1,5 @@
 <template>
-  <button :class="nextCls">
+  <button :class="nextCls" @click="handleClick">
     <yk-icon name="yk-xiangyou"></yk-icon>
   </button>
 </template>
@@ -20,9 +20,15 @@ const emits = defineEmits<NextEmits>()
 const namespace = inject('namespace', 'pagination')
 const nsNext = useNamespace(namespace)
 
+const handleClick = () => {
+  if (!props.disabled) {
+    emits('next')
+  }
+}
+
 const nextCls = computed(() => [
   nsNext.b('next'),
   nsNext.bm('next', props.size),
-  props.disabled ? 'disabled' : '',
+  nsNext.is('disabled', props.disabled),
 ])
 </script>

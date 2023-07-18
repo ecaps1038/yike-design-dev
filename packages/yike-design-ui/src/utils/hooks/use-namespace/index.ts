@@ -59,6 +59,14 @@ export const useNamespace = (block: string) => {
       ? toBEM(defaultNamespace, block, blockSuffix, element, modifier)
       : '';
 
+  const is: {
+    (name: string, state: boolean | undefined): string;
+    (name: string): string;
+  } = (name: string, ...args: [boolean | undefined] | []) => {
+    const state = args.length >= 1 ? args[0]! : true;
+    return name && state ? `is-${name}` : '';
+  };
+
   return {
     b,
     e,
@@ -67,5 +75,6 @@ export const useNamespace = (block: string) => {
     bm,
     em,
     bem,
+    is,
   };
 };

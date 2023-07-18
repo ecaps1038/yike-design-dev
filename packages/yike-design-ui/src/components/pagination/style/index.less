@@ -24,10 +24,9 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
 
-    &__number,
-    &__quick-prev,
-    &__quick-next {
+    &__item {
       background-color: @pagination-color-bg;
       text-align: center;
       vertical-align: middle;
@@ -35,7 +34,8 @@
       display: inline-block;
       color: @gray;
 
-      &.active {
+      &.is-active {
+        color: #fff;
         background-color: @pagination-color-bg__active;
       }
     }
@@ -43,13 +43,17 @@
 
   &-prev,
   &-next,
-  &-pager__number,
-  &__quick-prev,
-  &__quick-next {
+  &-pager__item {
     cursor: pointer;
 
-    &:not(.active):hover {
+    &:not(.is-active):hover {
       background-color: @pagination-color-bg__hover;
+    }
+
+    &.is-disabled,
+    &:is(.is-disabled):hover {
+      background-color: @pagination-color-bg__disabled;
+      cursor: not-allowed;
     }
 
     &--s {
@@ -77,6 +81,65 @@
       line-height: 48px;
       border-radius: @radius-m;
       font-size: @size-m;
+    }
+  }
+
+  &-jumper {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+
+    &__prepend {
+      white-space: nowrap;
+      color: @gray;
+      margin-right: 8px;
+    }
+
+    &__input-wrapper {
+      padding: 0 8px;
+      border-radius: @radius-m;
+      background-color: @pagination-color-bg;
+
+      input[type='number'] {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: @gray;
+        text-align: center;
+        vertical-align: middle;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          appearance: none;
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      &--s {
+        height: 24px;
+        width: 36px;
+        border-radius: @radius-s;
+        font-size: @size-ss;
+      }
+      &--m {
+        height: 32px;
+        width: 44px;
+        border-radius: @radius-s;
+      }
+      &--l {
+        height: 36px;
+        width: 48px;
+        border-radius: @radius-m;
+      }
+      &--xl {
+        height: 48px;
+        width: 60px;
+        border-radius: @radius-m;
+        font-size: @size-m;
+      }
     }
   }
 }

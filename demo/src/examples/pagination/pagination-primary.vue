@@ -1,3 +1,3 @@
 <template>
-  <yk-pagination :total="20"></yk-pagination>
+  <yk-pagination :total="5"></yk-pagination>
 </template>

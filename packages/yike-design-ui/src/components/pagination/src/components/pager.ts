@@ -1,24 +1,15 @@
-import type { Size } from '../../../../utils/constant';
+import { PaginationProps, defaultPaginationProps } from '../pagination';
 
-type PagerProps = {
-  current: number;
-  disabled: boolean;
-  pagerCount: number;
-  total: number;
-  size: Size;
-};
+type PagerProps = Pick<
+  PaginationProps,
+  'current' | 'disabled' | 'pagerCount' | 'total' | 'size'
+>;
 
 type PagerEmits = {
-  (e: 'click'): void;
+  (e: 'update:current', current: number): void;
 };
 
-const defaultPagerProps: PagerProps = {
-  current: 1,
-  disabled: false,
-  pagerCount: 7,
-  total: 0,
-  size: 'l',
-};
+const defaultPagerProps: PagerProps = defaultPaginationProps;
 
 export type { PagerProps, PagerEmits };
 export { defaultPagerProps };

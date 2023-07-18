@@ -1,86 +1,113 @@
 <template>
-  <ul :class="nsPager.b('pager')" @click="onPagerClick">
-    <li :class="[...pagerCls, firstPagerIsActive]" v-if="total > 0">1</li>
-
+  <ul :class="nsPager.b()" @click="onPagerClick">
     <li
-      :class="[
-        nsPager.be('pager', 'quick-prev'),
-        nsPager.bem('pager', 'quick-prev', size),
-      ]"
-      v-if="showPrevMore"
+      v-if="total > 0"
+      :class="[...pagerCls, nsPager.is('active', current === 1)]"
     >
-      <yk-icon name="yk-gengduo"></yk-icon>
+      1
     </li>
+
+    <li :class="pagerCls" class="prev-more" v-if="showPrevMore">...</li>
 
     <li
       v-for="pager in pagers"
       :key="pager"
-      :class="[...pagerCls, pager === current ? 'active' : '']"
+      :class="[...pagerCls, nsPager.is('active', current === pager)]"
     >
       {{ pager }}
     </li>
 
-    <li
-      :class="[
-        nsPager.be('pager', 'quick-next'),
-        nsPager.bem('pager', 'quick-next', size),
-      ]"
-      v-if="showNextMore"
-    >
-      <yk-icon name="yk-gengduo"></yk-icon>
-    </li>
+    <li :class="pagerCls" class="next-more" v-if="showNextMore">...</li>
 
-    <li :class="[...pagerCls, lastPagerIsActive]" v-if="total > 1">
+    <li
+      v-if="total > 1"
+      :class="[...pagerCls, nsPager.is('active', current === total)]"
+    >
       {{ total }}
     </li>
   </ul>
 </template>
 
 <script lang="ts" setup>
-import { computed, inject } from 'vue'
+import { computed, inject, toRefs } from 'vue'
 import { PagerProps, PagerEmits, defaultPagerProps } from './pager'
 import { useNamespace } from '../../../../utils/hooks'
-
-import YkIcon from '../../../icon'
 
 defineOptions({
   name: 'YkPaginationPager',
 })
 
 const namespace = inject('namespace', 'pagination')
-const nsPager = useNamespace(namespace)
+const nsPager = useNamespace(`${namespace}-pager`)
 
 const props = withDefaults(defineProps<PagerProps>(), defaultPagerProps)
 const emits = defineEmits<PagerEmits>()
 
-const pagerCls = computed(() => [
-  nsPager.be('pager', 'number'),
-  nsPager.bem('pager', 'number', props.size),
-  props.disabled ? 'disabled' : '',
-  //nsPager.bem('pager', 'number', 'active'),
-])
-const firstPagerIsActive = computed(() => (props.current === 1 ? 'active' : ''))
-const lastPagerIsActive = computed(() =>
-  props.current === props.total ? 'active' : '',
-)
+const { current } = toRefs(props)
 
-const pagerStart = computed(() => 1)
+const pagerCls = computed(() => [
+  nsPager.e('item'),
+  nsPager.em('item', props.size),
+])
+
 const pagerSize = computed(() =>
-  props.total > props.pagerCount ? props.pagerCount - 2 : props.total,
+  props.total > props.pagerCount ? props.pagerCount - 2 : props.total - 2,
+)
+const pagerMidIndex = computed(() => Math.floor(pagerSize.value / 2))
+const showPrevMoreThreshold = computed(() => 2 + pagerMidIndex.value)
+const showNextMoreThreshold = computed(
+  () => props.total - pagerMidIndex.value - 1,
 )
 const pagers = computed(() => {
   const array: number[] = []
-  for (let i = 0; i < pagerSize.value; i++) {
-    array.push(pagerStart.value + i + 1)
+  if (current.value <= showPrevMoreThreshold.value) {
+    for (let i = 0; i < pagerSize.value; i++) {
+      array.push(i + 2)
+    }
+  } else if (
+    current.value > showPrevMoreThreshold.value &&
+    current.value < showNextMoreThreshold.value
+  ) {
+    let start: number
+    if (pagerSize.value % 2 === 0) {
+      start = current.value - pagerSize.value / 2 - 1
+    } else {
+      start = current.value - (pagerSize.value - 1) / 2
+    }
+    for (let i = 0; i < pagerSize.value; i++) {
+      array.push(start + i)
+    }
+  } else {
+    for (let i = 0; i < pagerSize.value; i++) {
+      array.push(props.total - (i + 1))
+    }
+    array.reverse()
   }
   return array
 })
 
-const showPrevMore = computed(() => false)
-const showNextMore = computed(() => props.total > props.pagerCount)
+const showPrevMore = computed(() =>
+  pagerSize.value < props.pagerCount - 2 || props.total === props.pagerCount
+    ? false
+    : current.value > showPrevMoreThreshold.value,
+)
+const showNextMore = computed(() =>
+  pagerSize.value < props.pagerCount - 2 || props.total === props.pagerCount
+    ? false
+    : current.value < showNextMoreThreshold.value,
+)
 
 function onPagerClick(ev: UIEvent) {
   const target = ev.target as HTMLElement
+  if (target.tagName === 'LI') {
+    const { classList } = target
+    if (classList.contains('prev-more')) {
+    } else if (classList.contains('next-more')) {
+    } else {
+      const page = Number(target.innerText)
+      emits('update:current', page)
+    }
+  }
 }
 </script>
 

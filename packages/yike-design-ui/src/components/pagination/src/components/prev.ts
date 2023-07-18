@@ -1,17 +1,14 @@
-import type { Size } from '../../../../utils/constant';
+import { PaginationProps, defaultPaginationProps } from '../pagination';
 
-type PrevProps = {
-  disabled: boolean;
-  size: Size;
-};
+type PrevProps = Pick<PaginationProps, 'disabled' | 'size'>;
 
 type PrevEmits = {
-  (e: 'click'): void;
+  (e: 'prev'): void;
 };
 
 const defaultPrevProps: PrevProps = {
-  disabled: false,
-  size: 'l',
+  disabled: defaultPaginationProps.disabled,
+  size: defaultPaginationProps.size,
 };
 
 export { defaultPrevProps };

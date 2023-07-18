@@ -2,25 +2,28 @@ import type { Size } from '../../../utils/constant';
 
 type Props = {
   current: number;
-  defaultPageSize: number;
+  disabled: boolean;
+  pagerCount: number;
   simple: boolean;
+  showJumper: boolean;
   size: Size;
   total: number;
 };
-type PaginationProps = Partial<Props>;
-type PaginationEmits = {
-  (e: 'update:current', value: number): void;
-};
 
-const defaultProps: Props = {
+const defaultPaginationProps: Props = {
   current: 1,
-  defaultPageSize: 10,
+  disabled: false,
+  pagerCount: 7,
   simple: false,
+  showJumper: false,
   size: 'l',
   total: 0,
 };
 
-const paginationClassName = 'yk-pagination';
+type PaginationEmits = {
+  (e: 'update:current', value: number): void;
+};
+type PaginationProps = Partial<Props>;
 
-export { defaultProps, paginationClassName };
 export type { PaginationProps, PaginationEmits };
+export { defaultPaginationProps };
