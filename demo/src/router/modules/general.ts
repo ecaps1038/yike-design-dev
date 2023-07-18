@@ -33,6 +33,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'upload',
     component: () => import('@/examples/upload/doc.md'),
   },
+  {
+    path: 'radio',
+    component: () => import('@/examples/radio/doc.md'),
+  },
 ];
 
 export default generalRoutes;

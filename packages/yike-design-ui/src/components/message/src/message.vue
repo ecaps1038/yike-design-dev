@@ -1,6 +1,12 @@
 <template>
-  <transition name="down" @before-leave="close" @after-leave="destroy">
-    <div v-if="isShow" class="yk-message" :style="Style">
+  <transition
+    name="down"
+    mode="out-in"
+    appear
+    @before-leave="close"
+    @after-leave="destroy"
+  >
+    <div v-if="isShow" class="yk-message move" :style="Style">
       <yk-icon
         :name="statusIconName"
         :class="`icon-${props.type} message-icon`"

@@ -15,6 +15,12 @@
 :::
 
 :::snippet
+文字头像
+头像可以设置为文字类型。
+<AvatarText/>
+:::
+
+:::snippet
 形状 shape
 头像默认为圆形，可以设置为圆角方形。
 <AvatarShape/>
