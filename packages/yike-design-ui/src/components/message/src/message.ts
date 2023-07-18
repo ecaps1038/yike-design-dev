@@ -12,7 +12,7 @@ export type MessageProps = {
 
 export interface MessageOptions extends MessageProps {
   id?: number;
-  appendTo?: HTMLElement | string;
+  appendTo?: HTMLElement | string | Element;
 }
 
 export interface MessageHandler {

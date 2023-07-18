@@ -1,3 +1,10 @@
+.yk-message-list {
+  position: fixed;
+  z-index: 2002;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .yk-message-container {
   display: flex;
   flex-direction: row;
@@ -5,22 +12,18 @@
   justify-content: center;
 }
 .yk-message {
-  position: fixed;
-  top: @space-l;
   display: flex;
   justify-content: center;
-  .message-container {
-    padding: @space-s 12px;
-    color: @font-color-l;
-    background: @white;
-    border: 1px solid @bg-color-ss;
-    box-shadow: @shadow-m;
-    border-radius: @radius-m;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+  padding: @space-s 12px;
+  color: @font-color-l;
+  background: @white;
+  border: 1px solid @bg-color-ss;
+  box-shadow: @shadow-m;
+  border-radius: @radius-m;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   i {
     margin-right: 6px;
     vertical-align: middle;
