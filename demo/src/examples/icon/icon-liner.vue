@@ -14,7 +14,6 @@
 import { copyText } from '@/utils/tools'
 import { getCurrentInstance } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
-
 const onCopy = (iconName: string) => {
   copyText(iconName)
   proxy.$message({ type: 'success', message: '已复制' })

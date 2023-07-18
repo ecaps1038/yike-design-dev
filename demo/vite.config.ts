@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import createVuePlugin from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import vitePluginMarkdown from './plugins/vite-plugin-md';
 import Components from 'unplugin-vue-components/vite';
 import path from 'path';
@@ -15,6 +16,7 @@ export default defineConfig({
   plugins: [
     vitePluginMarkdown(),
     vuePlugin,
+    vueJsx() as any,
     Components({
       resolvers: [
         (componentName) => {
