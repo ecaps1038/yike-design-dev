@@ -29,6 +29,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'avatar',
     component: () => import('@/examples/avatar/doc.md'),
   },
+  {
+    path: 'radio',
+    component: () => import('@/examples/radio/doc.md'),
+  },
 ];
 
 export default generalRoutes;
