@@ -12,14 +12,10 @@
   </TransitionGroup>
 </template>
 <script lang="ts" setup>
-import { MessageOptions } from './message'
-import { PropType } from 'vue'
+import { MessageGroupProps } from './message'
 import Message from './message.vue'
-const props = defineProps({
-  messages: {
-    type: Array as PropType<MessageOptions[]>,
-    default: () => [],
-  },
+const props = withDefaults(defineProps<MessageGroupProps>(), {
+  messages: () => [],
 })
 
 const emits = defineEmits(['close', 'destroy'])
