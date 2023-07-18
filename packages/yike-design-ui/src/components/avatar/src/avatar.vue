@@ -35,7 +35,6 @@ const style = computed<CSSProperties>(() => {
     width: finalSize + 'px',
     height: finalSize + 'px',
     borderRadius: getShape(shape || props.shape) + 'px',
-    '--size': finalSize,
   }
 })
 
@@ -45,7 +44,7 @@ onMounted(() => {
   const textWidth = $text.value.clientWidth
   const wrapperWidth = getSize(size || props.size)
   if (textWidth > wrapperWidth) {
-    $text.value.style.transform = `scale(${wrapperWidth / textWidth})`
+    $text.value.style.transform = `scale(${wrapperWidth / textWidth - 0.1})`
   }
 })
 </script>
