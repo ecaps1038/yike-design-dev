@@ -34,6 +34,6 @@ const handleLoading = () => {
   setTimeout(() => {
     loading.value = false
     messageInstance.close()
-  }, 600)
+  }, 3000)
 }
 </script>
