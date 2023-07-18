@@ -1,27 +1,19 @@
 <template>
-  <div
-    class="yk-avatar"
-    :class="{ group: nsize }"
-    :style="{
-      width: getSize(nowSize) + 'px',
-      height: getSize(nowSize) + 'px',
-      borderRadius: getShape(nowShape) + 'px',
-    }"
-  >
+  <div :class="['yk-avatar', size && 'yk-avatar-group']" :style="style">
     <slot></slot>
-    <div class="disembark" v-show="!imgUrl">
+    <div v-show="!imgUrl" class="disembark">
       <yk-icon :name="icon"></yk-icon>
     </div>
-    <img :src="imgUrl" v-show="imgUrl" />
+    <img v-show="imgUrl" :src="imgUrl" />
   </div>
 </template>
 <script setup lang="ts">
 import { YkIcon } from '../../../index'
-import { ref, inject } from 'vue'
-import { getSize, getShape } from './util'
+import { inject, computed, CSSProperties } from 'vue'
 import { AvatarProps } from './avatar'
 // FIXME 之后不需要在这边引样式
 import '../style'
+import { getShape, getSize } from './util'
 
 defineOptions({
   name: 'YkAvatar',
@@ -30,23 +22,17 @@ defineOptions({
 const props = withDefaults(defineProps<AvatarProps>(), {
   shape: 'circle',
   size: 40,
-  icon: 'yk-touxiang1',
 })
 
-//需要成组，所以这里需要接受组的变量
-const nsize = inject('size')
-const nshape = inject('shape')
-let nowSize = ref<any>()
-let nowShape = ref<any>()
+const size = inject<AvatarProps['size']>('size', undefined)
+const shape = inject<AvatarProps['shape']>('shape', undefined)
 
-if (nsize) {
-  nowSize.value = nsize
-} else {
-  nowSize.value = props.size
-}
-if (nshape) {
-  nowShape.value = nshape
-} else {
-  nowShape.value = props.shape
-}
+const style = computed<CSSProperties>(() => {
+  const finalSize = getSize(size || props.size) + 'px'
+  return {
+    width: finalSize,
+    height: finalSize,
+    borderRadius: getShape(shape || props.shape) + 'px',
+  }
+})
 </script>

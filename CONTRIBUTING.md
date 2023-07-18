@@ -1,33 +1,39 @@
 我们重视每位参与者的贡献，感谢每一行代码的产生
 
 ### Run it
----
+
 要运行组件库，请执行以下步骤：
-1. 推荐先fork项目并基于此仓库进行操作
-2. 克隆fork后的项目到本地 
-`git clone https://github.com/xxxxxx/yike-design-dev.git`
-3. 切换至monorepo-dev分支 `git checkout monorepo-dev`
+
+1. 推荐先 fork 项目并基于此仓库进行操作
+2. 克隆 fork 后的项目到本地
+   `git clone https://github.com/xxxxxx/yike-design-dev.git`
+3. 切换至 monorepo-dev 分支 `git checkout monorepo-dev`
 4. 安装依赖：`pnpm i`
-5. 启动开发服务器：`npm run dev:demo` 
+5. 启动开发服务器：`npm run dev:demo`
 6. 在浏览器中访问：`http://localhost:5173`
 
 ### 如何贡献
----
+
 为了维护组件库代码提交规范性，项目前期(第一版正式发包前)推荐采用以下流程提交代码
-1. fork项目 
-前往[项目主页](https://github.com/ecaps1038/yike-design-dev.git,"github主页")fork工程至自己的git仓库,并基于此git仓库维护代码
+
+1. fork 项目
+   前往[项目主页](https://github.com/ecaps1038/yike-design-dev.git,"github主页")fork 工程至自己的 git 仓库,并基于此 git 仓库维护代码
 2. 添加主仓库为远程仓库之一
-`git remote add upstream https://github.com/ecaps1038/yike-design-dev.git`
+   `git remote add upstream https://github.com/ecaps1038/yike-design-dev.git`
 3. 每当你准备开始一个新的功能开发或提交 PR 前，请先从主仓库拉取最新的代码并合并到仓库的对应分支
-``` shell
+
+```shell
 git checkout -b monorepo-dev
 git fetch upstream
 git merge upstream/monorepo-dev
 ```
+
 4. 创建需求分支
-* ⚠️  对于每次代码提交需求，本地需创建一个新的分支，请尽量避免在同一个分支上处理多个需求
-* ⚠️  根据你需要开发的新功能，推荐采用以下分支命名规范
-* ⚠️  分支名称由三部分构成 `${type}/${component}/${feat}`
+
+- ⚠️ 对于每次代码提交需求，本地需创建一个新的分支，请尽量避免在同一个分支上处理多个需求
+- ⚠️ 根据你需要开发的新功能，推荐采用以下分支命名规范
+- ⚠️ 分支名称由三部分构成 `${type}/${component}/${feat}`
+
 ```
 其中，type表示该分支类型,有以下选项
 
@@ -39,6 +45,7 @@ docs:文档修改分支
 
 refactor:重构分支
 ```
+
 ```
 component为你需要修改的组件
 
@@ -46,34 +53,42 @@ component为你需要修改的组件
 
 若需要修改脚手架能力，此处应为base
 ```
+
 ```
 feat为你需要具体修改的内容
 此处定义根据功能自由命名，命名采用短横线命名法
 ```
+
 以下是具体实例:
+
 - `feature/base/add-markdown-pure`
 - `feature/button/add-style`
 - `fix/icon/alignment-issue`
 - `docs/upload/add-picture-demo`
 - `refactor/base/refactor-router`
-5. 在编写完代码后，在确保与目标分支不存在冲突的前提下可以将该功能分支提交PR到主仓库的对应分支（目前主要的开发分支为monorepo-dev分支）
-6. PR将由具备权限的贡献者CR后进行merge,若提交的功能影响面较广，CR人员应当及时同其他成员共同参与讨论和检验
 
-Commit 规范
----
-同样的，我们推荐使用以下commmit说明，commmit包含三部分内容 与分支规范类似
+5. 使用指令 `npm run new component-name 组件名` 如 npm run new checkbox 复选框 即可自动创建组件目录及文件
+6. 在编写完代码后，在确保与目标分支不存在冲突的前提下可以将该功能分支提交 PR 到主仓库的对应分支（目前主要的开发分支为 monorepo-dev 分支）
+7. PR 将由具备权限的贡献者 CR 后进行 merge,若提交的功能影响面较广，CR 人员应当及时同其他成员共同参与讨论和检验
+
+#### Commit 规范
+
+同样的，我们推荐使用以下 commmit 说明，commmit 包含三部分内容 与分支规范类似
 
 `${type}(${component}): ${commit-word}`
 
-另外，feature应采用缩写后的"feat"
+另外，feature 应采用缩写后的"feat"
 以下是具体实例，当然，中文的提交说明目前也是可接受的 !
-- `feat(button): add styles for button component`
-- `fix(icon): resolve alignment issue in icon component`
-- `docs(upload): update README file`
-- `refactor(base): refactor router module`
+
+`feat(button): add styles for button component`
+
+`fix(icon): resolve alignment issue in icon component`
+
+`docs(upload): update README file`
+
+`refactor(base): refactor router module`
 
 目录结构
----
 
 ```
 |- demo/                  # 演示样例web工程
@@ -106,14 +121,14 @@ Commit 规范
 |- ...
 ```
 
-公共样式、方法及类型
----
+### 公共样式、方法及类型
+
 - 公共样式
-Yike-Design 设计稿
+  Yike-Design 设计稿
 
 https://codesign.qq.com/s/6W3G0m4m8q9lOwL
 
-为保持组件库样式风格上的统一，请遵循YIke设计稿中的样式进行开发，并推荐采用base.less中提供的各通用样式如
+为保持组件库样式风格上的统一，请遵循 YIke 设计稿中的样式进行开发，并推荐采用 base.less 中提供的各通用样式如
 
 ```
 @pcolor: #2b5aed; // 全局主色
@@ -124,14 +139,15 @@ https://codesign.qq.com/s/6W3G0m4m8q9lOwL
 @gray: #1e2025;
 ```
 
-- 公共类型 
-- 目前utils下方已有tools.ts 提供公共方法 constance.ts 提供公共类型
+- 公共类型
+- 目前 utils 下方已有 tools.ts 提供公共方法 constance.ts 提供公共类型
 
 ⚠️ 文档开发相关
----
-#### 文档目录结构
+
+### 文档目录结构
 
 文档目录应该按照以下结构进行组织：
+
 ```
 - /demo/src/examples/button: 根目录，包含组件示例和文档
   |- /button: 按钮组件目录
@@ -149,7 +165,9 @@ https://codesign.qq.com/s/6W3G0m4m8q9lOwL
 ⚠️ 每个组件目录下都应该包含一个 doc.md 文件和若干示例文件
 
 #### 组件文档 doc.md
+
 组件文档使用 Markdown 格式编写，提供关于组件的说明、用法、API 等相关信息。以下是一个组件文档的基本结构示例：
+
 ```
 ## yk-button 按钮  （文档首页标题）
 
@@ -160,13 +178,13 @@ https://codesign.qq.com/s/6W3G0m4m8q9lOwL
 <ButtonPrimary/>
 :::
 
-:::snippet 
+:::snippet
 按钮尺寸 size
 按钮分为：`s`、`m`、`l`、`xl` 四种尺寸。高度分别为：`24px`、`32px`、`36px`、`48px`。默认尺寸为 l。
 <ButtonSize/>
 :::
 
-:::snippet 
+:::snippet
 title
 desc
 <DemoFileName/>
@@ -182,7 +200,7 @@ desc
 | type | 按钮的类型   | 'primary'或'secondary'或'outline'   | primary |
 | 单元格信息 | 单元格信息 | 单元格信息 | 单元格信息 |
 | 单元格信息 | 单元格信息 | 单元格信息 | 单元格信息 |
-```
+
 - 每个demo对应信息采用 `:::snippet:::` 标志位进行维护
 - 单个demo在doc.md中维护的信息有
   - Title: demo标题，说明该组组件demo共性
@@ -192,49 +210,27 @@ desc
 
 
 #### 7.10日新增 :::pure:::  标记符号，该标记位将直接渲染内部demo组件并自动引入相关依赖，具体用例如下
-```
+
+
 ### 线性图标展示
+
 复制对应图标下的名称获取该图标。
 :::pure
 <IconPrimary/>
 :::
-```
-  
 
-⚠️ 组件开发目录结构标准
----
 ```
-- avatar: 单个组件的开发目录
+
+#### ⚠️ 组件开发目录结构标准
+
+```
+|- avatar: 单个组件的开发目录
   |- src: 源代码文件夹
     |- util.ts: 实用工具函数文件
-    |- avatar.ts: 组件types、interface、props文件
+    |- avatar.ts: 组件 types、interface、props 文件
     |- avatar.vue: 组件模板文件
   |- style: 样式文件夹
     |- index.less: 主样式文件
     |- index.ts: 样式导入文件
   |- index.ts: 组件入口文件
 ```
-
-以下是建议的代码风格和规范,具体可参照avatar
-- 组件props 在avatar.ts中定义类型并在.vue文件中采用withDefaults定义默认值
-
-``` javascript
-//src/avatar.vue
-export type AvatarProps = {
-  shape?: 'circle' | 'square';
-  size?: number | string;
-  icon?: string;
-  imgUrl: string;
-}
-
-//
-const props = withDefaults(defineProps<AvatarProps>(), {
-  shape: 'circle',
-  size: 40,
-  icon: 'yk-touxiang1',
-})
-```
-
-
-
-

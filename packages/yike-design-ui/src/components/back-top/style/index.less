@@ -1,0 +1,39 @@
+.yk-backtop {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+
+  .yk-backtop__icon {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem;
+    color: #fff;
+    background-color: @pcolor;
+    border-radius: 25%;
+    box-shadow: @shadow-s;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.move-enter-active,
+.move-leave-active {
+  transition: all 0.5s ease;
+}
+
+.move-enter-from,
+.move-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}

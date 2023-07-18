@@ -1,25 +1,25 @@
-// 动画效果
 .down {
+  &-move,
   &-enter {
     &-from {
-      transform: translateY(-30px);
-      opacity: 0;
+      // opacity: 0;
+      // transform: translateY(-100%);
     }
 
     &-active {
-      transition: all 0.3s;
+      transition: all 0.5s;
     }
 
     &-to {
-      transform: translateY(0px);
       opacity: 1;
+      // transform: translateY(0);
     }
   }
 
   &-leave {
     &-from {
-      transform: translateY(0px);
       opacity: 1;
+      transform: translateY(0);
     }
 
     &-active {
@@ -27,8 +27,8 @@
     }
 
     &-to {
-      transform: translateY(-30px);
       opacity: 0;
+      transform: translateY(-100%);
     }
   }
 }

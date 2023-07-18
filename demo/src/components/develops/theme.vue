@@ -1,7 +1,7 @@
 <template>
   <div class="module">
     <div class="top-title">
-      <Title>定制主题</Title>
+      <yk-title>定制主题</yk-title>
       <yk-paragraph type="secondary">
         Yike Design
         从本人一个笔记项目中提炼，采用蓝色主题，可符合一般开发使用，但这套组件库就思想就是为了适应设计任何想法而设计，改它就得了。
@@ -18,7 +18,7 @@
       文件。
     </yk-paragraph>
     <yk-paragraph type="secondary">
-      <yk-text b>全局引入：</yk-text>
+      <yk-text strong>全局引入：</yk-text>
       文件在
       <yk-text type="primary">yike-design</yk-text>
       ->
@@ -28,12 +28,12 @@
       ->
       <yk-text type="primary">index.less</yk-text>
     </yk-paragraph>
-    <yk-text b>Vite引入方法：</yk-text>
+    <yk-text strong>Vite引入方法：</yk-text>
     <yk-text type="secondary">在</yk-text>
     <yk-text type="primary">vite.config.ts</yk-text>
     <yk-text type="secondary">文件内加入：</yk-text>
     <codesVue :code="datas[0]" />
-    <yk-text b>vue-cli引入方法：</yk-text>
+    <yk-text strong>vue-cli引入方法：</yk-text>
     <yk-text type="secondary">在</yk-text>
     <yk-text type="primary">vue.config.ts</yk-text>
     <yk-text type="secondary">文件内加入：</yk-text>
