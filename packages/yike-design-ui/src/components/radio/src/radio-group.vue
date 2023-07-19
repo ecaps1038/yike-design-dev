@@ -8,12 +8,13 @@
 import { computed, nextTick, provide, reactive, toRefs } from 'vue'
 import { RadioGroupProps, radioGroupEmits } from './radio-group'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT, provideKey } from './constants'
+import '../style'
 
 const emits = defineEmits(radioGroupEmits)
-
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   direction: 'horizontal',
 })
+
 const ykRadioGroupCls = computed(() => {
   return {
     'yk-radio-group': true,
@@ -33,13 +34,3 @@ provide(
   }),
 )
 </script>
-
-<style lang="less" scoped>
-.yk-radio-group {
-  &.yk-radio-vertical {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-</style>
