@@ -17,15 +17,15 @@ const goPage = (e: string): void => {
       <div class="logo">
         <yk-icon name="yike-yikedesign" class="bg-logo"></yk-icon>
         <p class="title">YIKE DESIGN</p>
-        <p class="slogn">包容万物，从源头出发，一切从简</p>
+        <p class="slogan">包容万物，从源头出发，一切从简</p>
       </div>
       <yk-space class="bt">
-        <yk-button @click="goPage('develop')" size="l">开始使用</yk-button>
-        <yk-button type="secondary" @click="goPage('design')" size="l">
+        <yk-button size="l" @click="goPage('develop')">开始使用</yk-button>
+        <yk-button type="secondary" size="l" @click="goPage('design')">
           设计文件
         </yk-button>
       </yk-space>
-      <yk-icon name="yk-yike1" @click="goPage('hh')" class="sign"></yk-icon>
+      <yk-icon name="yk-yike1" class="sign" @click="goPage('hh')"></yk-icon>
     </div>
   </main>
 </template>
@@ -54,7 +54,7 @@ const goPage = (e: string): void => {
         top: 0;
         transition: color @animats;
       }
-      .slogn {
+      .slogan {
         text-align: center;
         font-size: 16px;
         font-weight: 600;
