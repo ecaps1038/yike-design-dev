@@ -4,16 +4,13 @@
     <div
       v-show="visible"
       class="yk-backtop"
-      :style="{
-        right: right + 'px',
-        bottom: bottom + 'px',
-      }"
+      :style="backTopStyle"
       @click="clickIt"
     >
       <slot>
         <div
           class="yk-backtop-container"
-          :class="{ secondary: type === 'secondary' }"
+          :class="{ secondary: theme === 'secondary' }"
         >
           <yk-icon :name="icon" class="yk-backtop__icon" />
         </div>
@@ -24,9 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import '../style'
 import { BackTopProps } from './back-top'
+import { transformPxToNumber } from '../../../utils/tools'
 
 defineOptions({
   name: 'YkBackTop',
@@ -34,24 +32,35 @@ defineOptions({
 
 const props = withDefaults(defineProps<BackTopProps>(), {
   animation: 'fade',
-  type: 'primary',
-  right: '50',
-  bottom: '50',
-  visibilityHeight: '200',
+  theme: 'primary',
+  right: '50px',
+  bottom: '50px',
+  visibleHeight: '200px',
   icon: 'yk-top',
+  behavior: 'smooth',
 })
 
-const typeOfTest = (type: string) => (thing: unknown) => typeof thing === type
-const isString = typeOfTest('string')
 const getTarget = (target: string | HTMLElement | undefined) => {
-  if (isString(target)) {
-    return document.querySelector(target as string) as HTMLElement
+  if (typeof target === 'string') {
+    const targetEl = document.querySelector(target) as HTMLElement
+    if (!targetEl)
+      throw new Error(`yk-back-top target props is not exist: ${props.target}`)
+    return targetEl
   }
   return target
 }
 
 const visible = ref<boolean>(false)
-const el: Ref = ref<HTMLElement | undefined>()
+const el = ref<HTMLElement | undefined>()
+
+const backTopStyle = computed(() => {
+  const right = transformPxToNumber(props.right)
+  const bottom = transformPxToNumber(props.bottom)
+  return {
+    right: `${right}px`,
+    bottom: `${bottom}px`,
+  }
+})
 
 onMounted(async () => {
   await nextTick()
@@ -64,8 +73,9 @@ onBeforeUnmount(() => {
 })
 
 const handleScroll = () => {
+  const visibleHeight = transformPxToNumber(props.visibleHeight)
   const scrollTop = (el.value || document.documentElement).scrollTop
-  if (scrollTop >= props.visibilityHeight) {
+  if (scrollTop >= visibleHeight) {
     visible.value = true
   } else {
     visible.value = false
@@ -75,10 +85,12 @@ const handleScroll = () => {
 const backToTop = () => {
   ;(el.value || document.documentElement).scrollTo({
     top: 0,
-    behavior: 'smooth',
+    behavior: props.behavior,
   })
 }
+
 const emit = defineEmits(['on-click'])
+
 const clickIt = (e: MouseEvent) => {
   backToTop()
   emit('on-click', e)

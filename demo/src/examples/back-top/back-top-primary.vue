@@ -10,7 +10,8 @@
     ></yk-back-top>
     <yk-back-top
       :target="list"
-      type="secondary"
+      theme="secondary"
+      behavior="instant"
       :style="{ position: 'absolute' }"
     ></yk-back-top>
   </div>

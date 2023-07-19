@@ -1,12 +1,14 @@
-export type animationType = 'fade' | 'move';
-export type typeType = 'primary' | 'secondary';
+type animationType = 'fade' | 'move';
+type themeType = 'primary' | 'secondary';
+type scrollBehaviorType = 'smooth' | 'instant' | 'auto';
 
 export type BackTopProps = {
   animation?: animationType;
-  type?: typeType;
-  right?: string;
-  bottom?: string;
-  visibilityHeight?: string;
+  theme?: themeType;
+  right?: string | number;
+  bottom?: string | number;
+  visibleHeight?: string | number;
   target?: string | HTMLElement;
   icon?: string;
+  behavior?: scrollBehaviorType;
 };
