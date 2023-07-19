@@ -93,7 +93,6 @@ export const popupManager = {
  * @param measurement 长度 '20px' | 20
  */
 export const transformPxToNumber = (measurement: number | string) => {
-  console.log('measurement', measurement);
   if (typeof measurement === 'string') {
     return Number(measurement.replace('px', ''));
   } else {
