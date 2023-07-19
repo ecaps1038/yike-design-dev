@@ -1,7 +1,7 @@
 import Empty from './src/empty.vue';
 import { withInstall } from '@yike/utils';
-import DEFAULT_EMPTY from '../../assets/img/yk-empty-default.png';
-import ADVANCED_EMPTY from '../../assets/img/yk-empty-advanced.png';
+import DEFAULT_EMPTY from '../../assets/img/yk-empty-default.svg';
+import ADVANCED_EMPTY from '../../assets/img/yk-empty-advanced.svg';
 export const YkEmpty = {
   ...withInstall(Empty),
   DEFAULT_EMPTY,

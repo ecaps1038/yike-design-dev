@@ -6,7 +6,7 @@
 </template>
 <script setup lang="ts">
 import { EmptyProps } from './empty'
-import DEFAULT_EMPTY from '../../../assets/img/yk-empty-default.png'
+import DEFAULT_EMPTY from '../../../assets/img/yk-empty-default.svg'
 import '../style'
 defineOptions({
   name: 'YkEmpty',
