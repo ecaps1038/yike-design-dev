@@ -1,12 +1,12 @@
-import { Size } from '../../../utils/constant';
+import { Size, Direction } from '../../../utils/constant';
 import { radioEmits } from './radio';
-export const DIRECTION = ['vertical', 'horizontal'] as const;
+
 export type RadioGroupProps = {
   modelValue?: number | string | boolean;
   size?: Size;
   theme?: 'primary' | 'secondary';
   disabled?: boolean;
-  direction?: (typeof DIRECTION)[number];
+  direction?: Direction;
 };
 
 export const radioGroupEmits = radioEmits;

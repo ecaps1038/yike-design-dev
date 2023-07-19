@@ -15,9 +15,6 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
   direction: 'horizontal',
 })
 
-const props = withDefaults(defineProps<RadioGroupProps>(), {
-  direction: 'horizontal',
-})
 const ykRadioGroupCls = computed(() => {
   return {
     'yk-radio-group': true,
@@ -37,13 +34,3 @@ provide(
   }),
 )
 </script>
-
-<style lang="less" scoped>
-.yk-radio-group {
-  &.yk-radio-vertical {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-</style>
