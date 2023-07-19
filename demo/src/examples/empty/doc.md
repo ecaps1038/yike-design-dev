@@ -19,6 +19,12 @@
 :::
 
 :::snippet
+主题切换
+通过使用 `theme` 属性来控制主题样式
+<EmptyTheme/>
+:::
+
+:::snippet
 内容自定义
 通过插槽来自定义组件内容
 <EmptySlot/>
@@ -26,11 +32,12 @@
 
 ### API
 
-| 参数          | 描述       | 类型     | 默认值 |
-|-------------|----------|--------|-----|
-| description | 描述信息     | string | ''  |
-| image       | 图像地址     | string | ''  |
-| image-size  | 图像尺寸（宽度） | number | 160 |
+| 参数          | 描述       | 类型               | 默认值     |
+|-------------|----------|------------------|---------|
+| description | 描述信息     | string           | ''      |
+| image       | 图像地址     | string           | ''      |
+| image-size  | 图像尺寸（宽度） | number           | 140     |
+| theme       | 主题样式     | 'light' ｜ 'dark' | 'light' |
 
 ### 插槽
 

@@ -1,8 +1,13 @@
 <template>
-  <div class="yk-empty">
+  <div :class="['yk-empty', { dark: theme === 'dark' }]">
     <div class="yk-empty__image" :style="{ width: imageSize + 'px' }">
       <slot name="image">
-        <img :src="image" ondragstart="return false" />
+        <img v-if="props.image" :src="image" ondragstart="return false" />
+        <yk-icon
+          v-else
+          name="yike-kongzhuangtai0"
+          :style="{ fontSize: imageSize + 'px' }"
+        ></yk-icon>
       </slot>
     </div>
     <div class="yk-empty__description">
@@ -10,7 +15,7 @@
         <p>{{ description }}</p>
       </slot>
     </div>
-    <div class="yk-empty__bottom" v-if="slotDefault">
+    <div v-if="slotDefault" class="yk-empty__bottom">
       <slot />
     </div>
   </div>
@@ -28,7 +33,8 @@ const slotDefault = !!useSlots().default
 
 const props = withDefaults(defineProps<EmptyProps>(), {
   description: 'No Data',
-  image: '/src/assets/icon/empty.svg',
-  imageSize: 160,
+  image: undefined,
+  imageSize: 140,
+  theme: 'light',
 })
 </script>

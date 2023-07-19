@@ -1,5 +1,5 @@
 <template>
   <yk-empty
-    image="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+    image="https://www.huohuo90.com:3005/assets/logo-11aefb4c.svg"
   ></yk-empty>
 </template>

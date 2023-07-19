@@ -1,12 +1,11 @@
 <template>
   <yk-empty>
     <template #image>
-      <yk-alert message="Yike Design Alert Component" />
+      <yk-icon name="yike-kongzhuangtai1" style="font-size: 140px"></yk-icon>
     </template>
     <template #description>
-      <yk-icon name="yk-biaoqing"></yk-icon>
+      <yk-icon name="yk-shuaxin"></yk-icon>
     </template>
-    <yk-button>Button</yk-button>
+    <yk-button>刷新数据</yk-button>
   </yk-empty>
 </template>
-<script setup></script>
