@@ -1,14 +1,12 @@
-type animationType = 'fade' | 'move';
-type themeType = 'primary' | 'secondary';
-type scrollBehaviorType = 'smooth' | 'instant' | 'auto';
+import { AnimationType } from '../../../utils/constant';
 
 export type BackTopProps = {
-  animation?: animationType;
-  theme?: themeType;
+  animation?: AnimationType;
+  theme?: 'primary' | 'secondary';
   right?: string | number;
   bottom?: string | number;
   visibleHeight?: string | number;
   target?: string | HTMLElement;
   icon?: string;
-  behavior?: scrollBehaviorType;
+  behavior?: 'smooth' | 'instant' | 'auto';
 };

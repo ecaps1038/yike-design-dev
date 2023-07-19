@@ -33,3 +33,5 @@ export const TEXTTYPE = [
   'disabled',
 ] as const;
 export type TextType = (typeof TEXTTYPE)[number];
+
+export type AnimationType = 'fade' | 'move';
