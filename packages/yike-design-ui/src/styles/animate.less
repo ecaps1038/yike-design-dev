@@ -1,7 +1,7 @@
 .fade-move,
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.5s;
+  transition: all 0.3s;
   transform: translateY(0px);
 }
 
@@ -12,5 +12,22 @@
 }
 
 .fade-leave-active {
+  position: absolute;
+}
+
+.upward-move,
+.upward-enter-active,
+.upward-leave-active {
+  transition: all 0.3s;
+  transform: translateY(-30px);
+}
+
+.upward-enter-from,
+.upward-leave-to {
+  opacity: 0;
+  transform: translateY(0px);
+}
+
+.upward-leave-active {
   position: absolute;
 }

@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<MessageProps>(), {
   message: '',
   type: 'success',
   duration: 3000,
-  offset: 8,
+  offset: 12,
   zIndex: 100,
   onClose: () => ({}),
 })
