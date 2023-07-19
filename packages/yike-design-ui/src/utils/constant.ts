@@ -34,4 +34,4 @@ export const TEXTTYPE = [
 ] as const;
 export type TextType = (typeof TEXTTYPE)[number];
 
-export type AnimationType = 'fade' | 'move';
+export type AnimationType = 'upward' | 'fade';

@@ -31,10 +31,10 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<BackTopProps>(), {
-  animation: 'fade',
+  animation: 'upward',
   theme: 'primary',
-  right: '50px',
-  bottom: '50px',
+  right: '24px',
+  bottom: '40px',
   visibleHeight: '200px',
   icon: 'yk-top',
   behavior: 'smooth',

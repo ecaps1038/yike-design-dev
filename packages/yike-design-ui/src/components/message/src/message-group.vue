@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="fade" @after-leave="onLeave">
+  <TransitionGroup name="down" @after-leave="onLeave">
     <Message
       v-for="item in messages"
       v-bind="getProps(item)"
