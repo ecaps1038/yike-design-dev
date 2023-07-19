@@ -3,6 +3,7 @@ import type { Size } from '../../../utils/constant';
 type Props = {
   current: number;
   disabled: boolean;
+  fixWidth: boolean;
   pagerCount: number;
   simple: boolean;
   showJumper: boolean;
@@ -13,6 +14,7 @@ type Props = {
 const defaultPaginationProps: Props = {
   current: 1,
   disabled: false,
+  fixWidth: false,
   pagerCount: 7,
   simple: false,
   showJumper: false,

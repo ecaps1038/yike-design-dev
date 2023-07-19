@@ -4,12 +4,27 @@
   align-items: center;
   user-select: none;
 
+  &.is-disabled {
+    cursor: not-allowed;
+
+    .yk-pagination-prev,
+    .yk-pagination-next,
+    .yk-pagination-pager__item {
+      cursor: not-allowed !important;
+
+      &:hover {
+        background-color: @pagination-color-bg__disabled;
+        color: @pagination-color-font;
+      }
+    }
+  }
+
   &-prev,
   &-next {
     background-color: @pagination-color-bg;
     outline: none;
     border: none;
-    color: @gray;
+    color: @font-color-l;
   }
 
   &-prev {
@@ -32,7 +47,7 @@
       vertical-align: middle;
       margin: 0 4px;
       display: inline-block;
-      color: @gray;
+      color: @font-color-l;
 
       &.is-active {
         color: #fff;
@@ -47,13 +62,7 @@
     cursor: pointer;
 
     &:not(.is-active):hover {
-      background-color: @pagination-color-bg__hover;
-    }
-
-    &.is-disabled,
-    &:is(.is-disabled):hover {
-      background-color: @pagination-color-bg__disabled;
-      cursor: not-allowed;
+      color: @pagination-color-bg__active;
     }
 
     &--s {
@@ -91,7 +100,7 @@
 
     &__prepend {
       white-space: nowrap;
-      color: @gray;
+      color: @font-color-l;
       margin-right: 8px;
     }
 
@@ -106,7 +115,7 @@
         border: none;
         outline: none;
         background-color: transparent;
-        color: @gray;
+        color: @font-color-l;
         text-align: center;
         vertical-align: middle;
 

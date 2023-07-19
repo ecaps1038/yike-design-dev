@@ -7,6 +7,7 @@
       <input
         type="number"
         v-model="inputValue"
+        :disabled="disabled"
         @blur="handleJump"
         @keyup.enter="handleJump"
       />

@@ -2,7 +2,7 @@
   <ul :class="nsPager.b()" @click="onPagerClick">
     <li
       v-if="total > 0"
-      :class="[...pagerCls, nsPager.is('active', current === 1)]"
+      :class="[...pagerCls, nsPager.is('active', !disabled && current === 1)]"
     >
       1
     </li>
@@ -43,7 +43,7 @@ const nsPager = useNamespace(`${namespace}-pager`)
 const props = withDefaults(defineProps<PagerProps>(), defaultPagerProps)
 const emits = defineEmits<PagerEmits>()
 
-const { current } = toRefs(props)
+const { current, disabled, fixWidth } = toRefs(props)
 
 const pagerCls = computed(() => [
   nsPager.e('item'),
@@ -69,12 +69,14 @@ const pagers = computed(() => {
     current.value < showNextMoreThreshold.value
   ) {
     let start: number
-    if (pagerSize.value % 2 === 0) {
-      start = current.value - pagerSize.value / 2 - 1
+    const size = pagerSize.value - (fixWidth.value ? 1 : 0)
+    if (size % 2 === 0) {
+      start = current.value - size / 2
+      fixWidth.value && start--
     } else {
-      start = current.value - (pagerSize.value - 1) / 2
+      start = current.value - (size - 1) / 2
     }
-    for (let i = 0; i < pagerSize.value; i++) {
+    for (let i = 0; i < size; i++) {
       array.push(start + i)
     }
   } else {
@@ -98,11 +100,16 @@ const showNextMore = computed(() =>
 )
 
 function onPagerClick(ev: UIEvent) {
+  if (disabled.value) {
+    return
+  }
   const target = ev.target as HTMLElement
   if (target.tagName === 'LI') {
     const { classList } = target
     if (classList.contains('prev-more')) {
+      emits('update:current', current.value - 5)
     } else if (classList.contains('next-more')) {
+      emits('update:current', current.value + 5)
     } else {
       const page = Number(target.innerText)
       emits('update:current', page)

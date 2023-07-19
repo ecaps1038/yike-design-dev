@@ -1,13 +1,15 @@
 <template>
-  <div :class="nsPagination.b()">
-    <prev @prev="handlePrev" :disabled="!canPrev"></prev>
+  <div :class="[nsPagination.b(), nsPagination.is('disabled', disabled)]">
+    <prev @prev="handlePrev" :disabled="disabled || !canPrev"></prev>
     <pager
       v-model:current="internalCurrent"
+      :disabled="disabled"
+      :fix-width="fixWidth"
       :total="total"
       :pager-count="pagerCount"
     ></pager>
-    <next @next="handleNext" :disabled="!canNext"></next>
-    <jumper @jump="handleJump" v-if="showJumper"></jumper>
+    <next @next="handleNext" :disabled="disabled || !canNext"></next>
+    <jumper @jump="handleJump" v-if="showJumper" :disabled="disabled"></jumper>
   </div>
 </template>
 
@@ -39,7 +41,7 @@ const props = withDefaults(
 )
 defineEmits<PaginationEmits>()
 
-const { total } = toRefs(props)
+const { total, disabled } = toRefs(props)
 const internalCurrent = ref<number>(1)
 
 const canPrev = computed(() => internalCurrent.value > 1)

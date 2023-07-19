@@ -2,7 +2,7 @@ import { PaginationProps, defaultPaginationProps } from '../pagination';
 
 type PagerProps = Pick<
   PaginationProps,
-  'current' | 'disabled' | 'pagerCount' | 'total' | 'size'
+  'current' | 'disabled' | 'fixWidth' | 'pagerCount' | 'total' | 'size'
 >;
 
 type PagerEmits = {
