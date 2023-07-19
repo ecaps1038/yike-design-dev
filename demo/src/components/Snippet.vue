@@ -1,6 +1,9 @@
 <template>
   <div class="case-card">
-    <yk-title :level="3">{{ title }}</yk-title>
+    <div class="case-title">
+      <yk-title :level="3">{{ title }}</yk-title>
+      <a :id="slug" :href="`#${slug}`" class="title-anchor"></a>
+    </div>
     <slot name="desc"></slot>
     <div class="container">
       <slot name="demo"></slot>
@@ -22,10 +25,13 @@
 import { ref, getCurrentInstance } from 'vue'
 import { tryCopy } from '@/utils/tools'
 const proxy: any = getCurrentInstance()?.proxy
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: '标题',
+  },
+  slug: {
+    type: String,
   },
 })
 
@@ -50,6 +56,13 @@ const clickShow = (): void => {
 .case-card {
   max-width: 800px;
   margin-top: 28px;
+  .case-title {
+    position: relative;
+  }
+  .title-anchor {
+    position: absolute;
+    top: -80px;
+  }
   .container {
     margin: 12px 0 8px;
     border-radius: @radius-m;

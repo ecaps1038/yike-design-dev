@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import Bar from "@/components/Bar.vue";
-
-//菜单
-//制作目录数组
-let bar = [
+const bar = [
   {
     title: '开发指南',
     list: [
@@ -28,22 +23,7 @@ let bar = [
   },
 ]
 </script>
+
 <template>
-  <div class="module-b">
-    <Bar :bar="bar" />
-    <div class="main">
-      <RouterView />
-    </div>
-  </div>
+  <PageContent :bar="bar"></PageContent>
 </template>
-<style scoped lang="less">
-.main {
-  padding: 24px 56px 56px 324px;
-  .module {
-    max-width: 1200px;
-  }
-}
-.mmain {
-  padding: 24px;
-}
-</style>

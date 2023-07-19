@@ -56,8 +56,11 @@ export default () => ({
       }
       const snippetPattern = /:::snippet\s+(.*?)\s+:::/gs;
       const matches = src.matchAll(snippetPattern);
+      const toc = [];
       for (const match of matches) {
         const [title, desc, demoName] = match[1].split('\n');
+        const slug = title.replace(/ /g, '-');
+        toc.push(slug);
 
         const tagPattern = /<(\w+)\/>/;
         const demoTagName = demoName.match(tagPattern)[1];
@@ -73,6 +76,7 @@ export default () => ({
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`;
         const caseCardContent = `<Snippet
         title="${title}"
+        slug="${slug}"
        >
           <template v-slot:demo>${demoName}</template>
           <template v-slot:desc>${markdownIt.render(desc)}</template>
@@ -83,6 +87,11 @@ export default () => ({
         `;
         src = src.replace(match[0], caseCardContent);
       }
+
+      if (toc.length > 0) {
+        src += `\n<Toc toc='${toc.join()}'></Toc>`;
+      }
+
       const purePattern = /:::pure\s+(.*?)\s+:::/gs;
       const pureMatches = src.matchAll(purePattern);
       for (const match of pureMatches) {
@@ -96,10 +105,12 @@ export default () => ({
           `\n<div class='yk-pure-doc'>${demoName}</div>`,
         );
       }
+
       return {
         code: `
         <script setup>
           ${importContent}
+          window.scrollTo(0,0)
         </script>
         <template>
           <div class='yk-demo-doc'>

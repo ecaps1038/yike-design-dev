@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 defineProps({
   bar: {
     type: Array,
@@ -29,15 +28,16 @@ defineProps({
 </template>
 <style lang="less" scoped>
 .component-bar {
+  position: fixed;
+  top: 60px;
+  left: 50%;
   height: 100%;
   width: 268px;
   border-right: 1px solid @line-color-s;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  z-index: 1;
   background-color: @bg-color-l;
   transition: background-color @animats, border-right @animats;
+  transform: translate(-683px);
+  z-index: 1;
 
   .container {
     // fix height error
@@ -72,6 +72,13 @@ defineProps({
     font-weight: 600;
     color: @pcolor;
     background-color: rgba(21, 114, 255, 0.1);
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .component-bar {
+    left: 0;
+    transform: translate(0, 0);
   }
 }
 </style>
