@@ -15,12 +15,13 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
   direction: 'horizontal',
 })
 
+const props = withDefaults(defineProps<RadioGroupProps>(), {
+  direction: 'horizontal',
+})
 const ykRadioGroupCls = computed(() => {
   return {
     'yk-radio-group': true,
     'yk-radio-vertical': props.direction === 'vertical',
-    [`yk-radio--${props.size}`]: props.size,
-    [`yk-radio--${props.theme}`]: props.theme,
   }
 })
 const changeEvent = (value: RadioGroupProps['modelValue']): void => {
@@ -36,3 +37,13 @@ provide(
   }),
 )
 </script>
+
+<style lang="less" scoped>
+.yk-radio-group {
+  &.yk-radio-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+</style>
