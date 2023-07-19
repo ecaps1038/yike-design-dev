@@ -3,7 +3,7 @@
 yike-design 前端UI框架开发
 
 ## 贡献指南
-如果对组件库运行、贡献代码方面疑问，欢迎阅读
+如果对组件库运行、贡献代码方面存在疑问，欢迎阅读
 
 [CONTRIBUTING.md](https://github.com/ecaps1038/yike-design-dev/blob/monorepo-dev/CONTRIBUTING.md)
 
