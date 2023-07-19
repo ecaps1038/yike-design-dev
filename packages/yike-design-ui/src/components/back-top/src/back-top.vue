@@ -11,7 +11,12 @@
       @click="clickIt"
     >
       <slot>
-        <yk-icon :name="icon" class="yk-backtop__icon" />
+        <div
+          class="yk-backtop-container"
+          :class="{ secondary: type === 'secondary' }"
+        >
+          <yk-icon :name="icon" class="yk-backtop__icon" />
+        </div>
       </slot>
     </div>
   </Transition>
@@ -29,10 +34,11 @@ defineOptions({
 
 const props = withDefaults(defineProps<BackTopProps>(), {
   animation: 'fade',
+  type: 'primary',
   right: '50',
   bottom: '50',
   visibilityHeight: '200',
-  icon: 'yk-xiangshang',
+  icon: 'yk-top',
 })
 
 const typeOfTest = (type: string) => (thing: unknown) => typeof thing === type
