@@ -9,9 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     Bar: typeof import('./src/components/Bar.vue')['default']
     Codes: typeof import('./src/components/Codes.vue')['default']
+    ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     Dark: typeof import('./src/components/develops/dark.vue')['default']
-    Grasp: typeof import('./src/components/develops/grasp.vue')['default']
-    Modal: typeof import('./src/components/units/modal.vue')['default']
     Principle: typeof import('./src/components/design/principle.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
