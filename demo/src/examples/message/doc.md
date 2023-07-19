@@ -42,7 +42,7 @@
 | -------- | --------------------- | --------------------------------------------------- | ------- |
 | type     | 消息的类型            | 'primary'\|'success'\|'warning'\|'error'\|'loading' | success |
 | message  | 消息的内容            | string                                              | ''      |
-| duration | 持续时长，为 0 时驻留 | number                                              | 600     |
+| duration | 持续时长，为 0 时驻留 | number                                              | 3000    |
 | onClose  | 关闭时的回调函数      | Function                                            | ()=>{}  |
 
 ### Methods

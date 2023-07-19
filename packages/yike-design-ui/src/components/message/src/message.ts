@@ -16,9 +16,6 @@ export interface MessageOptions extends MessageProps {
   appendTo?: HTMLElement | string | Element;
 }
 
-export interface MessageHandler {
-  /**
-   * @description close the Message
-   */
-  close: () => void;
-}
+export type MessageGroupProps = {
+  messages: MessageOptions[];
+};

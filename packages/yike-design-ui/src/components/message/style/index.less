@@ -1,23 +1,18 @@
-.yk-message-list {
+.yk-message-container {
+  width: 100%;
+  pointer-events: none;
   position: fixed;
   z-index: 2002;
   top: 60px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
-  align-items: center;
-}
-.yk-message-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 .yk-message {
   display: flex;
-  justify-content: center;
   padding: @space-s 12px;
   color: @font-color-l;
   background: @white;
@@ -35,7 +30,7 @@
 
   .text {
     vertical-align: middle;
-    margin-left: 12px;
+    margin-left: @space-m;
   }
   .message-icon {
     width: 14px;

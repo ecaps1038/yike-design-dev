@@ -1,78 +1,62 @@
-import { createVNode, render, VNode, isVNode, h } from 'vue';
-import MessageConstructor from './message.vue';
+import { createVNode, render, ref, reactive } from 'vue';
 import { MessageOptions } from './message';
-import { popupManager } from '../../../utils/tools';
 import { MESSAGETYPE } from '../../../utils/constant';
-const instances: VNode[] = [];
+import MessageGroup from './message-group.vue';
 
-let seed = 0;
-
-export const removeInstance = (vmId: number) => {
-  const listContainer = document.querySelector('.yk-message-list') as Element;
-  const childNodes = listContainer.childNodes;
-  const childLength = childNodes.length;
-  childNodes.forEach((node) => {
-    if (
-      node instanceof Element &&
-      node.classList.contains(`yk-message__${vmId}`)
-    ) {
-      listContainer.removeChild(node);
-      if (childLength === 1) {
-        document.body.removeChild(listContainer);
-      }
+class MessageManager {
+  private messages = ref<MessageOptions[]>([]);
+  private container: HTMLElement | null;
+  private seed: number;
+  public created: boolean;
+  constructor() {
+    this.container = document.createElement('div');
+    this.container.className = `yk-message-container`;
+    this.messages = ref([]);
+    this.seed = 0;
+    this.created = true;
+    const vm = createVNode(MessageGroup, {
+      messages: this.messages.value,
+      onClose: this.remove,
+      onDestroy: this.destroy,
+    });
+    render(vm, this.container);
+    document.body.appendChild(this.container);
+  }
+  add = (config: MessageOptions) => {
+    this.seed++;
+    const id = `yk-message__${this.seed}`;
+    const message: MessageOptions = reactive({ id, ...config });
+    this.messages.value.push(message);
+    return {
+      close: () => this.remove(id),
+    };
+  };
+  remove = (id: number | string) => {
+    const idx = this.messages.value.findIndex((item) => item.id === id);
+    const item = this.messages.value[idx];
+    if (item?.onClose) {
+      item.onClose();
     }
-  });
-};
-
-export const createMessageListContainer = () => {
-  const currentContainer: Element | null =
-    document.querySelector('.yk-message-list');
-  if (!currentContainer) {
-    const container = document.body!;
-    const VNode = document.createElement('div');
-    VNode.className = 'yk-message-list';
-    container.appendChild(VNode);
-  }
-};
-
+    this.messages.value.splice(idx, 1);
+  };
+  destroy = () => {
+    if (this.messages.value.length === 0 && this.container) {
+      render(null, this.container);
+      document.body.removeChild(this.container);
+      this.container = null;
+      this.created = false;
+    }
+  };
+  close = () => {
+    console.log('closeAll');
+  };
+}
+let Instance = <MessageManager>{};
 const message = (options: MessageOptions) => {
-  const id = seed++;
-  let appendTo: Element | null = options.appendTo as HTMLElement;
-  if (typeof options.appendTo === 'string') {
-    appendTo = document.querySelector(options.appendTo);
+  if (!Instance.created) {
+    Instance = new MessageManager();
   }
-  if (!appendTo) {
-    createMessageListContainer();
-    appendTo = document.querySelector('.yk-message-list') as Element;
-  }
-  const container = document.createElement('div');
-  container.className = `yk-message-container yk-message__${id}`;
-  const props = {
-    zIndex: popupManager.nextIndex(),
-    id,
-    ...options,
-    onClose: () => {
-      options.onClose && options.onClose();
-    },
-    onDestroy: () => {
-      removeInstance(id);
-    },
-  };
-  const vm: VNode = createVNode(
-    MessageConstructor,
-    props,
-    isVNode(props.message) ? { default: () => props.message } : null,
-  );
-
-  instances.push(vm);
-  render(vm, container);
-  appendTo.appendChild(container);
-  const close = () => {
-    vm.component?.exposed?.close();
-  };
-  return {
-    close,
-  };
+  return Instance.add(options);
 };
 MESSAGETYPE.forEach((item) => {
   message[item] = (msg, duration, onClose) => {
@@ -85,4 +69,5 @@ MESSAGETYPE.forEach((item) => {
     return message(messageOptions);
   };
 });
+
 export default message;
