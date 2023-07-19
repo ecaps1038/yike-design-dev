@@ -1,15 +1,13 @@
 <template>
-  <transition name="down" @before-leave="close">
-    <div v-if="isShow" class="yk-message" :style="Style">
-      <div class="message-container">
-        <YkIcon
-          :name="statusIconName"
-          :class="`icon-${props.type} message-icon`"
-        ></YkIcon>
-        <span class="text">{{ message }}</span>
-      </div>
+  <div>
+    <div class="yk-message" :style="Style">
+      <yk-icon
+        :name="statusIconName"
+        :class="`icon-${props.type} message-icon`"
+      ></yk-icon>
+      <span class="text">{{ message }}</span>
     </div>
-  </transition>
+  </div>
 </template>
 <script setup lang="ts">
 import { MessageProps } from './message'
@@ -19,38 +17,47 @@ import { YkIcon } from '../../../index'
 defineOptions({
   name: 'YkMessage',
 })
+
 const props = withDefaults(defineProps<MessageProps>(), {
   message: '',
   type: 'success',
-  duration: 600,
-  offset: 20,
+  duration: 3000,
+  offset: 8,
   zIndex: 100,
-  onDestroy: () => ({}),
   onClose: () => ({}),
 })
+
+const emits = defineEmits(['close'])
+
 const statusIconName = computed(() => {
   return iconStatusMap[props.type]
 })
 const Style = computed(() => ({
-  top: `${props.offset}px`,
+  marginBottom: `${props.offset}px`,
   zIndex: props.zIndex,
 }))
 const iconStatusMap = {
-  warning: 'yike-tixing',
+  primary: 'yike-tixing',
+  warning: 'yike-jinggao',
   error: 'yike-cha',
   success: 'yike-gou',
+  loading: 'yk-jiazai',
 }
 const isShow = ref(false)
-function startTimer() {
+const startTimer = () => {
+  if (!props.duration || props.type === 'loading') {
+    return
+  }
   setTimeout(() => {
-    props.onClose && props.onClose()
     close()
   }, props.duration)
 }
 
-function close() {
+const close = () => {
+  emits('close')
   isShow.value = false
 }
+
 onMounted(() => {
   startTimer()
   isShow.value = true

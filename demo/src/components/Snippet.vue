@@ -6,14 +6,14 @@
       <slot name="demo"></slot>
     </div>
     <yk-space class="space" :size="8">
-      <div class="icons" @click="onCopy" v-show="showCode">
+      <div v-show="showCode" class="icons" @click="onCopy">
         <yk-icon name="yk-kaobei"></yk-icon>
       </div>
       <div class="icons" :class="{ select: showCode }" @click="clickShow">
         <yk-icon name="yk-daima"></yk-icon>
       </div>
     </yk-space>
-    <div class="codes" ref="codes" v-show="showCode">
+    <div v-show="showCode" ref="codes" class="codes">
       <slot name="code"></slot>
     </div>
   </div>
@@ -49,7 +49,7 @@ const clickShow = (): void => {
 <style scoped lang="less">
 .case-card {
   max-width: 800px;
-
+  margin-top: 28px;
   .container {
     margin: 12px 0 8px;
     border-radius: @radius-m;

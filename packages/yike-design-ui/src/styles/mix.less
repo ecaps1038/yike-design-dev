@@ -1,57 +1,59 @@
-@import './base.less';
-
 //主色渐变
-@pcolor-1: fade (@pcolor, 10%);
-@pcolor-2: fade (@pcolor, 20%);
-@pcolor-3: fade (@pcolor, 40%);
-@pcolor-4: fade (@pcolor, 60%);
-@pcolor-5: fade (@pcolor, 80%);
-@pcolor-6: @pcolor;
-@pcolor-7: mix (@pcolor, #000, 80%);
-@pcolor-8: mix (@pcolor, #000, 60%);
-@pcolor-9: mix (@pcolor, #000, 40%);
-@pcolor-10: mix (@pcolor, #000, 20%);
+@pcolor-1: rgba(var(--pcolor), 0.08);
+@pcolor-2: rgba(var(--pcolor), 0.12);
+@pcolor-3: rgba(var(--pcolor), 0.16);
+@pcolor-4: rgba(var(--pcolor), 0.24);
+@pcolor-5: rgba(var(--pcolor), 0.32);
+@pcolor-6: rgba(var(--pcolor), 0.88);
+@pcolor-7: @pcolor;
+@pcolor-8: color-mix(in srgb, @pcolor, #000 8%);
+@pcolor-9: color-mix(in srgb, @pcolor, #000 16%);
+@pcolor-10: color-mix(in srgb, @pcolor, #000 32%);
 
-//成功色
-@scolor-1: fade (@scolor, 10%);
-@scolor-2: fade (@scolor, 20%);
-@scolor-3: fade (@scolor, 40%);
-@scolor-4: fade (@scolor, 60%);
-@scolor-5: fade (@scolor, 80%);
-@scolor-6: @scolor;
-@scolor-7: mix (@scolor, #000, 80%);
-@scolor-8: mix (@scolor, #000, 60%);
-@scolor-9: mix (@scolor, #000, 40%);
-@scolor-10: mix (@scolor, #000, 20%);
+// //成功色
+@scolor-1: rgba(var(--scolor), 0.08);
+@scolor-2: rgba(var(--scolor), 0.12);
+@scolor-3: rgba(var(--scolor), 0.16);
+@scolor-4: rgba(var(--scolor), 0.24);
+@scolor-5: rgba(var(--scolor), 0.32);
+@scolor-6: rgba(var(--scolor), 0.88);
+@scolor-7: @scolor;
+@scolor-8: color-mix(in srgb, @scolor, #000 8%);
+@scolor-9: color-mix(in srgb, @scolor, #000 16%);
+@scolor-10: color-mix(in srgb, @scolor, #000 32%);
 
-//警告色
-@wcolor-1: fade (@wcolor, 10%);
-@wcolor-2: fade (@wcolor, 20%);
-@wcolor-3: fade (@wcolor, 40%);
-@wcolor-4: fade (@wcolor, 60%);
-@wcolor-5: fade (@wcolor, 80%);
-@wcolor-6: @wcolor;
-@wcolor-7: mix (@wcolor, #000, 80%);
-@wcolor-8: mix (@wcolor, #000, 60%);
-@wcolor-9: mix (@wcolor, #000, 40%);
-@wcolor-10: mix (@wcolor, #000, 20%);
+// //警告色
+@wcolor-1: rgba(var(--wcolor), 0.08);
+@wcolor-2: rgba(var(--wcolor), 0.12);
+@wcolor-3: rgba(var(--wcolor), 0.16);
+@wcolor-4: rgba(var(--wcolor), 0.24);
+@wcolor-5: rgba(var(--wcolor), 0.32);
+@wcolor-6: rgba(var(--wcolor), 0.88);
+@wcolor-7: @wcolor;
+@wcolor-8: color-mix(in srgb, @wcolor, #000 8%);
+@wcolor-9: color-mix(in srgb, @wcolor, #000 16%);
+@wcolor-10: color-mix(in srgb, @wcolor, #000 32%);
 
-//错误色
-@ecolor-1: fade (@ecolor, 10%);
-@ecolor-2: fade (@ecolor, 20%);
-@ecolor-3: fade (@ecolor, 40%);
-@ecolor-4: fade (@ecolor, 60%);
-@ecolor-5: fade (@ecolor, 80%);
-@ecolor-6: @ecolor;
-@ecolor-7: mix (@ecolor, #000, 80%);
-@ecolor-8: mix (@ecolor, #000, 60%);
-@ecolor-9: mix (@ecolor, #000, 40%);
-@ecolor-10: mix (@ecolor, #000, 20%);
+// //错误色
+@ecolor-1: rgba(var(--ecolor), 0.08);
+@ecolor-2: rgba(var(--ecolor), 0.12);
+@ecolor-3: rgba(var(--ecolor), 0.16);
+@ecolor-4: rgba(var(--ecolor), 0.24);
+@ecolor-5: rgba(var(--ecolor), 0.32);
+@ecolor-6: rgba(var(--ecolor), 0.88);
+@ecolor-7: @ecolor;
+@ecolor-8: color-mix(in srgb, @ecolor, #000 8%);
+@ecolor-9: color-mix(in srgb, @ecolor, #000 16%);
+@ecolor-10: color-mix(in srgb, @ecolor, #000 32%);
 
-//中性色
-@gray-1: mix (@gray1, #fff, 10%);
-
-// @lcolor: #1890ff; // 链接色
-// @scolor: #46B1A4; // 成功色
-// @wcolor: #F5AC08; // 警告色
-// @ecolor: #FA5247; // 错误色
+// //中性色
+@gray-1: rgba(var(--gray1), 0.08);
+@gray-2: rgba(var(--gray1), 0.12);
+@gray-3: rgba(var(--gray1), 0.16);
+@gray-4: rgba(var(--gray1), 0.24);
+@gray-5: rgba(var(--gray1), 0.32);
+@gray-6: rgba(var(--gray1), 0.48);
+@gray-7: rgba(var(--gray1), 0.64);
+@gray-8: rgba(var(--gray1), 0.72);
+@gray-9: rgba(var(--gray1), 0.88);
+@gray-10: rgb(var(--gray1));

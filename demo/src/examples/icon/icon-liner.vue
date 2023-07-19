@@ -14,12 +14,12 @@
 import { copyText } from '@/utils/tools'
 import { getCurrentInstance } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
-
 const onCopy = (iconName: string) => {
   copyText(iconName)
   proxy.$message({ type: 'success', message: '已复制' })
 }
 const ykIconList = [
+  'yk-top',
   'yk-jiazai1',
   'yk-fujian',
   'yk-shangchuan2',

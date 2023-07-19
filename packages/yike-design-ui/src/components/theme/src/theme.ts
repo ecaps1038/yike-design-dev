@@ -1,6 +1,6 @@
-import { Skin } from '../../../utils/constant';
+import { Skin } from '../../../utils/constant'
 
 export type ThemeProps = {
-  skin?: Skin;
-  control?: boolean;
+  skin?: Skin
+  control?: boolean
 }

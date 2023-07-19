@@ -1,15 +1,25 @@
 .yk-avatar {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  white-space: nowrap;
   overflow: hidden;
   background-color: @font-color-ss;
-  transition: all @animats;
+  // transition: all @animats;
   vertical-align: top;
   img {
     padding: 0;
     margin: 0;
     height: 100%;
     float: left;
+  }
+
+  &-text {
+    font-weight: bold;
+  }
+
+  &-group {
+    border: 2px solid @bg-color-l;
   }
 
   .disembark {
@@ -27,18 +37,19 @@
     }
   }
 }
-.group {
-  border: 2px solid @bg-color-l;
-}
+
 .yk-avatar-group {
   display: flex;
 
-  .more-avatar {
+  &-more {
     background-color: @pcolor;
     color: #fff;
     text-align: center;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid @bg-color-l;
-    transition: border @animats;
+    // transition: border @animats;
   }
 }

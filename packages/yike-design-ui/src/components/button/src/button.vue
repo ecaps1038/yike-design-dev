@@ -21,7 +21,7 @@ import '../style'
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'primary',
   size: 'l',
-  shape: 'round',
+  shape: 'default',
   long: false,
   loading: false,
   disabled: false,

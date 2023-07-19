@@ -1,34 +1,16 @@
-// 动画效果
-.down {
-  &-enter {
-    &-from {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+  transform: translateY(0px);
+}
 
-    &-active {
-      transition: all 0.3s;
-    }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
 
-    &-to {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-  }
-
-  &-leave {
-    &-from {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-
-    &-active {
-      transition: all 0.3s;
-    }
-
-    &-to {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-  }
+.fade-leave-active {
+  position: absolute;
 }
