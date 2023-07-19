@@ -27,7 +27,7 @@ const onLeave = () => {
 
 const getProps = (item) => {
   return Object.keys(item)
-    .filter((k) => !['id'].includes(k))
+    .filter((k) => !['id', 'onClose'].includes(k))
     .reduce((res, k) => Object.assign(res, { [k]: item[k] }), {})
 }
 </script>
