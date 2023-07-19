@@ -29,6 +29,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': aliasDir,
+      'yk-design-ui': compDir,
     },
   },
   css: {

@@ -1,6 +1,7 @@
 import type { Component, App } from 'vue';
 
 import { YkRadio, YkRadioGroup } from './components/radio';
+import YkEmpty from './components/empty';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -19,6 +20,7 @@ const components: {
 } = {
   YkRadioGroup,
   YkRadio,
+  YkEmpty,
   YkAlert,
   YkButton,
   YkTheme,
@@ -37,6 +39,7 @@ const components: {
 export {
   YkRadioGroup,
   YkRadio,
+  YkEmpty,
   YkAlert,
   YkButton,
   YkTheme,
