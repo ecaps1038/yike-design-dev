@@ -10,14 +10,13 @@ import colors from 'ansi-colors'
 import { existsSync } from 'node:fs'
 const { bgGreen, yellow, red, green } = colors
 
-log(bgGreen)
 
 const parser = new ArgumentParser({ description: '进行到某分支何入的文件lint检测' })
 
-parser.addArgument('--target', { help: '想要何如的分支', type: 'string', defaultValue: 'upstream/monorepo-dev' })
-parser.addArgument('--current', { help: '当前想要测试的分支', type: 'string', defaultValue: 'HEAD' })
+parser.add_argument('--target', { help: '想要何如的分支', type: 'str', default: 'upstream/monorepo-dev' })
+parser.add_argument('--current', { help: '当前想要测试的分支', type: 'str', default: 'HEAD' })
 
-const args = parser.parseArgs()
+const args = parser.parse_args()
 
 log('args for branch lint are: ', args)
 
@@ -68,7 +67,7 @@ async function sharedRun(current, target) {
   const mergeBase = await getMergeBase(current, target)
   log(`the common merge-base for ${current} ${target} is: `, mergeBase)
   log('the changed file are / 文件变动为:')
-  log(await invoke(`git diff --name status --diff-filter=ACMR ${mergeBase}...${current}`))
+  log(await invoke(`git diff --name-status --diff-filter=ACMR ${mergeBase}...${current}`))
 
   let command = {
     allowEmpty: true,
