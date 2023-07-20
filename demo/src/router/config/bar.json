@@ -54,7 +54,7 @@
           "src": "message"
         },
         {
-          "name": "tooltip 文字提示",
+          "name": "Tooltip 文字提示",
           "src": "tooltip"
         }
       ]

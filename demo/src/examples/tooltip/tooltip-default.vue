@@ -1,78 +1,78 @@
 <template>
-  <YkSpace>
+  <yk-space>
     <div class="container">
       <div class="top">
         <div>
-          <YkTooltip placement="topLeft" open>
-            <YkButton type="outline">TL</YkButton>
-          </YkTooltip>
+          <yk-tooltip placement="topLeft">
+            <yk-button type="outline">TL</yk-button>
+          </yk-tooltip>
         </div>
         <div>
-          <YkTooltip placement="top">
-            <YkButton type="outline">Top</YkButton>
-          </YkTooltip>
+          <yk-tooltip placement="top">
+            <yk-button type="outline">Top</yk-button>
+          </yk-tooltip>
         </div>
         <div>
-          <YkTooltip placement="topRight">
-            <YkButton type="outline">TR</YkButton>
-          </YkTooltip>
+          <yk-tooltip placement="topRight">
+            <yk-button type="outline">TR</yk-button>
+          </yk-tooltip>
         </div>
       </div>
       <div class="center">
         <div>
           <div>
-            <YkTooltip placement="leftTop">
-              <YkButton type="outline">LT</YkButton>
-            </YkTooltip>
+            <yk-tooltip placement="leftTop">
+              <yk-button type="outline">LT</yk-button>
+            </yk-tooltip>
           </div>
           <div>
-            <YkTooltip placement="left">
-              <YkButton type="outline">Left</YkButton>
-            </YkTooltip>
+            <yk-tooltip placement="left">
+              <yk-button type="outline">Left</yk-button>
+            </yk-tooltip>
           </div>
           <div>
-            <YkTooltip placement="leftBottom">
-              <YkButton type="outline">LB</YkButton>
-            </YkTooltip>
+            <yk-tooltip placement="leftBottom">
+              <yk-button type="outline">LB</yk-button>
+            </yk-tooltip>
           </div>
         </div>
         <div>
           <div>
-            <YkTooltip placement="rightTop">
-              <YkButton type="outline">RT</YkButton>
-            </YkTooltip>
+            <yk-tooltip placement="rightTop">
+              <yk-button type="outline">RT</yk-button>
+            </yk-tooltip>
           </div>
           <div>
-            <YkTooltip placement="right">
-              <YkButton type="outline">Right</YkButton>
-            </YkTooltip>
+            <yk-tooltip placement="right">
+              <yk-button type="outline">Right</yk-button>
+            </yk-tooltip>
           </div>
           <div>
-            <YkTooltip placement="rightBottom">
-              <YkButton type="outline">RB</YkButton>
-            </YkTooltip>
+            <yk-tooltip placement="rightBottom">
+              <yk-button type="outline">RB</yk-button>
+            </yk-tooltip>
           </div>
         </div>
       </div>
       <div class="bottom">
         <div>
-          <YkTooltip placement="bottomLeft">
-            <YkButton type="outline">BL</YkButton>
-          </YkTooltip>
+          <yk-tooltip placement="bottomLeft">
+            <yk-button type="outline">BL</yk-button>
+          </yk-tooltip>
         </div>
         <div>
-          <YkTooltip placement="bottom">
-            <YkButton type="outline">Bottom</YkButton>
-          </YkTooltip>
+          <yk-tooltip placement="bottom">
+            <yk-button type="outline">Bottom</yk-button>
+          </yk-tooltip>
         </div>
         <div>
-          <YkTooltip placement="bottomRight">
-            <YkButton type="outline">BR</YkButton>
-          </YkTooltip>
+          <yk-tooltip placement="bottomRight">
+            <yk-button type="outline">BR</yk-button>
+          </yk-tooltip>
         </div>
       </div>
     </div>
-  </YkSpace>
+  </yk-space>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
