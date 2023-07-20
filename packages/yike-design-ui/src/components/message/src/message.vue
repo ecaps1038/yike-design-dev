@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div class="yk-message" :style="Style">
+    <div
+      class="yk-message"
+      :style="Style"
+      @mouseenter="clearTimer"
+      @mouseleave="startTimer"
+    >
       <yk-icon
         :name="statusIconName"
         :class="`icon-${props.type} message-icon`"
@@ -44,13 +49,24 @@ const iconStatusMap = {
   loading: 'yk-jiazai',
 }
 const isShow = ref(false)
+let timer = 0
+
 const startTimer = () => {
   if (!props.duration || props.type === 'loading') {
     return
   }
-  setTimeout(() => {
-    close()
-  }, props.duration)
+  timer = Number(
+    setTimeout(() => {
+      close()
+    }, props.duration),
+  )
+}
+
+const clearTimer = () => {
+  if (timer) {
+    clearTimeout(timer)
+    timer = 0
+  }
 }
 
 const close = () => {
