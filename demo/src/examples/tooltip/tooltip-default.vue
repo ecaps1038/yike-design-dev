@@ -1,78 +1,78 @@
 <template>
-  <YkSpace>
+  <yk-space>
     <div class="container">
       <div class="top">
-        <div style="margin: 8px">
-          <YkTooltip placement="topLeft">
-            <YkButton type="outline">TL</YkButton>
-          </YkTooltip>
+        <div>
+          <yk-tooltip placement="topLeft">
+            <yk-button type="outline">TL</yk-button>
+          </yk-tooltip>
         </div>
-        <div style="margin: 8px">
-          <YkTooltip placement="top">
-            <YkButton type="outline">Top</YkButton>
-          </YkTooltip>
+        <div>
+          <yk-tooltip placement="top">
+            <yk-button type="outline">Top</yk-button>
+          </yk-tooltip>
         </div>
-        <div style="margin: 8px">
-          <YkTooltip placement="topRight">
-            <YkButton type="outline">TR</YkButton>
-          </YkTooltip>
+        <div>
+          <yk-tooltip placement="topRight">
+            <yk-button type="outline">TR</yk-button>
+          </yk-tooltip>
         </div>
       </div>
       <div class="center">
         <div>
-          <div style="margin: 8px">
-            <YkTooltip placement="leftTop">
-              <YkButton type="outline">LT</YkButton>
-            </YkTooltip>
+          <div>
+            <yk-tooltip placement="leftTop">
+              <yk-button type="outline">LT</yk-button>
+            </yk-tooltip>
           </div>
-          <div style="margin: 8px">
-            <YkTooltip placement="left">
-              <YkButton type="outline">Left</YkButton>
-            </YkTooltip>
+          <div>
+            <yk-tooltip placement="left">
+              <yk-button type="outline">Left</yk-button>
+            </yk-tooltip>
           </div>
-          <div style="margin: 8px">
-            <YkTooltip placement="leftBottom">
-              <YkButton type="outline">LB</YkButton>
-            </YkTooltip>
+          <div>
+            <yk-tooltip placement="leftBottom">
+              <yk-button type="outline">LB</yk-button>
+            </yk-tooltip>
           </div>
         </div>
         <div>
-          <div style="margin: 8px">
-            <YkTooltip placement="rightTop">
-              <YkButton type="outline">RT</YkButton>
-            </YkTooltip>
+          <div>
+            <yk-tooltip placement="rightTop">
+              <yk-button type="outline">RT</yk-button>
+            </yk-tooltip>
           </div>
-          <div style="margin: 8px">
-            <YkTooltip placement="right">
-              <YkButton type="outline">Right</YkButton>
-            </YkTooltip>
+          <div>
+            <yk-tooltip placement="right">
+              <yk-button type="outline">Right</yk-button>
+            </yk-tooltip>
           </div>
-          <div style="margin: 8px">
-            <YkTooltip placement="rightBottom">
-              <YkButton type="outline">RB</YkButton>
-            </YkTooltip>
+          <div>
+            <yk-tooltip placement="rightBottom">
+              <yk-button type="outline">RB</yk-button>
+            </yk-tooltip>
           </div>
         </div>
       </div>
       <div class="bottom">
-        <div style="margin: 8px">
-          <YkTooltip placement="bottomLeft">
-            <YkButton type="outline">BL</YkButton>
-          </YkTooltip>
+        <div>
+          <yk-tooltip placement="bottomLeft">
+            <yk-button type="outline">BL</yk-button>
+          </yk-tooltip>
         </div>
-        <div style="margin: 8px">
-          <YkTooltip placement="bottom">
-            <YkButton type="outline">Bottom</YkButton>
-          </YkTooltip>
+        <div>
+          <yk-tooltip placement="bottom">
+            <yk-button type="outline">Bottom</yk-button>
+          </yk-tooltip>
         </div>
-        <div style="margin: 8px">
-          <YkTooltip placement="bottomRight">
-            <YkButton type="outline">BR</YkButton>
-          </YkTooltip>
+        <div>
+          <yk-tooltip placement="bottomRight">
+            <yk-button type="outline">BR</yk-button>
+          </yk-tooltip>
         </div>
       </div>
     </div>
-  </YkSpace>
+  </yk-space>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
