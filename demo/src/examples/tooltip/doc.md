@@ -47,7 +47,7 @@
 | zIndex               | 设置 Tooltip 的 z-index                                                                                                                                    | number                  | -               |
 | overlayStyle         | 卡片样式                                                                                                                                                   | object                  | -               |
 | overlayClassName     | 卡片类名                                                                                                                                                   | string                  | -               |
-| autoAdjustOverflow   | 气泡被遮挡时自动调整位置                                                                                                                                   | boolean                 | true            |
+| autoAdjustOverflow   | 气泡被遮挡时自动调整位置                                                                                                                                   | boolean                 | false           |
 | closeDelay           | 延迟关闭时常。单位：毫秒                                                                                                                                   | number                  | 0               |
 | openDelay            | 延时打开时常。单位：毫秒                                                                                                                                   | number                  | 300             |
 | destroyTooltipOnHide | 关闭后是否移除标签元素                                                                                                                                     | boolean                 | false           |
