@@ -7,12 +7,14 @@ class MessageManager {
   private messages = ref<MessageOptions[]>([]);
   private container: HTMLElement | null;
   private seed: number;
+  private zIndex: number;
   public created: boolean;
   constructor() {
     this.container = document.createElement('div');
     this.container.className = `yk-message-container`;
     this.messages = ref([]);
     this.seed = 0;
+    this.zIndex = 2001;
     this.created = true;
     const vm = createVNode(MessageGroup, {
       messages: this.messages.value,
@@ -25,7 +27,11 @@ class MessageManager {
   add = (config: MessageOptions) => {
     this.seed++;
     const id = `yk-message__${this.seed}`;
-    const message: MessageOptions = reactive({ id, ...config });
+    const message: MessageOptions = reactive({
+      id,
+      ...config,
+      zIndex: this.zIndex,
+    });
     this.messages.value.push(message);
     return {
       close: () => this.remove(id),
@@ -45,6 +51,7 @@ class MessageManager {
       document.body.removeChild(this.container);
       this.container = null;
       this.created = false;
+      this.zIndex = 2001;
     }
   };
   close = () => {

@@ -13,6 +13,7 @@ import YkTable from './components/table/Table.vue';
 import YkMessage from './components/message';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
+import YkEmpty from './components/empty';
 import './styles/index.less';
 
 const components: {
@@ -33,6 +34,7 @@ const components: {
   YkParagraph,
   YkTitle,
   YkText,
+  YkEmpty,
   YkBackTop,
 };
 
@@ -53,6 +55,7 @@ export {
   YkTitle,
   YkText,
   YkMessage,
+  YkEmpty,
   YkBackTop,
 };
 

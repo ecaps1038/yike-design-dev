@@ -1,6 +1,6 @@
 <template>
   <yk-space>
-    <yk-button status="primary" @click="handlePrimary">触发成功</yk-button>
+    <yk-button status="primary" @click="handlePrimary">通用提示</yk-button>
     <yk-button status="success" @click="handleSuccess">触发成功</yk-button>
     <yk-button status="warning" @click="handleWarning">触发警告</yk-button>
     <yk-button status="danger" @click="handleError">触发失败</yk-button>
@@ -14,7 +14,7 @@ import { getCurrentInstance, ref } from 'vue'
 const loading = ref(false)
 const proxy: any = getCurrentInstance()?.proxy
 const handlePrimary = () => {
-  proxy.$message({ type: 'primary', message: '成功提示' })
+  proxy.$message({ type: 'primary', message: '通用提示' })
 }
 const handleSuccess = () => {
   proxy.$message({ type: 'success', message: '成功提示' })

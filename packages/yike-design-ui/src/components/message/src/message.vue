@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<MessageProps>(), {
   message: '',
   type: 'success',
   duration: 3000,
-  offset: 5,
+  offset: 12,
   zIndex: 100,
   onClose: () => ({}),
 })
@@ -33,7 +33,7 @@ const statusIconName = computed(() => {
   return iconStatusMap[props.type]
 })
 const Style = computed(() => ({
-  marginTop: `${props.offset}px`,
+  marginBottom: `${props.offset}px`,
   zIndex: props.zIndex,
 }))
 const iconStatusMap = {
