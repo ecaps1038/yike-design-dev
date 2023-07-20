@@ -1,14 +1,14 @@
 <template>
-  <div class="yk-theme" v-show="control">
+  <div v-show="control" class="yk-theme">
     <yk-icon
-      name="yike-taiyang"
       v-show="nowSkin == 'dark'"
+      name="yike-taiyang"
       class="son"
       @click="onChange('light')"
     />
     <yk-icon
-      name="yike-yueliang"
       v-show="nowSkin == 'light'"
+      name="yike-yueliang"
       class="moon"
       @click="onChange('dark')"
     />
@@ -29,7 +29,6 @@ const props = withDefaults(defineProps<ThemeProps>(), {
 })
 
 const nowSkin = ref()
-let obj = ref({})
 
 //本地存储主题
 const setLocalTheme = (theme: string) => {
