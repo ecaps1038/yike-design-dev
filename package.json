@@ -12,9 +12,11 @@
     "lint:fix": "pnpm run eslint",
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
-    "preinstall": "node ./config/script/preinstall.js"
+    "preinstall": "node ./config/script/preinstall.js",
+    "gen:icon": "pnpm --filter yike-design-ui gen:icon"
   },
   "dependencies": {
+    "svgo": "^3.0.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {

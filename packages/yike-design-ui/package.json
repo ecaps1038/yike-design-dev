@@ -28,10 +28,12 @@
   ],
   "scripts": {
     "build": "vite build",
-    "lint": "eslint . --fix "
+    "lint": "eslint . --fix ",
+    "gen:icon": "yike-build icongen"
   },
   "dependencies": {
-    "@yike/utils": "workspace:*"
+    "@yike/utils": "workspace:*",
+    "@yike/build": "workspace:*"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^0.32.4",
