@@ -2,7 +2,8 @@
   <yk-upload
     :upload-url="uploadUrl"
     :file-list="fileUrl"
-    desc="上传内容要求"
+    :limit="3"
+    desc="限制上传三个文件"
   ></yk-upload>
 </template>
 <script lang="ts" setup>

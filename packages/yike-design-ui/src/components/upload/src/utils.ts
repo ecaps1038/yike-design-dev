@@ -1,4 +1,4 @@
-import type { UploadUserFile } from './upload';
+import type { UploadFile, UserFile } from './upload';
 export const imageTypes = ['image', 'jpeg', 'png', 'gif'];
 export function getArcPath(
   cx: number,
@@ -19,22 +19,22 @@ export function generateUid() {
   const timestampPart = Date.now(); // 获取当前时间戳
   return parseInt(`${randomPart}${timestampPart}`, 10); // 将随机数和时间戳拼接为一个整数类型的 UID
 }
-export function generateListUid(list: any) {
-  list = list.map((item: any) => {
-    return { uid: generateUid(), ...item }; // 在每个元素上添加 uid 属性并将其赋值为生成的 uid
+export function generateListUid(list: UserFile[]) {
+  const uploadList = list.map((item: any) => {
+    return { uid: generateUid(), status: 'success', ...item }; // 在每个元素上添加 uid 属性并将其赋值为生成的 uid
   });
-  return list;
+  return uploadList;
 }
 
 export function findFile(
-  file: UploadUserFile,
-  fileList: Array<UploadUserFile>,
+  file: UploadFile,
+  fileList: Array<UploadFile>,
 ): number {
   return fileList.findIndex((fileIt) => file.uid === fileIt.uid);
 }
 export function findFileByUid(
   uid: number,
-  fileList: Array<UploadUserFile>,
+  fileList: Array<UploadFile>,
 ): number {
   return fileList.findIndex((fileIt) => uid === fileIt.uid);
 }

@@ -2,12 +2,8 @@
   <div class="yk-file-content">
     <div class="file-content-main">
       <div class="content-left">
-        <yk-icon
-          v-if="status !== 'uploading'"
-          :name="iconName"
-          class="annex-yk-icon"
-        />
-        <div>{{ name }}</div>
+        <yk-icon :name="iconName" class="annex-yk-icon" />
+        <span :class="`yk-file-name__${status}`">{{ name }}</span>
       </div>
       <div class="content-right">
         <yk-icon
@@ -17,18 +13,18 @@
           @click="handleRemove"
         />
         <yk-icon
-          v-if="status === 'success' || !status"
+          v-if="'success'.includes(status)"
           class="success-yk-icon"
           name="yk-gou1"
         />
         <yk-icon
-          v-if="status === 'fail'"
+          v-if="['error', 'pause'].includes(status)"
           class="re-upload-yk-icon"
           name="yk-jiazai1"
           @click="handleReUpload"
         />
         <div
-          v-if="status === 'uploading'"
+          v-if="['uploading'].includes(status)"
           class="abort-yk-icon-container"
           @click="handlePause"
         >
@@ -43,25 +39,31 @@
 </template>
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
-import { getArcPath, getFileTypeIconName } from './utils'
+import { getArcPath, getFileTypeIconName, generateUid } from './utils'
 import { FileItemProps } from './upload'
 import '../style'
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
+  fileContent: () => ({
+    status: 'success',
+    name: '',
+    uid: generateUid(),
+  }),
 })
-const { status, name } = toRefs(props.fileContent)
+const { status, name, uid } = toRefs(props.fileContent)
+
 const emits = defineEmits(['handleAbort', 'handleRemove', 'handleReUpload'])
 
 const iconName = computed(() => {
   return getFileTypeIconName(name.value)
 })
 const handlePause = () => {
-  emits('handleAbort')
+  emits('handleAbort', uid.value)
 }
 const handleRemove = () => {
-  emits('handleRemove', props.fileContent)
+  emits('handleRemove', uid.value)
 }
 const handleReUpload = () => {
-  emits('handleReUpload', props.fileContent)
+  emits('handleReUpload', uid.value)
 }
 </script>

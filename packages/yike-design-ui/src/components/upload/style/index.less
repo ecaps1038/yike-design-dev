@@ -1,9 +1,116 @@
 .yk-upload {
   width: 100%;
+
+  .yk-uploader-files {
+    width: 100%;
+    .yk-uploader-file {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      span {
+        margin-left: @space-l;
+      }
+    }
+    .file-upload-icon {
+      margin-right: @space-s;
+      line-height: 14px;
+      width: 14px;
+      height: 14px;
+    }
+    .yk-uploader-list {
+      width: 100%;
+      margin-top: @space-xl;
+      display: flex;
+      flex-direction: column;
+    }
+    .yk-file-content {
+      width: 100%;
+      min-height: 36px;
+      margin-bottom: @space-s;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      color: @pcolor;
+      .file-content-main {
+        width: 100%;
+        background-color: @bg-color-m;
+        padding: 0 14px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: @radius-m;
+      }
+      .delete-container {
+        width: 24px;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      .content-left {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        color: @pcolor;
+        font-size: @size-s;
+        font-weight: 400;
+        padding: @space-s 0px;
+        .yk-file-name {
+          &__error {
+            color: @ecolor;
+          }
+        }
+      }
+      .content-right {
+        color: @pcolor;
+        font-size: @size-s;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        svg {
+          margin-left: @space-m;
+        }
+      }
+      .annex-yk-icon {
+        margin-right: @space-s;
+        min-width: 14px;
+        min-height: 14px;
+      }
+      .yk-kaobei {
+        min-width: 14px;
+        min-height: 14px;
+      }
+      .delete-yk-icon {
+        cursor: pointer;
+        color: @font-color-s;
+      }
+      .success-yk-icon {
+        color: @scolor;
+      }
+      .re-upload-yk-icon {
+        color: @pcolor;
+        cursor: pointer;
+      }
+      .default-bg {
+        fill: @pcolor;
+      }
+      .abort-yk-icon-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+  }
+
   .yk-uploader-pictures {
     display: flex;
     flex-direction: row;
-
     .yk-image-uploader {
       min-width: 80px;
       height: 80px;
@@ -32,113 +139,64 @@
         left: 39px;
       }
     }
-  }
-  .yk-uploader-files {
-    width: 100%;
-  }
-  .yk-uploader-file {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    span {
-      margin-left: @space-l;
-    }
-  }
-  .yk-images-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 100%;
-  }
-  .file-upload-icon {
-    margin-right: @space-s;
-    line-height: 14px;
-    width: 14px;
-    height: 14px;
-  }
-  .yk-uploader-list {
-    width: 100%;
-    margin-top: @space-xl;
-    display: flex;
-    flex-direction: column;
-  }
-  .yk-uploader-list {
-    width: 100%;
-    margin-top: @space-xl;
-  }
-  .yk-file-content {
-    width: 100%;
-    min-height: 36px;
-    margin-bottom: @space-s;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: @pcolor;
-    .file-content-main {
-      width: 100%;
-      background-color: @bg-color-m;
-      padding: 0 14px;
+    .yk-images-list {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: @radius-m;
+      flex-wrap: wrap;
+      max-width: 100%;
     }
-    .delete-container {
-      width: 24px;
-      padding-left: 10px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-    .content-left {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      color: @pcolor;
-      font-size: @size-s;
-      font-weight: 400;
-    }
-    .content-right {
-      color: @pcolor;
-      font-size: @size-s;
 
-      svg {
-        margin-left: @space-m;
+    .yk-image-content {
+      width: 80px;
+      height: 80px;
+      margin-right: 40px;
+      background: @bg-color-m;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
-    .annex-yk-icon {
-      margin-right: @space-s;
-      min-width: 14px;
-      min-height: 14px;
-    }
-    .yk-kaobei {
-      min-width: 14px;
-      min-height: 14px;
-    }
-    .delete-yk-icon {
-      cursor: pointer;
-      color: @font-color-s;
-    }
-    .success-yk-icon {
-      color: @scolor;
-    }
-    .re-upload-yk-icon {
-      color: @pcolor;
-      cursor: pointer;
-    }
-    .default-bg {
-      fill: @pcolor;
-    }
-    .abort-yk-icon-container {
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      background-color: #000;
+      transition: opacity 0.3s ease;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+    }
+    .overlay-yk-icons {
+      width: 64px;
+      height: 14px;
+      position: absolute;
+      font-size: 16px;
+      visibility: hidden;
+      left: 50%;
+      top: 50%;
+      color: @bg-color-l;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      svg {
+        cursor: pointer;
+      }
+    }
+    .yk-image-content:hover .overlay {
+      opacity: 0.5;
+    }
+    .yk-image-content:hover .overlay-yk-icons {
+      visibility: visible;
     }
   }
 }

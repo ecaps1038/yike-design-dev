@@ -1,4 +1,10 @@
-export type UploadStatus = 'ready' | 'uploading' | 'success' | 'fail';
+import { Ref } from 'vue';
+export type UploadStatus =
+  | 'ready'
+  | 'uploading'
+  | 'success'
+  | 'error'
+  | 'pause';
 export const ImageTypes = ['image', 'jpeg', 'png', 'gif'];
 
 export const fileTypeIcons = {
@@ -11,22 +17,21 @@ export const fileTypeIcons = {
   text: 'yike-txt',
 };
 
-export interface UploadRawFile extends File {
-  uid: number;
-}
-export interface UploadFile {
+export interface UserFile {
   name: string;
-  percentage?: number;
-  status?: UploadStatus;
-  size?: number;
-  response?: unknown;
-  uid?: number;
-  url?: string;
-  raw?: UploadRawFile;
+  url: string;
 }
 
-export type UploadUserFile = Omit<UploadFile, 'status' | 'uid'> &
-  Partial<Pick<UploadFile, 'status' | 'uid'>>;
+export interface UploadFile {
+  name: string;
+  progress?: number;
+  status: UploadStatus;
+  size?: number;
+  response?: unknown;
+  uid: number;
+  url?: string;
+  raw?: File;
+}
 
 export type UploadProps = {
   accept?: string;
@@ -35,19 +40,25 @@ export type UploadProps = {
   preview?: boolean;
   limit?: number;
   uploadUrl: string;
-  fileList: Array<UploadUserFile>;
+  fileList: Array<UserFile>;
   desc?: string;
-};
-
-export type FileItemContent = {
-  status: string;
-  name: string;
-  raw: File;
-  uid: number;
-  url: string;
 };
 
 export interface FileItemProps {
   progress?: number;
-  fileContent: FileItemContent;
+  fileContent: UploadFile;
 }
+
+export type RequestOptions = {
+  uid: number;
+  uploadUrl: string;
+  selectedFile: File;
+  fileName: string;
+  onSuccess: (res: string) => void;
+  onError: (err: string) => void;
+  onProgress: (uid: number, progress: number) => void;
+};
+
+export type RequestInstance = {
+  abort: () => void;
+};
