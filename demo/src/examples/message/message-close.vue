@@ -11,27 +11,27 @@
   </yk-space>
 </template>
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
-const instances = []
+const instances = ref([])
 const handlePrimary = () => {
   const primaryInstance = proxy.$message.primary('消息提示')
-  instances.push(primaryInstance)
+  instances.value.push(primaryInstance)
 }
 const handleSuccess = () => {
   const successInstance = proxy.$message.success('成功提示')
-  instances.push(successInstance)
+  instances.value.push(successInstance)
 }
 const handleLoading = () => {
   const messageInstance = proxy.$message({
     type: 'loading',
     message: '正在加载中,等待手动关闭',
   })
-  instances.push(messageInstance)
+  instances.value.push(messageInstance)
 }
 const handleClose = () => {
-  instances.forEach((ins) => {
-    ins.close()
+  instances.value.forEach((instance) => {
+    instance.close()
   })
 }
 </script>

@@ -8,6 +8,12 @@ module.exports = {
         semi: true,
       },
     },
+    {
+      files: 'demo/components.d.ts',
+      options: {
+        semi: false,
+      },
+    },
   ],
   bracketSpacing: true,
   htmlWhitespaceSensitivity: 'ignore',

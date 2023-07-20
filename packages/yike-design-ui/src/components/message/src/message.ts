@@ -6,18 +6,16 @@ export type MessageProps = {
   duration?: number;
   offset?: number;
   zIndex?: number;
+
   onClose?: () => void;
   onDestroy?: () => void;
 };
 
 export interface MessageOptions extends MessageProps {
-  id?: number;
-  appendTo?: HTMLElement | string;
+  id?: number | string;
+  appendTo?: HTMLElement | string | Element;
 }
 
-export interface MessageHandler {
-  /**
-   * @description close the Message
-   */
-  close: () => void;
-}
+export type MessageGroupProps = {
+  messages: MessageOptions[];
+};
