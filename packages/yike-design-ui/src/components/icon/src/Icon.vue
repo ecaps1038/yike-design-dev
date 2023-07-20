@@ -13,7 +13,7 @@ defineOptions({
   name: 'YkIcon',
 })
 
-const props = withDefaults(defineProps<IconProps>(), {
+withDefaults(defineProps<IconProps>(), {
   name: '',
 })
 </script>
