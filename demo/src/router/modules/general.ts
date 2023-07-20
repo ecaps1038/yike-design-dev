@@ -37,6 +37,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'checkbox',
     component: () => import('@/examples/checkbox/doc.md'),
   },
+  {
+    path: 'empty',
+    component: () => import('@/examples/empty/doc.md'),
+  },
 ];
 
 export default generalRoutes;
