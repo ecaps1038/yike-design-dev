@@ -5,11 +5,6 @@
     </ul>
     <yk-back-top
       :target="list"
-      right="120"
-      :style="{ position: 'absolute' }"
-    ></yk-back-top>
-    <yk-back-top
-      :target="list"
       theme="secondary"
       behavior="instant"
       :style="{ position: 'absolute' }"

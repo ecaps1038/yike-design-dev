@@ -14,7 +14,7 @@
 
 :::snippet
 不同的类型
-可以选择不同的类型主题。
+可以通过修改 `theme` 选择不同的类型主题。
 <BackTopPrimary/>
 :::
 
@@ -27,7 +27,7 @@
 | bottom        | 距离页面底部的高度           | string ｜ number                | 50px    |
 | target        | 监听滚动的元素               | string ｜ `Ref<HTMLElement>`    | -       |
 | visibleHeight | 滚动时触发显示回到顶部的高度 | string ｜ number                | 200px   |
-| animation     | 动画效果                     | 'fade' ｜ 'move'                | fade    |
+| animation     | 动画效果                     | 'upward' ｜ 'fade'              | upward  |
 | icon          | 图标 name                    | 详情见 Icon 组件                | yk-top  |
 | behavior      | 滚动时的过渡效果             | 'smooth' ｜ 'instant' ｜ 'auto' | smooth  |
 
