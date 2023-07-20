@@ -33,6 +33,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'radio',
     component: () => import('@/examples/radio/doc.md'),
   },
+  {
+    path: 'empty',
+    component: () => import('@/examples/empty/doc.md'),
+  },
 ];
 
 export default generalRoutes;

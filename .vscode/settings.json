@@ -26,5 +26,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "references.preferredLocation": "peek"
+  "references.preferredLocation": "peek",
+  "vue.codeActions.enabled": false
 }
