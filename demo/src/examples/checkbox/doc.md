@@ -17,3 +17,9 @@
 禁用复选框
 <CheckboxDisabled/>
 :::
+
+:::snippet
+复选框组
+通过 `<yk-checkbox-group>` 组件展示复选框组。
+<CheckboxGroupPrimary/>
+:::

@@ -8,6 +8,11 @@ import { InjectionKey, ToRefs, WritableComputedRef } from 'vue';
 //     'size' | 'min' | 'max' | 'disabled' | 'validateEvent' | 'fill' | 'textColor'
 //   >
 // >;
-export const checkboxGroupContextKey: InjectionKey<any> = Symbol(
-  'checkboxGroupContextKey',
-);
+type CheckboxGroupContext = {
+  name: string;
+  calcVal: Array<string | number | boolean>;
+  disabled: boolean;
+  handleChange: (val: Array<string | number>) => void;
+};
+export const checkboxGroupContextKey: InjectionKey<CheckboxGroupContext> =
+  Symbol('checkboxGroupContextKey');

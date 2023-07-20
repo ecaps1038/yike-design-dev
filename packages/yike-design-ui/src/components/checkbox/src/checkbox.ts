@@ -11,7 +11,7 @@ export const toBoolean = (v: number | string | boolean) => {
   }
   return !!v.toString();
 };
-export const isArray = (v: any) => {
+export const isArray = (v: any): v is any[] => {
   return Array.isArray(v);
 };
 export const isUndefined = (v: any) => {

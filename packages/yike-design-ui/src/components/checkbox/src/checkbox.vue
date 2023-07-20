@@ -42,31 +42,42 @@ const emits = defineEmits(['change', 'update:modelValue'])
 const checkboxRef = ref<HTMLInputElement>()
 
 const checkboxGroupCtx = inject(checkboxGroupContextKey, undefined)
-const isGroup = computed(() => checkboxGroupCtx)
+const isGroup = computed(() => !!checkboxGroupCtx)
 const ischecked = ref(props.defaultChecked)
 
 // 值计算
 const calcVal = computed(() => {
   const curVal = props.modelValue ?? ischecked.value
-  return isGroup.value ? checkboxGroupCtx.calcVal : curVal
+  return isGroup.value ? checkboxGroupCtx?.calcVal : curVal
 })
 //选中计算
 const calcChecked = computed(() => {
   if (isGroup.value && isArray(calcVal.value)) {
-    return calcVal.value.includes(props.value)
+    return calcVal.value!.includes(props.value as any)
   }
-  return toBoolean(calcVal.value)
+  return toBoolean(calcVal.value as string | number | boolean)
 })
 
 const handleChange = (e: Event) => {
   const { checked } = e.target as HTMLInputElement
   ischecked.value = checked
 
-  // if (isGroup) {
+  let newVal
+  if (isGroup.value && isArray(calcVal.value)) {
+    const set = new Set(calcVal.value)
+    if (checked) {
+      set.add(props.value ?? true)
+    } else {
+      set.delete(props.value ?? true)
+    }
+    newVal = Array.from(set)
 
-  // }
-  emits('update:modelValue', checked)
-  emits('change', checked)
+    checkboxGroupCtx?.handleChange(newVal)
+  } else {
+    emits('update:modelValue', checked)
+    emits('change', checked)
+  }
+  // todo:form trigger
 }
 watch(
   () => props.modelValue,
