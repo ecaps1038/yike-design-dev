@@ -1,4 +1,4 @@
-import type { Plugin, PropType } from 'vue';
+import type { Plugin } from 'vue';
 
 export type SFCWithInstall<T> = T & Plugin;
 export const withInstall = <T, E extends Record<string, any>>(

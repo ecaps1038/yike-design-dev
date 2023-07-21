@@ -22,7 +22,7 @@
 import { ref, getCurrentInstance } from 'vue'
 import { tryCopy } from '@/utils/tools'
 const proxy: any = getCurrentInstance()?.proxy
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: '标题',
