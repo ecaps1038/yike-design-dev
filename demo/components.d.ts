@@ -32,6 +32,7 @@ declare module 'vue' {
     YkImageContent: typeof import('./../packages/yike-design-ui/src/index.ts')['YkImageContent']
     YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
     YkRadio: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadio']
+    YkRadioButton: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadioButton']
     YkRadioGroup: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadioGroup']
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
     YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
