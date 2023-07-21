@@ -19,6 +19,6 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 hljs.registerLanguage('javascript', javascript);
 
 const app = createApp(App);
-app.component('Snippet', Snippet);
+app.component('YkSnippet', Snippet);
 app.component('ColorCard', ColorCard);
 app.use(YikeDesignUI).use(hljsVuePlugin).use(router).mount('#app');
