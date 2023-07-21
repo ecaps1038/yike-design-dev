@@ -20,8 +20,12 @@
     "yike design",
     "yike"
   ],
-  "main": "./dist/components.umd.js",
-  "module": "./dist/components.es.js",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "publishConfig": {
+    "main": "./dist/components.umd.js",
+    "module": "./dist/components.es.js"
+  },
   "files": [
     "dist",
     "src/"
