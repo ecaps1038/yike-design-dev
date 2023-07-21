@@ -4,6 +4,7 @@ import { radioEmits } from './radio';
 export type RadioGroupProps = {
   modelValue?: number | string | boolean;
   size?: Size;
+  theme?: 'primary' | 'secondary';
   disabled?: boolean;
   direction?: Direction;
 };
