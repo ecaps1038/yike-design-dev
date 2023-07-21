@@ -57,7 +57,7 @@ export default () => ({
         );
         const demoCode = fetchDemoCode(demoComponentName, id).replace(
           /{{\s*(.+?)\s*}}/g,
-          "<div v-text='$1'></div>",
+          '<div v-text="$1"></div>',
         );
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`;
         const caseCardContent = `<yk-snippet title="${title}">
