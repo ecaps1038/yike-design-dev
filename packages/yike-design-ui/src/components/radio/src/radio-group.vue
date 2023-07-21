@@ -19,6 +19,8 @@ const ykRadioGroupCls = computed(() => {
   return {
     'yk-radio-group': true,
     'yk-radio-vertical': props.direction === 'vertical',
+    [`yk-radio--${props.size}`]: props.size,
+    [`yk-radio--${props.theme}`]: props.theme,
   }
 })
 const changeEvent = (value: RadioGroupProps['modelValue']): void => {
