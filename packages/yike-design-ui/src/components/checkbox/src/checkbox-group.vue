@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { CheckboxGropProps, CheckboxOption } from './checkbox-group'
-import { provide, ref, reactive, computed, toRaw } from 'vue'
+import { provide, ref, reactive, computed, toRaw, useSlots } from 'vue'
 import { checkboxGroupContextKey } from './constants'
 import { isArray } from './checkbox'
 import { YkCheckbox } from '..'
@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<CheckboxGropProps>(), {
   options: () => [],
 })
 const emits = defineEmits(['update:modelValue', 'change'])
-const slots = defineSlots()
+const slots = useSlots()
 const ns = 'yk-checkbox-group'
 
 const curVal = ref(props.defaultValue)
