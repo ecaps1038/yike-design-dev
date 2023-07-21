@@ -11,7 +11,7 @@
     "lint:fix": "eslint --fix . && stylelint --fix .",
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
-    "preinstall": "node ./config/script/preinstall.js"
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "vue": "^3.3.4"
