@@ -35,5 +35,3 @@ export const TEXTTYPE = [
 export type TextType = (typeof TEXTTYPE)[number];
 
 export type AnimationType = 'upward' | 'fade';
-export const DIRECTION = ['vertical', 'horizontal'] as const;
-export type Direction = (typeof DIRECTION)[number];
