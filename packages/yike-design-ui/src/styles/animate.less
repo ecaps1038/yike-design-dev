@@ -46,3 +46,20 @@
 .down-leave-active {
   position: absolute;
 }
+
+.right-move,
+.right-enter-active,
+.right-leave-active {
+  transition: all 0.24s;
+  transform: translateX(0px);
+}
+
+.right-enter-from,
+.right-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.right-leave-active {
+  position: absolute;
+}

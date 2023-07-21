@@ -1,0 +1,111 @@
+.yk-notification-container {
+  position: fixed;
+  z-index: 2002;
+  top: @space-l;
+  right: @space-l;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.yk-notification {
+  display: flex;
+  justify-content: center;
+  .notification-container {
+    width: 420px;
+    padding: 27px 25px;
+    color: @font-color-l;
+    background: @bg-color-l;
+    box-shadow: @shadow-m;
+    border-radius: @radius-m;
+    display: flex;
+    flex-direction: column;
+    .notification-body{
+      display: flex;
+      flex-direction: row;
+      .iconDiv{
+        width: 18px;
+        margin-right: 9px;
+      }
+      .notification-icon {
+        width: 18px;
+        height: 18px;
+        margin-top: 3px;
+      }
+      .title-text {
+        vertical-align: middle;
+        font-family: PingFangSC-Medium;
+        font-weight: 500;
+        font-size: 16px;
+        color: #1E2025;
+        line-height: 24px;
+        padding-right: 16px;
+      }
+      .content{
+        margin-top: 8px;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+        font-size: 14px;
+        color: #1E2025;
+        text-align: justify;
+        line-height: 22px;
+      }
+    }
+    .notification-footer{
+      margin-top: 20px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      font-size: 14px;
+      color: #1E2025;
+      text-align: justify;
+      line-height: 22px;
+      align-self: flex-end;
+    }
+  }
+  i {
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  &-close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: @font-color-s;
+    padding: 0;
+    overflow: hidden;
+    font-size: 15px;
+    line-height: 15px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: @font-color-l;
+    }
+
+    & svg {
+      vertical-align: -3px !important;
+    }
+  }
+  
+}
+
+//icon颜色
+.icon-success {
+  color: @scolor;
+}
+
+.icon-warning {
+  color: @wcolor;
+}
+
+.icon-error {
+  color: @ecolor;
+}
+
+.icon-primary {
+  color: @pcolor;
+}
