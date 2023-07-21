@@ -37,10 +37,9 @@
 </template>
 
 <script lang="ts" setup>
-import { provide, ref } from 'vue'
+import { provide } from 'vue'
 import { useRouter } from 'vue-router'
 
-const dark = ref(false)
 //页面跳转
 const router = useRouter()
 const goIndex = (): void => {

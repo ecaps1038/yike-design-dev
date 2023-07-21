@@ -5,8 +5,8 @@
     <transition name="modal">
       <div
         v-if="!status"
-        :class="[{ badge: !dot, dot: dot }, type]"
         v-show="count > 0"
+        :class="[{ badge: !dot, dot: dot }, type]"
         class="yk-badge"
         :style="{
           backgroundColor: color,
@@ -72,7 +72,7 @@ const addStyle = () => {
   // console.log(boxId.children)
   if (arr.length == 1) {
     // console.log(boxId.firstChild)
-    arr.map((child: any, index: number) => {
+    arr.map((child: any) => {
       child.style.right = 'auto'
       child.style.top = 'auto'
       child.style.position = 'relative'
