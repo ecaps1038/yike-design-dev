@@ -71,9 +71,7 @@ export default () => ({
         );
         const html = hljs.highlightAuto(demoCode).value;
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`;
-        const caseCardContent = `<Snippet
-        title="${title}"
-       >
+        const caseCardContent = `<Snippet title="${title}">
           <template v-slot:demo>${demoName}</template>
           <template v-slot:desc>${markdownIt.render(desc)}</template>
           <template v-slot:code>

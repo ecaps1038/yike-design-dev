@@ -61,7 +61,6 @@
       "files": "demo/src/examples/**/*.vue", // demo vue文件不允许空行
       "rules": {
         "no-multiple-empty-lines": ["error", { "max": 0 }], // 设置规则
-        "vue/mustache-interpolation-spacing": ["error", "never"],// demo文件暂时不支持mustache解析
       }
     }
   ]
