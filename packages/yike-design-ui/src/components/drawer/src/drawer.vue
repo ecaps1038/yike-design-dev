@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <Transition :name="placement">
-      <div v-if="show" class="yk-drawer" @keydown.esc="close">
+      <div v-if="show" class="yk-drawer">
         <div class="yk-drawer-mask" @click="close"></div>
         <div>
           <div class="yk-drawer-focus" tabindex="0"></div>
@@ -51,12 +51,19 @@ onUpdated(() => {
       document.body.style.overflow = 'hidden'
     }
     if (props.escapable) {
-      document.body.addEventListener('keydown', close, true)
+      document.body.addEventListener(
+        'keydown',
+        (ev) => {
+          if (ev.key === 'Escape') {
+            close()
+          }
+        },
+        true,
+      )
     }
     emits('open')
   } else {
     document.body.style.overflow = ''
-    document.body.removeEventListener('keydown', close, true)
   }
 })
 let style: any
