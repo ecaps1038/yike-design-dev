@@ -1,12 +1,9 @@
 <template>
-  <TransitionGroup name="fade" @after-leave="onLeave">
+  <TransitionGroup name="down" @after-leave="onLeave">
     <Message
       v-for="item in messages"
+      v-bind="getProps(item)"
       :key="item.id"
-      :message="item.message"
-      :type="item.type"
-      :offset="item.offset"
-      :z-index="item.zIndex"
       @close="handleClose(item.id)"
     ></Message>
   </TransitionGroup>
@@ -23,7 +20,14 @@ const emits = defineEmits(['close', 'destroy'])
 const handleClose = (id: string | undefined | number) => {
   emits('close', id)
 }
+
 const onLeave = () => {
   emits('destroy')
+}
+
+const getProps = (item) => {
+  return Object.keys(item)
+    .filter((k) => !['id', 'onClose'].includes(k))
+    .reduce((res, k) => Object.assign(res, { [k]: item[k] }), {})
 }
 </script>

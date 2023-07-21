@@ -10,7 +10,7 @@
     width: 40px;
     height: 40px;
     background: @pcolor;
-    border-radius: 8px;
+    border-radius: @radius-m;
 
     .yk-backtop__icon {
       width: 24px;
@@ -28,25 +28,4 @@
       color: @font-color-l;
     }
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.move-enter-active,
-.move-leave-active {
-  transition: all 0.5s ease;
-}
-
-.move-enter-from,
-.move-leave-to {
-  transform: translateY(100%);
-  opacity: 0;
 }

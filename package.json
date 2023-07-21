@@ -10,7 +10,8 @@
     "lint": "eslint . && stylelint .",
     "lint:fix": "eslint --fix . && stylelint --fix .",
     "new": "node ./config/script/new-component.mjs",
-    "postinstall": "npx husky install"
+    "postinstall": "npx husky install",
+    "preinstall": "node ./config/script/preinstall.js"
   },
   "dependencies": {
     "vue": "^3.3.4"

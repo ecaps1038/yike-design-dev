@@ -44,6 +44,10 @@
         {
           "name": "Avatar  头像",
           "src": "avatar"
+        },
+        {
+          "name": "Empty  空状态",
+          "src": "empty"
         }
       ]
     },
