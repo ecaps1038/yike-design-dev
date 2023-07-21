@@ -61,6 +61,10 @@
         {
           "name": "Message 消息提示",
           "src": "message"
+        },
+        {
+          "name": "Tooltip 文字提示",
+          "src": "tooltip"
         }
       ]
     },
