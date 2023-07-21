@@ -1,10 +1,10 @@
 <template>
-  <label :class="[ns, disabled && `${ns}--disabled`]">
+  <label :class="[ns, calcDisabled && `${ns}--disabled`]">
     <input
       ref="checkboxRef"
       type="checkbox"
       :class="[`${ns}-target`]"
-      :disabled="disabled"
+      :disabled="calcDisabled"
       :checked="calcChecked"
       @change="handleChange"
       @click="handleClick"
@@ -13,7 +13,7 @@
       <yk-icon
         v-if="calcChecked"
         name="yk-gou2"
-        :class="[disabled ? 'icon--disable' : 'icon--active']"
+        :class="[calcDisabled ? 'icon--disable' : 'icon--active']"
       ></yk-icon>
     </div>
     <slot>
@@ -58,6 +58,9 @@ const calcChecked = computed(() => {
   return toBoolean(calcVal.value as string | number | boolean)
 })
 
+const calcDisabled = computed(() => {
+  return checkboxGroupCtx?.disabled ?? props.disabled
+})
 const handleChange = (e: Event) => {
   const { checked } = e.target as HTMLInputElement
   ischecked.value = checked
@@ -84,7 +87,6 @@ watch(
   (n) => {
     ischecked.value = isUndefined(n) ? false : toBoolean(n!)
     checkboxRef.value && (checkboxRef.value.checked = ischecked.value)
-    console.log('n', n)
   },
 )
 
@@ -96,8 +98,8 @@ const calcCls = computed(() => {
   return {
     [`${ns}-wrap`]: true,
     [`${ns}--active`]: calcChecked.value,
-    [`${ns}--normal`]: !calcChecked.value && !props.disabled,
-    [`disabled`]: props.disabled,
+    [`${ns}--normal`]: !calcChecked.value && !calcDisabled.value,
+    [`disabled`]: calcDisabled.value,
   }
 })
 </script>

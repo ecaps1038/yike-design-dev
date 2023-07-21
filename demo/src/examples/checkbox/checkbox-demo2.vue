@@ -1,6 +1,6 @@
 <template>
   <yk-space size="l">
-    <yk-checkbox v-model="checked1" @change="onChange">v-model</yk-checkbox>
+    <yk-checkbox v-model="checked1">v-model</yk-checkbox>
     <yk-checkbox :model-value="true">binding value</yk-checkbox>
     <yk-checkbox :model-value="checked2">binding value</yk-checkbox>
     <yk-checkbox :default-checked="true">uncontrolled state</yk-checkbox>
@@ -15,9 +15,6 @@ const checked1 = ref(false)
 const checked2 = ref(false)
 const change = () => {
   checked2.value = !checked2.value
-}
-const onChange = (v: any) => {
-  console.log(v)
 }
 </script>
 <style>
