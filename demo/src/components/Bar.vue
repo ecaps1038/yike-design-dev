@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router'
 defineProps({
   bar: {
     type: Array,
+    required: true,
   },
 })
 //获取屏幕body高度

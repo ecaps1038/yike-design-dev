@@ -18,7 +18,7 @@ import '../style'
 const props = withDefaults(defineProps<paragraphProps>(), {
   strong: false,
   type: 'default',
-  ellipsis: (props: paragraphProps): ellipsisType => {
+  ellipsis: (): ellipsisType => {
     return { rows: 0, showMore: false }
   },
 })

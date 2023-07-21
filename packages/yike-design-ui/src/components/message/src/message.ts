@@ -1,4 +1,4 @@
-import type { VNode, ComponentInternalInstance } from 'vue';
+import type { VNode } from 'vue';
 import { MessageType } from '../../../utils/constant';
 export type MessageProps = {
   message: string | VNode;

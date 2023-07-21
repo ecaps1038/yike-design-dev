@@ -1,6 +1,6 @@
 <template>
   <button :class="ykButtonClass" :disabled="disabled || loading">
-    <svg viewBox="25 25 50 50" v-if="loading">
+    <svg v-if="loading" viewBox="25 25 50 50">
       <circle r="20" cy="50" cx="50"></circle>
     </svg>
     <slot name="icon"></slot>
