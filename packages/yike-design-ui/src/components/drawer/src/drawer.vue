@@ -54,7 +54,7 @@ onUpdated(() => {
       document.body.addEventListener(
         'keydown',
         (ev) => {
-          if (ev.key === 'Escape') {
+          if (ev.key === 'Escape' && props.show) {
             close()
           }
         },
