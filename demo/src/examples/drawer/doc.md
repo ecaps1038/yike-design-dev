@@ -18,6 +18,12 @@
 <DrawerCallback/>
 :::
 
+:::snippet
+抽屉嵌套
+抽屉可以像俄罗斯套娃一般地嵌套。
+<DrawerMulti/>
+:::
+
 ### API
 
 | 参数       | 描述                       | 类型                             | 默认值  |
