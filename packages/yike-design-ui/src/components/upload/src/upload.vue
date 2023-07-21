@@ -34,19 +34,18 @@
       </div>
     </div>
     <div v-else class="yk-uploader-pictures">
-      <div v-if="currentList.length" class="yk-images-list">
-        <div v-for="item in currentList" class="exist-images">
-          <upload-picture-item
-            :file-content="item"
-            :is-picture="isPicture"
-            :progress="item.progress"
-            @handle-remove="handleRemove"
-            @handle-re-upload="handleReUpload"
-            @handle-abort="handleAbort"
-          ></upload-picture-item>
-        </div>
-      </div>
-      <div class="yk-image-uploader" @click="handleUpload"></div>
+      <span v-for="item in currentList">
+        <upload-picture-item
+          :key="item.uid"
+          :file-content="item"
+          :is-picture="isPicture"
+          :progress="item.progress"
+          @handle-remove="handleRemove"
+          @handle-re-upload="handleReUpload"
+          @handle-abort="handleAbort"
+        ></upload-picture-item>
+      </span>
+      <span :class="computeUploadClass" @click="handleUpload"></span>
     </div>
   </div>
 </template>
@@ -72,6 +71,7 @@ const props = withDefaults(defineProps<UploadProps>(), {
   maxSize: 0,
   multiple: true,
   preview: true,
+  shape: 'default',
   limit: 0,
   uploadUrl: '',
   fileList: () => [],
@@ -97,18 +97,21 @@ const uploadDisabled = computed(() => {
     (props.limit && currentLength.value >= props.limit)
   )
 })
+const computeUploadClass = computed(() => {
+  return ['yk-image-uploader', `yk-image-uploader__${[props.shape]}`]
+})
+
 isPicture.value = ImageTypes.some((type) => props.accept.includes(type))
 const { proxy }: any = getCurrentInstance()
 
 const onUploadRequest = async (uploadFile: File) => {
   const fileName = uploadFile.name
   const uid = generateUid()
-  currentList.value.unshift({
+  currentList.value.push({
     name: fileName,
     status: 'uploading',
     raw: uploadFile,
     uid,
-    progress: 0,
   })
   const requestOptions: RequestOptions = {
     uid,
@@ -122,9 +125,10 @@ const onUploadRequest = async (uploadFile: File) => {
   uploadInstances.set(uid, UploadRequest(requestOptions))
 }
 
-const handleSuccess = (res: string) => {
+const handleSuccess = (uid: number, res: string) => {
   proxy.$message.success('文件上传成功')
-  currentList.value[0].status = 'success'
+  const idx = findFileByUid(uid, currentList.value)
+  currentList.value[idx].status = 'success'
   emits('handleSuccess', res, currentList.value)
 }
 
@@ -133,9 +137,10 @@ const handleProgress = (uid: number, progress: number) => {
   currentList.value[idx].progress = progress
 }
 
-const handleError = (err: string) => {
+const handleError = (uid: number, err: string) => {
   proxy.$message.error(err || '上传失败')
-  currentList.value[0].status = 'error'
+  const idx = findFileByUid(uid, currentList.value)
+  currentList.value[idx].status = 'error'
   emits('handleError', err, currentList.value)
 }
 

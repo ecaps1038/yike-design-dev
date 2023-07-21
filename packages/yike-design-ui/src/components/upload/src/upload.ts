@@ -7,6 +7,9 @@ export type UploadStatus =
   | 'pause';
 export const ImageTypes = ['image', 'jpeg', 'png', 'gif'];
 
+export const IMAGESHAPE = ['default', 'circle'] as const;
+export type Shape = (typeof IMAGESHAPE)[number];
+
 export const fileTypeIcons = {
   word: 'yike-word',
   pdf: 'yike-pdf',
@@ -40,6 +43,7 @@ export type UploadProps = {
   preview?: boolean;
   limit?: number;
   uploadUrl: string;
+  shape?: Shape;
   fileList: Array<UserFile>;
   desc?: string;
 };
@@ -54,8 +58,8 @@ export type RequestOptions = {
   uploadUrl: string;
   selectedFile: File;
   fileName: string;
-  onSuccess: (res: string) => void;
-  onError: (err: string) => void;
+  onSuccess: (uid: number, res: string) => void;
+  onError: (uid: number, err: string) => void;
   onProgress: (uid: number, progress: number) => void;
 };
 

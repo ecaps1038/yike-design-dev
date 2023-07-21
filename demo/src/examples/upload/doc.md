@@ -23,3 +23,9 @@
 通过 `accept` 判断是否仅上传图片，若接受对象包含 `image` 、 `png` 、 `jpg/jpeg` ，则采用图片列表上传 UI
 <UploadPicture/>
 :::
+
+:::snippet
+图片上传
+通过 `accept` 判断是否仅上传图片，若接受对象包含 `image` 、 `png` 、 `jpg/jpeg` ，则采用图片列表上传 UI
+<UploadPictureCircle/>
+:::

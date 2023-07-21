@@ -28,7 +28,7 @@
           class="abort-yk-icon-container"
           @click="handlePause"
         >
-          <svg v-if="true" width="14" height="14">
+          <svg width="14" height="14">
             <circle cx="7" cy="7" r="7" class="default-bg" fill-opacity="0.6" />
             <path :d="getArcPath(7, 7, 7, progress)" class="default-bg" />
           </svg>

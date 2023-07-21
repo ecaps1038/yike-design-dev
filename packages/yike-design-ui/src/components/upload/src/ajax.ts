@@ -15,7 +15,7 @@ export const UploadRequest = ({
   try {
     xhr.open('POST', uploadUrl, true);
   } catch {
-    onError('上传失败、请求地址有误');
+    onError(uid, '上传失败、请求地址有误');
   }
   xhr.upload.onprogress = (event: ProgressEvent) => {
     if (event.lengthComputable) {
@@ -27,20 +27,19 @@ export const UploadRequest = ({
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText);
       if (response.error || response.err) {
-        onError(response.error);
+        onError(uid, response.error);
       } else {
-        onSuccess(xhr.responseText);
+        onSuccess(uid, xhr.responseText);
       }
     }
   };
   xhr.onerror = function () {
-    onError(xhr.responseText);
+    onError(uid, xhr.responseText);
   };
   xhr.send(formData);
   return {
     abort() {
       xhr.abort();
     },
-    progress,
   };
 };
