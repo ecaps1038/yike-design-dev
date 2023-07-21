@@ -10,8 +10,12 @@
       >
         <div class="yk-drawer-mask" @click="close"></div>
         <div>
-          <div class="yk-drawer-focus" tabindex="0"></div>
-          <div :style="ykDrawerStyle" class="yk-drawer-main">
+          <div ref="focuser" class="yk-drawer-focus" tabindex="0"></div>
+          <div
+            :class="ykDrawerClass"
+            :style="ykDrawerStyle"
+            class="yk-drawer-main"
+          >
             <button v-if="closable" class="yk-drawer-close" @click="close">
               <yk-icon name="yk-cha" />
             </button>
