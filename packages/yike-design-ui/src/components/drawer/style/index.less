@@ -1,0 +1,136 @@
+.yk-drawer {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1024;
+  transition: all 0.3s;
+
+  .yk-drawer-mask {
+    background: #00000066;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    transition: all 0.3s;
+  }
+}
+
+.yk-drawer-focus {
+  width: 0px;
+  height: 0px;
+
+  &:focus-within {
+    outline: none;
+  }
+}
+
+.yk-drawer-main {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: @white;
+  transition: all 0.3s ease;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  .yk-drawer-close {
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    border: none;
+    z-index: 1025;
+    align-items: center;
+    justify-content: center;
+    background: none;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: rgba(var(--gray1), 0.88);
+    }
+  }
+
+  .yk-drawer-header {
+    border-bottom: 1px solid @bg-color-ss;
+    font-size: @size-m;
+    font-weight: 500;
+    padding: 12px;
+
+    &:empty {
+      padding: unset;
+      border-bottom: unset;
+    }
+  }
+
+  .yk-drawer-content {
+    padding: 12px;
+    font-size: @size-s;
+    flex-grow: 1;
+  }
+
+  .yk-drawer-footer {
+    padding: 12px;
+    border-top: 1px solid @bg-color-ss;
+    display: flex;
+    justify-content: end;
+
+    &:empty {
+      padding: unset;
+      border-top: unset;
+    }
+  }
+}
+
+.right-enter-from .yk-drawer-main {
+  transform: translateX(100%);
+}
+
+.right-leave-to .yk-drawer-main {
+  transform: translateX(100%);
+}
+
+.left-enter-from .yk-drawer-main {
+  transform: translateX(-100%);
+}
+
+.left-leave-to .yk-drawer-main {
+  transform: translateX(-100%);
+}
+
+.top-enter-from .yk-drawer-main {
+  transform: translateY(-100%);
+}
+
+.top-leave-to .yk-drawer-main {
+  transform: translateY(-100%);
+}
+
+.bottom-enter-from .yk-drawer-main {
+  transform: translateY(100%);
+}
+
+.bottom-leave-to .yk-drawer-main {
+  transform: translateY(100%);
+}
+
+.right-enter-from .yk-drawer-mask,
+.left-enter-from .yk-drawer-mask,
+.top-enter-from .yk-drawer-mask,
+.bottom-enter-from .yk-drawer-mask {
+  opacity: 0;
+}
+
+.right-leave-to .yk-drawer-mask,
+.left-leave-to .yk-drawer-mask,
+.top-leave-to .yk-drawer-mask,
+.bottom-leave-to .yk-drawer-mask {
+  opacity: 0;
+}

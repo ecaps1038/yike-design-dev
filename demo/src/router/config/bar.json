@@ -57,6 +57,10 @@
         {
           "name": "Message 消息提示",
           "src": "message"
+        },
+        {
+          "name": "Drawer 抽屉",
+          "src": "drawer"
         }
       ]
     },
