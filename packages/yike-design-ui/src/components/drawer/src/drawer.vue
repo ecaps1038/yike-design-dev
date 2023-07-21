@@ -15,14 +15,8 @@
             :class="ykDrawerClass"
             :style="ykDrawerStyle"
             class="yk-drawer-main"
-            role="dialog"
           >
-            <button
-              v-if="closable"
-              aria-label="关闭抽屉"
-              class="yk-drawer-close"
-              @click="close"
-            >
+            <button v-if="closable" class="yk-drawer-close" @click="close">
               <yk-icon name="yk-cha" />
             </button>
             <div class="yk-drawer-header" :aria-label="title">
