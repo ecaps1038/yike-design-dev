@@ -4,6 +4,10 @@
       "title": "通用",
       "list": [
         {
+          "name": "Color 色彩",
+          "src": "color"
+        },
+        {
           "name": "Button 按钮",
           "src": "button"
         },
@@ -61,6 +65,10 @@
         {
           "name": "Message 消息提示",
           "src": "message"
+        },
+        {
+          "name": "Tooltip 文字提示",
+          "src": "tooltip"
         }
       ]
     },
