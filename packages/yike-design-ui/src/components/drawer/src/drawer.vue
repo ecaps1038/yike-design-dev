@@ -56,6 +56,9 @@ const focuser = ref<HTMLElement>()
 const close = () => {
   emits('close')
 }
+const escape = (ev: KeyboardEvent) => {
+  if (ev.key === 'Escape') close()
+}
 onUpdated(() => {
   if (props.show) {
     focuser.value?.focus()
@@ -63,19 +66,12 @@ onUpdated(() => {
       document.body.style.overflow = 'hidden'
     }
     if (props.escapable) {
-      document.body.addEventListener(
-        'keydown',
-        (ev) => {
-          if (ev.key === 'Escape' && props.show) {
-            close()
-          }
-        },
-        true,
-      )
+      document.body.addEventListener('keydown', escape)
     }
     emits('open')
   } else {
     document.body.style.overflow = ''
+    document.body.removeEventListener('keydown', escape)
   }
 })
 const ykDrawerStyle = computed(() => {
