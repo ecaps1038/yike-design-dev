@@ -234,3 +234,22 @@ desc
     |- index.ts: 样式导入文件
   |- index.ts: 组件入口文件
 ```
+
+
+
+#### 合并预检查 branch-lint
+
+执行命令`pnpm branch-lint`
+会进行lint-staged检测,并且在本地模拟一次合并。
+
+1. 默认执行 检测当前分支和远程`upstream/monorepo-dev`
+2. 带上参数 `pnpm branch-lint --target branch-name` 检测当前分支和目标分支
+
+
+建议工作区有文件修改谨慎使用该命令，会导致本地修改的文件意外进入 staged 放入暂存区
+
+可以在当前工作区无本地文件修改的情况下执行
+如果有修改请用 `git stash push` 在 `pnpm branch-lint` 检测后使用
+`git stash pop`来暂存/恢复当前本地的修改
+
+

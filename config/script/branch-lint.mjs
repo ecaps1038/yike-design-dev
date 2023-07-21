@@ -1,10 +1,7 @@
-import { log, error, warn, Console } from 'node:console'
-
+import { log, error, warn } from 'node:console'
 import { ArgumentParser } from 'argparse'
-
 import { exec } from 'node:child_process'
 import lintStaged from 'lint-staged'
-
 
 import colors from 'ansi-colors'
 import { existsSync } from 'node:fs'
