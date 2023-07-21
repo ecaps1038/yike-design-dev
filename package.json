@@ -12,8 +12,7 @@
     "lint:fix": "pnpm run eslint",
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
-    "preinstall": "node ./config/script/preinstall.js",
-    "gen:icon": "pnpm --filter yike-design-ui gen:icon"
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "svgo": "^3.0.2",
