@@ -1,3 +1,52 @@
 .yk-badge {
+  position: relative;
+  display: inline-block;
+  height: 100%;
 
+  .yk-badge__dot {
+    width: 8px;
+    height: 8px;
+    background: @ecolor;
+    border-radius: 8px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-50%, 50%);
+    z-index: 1;
+  }
+
+  .yk-badge__dot--outer {
+    transform: translate(50%, -50%);
+  }
+
+
+  .yk-badge__count {
+    border-radius: 10px;
+    padding: 2px 6px;
+    background: @ecolor;
+    color: white;
+    text-align: center;
+    font-family: PingFangSC-Regular;  
+    font-weight: 400;
+    line-height: 20px;
+    font-size: @size-ss;
+    letter-spacing: -0.41px;
+    z-index: 1;
+  }
+
+  .yk-badge__count.defaultOffset {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+  }
+
+
+  .yk-badge__count.isRound {
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+  
 }
