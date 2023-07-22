@@ -51,6 +51,10 @@ export default () => ({
 
         const tagPattern = /<(\w+)\/>/;
         const demoTagName = demoName.match(tagPattern)[1];
+        const demoComponentName = camelToDashCase(demoTagName).replace(
+          /([a-zA-Z])([A-Z])/g,
+          '$1-$2',
+        );
         const demoCode = fetchDemoCode(demoComponentName, id).replace(
           /{{/g,
           '{ {',
