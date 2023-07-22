@@ -7,6 +7,13 @@
   border-spacing: 0;
 }
 
+// 平滑滚动
+html,
+body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+}
+
 body {
   min-height: 100vh;
   font-size: 14px;
@@ -129,18 +136,23 @@ img {
     font-weight: 600;
     line-height: 1.5;
   }
-  > .hljs {
+  .hljs {
     margin: @space-m 0;
     padding: @space-s @space-m;
+    background-color: @bg-color-m;
+
+    code {
+      color: @font-color-m;
+    }
   }
 
-  li {
+  li:not(.yk-anchor-item) {
     margin: @space-m 0 @space-m @space-l;
     padding-left: 0;
     list-style-type: decimal;
     line-height: 1.6;
   }
-  a:not(.n-link) {
+  a:not(.n-link):not(.yk-anchor-item-title) {
     text-decoration: none;
     color: #333333;
   }
@@ -159,12 +171,18 @@ img {
   table {
     overflow: hidden;
     margin-top: @space-m;
+    margin-bottom: 40px;
     width: 100%;
     min-width: 800px;
+    max-width: 1200px;
     border: 1px solid @line-color-s;
     border-radius: @radius-m;
     transition: border @animats;
     border-spacing: 0;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
 
     tr:hover {
       background-color: @bg-color-m;

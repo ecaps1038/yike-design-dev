@@ -1,15 +1,21 @@
 .yk-avatar {
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
+  white-space: nowrap;
   background-color: @font-color-ss;
-  transition: all @animats;
+  // transition: all @animats;
   vertical-align: top;
   img {
     float: left;
     margin: 0;
     padding: 0;
     height: 100%;
+  }
+
+  &-text {
+    font-weight: bold;
   }
 
   &-group {
@@ -45,5 +51,6 @@
     color: #fff;
     background-color: @pcolor;
     transition: border @animats;
+    // transition: border @animats;
   }
 }

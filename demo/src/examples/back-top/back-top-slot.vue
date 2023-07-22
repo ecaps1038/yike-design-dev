@@ -23,12 +23,10 @@ const handleClick = () => {
 .container {
   position: relative;
 }
-
 .list {
   overflow-y: auto;
   height: 200px;
 }
-
 li {
   line-height: 30px;
 }

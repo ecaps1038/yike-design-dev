@@ -4,6 +4,10 @@
       "title": "通用",
       "list": [
         {
+          "name": "Color 色彩",
+          "src": "color"
+        },
+        {
           "name": "Button 按钮",
           "src": "button"
         },
@@ -27,11 +31,21 @@
     },
     {
       "title": "导航",
-      "list": []
+      "list": [
+        {
+          "name": "Anchor 锚点",
+          "src": "anchor"
+        }
+      ]
     },
     {
       "title": "数据录入",
-      "list": []
+      "list": [
+        {
+          "name": "Radio 单选框",
+          "src": "radio"
+        }
+      ]
     },
     {
       "title": "数据展示",
@@ -39,6 +53,10 @@
         {
           "name": "Avatar  头像",
           "src": "avatar"
+        },
+        {
+          "name": "Empty  空状态",
+          "src": "empty"
         }
       ]
     },
@@ -52,6 +70,14 @@
         {
           "name": "Message 消息提示",
           "src": "message"
+        },
+        {
+          "name": "Tooltip 文字提示",
+          "src": "tooltip"
+        },
+        {
+          "name": "Popover 气泡卡片",
+          "src": "popover"
         }
       ]
     },

@@ -4,6 +4,7 @@ defineProps({
   bar: {
     // default: {},
     type: Array,
+    required: true,
   },
 })
 //获取屏幕body高度

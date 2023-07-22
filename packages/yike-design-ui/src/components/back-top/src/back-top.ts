@@ -1,10 +1,12 @@
-export type animationType = 'fade' | 'move';
+import { AnimationType } from '../../../utils/constant';
 
 export type BackTopProps = {
-  animation?: animationType;
-  right?: string;
-  bottom?: string;
-  visibilityHeight?: string;
+  animation?: AnimationType;
+  theme?: 'primary' | 'secondary';
+  right?: string | number;
+  bottom?: string | number;
+  visibleHeight?: string | number;
   target?: string | HTMLElement;
   icon?: string;
+  behavior?: 'smooth' | 'instant' | 'auto';
 };

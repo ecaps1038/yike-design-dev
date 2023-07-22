@@ -19,6 +19,12 @@
     "no-empty-source": null,
     "no-descending-specificity": null,
     "declaration-empty-line-before": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["deep"]
+      }
+    ],
     "order/properties-order": [
       "position",
       "top",

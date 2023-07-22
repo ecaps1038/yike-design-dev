@@ -1,6 +1,7 @@
 <template>
   <div class="case-card">
-    <yk-title :level="3">{{ title }}</yk-title>
+    <!-- id 用于锚点定位 -->
+    <yk-title :id="title" :level="3">{{ title }}</yk-title>
     <slot name="desc"></slot>
     <div class="container">
       <slot name="demo"></slot>
@@ -22,7 +23,7 @@
 import { ref, getCurrentInstance } from 'vue'
 import { tryCopy } from '@/utils/tools'
 const proxy: any = getCurrentInstance()?.proxy
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: '标题',

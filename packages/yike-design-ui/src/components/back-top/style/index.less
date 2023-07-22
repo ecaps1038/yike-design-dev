@@ -6,34 +6,29 @@
   align-items: center;
   cursor: pointer;
 
-  .yk-backtop__icon {
-    padding: 0.5rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 25%;
-    color: #fff;
-    background-color: @pcolor;
-    box-shadow: @shadow-s;
+  &-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: @radius-m;
+    background: @pcolor;
+
+    .yk-backtop__icon {
+      width: 24px;
+      height: 24px;
+      color: #fff;
+    }
   }
-}
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
+  &-container.secondary {
+    background: @bg-color-ss;
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.move-enter-active,
-.move-leave-active {
-  transition: all 0.5s ease;
-}
-
-.move-enter-from,
-.move-leave-to {
-  transform: translateY(100%);
-  opacity: 0;
+    .yk-backtop__icon {
+      width: 24px;
+      height: 24px;
+      color: @font-color-l;
+    }
+  }
 }

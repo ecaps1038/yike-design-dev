@@ -17,7 +17,7 @@ const goPage = (e: string): void => {
       <div class="logo">
         <yk-icon name="yike-yikedesign" class="bg-logo"></yk-icon>
         <p class="title">YIKE DESIGN</p>
-        <p class="slogn">包容万物，从源头出发，一切从简</p>
+        <p class="slogan">包容万物，从源头出发，一切从简</p>
       </div>
       <yk-space class="bt">
         <yk-button size="l" @click="goPage('develop')">开始使用</yk-button>
@@ -31,57 +31,54 @@ const goPage = (e: string): void => {
 </template>
 
 <style lang="less" scoped>
-.main {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  flex-direction: column;
-
-  .logo {
-    // border:1px solid red;
+.home {
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     position: relative;
-    margin-top: -200px;
-    width: 940px;
-    height: 220px;
-
-    .bg-logo {
+    .sign {
       position: absolute;
-      top: 0;
-      left: 280px;
-      width: 380px;
-      height: 220px;
-      color: @bg-color-m;
-      transition: color @animats;
+      bottom: 60px;
+      font-size: 56px;
     }
-
-    .slogn {
-      font-size: 16px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .title {
-      padding-top: 42px;
-      padding-bottom: 16px;
-      padding-left: 20px;
-      font-size: 68px;
-      font-weight: 600;
-      text-align: center;
-      line-height: 90px;
-      letter-spacing: 36px;
+    .bt {
+      padding-top: 40px;
     }
   }
+}
 
-  .sign {
+.logo {
+  margin-top: -200px;
+  // border:1px solid red;
+  position: relative;
+  width: 940px;
+  height: 220px;
+  .bg-logo {
+    width: 380px;
+    height: 220px;
+    color: @bg-color-m;
     position: absolute;
-    bottom: 60px;
-    font-size: 56px;
+    left: 280px;
+    top: 0;
+    transition: color @animats;
   }
-
-  .bt {
-    padding-top: 40px;
+  .slogan {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .title {
+    font-size: 68px;
+    line-height: 90px;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 42px;
+    padding-left: 20px;
+    padding-bottom: 16px;
+    letter-spacing: 36px;
   }
 }
 </style>

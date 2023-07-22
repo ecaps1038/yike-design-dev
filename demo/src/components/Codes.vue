@@ -4,9 +4,10 @@
   </div>
 </template>
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   code: {
     type: String,
+    required: true,
   },
 })
 </script>
