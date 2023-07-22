@@ -9,7 +9,7 @@
         aria-label="抽屉"
         tabindex="-1"
       >
-        <div class="yk-drawer-mask" @click="close"></div>
+        <div aria-hidden="true" class="yk-drawer-mask" @click="close"></div>
         <div
           ref="focuser"
           aria-hidden="true"

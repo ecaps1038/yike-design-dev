@@ -25,7 +25,7 @@ const active = ref(false)
 #drawer-hub {
   width: 100%;
   height: 500px;
-  border: 1px solid #edeeee;
+  border: 1px solid rgba(var(--gray1), 0.08);
   border-radius: 8px;
   margin-top: 10px;
   position: relative;

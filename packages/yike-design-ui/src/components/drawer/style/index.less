@@ -17,9 +17,11 @@
     transition: all @animats;
   }
 }
+
 .yk-drawer-other-el {
   position: absolute;
   z-index: auto;
+  overflow: hidden;
 }
 
 .yk-drawer-focus {
@@ -123,22 +125,21 @@
 }
 
 .right-enter-from .yk-drawer-main,
-.right-leave-active .yk-drawer-main,
 .right-leave-to .yk-drawer-main {
   transform: translateX(100%);
 }
+
 .left-enter-from .yk-drawer-main,
-.left-leave-active .yk-drawer-main,
 .left-leave-to .yk-drawer-main {
   transform: translateX(-100%);
 }
+
 .top-enter-from .yk-drawer-main,
-.top-leave-active .yk-drawer-main,
 .top-leave-to .yk-drawer-main {
   transform: translateY(-100%);
 }
+
 .bottom-enter-from .yk-drawer-main,
-.bottom-leave-active .yk-drawer-main,
 .bottom-leave-to .yk-drawer-main {
   transform: translateY(100%);
 }
