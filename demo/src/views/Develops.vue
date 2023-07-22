@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import Bar from "@/components/Bar.vue";
+import { RouterView } from 'vue-router'
+import Bar from '@/components/Bar.vue'
 
 //菜单
 //制作目录数组
