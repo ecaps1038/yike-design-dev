@@ -2,53 +2,51 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
   overflow: hidden;
-  background-color: @font-color-ss;
+  white-space: nowrap;
   // transition: all @animats;
   vertical-align: top;
+  background-color: @font-color-ss;
+
   img {
+    float: left;
+    height: 100%;
     padding: 0;
     margin: 0;
-    height: 100%;
-    float: left;
   }
 
   &-text {
     font-weight: bold;
   }
 
-  &-group {
-    border: 2px solid @bg-color-l;
-  }
-
   .disembark {
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
 
     .icon {
       width: 50%;
       height: 50%;
-      color: #fff;
       line-height: 0;
+      color: #fff;
     }
   }
 }
 
 .yk-avatar-group {
   display: flex;
+  border: 2px solid @bg-color-l;
 
   &-more {
-    background-color: @pcolor;
-    color: #fff;
-    text-align: center;
-    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    background-color: @pcolor;
     border: 2px solid @bg-color-l;
     // transition: border @animats;
   }

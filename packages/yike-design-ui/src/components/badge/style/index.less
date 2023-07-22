@@ -1,8 +1,8 @@
 .modal {
   &-enter {
     &-from {
-      transform: scale(0);
       opacity: 0;
+      transform: scale(0);
     }
 
     &-active {
@@ -10,15 +10,15 @@
     }
 
     &-to {
-      transform: scale(1);
       opacity: 1;
+      transform: scale(1);
     }
   }
 
   &-leave {
     &-from {
-      transform: scale(1);
       opacity: 1;
+      transform: scale(1);
     }
 
     &-active {
@@ -26,8 +26,8 @@
     }
 
     &-to {
-      transform: scale(0);
       opacity: 0;
+      transform: scale(0);
     }
   }
 }
@@ -38,35 +38,35 @@
   vertical-align: top;
 
   .yk-badge {
-    border-radius: @radius-r;
+    position: absolute;
+    box-sizing: content-box;
     background-color: @ecolor;
     border-color: @bg-color-l;
     border-style: solid;
-    position: absolute;
-    box-sizing: content-box;
+    border-radius: @radius-r;
     transition: all @animats;
   }
 
   .badge {
+    top: -10px;
     min-width: 20px;
     height: 20px;
-    top: -10px;
 
     .count {
+      padding: 0 6px;
       font-size: 12px;
+      font-weight: 600;
+      line-height: 20px;
       color: #fff;
       text-align: center;
-      line-height: 20px;
-      padding: 0 6px;
-      font-weight: 600;
     }
   }
 
   .dot {
+    top: -4px;
+    right: -4px;
     width: 6px;
     height: 6px;
-    right: -4px;
-    top: -4px;
 
     .count {
       display: none;

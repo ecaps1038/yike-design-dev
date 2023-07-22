@@ -1,3 +1,4 @@
+/* stylelint-disable */
 .yk-tooltip {
   @bgcolor: @dark; // 背景颜色
   @arrowSize: 1em; // 箭头大小
@@ -5,27 +6,29 @@
 
   position: relative;
   width: fit-content;
+
   .yk-tooltip-content {
-    padding: @space-ss @space-s;
-    text-align: start;
+    position: absolute;
+    z-index: 999;
     width: max-content;
+    min-width: 2em;
     max-width: 250px;
     min-height: 2em;
-    min-width: 2em;
-    border-radius: @brSize;
-    background-color: @bgcolor;
+    padding: @space-ss @space-s;
     color: @white;
-    position: absolute;
+    text-align: start;
     word-wrap: break-word;
-    z-index: 999;
+    background-color: @bgcolor;
+    border-radius: @brSize;
     box-shadow: @shadow-m;
   }
+
   .yk-tooltip-content::after {
-    content: '';
+    position: absolute;
     width: @arrowSize;
     height: @arrowSize;
     clip-path: polygon(50% 50%, 0 0, 100% 0);
-    position: absolute;
+    content: '';
     background-color: inherit;
   }
 
@@ -34,26 +37,31 @@
     left: 0;
     translate: calc(-100% - @arrowSize) -50%;
   }
+
   .yk-tooltip-leftTop {
     top: 0;
     left: 0;
     translate: calc(-100% - @arrowSize) 0;
   }
+
   .yk-tooltip-leftBottom {
     bottom: 0;
     left: 0;
     translate: calc(-100% - @arrowSize) 0;
   }
+
   .yk-tooltip-top {
     top: 0;
     left: 50%;
     translate: -50% calc(-100% - @arrowSize);
   }
+
   .yk-tooltip-topLeft {
     top: 0;
     left: 0;
     translate: 0 calc(-100% - @arrowSize);
   }
+
   .yk-tooltip-topRight {
     top: 0;
     right: 0;
@@ -73,25 +81,26 @@
   }
 
   .yk-tooltip-bottomRight {
-    bottom: 0;
     right: 0;
+    bottom: 0;
     translate: 0 calc(100% + @arrowSize);
   }
 
   .yk-tooltip-right {
-    right: 0;
     top: 50%;
+    right: 0;
     translate: calc(100% + @arrowSize) -50%;
   }
 
   .yk-tooltip-rightTop {
-    right: 0;
     top: 0;
+    right: 0;
     translate: calc(100% + @arrowSize) 0;
   }
+
   .yk-tooltip-rightBottom {
-    bottom: 0;
     right: 0;
+    bottom: 0;
     translate: calc(100% + @arrowSize) 0;
   }
   .l() {
@@ -114,58 +123,80 @@
     clip-path: polygon(50% 50%, 100% 100%, 100% 0);
     transform: translateX(-100%);
   }
+
   .yk-tooltip-left::after {
     .l();
+
     top: 50%;
     transform: translateX(100%) translateY(-50%);
   }
+
   .yk-tooltip-leftTop::after {
     .l();
+
     top: @brSize;
   }
+
   .yk-tooltip-leftBottom::after {
     .l();
+
     bottom: @brSize;
   }
+
   .yk-tooltip-top::after {
     .t();
+
     left: 50%;
     transform: translateX(-50%) translateY(100%);
   }
+
   .yk-tooltip-topLeft::after {
     .t();
+
     left: @brSize;
   }
+
   .yk-tooltip-topRight::after {
     .t();
+
     right: @brSize;
   }
 
   .yk-tooltip-bottom::after {
     .b();
+
     left: 50%;
     transform: translateX(-50%) translateY(-100%);
   }
+
   .yk-tooltip-bottomLeft::after {
     .b();
+
     left: @brSize;
   }
+
   .yk-tooltip-bottomRight::after {
     .b();
+
     right: @brSize;
   }
 
   .yk-tooltip-right::after {
     .r();
+
     top: 50%;
     transform: translateX(-100%) translateY(-50%);
   }
+
   .yk-tooltip-rightTop::after {
     .r();
+
     top: @brSize;
   }
+
   .yk-tooltip-rightBottom::after {
     .r();
+
     bottom: @brSize;
   }
 }
@@ -187,6 +218,7 @@
       scale: 1;
     }
   }
+
   &-leave {
     &-from {
       opacity: 1;
@@ -196,6 +228,7 @@
     &-active {
       transition: all @animatf;
     }
+
     &-to {
       opacity: 0;
       scale: 0.5;

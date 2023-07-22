@@ -4,6 +4,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
+  "stylelint.customSyntax": "postcss-less",
   "editor.tabSize": 2,
   "[less]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

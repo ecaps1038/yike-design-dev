@@ -1,6 +1,7 @@
 .yk-content {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+
   .box {
     width: 100%;
     // height: calc(100% + 18px);
@@ -9,23 +10,27 @@
   }
 
   .box::-webkit-scrollbar {
-    /*滚动条整体样式*/
-    width: 0px;
-    /*高宽分别对应横竖滚动条的尺寸*/
-    height: 0px;
+    /* 滚动条整体样式 */
+    width: 0;
+
+    /* 高宽分别对应横竖滚动条的尺寸 */
+    height: 0;
   }
 
   .box::-webkit-scrollbar-thumb {
-    /*滚动条里面小方块*/
+    background: rgb(0 0 0 / 10%);
+
+    /* 滚动条里面小方块 */
     border-radius: 4px;
-    background: rgba(0, 0, 0, 0.1);
   }
 
   .box::-webkit-scrollbar-track {
-    /*滚动条里面轨道*/
+    background: rgb(0 0 0 / 0%);
+
+    /* 滚动条里面轨道 */
     border-radius: 4px;
-    background: rgba(0, 0, 0, 0);
   }
+
   .scrollx {
     position: absolute;
     left: 0;
@@ -36,18 +41,20 @@
     // background-color: rgba(#000, 0.1);
     .scroll-body {
       position: absolute;
-      left: 0;
       top: 0;
-      background-color: @line-color-s;
+      left: 0;
       width: 100px;
       height: 100%;
+      background-color: @line-color-s;
       border-radius: 12px;
       transition: background-color @animats;
+
       &:hover {
         background-color: @line-color-m;
       }
     }
   }
+
   .scrolly {
     position: absolute;
     top: 0;
@@ -58,22 +65,25 @@
     // background-color: rgba(#000, 0.1);
     .scroll-body {
       position: absolute;
-      left: 0;
       top: 0;
-      background-color: @line-color-s;
+      left: 0;
       width: 100%;
       height: 100px;
+      background-color: @line-color-s;
       border-radius: 12px;
       transition: background-color @animats;
+
       &:hover {
         background-color: @line-color-m;
       }
     }
   }
+
   &:hover {
     .scrollx {
       opacity: 1;
     }
+
     .scrolly {
       opacity: 1;
     }

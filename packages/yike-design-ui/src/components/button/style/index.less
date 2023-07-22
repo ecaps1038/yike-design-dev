@@ -1,20 +1,23 @@
+/* stylelint-disable */
 @import './variables.less';
+
 .yk-button--loading {
   opacity: 0.7 !important;
+
   svg {
     width: 16px;
+    margin-right: 4px;
     transform-origin: center;
     animation: rotate4 2s linear infinite;
-    margin-right: 4px;
   }
 
   circle {
     fill: none;
-    stroke: hsl(227, 16%, 89%);
-    stroke-width: 3;
+    stroke: hsl(227deg 16% 89%);
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
     stroke-linecap: round;
+    stroke-width: 3;
     animation: dash4 1.5s ease-in-out infinite;
   }
 
@@ -42,36 +45,41 @@
 }
 
 .yk-button {
-  padding: 6px 16px;
+  box-sizing: border-box;
+  justify-content: center;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  white-space: nowrap;
-  outline: none;
-  border-width: 1px;
-  border-style: solid;
-  cursor: pointer;
-  transition: all @animatb ease-in-out;
-  user-select: none;
+  padding: 6px 16px;
   color: @btn-primary-color-text;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background-color: @btn-primary-color-bg;
+  border-color: @btn-primary-color-border;
+  border-style: solid;
+  border-width: 1px;
+  outline: none;
+  transition: all @animatb ease-in-out;
+
   circle {
     stroke: @btn-primary-color-text;
   }
-  background-color: @btn-primary-color-bg;
-  border-color: @btn-primary-color-border;
 
   .btn-type(@type) {
     .normal() {
       color: ~'@{btn-@{type}-color-text}';
+
       circle {
         stroke: ~'@{btn-@{type}-color-text}';
       }
+
       background-color: ~'@{btn-@{type}-color-bg}';
       border-color: ~'@{btn-@{type}-color-border}';
+
       &:not(:disabled):hover {
         background-color: ~'@{btn-@{type}-color-hover}';
       }
+
       &:not(:disabled):active {
         background-color: ~'@{btn-@{type}-color-bg}';
       }
@@ -84,14 +92,18 @@
   .btn-status(@type: primary, @status: primary) {
     .normal() {
       color: ~'@{btn-@{type}-color-text_@{status}}';
+
       circle {
         stroke: ~'@{btn-@{type}-color-text_@{status}}';
       }
+
       background-color: ~'@{btn-@{type}-color-bg_@{status}}';
       border-color: ~'@{btn-@{type}-color-border_@{status}}';
+
       &:not(:disabled):hover {
         background-color: ~'@{btn-@{type}-color-hover_@{status}}';
       }
+
       &:not(:disabled):active {
         background-color: ~'@{btn-@{type}-color-bg_@{status}}';
       }
@@ -122,43 +134,48 @@
 
   // 尺寸 size
   &--s {
-    height: 24px;
-    padding: 0px @space-s;
-    border-radius: @radius-s;
-    font-size: @size-ss;
     min-width: 24px;
-  }
-  &--m {
-    height: 32px;
-    min-width: 32px;
-    padding: 0px @space-l;
+    height: 24px;
+    padding: 0 @space-s;
+    font-size: @size-ss;
     border-radius: @radius-s;
   }
+
+  &--m {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 @space-l;
+    border-radius: @radius-s;
+  }
+
   &--l {
-    height: 36px;
     min-width: 36px;
-    padding: 0px @space-l;
+    height: 36px;
+    padding: 0 @space-l;
     border-radius: @radius-m;
   }
+
   &--xl {
-    height: 48px;
     min-width: 48px;
-    padding: 0px @space-xl;
-    border-radius: @radius-m;
+    height: 48px;
+    padding: 0 @space-xl;
     font-size: @size-m;
+    border-radius: @radius-m;
   }
+
   &--long {
-    width: 100%;
     display: block;
+    width: 100%;
   }
 
   // 圆角样式
   &--round {
     border-radius: @radius-r;
   }
+
   &--circle {
-    border-radius: @radius-r;
     padding: 0;
+    border-radius: @radius-r;
   }
 
   &--square {

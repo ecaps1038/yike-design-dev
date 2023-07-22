@@ -8,8 +8,9 @@
     "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
+    "stylelint": "npx stylelint \"**/*.{css,less}\" --fix",
     "lint": "eslint . && stylelint .",
-    "lint:fix": "pnpm run eslint",
+    "lint:fix": "pnpm run eslint && pnpm run stylelint",
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
     "gen:icon": "pnpm --filter yike-design-ui gen:icon"
@@ -32,8 +33,13 @@
     "less": "^4.0.0",
     "lint-staged": "^13.2.3",
     "pnpm": "^8.5.0",
+    "postcss-less": "^6.0.0",
     "prettier": "^2.8.8",
-    "stylelint": "^15.9.0",
+    "stylelint": "^15.10.2",
+    "stylelint-config-recess-order": "^4.3.0",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
+    "stylelint-less": "^1.0.8",
     "typescript": "^5.1.6",
     "vite": "^4.0.0",
     "vue-tsc": "^1.6.4"
@@ -42,6 +48,10 @@
     "*.{ts,tsx,js,jsx,vue}": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "*.{css,less}": [
+      "prettier --write",
+      "stylelint --fix"
     ]
   }
 }

@@ -1,19 +1,19 @@
+/* stylelint-disable */
 @import './variables.less';
 
 .yk-alert {
-  width: 100%;
-  padding: 8px 16px;
-  border-radius: @radius-m;
-  overflow: hidden;
-
   position: relative;
   display: flex;
-  align-items: center;
   gap: @space-s;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  overflow: hidden;
+  border-radius: @radius-m;
 
   &-with-title {
-    padding: 24px;
     align-items: flex-start;
+    padding: 24px;
   }
 
   &-with-title &-close-icon {
@@ -45,27 +45,27 @@
 
   &-content {
     flex: 1;
-    color: @font-color-l;
     font-size: @size-s;
     line-height: 22px;
+    color: @font-color-l;
   }
 
   &-title {
-    font-size: @size-m;
     margin-bottom: 8px;
+    font-size: @size-m;
     font-weight: 500;
   }
 
   &-close-icon {
-    color: @font-color-s;
     padding: 0;
     overflow: hidden;
     font-size: @size-s;
     line-height: @size-s;
+    color: @font-color-s;
+    cursor: pointer;
     background-color: transparent;
     border: none;
     outline: none;
-    cursor: pointer;
     transition: color 0.3s;
 
     &:hover {
@@ -80,12 +80,12 @@
   .alert-type(@type) {
     &-@{type} {
       &::before {
-        content: '';
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        content: '';
         background-color: ~'@{alert-@{type}-color}';
         opacity: 0.1;
       }
@@ -103,16 +103,16 @@
 }
 
 .zoom-in-top-leave-active {
-  transform-origin: 0 0;
   transition: all 0.25s cubic-bezier(0.3, 1.3, 0.3, 1);
+  transform-origin: 0 0;
 }
 
 .zoom-in-top-leave-from {
-  transform: scaleY(1) translateZ(0);
   opacity: 1;
+  transform: scaleY(1) translateZ(0);
 }
 
 .zoom-in-top-leave-to {
-  transform: scaleY(0.8) translateZ(0);
   opacity: 0;
+  transform: scaleY(0.8) translateZ(0);
 }

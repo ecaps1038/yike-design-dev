@@ -1,9 +1,9 @@
 *,
 *::before,
 *::after {
+  position: relative;
   box-sizing: border-box;
   margin: 0;
-  position: relative;
   // font-weight: normal;
   border-spacing: 0;
 }
@@ -17,30 +17,30 @@ body {
 
 body {
   min-height: 100vh;
-  color: @font-color-l;
-  background: @bg-color-l;
-  transition: color @animats, background-color @animats;
-  line-height: 1.8;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-size: 14px;
-  text-rendering: optimizeLegibility;
+  line-height: 1.8;
+  color: @font-color-l;
+  background: @bg-color-l;
+  transition: color @animats, background-color @animats;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #app {
   margin: 0 auto;
-
   font-weight: normal;
 }
 
 a {
-  text-decoration: none;
   color: @lcolor;
+  text-decoration: none;
   transition: 0.3s;
 }
+
 .top-title {
   padding-bottom: 20px;
 }
@@ -84,139 +84,157 @@ menu,
 nav,
 section,
 img {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .yk-demo-doc {
-  margin-bottom: 0.5em;
   margin-top: 1em;
+  margin-bottom: 0.5em;
+
   p {
-    margin-bottom: 0.5em;
     margin-top: 1em;
+    margin-bottom: 0.5em;
   }
+
   h1 {
-    font-weight: 600;
     font-size: 40px;
+    font-weight: 600;
     line-height: 1.24;
   }
+
   h2 {
-    font-weight: 600;
     font-size: 32px;
+    font-weight: 600;
     line-height: 1.28;
   }
+
   h3 {
-    font-weight: 600;
     font-size: 24px;
+    font-weight: 600;
     line-height: 1.34;
   }
+
   h4 {
-    font-weight: 600;
     font-size: 18px;
+    font-weight: 600;
     line-height: 1.4;
   }
+
   h5 {
-    font-weight: 600;
     font-size: 16px;
+    font-weight: 600;
     line-height: 1.5;
   }
+
   .hljs {
     padding: @space-s @space-m;
     margin: @space-m 0;
   }
 
   li:not(.yk-anchor-item) {
-    margin: @space-m 0 @space-m @space-l;
     padding-left: 0;
-    list-style-type: decimal;
+    margin: @space-m 0 @space-m @space-l;
     line-height: 1.6;
+    list-style-type: decimal;
   }
-  a:not(.n-link):not(.yk-anchor-item-title) {
+
+  a:not(.n-link, .yk-anchor-item-title) {
     text-decoration: none;
-    color: #333333;
   }
+
   pre {
-    border-radius: 8px;
+    max-width: 800px;
     overflow: hidden;
     text-align: left;
-    max-width: 800px;
+    border-radius: 8px;
   }
+
   p > code {
+    padding: 2px 8px;
+    color: #5e6d82;
     background: #e6effb;
     border-radius: 3px;
-    color: #5e6d82;
-    padding: 2px 8px;
   }
+
   table {
-    border: 1px solid @line-color-s;
-    min-width: 800px;
     width: 100%;
-    border-radius: @radius-m;
-    overflow: hidden;
+    min-width: 800px;
     margin-top: @space-m;
-    transition: border @animats;
+    overflow: hidden;
     border-spacing: 0;
+    border: 1px solid @line-color-s;
+    border-radius: @radius-m;
+    transition: border @animats;
 
     tr {
       &:hover {
         background-color: @bg-color-m;
       }
+
       td:nth-child(3) {
         color: #1fb4a2;
       }
     }
 
     th {
-      line-height: 44px;
-      background-color: @bg-color-m;
+      padding-left: @space-m;
       font-size: @size-s;
       font-weight: 600;
-      padding-left: @space-m;
+      line-height: 44px;
       text-align: left;
+      background-color: @bg-color-m;
       transition: background-color @animats;
     }
 
     td {
-      border-top: 1px solid @line-color-s;
+      max-width: 240px;
       padding: 10px @space-m;
       text-align: left;
-      max-width: 240px;
+      border-top: 1px solid @line-color-s;
       transition: border @animats;
     }
+
     .light {
       color: @scolor;
     }
   }
+
   .yk-pure-doc {
-    margin: 12px 0px 8px;
+    margin: 12px 0 8px;
   }
+
   .yk-icon-list {
-    max-width: 1200px;
-    overflow: hidden;
-    *zoom: 1;
     display: flex;
     flex-wrap: wrap;
-    padding-inline-start: 0px;
+    max-width: 1200px;
+    padding-inline-start: 0;
+    overflow: hidden;
+    *zoom: 1;
+
     .yk-icon-container {
       width: 160px;
       padding: 16px;
       text-align: center;
       list-style: none !important;
-      border: 0.8px solid @line-color-s;
       cursor: pointer;
+      border: 0.8px solid @line-color-s;
+
       svg {
         display: block;
         height: 64px;
-        line-height: 64px;
-        font-size: 32px;
         margin: 0 auto 10px;
+        font-size: 32px;
+        line-height: 64px;
         color: @font-color-l;
         transition: font-size 0.1s linear, width 0.1s linear;
       }
+
       svg:hover {
         font-size: 42px;
       }
     }
+
     .yk-icon-name {
       color: @font-color-m;
     }

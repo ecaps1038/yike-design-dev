@@ -1,23 +1,24 @@
 .yk-empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 40px 0;
+  text-align: center;
   background-color: @bg-color-l;
-  .yk-empty__image {
+
+  &__image {
     img {
-      user-select: none;
       width: 100%;
       height: 100%;
       vertical-align: top;
+      user-select: none;
       object-fit: contain;
     }
   }
 
-  .yk-empty__description {
+  &__description {
     margin-top: 20px;
 
     p {
@@ -26,7 +27,8 @@
       color: #909399;
     }
   }
-  .yk-empty__bottom {
+
+  &__bottom {
     margin-top: 20px;
   }
 }

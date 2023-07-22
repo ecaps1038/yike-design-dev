@@ -1,7 +1,7 @@
 .yk-backtop {
   position: fixed;
-  cursor: pointer;
   z-index: 999;
+  cursor: pointer;
 
   &-container {
     display: flex;
@@ -12,6 +12,7 @@
     background: @pcolor;
     border-radius: @radius-m;
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .yk-backtop__icon {
       width: 24px;
       height: 24px;
@@ -22,6 +23,7 @@
   &-container.secondary {
     background: @bg-color-ss;
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .yk-backtop__icon {
       width: 24px;
       height: 24px;
