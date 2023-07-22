@@ -74,7 +74,7 @@ export const $emit = (name: any, params: any) => {
 export const $on = (name: any, work: any) => {
   const myEvent = new Event(name);
   map[name] = myEvent;
-  window.addEventListener(name, (event) => {
+  window.addEventListener(name, () => {
     // console.log('得到数据为：', event.detail);
     work(map[name].detail);
   });
@@ -98,4 +98,12 @@ export const transformPxToNumber = (measurement: number | string) => {
   } else {
     return measurement;
   }
+};
+
+/** 数字 => px 字符串 */
+export const toPx = (px: string | number) => {
+  if (typeof px === 'number') {
+    return `${px}px`;
+  }
+  return px;
 };

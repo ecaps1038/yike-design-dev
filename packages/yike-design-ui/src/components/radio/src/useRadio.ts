@@ -26,8 +26,9 @@ export const useRadio = (
       }
     },
   });
-  const disabled = computed<RadioProps['disabled']>(() =>
-    isGroup.value ? radioProps!.disabled : props.disabled!,
+
+  const disabled = computed<RadioProps['disabled']>(
+    () => radioProps?.disabled || props.disabled!,
   );
 
   return {

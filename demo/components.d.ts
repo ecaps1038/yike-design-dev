@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Bar: typeof import('./src/components/Bar.vue')['default']
     Codes: typeof import('./src/components/Codes.vue')['default']
+    ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     Dark: typeof import('./src/components/develops/dark.vue')['default']
     Principle: typeof import('./src/components/design/principle.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -19,6 +20,7 @@ declare module 'vue' {
     Yikedesign: typeof import('./src/components/design/yikedesign.vue')['default']
     Yikedev: typeof import('./src/components/develops/yikedev.vue')['default']
     YkAlert: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAlert']
+    YkAnchor: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAnchor']
     YkAvatar: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAvatar']
     YkAvatarGroup: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAvatarGroup']
     YkBackTop: typeof import('./../packages/yike-design-ui/src/index.ts')['YkBackTop']
@@ -30,6 +32,7 @@ declare module 'vue' {
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
     YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
     YkRadio: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadio']
+    YkRadioButton: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadioButton']
     YkRadioGroup: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadioGroup']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
