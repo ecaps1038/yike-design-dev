@@ -24,6 +24,12 @@
 <DrawerMulti/>
 :::
 
+:::snippet
+长行滚动
+抽屉内容过长时可滚动。
+<DrawerLong/>
+:::
+
 ### API
 
 | 参数       | 描述                       | 类型                             | 默认值  |
