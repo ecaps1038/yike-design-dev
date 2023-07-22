@@ -41,6 +41,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'drawer',
     component: () => import('@/examples/drawer/doc.md'),
   },
+  {
+    path: 'anchor',
+    component: () => import('@/examples/anchor/doc.md'),
+  },
 ];
 
 export default generalRoutes;
