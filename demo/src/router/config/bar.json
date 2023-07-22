@@ -74,6 +74,10 @@
         {
           "name": "Tooltip 文字提示",
           "src": "tooltip"
+        },
+        {
+          "name": "Popover 气泡卡片",
+          "src": "popover"
         }
       ]
     },
