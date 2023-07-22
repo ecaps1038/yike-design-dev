@@ -51,14 +51,15 @@ export default () => ({
 
         const tagPattern = /<(\w+)\/>/;
         const demoTagName = demoName.match(tagPattern)[1];
+        const demoComponentName = camelToDashCase(demoTagName);
         const demoCode = fetchDemoCode(demoComponentName, id).replace(
           /{{/g,
           '{ {',
         );
-        const demoCode = fetchDemoCode(demoComponentName, id).replace(
-          /{{/g,
-          '{ {',
-        );
+        // const demoCode = fetchDemoCode(demoComponentName, id).replace(
+        //   /{{/g,
+        //   '{ {',
+        // );
         const html = hljs.highlightAuto(demoCode).value;
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`;
         const caseCardContent = `<yk-snippet title="${title}">
