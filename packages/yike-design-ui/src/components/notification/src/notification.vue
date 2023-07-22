@@ -32,7 +32,7 @@
 </template>
 <script setup lang="ts">
 import { NotificationProps } from './notification'
-import { ref, onMounted, computed } from 'vue'
+import { onMounted, computed } from 'vue'
 import '../style'
 import { YkIcon } from '../../../index'
 defineOptions({
@@ -44,7 +44,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   type: 'primary',
   duration: 3000,
   closable: true,
-  showFooterBtn: true,
+  showFooterBtn: false,
   showIcon: true,
   offset: 24,
   offsetY: 24,
@@ -52,7 +52,6 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   zIndex: 2001,
   handleCancel: () => ({}),
   handleOK: () => ({}),
-  onDestroy: () => ({}),
   onClose: () => ({}),
 })
 
@@ -73,22 +72,18 @@ const iconStatusMap = {
   error: 'yike-cha',
   success: 'yike-gou',
 }
-const isShow = ref(false)
 function startTimer() {
-  if (!props.duration) return //duration为0时不自动关闭；
+  if (!props.duration) return
   setTimeout(() => {
-    // props.onClose && props.onClose()
     close()
   }, props.duration)
 }
 
 function close() {
   emits('close')
-  isShow.value = false
 }
 
 function handleClose() {
-  // props.onClose && props.onClose()
   close()
 }
 
@@ -102,11 +97,5 @@ function clickOK() {
 
 onMounted(() => {
   startTimer()
-  isShow.value = true
 })
-
-// defineExpose({
-// isShow,
-// close,
-// })
 </script>
