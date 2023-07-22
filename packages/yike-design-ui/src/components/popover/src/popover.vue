@@ -7,7 +7,7 @@ import '../style'
 defineOptions({
   name: 'YkPopover',
 })
-const props = withDefaults(defineProps<PopoverProps>(), {
+withDefaults(defineProps<PopoverProps>(), {
   id: '',
 })
 </script>

@@ -39,37 +39,6 @@ const goPage = (e: string): void => {
     justify-content: center;
     height: 100%;
     position: relative;
-    .logo {
-      margin-top: -200px;
-      // border:1px solid red;
-      position: relative;
-      width: 940px;
-      height: 220px;
-      .bg-logo {
-        width: 380px;
-        height: 220px;
-        color: @bg-color-m;
-        position: absolute;
-        left: 280px;
-        top: 0;
-        transition: color @animats;
-      }
-      .slogan {
-        text-align: center;
-        font-size: 16px;
-        font-weight: 600;
-      }
-      .title {
-        font-size: 68px;
-        line-height: 90px;
-        text-align: center;
-        font-weight: 600;
-        padding-top: 42px;
-        padding-left: 20px;
-        padding-bottom: 16px;
-        letter-spacing: 36px;
-      }
-    }
     .sign {
       position: absolute;
       bottom: 60px;
@@ -78,6 +47,38 @@ const goPage = (e: string): void => {
     .bt {
       padding-top: 40px;
     }
+  }
+}
+
+.logo {
+  margin-top: -200px;
+  // border:1px solid red;
+  position: relative;
+  width: 940px;
+  height: 220px;
+  .bg-logo {
+    width: 380px;
+    height: 220px;
+    color: @bg-color-m;
+    position: absolute;
+    left: 280px;
+    top: 0;
+    transition: color @animats;
+  }
+  .slogan {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .title {
+    font-size: 68px;
+    line-height: 90px;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 42px;
+    padding-left: 20px;
+    padding-bottom: 16px;
+    letter-spacing: 36px;
   }
 }
 </style>

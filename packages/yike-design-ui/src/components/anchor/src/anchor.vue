@@ -10,13 +10,14 @@
 </template>
 <script setup lang="ts">
 import { AnchorProps } from './anchor'
-import AnchorList from './anchor-list.vue'
 import { ref, shallowRef, nextTick, onMounted } from 'vue'
 import { computed } from 'vue'
 import { useDebounceFn, useEventListener } from '@vueuse/core'
 import '../style'
 import { onUnmounted } from 'vue'
 import { watch } from 'vue'
+/* eslint-disable-next-line */
+import AnchorList from './anchor-list.vue'
 
 defineOptions({
   name: 'YkAnchor',
