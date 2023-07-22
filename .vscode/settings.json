@@ -2,6 +2,9 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  },
   "[less]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -26,5 +29,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "references.preferredLocation": "peek"
+  "references.preferredLocation": "peek",
+  "stylelint.validate": ["vue", "less", "css"]
 }

@@ -1,14 +1,14 @@
 <template>
-  <div class="yk-theme" v-show="control">
+  <div v-show="control" class="yk-theme">
     <yk-icon
+      v-show="nowSkin === 'dark'"
       name="yike-taiyang"
-      v-show="nowSkin == 'dark'"
       class="son"
       @click="onChange('light')"
     />
     <yk-icon
+      v-show="nowSkin === 'light'"
       name="yike-yueliang"
-      v-show="nowSkin == 'light'"
       class="moon"
       @click="onChange('dark')"
     />

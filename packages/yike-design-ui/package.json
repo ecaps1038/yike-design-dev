@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "build": "vite build",
-    "lint": "eslint . --fix "
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@yike/utils": "workspace:*"

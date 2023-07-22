@@ -27,12 +27,12 @@ defineProps({
 <style scoped lang="less">
 .yk-table {
   table {
-    border: 1px solid @line-color-s;
-    min-width: 800px;
-    width: 100%;
-    border-radius: @radius-m;
     overflow: hidden;
     margin-top: @space-s;
+    width: 100%;
+    min-width: 800px;
+    border: 1px solid @line-color-s;
+    border-radius: @radius-m;
     transition: border @animats;
 
     tr {
@@ -42,22 +42,23 @@ defineProps({
     }
 
     th {
-      line-height: 44px;
-      background-color: @bg-color-m;
+      padding-left: @space-m;
       font-size: @size-s;
       font-weight: 600;
-      padding-left: @space-m;
       text-align: left;
+      background-color: @bg-color-m;
       transition: background-color @animats;
+      line-height: 44px;
     }
 
     td {
-      border-top: 1px solid @line-color-s;
       padding: 10px @space-m;
-      text-align: left;
       max-width: 240px;
+      border-top: 1px solid @line-color-s;
+      text-align: left;
       transition: border @animats;
     }
+
     .light{
       color:@scolor;
     }

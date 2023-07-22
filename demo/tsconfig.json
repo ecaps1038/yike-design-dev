@@ -3,16 +3,15 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule":true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "baseUrl": ".",
     "sourceMap": true,
-    "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"],
       "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
     }
   },
-  "exclude": ["**/dist/**"],
-  "include": ["**/*.ts", "**/*.vue", "**/**/*.vue", "components.d.ts"]
+  "exclude": ["dist/**", "node_modules/**"],
+  "include": ["**/**/*.ts", "**/**/*.vue", "components.d.ts"]
 }

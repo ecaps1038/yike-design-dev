@@ -27,8 +27,14 @@
     "less": "^4.0.0",
     "lint-staged": "^13.2.3",
     "pnpm": "^8.5.0",
+    "postcss": "^8.4.27",
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
     "prettier": "^2.8.8",
-    "stylelint": "^15.9.0",
+    "stylelint": "^15.10.1",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard-vue": "^1.0.0",
+    "stylelint-order": "^6.0.3",
     "typescript": "^5.1.6",
     "vite": "^4.0.0",
     "vue-tsc": "^1.6.4"
@@ -37,6 +43,10 @@
     "*.{ts,tsx,js,jsx,vue}": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "*.{css,less}": [
+      "prettier --write",
+      "stylelint --fix"
     ]
   }
 }

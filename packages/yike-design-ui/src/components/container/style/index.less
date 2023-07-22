@@ -1,11 +1,11 @@
 .yk-content {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
   .box {
+    overflow: auto;
     width: 100%;
     // height: calc(100% + 18px);
     height: 100%;
-    overflow: auto;
   }
 
   .box::-webkit-scrollbar {
@@ -36,12 +36,12 @@
     // background-color: rgba(#000, 0.1);
     .scroll-body {
       position: absolute;
-      left: 0;
       top: 0;
-      background-color: @line-color-s;
+      left: 0;
       width: 100px;
       height: 100%;
       border-radius: 12px;
+      background-color: @line-color-s;
       transition: background-color @animats;
       &:hover {
         background-color: @line-color-m;
@@ -58,12 +58,12 @@
     // background-color: rgba(#000, 0.1);
     .scroll-body {
       position: absolute;
-      left: 0;
       top: 0;
-      background-color: @line-color-s;
+      left: 0;
       width: 100%;
       height: 100px;
       border-radius: 12px;
+      background-color: @line-color-s;
       transition: background-color @animats;
       &:hover {
         background-color: @line-color-m;
