@@ -1,0 +1,39 @@
+@sizes:{
+  s:14px;
+  m:16px; 
+  l:18px; 
+  xl:20px;
+};
+
+.yk-rate {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+
+  &-item{
+    cursor: pointer;
+    vertical-align: middle;
+
+    .icon {
+      position: relative;
+      display: inline-block;
+      color: @bg-color-ss;
+      margin-right: 8px;
+      transition: all 0.3s;
+    }
+    .hover {
+      transform: scale(1.15);
+    }
+    .is-active {
+      color: @wcolor;
+    }
+  }
+}
+
+each(@sizes,{
+  .yk-rate-@{key}{
+    font-size: @value;
+  }
+})
