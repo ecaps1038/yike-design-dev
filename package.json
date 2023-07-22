@@ -7,13 +7,16 @@
     "dev:demo": "pnpm --filter demo dev",
     "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",
+    "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
     "lint": "eslint . && stylelint .",
-    "lint:fix": "eslint --fix . && stylelint --fix .",
+    "lint:fix": "pnpm run eslint",
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
-    "preinstall": "node ./config/script/preinstall.js"
+    "preinstall": "node ./config/script/preinstall.js",
+    "gen:icon": "pnpm --filter yike-design-ui gen:icon"
   },
   "dependencies": {
+    "svgo": "^3.0.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -24,6 +27,7 @@
     "@vitejs/plugin-vue": "^4.2.2",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "eslint-plugin-vue": "^9.0.1",
     "husky": "^8.0.0",
     "less": "^4.0.0",
