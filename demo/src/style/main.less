@@ -166,13 +166,12 @@ img {
     transition: border @animats;
     border-spacing: 0;
 
-    tr {
-      &:hover {
-        background-color: @bg-color-m;
-      }
-      td:nth-child(3) {
-        color: #1fb4a2;
-      }
+    tr:hover {
+      background-color: @bg-color-m;
+    }
+
+    td:nth-child(3) {
+      color: #1fb4a2;
     }
 
     th {
@@ -199,35 +198,39 @@ img {
   .yk-pure-doc {
     margin: 12px 0px 8px;
   }
-  .yk-icon-list {
-    display: flex;
-    overflow: hidden;
-    max-width: 1200px;
-    *zoom: 1;
-    flex-wrap: wrap;
-    padding-inline-start: 0px;
-    .yk-icon-container {
-      padding: 16px;
-      width: 160px;
-      border: 0.8px solid @line-color-s;
-      text-align: center;
-      list-style: none !important;
-      cursor: pointer;
-      svg {
-        display: block;
-        margin: 0 auto 10px;
-        height: 64px;
-        font-size: 32px;
-        color: @font-color-l;
-        transition: font-size 0.1s linear, width 0.1s linear;
-        line-height: 64px;
-      }
-      svg:hover {
-        font-size: 42px;
-      }
+}
+
+.yk-icon-list {
+  display: flex;
+  overflow: hidden;
+  max-width: 1200px;
+  *zoom: 1;
+  flex-wrap: wrap;
+  padding-inline-start: 0px;
+
+  .yk-icon-container {
+    padding: 16px;
+    width: 160px;
+    border: 0.8px solid @line-color-s;
+    text-align: center;
+    list-style: none !important;
+    cursor: pointer;
+
+    svg {
+      display: block;
+      margin: 0 auto 10px;
+      height: 64px;
+      font-size: 32px;
+      color: @font-color-l;
+      transition: font-size 0.1s linear, width 0.1s linear;
+      line-height: 64px;
     }
-    .yk-icon-name {
-      color: @font-color-m;
+
+    svg:hover {
+      font-size: 42px;
     }
+  }
+  .yk-icon-name {
+    color: @font-color-m;
   }
 }

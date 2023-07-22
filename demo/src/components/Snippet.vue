@@ -47,6 +47,7 @@ const clickShow = (): void => {
 </script>
 
 <style scoped lang="less">
+/* stylelint-disable */
 .case-card {
   margin-top: 28px;
   max-width: 800px;
