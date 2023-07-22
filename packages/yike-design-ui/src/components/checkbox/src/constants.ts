@@ -1,13 +1,5 @@
 import { InjectionKey, ToRefs, WritableComputedRef } from 'vue';
-// type CheckboxGroupContext = {
-//   modelValue?: WritableComputedRef<any>;
-//   changeEvent?: (...args: any) => any;
-// } & ToRefs<
-//   Pick<
-//     CheckboxGroupProps,
-//     'size' | 'min' | 'max' | 'disabled' | 'validateEvent' | 'fill' | 'textColor'
-//   >
-// >;
+
 type CheckboxGroupContext = {
   name: string;
   calcVal: Array<string | number | boolean>;
