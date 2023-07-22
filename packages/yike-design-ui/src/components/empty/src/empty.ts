@@ -1,6 +1,7 @@
-export type EmptyProps = {
+import { CSSProperties } from 'vue';
+export interface EmptyProps {
   description?: string;
   image?: string;
-  imageSize?: number;
+  imageStyle?: CSSProperties;
   theme?: string;
-};
+}

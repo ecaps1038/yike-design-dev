@@ -8,6 +8,13 @@
   border-spacing: 0;
 }
 
+// 平滑滚动
+html,
+body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+}
+
 body {
   min-height: 100vh;
   color: @font-color-l;
@@ -113,18 +120,18 @@ img {
     font-size: 16px;
     line-height: 1.5;
   }
-  > .hljs {
+  .hljs {
     padding: @space-s @space-m;
     margin: @space-m 0;
   }
 
-  li {
+  li:not(.yk-anchor-item) {
     margin: @space-m 0 @space-m @space-l;
     padding-left: 0;
     list-style-type: decimal;
     line-height: 1.6;
   }
-  a:not(.n-link) {
+  a:not(.n-link):not(.yk-anchor-item-title) {
     text-decoration: none;
     color: #333333;
   }

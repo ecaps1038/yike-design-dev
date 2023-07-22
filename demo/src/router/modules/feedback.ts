@@ -8,6 +8,10 @@ const feedbackRoutes: Array<RouteRecordRaw> = [
     path: 'message',
     component: () => import('@/examples/message/doc.md'),
   },
-]
+  {
+    path: 'tooltip',
+    component: () => import('@/examples/tooltip/doc.md'),
+  },
+];
 
 export default feedbackRoutes;

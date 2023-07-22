@@ -2,6 +2,7 @@ import type { Component, App } from 'vue';
 
 import { YkRadio, YkRadioGroup } from './components/radio';
 import YkRate from './components/rate';
+import YkAnchor from './components/anchor';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -13,6 +14,7 @@ import YkTable from './components/table/Table.vue';
 import YkMessage from './components/message';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
+import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
 import './styles/index.less';
 
@@ -22,6 +24,7 @@ const components: {
   YkRadioGroup,
   YkRadio,
   YkRate,
+  YkAnchor,
   YkAlert,
   YkButton,
   YkTheme,
@@ -36,12 +39,14 @@ const components: {
   YkText,
   YkEmpty,
   YkBackTop,
+  YkTooltip,
 };
 
 export {
   YkRadioGroup,
   YkRadio,
   YkRate,
+  YkAnchor,
   YkAlert,
   YkButton,
   YkTheme,
@@ -57,6 +62,7 @@ export {
   YkMessage,
   YkEmpty,
   YkBackTop,
+  YkTooltip,
 };
 
 // 全局注册

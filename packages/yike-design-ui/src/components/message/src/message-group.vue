@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { MessageGroupProps } from './message'
 import Message from './message.vue'
-const props = withDefaults(defineProps<MessageGroupProps>(), {
+withDefaults(defineProps<MessageGroupProps>(), {
   messages: () => [],
 })
 

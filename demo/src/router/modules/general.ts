@@ -2,6 +2,10 @@ import { RouteRecordRaw } from 'vue-router';
 
 const generalRoutes: Array<RouteRecordRaw> = [
   {
+    path: 'color',
+    component: () => import('@/examples/color/doc.md'),
+  },
+  {
     path: 'button',
     component: () => import('@/examples/button/doc.md'),
   },
@@ -40,6 +44,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
   {
     path: 'rate',
     component: () => import('@/examples/rate/doc.md'),
+  }，
+  {
+    path: 'anchor',
+    component: () => import('@/examples/anchor/doc.md'),
   },
 ];
 
