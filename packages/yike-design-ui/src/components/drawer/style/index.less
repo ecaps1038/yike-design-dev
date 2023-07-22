@@ -1,5 +1,5 @@
 .yk-drawer {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   bottom: 0px;
@@ -126,6 +126,21 @@
 .right-leave-active .yk-drawer-main,
 .right-leave-to .yk-drawer-main {
   transform: translateX(100%);
+}
+.left-enter-from .yk-drawer-main,
+.left-leave-active .yk-drawer-main,
+.left-leave-to .yk-drawer-main {
+  transform: translateX(-100%);
+}
+.top-enter-from .yk-drawer-main,
+.top-leave-active .yk-drawer-main,
+.top-leave-to .yk-drawer-main {
+  transform: translateY(-100%);
+}
+.bottom-enter-from .yk-drawer-main,
+.bottom-leave-active .yk-drawer-main,
+.bottom-leave-to .yk-drawer-main {
+  transform: translateY(100%);
 }
 
 .right-enter-from .yk-drawer-mask,
