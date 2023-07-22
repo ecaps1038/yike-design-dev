@@ -55,9 +55,10 @@ export default () => ({
           /([a-zA-Z])([A-Z])/g,
           '$1-$2',
         );
-        const demoCode = fetchDemoCode(demoComponentName, id)
-          .replace(/ /g, '\u2008')
-          .replace(/{{\s*(.+?)\s*}}/g, '<div v-text="$1"></div>');
+        const demoCode = fetchDemoCode(demoComponentName, id).replace(
+          /{{/g,
+          '{ {',
+        );
         const html = hljs.highlightAuto(demoCode).value;
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`;
         const caseCardContent = `<yk-snippet title="${title}">
