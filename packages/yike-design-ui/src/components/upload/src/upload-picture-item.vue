@@ -1,30 +1,27 @@
 <template>
   <div class="yk-image-content">
-    <img v-if="blobRaw || url" :src="blobRaw" alt="" />
-    <div class="overlay"></div>
-    <div class="overlay-yk-icons" :style="overlayStyle">
-      <svg
-        v-if="status === 'uploading'"
-        class="overlay-loading-icon"
-        width="36"
-        height="36"
-      >
+    <img v-if="blobRaw || url" :src="url || blobRaw" alt="" />
+    <div class="overlay overlay-primary-hover"></div>
+    <div v-if="status === 'error'" class="overlay overlay-fail"></div>
+    <div
+      v-if="status === 'uploading'"
+      class="overlay overlay-uploading-icons"
+    ></div>
+    <div class="icon uploading-icons">
+      <svg width="36" height="36">
         <circle cx="18" cy="18" r="18" fill-opacity="0.5" />
-        <path :d="getArcPath(18, 18, 18, progress)" class="progress-path" />
+        <path :d="getArcPath(18, 18, 18, 80)" class="progress-path" />
       </svg>
+    </div>
+    <div v-if="status === 'error'" class="icon fail-icon"></div>
+    <div v-if="status === 'error'" class="icon fail-hover-icons"></div>
+    <div v-if="status === 'success'" class="icon success-hover-icons">
       <yk-icon
-        v-if="['error', 'pause'].includes(status)"
-        name="yk-tushangchuanshibai"
-        class="overlay-fail-icon"
-      ></yk-icon>
-      <yk-icon
-        v-if="status === 'success'"
         class="preview-yk-icon"
         name="yk-yanjing"
         @click="handleReview"
       ></yk-icon>
       <yk-icon
-        v-if="status === 'success'"
         class="delete-yk-icon"
         name="yk-shanchu"
         @click="handleRemove"
