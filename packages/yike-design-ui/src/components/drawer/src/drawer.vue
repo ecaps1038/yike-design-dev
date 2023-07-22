@@ -1,21 +1,27 @@
 <template>
-  <Teleport to="body" :disabled="!show">
+  <Teleport :to="element" :disabled="!show">
     <Transition :name="placement">
       <div
         v-if="show"
         class="yk-drawer"
+        :class="ykDrawerClass"
         :aria-modal="show"
         aria-label="抽屉"
         tabindex="-1"
       >
         <div class="yk-drawer-mask" @click="close"></div>
-        <div>
-          <div ref="focuser" class="yk-drawer-focus" tabindex="0"></div>
-          <div
-            :class="ykDrawerClass"
-            :style="ykDrawerStyle"
-            class="yk-drawer-main"
-          >
+        <div
+          ref="focuser"
+          aria-hidden="true"
+          class="yk-drawer-focus"
+          tabindex="0"
+        ></div>
+        <div
+          :class="ykDrawerMainClass"
+          :style="ykDrawerMainStyle"
+          class="yk-drawer-main"
+        >
+          <div class="yk-drawer-wrapper">
             <button v-if="closable" class="yk-drawer-close" @click="close">
               <yk-icon name="yk-cha" />
             </button>
@@ -29,7 +35,6 @@
               <slot name="footer"></slot>
             </div>
           </div>
-          <div class="yk-drawer-focus" tabindex="0"></div>
         </div>
       </div>
     </Transition>
@@ -38,7 +43,8 @@
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
 import '../style'
-import { computed, onUpdated, ref } from 'vue'
+import { computed, onMounted, onUpdated, ref } from 'vue'
+import { getElement } from './utils'
 defineOptions({
   name: 'YkDrawer',
 })
@@ -50,7 +56,9 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   closable: true,
   escapable: true,
   placement: 'right',
+  to: 'body',
 })
+let element: HTMLElement
 const emits = defineEmits(['close', 'open'])
 const focuser = ref<HTMLElement>()
 const close = () => {
@@ -59,6 +67,9 @@ const close = () => {
 const escape = (ev: KeyboardEvent) => {
   if (ev.key === 'Escape') close()
 }
+onMounted(() => {
+  element = getElement(props.to)
+})
 onUpdated(() => {
   if (props.show) {
     focuser.value?.focus()
@@ -74,7 +85,7 @@ onUpdated(() => {
     document.body.removeEventListener('keydown', escape)
   }
 })
-const ykDrawerStyle = computed(() => {
+const ykDrawerMainStyle = computed(() => {
   return {
     height:
       props.placement === 'left' || props.placement === 'right'
@@ -87,6 +98,12 @@ const ykDrawerStyle = computed(() => {
   }
 })
 const ykDrawerClass = computed(() => {
+  let appentToBody = props.to === 'body'
+  return {
+    'yk-drawer-other-el': !appentToBody,
+  }
+})
+const ykDrawerMainClass = computed(() => {
   return {
     [`yk-drawer-${props.placement}`]: true,
   }

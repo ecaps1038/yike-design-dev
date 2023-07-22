@@ -6,4 +6,5 @@ export type DrawerProps = {
   closable?: boolean;
   escapable?: boolean;
   placement?: 'right' | 'left' | 'top' | 'bottom';
+  to?: string;
 };
