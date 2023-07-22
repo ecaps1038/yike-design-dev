@@ -39,10 +39,12 @@ let bar = [
 <style scoped lang="less">
 .main {
   padding: 24px 56px 56px 324px;
+
   .module {
     max-width: 1200px;
   }
 }
+
 .mmain {
   padding: 24px;
 }

@@ -20,19 +20,16 @@
     </div>
   </div>
 </template>
-
 <style lang="less" scoped>
 .ykcolor-neutral {
   .ykcolor-black,
   .ykcolor-white {
     display: flex;
     flex-direction: column;
-
     :deep(.ykcolor-card) {
       margin-bottom: 20px;
     }
   }
-
   .ykcolor-white {
     :deep(.ykcolor-card) {
       border: 1px solid gray;

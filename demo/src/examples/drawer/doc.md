@@ -30,6 +30,12 @@
 <DrawerLong/>
 :::
 
+:::snippet
+附加到任何容器
+谁说在附加到 body 的才算抽屉
+<DrawerAnywhere/>
+:::
+
 ### API
 
 | 参数       | 描述                       | 类型                             | 默认值  |

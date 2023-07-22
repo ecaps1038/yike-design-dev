@@ -1,9 +1,9 @@
 <template>
   <yk-space>
-    <yk-button @click="avtivate('top')">从上往下</yk-button>
-    <yk-button @click="avtivate('bottom')">从下往上</yk-button>
-    <yk-button @click="avtivate('left')">从左往右</yk-button>
-    <yk-button @click="avtivate('right')">从右往左</yk-button>
+    <yk-button @click="activate('top')">从上往下</yk-button>
+    <yk-button @click="activate('bottom')">从下往上</yk-button>
+    <yk-button @click="activate('left')">从左往右</yk-button>
+    <yk-button @click="activate('right')">从右往左</yk-button>
   </yk-space>
   <yk-drawer
     :placement="placement"
@@ -18,7 +18,7 @@
 import { ref } from 'vue'
 const active = ref(false)
 let placement = ref<string>('right')
-const avtivate = (placement_to: string) => {
+const activate = (placement_to: string) => {
   placement.value = placement_to
   active.value = true
 }

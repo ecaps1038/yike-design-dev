@@ -1,4 +1,13 @@
-import { onMounted, onBeforeUnmount, ref, watch, reactive } from 'vue';
+import {
+  onMounted,
+  onBeforeUnmount,
+  ref,
+  watch,
+  reactive,
+  useSlots,
+  defineComponent,
+  h,
+} from 'vue';
 import type { Ref } from 'vue';
 import type { TooltipProps } from './tooltip';
 import { splitCameCase } from './utils';
@@ -122,4 +131,22 @@ export function usePlacement(
     { deep: true, immediate: true },
   );
   return p;
+}
+
+// 将默认插槽以组件形式返回
+export function useDefaultSlots() {
+  const slots = useSlots();
+  const DefaultSlot = defineComponent(
+    (componentProps, context) => {
+      return () => {
+        const VNodes = slots.default
+          ? slots.default()
+          : [h('span', {}, 'tooltip')];
+        VNodes[0] = h(VNodes[0], { ...componentProps, ...context.attrs });
+        return h('div', {}, VNodes);
+      };
+    },
+    { inheritAttrs: false },
+  );
+  return DefaultSlot;
 }
