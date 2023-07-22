@@ -1,0 +1,55 @@
+.yk-anchor {
+  position: relative;
+  &.yk-anchor-show-marker {
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: @bg-color-s;
+    }
+    .yk-anchor-marker {
+      position: absolute;
+      height: 30px;
+      width: 2px;
+      background-color: @pcolor;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: top 0.25s cubic-bezier(0, 1, 0.5, 1), background-color 0.5s,
+        opacity 0.25s;
+    }
+  }
+
+  .yk-anchor-list {
+    position: static;
+    padding-left: 16px;
+    &.yk-anchor-list-root {
+      padding-left: 8px;
+    }
+    .yk-anchor-item {
+      position: static;
+      list-style: none;
+
+      .yk-anchor-item-title {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 8px;
+        color: @font-color-m;
+        border-radius: 4px;
+        &:hover {
+          color: @font-color-l;
+          font-weight: 500;
+          background-color: @bg-color-s;
+        }
+        &.yk-anchor-item-title-active {
+          color: @pcolor;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
