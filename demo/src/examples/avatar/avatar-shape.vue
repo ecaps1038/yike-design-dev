@@ -23,7 +23,7 @@
       <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
         size="xl"
-        shape="square"
+        :shape="20"
       ></yk-avatar>
       <yk-avatar
         icon="yk-xin"
