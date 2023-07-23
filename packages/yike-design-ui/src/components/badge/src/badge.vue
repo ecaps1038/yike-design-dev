@@ -2,16 +2,16 @@
   <div ref="badgeRef" class="yk-badge">
     <div ref="supRef" class="yk-badge__sup">
       <div
-        v-if="isDot"
+        v-if="isShowDot"
         :class="['yk-badge__dot', dotClass]"
         :style="dotStyle"
       ></div>
       <div
-        v-if="isCount"
+        v-if="isShowCount"
         :class="['yk-badge__count', countClass]"
         :style="countStyle"
       >
-        {{ showCout }}
+        {{ showCount }}
       </div>
     </div>
     <!-- 徽标 -->
@@ -28,6 +28,9 @@ defineOptions({
 
 const props = withDefaults(defineProps<BadgeProps>(), {
   overflowCount: 99,
+  showZero: false,
+  status: 'danger',
+  hidden: false,
 })
 
 // 是否是点类型
@@ -37,6 +40,28 @@ const isDot = computed(() => props?.isDot ?? false)
 const isCount = computed(
   () => !isDot.value && (props?.count !== undefined ? true : false),
 )
+
+// 是否展示count
+const isShowCount = computed(() => {
+  const hiddenZero =
+    props.count !== undefined && props.count === 0 && !props.showZero
+  const hiddenNegative = props.count !== undefined && props.count < 0
+  if (
+    hiddenZero ||
+    hiddenNegative ||
+    props.hidden ||
+    isShowDot.value ||
+    props.count == undefined
+  ) {
+    return false
+  }
+  return true
+})
+
+// 是否展示dot
+const isShowDot = computed(() => {
+  return isDot.value && !props.hidden
+})
 
 // 计算徽标是圆还是椭圆
 const isRound = () => {
@@ -58,15 +83,17 @@ const dotStyle = computed<CSSProperties>(() => {
 const dotClass = computed(() => {
   return {
     'yk-badge__dot--outer': props.outDot,
+    [`yk-badge__dot--${props.status}`]: props.status !== undefined,
   }
 })
 
-const showCout = ref<string>('')
-if (props.count && props.count > props.overflowCount) {
-  showCout.value = Math.min(props.count!, props.overflowCount) + '+'
-} else {
-  showCout.value = props.count + ''
-}
+const showCount = computed(() => {
+  if (props.count && props.count > props.overflowCount) {
+    return Math.min(props.count!, props.overflowCount) + '+'
+  } else {
+    return props.count + ''
+  }
+})
 
 const badgeRef = ref()
 const supRef = ref()
@@ -81,25 +108,25 @@ const countStyle = computed<CSSProperties>(() => {
     styles.position = 'absolute'
     styles.right = '0'
     styles.top = '0'
-    styles.translate = `-50% ${offsetVal.value}px`
+    styles.translate = `-50% ${offsetValue.value}px`
   } else if (props.offset && props.offset === 'left') {
     styles.position = 'absolute'
     styles.left = '0'
     styles.top = '0'
-    styles.translate = `50% ${offsetVal.value}px`
+    styles.translate = `50% ${offsetValue.value}px`
   }
 
   return styles
 })
 
-let offsetVal = ref(0)
+let badgeHeight = ref(0)
 
 const offsetValue = computed({
   get() {
-    return offsetVal.value
+    return badgeHeight.value
   },
   set(v) {
-    offsetVal.value = v
+    badgeHeight.value = v
   },
 })
 
@@ -118,6 +145,7 @@ const countClass = computed(() => {
   return {
     isRound: isRound(),
     defaultOffset: props?.offset == undefined ? true : false,
+    [`yk-badge__count--${props.status}`]: props.status !== undefined,
   }
 })
 </script>
