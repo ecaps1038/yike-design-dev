@@ -107,3 +107,33 @@ export const toPx = (px: string | number) => {
   }
   return px;
 };
+
+export function isArray(obj: any): obj is any[] {
+  return Object.prototype.toString.call(obj) === '[object Array]';
+}
+
+export function isNull(obj: any): obj is null {
+  return Object.prototype.toString.call(obj) === '[object Null]';
+}
+
+export function isBoolean(obj: unknown): obj is boolean {
+  return Object.prototype.toString.call(obj) === '[object Boolean]';
+}
+
+export function isObject(obj: any): obj is Record<string, unknown> {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
+
+export const isPromise = <T>(obj: unknown): obj is Promise<T> => {
+  return Object.prototype.toString.call(obj) === '[object Promise]';
+};
+
+export function isString(obj: any): obj is string {
+  return Object.prototype.toString.call(obj) === '[object String]';
+}
+
+export function isNumber(obj: any): obj is number {
+  return (
+    Object.prototype.toString.call(obj) === '[object Number]' && obj === obj
+  ); // eslint-disable-line
+}

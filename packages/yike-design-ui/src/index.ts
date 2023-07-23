@@ -17,6 +17,11 @@ import { YkAnchor } from './components/anchor';
 import YkTooltip from './components/tooltip';
 import YkPopover from './components/popover';
 import YkEmpty from './components/empty';
+import {
+  YkSkeleton,
+  YkSkeletonLine,
+  YkSkeletonShape,
+} from './components/skeleton';
 import './styles/index.less';
 
 const components: {
@@ -42,6 +47,9 @@ const components: {
   YkTooltip,
   YkPopover,
   YkAnchor,
+  YkSkeleton,
+  YkSkeletonShape,
+  YkSkeletonLine,
 };
 
 export {
@@ -66,6 +74,9 @@ export {
   YkTooltip,
   YkPopover,
   YkAnchor,
+  YkSkeleton,
+  YkSkeletonShape,
+  YkSkeletonLine,
 };
 
 // 全局注册

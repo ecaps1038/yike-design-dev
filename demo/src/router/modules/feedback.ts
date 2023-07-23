@@ -16,6 +16,10 @@ const feedbackRoutes: Array<RouteRecordRaw> = [
     path: 'popover',
     component: () => import('@/examples/popover/doc.md'),
   },
+  {
+    path: 'skeleton',
+    component: () => import('@/examples/skeleton/doc.md'),
+  },
 ];
 
 export default feedbackRoutes;
