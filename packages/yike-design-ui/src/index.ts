@@ -3,6 +3,7 @@ import type { Component, App } from 'vue';
 import { YkRadio, YkRadioGroup } from './components/radio';
 import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
+import YkNotification from './components/notification';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -25,7 +26,8 @@ const components: {
   YkRadio,
   YkAnchor,
   YkPopover,
-	YkAlert,
+  YkNotification,
+  YkAlert,
   YkButton,
   YkTheme,
   YkIcon,
@@ -47,7 +49,8 @@ export {
   YkRadio,
   YkAnchor,
   YkPopover,
-	YkAlert,
+  YkNotification,
+  YkAlert,
   YkButton,
   YkTheme,
   YkIcon,
@@ -72,6 +75,7 @@ export default {
       app.component(c, components[c]);
     }
     app.config.globalProperties.$message = YkMessage;
+    app.config.globalProperties.$notify = YkNotification;
   },
 };
 // 局部注册

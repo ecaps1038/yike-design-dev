@@ -78,6 +78,10 @@
         {
           "name": "Popover 气泡卡片",
           "src": "popover"
+        },
+        {
+          "name": "Notification 通知提醒",
+          "src": "notification"
         }
       ]
     },
