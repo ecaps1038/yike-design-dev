@@ -19,7 +19,22 @@
       </span>
     </yk-space>
     <yk-space>
+      <yk-badge :count="9999999" :overflow-count="9999">
+        <template #default>
+          <yk-avatar size="l" shape="square"></yk-avatar>
+        </template>
+      </yk-badge>
+      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+        {{ `消息数量: 9999999` }}
+      </span>
+    </yk-space>
+    <yk-space>
       <yk-badge :count="MessageCount2">
+        <template #default>
+          <yk-avatar size="l" shape="square"></yk-avatar>
+        </template>
+      </yk-badge>
+      <yk-badge :count="MessageCount2" :overflow-count="5">
         <template #default>
           <yk-avatar size="l" shape="square"></yk-avatar>
         </template>

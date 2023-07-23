@@ -1,7 +1,7 @@
 import { Status } from '../../../utils/constant';
 
 export type BadgeProps = {
-  color?: number;
+  color?: string;
   count?: number;
   isDot?: boolean;
   outDot?: boolean;

@@ -1,5 +1,6 @@
 <template>
   <div ref="badgeRef" class="yk-badge">
+    <!-- 徽标 -->
     <div ref="supRef" class="yk-badge__sup">
       <div
         v-if="isShowDot"
@@ -14,7 +15,6 @@
         {{ showCount }}
       </div>
     </div>
-    <!-- 徽标 -->
     <slot></slot>
   </div>
 </template>
@@ -26,6 +26,7 @@ defineOptions({
   name: 'YkBadge',
 })
 
+// ======================= props ===========================
 const props = withDefaults(defineProps<BadgeProps>(), {
   overflowCount: 99,
   showZero: false,
@@ -33,8 +34,32 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   hidden: false,
 })
 
+// ======================== dot ============================
+
 // 是否是点类型
 const isDot = computed(() => props?.isDot ?? false)
+
+// 是否展示dot
+const isShowDot = computed(() => {
+  return isDot.value && !props.hidden
+})
+
+const dotStyle = computed<CSSProperties>(() => {
+  const styles: CSSProperties = {}
+  if (props.color) {
+    styles.background = props.color
+  }
+  return styles
+})
+
+const dotClass = computed(() => {
+  return {
+    'yk-badge__dot--outer': props.outDot,
+    [`yk-badge__dot--${props.status}`]: props.status !== undefined,
+  }
+})
+
+// ======================== count ============================
 
 // 是否是count类型
 const isCount = computed(
@@ -58,35 +83,7 @@ const isShowCount = computed(() => {
   return true
 })
 
-// 是否展示dot
-const isShowDot = computed(() => {
-  return isDot.value && !props.hidden
-})
-
-// 计算徽标是圆还是椭圆
-const isRound = () => {
-  if (isDot.value) {
-    return true
-  } else {
-    return isCount.value && props.count?.toString().length === 1
-  }
-}
-
-const dotStyle = computed<CSSProperties>(() => {
-  const styles: CSSProperties = {}
-  if (props.color) {
-    styles.background = props.color
-  }
-  return styles
-})
-
-const dotClass = computed(() => {
-  return {
-    'yk-badge__dot--outer': props.outDot,
-    [`yk-badge__dot--${props.status}`]: props.status !== undefined,
-  }
-})
-
+// 展示的count
 const showCount = computed(() => {
   if (props.count && props.count > props.overflowCount) {
     return Math.min(props.count!, props.overflowCount) + '+'
@@ -95,6 +92,16 @@ const showCount = computed(() => {
   }
 })
 
+// 展示的count，是否是圆形
+const isRound = () => {
+  if (isDot.value) {
+    return true
+  } else {
+    return showCount.value && showCount.value.toString().length === 1
+  }
+}
+
+// dom
 const badgeRef = ref()
 const supRef = ref()
 
@@ -104,6 +111,7 @@ const countStyle = computed<CSSProperties>(() => {
     styles.background = props.color
   }
 
+  // count的方位
   if (props.offset && props.offset === 'right') {
     styles.position = 'absolute'
     styles.right = '0'
@@ -120,7 +128,6 @@ const countStyle = computed<CSSProperties>(() => {
 })
 
 let badgeHeight = ref(0)
-
 const offsetValue = computed({
   get() {
     return badgeHeight.value
@@ -130,6 +137,8 @@ const offsetValue = computed({
   },
 })
 
+// ==================== mounted =======================
+// 父级高度是字节点撑开的，无法设置height，采用渲染后拿到dom的方式去获取高度
 onMounted(() => {
   const badgeDom: HTMLDivElement = badgeRef.value
   const supDomHeight = ref(0)
@@ -138,6 +147,7 @@ onMounted(() => {
   } else {
     supDomHeight.value = 10
   }
+  // 移动父级的50% - 自身高度的 50%
   offsetValue.value = badgeDom.offsetHeight / 2 - supDomHeight.value
 })
 

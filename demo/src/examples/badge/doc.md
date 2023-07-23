@@ -52,3 +52,26 @@ hidden
 有时候可能要自主控制是否展示，提供了hidden的开关
 <BadgeHidden/>
 :::
+
+### API
+
+#### Badge Attributes
+
+| 参数           | 描述           | 类型                        | 默认值 |
+| -------------- | -------------- | --------------------------- | ------ |
+| is-dot |  展示为小红点  | boolean | --     |
+| out-dot          | 小红点外移到右上角    |  boolean | --     |
+| count       | 徽标显示的数字 |   number  | --  |
+| overflowCount       | 徽标显示的最大数字 |   number  | 99  |
+| showZero       | 徽标是否展示0 |   boolean  | false  |
+| offset    | 徽标的方位     | 'left' ｜ 'right'            | --       |
+| status       | 徽标或者小红点的状态 |   'primary'｜'success'｜'warning'｜'danger'  | danger  |
+| color       | 徽标或者小红点的颜色, 优先级高于`status` |  string  | --  |
+| hidden  | 是否隐藏徽标或小红点 |  boolean  | false  |
+
+
+
+#### Badge Slots
+| 参数           | 描述           |
+| -------------- | -------------- | 
+| default |  自定义内容或者组件  | 

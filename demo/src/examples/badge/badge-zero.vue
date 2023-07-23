@@ -6,7 +6,9 @@
           <yk-avatar size="l" shape="square"></yk-avatar>
         </template>
       </yk-badge>
-      {{ `show-zero: true` }}
+      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+        {{ `show-zero: true` }} | {{ `count: 0` }}
+      </span>
     </yk-space>
     <yk-space>
       <yk-badge :count="0">
@@ -14,7 +16,9 @@
           <yk-avatar size="l" shape="square"></yk-avatar>
         </template>
       </yk-badge>
-      {{ `show-zero: false` }}
+      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+        {{ `show-zero: false` }} | {{ `count: 0` }}
+      </span>
     </yk-space>
     <yk-space>
       <yk-badge :count="MessageCount" show-zero>

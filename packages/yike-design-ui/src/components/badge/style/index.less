@@ -1,17 +1,26 @@
 .yk-badge {
+  // 定位相关
   position: relative;
+  // 置排布相关
   display: inline-block;
-  height: 100%;
 
   .yk-badge__dot {
+    // 定位
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    //由外到内 设置margin -> padding -> width -> height
     width: 8px;
     height: 8px;
-    background: @ecolor;
+
+    // 字体边框相关
     border-radius: 8px;
-    position: absolute;
+
+
+    //颜色、透明度、阴影等
+    background: @ecolor;
     box-shadow: 0 0 0 1px #ffffff;;
-    right: 0;
-    top: 0;
     transform: translate(-50%, 50%);
     z-index: 1;
   }
@@ -38,16 +47,22 @@
 
 
   .yk-badge__count {
-    border-radius: 10px;
+
+    // 由外到内 设置margin -> padding -> width -> height
     padding: 2px 6px;
-    background: @ecolor;
-    color: white;
-    text-align: center;
+
+    // 字体边框相关
+    font-size: @size-ss;
     font-family: PingFangSC-Regular;  
     font-weight: 400;
+    border-radius: 10px;
+    text-align: center;
     line-height: 20px;
-    font-size: @size-ss;
     letter-spacing: -0.41px;
+
+    // 颜色、透明度、阴影等
+    color: white;
+    background: @ecolor;
     box-shadow: 0 0 0 1px #ffffff;;
     z-index: 1;
   }
@@ -83,9 +98,13 @@
 
 
   .yk-badge__count.isRound {
+
+    // 由外到内 设置margin -> padding -> width -> height
     padding: 0;
     width: 20px;
     height: 20px;
+
+    // 字体边框相关
     border-radius: 10px;
   }
   
