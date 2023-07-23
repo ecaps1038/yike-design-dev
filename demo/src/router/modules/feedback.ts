@@ -12,6 +12,10 @@ const feedbackRoutes: Array<RouteRecordRaw> = [
     path: 'tooltip',
     component: () => import('@/examples/tooltip/doc.md'),
   },
+  {
+    path: 'modal',
+    component: () => import('@/examples/modal/doc.md'),
+  },
 ];
 
 export default feedbackRoutes;
