@@ -87,7 +87,7 @@ function onClick() {
     else openTooltip()
   }
 }
-function onOpenMenu(e) {
+function onOpenMenu() {
   if (props.trigger === 'contextMenu' || props.trigger.includes('contextMenu'))
     openTooltip()
 }
@@ -96,7 +96,7 @@ function onFocus() {
     openTooltip()
 }
 
-useEventListener('click', (e) => {
+useEventListener('click', () => {
   if (showTooltip.value) closeTooltip()
 })
 // 计算气泡方位类名

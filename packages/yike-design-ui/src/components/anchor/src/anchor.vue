@@ -16,6 +16,8 @@ import { useDebounceFn, useEventListener } from '@vueuse/core'
 import '../style'
 import { onUnmounted } from 'vue'
 import { watch } from 'vue'
+/* eslint-disable-next-line */
+import AnchorList from './anchor-list.vue'
 
 defineOptions({
   name: 'YkAnchor',
