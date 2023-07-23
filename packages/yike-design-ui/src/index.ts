@@ -3,6 +3,7 @@ import type { Component, App } from 'vue';
 import { YkRadio, YkRadioGroup } from './components/radio';
 import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
+import YkProgress from './components/progress';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -25,6 +26,7 @@ const components: {
   YkRadio,
   YkAnchor,
   YkPopover,
+  YkProgress,
   YkAlert,
   YkButton,
   YkTheme,
@@ -47,6 +49,7 @@ export {
   YkRadio,
   YkAnchor,
   YkPopover,
+  YkProgress,
   YkAlert,
   YkButton,
   YkTheme,

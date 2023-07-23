@@ -78,6 +78,10 @@
         {
           "name": "Popover 气泡卡片",
           "src": "popover"
+        },
+        {
+          "name": "Progress 进度条",
+          "src": "progress"
         }
       ]
     },
