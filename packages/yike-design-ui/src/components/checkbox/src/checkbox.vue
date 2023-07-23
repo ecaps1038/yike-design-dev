@@ -16,17 +16,20 @@
         :class="[calcDisabled ? 'icon--disable' : 'icon--active']"
       ></yk-icon>
     </div>
-    <slot>
-      <span>{{ value }}</span>
-    </slot>
+    <div>
+      <slot>
+        <span>{{ value }}</span>
+      </slot>
+    </div>
   </label>
 </template>
 <script setup lang="ts">
-import { CheckboxProps, isArray, isUndefined, toBoolean } from './checkbox'
+import { CheckboxProps } from './checkbox'
 import { YkIcon } from '../../../index'
 import '../style'
 import { computed, inject, ref, watch } from 'vue'
 import { checkboxGroupContextKey } from './constants'
+import { isArray, isUndefined, toBoolean } from './utils'
 defineOptions({
   name: 'YkCheckbox',
 })

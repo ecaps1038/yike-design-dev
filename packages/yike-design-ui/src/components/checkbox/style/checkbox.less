@@ -9,6 +9,7 @@
   cursor: pointer;
   &&--disabled {
     cursor: not-allowed;
+    color: @font-color-s;
   }
   input[type='checkbox'],
   &-target {
@@ -18,18 +19,18 @@
   }
 
   &-wrap {
-    width: @size-m;
-    height: @size-m;
-    background: @gray10;
-    border: 1px solid @gray-3;
-    border-radius: @radius-s;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: @space-s;
-    user-select: none;
+    width: @size-m;
+    height: @size-m;
+    border: 1px solid @gray-3;
+    border-radius: @radius-s;
+    background: @gray10;
     transition: border-color 0.1s cubic-bezier(0, 0, 1, 1),
       background-color 0.1s cubic-bezier(0, 0, 1, 1);
+    user-select: none;
     &.disabled {
       background: @bg-color-s;
       opacity: 1;
@@ -37,7 +38,7 @@
     .icon--active {
       color: @gray10;
     }
-    .icon--disabled {
+    .icon--disable {
       color: #000000;
     }
   }

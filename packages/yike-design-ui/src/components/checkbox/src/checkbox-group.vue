@@ -9,7 +9,7 @@
       >
         <slot v-if="slots.label" name="label" :data="c"></slot>
         <template v-else>
-          {{ c.label ? c.label : c.value }}
+          {{ c?.label ?? c.value }}
         </template>
       </yk-checkbox>
     </template>
@@ -19,19 +19,17 @@
 
 <script setup lang="ts">
 import { CheckboxGropProps, CheckboxOption } from './checkbox-group'
-import { provide, ref, reactive, computed, toRaw, useSlots } from 'vue'
+import { provide, ref, reactive, computed, useSlots } from 'vue'
 import { checkboxGroupContextKey } from './constants'
-import { isArray } from './checkbox'
+import { isArray } from './utils'
 import { YkCheckbox } from '..'
 defineOptions({
   name: 'YkCheckboxGroup',
 })
 
 const props = withDefaults(defineProps<CheckboxGropProps>(), {
-  modelValue: undefined,
   defaultValue: () => [],
   disabled: undefined,
-  max: undefined,
   tag: 'div',
   direction: 'horizontal',
   options: () => [],
@@ -57,13 +55,11 @@ const calcCls = computed(() => {
 })
 
 const curOptions = computed<CheckboxOption[]>(() => {
-  return (props.options || []).map((i) => {
+  return props.options.map((i) => {
     if (typeof i === 'number' || typeof i === 'string') {
       return {
         value: i,
         label: i,
-        disabled: undefined,
-        indeterminate: undefined,
       } as CheckboxOption
     }
 

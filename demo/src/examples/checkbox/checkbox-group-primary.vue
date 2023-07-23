@@ -2,12 +2,12 @@
   <yk-space direction="vertical" size="large">
     <yk-checkbox-group :default-value="['1']">
       <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">
-        option1
+        {{ item.label }}
       </yk-checkbox>
     </yk-checkbox-group>
     <yk-checkbox-group :default-value="['1']" direction="vertical">
       <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">
-        option1
+        {{ item.label }}
       </yk-checkbox>
     </yk-checkbox-group>
   </yk-space>

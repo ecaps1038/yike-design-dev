@@ -10,9 +10,14 @@
       :options="options"
       direction="vertical"
     ></yk-checkbox-group>
-    <yk-checkbox-group v-model="value2" :options="options" direction="vertical">
+    <yk-checkbox-group
+      v-model="value2"
+      :options="options"
+      disabled
+      direction="vertical"
+    >
       <template #label="{ data }">
-        <yk-button size="sm">{{ data.label }}</yk-button>
+        <yk-button>{{ data.label }}</yk-button>
       </template>
     </yk-checkbox-group>
   </yk-space>
