@@ -11,7 +11,7 @@ import '@/style/main.less';
 import '@/style/color-card.less';
 
 //highlight 的样式，依赖包，组件
-import 'highlight.js/styles/atom-one-dark.css';
+import 'highlight.js/styles/vs2015.css';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
@@ -19,6 +19,6 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 hljs.registerLanguage('javascript', javascript);
 
 const app = createApp(App);
-app.component('Snippet', Snippet);
+app.component('YkSnippet', Snippet);
 app.component('ColorCard', ColorCard);
 app.use(YikeDesignUI).use(hljsVuePlugin).use(router).mount('#app');

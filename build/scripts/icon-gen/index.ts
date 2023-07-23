@@ -132,7 +132,7 @@ const buildIconEntry = (data: IconData[]) => {
 };
 
 function buildIconType(data: IconData[]) {
-  const exports = [];
+  const exports: string[] = [];
   for (const iconData of data) {
     for (const item of iconData.list) {
       exports.push(
