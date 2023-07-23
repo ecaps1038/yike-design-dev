@@ -167,7 +167,7 @@ export function usePlacement(
     },
     { deep: true, immediate: true },
   );
-  
+
   return p;
 }
 
