@@ -1,4 +1,6 @@
 import type { Plugin } from 'vue';
+import { isClient, isIOS } from '@vueuse/core';
+export { isClient, isIOS };
 
 export type SFCWithInstall<T> = T & Plugin;
 export const withInstall = <T, E extends Record<string, any>>(
