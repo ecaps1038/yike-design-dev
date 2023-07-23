@@ -2,7 +2,7 @@ import type { Component, App } from 'vue';
 
 import { YkRadio, YkRadioGroup } from './components/radio';
 import { YkCheckbox, YkCheckboxGroup } from './components/checkbox';
-import YkAnchor from './components/anchor';
+import { YkDrawer } from './components/drawer';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -25,7 +25,7 @@ const components: {
   YkRadio,
   YkCheckbox,
   YkCheckboxGroup,
-  YkAnchor,
+  YkDrawer,
   YkAlert,
   YkButton,
   YkTheme,
@@ -48,7 +48,7 @@ export {
   YkRadio,
   YkCheckbox,
   YkCheckboxGroup,
-  YkAnchor,
+  YkDrawer,
   YkAlert,
   YkButton,
   YkTheme,

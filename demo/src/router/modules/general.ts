@@ -42,12 +42,20 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/checkbox/doc.md'),
   },
   {
+    path: 'drawer',
+    component: () => import('@/examples/drawer/doc.md'),
+  },
+  {
     path: 'empty',
     component: () => import('@/examples/empty/doc.md'),
   },
   {
     path: 'anchor',
     component: () => import('@/examples/anchor/doc.md'),
+  },
+  {
+    path: 'popover',
+    component: () => import('@/examples/popover/doc.md'),
   },
 ];
 

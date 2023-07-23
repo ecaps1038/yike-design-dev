@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 export function camelToDashCase(str) {
   return str.replace(/([a-zA-Z])([A-Z])/g, '$1-$2').toLowerCase();
 }
@@ -56,24 +56,21 @@ export default () => ({
           '$1-$2',
         );
         const demoCode = fetchDemoCode(demoComponentName, id).replace(
-          /{{\s*(.+?)\s*}}/g,
-          '<div v-text="$1"></div>',
+          /{{/g,
+          '{ {',
         );
+        const html = hljs.highlightAuto(demoCode).value;
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`;
         const caseCardContent = `<yk-snippet title="${title}">
-                                  <template #demo>${demoName}</template>
-                                  <template #desc>${markdownIt.render(
-                                    desc,
-                                  )}</template>
-                                  <template v-slot:code>
-                                    <pre class="hljs"><code>${
-                                      hljs.highlightAuto(demoCode).value
-                                    }</code></pre>
-                                  </template>
-                                </yk-snippet>`;
+          <template v-slot:demo>${demoName}</template>
+          <template v-slot:desc>${markdownIt.render(desc)}</template>
+          <template v-slot:code>
+            <pre class='hljs'><code>${html}</code></pre>
+          </template>
+        </yk-snippet>
+        `;
         src = src.replace(match[0], caseCardContent);
       }
-
       const purePattern = /:::pure\s+(.*?)\s+:::/gs;
       const pureMatches = src.matchAll(purePattern);
       for (const match of pureMatches) {

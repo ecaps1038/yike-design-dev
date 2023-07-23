@@ -76,8 +76,8 @@
           "src": "message"
         },
         {
-          "name": "Tooltip 文字提示",
-          "src": "tooltip"
+          "name": "Drawer 抽屉",
+          "src": "drawer"
         }
       ]
     },
