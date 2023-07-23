@@ -40,9 +40,9 @@ a {
 
 .support {
   img {
-    width: 240px;
     margin-top: 30px;
     margin-right: 40px;
+    width: 240px;
   }
 }
 </style>

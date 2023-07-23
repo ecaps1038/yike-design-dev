@@ -90,7 +90,7 @@ function onClick() {
     else openTooltip()
   }
 }
-function onOpenMenu(e) {
+function onOpenMenu() {
   if (props.trigger === 'contextMenu' || props.trigger.includes('contextMenu'))
     openTooltip()
 }
