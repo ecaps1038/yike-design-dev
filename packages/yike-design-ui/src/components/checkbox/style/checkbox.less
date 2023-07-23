@@ -1,0 +1,57 @@
+.yk-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 5px;
+  font-size: @size-s;
+  line-height: 32px;
+  cursor: pointer;
+  &&--disabled {
+    cursor: not-allowed;
+    color: @font-color-s;
+  }
+  input[type='checkbox'],
+  &-target {
+    width: 0;
+    height: 0;
+    user-select: none;
+  }
+
+  &-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: @space-s;
+    width: @size-m;
+    height: @size-m;
+    border: 1px solid @gray-3;
+    border-radius: @radius-s;
+    background: @gray10;
+    transition: border-color 0.1s cubic-bezier(0, 0, 1, 1),
+      background-color 0.1s cubic-bezier(0, 0, 1, 1);
+    user-select: none;
+    &.disabled {
+      background: @bg-color-s;
+      opacity: 1;
+    }
+    .icon--active {
+      color: @gray10;
+    }
+    .icon--disable {
+      color: #000000;
+    }
+  }
+  &--active {
+    background-color: @pcolor-light;
+    border-color: @pcolor-light;
+    &.disabled {
+      border-color: @gray-3;
+    }
+  }
+  &--normal {
+    &:hover {
+      border-color: @pcolor-light;
+    }
+  }
+}
