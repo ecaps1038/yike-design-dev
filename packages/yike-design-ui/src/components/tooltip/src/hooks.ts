@@ -1,15 +1,27 @@
-import { onMounted, onBeforeUnmount, ref, watch, reactive } from 'vue';
+import {
+  onMounted,
+  onBeforeUnmount,
+  ref,
+  watch,
+  reactive,
+  useSlots,
+  defineComponent,
+  h,
+} from 'vue';
 import type { Ref } from 'vue';
 import type { TooltipProps } from './tooltip';
-import { splitCameCase } from './utils';
+import { splitCameCase, getView } from './utils';
 
 type EventType = keyof WindowEventMap;
+
 type ListenCallback = {
   (this: Window, ev: WindowEventMap[EventType]): any;
 };
+
 type ObCallback = {
   (ev: IntersectionObserverEntry): void;
 };
+
 const POSITION = [
   ['left', 'top'],
   ['right', 'bottom'],
@@ -17,7 +29,9 @@ const POSITION = [
 ] as const;
 type Position = (typeof POSITION)[number];
 
-// 事件监听hook函数
+/**
+ * @function useEventListener  window事件监听hook函数
+ */
 export function useEventListener(
   type: EventType,
   callback: ListenCallback,
@@ -27,65 +41,97 @@ export function useEventListener(
   onBeforeUnmount(() => window.removeEventListener(type, callback, option));
 }
 
-// 使用观察器
+/**
+ * @function useObserver 侦听器
+ * @param el 侦听的元素
+ * @param callback 元素可见大小发生变化的回调函数
+ * @param option IntersectionObserver 配置项,
+ * @param autoGetView 是否自动获取目标元素上层视口元素
+ */
 export function useObserver(
-  el: Ref<Element | null | undefined>,
+  el: Ref<HTMLElement | null | undefined>,
   callback: ObCallback,
   option?: IntersectionObserverInit,
+  autoGetView?: boolean,
 ): void {
-  const observer = new IntersectionObserver(([change]) => {
-    callback(change);
-  }, option);
+  let observer: IntersectionObserver;
+
   onMounted(() => {
+    observer = new IntersectionObserver(
+      ([change]) => {
+        callback(change);
+      },
+      {
+        ...option,
+        root: autoGetView ? (getView(el.value!) as Element) : null,
+      },
+    );
+
     if (el.value) observer.observe(el.value);
   });
+
   onBeforeUnmount(() => {
     observer.unobserve(el.value!);
     observer.disconnect();
   });
 }
-// 计算遮挡位置
+
 /**
- * @function usePosition : 计算元素遮挡方位
- * @param tooltip : 侦听的标签元素对象 Ref<Element | null | undefined> 响应式数据类型
+ * @function usePosition 计算元素遮挡方位
+ * @param tooltip 侦听的标签元素对象 Ref<Element | null | undefined> 响应式数据类型
  * */
-export function usePosition(tooltip: Ref<Element | null | undefined>) {
+export function usePosition(tooltip: Ref<HTMLElement | null | undefined>) {
   const position = ref<[Position[0], Position[1]]>(['', '']);
+  let time = 0;
   useObserver(
     tooltip,
     (e) => {
       const { left, right, top, bottom } = e.intersectionRect;
-      const { left: bl, right: br, top: bt, bottom: bb } = e.boundingClientRect;
+      const { left: bl, right: br, top: bt, bottom: bb } = e.rootBounds!;
+      if (e.time - time < 100) return;
+      time = e.time;
+
+      // 完全显示和完全不显示
+      if (e.intersectionRatio == 1 || e.intersectionRatio == 0) {
+        position.value[0] = '';
+        position.value[1] = '';
+        return;
+      }
+
       // 判断左右超出状态
-      if (left > bl && right < br) position.value[0] = '';
-      else if (left > bl) position.value[0] = 'left';
-      else if (right < br) position.value[0] = 'right';
+      if ((left <= bl && right >= br) || (left == 0 && right == 0))
+        position.value[0] = '';
+      else if (left <= bl) position.value[0] = 'left';
+      else if (right >= br) position.value[0] = 'right';
       else position.value[0] = '';
 
       // 判断上下超出状态
-      if (top > bt && bottom < bb) position.value[1] = '';
-      else if (top > bt) position.value[1] = 'top';
-      else if (bottom < bb) position.value[1] = 'bottom';
+      if ((bottom >= bb && top <= bt) || (top == 0 && bottom == 0))
+        position.value[1] = '';
+      else if (bottom >= bb) position.value[1] = 'bottom';
+      else if (top <= bt) position.value[1] = 'top';
       else position.value[1] = '';
     },
-    { threshold: [0, 0.5, 1] },
+    { threshold: [0, 0.25, 0.5, 0.75, 1] },
+    true,
   );
 
   return position;
 }
 
 /**
- * @function usePlacement : 根据已有 Placement 和 气泡位置动态生成 新的 Placement
- * @param tooltip : 侦听的标签元素对象 Ref<Element | null | undefined> 响应式数据类型
- * @param placement : 元素默认方位类型 可选值 "left" | "top" | "right" | "bottom" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom" |
+ * @function usePlacement  根据已有 Placement 和 气泡位置动态生成 新的 Placement
+ * @param tooltip  侦听的标签元素对象 Ref<Element | null | undefined> 响应式数据类型
+ * @param placement  元素默认方位类型 可选值 "left" | "top" | "right" | "bottom" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom"
  * */
 export function usePlacement(
-  tooltip: Ref<Element | null | undefined>,
+  tooltip: Ref<HTMLElement | null | undefined>,
   placement: TooltipProps['placement'],
 ) {
   const position = usePosition(tooltip);
   const result = splitCameCase(placement!);
   const p = reactive([...result]);
+
   watch(
     position,
     () => {
@@ -121,5 +167,29 @@ export function usePlacement(
     },
     { deep: true, immediate: true },
   );
+
   return p;
+}
+
+/**
+ * @function useDefaultSlots 将默认插槽以组件形式返回
+ */
+export function useDefaultSlots() {
+  const slots = useSlots();
+
+  const DefaultSlot = defineComponent(
+    (componentProps, context) => {
+      return () => {
+        const VNodes = slots.default
+          ? slots.default()
+          : [h('span', {}, 'tooltip')];
+        VNodes[0] = h(VNodes[0], { ...componentProps, ...context.attrs });
+
+        return h('div', {}, VNodes);
+      };
+    },
+    { inheritAttrs: false },
+  );
+
+  return DefaultSlot;
 }

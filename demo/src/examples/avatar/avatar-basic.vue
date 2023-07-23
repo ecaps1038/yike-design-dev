@@ -2,7 +2,7 @@
   <yk-space align="center">
     <yk-avatar
       icon="yk-touxiang1"
-      style="background-color: rgb(245, 61, 61)"
+      style="background-color: rgb(245 61 61)"
     ></yk-avatar>
     <yk-avatar icon="yk-yike1"></yk-avatar>
     <yk-avatar

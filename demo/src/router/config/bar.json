@@ -31,7 +31,12 @@
     },
     {
       "title": "导航",
-      "list": []
+      "list": [
+        {
+          "name": "Anchor 锚点",
+          "src": "anchor"
+        }
+      ]
     },
     {
       "title": "数据录入",
@@ -69,6 +74,14 @@
         {
           "name": "Tooltip 文字提示",
           "src": "tooltip"
+        },
+        {
+          "name": "popover 气泡卡片",
+          "src": "popover"
+        },
+        {
+          "name": "Drawer 抽屉",
+          "src": "drawer"
         }
       ]
     },

@@ -1,0 +1,159 @@
+.yk-drawer {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1024;
+  transition: all @animats;
+
+  .yk-drawer-mask {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: #00000066;
+    transition: all @animats;
+  }
+}
+
+.yk-drawer-other-el {
+  position: absolute;
+  z-index: auto;
+  overflow: hidden;
+}
+
+.yk-drawer-focus {
+  width: 0px;
+  height: 0px;
+
+  &:focus-within {
+    outline: none;
+  }
+}
+
+.yk-drawer-main {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: @white;
+  transition: all @animats;
+  word-break: break-all;
+
+  .yk-drawer-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .yk-drawer-close {
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    z-index: 1025;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 4px;
+    background: none;
+    transition: all @animats;
+    cursor: pointer;
+
+    &:hover {
+      background-color: @bg-color-s;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: rgba(var(--gray1), 0.88);
+    }
+  }
+
+  .yk-drawer-header {
+    padding: 12px;
+    font-size: @size-m;
+    font-weight: 500;
+    border-bottom: 1px solid @bg-color-ss;
+
+    &:empty {
+      padding: unset;
+      border-bottom: unset;
+    }
+  }
+
+  .yk-drawer-content {
+    overflow: auto;
+    padding: 12px;
+    font-size: @size-s;
+    flex-grow: 1;
+  }
+
+  .yk-drawer-footer {
+    display: flex;
+    justify-content: end;
+    padding: 12px;
+    border-top: 1px solid @bg-color-ss;
+
+    &:empty {
+      padding: unset;
+      border-top: unset;
+    }
+  }
+}
+
+.yk-drawer-right {
+  left: unset;
+}
+
+.yk-drawer-left {
+  right: unset;
+}
+
+.yk-drawer-top {
+  bottom: unset;
+}
+
+.yk-drawer-bottom {
+  top: unset;
+}
+
+.right-enter-from .yk-drawer-main,
+.right-leave-to .yk-drawer-main {
+  transform: translateX(100%);
+}
+
+.left-enter-from .yk-drawer-main,
+.left-leave-to .yk-drawer-main {
+  transform: translateX(-100%);
+}
+
+.top-enter-from .yk-drawer-main,
+.top-leave-to .yk-drawer-main {
+  transform: translateY(-100%);
+}
+
+.bottom-enter-from .yk-drawer-main,
+.bottom-leave-to .yk-drawer-main {
+  transform: translateY(100%);
+}
+
+.right-enter-from .yk-drawer-mask,
+.left-enter-from .yk-drawer-mask,
+.top-enter-from .yk-drawer-mask,
+.bottom-enter-from .yk-drawer-mask {
+  opacity: 0;
+}
+
+.right-leave-to .yk-drawer-mask,
+.left-leave-to .yk-drawer-mask,
+.top-leave-to .yk-drawer-mask,
+.bottom-leave-to .yk-drawer-mask {
+  opacity: 0;
+}

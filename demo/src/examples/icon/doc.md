@@ -3,6 +3,12 @@
 :::snippet
 基本用法 name
 通过 `<Icon name="XX-XXX"/>` 的形式即可使用 icon。直接使用字体样式设置图标，例如使用 font-size 控制大小,color 设置颜色
+<IconTest/>
+:::
+
+:::snippet
+基本用法 name
+通过 `<Icon name="XX-XXX"/>` 的形式即可使用 icon。直接使用字体样式设置图标，例如使用 font-size 控制大小,color 设置颜色
 <IconPrimary/>
 :::
 

@@ -34,16 +34,6 @@ export default () => ({
       const markdownIt = MarkdownIt({
         html: true,
         xhtmlOut: false,
-        highlight(str, lang) {
-          if (lang && hljs.getLanguage(lang)) {
-            return `<pre class="hljs"><code>${
-              hljs.highlightAuto(str).value
-            }</code></pre>`;
-          }
-          return `<pre class="hljs"><code>${markdownIt.utils.escapeHtml(
-            str,
-          )}</code></pre>`;
-        },
       });
       if (!id.includes('demo/src')) {
         return {
@@ -66,18 +56,18 @@ export default () => ({
           '$1-$2',
         );
         const demoCode = fetchDemoCode(demoComponentName, id).replace(
-          / /g,
-          '\u2008',
+          /{{/g,
+          '{ {',
         );
         const html = hljs.highlightAuto(demoCode).value;
         importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`;
-        const caseCardContent = `<Snippet title="${title}">
+        const caseCardContent = `<yk-snippet title="${title}">
           <template v-slot:demo>${demoName}</template>
           <template v-slot:desc>${markdownIt.render(desc)}</template>
           <template v-slot:code>
-            <pre><code class='hljs'>${html}</code></pre>
+            <pre class='hljs'><code>${html}</code></pre>
           </template>
-        </Snippet>
+        </yk-snippet>
         `;
         src = src.replace(match[0], caseCardContent);
       }

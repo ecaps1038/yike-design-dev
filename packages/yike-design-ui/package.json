@@ -28,9 +28,12 @@
   ],
   "scripts": {
     "build": "vite build",
-    "lint": "eslint . --fix "
+    "lint": "eslint . --fix",
+    "gen:icon": "yike-build icongen"
   },
   "dependencies": {
+    "@vueuse/core": "^10.2.1",
+    "@yike/build": "workspace:*",
     "@yike/utils": "workspace:*"
   },
   "devDependencies": {
