@@ -2,4 +2,161 @@
   display: inline-flex;
   align-items: center;
   transition: all @animatb ease-in-out;
+
+  &--s {
+    border-radius: @radius-s;
+  }
+
+  &--m {
+    border-radius: @radius-s;
+  }
+
+  &--l {
+    border-radius: @radius-m;
+  }
+
+  &--xl {
+    border-radius: @radius-m;
+  }
+
+  &-spinner {
+    display: flex;
+    align-items: center;
+  }
+
+  &-deco {
+    word-break: keep-all;
+    margin: 5px;
+  }
+
+  &-inner {
+    display: flex;
+    // width: 100%;
+    width: 270px;
+
+    .yk-input-widget {
+      border: none;
+      color: @gray;
+      background: inherit;
+      outline: none;
+      flex-grow: 1;
+    }
+  }
+
+  &-clear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 27px;
+    border: none;
+    background: none;
+    opacity: 0;
+    cursor: pointer;
+
+    &:focus-within {
+      opacity: 1;
+    }
+  }
+
+  &-show {
+    opacity: 1;
+  }
 }
+
+svg {
+  padding: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  fill: @gray;
+
+  &:hover {
+    background-color: @bg-color-ss;
+  }
+}
+
+.input-size(@size, @height, @padding, @fs) {
+  .normal() {
+    padding: 0px @padding;
+    height: @height;
+    font-size: @fs;
+  }
+
+  &.yk-input-size--@{size} {
+    .normal();
+  }
+}
+
+.input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
+  .normal() {
+    border: 1px solid @bcolor;
+    background-color: @bgcolor;
+
+    &:hover {
+      border: 1px solid @hvbcolor;
+      background-color: @hvbgcolor;
+    }
+
+    &-focus {
+      border: 1px solid @fsbcolor;
+      background-color: @fsbgcolor;
+    }
+  }
+  &.yk-input--@{status} {
+    .normal();
+  }
+}
+
+// copy from YkButton
+.yk-input--loading {
+  // opacity: 0.7 !important;
+  #spinner {
+    margin-right: 4px;
+    width: 16px;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+  }
+
+  circle {
+    fill: none;
+    stroke: @gray;
+    stroke-width: 6;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+}
+
+.input-size(s, 24px, 4px, @size-s);
+.input-size(m, 32px, 6px, @size-s);
+.input-size(l, 36px, 6px, @size-s);
+.input-size(xl, 48px, 8px, @size-m);
+
+.input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-s);
+.input-status(danger, transparent, @ecolor-3, @ecolor, @ecolor-1, @ecolor, @bg-color-s);
+.input-status(success, transparent, @scolor-3, @scolor, @scolor-1, @scolor, @bg-color-s);
+.input-status(warning, transparent, @wcolor-3, @wcolor, @wcolor-1, @wcolor, @bg-color-s);
+.input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);
