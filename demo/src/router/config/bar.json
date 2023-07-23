@@ -81,7 +81,11 @@
         },
         {
           "name": "Notification 通知提醒",
-          "src": "notification"
+          "src": "notification",
+        },
+        {
+          "name": "Drawer 抽屉",
+          "src": "drawer"
         }
       ]
     },

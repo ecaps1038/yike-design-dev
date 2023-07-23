@@ -6,9 +6,15 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  label: String,
-  color: String,
+defineProps({
+  label: {
+    type: String,
+    default: '',
+  },
+  color: {
+    type: String,
+    default: '',
+  },
 })
 </script>
 

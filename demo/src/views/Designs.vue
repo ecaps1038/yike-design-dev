@@ -32,6 +32,7 @@ let bar = [
 .main {
   padding: 24px 56px 56px 324px;
 }
+
 .mmain {
   padding: 24px;
 }

@@ -48,14 +48,16 @@ const clickShow = (): void => {
 </script>
 
 <style scoped lang="less">
+/* stylelint-disable */
 .case-card {
-  max-width: 800px;
   margin-top: 28px;
+  max-width: 800px;
+
   .container {
     margin: 12px 0 8px;
-    border-radius: @radius-m;
-    border: 1px solid @line-color-s;
     padding: 20px;
+    border: 1px solid @line-color-s;
+    border-radius: @radius-m;
     transition: all @animats;
   }
 
@@ -65,19 +67,19 @@ const clickShow = (): void => {
   }
 
   .icons {
-    height: 28px;
-    width: 28px;
-    border-radius: @radius-m;
-    background-color: @bg-color-m;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: @radius-m;
+    background-color: @bg-color-m;
     transition: all @animats;
+    cursor: pointer;
 
     .icon {
-      color: @font-color-m;
       font-size: @size-m;
+      color: @font-color-m;
       transition: all @animats;
     }
 
@@ -111,10 +113,10 @@ const clickShow = (): void => {
   }
 
   pre {
-    border-radius: @radius-m;
     overflow: hidden;
-    text-align: left;
     max-width: 800px;
+    border-radius: @radius-m;
+    text-align: left;
   }
 }
 </style>

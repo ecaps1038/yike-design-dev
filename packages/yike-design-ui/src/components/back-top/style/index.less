@@ -1,16 +1,19 @@
 .yk-backtop {
   position: fixed;
-  cursor: pointer;
   z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
   &-container {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
-    background: @pcolor;
     border-radius: @radius-m;
+    background: @pcolor;
 
     .yk-backtop__icon {
       width: 24px;

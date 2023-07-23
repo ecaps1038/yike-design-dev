@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { JSDOM } from 'jsdom';
 import { optimize } from 'svgo';
 import svgoConfig from './svgo.config';
-import { iconComponents, iconSvgPath, root } from '../../utils/paths';
+import { iconComponents, iconSvgPath } from '../../utils/paths';
 import { toPascalCase } from '../../utils/convert-case';
 import {
   genEntryContent,
