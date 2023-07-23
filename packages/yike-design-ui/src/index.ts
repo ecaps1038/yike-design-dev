@@ -13,6 +13,7 @@ import YkTable from './components/table/Table.vue';
 import YkMessage from './components/message';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
+import { YkAnchor } from './components/anchor';
 import YkTooltip from './components/tooltip';
 import YkPopover from './components/popover';
 import YkEmpty from './components/empty';
@@ -40,6 +41,7 @@ const components: {
   YkBackTop,
   YkTooltip,
   YkPopover,
+  YkAnchor,
 };
 
 export {
@@ -63,6 +65,7 @@ export {
   YkBackTop,
   YkTooltip,
   YkPopover,
+  YkAnchor,
 };
 
 // 全局注册
