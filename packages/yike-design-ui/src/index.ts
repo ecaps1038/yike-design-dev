@@ -15,6 +15,7 @@ import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import { YkAnchor } from './components/anchor';
 import YkTooltip from './components/tooltip';
+import YkPopover from './components/popover';
 import YkEmpty from './components/empty';
 import './styles/index.less';
 
@@ -39,6 +40,7 @@ const components: {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkPopover,
   YkAnchor,
 };
 
@@ -62,6 +64,7 @@ export {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkPopover,
   YkAnchor,
 };
 
