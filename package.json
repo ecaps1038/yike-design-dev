@@ -12,6 +12,7 @@
     "lint:fix": "pnpm run eslint",
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
+    "preinstall": "npx only-allow pnpm",
     "gen:icon": "pnpm --filter yike-design-ui gen:icon"
   },
   "dependencies": {

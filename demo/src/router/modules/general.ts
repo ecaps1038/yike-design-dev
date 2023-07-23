@@ -45,6 +45,14 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'badge',
     component: () => import('@/examples/badge/doc.md'),
   },
+  {
+    path: 'anchor',
+    component: () => import('@/examples/anchor/doc.md'),
+  },
+  {
+    path: 'popover',
+    component: () => import('@/examples/popover/doc.md'),
+  },
 ];
 
 export default generalRoutes;

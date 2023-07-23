@@ -26,8 +26,8 @@
 <script setup lang="ts">
 import type { TooltipProps, TooltipEmit } from './tooltip'
 import '../style/index.less'
-import { computed, useSlots, defineComponent, h, ref, watch } from 'vue'
-import { useEventListener, usePlacement } from './hooks'
+import { computed, ref, watch } from 'vue'
+import { useEventListener, usePlacement, useDefaultSlots } from './hooks'
 defineOptions({
   name: 'YkTooltip',
 })
@@ -47,20 +47,8 @@ const props = withDefaults(defineProps<TooltipProps>(), {
 const emit = defineEmits<TooltipEmit>()
 const tooltip = ref<null | Element>()
 
-// 插槽元素属性 处理
-const slots = useSlots()
-const DefaultSlot = defineComponent(
-  (componentProps, context) => {
-    return () => {
-      const VNodes = slots.default
-        ? slots.default()
-        : [h('span', {}, 'tooltip')]
-      VNodes[0] = h(VNodes[0], { ...componentProps, ...context.attrs })
-      return h('div', {}, VNodes)
-    }
-  },
-  { inheritAttrs: false },
-)
+// 使用默认插槽
+const DefaultSlot = useDefaultSlots()
 
 // 组件控制和事件控制展示气泡双向绑定
 const showTooltip = ref(props.open)
