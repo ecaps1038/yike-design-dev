@@ -16,7 +16,7 @@ export type NotificationProps = {
   onClose?: () => void;
   onDestroy?: () => void;
   handleCancel?: () => void;
-  handleOK?: () => void;
+  handleSubmit?: () => void;
 };
 
 export interface NotificationOptions extends NotificationProps {

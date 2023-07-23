@@ -18,9 +18,7 @@
           :class="`yk-notification-close-icon`"
           @click="handleClose"
         >
-          <slot name="closeElement">
-            <yk-icon name="yk-cha"></yk-icon>
-          </slot>
+          <yk-icon name="yk-cha"></yk-icon>
         </button>
       </div>
       <yk-space v-if="props.showFooterBtn" class="notification-footer">
@@ -51,7 +49,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   offsetX: 24,
   zIndex: 2001,
   handleCancel: () => ({}),
-  handleOK: () => ({}),
+  handleSubmit: () => ({}),
   onClose: () => ({}),
 })
 
@@ -92,7 +90,7 @@ function clickCancel() {
 }
 
 function clickOK() {
-  props.handleOK && props.handleOK()
+  props.handleSubmit && props.handleSubmit()
 }
 
 onMounted(() => {

@@ -26,21 +26,21 @@
 
 ### API
 
-| 参数     | 描述                  | 类型                                                | 默认值  |
-| -------- | --------------------- | --------------------------------------------------- | ------- |
-| type     | 消息的类型            | 'primary'\|'success'\|'warning'\|'error'\|  'loading' | success |
-| message  | 消息的内容            | string | ''    |
-| title    | 标题                | string           | 'Title'    |
-| closable | 控制关闭按钮显隐      | boolean          | true(显示) |
-| showFooterBtn | 控制底部操作按钮显隐 | boolean      | false(隐藏) |
-| showIcon | 控制图标显隐 | boolean      | true(显示) |
-| duration | 显示时间, 单位为毫秒。 值为 0 则不会自动关闭 | number      | 3000 |
-| space    | 提醒框间距, 单位是px   | number   | 24 |
-| offsetY    | 相对屏幕顶部的偏移量 偏移的距离, 单位是px   | number   | 24 |
-| offsetX    | 相对屏幕右部的偏移量 偏移的距离, 单位是px   | number   | 24 |
-| onClose  | 关闭时的回调函数      | Function   | ()=>{} |
-| handleCancel  | 底部操作按钮展示时, 点击取消按钮的回调函数 | Function   | ()=>{} |
-| handleOK  | 底部操作按钮展示时, 点击确定按钮的回调函数 | Function   | ()=>{} |
+| 参数          | 描述                                         | 类型                                                 | 默认值      |
+| ------------- | -------------------------------------------- | ---------------------------------------------------- | ----------- |
+| type          | 消息的类型                                   | 'primary'\|'success'\|'warning'\|'error'\| 'loading' | success     |
+| message       | 消息的内容                                   | string                                               | ''          |
+| title         | 标题                                         | string                                               | 'Title'     |
+| closable      | 控制关闭按钮显隐                             | boolean                                              | true(显示)  |
+| showFooterBtn | 控制底部操作按钮显隐                         | boolean                                              | false(隐藏) |
+| showIcon      | 控制图标显隐                                 | boolean                                              | true(显示)  |
+| duration      | 显示时间, 单位为毫秒。 值为 0 则不会自动关闭 | number                                               | 3000        |
+| space         | 提醒框间距, 单位是 px                        | number                                               | 24          |
+| offsetY       | 相对屏幕顶部的偏移量 偏移的距离, 单位是 px   | number                                               | 24          |
+| offsetX       | 相对屏幕右部的偏移量 偏移的距离, 单位是 px   | number                                               | 24          |
+| onClose       | 关闭时的回调函数                             | Function                                             | ()=>{}      |
+| handleCancel  | 底部操作按钮展示时, 点击取消按钮的回调函数   | Function                                             | ()=>{}      |
+| handleOK      | 底部操作按钮展示时, 点击确定按钮的回调函数   | Function                                             | ()=>{}      |
 
 ### Methods
 
