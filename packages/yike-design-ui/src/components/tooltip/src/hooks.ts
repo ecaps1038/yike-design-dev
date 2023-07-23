@@ -46,7 +46,7 @@ export function useEventListener(
  * @param el 侦听的元素
  * @param callback 元素可见大小发生变化的回调函数
  * @param option IntersectionObserver 配置项,
- * @param autoGetView 是否自动获取目标元素上层视口元素 boolean,
+ * @param autoGetView 是否自动获取目标元素上层视口元素
  */
 export function useObserver(
   el: Ref<HTMLElement | null | undefined>,
@@ -167,6 +167,7 @@ export function usePlacement(
     },
     { deep: true, immediate: true },
   );
+  
   return p;
 }
 

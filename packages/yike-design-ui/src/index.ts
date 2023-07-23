@@ -14,6 +14,7 @@ import YkMessage from './components/message';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import YkTooltip from './components/tooltip';
+import YkPopover from './components/popover';
 import YkEmpty from './components/empty';
 import './styles/index.less';
 
@@ -38,6 +39,7 @@ const components: {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkPopover,
 };
 
 export {
@@ -60,6 +62,7 @@ export {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkPopover,
 };
 
 // 全局注册
