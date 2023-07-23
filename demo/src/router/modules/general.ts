@@ -38,8 +38,8 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/radio/doc.md'),
   },
   {
-    path: 'empty',
-    component: () => import('@/examples/empty/doc.md'),
+    path: 'drawer',
+    component: () => import('@/examples/drawer/doc.md'),
   },
   {
     path: 'anchor',
