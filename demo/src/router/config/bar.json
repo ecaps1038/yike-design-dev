@@ -80,6 +80,10 @@
           "src": "notification"
         },
         {
+          "name": "popover 气泡卡片",
+          "src": "popover"
+        },
+        {
           "name": "Drawer 抽屉",
           "src": "drawer"
         }
