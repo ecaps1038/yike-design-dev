@@ -21,7 +21,7 @@ const onClose = () => {
   async function fakeFetch() {
     await fetch(
       'https://fakerapi.it/api/v1/persons?_quantity=1&_gender=male&_birthday_start=2005-01-01',
-    ).then((res) => {
+    ).then(() => {
       active.value = false
       proxy.$message({ type: 'success', message: '抽屉已关闭。' })
     })
