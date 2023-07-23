@@ -49,6 +49,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'popover',
     component: () => import('@/examples/popover/doc.md'),
   },
+  {
+    path: 'empty',
+    component: () => import('@/examples/empty/doc.md'),
+  },
 ];
 
 export default generalRoutes;
