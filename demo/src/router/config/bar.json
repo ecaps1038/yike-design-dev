@@ -69,6 +69,10 @@
         {
           "name": "Tooltip 文字提示",
           "src": "tooltip"
+        },
+        {
+          "name": "Notification 通知提醒框",
+          "src": "notification"
         }
       ]
     },

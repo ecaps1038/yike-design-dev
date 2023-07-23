@@ -8,7 +8,7 @@ export type NotificationProps = {
   showIcon?: boolean;
   type?: NotificationType;
   duration?: number;
-  offset?: number;
+  space?: number;
   offsetY?: number;
   offsetX?: number;
   zIndex?: number;

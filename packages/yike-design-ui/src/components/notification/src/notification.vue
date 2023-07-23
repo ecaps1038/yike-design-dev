@@ -39,14 +39,14 @@ defineOptions({
   name: 'YkNotification',
 })
 const props = withDefaults(defineProps<NotificationProps>(), {
-  title: '这里是标题',
+  title: 'Title',
   message: '',
   type: 'primary',
   duration: 3000,
   closable: true,
   showFooterBtn: false,
   showIcon: true,
-  offset: 24,
+  space: 24,
   offsetY: 24,
   offsetX: 24,
   zIndex: 2001,
@@ -61,7 +61,7 @@ const statusIconName = computed(() => {
   return iconStatusMap[props.type]
 })
 const Style = computed(() => ({
-  marginBottom: `${props.offset}px`,
+  marginBottom: `${props.space}px`,
   top: `${props.offsetY}px`,
   right: `${props.offsetX}px`,
   zIndex: props.zIndex,
