@@ -16,8 +16,10 @@
     "gen:icon": "pnpm --filter yike-design-ui gen:icon"
   },
   "dependencies": {
+    "@vueuse/core": "^10.2.1",
     "svgo": "^3.0.2",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "dayjs": "^1.11.9"
   },
   "devDependencies": {
     "@testing-library/vue": "^7.0.0",

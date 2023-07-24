@@ -2,6 +2,7 @@ import type { Component, App } from 'vue';
 
 import { YkRadio, YkRadioGroup } from './components/radio';
 import { YkDrawer } from './components/drawer';
+import YkTimePicker from './components/time-picker';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -24,6 +25,7 @@ const components: {
   YkRadioGroup,
   YkRadio,
   YkDrawer,
+  YkTimePicker,
   YkAlert,
   YkButton,
   YkTheme,
@@ -46,6 +48,7 @@ export {
   YkRadioGroup,
   YkRadio,
   YkDrawer,
+  YkTimePicker,
   YkAlert,
   YkButton,
   YkTheme,

@@ -1,0 +1,89 @@
+.yk-time-picker {
+  position: relative;
+  display: flex;
+  padding: 4px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  background: #ffffff;
+  outline: 0;
+  box-sizing: border-box;
+  .yk-time-picker-input {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 260px;
+    height: 36px;
+
+    box-sizing: border-box;
+    .yk-icon {
+      position: relative;
+      height: 20px;
+      white-space: nowrap;
+      color: #000000;
+    }
+  }
+  input {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    width: auto;
+    height: auto;
+    border: 0;
+    background: transparent;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  input[disabled] {
+    cursor: not-allowed;
+    color: #e8e9eb;
+  }
+}
+.yk-picker-panel-container {
+  position: absolute;
+  padding: 10px;
+  border-radius: 4px;
+  color: #000000;
+  background: #ffffff;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.2);
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+  li {
+    padding-left: 12px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f6f6f8;
+    }
+  }
+  .yk-picker-panel-content {
+    position: relative;
+    display: flex;
+    max-height: 200px;
+    .yk-picker-panel-column {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+  }
+  .yk-picker-panel-bottom {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    .yk-picker-panel-bottom-now {
+      color: #1890ff;
+      cursor: pointer;
+    }
+  }
+}
+.yk-time-picker--disabled {
+  cursor: not-allowed;
+  background-color: #f3f3f4;
+}
