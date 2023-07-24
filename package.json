@@ -14,7 +14,8 @@
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
-    "gen:icon": "pnpm --filter yike-design-ui gen:icon"
+    "gen:icon": "pnpm --filter yike-design-ui gen:icon",
+    "commit": "cz"
   },
   "dependencies": {
     "svgo": "^3.0.2",
@@ -26,6 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "@vitejs/plugin-vue": "^4.2.2",
+    "commitizen": "^4.3.0",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-unused-imports": "^3.0.0",
