@@ -113,7 +113,7 @@ const props = withDefaults(defineProps<${propsName}>(), {
   logCreateFile(componentMainStylePath)
 
   const exportContent = `import ${upperComponentName} from './src/${componentLowDashName}.vue';
-import { withInstall } from '@yike/utils';
+import { withInstall } from '../../utils/index';
 export const ${upperFullComponentName} = withInstall(${upperComponentName});
 export default ${upperFullComponentName};
 export * from './src/${componentLowDashName}';

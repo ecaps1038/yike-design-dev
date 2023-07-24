@@ -11,10 +11,12 @@ import YkSpace from './components/space';
 import { YkContainer } from './components/container';
 import YkTable from './components/table/Table.vue';
 import YkMessage from './components/message';
+import YkNotification from './components/notification';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import { YkAnchor } from './components/anchor';
 import YkTooltip from './components/tooltip';
+import YkPopover from './components/popover';
 import YkEmpty from './components/empty';
 import './styles/index.less';
 
@@ -39,6 +41,7 @@ const components: {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkPopover,
   YkAnchor,
 };
 
@@ -59,9 +62,11 @@ export {
   YkTitle,
   YkText,
   YkMessage,
+  YkNotification,
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkPopover,
   YkAnchor,
 };
 
@@ -71,6 +76,7 @@ export default {
     for (const c in components) {
       app.component(c, components[c]);
     }
+    app.config.globalProperties.$notification = YkNotification;
     app.config.globalProperties.$message = YkMessage;
   },
 };
