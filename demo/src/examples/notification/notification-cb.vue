@@ -1,10 +1,10 @@
 <template>
   <yk-space>
     <yk-button status="primary" @click="handleClose">
-      onClose callback
+      onClose Callback
     </yk-button>
-    <yk-button status="primary" @click="handleCancel">
-      Button callback
+    <yk-button status="primary" @click="handleFooterBtn">
+      Button Callback
     </yk-button>
   </yk-space>
 </template>
@@ -23,10 +23,10 @@ const handleClose = () => {
     },
   })
 }
-const handleCancel = () => {
+const handleFooterBtn = () => {
   proxy.$notification({
     type: 'primary',
-    message: 'handleCancel callback',
+    message: 'Footer Button Callback',
     showFooterBtn: true,
     handleCancel: () => {
       proxy.$notification({
