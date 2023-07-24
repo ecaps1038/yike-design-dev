@@ -26,7 +26,7 @@
 
 :::snippet
 回调函数
-通过传入 `onClose` 设置Notificaiton关闭时的回调函数;通过传入 `handleCancel` 设置点击底部取消按钮时的回调函数;通过传入 `handleSubmit` 设置点击底部确定按钮时的回调函数
+通过传入 `onClose` 设置 Notificaiton关闭时的回调函数<br>通过传入 `handleCancel` 设置 点击底部"取消"按钮时的回调函数<br>通过传入 `handleSubmit` 设置 点击底部"确定"按钮时的回调函数
 <NotificationCb/>
 :::
 
