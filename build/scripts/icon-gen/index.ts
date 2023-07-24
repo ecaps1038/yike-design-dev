@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { JSDOM } from 'jsdom';
 import { optimize } from 'svgo';
 import svgoConfig from './svgo.config';
-import { iconComponents, iconSvgPath, root } from '../../utils/paths';
+import { iconComponents, iconSvgPath } from '../../utils/paths';
 import { toPascalCase } from '../../utils/convert-case';
 import {
   genEntryContent,
@@ -132,7 +132,7 @@ const buildIconEntry = (data: IconData[]) => {
 };
 
 function buildIconType(data: IconData[]) {
-  const exports = [];
+  const exports: string[] = [];
   for (const iconData of data) {
     for (const item of iconData.list) {
       exports.push(

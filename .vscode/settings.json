@@ -5,6 +5,10 @@
     "source.fixAll": true
   },
   "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.fixAll.stylelint": true
+  },
   "[less]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -30,5 +34,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "references.preferredLocation": "peek",
+  "stylelint.validate": ["vue", "less", "css"],
   "vue.codeActions.enabled": false
 }

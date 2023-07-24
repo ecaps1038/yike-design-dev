@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import Bar from "@/components/Bar.vue";
+import { RouterView } from 'vue-router'
+import Bar from '@/components/Bar.vue'
 
 //菜单
 //制作目录数组
@@ -39,10 +39,12 @@ let bar = [
 <style scoped lang="less">
 .main {
   padding: 24px 56px 56px 324px;
+
   .module {
     max-width: 1200px;
   }
 }
+
 .mmain {
   padding: 24px;
 }

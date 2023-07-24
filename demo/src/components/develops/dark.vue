@@ -168,99 +168,128 @@ const datas = [
 </script>
 <style scoped lang="less">
 .colorss {
-  background-color: #fff;
-  border-radius: @radius-m;
-  border: 1px solid @line-color-s;
-  max-width: 1000px;
   overflow: hidden;
+  max-width: 1000px;
+  border: 1px solid @line-color-s;
+  border-radius: @radius-m;
+  background-color: #fff;
+
   .light,
   .dark {
     padding: 20px;
   }
+
   .light {
     .p {
       background-color: @pcolor-light;
     }
+
     .l {
       background-color: @lcolor-light;
     }
+
     .s {
       background-color: @scolor-light;
     }
+
     .w {
       background-color: @wcolor-light;
     }
+
     .e {
       background-color: @ecolor-light;
     }
+
     .d1 {
-      background-color: @gray10;
       border: 1px solid @gray7;
+      background-color: @gray10;
     }
+
     .d2 {
       background-color: @gray9;
     }
+
     .d3 {
       background-color: @gray8;
     }
+
     .d4 {
       background-color: @gray7;
     }
+
     .d5 {
-      background-color: rgba(@gray1, 0.24);
+      background-color: rgb(@gray1 0.24);
     }
+
     .d6 {
-      background-color: rgba(@gray1, 0.32);
+      background-color: rgb(@gray1 0.32);
     }
+
     .d7 {
-      background-color: rgba(@gray1, 0.56);
+      background-color: rgb(@gray1 0.56);
     }
+
     .d8 {
-      background-color: rgba(@gray1, 0.8);
+      background-color: rgb(@gray1 0.8);
     }
   }
+
   .dark {
     background-color: #000;
+
     .p {
       background-color: @pcolor-dark;
     }
+
     .l {
       background-color: @lcolor-dark;
     }
+
     .s {
       background-color: @scolor-dark;
     }
+
     .w {
       background-color: @wcolor-dark;
     }
+
     .e {
       background-color: @ecolor-dark;
     }
+
     .d1 {
       background-color: @gray1;
     }
+
     .d2 {
       background-color: @gray2;
     }
+
     .d3 {
       background-color: @gray3;
     }
+
     .d4 {
       background-color: @gray4;
     }
+
     .d5 {
-      background-color: rgba(@gray10, 0.24);
+      background-color: rgb(@gray10 0.24);
     }
+
     .d6 {
-      background-color: rgba(@gray10, 0.32);
+      background-color: rgb(@gray10 0.32);
     }
+
     .d7 {
-      background-color: rgba(@gray10, 0.56);
+      background-color: rgb(@gray10 0.56);
     }
+
     .d8 {
-      background-color: rgba(@gray10, 0.8);
+      background-color: rgb(@gray10 0.8);
     }
   }
+
   .color {
     width: 40px;
     height: 40px;

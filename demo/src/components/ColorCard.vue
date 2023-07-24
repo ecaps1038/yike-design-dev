@@ -6,22 +6,28 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  label: String,
-  color: String,
+defineProps({
+  label: {
+    type: String,
+    default: '',
+  },
+  color: {
+    type: String,
+    default: '',
+  },
 })
 </script>
 
 <style lang="less" scoped>
 .ykcolor-card {
+  display: flex;
+  padding: 20px;
   width: 208px;
   height: 80;
   border: none;
   border-radius: 5px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
   outline: none;
+  flex-direction: column;
   box-sizing: border-box;
 
   > span {

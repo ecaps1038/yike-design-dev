@@ -4,28 +4,29 @@
   @brSize: @space-ss; // 圆角值大小
 
   position: relative;
+  width: fit-content;
   .yk-tooltip-content {
+    position: absolute;
+    z-index: 999;
     padding: @space-ss @space-s;
-    text-align: start;
     width: max-content;
+    min-width: 2em;
     max-width: 250px;
     min-height: 2em;
-    min-width: 2em;
     border-radius: @brSize;
-    background-color: @bgcolor;
+    text-align: start;
     color: @white;
-    position: absolute;
-    word-wrap: break-word;
-    z-index: 999;
+    background-color: @bgcolor;
     box-shadow: @shadow-m;
+    word-wrap: break-word;
   }
   .yk-tooltip-content::after {
-    content: '';
+    position: absolute;
     width: @arrowSize;
     height: @arrowSize;
-    clip-path: polygon(50% 50%, 0 0, 100% 0);
-    position: absolute;
     background-color: inherit;
+    content: '';
+    clip-path: polygon(50% 50%, 0 0, 100% 0);
   }
 
   .yk-tooltip-left {
@@ -72,25 +73,25 @@
   }
 
   .yk-tooltip-bottomRight {
-    bottom: 0;
     right: 0;
+    bottom: 0;
     translate: 0 calc(100% + @arrowSize);
   }
 
   .yk-tooltip-right {
-    right: 0;
     top: 50%;
+    right: 0;
     translate: calc(100% + @arrowSize) -50%;
   }
 
   .yk-tooltip-rightTop {
-    right: 0;
     top: 0;
+    right: 0;
     translate: calc(100% + @arrowSize) 0;
   }
   .yk-tooltip-rightBottom {
-    bottom: 0;
     right: 0;
+    bottom: 0;
     translate: calc(100% + @arrowSize) 0;
   }
   .l() {

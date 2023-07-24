@@ -1,19 +1,18 @@
 @import './variables.less';
 
 .yk-alert {
-  width: 100%;
-  padding: 8px 16px;
-  border-radius: @radius-m;
-  overflow: hidden;
-
   position: relative;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  padding: 8px 16px;
+  width: 100%;
+  border-radius: @radius-m;
   gap: @space-s;
 
   &-with-title {
-    padding: 24px;
     align-items: flex-start;
+    padding: 24px;
   }
 
   &-with-title &-close-icon {
@@ -44,29 +43,29 @@
   }
 
   &-content {
-    flex: 1;
-    color: @font-color-l;
     font-size: @size-s;
+    color: @font-color-l;
+    flex: 1;
     line-height: 22px;
   }
 
   &-title {
-    font-size: @size-m;
     margin-bottom: 8px;
+    font-size: @size-m;
     font-weight: 500;
   }
 
   &-close-icon {
-    color: @font-color-s;
-    padding: 0;
     overflow: hidden;
+    padding: 0;
     font-size: @size-s;
-    line-height: @size-s;
-    background-color: transparent;
     border: none;
+    color: @font-color-s;
+    background-color: transparent;
     outline: none;
-    cursor: pointer;
     transition: color 0.3s;
+    line-height: @size-s;
+    cursor: pointer;
 
     &:hover {
       color: @font-color-l;
@@ -77,29 +76,29 @@
     }
   }
 
-  .alert-type(@type) {
-    &-@{type} {
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: ~'@{alert-@{type}-color}';
-        opacity: 0.1;
-      }
-    }
-
-    &-@{type} &-icon {
-      color: ~'@{alert-@{type}-color}';
-    }
-  }
-
   .alert-type(info);
   .alert-type(success);
   .alert-type(warning);
   .alert-type(error);
+}
+
+.alert-type(@type) {
+  &-@{type} {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: ~'@{alert-@{type}-color}';
+      opacity: 0.1;
+    }
+  }
+
+  &-@{type} &-icon {
+    color: ~'@{alert-@{type}-color}';
+  }
 }
 
 .zoom-in-top-leave-active {

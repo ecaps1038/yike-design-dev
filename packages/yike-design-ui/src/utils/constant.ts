@@ -19,6 +19,14 @@ export const MESSAGETYPE = [
 ] as const;
 export type MessageType = (typeof MESSAGETYPE)[number];
 
+export const NOTIFICATIONTYPE = [
+  'primary',
+  'success',
+  'warning',
+  'error',
+] as const;
+export type NotificationType = (typeof NOTIFICATIONTYPE)[number];
+
 export const SKIN = ['auto', 'light', 'dark'] as const;
 export type Skin = (typeof SKIN)[number];
 
@@ -34,4 +42,6 @@ export const TEXTTYPE = [
 ] as const;
 export type TextType = (typeof TEXTTYPE)[number];
 
+export const DIRECTION = ['vertical', 'horizontal'] as const;
+export type Direction = (typeof DIRECTION)[number];
 export type AnimationType = 'upward' | 'fade';

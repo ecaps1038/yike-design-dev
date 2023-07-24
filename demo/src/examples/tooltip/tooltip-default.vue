@@ -74,16 +74,17 @@
     </div>
   </yk-space>
 </template>
-<script setup lang="ts">
-import { ref } from 'vue'
-const show = ref(true)
-</script>
 <style scoped>
 .top,
 .bottom,
 .center {
   display: flex;
   justify-content: center;
+}
+.top > div,
+.bottom > div,
+.center > div > div {
+  margin: 8px;
 }
 .center {
   justify-content: space-between;
