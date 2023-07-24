@@ -1,6 +1,7 @@
 {
   "name": "@yike/directives",
-  "main": "./index.ts",
+  "license": "MIT",
+  "main": "index.ts",
   "dependencies": {
     "@yike/utils": "workspace:*"
   }
