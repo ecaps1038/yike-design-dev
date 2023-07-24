@@ -106,6 +106,7 @@ const calcCls = computed(() => {
     [`${ns}--indeterminate2`]: props.indeterminate,
     [`yk-disabled`]: calcDisabled.value,
     [`${ns}--common`]: !props.indeterminate,
+    [`yk-show-mark`]: calcChecked.value || props.indeterminate,
   }
 })
 </script>
