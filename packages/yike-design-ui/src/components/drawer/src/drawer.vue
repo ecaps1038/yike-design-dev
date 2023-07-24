@@ -1,5 +1,5 @@
 <template>
-  <Teleport :to="element" :disabled="!show">
+  <Teleport :to="element">
     <Transition :name="placement">
       <div
         v-if="show"
@@ -58,7 +58,7 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   placement: 'right',
   to: 'body',
 })
-let element: HTMLElement
+let element: HTMLElement = getElement(props.to)
 const emits = defineEmits(['close', 'open'])
 const focuser = ref<HTMLElement>()
 const close = () => {
