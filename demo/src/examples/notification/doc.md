@@ -34,7 +34,7 @@
 | closable      | 控制关闭按钮显隐                             | boolean                                              | true(显示)  |
 | showFooterBtn | 控制底部操作按钮显隐                         | boolean                                              | false(隐藏) |
 | showIcon      | 控制图标显隐                                 | boolean                                              | true(显示)  |
-| duration      | 显示时间, 单位为毫秒。 值为 0 则不会自动关闭 | number                                               | 3000        |
+| duration      | 显示时间, 单位为毫秒。 值为 0 则不会自动关闭 | number                                               | 4500        |
 | space         | 提醒框间距, 单位是 px                        | number                                               | 24          |
 | offsetY       | 相对屏幕顶部的偏移量 偏移的距离, 单位是 px   | number                                               | 24          |
 | offsetX       | 相对屏幕右部的偏移量 偏移的距离, 单位是 px   | number                                               | 24          |
