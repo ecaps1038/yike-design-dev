@@ -33,8 +33,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
-    "@yike/build": "workspace:*",
-    "@yike/utils": "workspace:*"
+    "@yike/build": "workspace:*"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^0.32.4",
