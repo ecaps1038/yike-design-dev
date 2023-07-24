@@ -1,6 +1,6 @@
 import Radio from './src/radio.vue';
 import RadioGroup from './src/radio-group.vue';
-import { withInstall } from '@yike/utils';
+import { withInstall } from '../../utils/index';
 export const YkRadio = withInstall(Radio);
 export const YkRadioGroup = withInstall(RadioGroup);
 

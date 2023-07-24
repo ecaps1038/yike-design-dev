@@ -22,7 +22,7 @@
 
 :::snippet
 形状 shape
-头像默认为圆形，可以设置为圆角方形。
+头像默认为圆形，可以设置为圆角方形，并且支持输入数值渲染圆角大小。
 <AvatarShape/>
 :::
 
@@ -41,7 +41,7 @@ AvatarGroup 头像组
 | `size`   | 头像大小 | ` 's'｜'m'｜'l'｜'xl'｜number` | `'l'`      |
 | `icon`   | 图标名称 | `boolean`                      | `true`     |
 | `imgUrl` | 图片地址 | -                              | -          |
-| `shape`  | 头像形状 | `'circle'｜'square'`           | `'circle'` |
+| `shape`  | 头像形状 | `'circle'｜'square'｜number`   | `'circle'` |
 
 #### AvatarGroup Props
 
@@ -49,4 +49,4 @@ AvatarGroup 头像组
 | ------- | ------------------ | ------------------------------ | ---------- |
 | `size`  | 头像大小           | ` 's'｜'m'｜'l'｜'xl'｜number` | `'l'`      |
 | `max`   | 头像组最多显示个数 | `number`                       | `3`        |
-| `shape` | 头像形状           | `'circle'｜'square'`           | `'circle'` |
+| `shape` | 头像形状           | `'circle'｜'square'｜number`   | `'circle'` |
