@@ -35,6 +35,10 @@
         {
           "name": "Anchor 锚点",
           "src": "anchor"
+        },
+        {
+          "name": "Pagination 分页组件",
+          "src": "pagination"
         }
       ]
     },

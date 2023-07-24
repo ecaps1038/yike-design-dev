@@ -45,6 +45,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'color',
     component: () => import('@/examples/color/doc.md'),
   },
+  {
+    path: 'pagination',
+    component: () => import('@/examples/pagination/doc.md'),
+  },
 ];
 
 export default generalRoutes;
