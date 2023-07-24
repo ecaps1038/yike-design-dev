@@ -1,2 +1,37 @@
 .yk-scrollbar {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  .yk-scrollbar-wrap {
+    overflow: auto;
+    height: 100%;
+  }
+}
+.yk-scrollbar-wrap--hidden-default::-webkit-scrollbar {
+  display: none;
+}
+.yk-scrollbar-bar {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  z-index: 1;
+  border-radius: 4px;
+}
+.yk-scrollbar-bar.is-vertical {
+  top: 2px;
+  width: 6px;
+  > div {
+    width: 100%;
+  }
+}
+.el-scrollbar__thumb {
+  position: relative;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: inherit;
+  background-color: #a3a6ad;
+  opacity: 0.3;
+  transition: 0.2s all;
+  cursor: pointer;
 }

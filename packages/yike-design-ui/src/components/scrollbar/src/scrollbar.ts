@@ -1,3 +1,5 @@
 export type ScrollbarProps = {
-  id?: string;
+  height?: string | string;
+  native?: boolean;
+  always?: boolean;
 };
