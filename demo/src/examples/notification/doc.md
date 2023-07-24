@@ -24,6 +24,12 @@
 <NotificationFooterBtn/>
 :::
 
+:::snippet
+回调函数
+通过传入 `onClose` 设置Notificaiton关闭时的回调函数;通过传入 `handleCancel` 设置点击底部取消按钮时的回调函数;通过传入 `handleSubmit` 设置点击底部确定按钮时的回调函数
+<NotificationCb/>
+:::
+
 ### API
 
 | 参数          | 描述                                         | 类型                                                 | 默认值      |
