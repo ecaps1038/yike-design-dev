@@ -1,4 +1,4 @@
-import { withInstall } from '@yike/utils'
-import BackTop from './src/back-top.vue'
+import { withInstall } from '../../utils/index';
+import BackTop from './src/back-top.vue';
 
-export const YkBackTop = withInstall(BackTop)
+export const YkBackTop = withInstall(BackTop);

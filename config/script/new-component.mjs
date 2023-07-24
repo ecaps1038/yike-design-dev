@@ -7,6 +7,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 })
+// component root path
 const packagePath = 'packages/yike-design-ui/src'
 
 function mkdirSync(dirname) {
@@ -25,13 +26,13 @@ function log(...rest) {
 }
 function warn(msg) {
   console.warn(chalk.bgRed.black(`[ERROR]`), msg)
-  process.exit(233)
 }
 
 function logCreateFile(filename) {
   log(`${filename} 生成完毕`)
 }
 
+// yk-message -> YkMessage
 function dashToCamelCase(str) {
   return str
     .replace(/-([a-z])/g, function (match, letter) {
@@ -67,8 +68,14 @@ const packageIndexFile = path.join(packagePath, 'index.ts')
 function createComponentMainFiles() {
   const componentBaseDir = packagePath + '/components/' + componentLowDashName
 
+  if (fs.existsSync(componentBaseDir)) {
+    warn(`${componentLowDashName}组件已存在，请检查是否存在冲突`)
+    process.exit(233)
+  }
+
   const childFIleList = [`/src`, `/style`]
 
+  // create default folders
   childFIleList.forEach((fileName) => {
     mkdirSync(componentBaseDir + fileName)
   })
@@ -77,13 +84,19 @@ function createComponentMainFiles() {
   const componentMainPropsPath = `${componentBaseDir}/src/${componentLowDashName}.ts`
   const componentMainLessPath = `${componentBaseDir}/style/index.less`
   const componentMainStylePath = `${componentBaseDir}/style/index.ts`
+
   const propsName = `${upperComponentName}Props`
+
   const vueContent = `<template>
   <div class="${tagName}">${upperComponentName}</div>
 </template>
 <script setup lang="ts">
 import { ${upperComponentName}Props } from './${componentLowDashName}'
+import { createCssScope } from '../../../utils/bem'
 import '../style'
+
+const bem = createCssScope('${componentLowDashName}')
+
 defineOptions({
   name: '${upperFullComponentName}',
 })
@@ -92,9 +105,11 @@ const props = withDefaults(defineProps<${propsName}>(), {
 })
 </script>
   `
+
   fs.writeFileSync(componentMainVuePath, vueContent)
   logCreateFile(componentMainVuePath)
 
+  // export default props content
   const propsContent = `export type ${propsName} = {
   id?: string;
 };
@@ -106,6 +121,7 @@ const props = withDefaults(defineProps<${propsName}>(), {
   const lessContent = `.yk-${componentLowDashName} {
 
 }`
+  // create default less content
   fs.writeFileSync(componentMainLessPath, lessContent)
   logCreateFile(componentMainLessPath)
 
@@ -113,18 +129,22 @@ const props = withDefaults(defineProps<${propsName}>(), {
   logCreateFile(componentMainStylePath)
 
   const exportContent = `import ${upperComponentName} from './src/${componentLowDashName}.vue';
-import { withInstall } from '@yike/utils';
+import { withInstall } from '../../utils/index';
 export const ${upperFullComponentName} = withInstall(${upperComponentName});
 export default ${upperFullComponentName};
 export * from './src/${componentLowDashName}';
   `
+  // create index.ts
   fs.writeFileSync(`${componentBaseDir}/index.ts`, exportContent)
   logCreateFile(`${componentBaseDir}/index.ts`)
 }
 
 function addComponentExport() {
+  // src/main.ts
+  // 将YkAlert前替换为添加新增组件后的语句
   const importReplacement = "import YkAlert from './components/alert';"
   const newImport = `import ${upperFullComponentName} from './components/${componentLowDashName}';\n${importReplacement}`
+  // replace import and export component
   const componentsReplacement = `YkAlert,`
   // 读取文件内容
   fs.readFile(packageIndexFile, 'utf8', (err, data) => {
@@ -148,6 +168,7 @@ function addComponentExport() {
   })
 }
 
+// add default demo file
 function addDemoFile() {
   const exampleBasePath = 'demo/src/examples/'
   const examplePath = `${exampleBasePath}${componentLowDashName}/`
@@ -175,13 +196,15 @@ function selectAddRouter() {
   const barFile = 'demo/src/router/config/bar.json'
   fs.readFile(barFile, 'utf8', (err, data) => {
     if (err) {
-      warn('路由配置文件读取失败', err)
+      warn('路由配置文件读取失败')
+      warn(err)
       process.exit(233)
     }
     const barData = JSON.parse(data).bar
     const titleList = barData.map(
       (item, index) => `${index + 1}: ${item.title}`,
     )
+    // select and add classify routers
     console.log(
       chalk.yellow(`请选择${componentDescName}所属的组件分类:\n`),
       titleList,
@@ -197,7 +220,7 @@ function selectAddRouter() {
         'utf8',
         (err) => {
           if (err) {
-            console.warn(chalk.bgRed.black(`[ERROR]`), err)
+            warn(err)
             return
           }
           log(
@@ -214,6 +237,7 @@ function selectAddRouter() {
 }
 
 function addRouter() {
+  // add doc.md into general.ts
   const generalRouterPath = 'demo/src/router/modules/general.ts'
 
   const addRouterContent = `  {
@@ -223,13 +247,13 @@ function addRouter() {
 ]`
   fs.readFile(generalRouterPath, 'utf8', (err, data) => {
     if (err) {
-      console.warn(chalk.bgRed.black(`[ERROR]`), err)
+      warn(err)
       return
     }
     const replacedData = data.replace(']', addRouterContent)
     fs.writeFile(generalRouterPath, replacedData, 'utf8', (err) => {
       if (err) {
-        console.warn(chalk.bgRed.black(`[ERROR]`), err)
+        warn(err)
         return
       }
       log(`${generalRouterPath} demo路由添加成功`)
