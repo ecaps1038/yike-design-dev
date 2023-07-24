@@ -9,7 +9,8 @@
       @click.stop
     />
     <div v-if="!isPicture" :class="bem('files')">
-      <div :class="bem('file')">
+      <!-- file uploader -->
+      <div v-if="!draggable" :class="bem('file')">
         <yk-button
           :class="bem('file-button')"
           type="secondary"
@@ -21,6 +22,17 @@
         </yk-button>
         <yk-text type="third">{{ desc }}</yk-text>
       </div>
+      <!-- dragger uploader -->
+      <div v-if="draggable" :class="bem('draggle')">
+        <upload-draggle
+          :desc="desc"
+          :disabled="uploadDisabled"
+          :accept="accept"
+          @handle-upload="handleUpload"
+          @handle-draggle-files="handleDraggleFiles"
+        ></upload-draggle>
+      </div>
+      <!-- file list -->
       <div v-if="currentList.length" :class="bem('file-list')">
         <upload-file-item
           v-for="item in currentList"
@@ -33,23 +45,28 @@
         ></upload-file-item>
       </div>
     </div>
-    <div v-else :class="bem('pictures')">
-      <span v-for="item in currentList">
+    <!-- picture list -->
+    <div v-if="isPicture && !draggable" :class="bem('pictures')">
+      <span v-for="item in currentList" :class="bem('picture')">
         <upload-picture-item
           :key="item.uid"
           :file-content="item"
           :is-picture="isPicture"
           :progress="item.progress"
+          :shape="shape"
+          :avatar="avatar"
           @handle-remove="handleRemove"
           @handle-re-upload="handleReUpload"
           @handle-abort="handleAbort"
+          @handle-edit="handleEdit"
         ></upload-picture-item>
       </span>
       <span
+        v-if="!(avatar && currentLength)"
         :disabled="uploadDisabled"
         :class="[
-          bem('picture-button'),
-          bem([shape], { disabled: uploadDisabled }),
+          bem('picture-button', { disabled: uploadDisabled }),
+          bem([shape]),
         ]"
         @click="handleUpload"
       ></span>
@@ -69,6 +86,7 @@ import { UploadRequest } from './ajax'
 import { generateListUid, generateUid, findFileByUid } from './utils'
 import { createCssScope } from '../../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
+import uploadDraggle from './upload-draggle.vue'
 import UploadPictureItem from './upload-picture-item.vue'
 import '../style'
 defineOptions({
@@ -78,7 +96,7 @@ defineOptions({
 const bem = createCssScope('upload')
 const props = withDefaults(defineProps<UploadProps>(), {
   accept: '*',
-  maxSize: 0,
+  maxSize: 3000,
   multiple: true,
   shape: 'default',
   limit: 0,
@@ -86,6 +104,7 @@ const props = withDefaults(defineProps<UploadProps>(), {
   fileList: () => [],
   desc: '',
   avatar: false,
+  draggable: false,
 })
 
 const emits = defineEmits([
@@ -163,14 +182,19 @@ const handleUpload = async () => {
 }
 
 const handleBeforeUpload = (uploadFile: File) => {
+  if (props.maxSize && uploadFile.size > props.maxSize) {
+    proxy.$message.error('文件超出限制大小，请压缩后上传')
+    return false
+  }
   emits('handleBeforeUpload', uploadFile)
+  return true
 }
 
 const handleInputChange = (event) => {
   const uploadFile = event.target.files[0]
-  handleBeforeUpload(uploadFile)
   event.target.value = ''
-  if (uploadFile) {
+  const validate = handleBeforeUpload(uploadFile)
+  if (uploadFile && validate) {
     onUploadRequest(uploadFile)
   }
 }
@@ -196,5 +220,18 @@ const handleReUpload = (uid: number) => {
   const raw = currentList.value[idx]!.raw as File
   currentList.value.splice(idx, 1)
   onUploadRequest(raw)
+}
+
+const handleEdit = (uid: number) => {
+  const idx = findFileByUid(uid, currentList.value)
+  currentList.value.splice(idx, 1)
+  handleUpload()
+}
+
+// dragger methods
+const handleDraggleFiles = (files: File[]) => {
+  files.forEach((file) => {
+    onUploadRequest(file)
+  })
 }
 </script>

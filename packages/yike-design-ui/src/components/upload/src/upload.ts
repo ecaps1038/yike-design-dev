@@ -45,11 +45,14 @@ export type UploadProps = {
   fileList: Array<UserFile>;
   desc?: string;
   avatar?: boolean;
+  draggable?: boolean;
 };
 
 export interface FileItemProps {
   progress?: number;
   fileContent: UploadFile;
+  shape?: Shape;
+  avatar?: boolean;
 }
 
 export type RequestOptions = {
@@ -64,4 +67,10 @@ export type RequestOptions = {
 
 export type RequestInstance = {
   abort: () => void;
+};
+
+export type DraggleProps = {
+  desc?: string;
+  disabled?: boolean;
+  accept?: string;
 };

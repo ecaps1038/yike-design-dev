@@ -80,3 +80,27 @@ export function getFileTypeIconName(fileName: string): string | undefined {
       return 'yike-wenjian';
   }
 }
+
+export function filesFiltered(files: File[], accept: string) {
+  files.filter((file) => {
+    const { type, name } = file;
+    const extension = name.includes('.') ? `.${name.split('.').pop()}` : '';
+    const baseType = type.replace(/\/.*$/, '');
+    return accept
+      .split(',')
+      .map((type) => type.trim())
+      .filter((type) => type)
+      .some((acceptedType) => {
+        if (acceptedType.startsWith('.')) {
+          return extension === acceptedType;
+        }
+        if (/\/\*$/.test(acceptedType)) {
+          return baseType === acceptedType.replace(/\/\*$/, '');
+        }
+        if (/^[^/]+\/[^/]+$/.test(acceptedType)) {
+          return type === acceptedType;
+        }
+        return false;
+      });
+  });
+}

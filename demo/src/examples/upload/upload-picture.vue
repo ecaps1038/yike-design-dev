@@ -5,7 +5,6 @@
       :file-list="fileUrl"
       accept="image/*"
       desc="上传内容要求"
-      :limit="5"
     ></yk-upload>
   </div>
 </template>
