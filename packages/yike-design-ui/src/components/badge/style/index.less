@@ -1,14 +1,48 @@
+.modal {
+  &-enter {
+    &-from {
+      scale: 0;
+      opacity: 0;
+    }
+
+    &-active {
+      transition: all 0.2s ease-in;
+    }
+
+    &-to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  &-leave {
+    &-from {
+      scale: 1;
+      opacity: 1;
+    }
+
+    &-active {
+      transition: all 0.2s ease-out;
+    }
+
+    &-to {
+      scale: 0;
+      opacity: 0;
+    }
+  }
+}
+
 .yk-badge {
   // 定位相关
   position: relative;
   // 置排布相关
   display: inline-block;
+  vertical-align: top;
 
   .yk-badge__dot {
     // 定位
     position: absolute;
-    top: 0;
-    right: 0;
+    z-index: 1;
 
     //由外到内 设置margin -> padding -> width -> height
     width: 8px;
@@ -17,88 +51,70 @@
     // 字体边框相关
     border-radius: 8px;
 
-
     //颜色、透明度、阴影等
     background: @ecolor;
-    box-shadow: 0 0 0 1px #ffffff;;
-    transform: translate(-50%, 50%);
-    z-index: 1;
+    box-shadow: 0 0 0 1px #ffffff;
   }
 
-  .yk-badge__dot.yk-badge__dot--primary{
+  .yk-badge__dot.yk-badge__dot--primary {
     background: @pcolor;
   }
 
-  .yk-badge__dot.yk-badge__dot--success{
+  .yk-badge__dot.yk-badge__dot--success {
     background: @scolor;
   }
 
-  .yk-badge__dot.yk-badge__dot--warning{
+  .yk-badge__dot.yk-badge__dot--warning {
     background: @wcolor;
   }
 
-  .yk-badge__dot.yk-badge__dot--danger{
+  .yk-badge__dot.yk-badge__dot--danger {
     background: @ecolor;
   }
 
   .yk-badge__dot.yk-badge__dot--outer {
-    transform: translate(50%, -50%);
   }
 
-
   .yk-badge__count {
-
+    z-index: 1;
     // 由外到内 设置margin -> padding -> width -> height
     padding: 2px 6px;
 
     // 字体边框相关
     font-size: @size-ss;
-    font-family: PingFangSC-Regular;  
+    font-family: PingFangSC-Regular;
     font-weight: 400;
     border-radius: 10px;
     text-align: center;
-    line-height: 20px;
-    letter-spacing: -0.41px;
 
     // 颜色、透明度、阴影等
     color: white;
     background: @ecolor;
-    box-shadow: 0 0 0 1px #ffffff;;
-    z-index: 1;
+    box-shadow: 0 0 0 1px #ffffff;
+    line-height: 20px;
+    letter-spacing: -0.41px;
   }
 
-  .yk-badge__count.yk-badge__count--primary{
+  .yk-badge__count.yk-badge__count--primary {
     background: @pcolor;
   }
 
-  .yk-badge__count.yk-badge__count--success{
+  .yk-badge__count.yk-badge__count--success {
     background: @scolor;
   }
 
-  .yk-badge__count.yk-badge__count--warning{
+  .yk-badge__count.yk-badge__count--warning {
     background: @wcolor;
   }
 
-  .yk-badge__count.yk-badge__count--danger{
+  .yk-badge__count.yk-badge__count--danger {
     background: @ecolor;
   }
 
-  
-
   .yk-badge__count--outer {
-    transform: translate(50%, -50%);
   }
-
-  .yk-badge__count.defaultOffset {
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: translate(50%, -50%);
-  }
-
 
   .yk-badge__count.isRound {
-
     // 由外到内 设置margin -> padding -> width -> height
     padding: 0;
     width: 20px;
@@ -107,5 +123,4 @@
     // 字体边框相关
     border-radius: 10px;
   }
-  
 }

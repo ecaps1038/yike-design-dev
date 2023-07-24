@@ -2,18 +2,22 @@
   <div ref="badgeRef" class="yk-badge">
     <!-- 徽标 -->
     <div ref="supRef" class="yk-badge__sup">
-      <div
-        v-if="isShowDot"
-        :class="['yk-badge__dot', dotClass]"
-        :style="dotStyle"
-      ></div>
-      <div
-        v-if="isShowCount"
-        :class="['yk-badge__count', countClass]"
-        :style="countStyle"
-      >
-        {{ showCount }}
-      </div>
+      <transition name="modal">
+        <div
+          v-if="isShowDot"
+          :class="['yk-badge__dot', dotClass]"
+          :style="dotStyle"
+        ></div>
+      </transition>
+      <transition name="modal">
+        <div
+          v-if="isShowCount"
+          :class="['yk-badge__count', countClass]"
+          :style="countStyle"
+        >
+          {{ showCount }}
+        </div>
+      </transition>
     </div>
     <slot></slot>
   </div>
@@ -21,7 +25,7 @@
 <script setup lang="ts">
 import { BadgeProps } from './badge'
 import '../style'
-import { ref, computed, CSSProperties, onMounted } from 'vue'
+import { ref, computed, CSSProperties, onMounted, useSlots } from 'vue'
 defineOptions({
   name: 'YkBadge',
 })
@@ -49,6 +53,20 @@ const dotStyle = computed<CSSProperties>(() => {
   if (props.color) {
     styles.background = props.color
   }
+
+  // 默认
+  styles.right = 0
+  styles.top = 0
+  // out-dot
+  if (props.outDot) {
+    styles.right = '-4px'
+    styles.top = '-4px'
+  }
+
+  if (!!useSlots().default === false) {
+    return { background: props.color }
+  }
+
   return styles
 })
 
@@ -107,9 +125,12 @@ const supRef = ref()
 
 const countStyle = computed<CSSProperties>(() => {
   const styles: CSSProperties = {}
-  if (props.color) {
-    styles.background = props.color
-  }
+
+  // 默认
+  styles.right = '0'
+  styles.top = '0'
+  styles.translate = `50% -50%`
+  styles.position = 'absolute'
 
   // count的方位
   if (props.offset && props.offset === 'right') {
@@ -122,6 +143,10 @@ const countStyle = computed<CSSProperties>(() => {
     styles.left = '0'
     styles.top = '0'
     styles.translate = `50% ${offsetValue.value}px`
+  }
+
+  if (!!useSlots().default === false) {
+    return { background: props.color }
   }
 
   return styles
@@ -154,7 +179,6 @@ onMounted(() => {
 const countClass = computed(() => {
   return {
     isRound: isRound(),
-    defaultOffset: props?.offset == undefined ? true : false,
     [`yk-badge__count--${props.status}`]: props.status !== undefined,
   }
 })
