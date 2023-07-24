@@ -33,7 +33,7 @@
 3. 每当你准备开始一个新的功能开发或提交 PR 前，请先从主仓库拉取最新的代码并合并到仓库的对应分支
 
 ```shell
-git checkout -b monorepo-dev
+git checkout  monorepo-dev
 git fetch upstream
 git merge upstream/monorepo-dev
 ```
