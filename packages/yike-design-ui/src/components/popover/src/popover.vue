@@ -1,6 +1,6 @@
 <template>
   <div class="yk-popover">
-    <Tooltip v-bind="$props" class="yk-popover-theme">
+    <Tooltip v-bind="{ ...$props, ...$attrs }" class="yk-popover-theme">
       <template #content>
         <div class="yk-popover-popover">
           <slot name="popover">
@@ -20,12 +20,17 @@
 </template>
 <script setup lang="ts">
 import Tooltip, { useDefaultSlots } from '../../tooltip'
+import type { TooltipEmit } from '../../tooltip'
 import { PopoverProps } from './popover'
 import '../style'
+
 defineOptions({
   name: 'YkPopover',
 })
 const DefaultSlot = useDefaultSlots()
+
+defineEmits<TooltipEmit>()
+
 withDefaults(defineProps<PopoverProps>(), {
   title: '标题',
   content: 'popover 组件',
