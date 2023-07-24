@@ -1,37 +1,86 @@
 .yk-scrollbar {
   position: relative;
   overflow: hidden;
+  padding: @space-s @space-m;
   height: 100%;
-  .yk-scrollbar-wrap {
+  .box {
     overflow: auto;
+    width: 100%;
+    // height: calc(100% + 18px);
     height: 100%;
   }
-}
-.yk-scrollbar-wrap--hidden-default::-webkit-scrollbar {
-  display: none;
-}
-.yk-scrollbar-bar {
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  z-index: 1;
-  border-radius: 4px;
-}
-.yk-scrollbar-bar.is-vertical {
-  top: 2px;
-  width: 6px;
-  > div {
-    width: 100%;
+
+  .box::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 0px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 0px;
+  }
+
+  .box::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .box::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0);
+  }
+
+  &:hover {
+    .scrollx {
+      opacity: 1;
+    }
+    .scrolly {
+      opacity: 1;
+    }
   }
 }
-.el-scrollbar__thumb {
-  position: relative;
-  display: block;
-  width: 0;
-  height: 0;
-  border-radius: inherit;
-  background-color: #a3a6ad;
-  opacity: 0.3;
-  transition: 0.2s all;
-  cursor: pointer;
+
+.scrollx {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity @animats;
+  // background-color: rgba(#000, 0.1);
+  .scroll-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100%;
+    border-radius: 12px;
+    background-color: @line-color-s;
+    transition: background-color @animats;
+    &:hover {
+      background-color: @line-color-m;
+    }
+  }
+}
+.scrolly {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  // background-color: rgba(#000, 0.1);
+  .scroll-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+    background-color: @line-color-s;
+    transition: background-color @animats;
+
+    &:hover {
+      background-color: @line-color-m;
+    }
+  }
 }
