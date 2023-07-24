@@ -4,6 +4,5 @@ export type ThemeProps = {
   skin?: Skin;
   control?: boolean;
   disableTransition?: boolean;
-  storageKey?;
-  string;
+  storageKey?: string;
 };

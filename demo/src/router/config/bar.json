@@ -76,6 +76,10 @@
           "src": "tooltip"
         },
         {
+          "name": "Notification 通知提醒框",
+          "src": "notification"
+        },
+        {
           "name": "popover 气泡卡片",
           "src": "popover"
         },
