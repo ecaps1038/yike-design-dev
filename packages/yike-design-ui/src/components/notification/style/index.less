@@ -1,0 +1,108 @@
+.yk-notification-container {
+  position: fixed;
+  top: @space-l;
+  right: @space-l;
+  z-index: 2002;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.yk-notification {
+  display: flex;
+  justify-content: center;
+  color: @font-color-l;
+  .notification-container {
+    display: flex;
+    padding: 27px 25px;
+    width: 420px;
+    border-radius: @radius-m;
+    color: @font-color-l;
+    background: @bg-color-l;
+    box-shadow: @shadow-m;
+    flex-direction: column;
+  }
+  .notification-body {
+    display: flex;
+    flex-direction: row;
+    .iconDiv {
+      margin-right: 9px;
+      width: 18px;
+    }
+    .notification-icon {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+    }
+    .title-text {
+      padding-right: 16px;
+      font-size: @size-m;
+      font-family: PingFangSC-Medium;
+      font-weight: 500;
+      vertical-align: middle;
+      line-height: 24px;
+    }
+    .content {
+      margin-top: 8px;
+      font-size: @size-s;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      text-align: justify;
+      line-height: 22px;
+    }
+  }
+  .notification-footer {
+    margin-top: 20px;
+    font-size: @size-s;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    text-align: justify;
+    line-height: 22px;
+    align-self: flex-end;
+  }
+  i {
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  &-close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    padding: 0;
+    font-size: 15px;
+    border: none;
+    color: @font-color-s;
+    background-color: transparent;
+    outline: none;
+    transition: color 0.3s;
+    line-height: 15px;
+    cursor: pointer;
+
+    &:hover {
+      color: @font-color-l;
+    }
+
+    & svg {
+      vertical-align: -3px !important;
+    }
+  }
+}
+
+//icon颜色
+.icon-success {
+  color: @scolor;
+}
+
+.icon-warning {
+  color: @wcolor;
+}
+
+.icon-error {
+  color: @ecolor;
+}
+
+.icon-primary {
+  color: @pcolor;
+}

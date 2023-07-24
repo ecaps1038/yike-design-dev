@@ -26,10 +26,13 @@ declare module 'vue' {
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
     YkRadio: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadio']
     YkRadioGroup: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadioGroup']
+    YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
+    YkPopover: typeof import('./../packages/yike-design-ui/src/index.ts')['YkPopover']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTimePicker: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTimePicker']
     YkTitle: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTitle']
+    YkTooltip: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTooltip']
   }
 }
