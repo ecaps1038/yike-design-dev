@@ -1,11 +1,11 @@
 <template>
-  <div :class="['yk-empty', { dark: theme === 'dark' }]">
+  <div class="yk-empty">
     <div class="yk-empty__image" :style="imageStyle">
       <slot name="image">
         <img v-if="image" :src="image" ondragstart="return false" />
         <yk-icon
           v-else
-          name="yike-kongzhuangtai0"
+          name="yike-kongzhuangtai1"
           :style="defaultStyle"
         ></yk-icon>
       </slot>
