@@ -11,7 +11,9 @@ const isString = (val: unknown): val is string => {
 };
 
 type BEMElement = string;
-type BEMModifier = string[] | Record<string, boolean | string | undefined>;
+type BEMModifier =
+  | (string | undefined)[]
+  | Record<string, boolean | string | undefined>;
 
 const createModifier = (prefixClass: string, modifierObject?: BEMModifier) => {
   let modifiers: string[] = [];
