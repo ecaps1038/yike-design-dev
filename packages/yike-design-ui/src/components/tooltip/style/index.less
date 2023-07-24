@@ -1,6 +1,10 @@
 .yk-tooltip {
   --tooltip-theme-bg-color: @dark;
   --tooltip-theme-font-color: @white;
+  --tooltip-theme-min-width: 2em;
+  --tooltip-theme-min-height: 2em;
+  --tooltip-theme-max-width: 250px;
+  --tooltip-theme-max-hegiht: fit-contnet;
   @bgColor: var(--tooltip-theme-bg-color); // 背景颜色
   @fontColor: var(--tooltip-theme-font-color);
   @arrowSize: 1em; // 箭头大小
@@ -13,9 +17,10 @@
     z-index: 999;
     padding: @space-ss @space-s;
     width: max-content;
-    min-width: 2em;
+    min-width: var(--tooltip-theme-min-width);
     max-width: 250px;
-    min-height: 2em;
+    min-height: var(--tooltip-theme-min-height);
+    max-height: var(--tooltip-theme-max-hegiht);
     border-radius: @brSize;
     text-align: start;
     color: @fontColor;
