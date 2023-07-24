@@ -1,12 +1,15 @@
 import type { Component, App } from 'vue';
 
 import { YkRadio, YkRadioGroup } from './components/radio';
+import YkAnchor from './components/anchor';
+import YkPopover from './components/popover';
+import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
 
 import YkBadge from './components/badge';
-
 import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
+import YkRate from './components/rate';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -28,10 +31,14 @@ const components: {
 } = {
   YkRadioGroup,
   YkRadio,
+  YkSwitch,
+  YkAnchor,
+  YkPopover,
   YkDrawer,
   YkBadge,
   YkAnchor,
   YkPopover,
+  YkRate,
   YkAlert,
   YkButton,
   YkTheme,
@@ -55,7 +62,11 @@ export {
   YkBadge,
   YkAnchor,
   YkPopover,
+  YkSwitch,
+  YkAnchor,
+  YkPopover,
   YkDrawer,
+  YkRate,
   YkAlert,
   YkButton,
   YkTheme,
