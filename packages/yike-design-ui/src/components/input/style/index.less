@@ -18,55 +18,59 @@
   &--xl {
     border-radius: @radius-m;
   }
+}
 
-  &-spinner {
-    display: flex;
-    align-items: center;
+.yk-input-spinner {
+  display: flex;
+  align-items: center;
+}
+
+.yk-input-deco {
+  word-break: keep-all;
+  margin: 3px;
+
+  &:empty {
+    margin: unset;
   }
+}
 
-  &-deco {
-    word-break: keep-all;
-    margin: 5px;
-  }
+.yk-input-inner {
+  display: flex;
+  flex-grow: 1;
+  width: 270px;
 
-  &-inner {
-    display: flex;
-    // width: 100%;
-    width: 270px;
-
-    .yk-input-widget {
-      border: none;
-      color: @gray;
-      background: inherit;
-      outline: none;
-      flex-grow: 1;
-    }
-  }
-
-  &-clear {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 27px;
+  .yk-input-widget {
     border: none;
-    background: none;
-    opacity: 0;
-    cursor: pointer;
-
-    &:focus-within {
-      opacity: 1;
-    }
+    color: @gray;
+    background: inherit;
+    outline: none;
+    flex-grow: 1;
   }
+}
 
-  &-show {
+.yk-input-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 27px;
+  border: none;
+  background: none;
+  opacity: 0;
+  cursor: pointer;
+
+  &:focus-within {
     opacity: 1;
   }
 }
 
-svg {
+.yk-input-button-show {
+  opacity: 1;
+}
+
+.yk-input-button svg {
   padding: 3px;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   fill: @gray;
 

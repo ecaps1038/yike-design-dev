@@ -7,11 +7,6 @@
   >
     <div class="yk-input-deco"><slot name="prefix"></slot></div>
     <div class="yk-input-inner">
-      <div v-if="loading" class="yk-input-spinner">
-        <svg v-if="loading" id="spinner" viewBox="25 25 50 50">
-          <circle r="20" cy="50" cx="50"></circle>
-        </svg>
-      </div>
       <input
         :id="id"
         ref="inputRef"
@@ -19,7 +14,7 @@
         :disabled="disabled"
         :class="YkInputWidgetClass"
         class="yk-input-widget"
-        :type="type"
+        :type="inputType"
         tabindex="0"
         :value="realValue"
         :aria-disabled="disabled"
@@ -28,14 +23,29 @@
         @blur="blur"
       />
       <button
+        v-if="type === 'password' && !disabled"
+        aria-label="查看/隐藏密码"
+        class="yk-input-button"
+        :class="YkInputButtonClass"
+        @mousedown="switchType"
+        @mouseup="switchType"
+      >
+        <yk-icon name="yk-biyan" />
+      </button>
+      <button
         v-if="clearable && !disabled"
         aria-label="清空内容"
-        class="yk-input-clear"
-        :class="YkInputClearButtonClass"
+        class="yk-input-button"
+        :class="YkInputButtonClass"
         @click="clear"
       >
         <yk-icon name="yk-cha" />
       </button>
+    </div>
+    <div v-if="loading" class="yk-input-spinner">
+      <svg id="spinner" viewBox="25 25 50 50">
+        <circle r="20" cy="50" cx="50"></circle>
+      </svg>
     </div>
     <div class="yk-input-deco"><slot name="suffix"></slot></div>
   </div>
@@ -60,20 +70,28 @@ const props = withDefaults(defineProps<InputProps>(), {
 })
 const receivedProps = toRefs(props)
 let realValue = receivedProps.value
-const emits = defineEmits(['focus', 'blur', 'update:value'])
+let lastValue = realValue.value
+const emits = defineEmits(['focus', 'input', 'blur', 'update:value'])
 const inputRef = ref<HTMLInputElement>()
 const isFocus = ref(false)
 const isHovering = ref(false)
+const shouldShowButton = ref(lastValue.length > 0)
+const inputType = ref(props.type)
 const focus = () => {
+  // 禁用状态不可被聚焦
   if (props.disabled) return
   isFocus.value = true
+  emits('focus', '')
 }
 const update = () => {
-  ;(realValue as any) = inputRef.value?.value
+  lastValue = inputRef.value?.value ?? ''
+  ;(realValue as any) = lastValue
+  shouldShowButton.value = lastValue.length > 0 ? true : false
   emits('update:value', realValue)
 }
 const blur = () => {
   isFocus.value = false
+  emits('blur', '')
 }
 const mouseenter = () => {
   isHovering.value = true
@@ -85,6 +103,10 @@ const clear = () => {
   inputRef!.value!.value = ''
   inputRef!.value!.focus()
   update()
+  emits('input', '')
+}
+const switchType = () => {
+  inputType.value = inputType.value === 'text' ? 'password' : 'text'
 }
 const YkInputClass = computed(() => {
   return {
@@ -100,9 +122,12 @@ const YkInputWidgetClass = computed(() => {
     [`yk-input-size--${props.size}`]: true,
   }
 })
-const YkInputClearButtonClass = computed(() => {
+const YkInputButtonClass = computed(() => {
   return {
-    'yk-input-show': isFocus.value || isHovering.value,
+    'yk-input-button-show':
+      shouldShowButton.value &&
+      props.clearable &&
+      (isFocus.value || isHovering.value),
   }
 })
 </script>
