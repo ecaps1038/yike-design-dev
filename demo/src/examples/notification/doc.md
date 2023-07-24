@@ -40,7 +40,7 @@
 | offsetX       | 相对屏幕右部的偏移量 偏移的距离, 单位是 px   | number                                               | 24          |
 | onClose       | 关闭时的回调函数                             | Function                                             | ()=>{}      |
 | handleCancel  | 底部操作按钮展示时, 点击取消按钮的回调函数   | Function                                             | ()=>{}      |
-| handleOK      | 底部操作按钮展示时, 点击确定按钮的回调函数   | Function                                             | ()=>{}      |
+| handleSubmit  | 底部操作按钮展示时, 点击确定按钮的回调函数   | Function                                             | ()=>{}      |
 
 ### Methods
 
