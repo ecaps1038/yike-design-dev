@@ -3,7 +3,7 @@
     :upload-url="uploadUrl"
     :file-list="fileUrl"
     :limit="3"
-    desc="限制上传三个文件"
+    desc="限制上传三个文件，此demo演示上传失败"
   ></yk-upload>
 </template>
 <script lang="ts" setup>

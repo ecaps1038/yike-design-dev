@@ -96,7 +96,7 @@ defineOptions({
 const bem = createCssScope('upload')
 const props = withDefaults(defineProps<UploadProps>(), {
   accept: '*',
-  maxSize: 3000,
+  maxSize: 3 * 1024 * 1024,
   multiple: true,
   shape: 'default',
   limit: 0,

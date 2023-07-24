@@ -50,17 +50,17 @@
 
 ### API
 
-| 参数      | 描述                 | 类型                             | 默认值    |
-| --------- | -------------------- | -------------------------------- | --------- |
-| accept    | 接受文件类型         | accept                           | \*        |
-| maxSize   | 文件大小限制         | number                           | 3000(3M)  |
-| multiple  | 是否允许多文件上传   | boolean                          | true      |
-| shape     | 图片列表形状         | 'default' \| 'circle'            | 'default' |
-| uploadUrl | 文件上传路径         | string                           | ''        |
-| fileList  | 当前文件列表         | `{name:'file-name',url:'url'}[]` | []        |
-| desc      | 文件上传提示         | string                           | ''        |
-| avatar    | 是否上传头像         | boolean                          | false     |
-| draggable | 是否采用拖拽上传交互 | boolean                          | false     |
+| 参数      | 描述                 | 类型                             | 默认值          |
+| --------- | -------------------- | -------------------------------- | --------------- |
+| accept    | 接受文件类型         | accept                           | \*              |
+| maxSize   | 文件大小限制         | number                           | 3*1024*1024(3M) |
+| multiple  | 是否允许多文件上传   | boolean                          | true            |
+| shape     | 图片列表形状         | 'default' \| 'circle'            | 'default'       |
+| uploadUrl | 文件上传路径         | string                           | ''              |
+| fileList  | 当前文件列表         | `{name:'file-name',url:'url'}[]` | []              |
+| desc      | 文件上传提示         | string                           | ''              |
+| avatar    | 是否上传头像         | boolean                          | false           |
+| draggable | 是否采用拖拽上传交互 | boolean                          | false           |
 
 ### 钩子
 
