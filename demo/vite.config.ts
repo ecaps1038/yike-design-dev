@@ -2,7 +2,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import createVuePlugin from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import vitePluginMarkdown from './plugins/vite-plugin-md';
+import vitePluginMarkdown from './plugins/vite-plugin-md.mjs';
 import Components from 'unplugin-vue-components/vite';
 import path from 'path';
 const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }); // 配置可编译 .vue 与 .md 文件

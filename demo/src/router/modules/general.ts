@@ -10,10 +10,6 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/icon/doc.md'),
   },
   {
-    path: 'message',
-    component: () => import('@/examples/message/doc.md'),
-  },
-  {
     path: 'space',
     component: () => import('@/examples/space/doc.md'),
   },
@@ -54,16 +50,8 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/empty/doc.md'),
   },
   {
-    path: 'notification',
-    component: () => import('@/examples/notification/doc.md'),
-  },
-  {
     path: 'color',
     component: () => import('@/examples/color/doc.md'),
-  },
-  {
-    path: 'empty',
-    component: () => import('@/examples/empty/doc.md'),
   },
 ];
 
