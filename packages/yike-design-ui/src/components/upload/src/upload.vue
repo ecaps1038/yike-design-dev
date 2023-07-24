@@ -1,5 +1,5 @@
 <template>
-  <div class="yk-upload">
+  <div :class="bem()">
     <input
       ref="inputRef"
       style="display: none"
@@ -8,20 +8,20 @@
       @change="handleInputChange"
       @click.stop
     />
-    <div v-if="!isPicture" class="yk-uploader-files">
-      <div class="yk-uploader-file">
+    <div v-if="!isPicture" :class="bem('files')">
+      <div :class="bem('file')">
         <yk-button
-          class="yk-uploader-button"
+          :class="bem('file-button')"
           type="secondary"
           :disabled="uploadDisabled"
           @click="handleUpload"
         >
-          <yk-icon name="yk-shangchuan2" class="file-upload-icon" />
+          <yk-icon name="yk-shangchuan2" :class="bem('file-icon')" />
           <div>上传文件</div>
         </yk-button>
         <yk-text type="third">{{ desc }}</yk-text>
       </div>
-      <div v-if="currentList.length" class="yk-uploader-list">
+      <div v-if="currentList.length" :class="bem('file-list')">
         <upload-file-item
           v-for="item in currentList"
           :key="item.uid"
@@ -33,7 +33,7 @@
         ></upload-file-item>
       </div>
     </div>
-    <div v-else class="yk-uploader-pictures">
+    <div v-else :class="bem('pictures')">
       <span v-for="item in currentList">
         <upload-picture-item
           :key="item.uid"
@@ -45,7 +45,14 @@
           @handle-abort="handleAbort"
         ></upload-picture-item>
       </span>
-      <span :class="computeUploadClass" @click="handleUpload"></span>
+      <span
+        :disabled="uploadDisabled"
+        :class="[
+          bem('picture-button'),
+          bem([shape], { disabled: uploadDisabled }),
+        ]"
+        @click="handleUpload"
+      ></span>
     </div>
   </div>
 </template>
@@ -60,22 +67,25 @@ import {
 } from './upload'
 import { UploadRequest } from './ajax'
 import { generateListUid, generateUid, findFileByUid } from './utils'
+import { createCssScope } from '../../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
 import UploadPictureItem from './upload-picture-item.vue'
 import '../style'
 defineOptions({
   name: 'YkUpload',
 })
+
+const bem = createCssScope('upload')
 const props = withDefaults(defineProps<UploadProps>(), {
   accept: '*',
   maxSize: 0,
   multiple: true,
-  preview: true,
   shape: 'default',
   limit: 0,
   uploadUrl: '',
   fileList: () => [],
   desc: '',
+  avatar: false,
 })
 
 const emits = defineEmits([
@@ -97,15 +107,17 @@ const uploadDisabled = computed(() => {
     (props.limit && currentLength.value >= props.limit)
   )
 })
-const computeUploadClass = computed(() => {
-  return ['yk-image-uploader', `yk-image-uploader__${[props.shape]}`]
-})
 
-isPicture.value = ImageTypes.some((type) => props.accept.includes(type))
+isPicture.value =
+  ImageTypes.some((type) => props.accept.includes(type)) || props.avatar
 const { proxy }: any = getCurrentInstance()
 
 const onUploadRequest = async (uploadFile: File) => {
-  const fileName = uploadFile.name
+  const fileName = uploadFile?.name
+  if (!fileName) {
+    proxy.$message.error('文件上传失败，请重新选择文件')
+    return
+  }
   const uid = generateUid()
   currentList.value.push({
     name: fileName,
@@ -176,7 +188,7 @@ const handleAbort = (uid: number) => {
 const handleRemove = (uid: number) => {
   currentList.value.splice(findFileByUid(uid, currentList.value), 1)
   emits('handleDelete', currentList.value)
-  proxy.$message.error(`文件已删除`)
+  proxy.$message.success(`文件已删除`)
 }
 
 const handleReUpload = (uid: number) => {

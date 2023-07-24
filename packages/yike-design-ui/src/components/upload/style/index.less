@@ -1,38 +1,81 @@
 .yk-upload {
   width: 100%;
-}
-.yk-uploader-files {
-  width: 100%;
-  .file-upload-icon {
+  &__files {
+    width: 100%;
+  }
+  &__file-icon {
     margin-right: @space-s;
     line-height: 14px;
     width: 14px;
     height: 14px;
   }
-  .yk-uploader-list {
+  &__file-button {
+    margin-right: @space-l;
+  }
+  &__file-list {
     display: flex;
     margin-top: @space-xl;
     width: 100%;
     flex-direction: column-reverse;
   }
-  .yk-file-content {
+  &__pictures {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  &__picture-button {
+    position: relative;
+    margin-right: 40px;
+    width: 80px;
+    height: 80px;
+    border: 1px dashed @line-color-m;
+    background: @bg-color-m;
+    cursor: pointer;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: @line-color-l;
+    }
+    &::before {
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: 14px;
+      transform: translate(-50%, -50%);
+    }
+    &::after {
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 2px;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &--default {
+    border-radius: @radius-m;
+  }
+  &--circle {
+    border-radius: 50%;
+  }
+}
+.yk-upload-file {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: @space-s;
+  width: 100%;
+  color: @pcolor;
+  flex-direction: row;
+  &__main {
     display: flex;
     justify-content: space-between;
-    margin-bottom: @space-s;
+    align-items: center;
+    padding: 0 14px;
     width: 100%;
-    min-height: 36px;
-    color: @pcolor;
+    border-radius: @radius-m;
+    background-color: @bg-color-m;
     flex-direction: row;
-    .file-content-main {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 14px;
-      width: 100%;
-      border-radius: @radius-m;
-      background-color: @bg-color-m;
-      flex-direction: row;
-    }
     .delete-container {
       display: flex;
       justify-content: center;
@@ -61,7 +104,7 @@
       color: @pcolor;
       cursor: pointer;
     }
-    .default-bg {
+    .uploading-bg {
       fill: @pcolor;
     }
     .abort-yk-icon-container {
@@ -72,39 +115,28 @@
       cursor: pointer;
     }
   }
-}
-.content-left {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: @space-s 0px;
-  font-size: @size-s;
-  font-weight: 400;
-  color: @pcolor;
-  flex-direction: row;
-  .yk-file-name {
-    &__error {
-      color: @ecolor;
+  &__left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: @space-s 0px;
+    font-size: @size-s;
+    font-weight: 400;
+    color: @pcolor;
+    flex-direction: row;
+  }
+  &--error {
+    color: @ecolor;
+  }
+  &__right {
+    display: flex;
+    justify-content: flex-start;
+    font-size: @size-s;
+    color: @pcolor;
+    flex-direction: row;
+    svg {
+      margin-left: @space-m;
     }
-  }
-}
-.content-right {
-  display: flex;
-  justify-content: flex-start;
-  font-size: @size-s;
-  color: @pcolor;
-  flex-direction: row;
-  svg {
-    margin-left: @space-m;
-  }
-}
-.yk-uploader-file {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  span {
-    margin-left: @space-l;
   }
 }
 .yk-uploader-pictures {
@@ -112,41 +144,7 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  .yk-image-uploader {
-    position: relative;
-    margin-right: 40px;
-    min-width: 80px;
-    height: 80px;
-    border: 1px dashed @line-color-m;
-    background: @bg-color-m;
-    cursor: pointer;
-    &__default {
-      border-radius: @radius-m;
-    }
-    &__circle {
-      border-radius: 50%;
-    }
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      background-color: @line-color-l;
-    }
-    &::before {
-      top: 50%;
-      left: 50%;
-      width: 2px;
-      height: 14px;
-      transform: translate(-50%, -50%);
-    }
-    &::after {
-      top: 50%;
-      left: 50%;
-      width: 14px;
-      height: 2px;
-      transform: translate(-50%, -50%);
-    }
-  }
+
   .yk-images-list {
     display: flex;
     flex-direction: row;

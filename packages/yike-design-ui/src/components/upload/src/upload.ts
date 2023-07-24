@@ -39,12 +39,12 @@ export type UploadProps = {
   accept?: string;
   maxSize?: number;
   multiple?: boolean;
-  preview?: boolean;
   limit?: number;
   uploadUrl: string;
   shape?: Shape;
   fileList: Array<UserFile>;
   desc?: string;
+  avatar?: boolean;
 };
 
 export interface FileItemProps {

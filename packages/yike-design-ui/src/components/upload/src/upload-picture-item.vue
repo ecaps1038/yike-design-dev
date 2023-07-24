@@ -24,7 +24,7 @@
       <yk-icon name="yk-tushangchuanshibai"></yk-icon>
     </div>
     <div v-if="['error', 'pause'].includes(status)" class="hover-icons">
-      <yk-icon name="yk-shangchuan2" @click="handleReview"></yk-icon>
+      <yk-icon name="yk-shangchuan2" @click="handleReUpload"></yk-icon>
       <yk-icon name="yk-shanchu" @click="handleRemove"></yk-icon>
     </div>
     <div v-if="status === 'success'" class="hover-icons">
@@ -34,9 +34,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, toRefs } from 'vue'
+import { computed, toRefs, getCurrentInstance } from 'vue'
 import { generateUid, getArcPath } from './utils'
 import { FileItemProps } from './upload'
+const proxy: any = getCurrentInstance()?.proxy
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
   fileContent: () => ({
@@ -46,7 +47,6 @@ const props = withDefaults(defineProps<FileItemProps>(), {
   }),
 })
 const { status, uid, raw, url } = toRefs(props.fileContent)
-console.log('🚀 ~ file: upload-picture-item.vue:45 ~ status:', status.value)
 
 const blobRaw = computed(() => {
   if (raw?.value) {
@@ -59,7 +59,7 @@ const blobRaw = computed(() => {
 const emits = defineEmits(['handleAbort', 'handleRemove', 'handleReUpload'])
 
 const handleReview = () => {
-  console.log('review')
+  proxy.$message.success('此处唤起图片组件进行预览')
 }
 
 const handlePause = () => {

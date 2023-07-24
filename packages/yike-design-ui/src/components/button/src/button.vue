@@ -1,10 +1,5 @@
 <template>
-  <button
-    :class="[
-      bem([type, shape, size, status], { disabled: disabled || loading, long }),
-    ]"
-    :disabled="disabled || loading"
-  >
+  <button :class="bem()" :disabled="disabled || loading">
     <svg v-if="loading" viewBox="25 25 50 50">
       <circle r="20" cy="50" cx="50"></circle>
     </svg>

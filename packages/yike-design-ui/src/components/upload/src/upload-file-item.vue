@@ -1,11 +1,11 @@
 <template>
-  <div class="yk-file-content">
-    <div class="file-content-main">
-      <div class="content-left">
+  <div :class="bem()">
+    <div :class="bem('main')">
+      <div :class="bem('left')">
         <yk-icon :name="iconName" class="annex-yk-icon" />
-        <span :class="`yk-file-name__${status}`">{{ name }}</span>
+        <span :class="bem(status)">{{ name }}</span>
       </div>
-      <div class="content-right">
+      <div :class="bem('right')">
         <yk-icon
           v-if="status !== 'uploading'"
           name="yk-shanchu"
@@ -29,8 +29,14 @@
           @click="handlePause"
         >
           <svg width="14" height="14">
-            <circle cx="7" cy="7" r="7" class="default-bg" fill-opacity="0.6" />
-            <path :d="getArcPath(7, 7, 7, progress)" class="default-bg" />
+            <circle
+              cx="7"
+              cy="7"
+              r="7"
+              class="uploading-bg"
+              fill-opacity="0.6"
+            />
+            <path :d="getArcPath(7, 7, 7, progress)" class="uploading-bg" />
           </svg>
         </div>
       </div>
@@ -41,6 +47,7 @@
 import { computed, toRefs } from 'vue'
 import { getArcPath, getFileTypeIconName, generateUid } from './utils'
 import { FileItemProps } from './upload'
+import { createCssScope } from '../../../utils/bem'
 import '../style'
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
@@ -50,6 +57,9 @@ const props = withDefaults(defineProps<FileItemProps>(), {
     uid: generateUid(),
   }),
 })
+
+const bem = createCssScope('upload-file')
+
 const { status, name, uid } = toRefs(props.fileContent)
 
 const emits = defineEmits(['handleAbort', 'handleRemove', 'handleReUpload'])
