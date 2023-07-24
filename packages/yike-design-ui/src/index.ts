@@ -1,6 +1,9 @@
 import type { Component, App } from 'vue';
 
 import { YkRadio, YkRadioGroup } from './components/radio';
+import YkAnchor from './components/anchor';
+import YkPopover from './components/popover';
+import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
@@ -14,9 +17,7 @@ import YkMessage from './components/message';
 import YkNotification from './components/notification';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
-import { YkAnchor } from './components/anchor';
 import YkTooltip from './components/tooltip';
-import YkPopover from './components/popover';
 import YkEmpty from './components/empty';
 import './styles/index.less';
 
@@ -25,6 +26,9 @@ const components: {
 } = {
   YkRadioGroup,
   YkRadio,
+  YkSwitch,
+  YkAnchor,
+  YkPopover,
   YkDrawer,
   YkAlert,
   YkButton,
@@ -41,13 +45,14 @@ const components: {
   YkEmpty,
   YkBackTop,
   YkTooltip,
-  YkPopover,
-  YkAnchor,
 };
 
 export {
   YkRadioGroup,
   YkRadio,
+  YkSwitch,
+  YkAnchor,
+  YkPopover,
   YkDrawer,
   YkAlert,
   YkButton,
@@ -66,8 +71,6 @@ export {
   YkEmpty,
   YkBackTop,
   YkTooltip,
-  YkPopover,
-  YkAnchor,
 };
 
 // 全局注册
