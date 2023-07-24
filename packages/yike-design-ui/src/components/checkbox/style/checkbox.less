@@ -73,12 +73,25 @@
   }
   &--indeterminate::after {
     opacity: 1;
-    box-shadow: none;
-    transition: none;
+    // box-shadow: none;
+    // transition: none;
+    // content: '';
   }
   &--indeterminate2::before {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.2);
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: inherit;
+      opacity: 0;
+      box-shadow: 0 0 0 calc(16px / 2.5) @pcolor-light;
+      transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+      content: '';
+    }
   }
   &--active,
   &--indeterminate {
@@ -112,20 +125,25 @@
     transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
     transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
   }
+  &--active::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    opacity: 0;
+    box-shadow: 0 0 0 calc(16px / 2.5) @pcolor-light;
+    transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+    content: '';
+  }
   &--normal {
     &:hover {
       border-color: @pcolor-light;
     }
     &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border-radius: inherit;
-      opacity: 0;
-      box-shadow: 0 0 0 calc(var(--checkbox-diameter) / 2.5) @pcolor;
-      transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+      box-shadow: none;
+      transition: none;
       content: '';
     }
   }
