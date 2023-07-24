@@ -1,3 +1,3 @@
 <template>
-  <yk-empty description="description" />
+  <yk-empty />
 </template>
