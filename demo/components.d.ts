@@ -35,5 +35,7 @@ declare module 'vue' {
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTitle']
+    YkCheckbox: typeof import('./../packages/yike-design-ui/src/index.ts')['YkCheckbox']
+    YkCheckboxGroup: typeof import('./../packages/yike-design-ui/src/index.ts')['YkCheckboxGroup']
   }
 }
