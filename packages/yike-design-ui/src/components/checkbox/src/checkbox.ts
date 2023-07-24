@@ -3,4 +3,5 @@ export type CheckboxProps = {
   defaultChecked?: boolean;
   value?: string | number | boolean;
   disabled?: boolean;
+  indeterminate?: boolean;
 };

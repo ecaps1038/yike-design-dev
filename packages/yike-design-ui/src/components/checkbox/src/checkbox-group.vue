@@ -6,6 +6,7 @@
         :key="c.value"
         :value="c.value"
         :disabled="c.disabled"
+        :indeterminate="c.indeterminate"
       >
         <slot v-if="slots.label" name="label" :data="c"></slot>
         <template v-else>

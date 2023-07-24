@@ -9,13 +9,7 @@
       @change="handleChange"
       @click="handleClick"
     />
-    <div :class="calcCls">
-      <yk-icon
-        v-if="calcChecked"
-        name="yk-gou2"
-        :class="[calcDisabled ? 'icon--disable' : 'icon--active']"
-      ></yk-icon>
-    </div>
+    <div :class="calcCls"></div>
     <div>
       <slot>
         <span>{{ value }}</span>
@@ -25,7 +19,7 @@
 </template>
 <script setup lang="ts">
 import { CheckboxProps } from './checkbox'
-import { YkIcon } from '../../../index'
+// import { YkIcon } from '../../../index'
 import '../style'
 import { computed, inject, ref, watch } from 'vue'
 import { checkboxGroupContextKey } from './constants'
@@ -105,9 +99,13 @@ const handleClick = (e: Event) => {
 const calcCls = computed(() => {
   return {
     [`${ns}-wrap`]: true,
-    [`${ns}--active`]: calcChecked.value,
-    [`${ns}--normal`]: !calcChecked.value && !calcDisabled.value,
-    [`disabled`]: calcDisabled.value,
+    [`${ns}--active`]: calcChecked.value && !props.indeterminate,
+    [`${ns}--normal`]:
+      !calcChecked.value && !calcDisabled.value && !props.indeterminate,
+    [`${ns}--indeterminate`]: props.indeterminate,
+    [`${ns}--indeterminate2`]: props.indeterminate,
+    [`yk-disabled`]: calcDisabled.value,
+    [`${ns}--common`]: !props.indeterminate,
   }
 })
 </script>

@@ -36,6 +36,12 @@
 <CheckboxMax/>
 :::
 
+:::snippet
+全选
+在实现全选的功能时，可以通过 `indeterminate` 属性展示半选效果。
+<CheckboxAll/>
+:::
+
 ### API
 
 `<checkbox>` Props
