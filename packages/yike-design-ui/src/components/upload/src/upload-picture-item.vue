@@ -1,31 +1,35 @@
 <template>
   <div class="yk-image-content">
     <img v-if="blobRaw || url" :src="url || blobRaw" alt="" />
-    <div class="overlay overlay-primary-hover"></div>
+    <div
+      v-if="status !== 'uploading'"
+      class="overlay overlay-primary-hover"
+    ></div>
     <div v-if="status === 'error'" class="overlay overlay-fail"></div>
+    <div v-if="status === 'uploading'" class="overlay overlay-uploading"></div>
     <div
       v-if="status === 'uploading'"
-      class="overlay overlay-uploading-icons"
-    ></div>
-    <div class="icon uploading-icons">
+      class="upload-icon uploading-icons"
+      @click="handlePause"
+    >
       <svg width="36" height="36">
         <circle cx="18" cy="18" r="18" fill-opacity="0.5" />
-        <path :d="getArcPath(18, 18, 18, 80)" class="progress-path" />
+        <path :d="getArcPath(18, 18, 18, progress)" class="progress-path" />
       </svg>
     </div>
-    <div v-if="status === 'error'" class="icon fail-icon"></div>
-    <div v-if="status === 'error'" class="icon fail-hover-icons"></div>
-    <div v-if="status === 'success'" class="icon success-hover-icons">
-      <yk-icon
-        class="preview-yk-icon"
-        name="yk-yanjing"
-        @click="handleReview"
-      ></yk-icon>
-      <yk-icon
-        class="delete-yk-icon"
-        name="yk-shanchu"
-        @click="handleRemove"
-      ></yk-icon>
+    <div
+      v-if="['error', 'pause'].includes(status)"
+      class="upload-icon fail-icon"
+    >
+      <yk-icon name="yk-tushangchuanshibai"></yk-icon>
+    </div>
+    <div v-if="['error', 'pause'].includes(status)" class="hover-icons">
+      <yk-icon name="yk-shangchuan2" @click="handleReview"></yk-icon>
+      <yk-icon name="yk-shanchu" @click="handleRemove"></yk-icon>
+    </div>
+    <div v-if="status === 'success'" class="hover-icons">
+      <yk-icon name="yk-yanjing" @click="handleReview"></yk-icon>
+      <yk-icon name="yk-shanchu" @click="handleRemove"></yk-icon>
     </div>
   </div>
 </template>
@@ -41,7 +45,8 @@ const props = withDefaults(defineProps<FileItemProps>(), {
     uid: generateUid(),
   }),
 })
-const { status, name, uid, raw, url } = toRefs(props.fileContent)
+const { status, uid, raw, url } = toRefs(props.fileContent)
+console.log('🚀 ~ file: upload-picture-item.vue:45 ~ status:', status.value)
 
 const blobRaw = computed(() => {
   if (raw?.value) {
@@ -49,10 +54,6 @@ const blobRaw = computed(() => {
     return blobUrl
   }
   return ''
-})
-
-const overlayStyle = computed(() => {
-  return true
 })
 
 const emits = defineEmits(['handleAbort', 'handleRemove', 'handleReUpload'])

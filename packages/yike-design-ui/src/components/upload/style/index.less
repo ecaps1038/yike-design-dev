@@ -3,15 +3,6 @@
 }
 .yk-uploader-files {
   width: 100%;
-  .yk-uploader-file {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    span {
-      margin-left: @space-l;
-    }
-  }
   .file-upload-icon {
     margin-right: @space-s;
     line-height: 14px;
@@ -19,61 +10,36 @@
     height: 14px;
   }
   .yk-uploader-list {
-    width: 100%;
-    margin-top: @space-xl;
     display: flex;
+    margin-top: @space-xl;
+    width: 100%;
     flex-direction: column-reverse;
   }
   .yk-file-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: @space-s;
     width: 100%;
     min-height: 36px;
-    margin-bottom: @space-s;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     color: @pcolor;
+    flex-direction: row;
     .file-content-main {
-      width: 100%;
-      background-color: @bg-color-m;
-      padding: 0 14px;
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      padding: 0 14px;
+      width: 100%;
       border-radius: @radius-m;
+      background-color: @bg-color-m;
+      flex-direction: row;
     }
     .delete-container {
-      width: 24px;
-      padding-left: 10px;
       display: flex;
-      flex-direction: row;
-      align-items: center;
       justify-content: center;
-    }
-    .content-left {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
       align-items: center;
-      color: @pcolor;
-      font-size: @size-s;
-      font-weight: 400;
-      padding: @space-s 0px;
-      .yk-file-name {
-        &__error {
-          color: @ecolor;
-        }
-      }
-    }
-    .content-right {
-      color: @pcolor;
-      font-size: @size-s;
-      display: flex;
+      padding-left: 10px;
+      width: 24px;
       flex-direction: row;
-      justify-content: flex-start;
-      svg {
-        margin-left: @space-m;
-      }
     }
     .annex-yk-icon {
       margin-right: @space-s;
@@ -100,27 +66,60 @@
     }
     .abort-yk-icon-container {
       display: flex;
-      flex-direction: row;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      flex-direction: row;
       cursor: pointer;
     }
   }
 }
-
+.content-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: @space-s 0px;
+  font-size: @size-s;
+  font-weight: 400;
+  color: @pcolor;
+  flex-direction: row;
+  .yk-file-name {
+    &__error {
+      color: @ecolor;
+    }
+  }
+}
+.content-right {
+  display: flex;
+  justify-content: flex-start;
+  font-size: @size-s;
+  color: @pcolor;
+  flex-direction: row;
+  svg {
+    margin-left: @space-m;
+  }
+}
+.yk-uploader-file {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  span {
+    margin-left: @space-l;
+  }
+}
 .yk-uploader-pictures {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
   .yk-image-uploader {
+    position: relative;
+    margin-right: 40px;
     min-width: 80px;
     height: 80px;
-    margin-right: 40px;
-    background: @bg-color-m;
     border: 1px dashed @line-color-m;
+    background: @bg-color-m;
     cursor: pointer;
-    position: relative;
     &__default {
       border-radius: @radius-m;
     }
@@ -134,17 +133,17 @@
       background-color: @line-color-l;
     }
     &::before {
-      width: 2px;
-      height: 14px;
       top: 50%;
       left: 50%;
+      width: 2px;
+      height: 14px;
       transform: translate(-50%, -50%);
     }
     &::after {
-      width: 14px;
-      height: 2px;
       top: 50%;
       left: 50%;
+      width: 14px;
+      height: 2px;
       transform: translate(-50%, -50%);
     }
   }
@@ -156,13 +155,13 @@
   }
 
   .yk-image-content {
+    overflow: hidden;
+    margin-right: @space-m;
+    margin-bottom: 10px;
     width: 80px;
     height: 80px;
-    margin-right: @space-m;
-    background: @bg-color-m;
     border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 10px;
+    background: @bg-color-m;
     img {
       width: 100%;
       height: 100%;
@@ -178,37 +177,62 @@
     opacity: 0;
   }
   .overlay-primary-hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #000;
     transition: opacity 0.3s ease;
-    display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
   }
   .overlay-fail {
-    background-color: #000;
-    transition: opacity 0.3s ease;
-    opacity: 0.2;
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    background-color: #000;
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+    flex-direction: row;
   }
-  .icon {
+  .upload-icon {
     position: absolute;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
-    display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
   }
   .uploading-icons {
+    cursor: pointer;
     fill: #fff;
     .progress-path {
       opacity: 0.5;
+    }
+  }
+  .fail-icon {
+    svg {
+      font-size: 22px;
+    }
+  }
+  .hover-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60px;
+    height: 14px;
+    font-size: @size-ss;
+    color: #fff;
+    visibility: hidden;
+    flex-direction: row;
+    transform: translate(-50%, -50%);
+    svg {
+      font-size: @size-s;
+      cursor: pointer;
     }
   }
   .yk-image-content:hover {
@@ -216,8 +240,7 @@
       opacity: 0.4;
       visibility: visible;
     }
-    .fail-hover-icons,
-    .success-hover-icons {
+    .hover-icons {
       visibility: visible;
     }
     .overlay-fail {
@@ -227,30 +250,4 @@
       visibility: hidden;
     }
   }
-  // .overlay-yk-icons {
-  //   width: 60px;
-  //   height: 14px;
-  //   position: absolute;
-  //   font-size: 12px;
-  //   visibility: hidden;
-  //   left: 50%;
-  //   top: 50%;
-  //   color: #fff;
-  //   transform: translate(-50%, -50%);
-  //   display: flex;
-  //   flex-direction: row;
-  //   align-items: center;
-  //   justify-content: space-around;
-  //   svg {
-  //     cursor: pointer;
-  //   }
-  // }
-  // .overlay-fail-icon {
-  //   position: absolute;
-  //   font-size: 22px;
-  //   left: 50%;
-  //   top: 50%;
-  //   color: @bg-color-l;
-  //   transform: translate(-50%, -50%);
-  // }
 }
