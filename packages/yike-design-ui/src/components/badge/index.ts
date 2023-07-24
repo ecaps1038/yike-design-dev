@@ -1,5 +1,5 @@
-import Badge from "./src/badge.vue";
-import { withInstall } from "@yike/utils";
+import Badge from './src/badge.vue';
+import { withInstall } from '../../utils/index';
 
 export const YkBadge = withInstall(Badge);
 

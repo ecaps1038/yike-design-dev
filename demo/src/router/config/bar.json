@@ -72,6 +72,22 @@
           "src": "message"
         },
         {
+          "name": "Tooltip 文字提示",
+          "src": "tooltip"
+        },
+        {
+          "name": "Notification 通知提醒框",
+          "src": "notification"
+        },
+        {
+          "name": "popover 气泡卡片",
+          "src": "popover"
+        },
+        {
+          "name": "Notification 通知提醒框",
+          "src": "notification"
+        },
+        {
           "name": "Drawer 抽屉",
           "src": "drawer"
         }
