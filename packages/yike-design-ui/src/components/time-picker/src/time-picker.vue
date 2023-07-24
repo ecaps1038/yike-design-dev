@@ -92,9 +92,24 @@ const checkTimer = ref<{
   m: '00',
   s: '00',
 })
+function openPickPanel() {
+  //.yk-slide-down-enter
+  showPicker.value = true
+  pickerPanel.value?.classList.add('yk-slide-down-enter')
+  setTimeout(() => {
+    pickerPanel.value?.classList.remove('yk-slide-down-enter')
+  }, 200)
+}
+function closePickPanel() {
+  pickerPanel.value?.classList.add('yk-slide-down-leave')
+  setTimeout(() => {
+    pickerPanel.value?.classList.remove('yk-slide-down-leave')
+    showPicker.value = false
+  }, 200)
+}
 function handleFocus() {
   if (!props.disabled) {
-    showPicker.value = true
+    openPickPanel()
     emits('visible-change')
     console.log(getElementPagePosition(picker.value))
     pickerPanel.value!.style.top =
@@ -122,18 +137,18 @@ function handleClickLi(type: number, value: number) {
   emits('update:model-value', inputTimer.value)
 }
 function onClickOutside() {
-  showPicker.value = false
+  closePickPanel()
   emits('visible-change')
 }
 function handleClickNow() {
   const now = dayjs()
-  showPicker.value = false
+  closePickPanel()
   emits('visible-change')
   inputTimer.value = now.hour() + ':' + now.minute() + ':' + now.second()
   emits('update:model-value', inputTimer.value)
 }
 function handleClickOk() {
-  showPicker.value = false
+  closePickPanel()
   emits('visible-change')
   emits('update:model-value', inputTimer.value)
 }

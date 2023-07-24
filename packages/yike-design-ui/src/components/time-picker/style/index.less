@@ -56,8 +56,12 @@
   li {
     list-style: none;
   }
+  ul:not(:last-child) {
+    border-right: 1px solid rgba(5, 5, 5, 0.06);
+  }
   li {
     padding-left: 12px;
+    width: 48px;
     cursor: pointer;
     &:hover {
       background-color: #f6f6f8;
@@ -77,6 +81,8 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    padding: 4px 12px;
+    border-top: 1px solid rgba(5, 5, 5, 0.06);
     .yk-picker-panel-bottom-now {
       color: #1890ff;
       cursor: pointer;
@@ -86,4 +92,34 @@
 .yk-time-picker--disabled {
   cursor: not-allowed;
   background-color: #f3f3f4;
+}
+.yk-slide-down-enter {
+  animation: slideDownIn 0.2s;
+}
+.yk-slide-down-leave {
+  animation: slideDownOut 0.2s;
+}
+.yk-slide-up-enter {
+  animation: slideUpIn 0.2s;
+}
+.yk-slide-up-leave {
+  animation: slideUpOut 0.2s;
+}
+@keyframes slideDownIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes slideDownOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
