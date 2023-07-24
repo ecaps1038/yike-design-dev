@@ -1,5 +1,6 @@
 .yk-input {
   display: inline-flex;
+  flex-basis: content;
   align-items: center;
   transition: all @animatb ease-in-out;
 
@@ -31,6 +32,11 @@
 
   &:empty {
     margin: unset;
+  }
+
+  svg {
+    width: 20px;
+    height: 16px;
   }
 }
 
@@ -159,8 +165,8 @@
 .input-size(l, 36px, 6px, @size-s);
 .input-size(xl, 48px, 8px, @size-m);
 
-.input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-s);
-.input-status(danger, transparent, @ecolor-3, @ecolor, @ecolor-1, @ecolor, @bg-color-s);
-.input-status(success, transparent, @scolor-3, @scolor, @scolor-1, @scolor, @bg-color-s);
-.input-status(warning, transparent, @wcolor-3, @wcolor, @wcolor-1, @wcolor, @bg-color-s);
+.input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-l);
+.input-status(danger, transparent, @ecolor-3, @ecolor, @ecolor-1, @ecolor, @bg-color-m);
+.input-status(success, transparent, @scolor-3, @scolor, @scolor-1, @scolor, @bg-color-m);
+.input-status(warning, transparent, @wcolor-3, @wcolor, @wcolor-1, @wcolor, @bg-color-m);
 .input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);
