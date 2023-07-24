@@ -14,6 +14,11 @@
   </button>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'YKButton',
+}
+</script>
 <script setup lang="ts">
 import { ButtonProps } from './button'
 import { createCssScope } from '../../../utils/bem'
@@ -24,8 +29,7 @@ const bem = createCssScope('button')
 defineOptions({
   name: 'YKButton',
 })
-
-const props = withDefaults(defineProps<ButtonProps>(), {
+withDefaults(defineProps<ButtonProps>(), {
   type: 'primary',
   size: 'l',
   shape: 'default',

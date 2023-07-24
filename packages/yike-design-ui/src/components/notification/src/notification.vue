@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   title: 'Title',
   message: '',
   type: 'primary',
-  duration: 3000,
+  duration: 4500,
   closable: true,
   showFooterBtn: false,
   showIcon: true,
