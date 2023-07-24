@@ -2,20 +2,12 @@ import { RouteRecordRaw } from 'vue-router';
 
 const generalRoutes: Array<RouteRecordRaw> = [
   {
-    path: 'color',
-    component: () => import('@/examples/color/doc.md'),
-  },
-  {
     path: 'button',
     component: () => import('@/examples/button/doc.md'),
   },
   {
     path: 'icon',
     component: () => import('@/examples/icon/doc.md'),
-  },
-  {
-    path: 'message',
-    component: () => import('@/examples/message/doc.md'),
   },
   {
     path: 'space',
@@ -50,8 +42,12 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/anchor/doc.md'),
   },
   {
-    path: 'popover',
-    component: () => import('@/examples/popover/doc.md'),
+    path: 'empty',
+    component: () => import('@/examples/empty/doc.md'),
+  },
+  {
+    path: 'color',
+    component: () => import('@/examples/color/doc.md'),
   },
 ];
 

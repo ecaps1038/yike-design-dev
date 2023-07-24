@@ -1,5 +1,8 @@
 {
-  "extends": ["stylelint-config-recommended-vue", "stylelint-config-standard-vue"],
+  "extends": [
+    "stylelint-config-recommended-vue",
+    "stylelint-config-standard-vue"
+  ],
   "plugins": ["stylelint-order"],
   "overrides": [
     {
@@ -9,6 +12,12 @@
     {
       "files": ["**/*.(html|vue)"],
       "customSyntax": "postcss-html"
+    },
+    {
+      "files": "demo/src/examples/**/*.vue",
+      "rules": {
+        "rule-empty-line-before": null
+      }
     }
   ],
   "rules": {

@@ -2,23 +2,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  margin-block: @space-xl;
   text-align: center;
   background-color: @bg-color-l;
   flex-direction: column;
   box-sizing: border-box;
   .yk-empty__image {
+    line-height: 1;
     img {
-      user-select: none;
+      padding-bottom: @space-m;
       width: 100%;
       height: 100%;
+      user-select: none;
       vertical-align: top;
       object-fit: contain;
+    }
+    .primary {
+      width: 120px;
+      height: 120px;
+    }
+    .secondary {
+      width: 72px;
+      height: 72px;
     }
   }
 
   .yk-empty__description {
-    margin-top: 20px;
+    // margin-top: 20px;
 
     p {
       margin: 0;
@@ -27,6 +37,6 @@
     }
   }
   .yk-empty__bottom {
-    margin-top: 20px;
+    // margin-top: 20px;
   }
 }

@@ -42,16 +42,22 @@ defineProps({
   transition: background-color @animats, border-right @animats;
 
   .container {
-    padding: @space-s @space-m;
+    padding: 0 @space-m;
     // fix height error
     height: calc(100% - 60px);
     // overflow: auto;
   }
 
+  .bar-card {
+    padding: @space-s 0 @space-xl;
+  }
+
   .bar-title {
     margin-top: @space-m;
+    padding-left: @space-m;
     height: 40px;
     line-height: 40px;
+    color: @font-color-l;
   }
 
   .bar-list {

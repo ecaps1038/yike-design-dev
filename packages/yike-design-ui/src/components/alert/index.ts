@@ -1,6 +1,6 @@
-import Alert from './src/alert.vue'
-import { withInstall } from '@yike/utils'
+import Alert from './src/alert.vue';
+import { withInstall } from '../../utils/index';
 
-export const YkAlert = withInstall(Alert)
-export default YkAlert
-export * from './src/alert'
+export const YkAlert = withInstall(Alert);
+export default YkAlert;
+export * from './src/alert';
