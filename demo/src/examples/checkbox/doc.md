@@ -30,6 +30,12 @@
 <CheckboxGroupOptions/>
 :::
 
+:::snippet
+限制可勾选数量
+通过设置 `max` 限制最多可被勾选的项目数。
+<CheckboxMax/>
+:::
+
 ### API
 
 `<checkbox>` Props

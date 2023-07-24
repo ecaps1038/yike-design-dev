@@ -61,8 +61,13 @@ const calcChecked = computed(() => {
   return toBoolean(calcVal.value as string | number | boolean)
 })
 
+// 组禁用>项禁用>max(禁用未勾选)
 const calcDisabled = computed(() => {
-  return checkboxGroupCtx?.disabled ?? props.disabled
+  return (
+    checkboxGroupCtx?.disabled ||
+    props.disabled ||
+    (!calcChecked.value && checkboxGroupCtx?.isMax)
+  )
 })
 const handleChange = (e: Event) => {
   const { checked } = e.target as HTMLInputElement
