@@ -46,6 +46,10 @@
           "src": "radio"
         },
         {
+          "name": "Rate 评分",
+          "src": "rate"
+        },
+        {
           "name": "Switch 开关",
           "src": "switch"
         }
