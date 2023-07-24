@@ -20,7 +20,6 @@
 </template>
 <script setup lang="ts">
 import Tooltip, { useDefaultSlots } from '../../tooltip'
-import type { TooltipEmit } from '../../tooltip'
 import { PopoverProps } from './popover'
 import '../style'
 
@@ -28,8 +27,6 @@ defineOptions({
   name: 'YkPopover',
 })
 const DefaultSlot = useDefaultSlots()
-
-defineEmits<TooltipEmit>()
 
 withDefaults(defineProps<PopoverProps>(), {
   title: '标题',
