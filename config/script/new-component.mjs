@@ -25,7 +25,6 @@ function log(...rest) {
 }
 function warn(msg) {
   console.warn(chalk.bgRed.black(`[ERROR]`), msg)
-  process.exit(233)
 }
 
 function logCreateFile(filename) {
@@ -175,7 +174,8 @@ function selectAddRouter() {
   const barFile = 'demo/src/router/config/bar.json'
   fs.readFile(barFile, 'utf8', (err, data) => {
     if (err) {
-      warn('路由配置文件读取失败', err)
+      warn('路由配置文件读取失败')
+      warn(err)
       process.exit(233)
     }
     const barData = JSON.parse(data).bar
@@ -197,7 +197,7 @@ function selectAddRouter() {
         'utf8',
         (err) => {
           if (err) {
-            console.warn(chalk.bgRed.black(`[ERROR]`), err)
+            warn(err)
             return
           }
           log(
@@ -223,13 +223,13 @@ function addRouter() {
 ]`
   fs.readFile(generalRouterPath, 'utf8', (err, data) => {
     if (err) {
-      console.warn(chalk.bgRed.black(`[ERROR]`), err)
+      warn(err)
       return
     }
     const replacedData = data.replace(']', addRouterContent)
     fs.writeFile(generalRouterPath, replacedData, 'utf8', (err) => {
       if (err) {
-        console.warn(chalk.bgRed.black(`[ERROR]`), err)
+        warn(err)
         return
       }
       log(`${generalRouterPath} demo路由添加成功`)
