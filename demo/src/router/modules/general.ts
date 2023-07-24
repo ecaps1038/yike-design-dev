@@ -45,6 +45,7 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'color',
     component: () => import('@/examples/color/doc.md'),
   },
+  { path: 'progress', component: () => import('@/examples/progress/doc.md') },
 ];
 
 export default generalRoutes;
