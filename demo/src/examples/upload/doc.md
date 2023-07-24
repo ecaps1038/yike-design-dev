@@ -41,3 +41,32 @@
 通过传入 `draggle` 将 UI 变更为拖拽区，文件列表与常规文件一致，允许通过拖拽上传文件
 <UploadDraggle/>
 :::
+
+:::snippet
+回调函数
+目前支持上传前、上传成功、上传失败、删除文件四个钩子
+<UploadCallback/>
+:::
+
+### API
+
+| 参数      | 描述                 | 类型                             | 默认值    |
+| --------- | -------------------- | -------------------------------- | --------- |
+| accept    | 接受文件类型         | accept                           | \*        |
+| maxSize   | 文件大小限制         | number                           | 3000(3M)  |
+| multiple  | 是否允许多文件上传   | boolean                          | true      |
+| shape     | 图片列表形状         | 'default' \| 'circle'            | 'default' |
+| uploadUrl | 文件上传路径         | string                           | ''        |
+| fileList  | 当前文件列表         | `{name:'file-name',url:'url'}[]` | []        |
+| desc      | 文件上传提示         | string                           | ''        |
+| avatar    | 是否上传头像         | boolean                          | false     |
+| draggable | 是否采用拖拽上传交互 | boolean                          | false     |
+
+### 钩子
+
+| 方法               | 描述       | 出参类型                          |
+| ------------------ | ---------- | --------------------------------- |
+| handleSuccess      | 成功回调   | (res:response,currentList:File[]) |
+| handleDelete       | 删除回调   | (currentList:File[])              |
+| handleError        | 错误回调   | (err:response,currentList:File[]) |
+| handleBeforeUpload | 上传前回调 | (file:File)                       |

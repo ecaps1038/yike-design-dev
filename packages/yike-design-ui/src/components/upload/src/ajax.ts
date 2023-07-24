@@ -1,5 +1,4 @@
 import { RequestOptions } from './upload';
-import { ref } from 'vue';
 export const UploadRequest = ({
   uid,
   uploadUrl,
@@ -10,7 +9,6 @@ export const UploadRequest = ({
 }: RequestOptions) => {
   const xhr = new XMLHttpRequest();
   const formData = new FormData();
-  const progress = ref<number>(0);
   formData.append('file', selectedFile);
   try {
     xhr.open('POST', uploadUrl, true);
