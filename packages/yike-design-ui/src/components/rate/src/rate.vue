@@ -3,28 +3,28 @@
     <div
       v-for="n in numberCount"
       :key="n"
-      class="yk-rate-icon"
-      :class="{ animation: animation && value > n }"
+      :class="ykRateItemClass(n)"
       :style="animationStyle(n)"
       @animationend="handleAnimationEnd(n)"
     >
       <div
         v-show="allowHalf"
-        class="yk-rate-half"
-        :class="{ 'select-half': showValue + 0.5 === n }"
+        :class="halfClass(n)"
         :style="{ color: color }"
         @mouseenter="handleEnter(n - 0.5)"
         @click="handleClick(n - 0.5)"
       >
         <!-- <slot name="character"></slot> -->
-        <yk-icon :name="icon" :style="{ color: color }" />
+        <yk-icon
+          :name="icon"
+          :class="halfIconClass"
+          :style="{ color: color }"
+        />
       </div>
       <!-- <slot name="character"></slot> -->
       <yk-icon
         :name="icon"
-        :class="{
-          select: showValue >= n,
-        }"
+        :class="iconClass(n)"
         :style="{ color: showValue >= n && color ? color : '' }"
         @mouseenter="handleEnter(n)"
         @click="handleClick(n)"
@@ -53,6 +53,7 @@ const props = withDefaults(defineProps<RateProps>(), {
   disabled: false, // 禁用
   color: '',
   icon: 'yike-wujiaoxing',
+  size: 'l',
 })
 
 const emits = defineEmits(['update:modelValue', 'change', 'hover-change'])
@@ -81,6 +82,46 @@ const writeabled = computed(() => props.disabled || props.readonly)
 const animationStyle = computed(() => {
   return (n: number) =>
     animation.value ? { animationDelay: `${50 * n}ms` } : undefined
+})
+
+const ykRateItemClass = computed(() => {
+  return (n: number) => {
+    const classList = [
+      ' yk-rate-item',
+      animation.value && value.value > n ? 'yk-rate-item--animation' : '',
+    ]
+    return classList.join(' ')
+  }
+})
+
+const ykIconSizeClass = computed(() => {
+  return `yk-rate-icon-${props.size}`
+})
+
+const halfClass = computed(() => {
+  return (n: number) => {
+    const classList = [
+      'yk-rate-half',
+      showValue.value + 0.5 === n ? 'yk-rate-half--select' : '',
+    ]
+    return classList.join(' ')
+  }
+})
+
+const halfIconClass = computed(() => {
+  const classList = ['yk-rate-half-icon', ykIconSizeClass.value]
+  return classList.join(' ')
+})
+
+const iconClass = computed(() => {
+  return (n: number) => {
+    const classList = [
+      'yk-rate-icon',
+      showValue.value >= n ? 'yk-rate-icon--select' : '',
+      ykIconSizeClass.value,
+    ]
+    return classList.join(' ')
+  }
 })
 
 // 鼠标移出

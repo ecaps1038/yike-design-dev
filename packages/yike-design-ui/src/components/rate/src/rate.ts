@@ -1,3 +1,5 @@
+import { Size } from '../../../utils/constant';
+
 export type RateProps = {
   count?: string | number;
   modelValue?: string | number;
@@ -9,4 +11,5 @@ export type RateProps = {
   disabled?: boolean;
   color?: string;
   icon?: string;
+  size?: Size;
 };
