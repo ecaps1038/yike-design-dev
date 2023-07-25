@@ -2,6 +2,10 @@ import { RouteRecordRaw } from 'vue-router';
 
 const generalRoutes: Array<RouteRecordRaw> = [
   {
+    path: 'color',
+    component: () => import('@/examples/color/doc.md'),
+  },
+  {
     path: 'button',
     component: () => import('@/examples/button/doc.md'),
   },
@@ -26,6 +30,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/avatar/doc.md'),
   },
   {
+    path: 'upload',
+    component: () => import('@/examples/upload/doc.md'),
+  },
+  {
     path: 'radio',
     component: () => import('@/examples/radio/doc.md'),
   },
@@ -48,6 +56,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
   {
     path: 'color',
     component: () => import('@/examples/color/doc.md'),
+  },
+  {
+    path: 'rate',
+    component: () => import('@/examples/rate/doc.md'),
   },
 ];
 
