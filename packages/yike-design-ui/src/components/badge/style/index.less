@@ -36,12 +36,16 @@
   // 定位相关
   position: relative;
   // 置排布相关
-  display: inline-block;
-  vertical-align: top;
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  line-height: 1;
 
   .yk-badge__dot {
     // 定位
     position: absolute;
+    top: 0;
+    right: 0;
     z-index: 1;
 
     //由外到内 设置margin -> padding -> width -> height
@@ -53,7 +57,16 @@
 
     //颜色、透明度、阴影等
     background: @ecolor;
-    box-shadow: 0 0 0 1px #ffffff;
+    box-shadow: 0 0 0 2px #ffffff;
+
+    &--outer {
+      top: -4px;
+      right: -4px;
+    }
+
+    &--stand {
+      position: static;
+    }
   }
 
   .yk-badge__dot.yk-badge__dot--primary {
@@ -76,6 +89,9 @@
   }
 
   .yk-badge__count {
+    position: absolute;
+    top: 0px;
+    right: 0px;
     z-index: 1;
     // 由外到内 设置margin -> padding -> width -> height
     padding: 2px 6px;
@@ -90,9 +106,23 @@
     // 颜色、透明度、阴影等
     color: white;
     background: @ecolor;
-    box-shadow: 0 0 0 1px #ffffff;
+    box-shadow: 0 0 0 2px #ffffff;
     line-height: 20px;
     letter-spacing: -0.41px;
+
+    &--left {
+      top: 0;
+      left: 0;
+    }
+
+    &--right {
+      top: 0;
+      right: 0;
+    }
+
+    &--stand {
+      position: static;
+    }
   }
 
   .yk-badge__count.yk-badge__count--primary {

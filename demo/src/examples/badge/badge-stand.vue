@@ -1,6 +1,6 @@
 <template>
   <yk-space direction="vertical">
-    <yk-space>
+    <yk-space align="center">
       <yk-badge :count="2" status="primary"></yk-badge>
       <yk-badge :count="2"></yk-badge>
       <yk-badge :count="100" status="success"></yk-badge>

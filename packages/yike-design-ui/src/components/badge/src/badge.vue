@@ -32,6 +32,8 @@ defineOptions({
 
 // ======================= props ===========================
 const props = withDefaults(defineProps<BadgeProps>(), {
+  count: 0,
+  border: 2,
   overflowCount: 99,
   showZero: false,
   status: 'danger',
@@ -54,17 +56,9 @@ const dotStyle = computed<CSSProperties>(() => {
     styles.background = props.color
   }
 
-  // 默认
-  styles.right = 0
-  styles.top = 0
-  // out-dot
-  if (props.outDot) {
-    styles.right = '-4px'
-    styles.top = '-4px'
-  }
-
-  if (!!useSlots().default === false) {
-    return { background: props.color }
+  // 自定义了border时候
+  if (props.border !== 2) {
+    styles.boxShadow = `#ffffff 0 0 0 ${props.border}px`
   }
 
   return styles
@@ -74,28 +68,17 @@ const dotClass = computed(() => {
   return {
     'yk-badge__dot--outer': props.outDot,
     [`yk-badge__dot--${props.status}`]: props.status !== undefined,
+    'yk-badge__dot--stand': !!useSlots().default === false,
   }
 })
 
 // ======================== count ============================
 
-// 是否是count类型
-const isCount = computed(
-  () => !isDot.value && (props?.count !== undefined ? true : false),
-)
-
 // 是否展示count
 const isShowCount = computed(() => {
-  const hiddenZero =
-    props.count !== undefined && props.count === 0 && !props.showZero
-  const hiddenNegative = props.count !== undefined && props.count < 0
-  if (
-    hiddenZero ||
-    hiddenNegative ||
-    props.hidden ||
-    isShowDot.value ||
-    props.count == undefined
-  ) {
+  const countZeroHidden = props.count === 0 && !props.showZero
+  const countNormalHidden = props.count < 0
+  if (props.hidden || isShowDot.value || countZeroHidden || countNormalHidden) {
     return false
   }
   return true
@@ -126,23 +109,29 @@ const supRef = ref()
 const countStyle = computed<CSSProperties>(() => {
   const styles: CSSProperties = {}
 
-  // 默认
-  styles.right = '0'
-  styles.top = '0'
+  // 默认右上角
   styles.translate = `50% -50%`
-  styles.position = 'absolute'
 
-  // count的方位
+  // count的方位  定位右边，就左移动，左边，就右边移动
   if (props.offset && props.offset === 'right') {
-    styles.position = 'absolute'
-    styles.right = '0'
-    styles.top = '0'
     styles.translate = `-50% ${offsetValue.value}px`
   } else if (props.offset && props.offset === 'left') {
-    styles.position = 'absolute'
-    styles.left = '0'
-    styles.top = '0'
     styles.translate = `50% ${offsetValue.value}px`
+  }
+
+  // 自定义border时候
+  if (props.border !== 2) {
+    styles.boxShadow = `#ffffff 0 0 0 ${props.border}px`
+  }
+
+  // 自定义offset时候
+  if (Array.isArray(props.offset)) {
+    styles.translate = `${props.offset[0]}px ${props.offset[1]}px`
+  }
+
+  // color
+  if (props.color) {
+    styles.background = props.color
   }
 
   if (!!useSlots().default === false) {
@@ -180,6 +169,10 @@ const countClass = computed(() => {
   return {
     isRound: isRound(),
     [`yk-badge__count--${props.status}`]: props.status !== undefined,
+    [`yk-badge__count--${props.offset}`]:
+      props.offset !== undefined && typeof props.offset == 'string',
+    'yk-badge__count--stand': !!useSlots().default === false,
   }
 })
 </script>
+<style scoped></style>
