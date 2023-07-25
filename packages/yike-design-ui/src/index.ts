@@ -14,7 +14,7 @@ import YkIcon from './components/icon';
 import { YkAvatar, YkAvatarGroup } from './components/avatar';
 import YkSpace from './components/space';
 import { YkContainer } from './components/container';
-import YkTable from './components/table/Table.vue';
+import YkTable from './components/table';
 import YkMessage from './components/message';
 import YkNotification from './components/notification';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
