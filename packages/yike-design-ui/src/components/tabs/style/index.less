@@ -1,0 +1,36 @@
+.yk-tabs {
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border: 1px solid @gray7;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    height: 54px;
+    font-size: 16px;
+    font-family: PingFangSC-Regular;
+    color: rgba(@gray1, 0.8);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    letter-spacing: -0.39px;
+  }
+  .is-active {
+    font-family: PingFangSC-SNaNpxibold;
+    font-weight: 600;
+    color: @gray1;
+  }
+  &__active-bar {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 16px;
+    height: 4px;
+    border-radius: 2px;
+    background: @pcolor-light;
+    transition: all 0.3s ease-in-out;
+  }
+}

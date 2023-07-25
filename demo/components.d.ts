@@ -40,6 +40,8 @@ declare module 'vue' {
     YkRate: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRate']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkSwitch: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSwitch']
+    YkTabPane: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTabPane']
+    YkTabs: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTabs']
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTitle']

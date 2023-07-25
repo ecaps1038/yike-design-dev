@@ -61,6 +61,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'rate',
     component: () => import('@/examples/rate/doc.md'),
   },
+  {
+    path: 'tabs',
+    component: () => import('@/examples/tabs/doc.md'),
+  },
 ];
 
 export default generalRoutes;
