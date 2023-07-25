@@ -74,7 +74,6 @@ function closeTooltip() {
     emit('openChange', showTooltip.value)
   }, props.closeDelay)
 }
-
 // 展示隐藏 气泡 事件函数
 function onEnter() {
   if (props.trigger === 'hover' || props.trigger.includes('hover'))
