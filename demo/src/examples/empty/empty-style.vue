@@ -1,3 +1,3 @@
 <template>
-  <yk-empty :image-style="{ width: 200 }"></yk-empty>
+  <yk-empty description="description" type="secondary" />
 </template>
