@@ -238,7 +238,7 @@ const handleReUpload = (uid: number) => {
 }
 
 const handleEdit = (uid: number) => {
-  const idx = findFileByUid(uid, currentList.value)
+  findFileByUid(uid, currentList.value)
   // ToDo use idx filter file to edit
   handleUpload()
 }
