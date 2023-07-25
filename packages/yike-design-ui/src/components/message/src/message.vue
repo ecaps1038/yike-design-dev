@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="yk-message" :style="Style">
+    <div :class="bem()" :style="Style">
       <yk-icon
         :name="statusIconName"
         :class="`icon-${props.type} message-icon`"
@@ -14,6 +14,10 @@ import { MessageProps } from './message'
 import { ref, onMounted, computed } from 'vue'
 import '../style'
 import { YkIcon } from '../../../index'
+import { createCssScope } from '../../../utils/bem'
+
+const bem = createCssScope('message')
+
 defineOptions({
   name: 'YkMessage',
 })

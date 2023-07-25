@@ -42,6 +42,7 @@
 </template>
 
 <script setup lang="ts">
+import { containerProps } from './container'
 import { ref, onMounted } from 'vue'
 import '../style'
 
@@ -49,24 +50,11 @@ defineOptions({
   name: 'YkContainer',
 })
 
-defineProps({
-  size: {
-    //滚动条宽度
-    type: Number,
-    default: 5,
-  },
-  space: {
-    //与边间距
-    type: Number,
-    default: 2,
-  },
-  show: {
-    //是否显示
-    type: Boolean,
-    default: true,
-  },
+withDefaults(defineProps<containerProps>(), {
+  size: 5,
+  space: 2,
+  show: true,
 })
-
 //获取dome
 const boxRef = ref()
 const ulRef = ref()
