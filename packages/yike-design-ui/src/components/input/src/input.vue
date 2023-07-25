@@ -5,11 +5,12 @@
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
   >
-    <div class="yk-input-deco"><slot name="prefix"></slot></div>
-    <div class="yk-input-inner">
+    <div class="yk-input-inner" :class="YkInputWidgetClass">
+      <div class="yk-input-deco"><slot name="prefix" /></div>
       <input
         :id="id"
         ref="inputRef"
+        :name="name"
         :placeholder="placeholder"
         :disabled="disabled"
         :class="YkInputWidgetClass"
@@ -21,14 +22,15 @@
         @focus="focus"
         @input="update"
         @blur="blur"
+        @compositionstart="compositionstart"
+        @compositionend="compositionend"
       />
       <button
-        v-if="type === 'password' && !disabled"
+        v-if="shouldShowVisiblePasswordButton"
         aria-label="查看/隐藏密码"
         class="yk-input-button"
         :class="YkInputButtonClass"
-        @mousedown="switchType"
-        @mouseup="switchType"
+        @click="switchType"
       >
         <yk-icon name="yk-biyan" />
       </button>
@@ -41,36 +43,51 @@
       >
         <yk-icon name="yk-cha" />
       </button>
+      <div v-if="showCounter" class="yk-input-counter">
+        <span>{{ valueCounter }}&nbsp;</span>
+        <span v-if="shouldShowLimit">/ {{ limit }}</span>
+      </div>
+      <div class="yk-input-deco"><slot name="suffix" /></div>
     </div>
     <div v-if="loading" class="yk-input-spinner">
       <svg id="spinner" viewBox="25 25 50 50">
         <circle r="20" cy="50" cx="50"></circle>
       </svg>
     </div>
-    <div class="yk-input-deco"><slot name="suffix"></slot></div>
   </div>
+  <slot name="append" />
 </template>
 <script setup lang="ts">
 import { InputProps } from './input'
 import '../style'
-import { computed, ref, toRefs } from 'vue'
+import { computed, ref, toRef } from 'vue'
 defineOptions({
   name: 'YkInput',
 })
 const props = withDefaults(defineProps<InputProps>(), {
   id: '',
+  name: '',
   size: 'l',
   type: 'text',
   placeholder: '',
   value: '',
   disabled: false,
+  visible: true,
   clearable: true,
   status: 'primary',
   loading: false,
+  showCounter: false,
+  limit: -1, // 不限制输入字数
 })
-const receivedProps = toRefs(props)
-let realValue = receivedProps.value
+const isTyping = ref(false)
+const shouldLimitInput = props.limit > 0
+const shouldShowLimit = props.showCounter && shouldLimitInput
+const shouldShowVisiblePasswordButton =
+  props.type === 'password' && !props.disabled && props.visible
+// 红色波浪线说并不能直接 props.value，所以另辟蹊径。
+let realValue = toRef(props, 'value')
 let lastValue = realValue.value
+const valueCounter = ref<number>(lastValue.length)
 const emits = defineEmits(['focus', 'input', 'blur', 'update:value'])
 const inputRef = ref<HTMLInputElement>()
 const isFocus = ref(false)
@@ -85,8 +102,13 @@ const focus = () => {
 }
 const update = () => {
   lastValue = inputRef.value?.value ?? ''
+  if (shouldLimitInput && !isTyping.value && lastValue.length > props.limit) {
+    lastValue = lastValue.slice(0, props.limit)
+    inputRef.value!.value = lastValue
+  }
   ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
+  valueCounter.value = lastValue.length
   emits('update:value', realValue)
 }
 const blur = () => {
@@ -104,6 +126,14 @@ const clear = () => {
   inputRef!.value!.focus()
   update()
   emits('input', '')
+}
+// 开始使用中文输入法 暂停字数限制
+const compositionstart = () => {
+  isTyping.value = true
+}
+// 结束使用中文输入法
+const compositionend = () => {
+  isTyping.value = false
 }
 const switchType = () => {
   inputType.value = inputType.value === 'text' ? 'password' : 'text'

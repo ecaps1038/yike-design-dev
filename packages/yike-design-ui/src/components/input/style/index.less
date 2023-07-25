@@ -27,8 +27,10 @@
 }
 
 .yk-input-deco {
-  word-break: keep-all;
+  display: flex;
+  align-items: center;
   margin: 3px;
+  word-break: keep-all;
 
   &:empty {
     margin: unset;
@@ -51,6 +53,7 @@
     background: inherit;
     outline: none;
     flex-grow: 1;
+    flex-shrink: 3;
   }
 }
 
@@ -61,10 +64,12 @@
   width: 27px;
   border: none;
   background: none;
+  // 为了能在输入框非激活被聚焦，调整透明度而不是 display: none
   opacity: 0;
   cursor: pointer;
 
   &:focus-within {
+    // 功能按钮被聚焦，取消隐藏
     opacity: 1;
   }
 }
@@ -85,6 +90,19 @@
   }
 }
 
+.yk-input-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  color: @font-color-s;
+
+  span {
+    // 这样看着舒服点
+    margin-bottom: 2px;
+  }
+}
+
 .input-size(@size, @height, @padding, @fs) {
   .normal() {
     padding: 0px @padding;
@@ -99,17 +117,17 @@
 
 .input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
   .normal() {
-    border: 1px solid @bcolor;
     background-color: @bgcolor;
+    outline: 1px solid @bcolor;
 
     &:hover {
-      border: 1px solid @hvbcolor;
       background-color: @hvbgcolor;
+      outline: 1px solid @hvbcolor;
     }
 
     &-focus {
-      border: 1px solid @fsbcolor;
       background-color: @fsbgcolor;
+      outline: 1px solid @fsbcolor;
     }
   }
   &.yk-input--@{status} {

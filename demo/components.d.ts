@@ -29,6 +29,7 @@ declare module 'vue' {
     YkEmpty: typeof import('./../packages/yike-design-ui/src/index.ts')['YkEmpty']
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
     YkInput: typeof import('./../packages/yike-design-ui/src/index.ts')['YkInput']
+    'YkInputplaceholder="请输入..."': typeof import('./../packages/yike-design-ui/src/index.ts')['YkInputplaceholder="请输入..."']
     YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
     YkPopover: typeof import('./../packages/yike-design-ui/src/index.ts')['YkPopover']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
