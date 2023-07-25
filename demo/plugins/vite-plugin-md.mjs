@@ -25,6 +25,8 @@ export default () => ({
     if (id.endsWith('.md')) {
       // 导入demo组件依赖
       let importContent = ''
+      // 依赖桶，防止重复引入
+      const importBucket = new Set()
       // 初始还MarkdownIt用于转换md文件为html
 
       const markdownIt = MarkdownIt({
@@ -64,7 +66,12 @@ export default () => ({
         ) // fix {{}} in <pre> render
         const html = hljs.highlightAuto(demoCode).value
 
-        importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n` //import vue dependence
+        const importLine = `import ${demoTagName} from './${demoComponentName}.vue';\n`
+        if (!importBucket.has(importLine)) {
+          importContent += importLine
+          importBucket.add(importLine)
+        }
+        //import vue dependence
         const caseCardContent = `<yk-snippet title="${title}">
           <template v-slot:demo>${demoName}</template>
           <template v-slot:desc>${markdownIt.render(desc)}</template>
@@ -84,7 +91,13 @@ export default () => ({
         const tagPattern = /<(\w+)\/>/
         const demoTagName = demoName.match(tagPattern)[1]
         const demoComponentName = camelToDashCase(demoTagName)
-        importContent += `import ${demoTagName} from './${demoComponentName}.vue';\n`
+
+        const importLine = `import ${demoTagName} from './${demoComponentName}.vue';\n`
+        if (!importBucket.has(importLine)) {
+          importContent += importLine
+          importBucket.add(importLine)
+        }
+
         src = src.replace(
           match[0],
           `\n<div class='yk-pure-doc'>${demoName}</div>`,

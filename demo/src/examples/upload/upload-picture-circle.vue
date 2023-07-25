@@ -5,14 +5,14 @@
       :file-list="fileUrl"
       shape="circle"
       accept="image/*"
-      desc="仅允许上传两张图片"
+      desc="上传图片"
       :limit="2"
     ></yk-upload>
   </div>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const uploadUrl = 'http://chat.finecoder.cn:3976/upload'
+const uploadUrl = 'http://chat.foder.cn:3976/upload'
 const fileUrl = ref([
   {
     name: '默认图片',
