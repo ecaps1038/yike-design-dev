@@ -1,7 +1,8 @@
 <template>
   <button
     :class="[
-      bem([type, shape, size, status], { disabled: disabled || loading, long }),
+      bem([type, status, shape, size]),
+      bem({ loading: loading, long: long, disabled: disabled }),
     ]"
     :disabled="disabled || loading"
   >
@@ -13,6 +14,11 @@
   </button>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'YKButton',
+}
+</script>
 <script setup lang="ts">
 import { ButtonProps } from './button'
 import { createCssScope } from '../../../utils/bem'
@@ -23,7 +29,6 @@ const bem = createCssScope('button')
 defineOptions({
   name: 'YKButton',
 })
-
 withDefaults(defineProps<ButtonProps>(), {
   type: 'primary',
   size: 'l',

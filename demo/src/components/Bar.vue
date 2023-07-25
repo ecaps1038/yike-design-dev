@@ -57,6 +57,7 @@ defineProps({
     padding-left: @space-m;
     height: 40px;
     line-height: 40px;
+    color: @font-color-l;
   }
 
   .bar-list {

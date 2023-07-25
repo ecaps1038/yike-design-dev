@@ -14,7 +14,7 @@
 </template>
 <style scoped>
 .image {
-  font-size: 0;
   width: 100%;
+  font-size: 0;
 }
 </style>
