@@ -50,6 +50,10 @@
           "src": "radio"
         },
         {
+          "name": "Checkbox 复选框",
+          "src": "checkbox"
+        },
+        {
           "name": "Rate 评分",
           "src": "rate"
         },

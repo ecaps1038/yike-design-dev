@@ -19,10 +19,12 @@ const list = ref()
 .container {
   position: relative;
 }
+
 .list {
-  height: 200px;
   overflow-y: auto;
+  height: 200px;
 }
+
 li {
   line-height: 30px;
 }

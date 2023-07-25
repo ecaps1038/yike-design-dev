@@ -3,7 +3,7 @@
     :upload-url="uploadUrl"
     :multiple="false"
     :file-list="fileUrl"
-    desc="仅允许上传单文件"
+    desc="仅允许逐个上传文件"
   ></yk-upload>
 </template>
 <script lang="ts" setup>
