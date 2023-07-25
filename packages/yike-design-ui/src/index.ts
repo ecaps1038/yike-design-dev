@@ -2,6 +2,7 @@ import type { Component, App } from 'vue';
 
 import YkUpload from './components/upload';
 import { YkRadio, YkRadioGroup } from './components/radio';
+import { YkCheckbox, YkCheckboxGroup } from './components/checkbox';
 import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
@@ -29,6 +30,8 @@ const components: {
   YkUpload,
   YkRadioGroup,
   YkRadio,
+  YkCheckbox,
+  YkCheckboxGroup,
   YkSwitch,
   YkAnchor,
   YkPopover,
@@ -55,6 +58,8 @@ export {
   YkUpload,
   YkRadioGroup,
   YkRadio,
+  YkCheckbox,
+  YkCheckboxGroup,
   YkSwitch,
   YkAnchor,
   YkPopover,
