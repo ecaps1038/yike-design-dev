@@ -1,0 +1,79 @@
+.yk-upload {
+  width: 100%;
+  &__files {
+    width: 100%;
+  }
+  &__file-icon {
+    margin-right: @space-s;
+    line-height: 14px;
+    width: 14px;
+    height: 14px;
+  }
+  &__file-button {
+    margin-right: @space-l;
+  }
+  &__file-list {
+    display: flex;
+    margin-top: @space-xl;
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+  &__pictures {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: auto;
+  }
+  &__picture {
+    margin-right: @space-m;
+    margin-bottom: @space-m;
+    width: 80px;
+    height: 80px;
+  }
+  &__picture-button {
+    position: relative;
+    margin-right: 40px;
+    width: 80px;
+    height: 80px;
+    border: 1px dashed @line-color-m;
+    background: @bg-color-m;
+    cursor: pointer;
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.56;
+    }
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: @line-color-l;
+    }
+    &::before {
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: 14px;
+      transform: translate(-50%, -50%);
+    }
+    &::after {
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 2px;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &--default {
+    border-radius: @radius-m;
+  }
+  &--circle {
+    border-radius: 50%;
+  }
+  &-pictures {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    max-width: 100%;
+  }
+}

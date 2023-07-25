@@ -1,5 +1,6 @@
 import type { Component, App } from 'vue';
 
+import YkUpload from './components/upload';
 import { YkRadio, YkRadioGroup } from './components/radio';
 import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
@@ -26,6 +27,7 @@ import './styles/index.less';
 const components: {
   [propName: string]: Component;
 } = {
+  YkUpload,
   YkRadioGroup,
   YkRadio,
   YkSwitch,
@@ -52,6 +54,7 @@ const components: {
 };
 
 export {
+  YkUpload,
   YkRadioGroup,
   YkRadio,
   YkProgress,

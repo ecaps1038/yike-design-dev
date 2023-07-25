@@ -131,7 +131,6 @@ export function usePlacement(
   const position = usePosition(tooltip);
   const result = splitCameCase(placement!);
   const p = reactive([...result]);
-
   watch(
     position,
     () => {
