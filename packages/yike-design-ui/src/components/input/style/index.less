@@ -21,12 +21,12 @@
   }
 }
 
-.yk-input-spinner {
+.yk-input__spinner {
   display: flex;
   align-items: center;
 }
 
-.yk-input-slot {
+.yk-input__slot {
   display: flex;
   align-items: center;
   margin: 3px;
@@ -56,6 +56,10 @@
     flex-grow: 1;
     flex-shrink: 3;
   }
+}
+
+.yk-input__buttons {
+  background-color: inherit;
 }
 
 .yk-input-button {
@@ -92,7 +96,7 @@
   }
 }
 
-.yk-input-counter {
+.yk-input__counter {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,33 +122,22 @@
 }
 
 .input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
-  .bg() {
+  .bow() {
     background-color: @bgcolor;
-
-    &:hover {
-      background-color: @hvbgcolor;
-    }
-
-    &-focus {
-      background-color: @fsbgcolor;
-    }
-  }
-  .bd() {
     outline: 1px solid @bcolor;
 
     &:hover {
+      background-color: @hvbgcolor;
       outline: 1px solid @hvbcolor;
     }
 
     &-focus {
+      background-color: @fsbgcolor;
       outline: 1px solid @fsbcolor;
     }
   }
-  &.yk-input-bg--@{status} {
-    .bg();
-  }
-  &.yk-input-bd--@{status} {
-    .bd();
+  &.yk-input__@{status} {
+    .bow();
   }
 }
 

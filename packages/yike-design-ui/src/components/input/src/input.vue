@@ -6,7 +6,7 @@
     @mouseleave="mouseleave"
   >
     <div class="yk-input-inner" :class="YkInputInnerClass">
-      <div v-if="$slots.prefix" class="yk-input-slot">
+      <div v-if="$slots.prefix" :class="bem('slot')">
         <slot name="prefix" />
       </div>
       <input
@@ -27,34 +27,38 @@
         @compositionstart="compositionstart"
         @compositionend="compositionend"
       />
-      <button
-        v-if="shouldShowVisiblePasswordButton"
-        aria-label="查看/隐藏密码"
-        class="yk-input-button"
-        :class="YkInputButtonClass"
-        @click="switchType"
-      >
-        <yk-icon name="yk-biyan" />
-      </button>
-      <button
-        v-if="clearable && !disabled"
-        aria-label="清空内容"
-        class="yk-input-button"
-        :class="YkInputButtonClass"
-        @click="clear"
-      >
-        <yk-icon name="yk-cha" />
-      </button>
-      <div v-if="showCounter" class="yk-input-counter">
+      <div :class="bem('buttons')">
+        <button
+          v-if="shouldShowVisiblePasswordButton"
+          aria-label="查看/隐藏密码"
+          class="yk-input-button"
+          :class="YkInputButtonClass"
+          @click="switchType"
+        >
+          <yk-icon name="yk-biyan" />
+        </button>
+        <button
+          v-if="clearable && !disabled"
+          aria-label="清空内容"
+          class="yk-input-button"
+          :class="YkInputButtonClass"
+          @click="clear"
+        >
+          <yk-icon name="yk-cha" />
+        </button>
+      </div>
+      <div v-if="showCounter" :class="bem('counter')">
         <span>{{ valueCounter }}&nbsp;</span>
         <span v-if="shouldShowLimit">/&nbsp;{{ limit }}</span>
       </div>
-      <div v-if="loading" class="yk-input-spinner">
+      <div v-if="loading" :class="bem('spinner')">
         <svg id="spinner" viewBox="25 25 50 50">
           <circle r="20" cy="50" cx="50"></circle>
         </svg>
       </div>
-      <div class="yk-input-slot"><slot name="suffix" /></div>
+      <div v-if="$slots.suffix" :class="bem('slot')">
+        <slot name="suffix" />
+      </div>
     </div>
     <slot name="append" />
   </div>
@@ -63,6 +67,7 @@
 import { InputProps } from './input'
 import '../style'
 import { computed, ref, toRef } from 'vue'
+import { createCssScope } from '../../../utils/bem'
 defineOptions({
   name: 'YkInput',
 })
@@ -81,6 +86,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   showCounter: false,
   limit: -1, // 不限制输入字数
 })
+const bem = createCssScope('input')
 const isTyping = ref(false)
 const shouldLimitInput = props.limit > 0
 const shouldShowLimit = props.showCounter && shouldLimitInput
@@ -143,10 +149,7 @@ const switchType = () => {
 const YkInputClass = computed(() => {
   return {
     'yk-input--loading': props.loading,
-    'yk-input-bg--disabled': props.disabled,
     [`yk-input--${props.size}`]: true,
-    [`yk-input-bg--${props.status}`]: true,
-    [`yk-input-bg--${props.status}-focus`]: isFocus.value,
   }
 })
 const YkInputInnerClass = computed(() => {
@@ -154,8 +157,9 @@ const YkInputInnerClass = computed(() => {
     'yk-input-bd--disabled': props.disabled,
     [`yk-input--${props.size}`]: true,
     [`yk-input-size--${props.size}`]: true,
-    [`yk-input-bd--${props.status}`]: !props.disabled,
-    [`yk-input-bd--${props.status}-focus`]: isFocus.value,
+    'yk-input__disabled': props.disabled,
+    [`yk-input__${props.status}`]: !props.disabled,
+    [`yk-input__${props.status}-focus`]: isFocus.value,
   }
 })
 const YkInputWidgetClass = computed(() => {

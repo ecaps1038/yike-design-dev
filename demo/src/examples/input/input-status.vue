@@ -14,6 +14,9 @@
 </template>
 <style scoped>
 .item {
+  display: flex;
   margin-bottom: 5px;
+  width: 350px;
+  flex-direction: column;
 }
 </style>
