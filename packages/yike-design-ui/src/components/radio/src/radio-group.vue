@@ -1,5 +1,5 @@
 <template>
-  <div :class="ykRadioGroupCls">
+  <div :class="ykRadioGroupCls" :type="type">
     <slot />
   </div>
 </template>
@@ -13,6 +13,7 @@ import '../style'
 const emits = defineEmits(radioGroupEmits)
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   direction: 'horizontal',
+  type: 'radio',
 })
 
 const ykRadioGroupCls = computed(() => {
