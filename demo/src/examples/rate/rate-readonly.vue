@@ -1,3 +1,3 @@
 <template>
-  <yk-rate default-value="3" readonly></yk-rate>
+  <yk-rate default-value="3" readonly />
 </template>
