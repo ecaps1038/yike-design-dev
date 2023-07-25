@@ -131,10 +131,7 @@ const currentLength = computed(() => {
   return currentList.value.length
 })
 const uploadDisabled = computed(() => {
-  return !!(
-    (!props.multiple && currentLength.value) ||
-    (props.limit && currentLength.value >= props.limit)
-  )
+  return props.limit && currentLength.value >= props.limit
 })
 
 isPicture.value =
