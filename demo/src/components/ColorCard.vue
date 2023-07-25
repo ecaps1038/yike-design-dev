@@ -20,14 +20,14 @@ defineProps({
 
 <style lang="less" scoped>
 .ykcolor-card {
+  display: flex;
+  padding: 20px;
   width: 208px;
   height: 80;
   border: none;
   border-radius: 5px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
   outline: none;
+  flex-direction: column;
   box-sizing: border-box;
 
   > span {

@@ -1,7 +1,7 @@
 <template>
   <yk-empty>
     <template #image>
-      <yk-icon name="yike-kongzhuangtai1" style="font-size: 140px"></yk-icon>
+      <yk-icon name="yk-yike1" style="font-size: 120px"></yk-icon>
     </template>
     <template #description>
       <yk-icon name="yk-shuaxin"></yk-icon>

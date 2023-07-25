@@ -31,6 +31,7 @@ import { useEventListener, usePlacement, useDefaultSlots } from './hooks'
 defineOptions({
   name: 'YkTooltip',
 })
+
 // props 属性定义
 const props = withDefaults(defineProps<TooltipProps>(), {
   title: 'hello tooltip',
@@ -43,9 +44,10 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   overlayStyle: () => ({}),
   destroyTooltipOnHide: false,
 })
+
 // 自定义事件
 const emit = defineEmits<TooltipEmit>()
-const tooltip = ref<null | Element>()
+const tooltip = ref<null | HTMLElement>()
 
 // 使用默认插槽
 const DefaultSlot = useDefaultSlots()
@@ -99,6 +101,7 @@ function onFocus() {
 useEventListener('click', () => {
   if (showTooltip.value) closeTooltip()
 })
+
 // 计算气泡方位类名
 const placement = usePlacement(tooltip, props.placement)
 
