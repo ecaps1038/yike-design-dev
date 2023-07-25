@@ -42,6 +42,10 @@
       "title": "数据录入",
       "list": [
         {
+          "name": "Upload 文件上传",
+          "src": "upload"
+        },
+        {
           "name": "Radio 单选框",
           "src": "radio"
         },
