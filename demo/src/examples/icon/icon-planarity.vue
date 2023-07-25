@@ -21,6 +21,8 @@ const onCopy = (iconName: string) => {
 const ykIconList = [
   'yike-kongzhuangtai0',
   'yike-kongzhuangtai1',
+  'yike-yidong1',
+  'yike-yidong2',
   'yike-zuo',
   'yike-you',
   'yike-shang',

@@ -3,21 +3,15 @@
     "stylelint-config-recommended-vue",
     "stylelint-config-standard-vue"
   ],
-  "plugins": ["stylelint-order"],
+  "plugins": ["stylelint-order", "stylelint-less"],
   "overrides": [
     {
-      "files": ["**/*.(less|css|vue)"],
+      "files": ["**/*.(less|vue)"],
       "customSyntax": "postcss-less"
     },
     {
       "files": ["**/*.(html|vue)"],
       "customSyntax": "postcss-html"
-    },
-    {
-      "files": "demo/src/examples/**/*.vue",
-      "rules": {
-        "rule-empty-line-before": null
-      }
     }
   ],
   "rules": {
@@ -31,7 +25,7 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["deep"]
+        "ignorePseudoClasses": ["deep", "v-deep", "global"]
       }
     ],
     "order/properties-order": [
