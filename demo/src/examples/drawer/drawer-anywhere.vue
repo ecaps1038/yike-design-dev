@@ -23,12 +23,12 @@ const active = ref(false)
 </script>
 <style scoped>
 #drawer-hub {
-  width: 100%;
-  height: 500px;
-  border: 1px solid rgba(var(--gray1), 0.08);
-  border-radius: 8px;
-  margin-top: 10px;
   position: relative;
   overflow: hidden;
+  margin-top: 10px;
+  width: 100%;
+  height: 500px;
+  border: 1px solid rgb(var(--gray1) 0.08);
+  border-radius: 8px;
 }
 </style>

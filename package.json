@@ -8,7 +8,7 @@
     "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
-    "stylelint": "npx stylelint --fix .",
+    "stylelint": "npx stylelint --aei .vue,.less,.css,.html . --fix",
     "lint": "eslint . && stylelint .",
     "lint:fix": "pnpm run eslint && pnpm run stylelint",
     "new": "node ./config/script/new-component.mjs",
@@ -51,7 +51,7 @@
       "prettier --write",
       "eslint --fix"
     ],
-    "*.{css,less}": [
+    "*.{css,less,vue}": [
       "prettier --write",
       "stylelint --fix"
     ]
