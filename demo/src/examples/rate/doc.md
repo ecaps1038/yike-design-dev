@@ -7,6 +7,12 @@
 :::
 
 :::snippet
+尺寸 size
+按钮分为：`s`、`m`、`l`、`xl` 四种尺寸。高度分别为：`14px`、`18px`、`22px`、`26px`。默认尺寸为 `l`。
+<RateSize/>
+:::
+
+:::snippet
 半选
 指定 allow-half 来开启半选。
 <RateHalf/>
@@ -44,17 +50,18 @@
 
 ### API
 
-| 参数                  | 描述         | 类型             | 默认值 |
-| --------------------- | ------------ | ---------------- | ------ |
-| count                 | 评分的总数   | string ｜ number | 5      |
-| model-value (v-model) | 绑定值       | string ｜ number | -      |
-| default-value         | 默认值       | string ｜ number | 0      |
-| allow-half            | 是否允许半选 | boolean          | false  |
-| allow-clear           | 是否允许清除 | boolean          | false  |
-| readonly | 是否为只读状态 | boolean | false |
-| disabled | 是否禁用 | boolean | false |
-| color | 颜色 | string | - |
-| icon | Icon 组件 | string | 'yike-wujiaoxing' |
+| 参数                  | 描述           | 类型                | 默认值            |
+| --------------------- | -------------- | ------------------- | ----------------- |
+| count                 | 评分的总数     | string ｜ number    | 5                 |
+| size                  | 尺寸           | `s`｜`m`｜`l`｜`xl` | `'l'`               |
+| model-value (v-model) | 绑定值         | string ｜ number    | -                 |
+| default-value         | 默认值         | string ｜ number    | 0                 |
+| allow-half            | 是否允许半选   | boolean             | false             |
+| allow-clear           | 是否允许清除   | boolean             | false             |
+| readonly              | 是否为只读状态 | boolean             | false             |
+| disabled              | 是否禁用       | boolean             | false             |
+| color                 | 颜色           | string              | -                 |
+| icon                  | Icon 组件      | string              | 'yike-wujiaoxing' |
 
 <!-- | grading               | 是否开启笑脸分级 | boolean          | false           | -->
 
