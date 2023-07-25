@@ -1,7 +1,7 @@
 <template>
   <yk-space direction="vertical">
     <yk-checkbox
-      :model-value="checkedAll"
+      :checked="checkedAll"
       :indeterminate="indeterminate"
       @change="handleChangeAll"
     >
