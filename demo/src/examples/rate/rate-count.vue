@@ -1,3 +1,3 @@
 <template>
-  <yk-rate count="10"></yk-rate>
+  <yk-rate count="10" />
 </template>
