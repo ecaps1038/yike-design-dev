@@ -1,3 +1,3 @@
 <template>
-  <yk-rate allow-half></yk-rate>
+  <yk-rate allow-half />
 </template>
