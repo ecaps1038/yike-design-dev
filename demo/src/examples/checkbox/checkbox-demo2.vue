@@ -6,7 +6,7 @@
     <yk-checkbox :default-checked="true">uncontrolled state</yk-checkbox>
   </yk-space>
   <div class="yk-mt">
-    <yk-button @click="change">change value2</yk-button>
+    <yk-button @click="change">change {{ checked2 }}</yk-button>
   </div>
 </template>
 <script setup lang="ts">

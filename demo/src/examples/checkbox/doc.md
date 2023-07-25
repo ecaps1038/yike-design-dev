@@ -42,6 +42,12 @@
 <CheckboxAll/>
 :::
 
+:::snippet
+间距
+通过`size`实现`<checkbox-group/>`下元素的间距。内置 4 个尺寸，分别是 `s - 4px`，`m - 8px`，`l - 16px`，`xl -24px`，默认为 `l`，为数字或枚举值时，是水平和垂直间距；为数组时，是 `[水平间距, 垂直间距]`。
+<CheckboxGroupSize/>
+:::
+
 ### API
 
 `<checkbox>` Props
@@ -51,6 +57,7 @@
 |default-checked|默认是否选中（非受控状态） | boolean |false|
 |value|选项的 value | boolean ｜ number ｜ string |-|
 |disabled|是否禁用 | boolean |false|
+|indeterminate|是否为半选状态|boolean|false|
 
 `<checkbox>` Events
 |事件名 |描述 |参数 |
@@ -70,6 +77,8 @@
 |options |选项 | Array<string ｜ number ｜ CheckboxOption> |[]|-|
 |direction |复选框的排列方向 | 'horizontal'｜'vertical' |'horizontal'|-|
 |disabled|是否禁用 | boolean |false|-|
+|max|支持最多选中的数量|number|-|-|
+|size|间距|'s' ｜ 'm' ｜ 'l' ｜ 'xl' ｜ number ｜ number[]|l|
 
 `<checkbox-group>` Events
 |事件名 |描述 |参数 |
@@ -88,3 +97,4 @@ CheckboxOption
 |label |文案 | string |-|
 |value |选项的 `value` | string ｜ boolean ｜ number |-|
 |disabled |是否禁用 | boolean |-|
+|indeterminate|是否为半选状态|boolean|false|

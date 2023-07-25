@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="[ns, ...calcCls]">
+  <component :is="tag" :class="[ns, ...calcCls]" :style="calcGapTyle">
     <template v-if="curOptions.length">
       <yk-checkbox
         v-for="c in curOptions"
@@ -20,9 +20,9 @@
 
 <script setup lang="ts">
 import { CheckboxGropProps, CheckboxOption } from './checkbox-group'
-import { provide, ref, reactive, computed, useSlots } from 'vue'
+import { provide, ref, reactive, computed, useSlots, CSSProperties } from 'vue'
 import { checkboxGroupContextKey } from './constants'
-import { isArray } from './utils'
+import { flexDirection, getMargin, isArray } from './utils'
 import { YkCheckbox } from '..'
 defineOptions({
   name: 'YkCheckboxGroup',
@@ -34,6 +34,7 @@ const props = withDefaults(defineProps<CheckboxGropProps>(), {
   tag: 'div',
   direction: 'horizontal',
   options: () => [],
+  size: 'l',
 })
 const emits = defineEmits(['update:modelValue', 'change'])
 const slots = useSlots()
@@ -71,6 +72,27 @@ const curOptions = computed<CheckboxOption[]>(() => {
 // 计算限制可勾选
 const isMax = computed(() => {
   return props.max === undefined ? false : calcVal.value.length > props.max
+})
+
+const resolveGap = computed((): CSSProperties => {
+  console.log(9999, props.size)
+
+  if (Array.isArray(props.size)) {
+    return {
+      rowGap: `${props.size[1]}px`,
+      columnGap: `${props.size[0]}px`,
+    }
+  } else {
+    return {
+      gap: `${getMargin(props.size)}px`,
+    }
+  }
+})
+const calcGapTyle = computed<CSSProperties>(() => {
+  return {
+    flexDirection: flexDirection(props.direction),
+    ...resolveGap.value,
+  }
 })
 provide(
   checkboxGroupContextKey,

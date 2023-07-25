@@ -102,11 +102,13 @@ const calcCls = computed(() => {
     [`${ns}--active`]: calcChecked.value && !props.indeterminate,
     [`${ns}--normal`]:
       !calcChecked.value && !calcDisabled.value && !props.indeterminate,
+    // 半选效果
     [`${ns}--indeterminate`]: props.indeterminate,
-    [`${ns}--indeterminate2`]: props.indeterminate,
+    [`indeterminate--checked`]: props.indeterminate,
     [`yk-disabled`]: calcDisabled.value,
     [`${ns}--common`]: !props.indeterminate,
-    [`yk-show-mark`]: calcChecked.value || props.indeterminate,
+    // shadow
+    [`yk-show-shadow`]: calcChecked.value || props.indeterminate,
   }
 })
 </script>

@@ -1,3 +1,4 @@
+import { Size } from '../../../utils/constant';
 export type CheckboxGropProps = {
   modelValue?: Array<string | number | boolean>;
   defaultValue?: Array<string | number | boolean>;
@@ -6,6 +7,7 @@ export type CheckboxGropProps = {
   tag?: string;
   direction?: 'horizontal' | 'vertical';
   options?: Array<CheckboxOption | string | number>;
+  size?: Size | number | number[];
 };
 
 export type CheckboxOption = {
