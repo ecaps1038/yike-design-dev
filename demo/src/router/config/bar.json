@@ -56,6 +56,10 @@
         {
           "name": "Switch 开关",
           "src": "switch"
+        },
+        {
+          "name": "Input 输入框",
+          "src": "input"
         }
       ]
     },
