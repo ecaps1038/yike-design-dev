@@ -1,13 +1,17 @@
 <template>
   <div
     class="yk-scrollbar"
+    :class="{
+      'yk-scrollbar--always': $props.always,
+      'yk-scrollbar--native': $props.native,
+    }"
     :style="{ height: scrollHeight }"
     @mousemove="moverScroll"
     @mouseup="mouseup"
     @mouseleave="mouseup"
   >
     <div ref="boxRef" class="box" @scroll="scrollChange()">
-      <div ref="ulRef">
+      <div ref="wrapRef" style="width: fit-content">
         <slot></slot>
       </div>
     </div>
@@ -16,28 +20,28 @@
       class="scrollx"
       :style="{ bottom: space + 'px', height: size + 'px' }"
     >
-      <div
-        class="scroll-body"
+      <thumb
+        class="thumb"
         :style="{
           width: scrollBodyWidth + 'px',
-          left: (boxScrollLeft * boxWidth) / ulWidth + 'px',
+          left: (boxScrollLeft * boxWidth) / wrapWidth + 'px',
         }"
         @mousedown="mousedownX"
-      ></div>
+      ></thumb>
     </div>
     <div
       v-show="isy && show"
       class="scrolly"
       :style="{ right: space + 'px', width: size + 'px' }"
     >
-      <div
-        class="scroll-body"
+      <thumb
+        class="thumb"
         :style="{
           height: scrollBodyHeight + 'px',
           top: (boxScrollTop * boxHeight) / ulHeight + 'px',
         }"
         @mousedown="mousedownY"
-      ></div>
+      ></thumb>
     </div>
   </div>
 </template>
@@ -46,6 +50,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { ScrollbarProps } from './scrollbar'
 import '../style'
+import thumb from './thumb.vue'
 
 defineOptions({
   name: 'YkScrollbar',
@@ -55,17 +60,18 @@ const props = withDefaults(defineProps<ScrollbarProps>(), {
   size: 5,
   space: 2,
   show: true,
+  always: false,
 })
 
 //获取dome
 const boxRef = ref()
-const ulRef = ref()
+const wrapRef = ref()
 
 //横向变量
 const scrollBodyWidth = ref(0)
 const boxScrollLeft = ref(0)
 const boxWidth = ref(0)
-const ulWidth = ref(0)
+const wrapWidth = ref(0)
 
 //当前鼠标x轴位置
 const nowscreenX = ref(0)
@@ -119,7 +125,7 @@ const moverScroll = (e: any) => {
   if (scrolling.value == 0) {
     boxRef.value.scrollLeft =
       nowrollP +
-      ((e.screenX - nowscreenX.value) * ulWidth.value) / boxWidth.value
+      ((e.screenX - nowscreenX.value) * wrapWidth.value) / boxWidth.value
     emits('scroll', boxRef.value.scrollLeft)
   } else if (scrolling.value == 1) {
     boxRef.value.scrollTop =
@@ -163,13 +169,14 @@ function onWindowResize() {
   // 创建一个新的计时器
   resizeTimer = requestAnimationFrame(() => {
     boxWidth.value = boxRef.value.clientWidth
-    ulWidth.value = ulRef.value.clientWidth
-    scrollBodyWidth.value = (boxWidth.value * boxWidth.value) / ulWidth.value
-    isx.value = ulWidth.value > boxWidth.value
+    wrapWidth.value = wrapRef.value.clientWidth
+    scrollBodyWidth.value = (boxWidth.value * boxWidth.value) / wrapWidth.value
+    isx.value = wrapWidth.value > boxWidth.value
+    //console.log(wrapWidth.value, boxWidth.value)
 
     //纵向滚动
     boxHeight.value = boxRef.value.clientHeight
-    ulHeight.value = ulRef.value.clientHeight
+    ulHeight.value = wrapRef.value.clientHeight
     scrollBodyHeight.value =
       (boxHeight.value * boxHeight.value) / ulHeight.value
     // console.log(ulHeight.value, boxHeight.value)

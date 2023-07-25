@@ -8,6 +8,8 @@
     width: 100%;
     // height: calc(100% + 18px);
     height: 100%;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .box::-webkit-scrollbar {
@@ -37,6 +39,26 @@
       opacity: 1;
     }
   }
+  .scrollx,
+  .scrolly {
+    .thumb {
+      cursor: pointer;
+    }
+  }
+}
+.yk-scrollbar--always {
+  .scrollx {
+    opacity: 1;
+  }
+  .scrolly {
+    opacity: 1;
+  }
+}
+.yk-scrollbar--native {
+  .box::-webkit-scrollbar {
+    width: auto;
+    height: auto;
+  }
 }
 
 .scrollx {
@@ -47,7 +69,7 @@
   opacity: 0;
   transition: opacity @animats;
   // background-color: rgba(#000, 0.1);
-  .scroll-body {
+  .thumb {
     position: absolute;
     top: 0;
     left: 0;
@@ -69,7 +91,7 @@
   opacity: 0;
   transition: opacity 0.3s;
   // background-color: rgba(#000, 0.1);
-  .scroll-body {
+  .thumb {
     position: absolute;
     top: 0;
     left: 0;
