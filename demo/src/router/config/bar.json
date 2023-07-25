@@ -48,6 +48,14 @@
         {
           "name": "TimePicker 时间选择器",
           "src": "time-picker"
+        },
+        {
+          "name": "Rate 评分",
+          "src": "rate"
+        },
+        {
+          "name": "Switch 开关",
+          "src": "switch"
         }
       ]
     },
@@ -86,10 +94,6 @@
         {
           "name": "popover 气泡卡片",
           "src": "popover"
-        },
-        {
-          "name": "Notification 通知提醒框",
-          "src": "notification"
         },
         {
           "name": "Drawer 抽屉",
