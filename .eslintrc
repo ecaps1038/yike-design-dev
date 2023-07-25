@@ -69,7 +69,7 @@
     {
       "files": "demo/src/examples/**/*.vue", // demo vue文件不允许空行
       "rules": {
-        "no-multiple-empty-lines": ["error", { "max": 0 }] // 设置规则
+        "no-multiple-empty-lines": ["error", { "max": 0 }], // 设置规则
       }
     }
   ]
