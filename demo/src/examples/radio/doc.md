@@ -56,7 +56,7 @@
 | -------------- | -------------- | --------------------------- | ------ |
 | value(v-model) | 选中项绑定值   | number ｜ string ｜ boolean | --     |
 | label          | 单选框的值     | number ｜ string ｜ boolean | --     |
-| disabled       | 按钮是否被禁用 | false ｜ true               | false  |
+| disabled       | 按钮是否被禁用 | boolean                     | false  |
 
 #### Radio Slots
 
@@ -72,11 +72,14 @@
 
 #### RadioGroup Attributes
 
-| 参数     | 描述                   | 类型                   | 默认值  |
-| -------- | ---------------------- | ---------------------- | ------- |
-| theme    | 按钮单选框组的主题     | 'primary'｜'secondary' | primary |
-| size     | 按钮单选框组的尺寸     | false ｜ true          | false   |
-| disabled | 按钮单选框组是否被禁用 | false ｜ true          | false   |
+| 参数           | 描述                                          | 类型                        | 默认值       |
+| -------------- | --------------------------------------------- | --------------------------- | ------------ |
+| value(v-model) | 选中项绑定值                                  | number ｜ string ｜ boolean | --           |
+| theme          | 单选框组的主题 （仅当 type 为 button 时生效） | 'primary'｜'secondary'      | 'primary'    |
+| type           | 单选框组的类型                                | 'radio'｜'button'           | 'radio'      |
+| size           | 单选框组的尺寸（仅当 type 为 button 时生效）  | 's'｜ 'm'｜ 'l'｜'xl'       | 'l'          |
+| disabled       | 单选框组是否被禁用                            | boolean                     | false        |
+| direction      | 单选框的方向                                  | 'horizontal'｜'vertical'    | 'horizontal' |
 
 #### RadioGroup Slots
 

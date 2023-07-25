@@ -2,7 +2,6 @@
 import { RouterView } from 'vue-router'
 import Bar from '@/components/Bar.vue'
 import * as barData from '../router/config/bar.json'
-
 //菜单
 </script>
 <template>

@@ -1,58 +1,56 @@
-.yk-rate {
+@sizes: {
+  s: 14px;
+  m: 18px;
+  l: 22px;
+  xl: 26px;
+};
+
+each(@sizes,{ 
+  .yk-rate-icon-@{key}{
+  font-size: @value; 
+ } 
+}) .yk-rate {
   display: inline-flex;
   column-gap: @space-s;
+}
 
-  .yk-rate-icon {
-    position: relative;
-    cursor: pointer;
-    transition: all @animatf;
+.yk-rate-item {
+  position: relative;
+  cursor: pointer;
+  transition: all @animatf;
 
-    &:hover {
-      transform: scale(1.2);
-    }
-
-    .select-half {
-      opacity: 1;
-    }
-
-    .icon {
-      font-size: 22px;
-      color: @bg-color-ss;
-    }
-
-    .select {
-      color: @wcolor;
-    }
+  &:hover {
+    transform: scale(1.2);
   }
 
-  .yk-rate-half {
-    position: absolute;
-    z-index: 10;
-    overflow: hidden;
-    width: 50%;
-    opacity: 0;
-
-    .icon {
-      color: @wcolor;
-    }
-  }
-
-  .yk-rate-icon.animation {
+  &--animation {
     animation-name: rateScale;
     animation-duration: 0.34s;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
-  @keyframes rateScale {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
+  .yk-rate-icon {
+    color: @bg-color-ss;
+  }
+
+  .yk-rate-icon--select {
+    color: @wcolor;
+  }
+}
+
+.yk-rate-half {
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  width: 50%;
+  opacity: 0;
+
+  &--select {
+    opacity: 1;
+  }
+
+  &-icon {
+    color: @wcolor;
   }
 }
 
@@ -75,5 +73,17 @@
 .yk-rate.yk-rate-disabled {
   .yk-rate-icon {
     cursor: not-allowed;
+  }
+}
+
+@keyframes rateScale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }

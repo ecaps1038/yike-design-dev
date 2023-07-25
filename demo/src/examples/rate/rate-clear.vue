@@ -1,3 +1,3 @@
 <template>
-  <yk-rate allow-clear></yk-rate>
+  <yk-rate allow-clear />
 </template>

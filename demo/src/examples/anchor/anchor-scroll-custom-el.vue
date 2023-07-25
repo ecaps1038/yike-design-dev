@@ -53,24 +53,28 @@ const offset = ref(20)
 </script>
 <style lang="less" scoped>
 .container {
-  height: 100px;
-  width: 200px;
   overflow-y: auto;
+  width: 200px;
+  height: 100px;
   scroll-behavior: smooth;
+
   section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 150px;
     background-color: #dd524c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     p {
-      font-weight: 500;
       font-size: 20px;
+      font-weight: 500;
     }
+
     &:nth-child(2) {
       height: 200px;
       background-color: #e87b35;
     }
+
     &:nth-child(3) {
       height: 300px;
       background-color: #94ca42;

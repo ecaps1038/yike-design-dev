@@ -48,8 +48,8 @@
 | overlayStyle         | 卡片样式                                                                                                                                                   | object                  | -               |
 | overlayClassName     | 卡片类名                                                                                                                                                   | string                  | -               |
 | autoAdjustOverflow   | 气泡被遮挡时自动调整位置                                                                                                                                   | boolean                 | false           |
-| closeDelay           | 延迟关闭时常。单位：毫秒                                                                                                                                   | number                  | 0               |
-| openDelay            | 延时打开时常。单位：毫秒                                                                                                                                   | number                  | 300             |
+| closeDelay           | 延迟关闭时常。单位：毫秒                                                                                                                                   | number                  | 300             |
+| openDelay            | 延时打开时常。单位：毫秒                                                                                                                                   | number                  | 0               |
 | destroyTooltipOnHide | 关闭后是否移除标签元素                                                                                                                                     | boolean                 | false           |
 | openChange           | 显示隐藏的回调                                                                                                                                             | (open: boolean) => void | -               |
 
