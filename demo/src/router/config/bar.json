@@ -35,6 +35,10 @@
         {
           "name": "Radio 单选框",
           "src": "radio"
+        },
+        {
+          "name": "Slider 滑动输入条",
+          "src": "slider"
         }
       ]
     },

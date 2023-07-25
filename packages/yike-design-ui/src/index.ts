@@ -10,6 +10,7 @@ import YkSpace from './components/space';
 import { YkContainer } from './components/container';
 import YkTable from './components/table/Table.vue';
 import YkMessage from './components/message';
+import YkSlider from './components/slider';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import './styles/index.less';
@@ -32,6 +33,7 @@ const components: {
   YkTitle,
   YkText,
   YkBackTop,
+  YkSlider,
 };
 
 export {
@@ -51,6 +53,7 @@ export {
   YkText,
   YkMessage,
   YkBackTop,
+  YkSlider,
 };
 
 // 全局注册
