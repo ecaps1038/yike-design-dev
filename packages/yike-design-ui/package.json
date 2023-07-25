@@ -34,7 +34,6 @@
   "dependencies": {
     "@vueuse/core": "^10.2.1",
     "@yike/build": "workspace:*",
-    "@yike/utils": "workspace:*",
     "@yike/directives": "workspace:*"
   },
   "devDependencies": {

@@ -3,6 +3,6 @@
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
-    "@yike/utils": "workspace:*"
+    "@vueuse/core": "^10.2.1"
   }
 }

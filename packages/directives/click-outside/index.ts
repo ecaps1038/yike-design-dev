@@ -13,7 +13,7 @@ import type {
   DirectiveBinding,
   ObjectDirective,
 } from 'vue';
-import { isClient } from '@yike/utils';
+import { isClient } from '@vueuse/core';
 
 type DocumentHandler = <T extends MouseEvent>(mouseup: T, mousedown: T) => void;
 type FlushList = Map<
