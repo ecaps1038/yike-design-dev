@@ -20,7 +20,7 @@
   <div class="item">
     <yk-input placeholder="请输入口令...">
       <template #suffix>
-        <yk-button>提交</yk-button>
+        <yk-icon name="yk-suo" />
       </template>
     </yk-input>
   </div>

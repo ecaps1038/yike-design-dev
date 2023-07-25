@@ -5,8 +5,10 @@
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
   >
-    <div class="yk-input-inner" :class="YkInputWidgetClass">
-      <div class="yk-input-deco"><slot name="prefix" /></div>
+    <div class="yk-input-inner" :class="YkInputInnerClass">
+      <div v-if="$slots.prefix" class="yk-input-slot">
+        <slot name="prefix" />
+      </div>
       <input
         :id="id"
         ref="inputRef"
@@ -45,17 +47,17 @@
       </button>
       <div v-if="showCounter" class="yk-input-counter">
         <span>{{ valueCounter }}&nbsp;</span>
-        <span v-if="shouldShowLimit">/ {{ limit }}</span>
+        <span v-if="shouldShowLimit">/&nbsp;{{ limit }}</span>
       </div>
-      <div class="yk-input-deco"><slot name="suffix" /></div>
+      <div v-if="loading" class="yk-input-spinner">
+        <svg id="spinner" viewBox="25 25 50 50">
+          <circle r="20" cy="50" cx="50"></circle>
+        </svg>
+      </div>
+      <div class="yk-input-slot"><slot name="suffix" /></div>
     </div>
-    <div v-if="loading" class="yk-input-spinner">
-      <svg id="spinner" viewBox="25 25 50 50">
-        <circle r="20" cy="50" cx="50"></circle>
-      </svg>
-    </div>
+    <slot name="append" />
   </div>
-  <slot name="append" />
 </template>
 <script setup lang="ts">
 import { InputProps } from './input'
@@ -109,7 +111,7 @@ const update = () => {
   ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
   valueCounter.value = lastValue.length
-  emits('update:value', realValue)
+  emits('update:value', lastValue)
 }
 const blur = () => {
   isFocus.value = false
@@ -140,11 +142,20 @@ const switchType = () => {
 }
 const YkInputClass = computed(() => {
   return {
-    'yk-input--disabled': props.disabled,
     'yk-input--loading': props.loading,
-    [`yk-input--${props.status}-focus`]: isFocus.value,
+    'yk-input-bg--disabled': props.disabled,
     [`yk-input--${props.size}`]: true,
-    [`yk-input--${props.status}`]: true,
+    [`yk-input-bg--${props.status}`]: true,
+    [`yk-input-bg--${props.status}-focus`]: isFocus.value,
+  }
+})
+const YkInputInnerClass = computed(() => {
+  return {
+    'yk-input-bd--disabled': props.disabled,
+    [`yk-input--${props.size}`]: true,
+    [`yk-input-size--${props.size}`]: true,
+    [`yk-input-bd--${props.status}`]: !props.disabled,
+    [`yk-input-bd--${props.status}-focus`]: isFocus.value,
   }
 })
 const YkInputWidgetClass = computed(() => {

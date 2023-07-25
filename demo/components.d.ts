@@ -19,7 +19,6 @@ declare module 'vue' {
     TopBar: typeof import('./src/components/TopBar.vue')['default']
     Yikedesign: typeof import('./src/components/design/yikedesign.vue')['default']
     Yikedev: typeof import('./src/components/develops/yikedev.vue')['default']
-    YkAnchor: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAnchor']
     YkAvatar: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAvatar']
     YkAvatarGroup: typeof import('./../packages/yike-design-ui/src/index.ts')['YkAvatarGroup']
     YkBackTop: typeof import('./../packages/yike-design-ui/src/index.ts')['YkBackTop']
@@ -29,13 +28,9 @@ declare module 'vue' {
     YkEmpty: typeof import('./../packages/yike-design-ui/src/index.ts')['YkEmpty']
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
     YkInput: typeof import('./../packages/yike-design-ui/src/index.ts')['YkInput']
-    'YkInputplaceholder="请输入..."': typeof import('./../packages/yike-design-ui/src/index.ts')['YkInputplaceholder="请输入..."']
-    YkParagraph: typeof import('./../packages/yike-design-ui/src/index.ts')['YkParagraph']
-    YkPopover: typeof import('./../packages/yike-design-ui/src/index.ts')['YkPopover']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTitle']
-    YkTooltip: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTooltip']
   }
 }

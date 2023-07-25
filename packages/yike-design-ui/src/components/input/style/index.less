@@ -26,7 +26,7 @@
   align-items: center;
 }
 
-.yk-input-deco {
+.yk-input-slot {
   display: flex;
   align-items: center;
   margin: 3px;
@@ -46,6 +46,7 @@
   display: flex;
   flex-grow: 1;
   width: 270px;
+  transition: all @animatb ease-in-out;
 
   .yk-input-widget {
     border: none;
@@ -61,27 +62,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 27px;
+  width: 30px;
   border: none;
-  background: none;
+  background: transparent;
   // 为了能在输入框非激活被聚焦，调整透明度而不是 display: none
   opacity: 0;
-  cursor: pointer;
+  cursor: text;
 
   &:focus-within {
     // 功能按钮被聚焦，取消隐藏
     opacity: 1;
   }
-}
 
-.yk-input-button-show {
-  opacity: 1;
+  &-show {
+    opacity: 1;
+    cursor: pointer;
+  }
 }
 
 .yk-input-button svg {
   padding: 3px;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   fill: @gray;
 
@@ -116,22 +118,33 @@
 }
 
 .input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
-  .normal() {
+  .bg() {
     background-color: @bgcolor;
-    outline: 1px solid @bcolor;
 
     &:hover {
       background-color: @hvbgcolor;
-      outline: 1px solid @hvbcolor;
     }
 
     &-focus {
       background-color: @fsbgcolor;
+    }
+  }
+  .bd() {
+    outline: 1px solid @bcolor;
+
+    &:hover {
+      outline: 1px solid @hvbcolor;
+    }
+
+    &-focus {
       outline: 1px solid @fsbcolor;
     }
   }
-  &.yk-input--@{status} {
-    .normal();
+  &.yk-input-bg--@{status} {
+    .bg();
+  }
+  &.yk-input-bd--@{status} {
+    .bd();
   }
 }
 
