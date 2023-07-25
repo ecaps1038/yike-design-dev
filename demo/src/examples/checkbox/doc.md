@@ -7,12 +7,6 @@
 :::
 
 :::snippet
-受控
-通过 `v-model` `(model-value)` 属性控制是否选中
-<CheckboxDemo2/>
-:::
-
-:::snippet
 禁用状态
 禁用复选框
 <CheckboxDisabled/>
@@ -53,9 +47,9 @@
 `<checkbox>` Props
 |参数名 |描述 |类型 |默认值 |
 |---------------------|----------|------------|-------|
-|model-value (v-model) |绑定值 | boolean ｜ string ｜ number |-|
+|checked (v-model) |绑定值 | boolean |-|
 |default-checked|默认是否选中（非受控状态） | boolean |false|
-|value|选项的 value | boolean ｜ number ｜ string |-|
+|value|选项的 value，当为选项组时为被选中的值 | boolean ｜ number ｜ string |-|
 |disabled|是否禁用 | boolean |false|
 |indeterminate|是否为半选状态|boolean|false|
 

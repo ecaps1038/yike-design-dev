@@ -1,5 +1,5 @@
 import { CSSProperties } from 'vue';
-import { CheckboxGropProps } from './checkbox-group';
+import { CheckboxGroupProps } from './checkbox-group';
 
 export const toBoolean = (v: number | string | boolean) => {
   if (typeof v === 'boolean') return v;
@@ -13,7 +13,7 @@ export const isUndefined = (v: any) => {
   return typeof v === 'undefined';
 };
 
-export const getMargin = (size: CheckboxGropProps['size']) => {
+export const getMargin = (size: CheckboxGroupProps['size']) => {
   if (typeof size === 'number') {
     return size;
   }
@@ -33,7 +33,7 @@ export const getMargin = (size: CheckboxGropProps['size']) => {
 
 //排列方式
 export const flexDirection = (
-  dir: CheckboxGropProps['direction'],
+  dir: CheckboxGroupProps['direction'],
 ): CSSProperties['flexDirection'] => {
   if (dir == 'vertical') {
     return 'column';

@@ -29,22 +29,24 @@ defineOptions({
 })
 const ns = 'yk-checkbox'
 const props = withDefaults(defineProps<CheckboxProps>(), {
-  modelValue: undefined,
   defaultChecked: false,
   disabled: false,
-  value: undefined,
+  checked: undefined,
 })
-const emits = defineEmits(['change', 'update:modelValue'])
+const emits = defineEmits<{
+  change: [boolean]
+  'update:checked': [boolean]
+}>()
 
 const checkboxRef = ref<HTMLInputElement>()
 
 const checkboxGroupCtx = inject(checkboxGroupContextKey, undefined)
 const isGroup = computed(() => !!checkboxGroupCtx)
-const ischecked = ref(props.defaultChecked)
+const isChecked = ref(props.defaultChecked)
 
 // 值计算
 const calcVal = computed(() => {
-  const curVal = props.modelValue ?? ischecked.value
+  const curVal = props.checked ?? isChecked.value
   return isGroup.value ? checkboxGroupCtx?.calcVal : curVal
 })
 //选中计算
@@ -60,12 +62,12 @@ const calcDisabled = computed(() => {
   return (
     checkboxGroupCtx?.disabled ||
     props.disabled ||
-    (!calcChecked.value && checkboxGroupCtx?.isMax)
+    (!isChecked.value && checkboxGroupCtx?.isMax)
   )
 })
 const handleChange = (e: Event) => {
   const { checked } = e.target as HTMLInputElement
-  ischecked.value = checked
+  isChecked.value = checked
 
   let newVal
   if (isGroup.value && isArray(calcVal.value)) {
@@ -79,16 +81,16 @@ const handleChange = (e: Event) => {
 
     checkboxGroupCtx?.handleChange(newVal)
   } else {
-    emits('update:modelValue', checked)
+    emits('update:checked', checked)
     emits('change', checked)
   }
   // todo:form trigger
 }
 watch(
-  () => props.modelValue,
+  () => props.checked,
   (n) => {
-    ischecked.value = isUndefined(n) ? false : toBoolean(n!)
-    checkboxRef.value && (checkboxRef.value.checked = ischecked.value)
+    isChecked.value = isUndefined(n) ? false : toBoolean(n!)
+    checkboxRef.value && (checkboxRef.value.checked = isChecked.value)
   },
 )
 

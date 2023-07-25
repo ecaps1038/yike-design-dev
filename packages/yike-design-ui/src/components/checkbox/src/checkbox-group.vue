@@ -1,9 +1,10 @@
 <template>
-  <component :is="tag" :class="[ns, ...calcCls]" :style="calcGapTyle">
+  <component :is="tag" :class="[ns, ...calcCls]" :style="calcGapStyle">
     <template v-if="curOptions.length">
       <yk-checkbox
         v-for="c in curOptions"
         :key="c.value"
+        :checked="curVal.includes(c.value)"
         :value="c.value"
         :disabled="c.disabled"
         :indeterminate="c.indeterminate"
@@ -19,16 +20,21 @@
 </template>
 
 <script setup lang="ts">
-import { CheckboxGropProps, CheckboxOption } from './checkbox-group'
+import type {
+  CheckboxGroupProps,
+  CheckboxOption,
+  CheckboxGroupValue,
+} from './checkbox-group'
 import { provide, ref, reactive, computed, useSlots, CSSProperties } from 'vue'
 import { checkboxGroupContextKey } from './constants'
 import { flexDirection, getMargin, isArray } from './utils'
 import { YkCheckbox } from '..'
+
 defineOptions({
   name: 'YkCheckboxGroup',
 })
 
-const props = withDefaults(defineProps<CheckboxGropProps>(), {
+const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   defaultValue: () => [],
   disabled: undefined,
   tag: 'div',
@@ -36,7 +42,12 @@ const props = withDefaults(defineProps<CheckboxGropProps>(), {
   options: () => [],
   size: 'l',
 })
-const emits = defineEmits(['update:modelValue', 'change'])
+
+const emits = defineEmits<{
+  change: [CheckboxGroupValue[]]
+  'update:modelValue': [CheckboxGroupValue[]]
+}>()
+
 const slots = useSlots()
 const ns = 'yk-checkbox-group'
 
@@ -75,8 +86,6 @@ const isMax = computed(() => {
 })
 
 const resolveGap = computed((): CSSProperties => {
-  console.log(9999, props.size)
-
   if (Array.isArray(props.size)) {
     return {
       rowGap: `${props.size[1]}px`,
@@ -88,7 +97,7 @@ const resolveGap = computed((): CSSProperties => {
     }
   }
 })
-const calcGapTyle = computed<CSSProperties>(() => {
+const calcGapStyle = computed<CSSProperties>(() => {
   return {
     flexDirection: flexDirection(props.direction),
     ...resolveGap.value,
