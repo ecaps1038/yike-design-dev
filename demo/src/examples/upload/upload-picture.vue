@@ -4,7 +4,6 @@
       :upload-url="uploadUrl"
       :file-list="fileUrl"
       accept="image/*"
-      desc="上传内容要求"
     ></yk-upload>
   </div>
 </template>

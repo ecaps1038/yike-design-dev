@@ -23,19 +23,10 @@
     height: 100%;
     background-color: #000;
     opacity: 0;
-    visibility: hidden;
     transition: opacity 0.3s ease;
     flex-direction: row;
-    &--success {
-      opacity: 0.4;
-    }
     &--error {
       opacity: 0.2;
-      visibility: visible;
-    }
-    &--uploading {
-      opacity: 0.4;
-      visibility: visible;
     }
   }
   .upload-icon {
@@ -57,6 +48,7 @@
     }
   }
   .fail-icon {
+    color: #fff;
     svg {
       font-size: 22px;
     }
@@ -87,7 +79,6 @@
 .yk-upload-picture:hover {
   .yk-upload-picture__overlay-hover {
     opacity: 0.4;
-    visibility: visible;
   }
   .yk-upload-picture__overlay-hover--error {
     opacity: 0.4;

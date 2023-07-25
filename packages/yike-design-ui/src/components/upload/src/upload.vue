@@ -4,6 +4,7 @@
       ref="inputRef"
       style="display: none"
       :accept="accept"
+      :multiple="multiple"
       type="file"
       @change="handleInputChange"
       @click.stop
@@ -61,15 +62,24 @@
           @handle-edit="handleEdit"
         ></upload-picture-item>
       </span>
-      <span
-        v-if="!(avatar && currentLength)"
-        :disabled="uploadDisabled"
+      <div
+        v-if="!(avatar && currentLength) && !uploadDisabled"
         :class="[
           bem('picture-button', { disabled: uploadDisabled }),
           bem([shape]),
         ]"
         @click="handleUpload"
-      ></span>
+      >
+        <div class="picture-desc">
+          <yk-icon
+            :class="bem('picture-button-icon')"
+            name="yk-jiahao"
+          ></yk-icon>
+          <span v-if="desc" :class="bem('picture-button-desc')">
+            {{ desc }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -157,7 +167,7 @@ const onUploadRequest = async (uploadFile: File) => {
 }
 
 const handleSuccess = (uid: number, res: string) => {
-  proxy.$message.success('文件上传成功')
+  proxy.$message.success('上传成功')
   const idx = findFileByUid(uid, currentList.value)
   currentList.value[idx].status = 'success'
   emits('handleSuccess', res, currentList.value)
@@ -182,21 +192,29 @@ const handleUpload = async () => {
 }
 
 const handleBeforeUpload = (uploadFile: File) => {
+  emits('handleBeforeUpload', uploadFile)
   if (props.maxSize && uploadFile.size > props.maxSize) {
-    proxy.$message.error('文件超出限制大小，请压缩后上传')
+    proxy.$message.error('超出限制大小，请压缩后上传')
     return false
   }
-  emits('handleBeforeUpload', uploadFile)
+  if (props.limit && props.limit <= currentLength.value) {
+    proxy.$message.error('数量超出限制')
+    return false
+  }
   return true
 }
 
 const handleInputChange = (event) => {
-  const uploadFile = event.target.files[0]
-  event.target.value = ''
-  const validate = handleBeforeUpload(uploadFile)
-  if (uploadFile && validate) {
-    onUploadRequest(uploadFile)
+  if (props.avatar) {
+    currentList.value = []
   }
+  const uploadFiles = Array.from(event.target.files) as File[]
+  uploadFiles.forEach((upload: File) => {
+    const validate = handleBeforeUpload(upload)
+    if (upload && validate) {
+      onUploadRequest(upload)
+    }
+  })
 }
 
 const handleAbort = (uid: number) => {
@@ -212,7 +230,7 @@ const handleAbort = (uid: number) => {
 const handleRemove = (uid: number) => {
   currentList.value.splice(findFileByUid(uid, currentList.value), 1)
   emits('handleDelete', currentList.value)
-  proxy.$message.success(`文件已删除`)
+  proxy.$message.success(`已删除`)
 }
 
 const handleReUpload = (uid: number) => {
@@ -224,7 +242,7 @@ const handleReUpload = (uid: number) => {
 
 const handleEdit = (uid: number) => {
   const idx = findFileByUid(uid, currentList.value)
-  currentList.value.splice(idx, 1)
+  // ToDo use idx filter file to edit
   handleUpload()
 }
 
