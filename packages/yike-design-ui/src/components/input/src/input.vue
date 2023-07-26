@@ -126,7 +126,6 @@ const update = () => {
   }
   ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
-  valueCounter.value = lastValue.length
   emits('update:value', lastValue)
   emits('change', lastValue)
 }
