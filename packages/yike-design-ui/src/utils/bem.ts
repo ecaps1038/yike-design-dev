@@ -18,16 +18,21 @@ type BEMModifier =
 const createModifier = (prefixClass: string, modifierObject?: BEMModifier) => {
   let modifiers: string[] = [];
   if (isArray(modifierObject)) {
-    modifiers = modifierObject.map((modifier) => {
-      return `${prefixClass}--${modifier}`;
-    });
+    modifiers = modifierObject
+      .map((modifier) => {
+        if (!modifier) return '';
+        return `${prefixClass}--${modifier}`;
+      })
+      .filter(Boolean);
   } else if (isObject(modifierObject)) {
-    modifiers = Object.entries(modifierObject).map(([modifier, value]) => {
-      if (!value) return '';
-      return `${prefixClass}--${modifier}`;
-    });
+    modifiers = Object.entries(modifierObject)
+      .map(([modifier, value]) => {
+        if (!value) return '';
+        return `${prefixClass}--${modifier}`;
+      })
+      .filter(Boolean);
   }
-  return [prefixClass, ...modifiers].join(' ');
+  return [...modifiers].join(' ');
 };
 
 /**
