@@ -20,5 +20,4 @@ const props = withDefaults(defineProps<BreadcrumbProps>(), {
 const slots = useSlots()
 
 provide(breadcrumbName, { props, slots })
-// provide('breadcrumbKey', useSlots()?.separator)
 </script>
