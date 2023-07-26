@@ -107,18 +107,15 @@ const datas = [
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
+  --gray: palette(@gray); //中性色
 
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  //----背景色----
+  --bgColor1: @bg-light-color-1;
+  --bgColor2: @bg-light-color-2;
+  --bgColor3: @bg-light-color-3;
+  --bgColor4: @bg-light-color-4;
+  --bgColor5: @bg-light-color-1;
+  --bgColor6: @bg-dark-color-1;
 }
 
 // 亮色主题
@@ -129,18 +126,15 @@ const datas = [
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
+  --gray: palette(@gray); //中性色
 
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  //----背景色----
+  --bgColor1: @bg-light-color-1;
+  --bgColor2: @bg-light-color-2;
+  --bgColor3: @bg-light-color-3;
+  --bgColor4: @bg-light-color-4;
+  --bgColor5: @bg-light-color-1;
+  --bgColor6: @bg-dark-color-1;
 }
 // 暗色主题
 [data-theme='dark'] {
@@ -150,18 +144,15 @@ const datas = [
   --scolor: palette(@scolor-dark); // 成功色
   --wcolor: palette(@wcolor-dark); // 警告色
   --ecolor: palette(@ecolor-dark); // 错误色
+  --gray: palette(#fff); //中性色
 
-  //----中性色----
-  --gray1: palette(@gray10);
-  --gray2: palette(@gray9);
-  --gray3: palette(@gray8);
-  --gray4: palette(@gray7);
-  --gray7: palette(@gray4);
-  --gray8: palette(@gray3);
-  --gray9: palette(@gray2);
-  --gray10: palette(@gray1);
-  --gray5: palette(@gray3);
-  --gray6: palette(@gray2);
+  //----背景色----
+  --bgColor1: @bg-dark-color-1;
+  --bgColor2: @bg-dark-color-2;
+  --bgColor3: @bg-dark-color-3;
+  --bgColor4: @bg-dark-color-4;
+  --bgColor5: @bg-dark-color-2;
+  --bgColor6: @bg-dark-color-3;
 }
 `,
 ]
@@ -201,36 +192,36 @@ const datas = [
     }
 
     .d1 {
-      border: 1px solid @gray7;
-      background-color: @gray10;
+      border: 1px solid @gray-7;
+      background-color: @gray-10;
     }
 
     .d2 {
-      background-color: @gray9;
+      background-color: @gray-9;
     }
 
     .d3 {
-      background-color: @gray8;
+      background-color: @gray-8;
     }
 
     .d4 {
-      background-color: @gray7;
+      background-color: @gray-7;
     }
 
     .d5 {
-      background-color: rgb(@gray1 0.24);
+      background-color: rgb(@gray-1 0.24);
     }
 
     .d6 {
-      background-color: rgb(@gray1 0.32);
+      background-color: rgb(@gray-1 0.32);
     }
 
     .d7 {
-      background-color: rgb(@gray1 0.56);
+      background-color: rgb(@gray-1 0.56);
     }
 
     .d8 {
-      background-color: rgb(@gray1 0.8);
+      background-color: rgb(@gray-1 0.8);
     }
   }
 
@@ -258,35 +249,35 @@ const datas = [
     }
 
     .d1 {
-      background-color: @gray1;
+      background-color: @gray-1;
     }
 
     .d2 {
-      background-color: @gray2;
+      background-color: @gray-2;
     }
 
     .d3 {
-      background-color: @gray3;
+      background-color: @gray-3;
     }
 
     .d4 {
-      background-color: @gray4;
+      background-color: @gray-4;
     }
 
     .d5 {
-      background-color: rgb(@gray10 0.24);
+      background-color: rgb(@gray-10 0.24);
     }
 
     .d6 {
-      background-color: rgb(@gray10 0.32);
+      background-color: rgb(@gray-10 0.32);
     }
 
     .d7 {
-      background-color: rgb(@gray10 0.56);
+      background-color: rgb(@gray-10 0.56);
     }
 
     .d8 {
-      background-color: rgb(@gray10 0.8);
+      background-color: rgb(@gray-10 0.8);
     }
   }
 
