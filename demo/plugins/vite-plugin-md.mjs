@@ -60,10 +60,9 @@ export default () => ({
           '$1-$2',
         ) // ButtonPrimary -> button-primary
 
-        const demoCode = fetchDemoCode(demoComponentName, id).replace(
-          /{{/g,
-          '{ {',
-        ) // fix {{}} in <pre> render
+        const demoCode = fetchDemoCode(demoComponentName, id)
+          .replace(/{{/g, '{ {')
+          .replace(/ /g, '\u2008') // fix {{}} in <pre> render
         const html = hljs.highlightAuto(demoCode).value
 
         const importLine = `import ${demoTagName} from './${demoComponentName}.vue';\n`
