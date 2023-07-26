@@ -12,7 +12,7 @@
 import { NotificationGroupProps } from './notification'
 import Notification from './notification.vue'
 
-const props = withDefaults(defineProps<NotificationGroupProps>(), {
+withDefaults(defineProps<NotificationGroupProps>(), {
   notifications: () => [],
 })
 
