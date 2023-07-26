@@ -1,0 +1,120 @@
+//混合出背景色
+
+//默认
+:root {
+  --meta: #939dc9;
+  --pink: #d9435e;
+  --orange: #fd7e3b;
+  --yellow: #ebb015;
+  --blue: #1a8ed3;
+  --blueGreen: #2cc9b1;
+  --green: #64b90c;
+  --bluePurple: #3c6cd3;
+  --purple: #6f39d2;
+  --deepBlue: #3b4571;
+}
+
+// 亮色主题
+[data-theme='light'] {
+  --meta: #939dc9;
+  --pink: #d9435e;
+  --orange: #fd7e3b;
+  --yellow: #ebb015;
+  --blue: #1a8ed3;
+  --blueGreen: #2cc9b1;
+  --green: #64b90c;
+  --bluePurple: #3c6cd3;
+  --purple: #6f39d2;
+  --deepBlue: #3b4571;
+}
+// 暗色主题
+[data-theme='dark'] {
+  --meta: #565f89;
+  --pink: #f7768e;
+  --orange: #ff9e64;
+  --yellow: #fee772;
+  --blue: #7dcfff;
+  --blueGreen: #73daca;
+  --green: #9ece6a;
+  --bluePurple: #7aa2f7;
+  --purple: #bb9af7;
+  --deepBlue: #c0caf5;
+}
+pre {
+  margin: @space-m 0;
+  padding: @space-l @space-xl;
+  background-color: @bg-color-m;
+}
+
+pre code {
+  color: @font-color-l;
+  .hljs-comment,
+  .hljs-meta,
+  .hljs-tag {
+    color: var(--meta);
+  }
+  .hljs-deletion,
+  .hljs-doctag,
+  .hljs-regexp,
+  .hljs-selector-attr,
+  .hljs-selector-class,
+  .hljs-selector-id,
+  .hljs-selector-pseudo,
+  .hljs-template-tag,
+  .hljs-variable.language_ {
+    color: var(--pink);
+  }
+  .hljs-link,
+  .hljs-literal,
+  .hljs-number,
+  .hljs-params,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-variable {
+    color: var(--orange);
+  }
+  .hljs-attribute,
+  .hljs-built_in {
+    color: var(--yellow);
+  }
+  .hljs-keyword,
+  .hljs-property,
+  .hljs-subst,
+  .hljs-title,
+  .hljs-title.class_,
+  .hljs-title.class_.inherited__,
+  .hljs-title.function_ {
+    color: var(--blue);
+  }
+  .hljs-selector-tag {
+    color: var(--blueGreen);
+  }
+  .hljs-addition,
+  .hljs-bullet,
+  .hljs-quote,
+  .hljs-string,
+  .hljs-symbol {
+    color: var(--green);
+  }
+  .hljs-code,
+  .hljs-formula,
+  .hljs-section,
+  .hljs-attr {
+    color: var(--purple);
+  }
+  .hljs-char.escape_,
+  .hljs-keyword,
+  .hljs-name,
+  .hljs-operator {
+    color: var(--bluePurple);
+  }
+  .hljs-punctuation {
+    color: var(--deepBlue);
+  }
+  .hljs-emphasis {
+    font-style: italic;
+  }
+  .hljs-strong {
+    font-weight: 700;
+  }
+}
