@@ -7,13 +7,14 @@
       :class="[
         bem('inner'),
         bem({
-          [`${status}--focus`]: isFocus,
+          [`${status}`]: !disabled,
+          [`${status}--focus`]: isFocus && !disabled,
           loading: loading,
           disabled: disabled,
           rightbr0: !!$slots.append,
           leftbr0: !!$slots.prepend,
         }),
-        bem([status, size]),
+        bem([size]),
       ]"
       @mouseenter="mouseenter"
       @mouseleave="mouseleave"
