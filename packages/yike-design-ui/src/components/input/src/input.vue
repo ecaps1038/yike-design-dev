@@ -124,8 +124,9 @@ const update = () => {
     lastValue = lastValue.slice(0, props.limit)
     inputRef.value!.value = lastValue
   }
-  ;(realValue as any) = lastValue
+  ;(realValue as any) = lastValue // 别删
   shouldShowButton.value = lastValue.length > 0 ? true : false
+  valueCounter.value = lastValue.length
   emits('update:value', lastValue)
   emits('change', lastValue)
 }
