@@ -1,5 +1,8 @@
 <template>
   <div :class="bem()">
+    <div v-if="$slots.prepend" :class="bem('prepend')">
+      <slot name="prepend" />
+    </div>
     <div
       :class="[
         bem('inner'),
@@ -7,6 +10,8 @@
           [`${status}--focus`]: isFocus,
           loading: loading,
           disabled: disabled,
+          rightbr0: !!$slots.append,
+          leftbr0: !!$slots.prepend,
         }),
         bem([status, size]),
       ]"
@@ -34,7 +39,7 @@
         @compositionend="compositionend"
         @keydown.enter="submit"
       />
-      <div :class="bem('buttons', { test1: props.status })">
+      <div :class="bem('buttons')">
         <button
           v-if="shouldShowVisiblePasswordButton"
           aria-label="查看/隐藏密码"
