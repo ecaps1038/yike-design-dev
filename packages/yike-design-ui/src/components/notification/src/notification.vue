@@ -70,7 +70,6 @@ const Style = computed(() => ({
   top: `${props.offsetY}px`,
   right: `${props.offsetX}px`,
   zIndex: props.zIndex,
-  marginTop: `0px`,
 }))
 const iconStatusMap = {
   primary: 'yike-tixing',
