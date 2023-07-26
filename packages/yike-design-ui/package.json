@@ -29,7 +29,9 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint . --fix",
-    "gen:icon": "yike-build icongen"
+    "gen:icon": "yike-build icongen",
+    "test": "vitest --watch=false",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",

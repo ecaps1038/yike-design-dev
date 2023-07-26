@@ -1,10 +1,11 @@
 /// <reference types="vitest" />
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import Jsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), Jsx()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -16,8 +17,7 @@ export default defineConfig({
       less: {
         charset: false,
         // additionalData: '@import "./src/assets/base.less";',
-        additionalData:
-          '@import "./src/yike-design/assets/style/yk-index.less";',
+        // additionalData: '@import "./src/yike-design/assets/style/yk-index.less";',
       },
     },
   },
@@ -38,4 +38,4 @@ export default defineConfig({
     // (requires installing happy-dom as a peer dependency)
     environment: 'happy-dom',
   },
-})
+});
