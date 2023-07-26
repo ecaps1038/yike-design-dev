@@ -1,6 +1,7 @@
 <template>
   <button
     :class="[
+      bem(),
       bem([type, status, shape, size]),
       bem({ loading: loading, long: long, disabled: disabled }),
     ]"

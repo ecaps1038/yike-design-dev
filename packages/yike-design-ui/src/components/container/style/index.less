@@ -1,84 +1,74 @@
-.yk-content {
+.yk-scroll-content {
   position: relative;
   overflow: hidden;
+
   .box {
     overflow: auto;
     width: 100%;
-    // height: calc(100% + 18px);
     height: 100%;
-  }
 
-  .box::-webkit-scrollbar {
-    /*滚动条整体样式*/
-    width: 0px;
-    /*高宽分别对应横竖滚动条的尺寸*/
-    height: 0px;
-  }
+    &::-webkit-scrollbar {
+      /*滚动条整体样式*/
+      width: 0px;
+      /*高宽分别对应横竖滚动条的尺寸*/
+      height: 0px;
+    }
 
-  .box::-webkit-scrollbar-thumb {
-    /*滚动条里面小方块*/
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.1);
-  }
+    &::-webkit-scrollbar-thumb {
+      /*滚动条里面小方块*/
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.1);
+    }
 
-  .box::-webkit-scrollbar-track {
-    /*滚动条里面轨道*/
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0);
+    &::-webkit-scrollbar-track {
+      /*滚动条里面轨道*/
+      border-radius: 4px;
+      background: transparent;
+    }
   }
 
   &:hover {
-    .scrollx {
-      opacity: 1;
-    }
+    .scrollx,
     .scrolly {
       opacity: 1;
     }
   }
 }
 
-.scrollx {
+.scroll-bar {
   position: absolute;
-  left: 0;
-  width: 100%;
   border-radius: 12px;
-  opacity: 0;
+  background-color: @line-color-s;
+  opacity: 1;
   transition: opacity @animats;
-  // background-color: rgba(#000, 0.1);
-  .scroll-body {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100%;
-    border-radius: 12px;
-    background-color: @line-color-s;
-    transition: background-color @animats;
-    &:hover {
-      background-color: @line-color-m;
-    }
-  }
-}
-.scrolly {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  // background-color: rgba(#000, 0.1);
+
   .scroll-body {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px;
+    height: 100%;
     border-radius: 12px;
-    background-color: @line-color-s;
     transition: background-color @animats;
 
     &:hover {
       background-color: @line-color-m;
     }
+  }
+}
+
+.scrollx {
+  left: 0;
+  width: 100%;
+  .scroll-body {
+    width: 100px;
+  }
+}
+
+.scrolly {
+  top: 0;
+  height: 100%;
+  .scroll-body {
+    height: 100px;
   }
 }
