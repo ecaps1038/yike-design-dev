@@ -1,108 +1,89 @@
 .yk-scrollbar {
   position: relative;
   overflow: hidden;
-  padding: @space-s @space-m;
+  padding: @space-s;
   height: 100%;
-  .box {
+
+  &__container {
     overflow: auto;
     width: 100%;
-    // height: calc(100% + 18px);
     height: 100%;
     -webkit-user-select: none;
     user-select: none;
-  }
 
-  .box::-webkit-scrollbar {
-    /*滚动条整体样式*/
-    width: 0px;
-    /*高宽分别对应横竖滚动条的尺寸*/
-    height: 0px;
-  }
-
-  .box::-webkit-scrollbar-thumb {
-    /*滚动条里面小方块*/
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  .box::-webkit-scrollbar-track {
-    /*滚动条里面轨道*/
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0);
+    &::-webkit-scrollbar {
+      /*滚动条整体样式*/
+      width: 0px;
+      /*高宽分别对应横竖滚动条的尺寸*/
+      height: 0px;
+    }
   }
 
   &:hover {
-    .scrollx {
+    .yk-scrollbar__x .thumb,
+    .yk-scrollbar__y .thumb {
       opacity: 1;
     }
-    .scrolly {
-      opacity: 1;
-    }
   }
-  .scrollx,
-  .scrolly {
-    .thumb {
-      cursor: pointer;
-    }
-  }
-}
-.yk-scrollbar--always {
-  .scrollx {
-    opacity: 1;
-  }
-  .scrolly {
-    opacity: 1;
-  }
-}
-.yk-scrollbar--native {
-  .box::-webkit-scrollbar {
-    width: auto;
-    height: auto;
-  }
-}
 
-.scrollx {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity @animats;
-  // background-color: rgba(#000, 0.1);
-  .thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100%;
-    border-radius: 12px;
-    background-color: @line-color-s;
-    transition: background-color @animats;
-    &:hover {
-      background-color: @line-color-m;
+  &--always {
+    .yk-scrollbar__x .thumb,
+    .yk-scrollbar__y .thumb {
+      opacity: 1;
     }
   }
-}
-.scrolly {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  // background-color: rgba(#000, 0.1);
-  .thumb {
+
+  &--native {
+    padding: 0;
+
+    .yk-scrollbar__container::-webkit-scrollbar {
+      width: initial;
+      height: initial;
+    }
+  }
+
+  &__x,
+  &__y {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100px;
     border-radius: 12px;
-    background-color: @line-color-s;
-    transition: background-color @animats;
 
-    &:hover {
-      background-color: @line-color-m;
+    .thumb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 12px;
+      background-color: @line-color-s;
+      opacity: 0;
+      transition: background-color @animats;
+      transition: opacity @animats;
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        background-color: @line-color-m;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__x {
+    left: 0;
+    height: 100%;
+
+    .thumb {
+      width: 100px;
+      height: 100%;
+    }
+  }
+
+  &__y {
+    top: 0;
+    height: 100%;
+
+    .thumb {
+      width: 100%;
+      height: 100px;
     }
   }
 }

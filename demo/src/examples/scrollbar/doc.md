@@ -18,6 +18,12 @@
 <ScrollbarAlways/>
 :::
 
+:::snippet
+原生滚动条
+原生滚动条可以获得更好的性能
+<ScrollbarNative/>
+:::
+
 ### API
 
 #### Scrollbar Attributes
