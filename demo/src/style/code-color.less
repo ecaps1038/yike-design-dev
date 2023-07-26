@@ -3,28 +3,28 @@
 //默认
 :root {
   --meta: #939dc9;
-  --pink: #d9435e;
-  --orange: #fd7e3b;
-  --yellow: #ebb015;
-  --blue: #1a8ed3;
-  --blueGreen: #2cc9b1;
-  --green: #64b90c;
-  --bluePurple: #3c6cd3;
-  --purple: #6f39d2;
+  --pink: #e42e50;
+  --orange: #f76b21;
+  --yellow: #f4b100;
+  --blue: #0c97e6;
+  --blueGreen: #0ee1c0;
+  --green: #48c100;
+  --bluePurple: #0e51e0;
+  --purple: #6720e7;
   --deepBlue: #3b4571;
 }
 
 // 亮色主题
 [data-theme='light'] {
   --meta: #939dc9;
-  --pink: #d9435e;
-  --orange: #fd7e3b;
-  --yellow: #ebb015;
-  --blue: #1a8ed3;
-  --blueGreen: #2cc9b1;
-  --green: #64b90c;
-  --bluePurple: #3c6cd3;
-  --purple: #6f39d2;
+  --pink: #e42e50;
+  --orange: #f76b21;
+  --yellow: #f4b100;
+  --blue: #0c97e6;
+  --blueGreen: #0ee1c0;
+  --green: #48c100;
+  --bluePurple: #0e51e0;
+  --purple: #6720e7;
   --deepBlue: #3b4571;
 }
 // 暗色主题
@@ -47,10 +47,9 @@ pre {
 }
 
 pre code {
-  color: @font-color-l;
+  color: @font-color-m;
   .hljs-comment,
-  .hljs-meta,
-  .hljs-tag {
+  .hljs-meta {
     color: var(--meta);
   }
   .hljs-deletion,
@@ -105,7 +104,8 @@ pre code {
   .hljs-char.escape_,
   .hljs-keyword,
   .hljs-name,
-  .hljs-operator {
+  .hljs-operator,
+  .hljs-tag {
     color: var(--bluePurple);
   }
   .hljs-punctuation {
