@@ -5,6 +5,7 @@ export type RadioGroupProps = {
   modelValue?: number | string | boolean;
   size?: Size;
   theme?: 'primary' | 'secondary';
+  type?: 'radio' | 'button';
   disabled?: boolean;
   direction?: Direction;
 };

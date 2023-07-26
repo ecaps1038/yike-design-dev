@@ -1,26 +1,33 @@
 .yk-tooltip {
-  @bgcolor: @dark; // 背景颜色
+  --tooltip-theme-bg-color: @dark;
+  --tooltip-theme-font-color: @light;
+  --tooltip-theme-min-width: 2em;
+  --tooltip-theme-min-height: 2em;
+  --tooltip-theme-max-width: 250px;
+  --tooltip-theme-max-hegiht: fit-contnet;
   @arrowSize: 1em; // 箭头大小
   @brSize: @space-ss; // 圆角值大小
 
   position: relative;
   width: fit-content;
-  .yk-tooltip-content {
+  &-content {
     position: absolute;
     z-index: 999;
     padding: @space-ss @space-s;
     width: max-content;
-    min-width: 2em;
+    min-width: var(--tooltip-theme-min-width);
     max-width: 250px;
-    min-height: 2em;
+    min-height: var(--tooltip-theme-min-height);
+    max-height: var(--tooltip-theme-max-hegiht);
+    font-size: @size-s;
     border-radius: @brSize;
     text-align: start;
     color: @white;
-    background-color: @bgcolor;
+    background-color: @dark;
     box-shadow: @shadow-m;
     word-wrap: break-word;
   }
-  .yk-tooltip-content::after {
+  &-content::after {
     position: absolute;
     width: @arrowSize;
     height: @arrowSize;
@@ -29,67 +36,67 @@
     clip-path: polygon(50% 50%, 0 0, 100% 0);
   }
 
-  .yk-tooltip-left {
+  &-left {
     top: 50%;
     left: 0;
     translate: calc(-100% - @arrowSize) -50%;
   }
-  .yk-tooltip-leftTop {
+  &-leftTop {
     top: 0;
     left: 0;
     translate: calc(-100% - @arrowSize) 0;
   }
-  .yk-tooltip-leftBottom {
+  &-leftBottom {
     bottom: 0;
     left: 0;
     translate: calc(-100% - @arrowSize) 0;
   }
-  .yk-tooltip-top {
+  &-top {
     top: 0;
     left: 50%;
     translate: -50% calc(-100% - @arrowSize);
   }
-  .yk-tooltip-topLeft {
+  &-topLeft {
     top: 0;
     left: 0;
     translate: 0 calc(-100% - @arrowSize);
   }
-  .yk-tooltip-topRight {
+  &-topRight {
     top: 0;
     right: 0;
     translate: 0 calc(-100% - @arrowSize);
   }
 
-  .yk-tooltip-bottom {
+  &-bottom {
     bottom: 0;
     left: 50%;
     translate: -50% calc(100% + @arrowSize);
   }
 
-  .yk-tooltip-bottomLeft {
+  &-bottomLeft {
     bottom: 0;
     left: 0;
     translate: 0 calc(100% + @arrowSize);
   }
 
-  .yk-tooltip-bottomRight {
+  &-bottomRight {
     right: 0;
     bottom: 0;
     translate: 0 calc(100% + @arrowSize);
   }
 
-  .yk-tooltip-right {
+  &-right {
     top: 50%;
     right: 0;
     translate: calc(100% + @arrowSize) -50%;
   }
 
-  .yk-tooltip-rightTop {
+  &-rightTop {
     top: 0;
     right: 0;
     translate: calc(100% + @arrowSize) 0;
   }
-  .yk-tooltip-rightBottom {
+  &-rightBottom {
     right: 0;
     bottom: 0;
     translate: calc(100% + @arrowSize) 0;
@@ -114,57 +121,57 @@
     clip-path: polygon(50% 50%, 100% 100%, 100% 0);
     transform: translateX(-100%);
   }
-  .yk-tooltip-left::after {
+  &-left::after {
     .l();
     top: 50%;
     transform: translateX(100%) translateY(-50%);
   }
-  .yk-tooltip-leftTop::after {
+  &-leftTop::after {
     .l();
     top: @brSize;
   }
-  .yk-tooltip-leftBottom::after {
+  &-leftBottom::after {
     .l();
     bottom: @brSize;
   }
-  .yk-tooltip-top::after {
+  &-top::after {
     .t();
     left: 50%;
     transform: translateX(-50%) translateY(100%);
   }
-  .yk-tooltip-topLeft::after {
+  &-topLeft::after {
     .t();
     left: @brSize;
   }
-  .yk-tooltip-topRight::after {
+  &-topRight::after {
     .t();
     right: @brSize;
   }
 
-  .yk-tooltip-bottom::after {
+  &-bottom::after {
     .b();
     left: 50%;
     transform: translateX(-50%) translateY(-100%);
   }
-  .yk-tooltip-bottomLeft::after {
+  &-bottomLeft::after {
     .b();
     left: @brSize;
   }
-  .yk-tooltip-bottomRight::after {
+  &-bottomRight::after {
     .b();
     right: @brSize;
   }
 
-  .yk-tooltip-right::after {
+  &-right::after {
     .r();
     top: 50%;
     transform: translateX(-100%) translateY(-50%);
   }
-  .yk-tooltip-rightTop::after {
+  &-rightTop::after {
     .r();
     top: @brSize;
   }
-  .yk-tooltip-rightBottom::after {
+  &-rightBottom::after {
     .r();
     bottom: @brSize;
   }

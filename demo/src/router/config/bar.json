@@ -46,8 +46,24 @@
       "title": "数据录入",
       "list": [
         {
+          "name": "Upload 文件上传",
+          "src": "upload"
+        },
+        {
           "name": "Radio 单选框",
           "src": "radio"
+        },
+        {
+          "name": "Checkbox 复选框",
+          "src": "checkbox"
+        },
+        {
+          "name": "Rate 评分",
+          "src": "rate"
+        },
+        {
+          "name": "Switch 开关",
+          "src": "switch"
         }
       ]
     },
@@ -86,10 +102,6 @@
         {
           "name": "popover 气泡卡片",
           "src": "popover"
-        },
-        {
-          "name": "Notification 通知提醒框",
-          "src": "notification"
         },
         {
           "name": "Drawer 抽屉",

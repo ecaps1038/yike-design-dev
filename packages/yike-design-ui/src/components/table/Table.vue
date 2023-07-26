@@ -62,6 +62,7 @@ defineProps({
       text-align: left;
       transition: border @animats;
     }
+
     .light {
       color: @scolor;
     }

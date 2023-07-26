@@ -1,12 +1,17 @@
 <template>
-  <div :class="['yk-empty', { dark: theme === 'dark' }]">
+  <div class="yk-empty">
     <div class="yk-empty__image" :style="imageStyle">
       <slot name="image">
         <img v-if="image" :src="image" ondragstart="return false" />
         <yk-icon
-          v-else
+          v-if="!image && type == 'primary'"
           name="yike-kongzhuangtai0"
-          :style="defaultStyle"
+          class="primary"
+        ></yk-icon>
+        <yk-icon
+          v-if="!image && type == 'secondary'"
+          name="yike-kongzhuangtai1"
+          class="secondary"
         ></yk-icon>
       </slot>
     </div>
@@ -32,11 +37,11 @@ defineOptions({
 const props = withDefaults(defineProps<EmptyProps>(), {
   description: 'No Data',
   image: '',
-  imageStyle: () => ({ width: '140px' }),
-  theme: 'light',
+  imageStyle: () => ({}),
+  type: 'primary',
 })
 
-const defaultStyle = computed<CSSProperties>(() => {
+computed<CSSProperties>(() => {
   return {
     ...props.imageStyle,
     fontSize: props.imageStyle?.width,
