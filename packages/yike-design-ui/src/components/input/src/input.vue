@@ -1,11 +1,18 @@
 <template>
-  <div
-    :class="YkInputClass"
-    class="yk-input"
-    @mouseenter="mouseenter"
-    @mouseleave="mouseleave"
-  >
-    <div class="yk-input-inner" :class="bem('inner')">
+  <div :class="bem()">
+    <div
+      :class="[
+        bem('inner'),
+        bem({
+          [`${status}--focus`]: isFocus,
+          loading: loading,
+          disabled: disabled,
+        }),
+        bem([status, size]),
+      ]"
+      @mouseenter="mouseenter"
+      @mouseleave="mouseleave"
+    >
       <div v-if="$slots.prefix" :class="bem(['slot', 'before'])">
         <slot name="prefix" />
       </div>
@@ -27,7 +34,7 @@
         @compositionend="compositionend"
         @keydown.enter="submit"
       />
-      <div :class="bem('buttons')">
+      <div :class="bem('buttons', { test1: props.status })">
         <button
           v-if="shouldShowVisiblePasswordButton"
           aria-label="查看/隐藏密码"
@@ -169,15 +176,6 @@ const switchType = () => {
   inputType.value = inputType.value === 'text' ? 'password' : 'text'
 }
 
-const YkInputClass = computed(() => {
-  return {
-    'yk-input__disabled': props.disabled,
-    'yk-input__loading': props.loading,
-    [`yk-input__${props.status}`]: !props.disabled,
-    [`yk-input__${props.status}-focus`]: isFocus.value,
-    [`yk-input-size__${props.size}`]: true,
-  }
-})
 const YkInputButtonClass = computed(() => {
   return {
     'yk-input__button-show':

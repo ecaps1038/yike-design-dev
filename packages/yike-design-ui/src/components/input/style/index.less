@@ -37,7 +37,6 @@
 .yk-input__inner {
   display: flex;
   flex-grow: 1;
-  width: 270px;
   transition: all @animatb ease-in-out;
 
   .yk-input__widget {
@@ -111,12 +110,13 @@
     padding: 0px @padding;
     height: @height;
     font-size: @fs;
+    border-radius: @br;
   }
 
-  &.yk-input-size__@{size} {
+  &.yk-input--@{size} {
     .inner();
   }
-  &.yk-input-size__@{size} input {
+  &.yk-input--@{size} input {
     .widget();
   }
 }
@@ -131,12 +131,12 @@
       outline: 1px solid @hvbcolor;
     }
 
-    &-focus {
+    &--focus {
       background-color: @fsbgcolor;
       outline: 1px solid @fsbcolor;
     }
   }
-  &.yk-input__@{status} {
+  &.yk-input--@{status} {
     .bow();
   }
 }
@@ -151,7 +151,7 @@
 }
 
 // copy from YkButton
-.yk-input__loading {
+.yk-input--loading {
   // opacity: 0.7 !important;
   #spinner {
     margin-right: 6px;
