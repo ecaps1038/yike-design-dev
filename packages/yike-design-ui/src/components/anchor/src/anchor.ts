@@ -14,6 +14,8 @@ export type AnchorProps = {
   scrollEl?: () => HTMLElement | Window;
   /** 表示被锚定元素的出现的偏移量 */
   offset?: number;
+  /** 滚动防抖延时 */
+  ms?: number;
 };
 
 export type AnchorListProps = {
