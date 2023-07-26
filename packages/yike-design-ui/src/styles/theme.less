@@ -1,3 +1,13 @@
+//混合出背景色
+@bg-dark-color-1: @gray;
+@bg-dark-color-2: color-mix(in srgb, @gray, #fff 2.4%);
+@bg-dark-color-3: color-mix(in srgb, @gray, #fff 4%);
+@bg-dark-color-4: color-mix(in srgb, @gray, #fff 7.8%);
+@bg-light-color-1: #fff;
+@bg-light-color-2: color-mix(in srgb, #fff, @gray 3.6%);
+@bg-light-color-3: color-mix(in srgb, #fff, @gray 4.8%);
+@bg-light-color-4: color-mix(in srgb, #fff, @gray 9.4%);
+
 //默认
 :root {
   // -------- Functional color light -----------
@@ -6,18 +16,15 @@
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
+  --gray: palette(@gray); //中性色
 
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  //----背景色----
+  --bgColor1: @bg-light-color-1;
+  --bgColor2: @bg-light-color-2;
+  --bgColor3: @bg-light-color-3;
+  --bgColor4: @bg-light-color-4;
+  --bgColor5: @bg-light-color-1;
+  --bgColor6: @bg-dark-color-1;
 }
 
 // 亮色主题
@@ -28,18 +35,15 @@
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
+  --gray: palette(@gray); //中性色
 
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  //----背景色----
+  --bgColor1: @bg-light-color-1;
+  --bgColor2: @bg-light-color-2;
+  --bgColor3: @bg-light-color-3;
+  --bgColor4: @bg-light-color-4;
+  --bgColor5: @bg-light-color-1;
+  --bgColor6: @bg-dark-color-1;
 }
 // 暗色主题
 [data-theme='dark'] {
@@ -49,16 +53,13 @@
   --scolor: palette(@scolor-dark); // 成功色
   --wcolor: palette(@wcolor-dark); // 警告色
   --ecolor: palette(@ecolor-dark); // 错误色
+  --gray: palette(#fff); //中性色
 
-  //----中性色----
-  --gray1: palette(@gray10);
-  --gray2: palette(@gray9);
-  --gray3: palette(@gray8);
-  --gray4: palette(@gray7);
-  --gray7: palette(@gray4);
-  --gray8: palette(@gray3);
-  --gray9: palette(@gray2);
-  --gray10: palette(@gray1);
-  --gray5: palette(@gray3);
-  --gray6: palette(@gray2);
+  //----背景色----
+  --bgColor1: @bg-dark-color-1;
+  --bgColor2: @bg-dark-color-2;
+  --bgColor3: @bg-dark-color-3;
+  --bgColor4: @bg-dark-color-4;
+  --bgColor5: @bg-dark-color-2;
+  --bgColor6: @bg-dark-color-3;
 }
