@@ -64,10 +64,7 @@
       </span>
       <div
         v-if="!(avatar && currentLength) && !uploadDisabled"
-        :class="[
-          bem('picture-button', { disabled: uploadDisabled }),
-          bem([shape]),
-        ]"
+        :class="[bem('picture-button', { disabled: uploadDisabled }, [shape])]"
         @click="handleUpload"
       >
         <div class="picture-desc">

@@ -60,7 +60,7 @@ export const createCssScope = (prefix: string, identity = 'yk') => {
       const element = `${prefixClass}__${elementOrModifier}`;
       if (!modifier) return element;
       return [
-        prefixClass,
+        element,
         ...createModifier(element, modifier),
         ...createModifier(element, modifierLater),
       ];
