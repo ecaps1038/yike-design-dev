@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<EmptyProps>(), {
   type: 'primary',
 })
 
-const defaultStyle = computed<CSSProperties>(() => {
+computed<CSSProperties>(() => {
   return {
     ...props.imageStyle,
     fontSize: props.imageStyle?.width,
