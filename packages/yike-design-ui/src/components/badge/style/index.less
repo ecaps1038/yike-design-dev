@@ -1,114 +1,156 @@
 .modal {
   &-enter {
     &-from {
-      transform: scale(0);
+      scale: 0;
       opacity: 0;
     }
 
     &-active {
-      transition: all @animatf ease-out;
+      transition: all 0.2s ease-in;
     }
 
     &-to {
-      transform: scale(1);
+      scale: 1;
       opacity: 1;
     }
   }
 
   &-leave {
     &-from {
-      transform: scale(1);
+      scale: 1;
       opacity: 1;
     }
 
     &-active {
-      transition: all 0.2s;
+      transition: all 0.2s ease-out;
     }
 
     &-to {
-      transform: scale(0);
+      scale: 0;
       opacity: 0;
     }
   }
 }
 
-#yk-badge {
+.yk-badge {
+  // 定位相关
   position: relative;
+  // 置排布相关
   display: inline-flex;
-  vertical-align: top;
+  flex-direction: column;
+  box-sizing: border-box;
+  line-height: 1;
 
-  .yk-badge {
+  .yk-badge__dot {
+    // 定位
     position: absolute;
-    border-radius: @radius-r;
-    background-color: @ecolor;
-    transition: all @animats;
-    border-color: @bg-color-l;
-    border-style: solid;
-    box-sizing: content-box;
+    top: 0;
+    right: 0;
+    z-index: 1;
+
+    //由外到内 设置margin -> padding -> width -> height
+    width: 8px;
+    height: 8px;
+
+    // 字体边框相关
+    border-radius: 8px;
+
+    //颜色、透明度、阴影等
+    background: @ecolor;
+    box-shadow: 0 0 0 2px #ffffff;
+
+    &--outer {
+      top: -4px;
+      right: -4px;
+    }
+
+    &--stand {
+      position: static;
+    }
   }
 
-  .badge {
-    top: -10px;
-    min-width: 20px;
+  .yk-badge__dot.yk-badge__dot--primary {
+    background: @pcolor;
+  }
+
+  .yk-badge__dot.yk-badge__dot--success {
+    background: @scolor;
+  }
+
+  .yk-badge__dot.yk-badge__dot--warning {
+    background: @wcolor;
+  }
+
+  .yk-badge__dot.yk-badge__dot--danger {
+    background: @ecolor;
+  }
+
+  .yk-badge__dot.yk-badge__dot--outer {
+  }
+
+  .yk-badge__count {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+    // 由外到内 设置margin -> padding -> width -> height
+    padding: 2px 6px;
+
+    // 字体边框相关
+    font-size: @size-ss;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    border-radius: 10px;
+    text-align: center;
+
+    // 颜色、透明度、阴影等
+    color: white;
+    background: @ecolor;
+    box-shadow: 0 0 0 2px #ffffff;
+    line-height: 20px;
+    letter-spacing: -0.41px;
+
+    &--left {
+      top: 0;
+      left: 0;
+    }
+
+    &--right {
+      top: 0;
+      right: 0;
+    }
+
+    &--stand {
+      position: static;
+    }
+  }
+
+  .yk-badge__count.yk-badge__count--primary {
+    background: @pcolor;
+  }
+
+  .yk-badge__count.yk-badge__count--success {
+    background: @scolor;
+  }
+
+  .yk-badge__count.yk-badge__count--warning {
+    background: @wcolor;
+  }
+
+  .yk-badge__count.yk-badge__count--danger {
+    background: @ecolor;
+  }
+
+  .yk-badge__count--outer {
+  }
+
+  .yk-badge__count.isRound {
+    // 由外到内 设置margin -> padding -> width -> height
+    padding: 0;
+    width: 20px;
     height: 20px;
 
-    .count {
-      padding: 0 6px;
-      font-size: 12px;
-      font-weight: 600;
-      text-align: center;
-      color: #fff;
-      line-height: 20px;
-    }
-  }
-
-  .dot {
-    top: -4px;
-    right: -4px;
-    width: 6px;
-    height: 6px;
-
-    .count {
-      display: none;
-    }
-  }
-
-  .status {
-    display: flex;
-    align-items: center;
-    height: 22px;
-  }
-
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: @radius-r;
-    background-color: @font-color-s;
-    transition: all @animats;
-  }
-
-  .status-text {
-    padding-left: @space-s;
-  }
-
-  //状态色
-  .default {
-    background-color: @font-color-s;
-  }
-
-  .success {
-    background-color: @scolor;
-  }
-
-  .warning {
-    background-color: @wcolor;
-  }
-
-  .primary {
-    background-color: @pcolor;
-  }
-
-  .danger {
-    background-color: @ecolor;
+    // 字体边框相关
+    border-radius: 10px;
   }
 }

@@ -77,6 +77,10 @@
         {
           "name": "Empty  空状态",
           "src": "empty"
+        },
+        {
+          "name": "Badge 徽标",
+          "src": "badge"
         }
       ]
     },
