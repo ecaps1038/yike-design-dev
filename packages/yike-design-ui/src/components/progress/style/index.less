@@ -1,6 +1,7 @@
 .yk-progress {
   display: flex;
   align-items: center;
+  width: 480px;
   .yk-progress-inner {
     position: relative;
     overflow: hidden;
@@ -8,9 +9,26 @@
     border-radius: @radius-s;
     background: #e8e8e8;
   }
-  .yk-progress__text {
+  &-text {
+    display: flex;
+    align-items: center;
     margin-left: 16px;
     font-family: PingFangSC-Regular;
     color: #1e2025cc;
   }
+  &-icon {
+    margin-left: 8px;
+  }
+
+  @sizes: {
+    s: 4px;
+    m: 6px;
+    l: 8px;
+  };
+
+  each(@sizes,{
+    .yk-progress--@{key}{
+      height: @value;
+    }
+  });
 }
