@@ -27,6 +27,7 @@ const props = withDefaults(defineProps<AnchorProps>(), {
   showMarker: true,
   scrollEl: () => window,
   offset: 0,
+  ms: 100,
 })
 
 const cls = computed(() => {
@@ -134,7 +135,7 @@ const handleScroll = useDebounceFn(() => {
 
     active.value = `#${closedEL?.el.id}`
   }
-}, 200)
+}, props.ms)
 
 onMounted(() => {
   const scrollContainer = props.scrollEl?.()
