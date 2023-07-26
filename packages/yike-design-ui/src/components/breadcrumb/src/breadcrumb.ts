@@ -1,13 +1,12 @@
 import { InjectionKey } from 'vue';
 
 export type BreadcrumbProps = {
-  id?: string;
+  // id?: string;
   separator?: string;
   separatorIcon?: string;
 };
 
 export type BreadcrumbItemProps = {
-  id?: string;
   to?: string;
 };
 

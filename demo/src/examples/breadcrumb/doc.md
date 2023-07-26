@@ -22,11 +22,10 @@
 
 #### Breadcrumb Attributes
 
-| 参数          | 描述         | 类型   | 默认值 |
-| ------------- | ------------ | ------ | ------ |
-| id            | 原生属性`id` | string | -      |
-| separator     | 分隔符       | string | /      |
-| separatorIcon | 图标分隔符   | string | -      |
+| 参数          | 描述       | 类型   | 默认值 |
+| ------------- | ---------- | ------ | ------ |
+| separator     | 分隔符     | string | /      |
+| separatorIcon | 图标分隔符 | string | -      |
 
 #### Breadcrumb Slots
 
@@ -40,7 +39,6 @@
 
 | 参数 | 描述                                   | 类型            | 默认值 |
 | ---- | -------------------------------------- | --------------- | ------ |
-| id   | 原生属性`id`                           | string          | -      |
 | to   | 路由跳转目标，同 vue-router 的 to 属性 | string / object | -      |
 
 #### BreadcrumbItem Slots

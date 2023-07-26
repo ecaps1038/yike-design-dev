@@ -11,7 +11,6 @@ defineOptions({
   name: 'YkBreadcrumb',
 })
 const props = withDefaults(defineProps<BreadcrumbProps>(), {
-  id: '',
   separator: '/',
 })
 
