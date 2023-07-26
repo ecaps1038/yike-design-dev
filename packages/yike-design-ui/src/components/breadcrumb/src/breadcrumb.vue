@@ -1,10 +1,13 @@
 <template>
   <div class="yk-breadcrumb">
     <slot />
+    <div v-if="false">
+      <slot name="separator" />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import { provide } from 'vue'
+import { provide, useSlots } from 'vue'
 import { BreadcrumbProps, breadcrumbName } from './breadcrumb'
 import '../style'
 defineOptions({
@@ -14,5 +17,8 @@ const props = withDefaults(defineProps<BreadcrumbProps>(), {
   separator: '/',
 })
 
-provide(breadcrumbName, props)
+const slots = useSlots()
+
+provide(breadcrumbName, { props, slots })
+// provide('breadcrumbKey', useSlots()?.separator)
 </script>

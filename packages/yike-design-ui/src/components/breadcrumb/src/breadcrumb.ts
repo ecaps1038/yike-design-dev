@@ -1,4 +1,4 @@
-import { InjectionKey } from 'vue';
+import { InjectionKey, Slots } from 'vue';
 
 export type BreadcrumbProps = {
   // id?: string;
@@ -10,5 +10,8 @@ export type BreadcrumbItemProps = {
   to?: string;
 };
 
-export const breadcrumbName: InjectionKey<BreadcrumbProps> =
-  Symbol('breadcrumbName');
+interface Key {
+  props: BreadcrumbProps;
+  slots: Slots;
+}
+export const breadcrumbName: InjectionKey<Key> = Symbol('breadcrumbName');

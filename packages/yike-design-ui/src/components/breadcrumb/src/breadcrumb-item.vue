@@ -1,40 +1,42 @@
 <template>
-  <span class="yk-breadcrumb-item">
+  <span :class="bem('item')">
     <span :class="bem('inner')" @click.prevent.stop="onClick">
       <a v-if="props.to" href="/" class="n-link">
         <slot />
       </a>
       <slot v-else />
     </span>
-    <yk-icon
-      v-if="separatorIcon"
-      :name="separatorIcon"
-      :class="bem('separator')"
-    />
     <span :class="bem('separator')">
-      {{ separator }}
+      <component :is="separatorComponent" v-if="separatorComponent" />
+      <yk-icon v-else-if="separatorIcon" :name="separatorIcon" />
+      <span v-else>
+        {{ separator }}
+      </span>
     </span>
   </span>
 </template>
 
 <script lang="ts" setup>
-import { getCurrentInstance, inject, toRefs, useSlots } from 'vue'
+import { getCurrentInstance, inject, reactive } from 'vue'
 import { BreadcrumbItemProps, breadcrumbName } from './breadcrumb'
 import { createCssScope } from '../../../utils/bem'
 import type { Router } from 'vue-router'
 
-const componentName = 'breadcrumb-item'
-const bem = createCssScope(componentName)
-const slots = useSlots()
-console.log(slots)
+const bem = createCssScope('breadcrumb')
 defineOptions({
-  name: `Yk${componentName}`,
+  name: `YkBreadcrumbItem`,
 })
 const props = defineProps<BreadcrumbItemProps>()
 const instance = getCurrentInstance()!
 
 const breadcrumbProps = inject(breadcrumbName)!
-const { separator, separatorIcon } = toRefs(breadcrumbProps)
+
+const {
+  props: { separator, separatorIcon },
+  slots,
+} = reactive(breadcrumbProps)
+const separatorComponent = slots.separator
+
 const router = instance.appContext.config.globalProperties.$router as Router
 
 const onClick = () => {

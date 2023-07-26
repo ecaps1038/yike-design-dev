@@ -8,7 +8,7 @@
 
 :::snippet
 自定义分隔符
-通过 `separator` 属性或插槽自定义分隔符。
+通过 `separator` 属性或插槽自定义分隔符。也可以通过`separatorIcon`指定`yk-icon`组件里的图标
 <BreadcrumbSeparator/>
 :::
 
@@ -29,9 +29,10 @@
 
 #### Breadcrumb Slots
 
-| 参数    | 描述           | 子标签          |
-| ------- | -------------- | --------------- |
-| default | 自定义默认内容 | Breadcrumb Item |
+| 参数      | 描述           | 子标签         |
+| --------- | -------------- | -------------- |
+| default   | 自定义默认内容 | BreadcrumbItem |
+| separator | 自定义分割符   | -              |
 
 ### BreadcrumbItem API
 
