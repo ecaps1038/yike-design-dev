@@ -10,7 +10,7 @@
       <yk-badge :count="MessageCount">
         <yk-avatar size="l" shape="square"></yk-avatar>
       </yk-badge>
-      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+      <span style="margin-top: 10px; font-size: 14px; font-weight: 700">
         {{ `消息数量: ${MessageCount}` }}
       </span>
     </yk-space>
@@ -18,7 +18,7 @@
       <yk-badge :count="9999999" :overflow-count="9999">
         <yk-avatar size="l" shape="square"></yk-avatar>
       </yk-badge>
-      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+      <span style="margin-top: 10px; font-size: 14px; font-weight: 700">
         {{ `消息数量: 9999999` }}
       </span>
     </yk-space>
@@ -49,7 +49,7 @@
           +
         </yk-button>
       </div>
-      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+      <span style="margin-top: 10px; font-size: 14px; font-weight: 700">
         {{ `消息数量: ${MessageCount2}` }}
       </span>
     </yk-space>

@@ -11,8 +11,8 @@
         style="
           width: 100px;
           height: 40px;
-          background: #f6f6f8;
           border-radius: 8px;
+          background: #f6f6f8;
         "
       ></div>
     </yk-badge>

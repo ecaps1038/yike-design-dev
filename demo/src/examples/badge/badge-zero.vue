@@ -4,7 +4,7 @@
       <yk-badge :count="0" show-zero>
         <yk-avatar size="l" shape="square"></yk-avatar>
       </yk-badge>
-      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+      <span style="margin-top: 10px; font-size: 14px; font-weight: 700">
         {{ `show-zero: true` }} | {{ `count: 0` }}
       </span>
     </yk-space>
@@ -12,7 +12,7 @@
       <yk-badge :count="0">
         <yk-avatar size="l" shape="square"></yk-avatar>
       </yk-badge>
-      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+      <span style="margin-top: 10px; font-size: 14px; font-weight: 700">
         {{ `show-zero: false` }} | {{ `count: 0` }}
       </span>
     </yk-space>
@@ -40,7 +40,7 @@
           +
         </yk-button>
       </div>
-      <span style="font-size: 14px; font-weight: 700; margin-top: 10px">
+      <span style="margin-top: 10px; font-size: 14px; font-weight: 700">
         {{ `消息数量: ${MessageCount}` }}
       </span>
     </yk-space>
