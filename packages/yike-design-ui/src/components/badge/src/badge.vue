@@ -1,86 +1,178 @@
 <template>
-  <div id="yk-badge" ref="badge">
+  <div ref="badgeRef" class="yk-badge">
     <!-- 徽标 -->
-    <slot></slot>
-    <transition name="modal">
-      <div
-        v-if="!status"
-        v-show="count > 0"
-        :class="[{ badge: !dot, dot: dot }, type]"
-        class="yk-badge"
-        :style="{
-          backgroundColor: color,
-          right: !dot ? -rightWidth(count) + 'px' : '',
-          borderWidth: border + 'px',
-        }"
-      >
-        <p class="count">{{ nowCount }}</p>
-      </div>
-    </transition>
-    <div v-if="status" class="status">
-      <div
-        class="status-dot"
-        :class="[type]"
-        :style="{ backgroundColor: color }"
-      ></div>
-      <span class="status-text">{{ text }}</span>
+    <div ref="supRef" class="yk-badge__sup">
+      <transition name="modal">
+        <div
+          v-if="isShowDot"
+          :class="['yk-badge__dot', dotClass]"
+          :style="dotStyle"
+        ></div>
+      </transition>
+      <transition name="modal">
+        <div
+          v-if="isShowCount"
+          :class="['yk-badge__count', countClass]"
+          :style="countStyle"
+        >
+          {{ showCount }}
+        </div>
+      </transition>
     </div>
+    <slot></slot>
   </div>
 </template>
-
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { BadgeProps } from './badge'
 import '../style'
-import type { BadgeProps } from './badge'
-
+import { ref, computed, CSSProperties, onMounted, useSlots } from 'vue'
 defineOptions({
   name: 'YkBadge',
 })
 
+// ======================= props ===========================
 const props = withDefaults(defineProps<BadgeProps>(), {
-  max: 99,
-  color: '',
   count: 0,
-  border: 1,
+  border: 2,
+  overflowCount: 99,
+  showZero: false,
+  status: 'danger',
+  hidden: false,
 })
 
-//关于显示长度控制
-let nowCount: any = ref(props.count)
-const maxCount = (): void => {
-  if (props.count > props.max) {
-    nowCount.value = props.max + '+'
-  }
-}
-maxCount()
+// ======================== dot ============================
 
-//关于角标款的的缩进
-const rightWidth = (count: number): number => {
-  if (count > 9) {
-    return 14
+// 是否是点类型
+const isDot = computed(() => props?.isDot ?? false)
+
+// 是否展示dot
+const isShowDot = computed(() => {
+  return isDot.value && !props.hidden
+})
+
+const dotStyle = computed<CSSProperties>(() => {
+  const styles: CSSProperties = {}
+  if (props.color) {
+    styles.background = props.color
+  }
+
+  // 自定义了border时候
+  if (props.border !== 2) {
+    styles.boxShadow = `#ffffff 0 0 0 ${props.border}px`
+  }
+
+  return styles
+})
+
+const dotClass = computed(() => {
+  return {
+    'yk-badge__dot--outer': props.outDot,
+    [`yk-badge__dot--${props.status}`]: props.status !== undefined,
+    'yk-badge__dot--stand': !!useSlots().default === false,
+  }
+})
+
+// ======================== count ============================
+
+// 是否展示count
+const isShowCount = computed(() => {
+  const countZeroHidden = props.count === 0 && !props.showZero
+  const countNormalHidden = props.count < 0
+  if (props.hidden || isShowDot.value || countZeroHidden || countNormalHidden) {
+    return false
+  }
+  return true
+})
+
+// 展示的count
+const showCount = computed(() => {
+  if (props.count && props.count > props.overflowCount) {
+    return Math.min(props.count!, props.overflowCount) + '+'
   } else {
-    return 10
+    return props.count + ''
   }
-}
-//单独使用
-const badge = ref(null)
+})
 
-//获取dome元素添加特定样式
-const addStyle = () => {
-  let boxId: any = badge.value
-  //将获取的dome转为数组
-  let arr = Array.from(boxId.children)
-  // console.log(boxId.children)
-  if (arr.length == 1) {
-    // console.log(boxId.firstChild)
-    arr.map((child: any) => {
-      child.style.right = 'auto'
-      child.style.top = 'auto'
-      child.style.position = 'relative'
-    })
+// 展示的count，是否是圆形
+const isRound = () => {
+  if (isDot.value) {
+    return true
+  } else {
+    return showCount.value && showCount.value.toString().length === 1
   }
 }
 
+// dom
+const badgeRef = ref()
+const supRef = ref()
+
+const countStyle = computed<CSSProperties>(() => {
+  const styles: CSSProperties = {}
+
+  // 默认右上角
+  styles.translate = `50% -50%`
+
+  // count的方位  定位右边，就左移动，左边，就右边移动
+  if (props.offset && props.offset === 'right') {
+    styles.translate = `-50% ${offsetValue.value}px`
+  } else if (props.offset && props.offset === 'left') {
+    styles.translate = `50% ${offsetValue.value}px`
+  }
+
+  // 自定义border时候
+  if (props.border !== 2) {
+    styles.boxShadow = `#ffffff 0 0 0 ${props.border}px`
+  }
+
+  // 自定义offset时候
+  if (Array.isArray(props.offset)) {
+    styles.translate = `${props.offset[0]}px ${props.offset[1]}px`
+  }
+
+  // color
+  if (props.color) {
+    styles.background = props.color
+  }
+
+  if (!!useSlots().default === false) {
+    return { background: props.color }
+  }
+
+  return styles
+})
+
+let badgeHeight = ref(0)
+const offsetValue = computed({
+  get() {
+    return badgeHeight.value
+  },
+  set(v) {
+    badgeHeight.value = v
+  },
+})
+
+// ==================== mounted =======================
+// 父级高度是字节点撑开的，无法设置height，采用渲染后拿到dom的方式去获取高度
 onMounted(() => {
-  addStyle()
+  const badgeDom: HTMLDivElement = badgeRef.value
+  const supDomHeight = ref(0)
+  if (props.count && props.count > props.overflowCount) {
+    supDomHeight.value = 12
+  } else {
+    supDomHeight.value = 10
+  }
+  // 移动父级的50% - 自身高度的 50%
+  offsetValue.value = badgeDom.offsetHeight / 2 - supDomHeight.value
+})
+
+const countClass = computed(() => {
+  return {
+    isRound: isRound(),
+    [`yk-badge__count--${props.status}`]: props.status !== undefined,
+    [`yk-badge__count--${props.offset}`]:
+      props.offset !== undefined && typeof props.offset == 'string',
+    'yk-badge__count--stand': !!useSlots().default === false,
+  }
 })
 </script>
+<style scoped></style>

@@ -2,31 +2,11 @@
 
 <template>
   <main class="ahome">
-    <yk-space direction="vertical">
-      <yk-space>
-        <div class="hz a"></div>
-        <div class="hz b"></div>
-        <div class="hz c"></div>
-        <div class="hz d"></div>
-        <div class="hz e"></div>
-        <div class="hz f"></div>
-        <div class="hz g"></div>
-        <div class="hz h"></div>
-        <div class="hz i"></div>
-        <div class="hz j"></div>
-      </yk-space>
-      <yk-space>
-        <div class="hz aa"></div>
-        <div class="hz bb"></div>
-        <div class="hz cc"></div>
-        <div class="hz dd"></div>
-        <div class="hz ee"></div>
-        <div class="hz ff"></div>
-        <div class="hz gg"></div>
-        <div class="hz hh"></div>
-        <div class="hz i"></div>
-        <div class="hz j"></div>
-      </yk-space>
+    <yk-space>
+      <div class="hz a"></div>
+      <div class="hz b"></div>
+      <div class="hz c"></div>
+      <div class="hz d"></div>
     </yk-space>
   </main>
 </template>
@@ -43,44 +23,18 @@
 }
 
 .a {
-  background-color: @gray1;
+  background-color: @bg-color-l;
 }
 
 .b {
-  background-color: @gray2;
+  background-color: @bg-color-m;
 }
 
 .c {
-  background-color: @gray3;
+  background-color: @bg-color-s;
 }
 
 .d {
-  background-color: @gray4;
-}
-
-.e {
-  background-color: @gray7;
-}
-
-.f {
-  background-color: @gray8;
-}
-
-.g {
-  background-color: @gray9;
-}
-
-.h {
-  border: 1px solid #eee;
-  background-color: @gray10;
-}
-
-.aa {
-  background-color: @gray1;
-}
-
-.hh {
-  border: 1px solid #eee;
-  background-color: @gray10;
+  background-color: @bg-color-ss;
 }
 </style>
