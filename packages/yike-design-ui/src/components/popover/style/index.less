@@ -1,2 +1,19 @@
 .yk-popover {
+  &-theme {
+    --tooltip-theme-bg-color: @light;
+    --tooltip-theme-font-color: @dark;
+    --tooltip-theme-min-width: 150px;
+  }
+  &-title {
+    padding: @space-ss 0;
+    font-size: @size-m !important;
+    color: @font-color-l !important;
+  }
+  &-content {
+    font-size: @size-s;
+    color: @font-color-m !important;
+  }
+  &-popover {
+    padding: @space-ss;
+  }
 }
