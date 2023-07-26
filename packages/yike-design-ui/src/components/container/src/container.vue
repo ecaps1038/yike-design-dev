@@ -1,6 +1,6 @@
 <template>
   <div
-    class="yk-content"
+    class="yk-scroll-content"
     @mousemove="moverScroll"
     @mouseup="mouseup"
     @mouseleave="mouseup"

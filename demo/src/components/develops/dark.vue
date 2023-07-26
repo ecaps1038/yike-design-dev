@@ -24,45 +24,23 @@
 
     <div class="colorss">
       <div class="light">
-        <yk-space size="l">
-          <yk-space size="m">
-            <div class="color p"></div>
-            <div class="color l"></div>
-            <div class="color s"></div>
-            <div class="color w"></div>
-            <div class="color e"></div>
-          </yk-space>
-          <yk-space size="m">
-            <div class="color d1"></div>
-            <div class="color d2"></div>
-            <div class="color d3"></div>
-            <div class="color d4"></div>
-            <div class="color d5"></div>
-            <div class="color d6"></div>
-            <div class="color d7"></div>
-            <div class="color d8"></div>
-          </yk-space>
+        <yk-space size="m">
+          <div class="color p"></div>
+          <div class="color l"></div>
+          <div class="color s"></div>
+          <div class="color w"></div>
+          <div class="color e"></div>
+          <div class="color d1"></div>
         </yk-space>
       </div>
       <div class="dark">
-        <yk-space size="l">
-          <yk-space size="m">
-            <div class="color p"></div>
-            <div class="color l"></div>
-            <div class="color s"></div>
-            <div class="color w"></div>
-            <div class="color e"></div>
-          </yk-space>
-          <yk-space size="m">
-            <div class="color d1"></div>
-            <div class="color d2"></div>
-            <div class="color d3"></div>
-            <div class="color d4"></div>
-            <div class="color d5"></div>
-            <div class="color d6"></div>
-            <div class="color d7"></div>
-            <div class="color d8"></div>
-          </yk-space>
+        <yk-space size="m">
+          <div class="color p"></div>
+          <div class="color l"></div>
+          <div class="color s"></div>
+          <div class="color w"></div>
+          <div class="color e"></div>
+          <div class="color d1"></div>
         </yk-space>
       </div>
     </div>
@@ -97,8 +75,7 @@ const datas = [
   `<yk-theme/> //默认跟随系统颜色，并显示控制主题的“太阳”和“月亮”控件
 <yk-theme :control='false'/> //默认跟随系统颜色，不显示控制主题的“太阳”和“月亮”控件
 <yk-theme skin='light'/> //默认浅色颜色模式，并显示控制主题的“太阳”和“月亮”控件
-<yk-theme skin='light' :control='false'/> //保持默认浅色模式，不显示控制主题的“太阳”和“月亮”控件
- `,
+<yk-theme skin='light' :control='false'/> //保持默认浅色模式，不显示控制主题的“太阳”和“月亮”控件`,
   `//默认
 :root {
   // -------- Functional color light -----------
@@ -107,18 +84,7 @@ const datas = [
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
-
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  --gray: palette(@gray); //中性色
 }
 
 // 亮色主题
@@ -129,18 +95,7 @@ const datas = [
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
-
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  --gray: palette(@gray); //中性色
 }
 // 暗色主题
 [data-theme='dark'] {
@@ -150,19 +105,7 @@ const datas = [
   --scolor: palette(@scolor-dark); // 成功色
   --wcolor: palette(@wcolor-dark); // 警告色
   --ecolor: palette(@ecolor-dark); // 错误色
-
-  //----中性色----
-  --gray1: palette(@gray10);
-  --gray2: palette(@gray9);
-  --gray3: palette(@gray8);
-  --gray4: palette(@gray7);
-  --gray7: palette(@gray4);
-  --gray8: palette(@gray3);
-  --gray9: palette(@gray2);
-  --gray10: palette(@gray1);
-  --gray5: palette(@gray3);
-  --gray6: palette(@gray2);
-}
+  --gray: palette(@white); //中性色
 `,
 ]
 </script>
@@ -201,36 +144,7 @@ const datas = [
     }
 
     .d1 {
-      border: 1px solid @gray7;
-      background-color: @gray10;
-    }
-
-    .d2 {
-      background-color: @gray9;
-    }
-
-    .d3 {
-      background-color: @gray8;
-    }
-
-    .d4 {
-      background-color: @gray7;
-    }
-
-    .d5 {
-      background-color: rgb(@gray1 0.24);
-    }
-
-    .d6 {
-      background-color: rgb(@gray1 0.32);
-    }
-
-    .d7 {
-      background-color: rgb(@gray1 0.56);
-    }
-
-    .d8 {
-      background-color: rgb(@gray1 0.8);
+      background-color: @gray;
     }
   }
 
@@ -258,35 +172,7 @@ const datas = [
     }
 
     .d1 {
-      background-color: @gray1;
-    }
-
-    .d2 {
-      background-color: @gray2;
-    }
-
-    .d3 {
-      background-color: @gray3;
-    }
-
-    .d4 {
-      background-color: @gray4;
-    }
-
-    .d5 {
-      background-color: rgb(@gray10 0.24);
-    }
-
-    .d6 {
-      background-color: rgb(@gray10 0.32);
-    }
-
-    .d7 {
-      background-color: rgb(@gray10 0.56);
-    }
-
-    .d8 {
-      background-color: rgb(@gray10 0.8);
+      background-color: @white;
     }
   }
 

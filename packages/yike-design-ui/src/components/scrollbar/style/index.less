@@ -1,0 +1,89 @@
+.yk-scrollbar {
+  position: relative;
+  overflow: hidden;
+  padding: @space-s;
+  height: 100%;
+
+  &__container {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+
+    &::-webkit-scrollbar {
+      /*滚动条整体样式*/
+      width: 0px;
+      /*高宽分别对应横竖滚动条的尺寸*/
+      height: 0px;
+    }
+  }
+
+  &:hover {
+    .yk-scrollbar__x .thumb,
+    .yk-scrollbar__y .thumb {
+      opacity: 1;
+    }
+  }
+
+  &--always {
+    .yk-scrollbar__x .thumb,
+    .yk-scrollbar__y .thumb {
+      opacity: 1;
+    }
+  }
+
+  &--native {
+    padding: 0;
+
+    .yk-scrollbar__container::-webkit-scrollbar {
+      width: initial;
+      height: initial;
+    }
+  }
+
+  &__x,
+  &__y {
+    position: absolute;
+    width: 100%;
+    border-radius: 12px;
+
+    .thumb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 12px;
+      background-color: @line-color-s;
+      opacity: 0;
+      transition: background-color @animats;
+      transition: opacity @animats;
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        background-color: @line-color-m;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__x {
+    left: 0;
+    height: 100%;
+
+    .thumb {
+      width: 100px;
+      height: 100%;
+    }
+  }
+
+  &__y {
+    top: 0;
+    height: 100%;
+
+    .thumb {
+      width: 100%;
+      height: 100px;
+    }
+  }
+}
