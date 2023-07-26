@@ -28,9 +28,10 @@
 
 #### Anchor Props
 
-| 参数         | 描述                             | 类型                        | 默认值   |
-| ------------ | -------------------------------- | --------------------------- | -------- |
-| `anchors`    | 锚点集合数组                     | `AnchorOption[]`            | `-`      |
-| `showMarker` | 是否展示轴线                     | `boolean`                   | `true`   |
-| `scrollEl`   | 要监听的滚动容器                 | `HTMLElement｜Window｜null` | `window` |
-| `offset`     | 表示被锚定元素的出现位置的偏移量 | `number`                    | `0`      |
+| 参数         | 描述                                        | 类型                        | 默认值   |
+| ------------ | ------------------------------------------- | --------------------------- | -------- |
+| `anchors`    | 锚点集合数组                                | `AnchorOption[]`            | `-`      |
+| `showMarker` | 是否展示轴线                                | `boolean`                   | `true`   |
+| `scrollEl`   | 要监听的滚动容器                            | `HTMLElement｜Window｜null` | `window` |
+| `offset`     | 表示被锚定元素的出现位置的偏移量            | `number`                    | `0`      |
+| `ms`         | 滚动防抖延时，`scrollEl` 不为 `null` 时生效 | `number`                    | `100`    |
