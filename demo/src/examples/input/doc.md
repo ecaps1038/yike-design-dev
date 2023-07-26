@@ -25,7 +25,7 @@
 :::
 
 :::snippet
-前置后置元素
+后置元素
 可以在输入框的前后附加文字、图标等元素作为输入提示。
 <InputAmbient/>
 :::
@@ -48,7 +48,19 @@
 <InputCounterLimit/>
 :::
 
-### API
+:::snippet
+搜索框
+搜索框 = 输入框 + 按钮
+<InputSearch/>
+:::
+
+:::snippet
+事件
+可以为输入框聚焦、失焦和变更等事件添加回调函数。
+<InputEvent/>
+:::
+
+### Input
 
 #### Input API
 
@@ -62,9 +74,53 @@
 | placeholder   | 输入框的占位文字                   | string                                    | ''        |
 | value         | 输入框的初始值                     | string                                    | ''        |
 | disabled      | 输入框是否禁用                     | false ｜ true                             | false     |
-| clearable     | 输入框是否显示清空按钮             | false ｜ true                             | true      |
+| clearable     | 输入框是否显示清空按钮             | false ｜ true                             | false     |
 | visible       | 密码类型输入框是否显示查看密码按钮 | false ｜ true                             | true      |
 | statue        | 输入框的状态                       | 'danger'｜'success'｜'warning'｜'primary' | 'primary' |
 | loading       | 输入框是否为加载中状态             | false ｜ true                             | false     |
 | show-counter  | 输入框是否显示字数统计             | false ｜ true                             | false     |
 | limit         | 输入框最大输入字符数               | number                                    | -1        |
+
+#### Input 事件
+
+| 事件   | 描述                             |
+| ------ | -------------------------------- |
+| focus  | 输入框聚焦时触发                 |
+| blur   | 输入框失焦时触发                 |
+| clear  | 输入框失焦时触发                 |
+| change | 输入框输入字符、退格、粘贴时触发 |
+| submit | 输入框聚焦时按 Enter 触发        |
+
+#### Input 插槽
+
+| 插槽   | 描述           |
+| ------ | -------------- |
+| prefix | 输入框前置标签 |
+| suffix | 输入框后置标签 |
+| append | 输入框后置元素 |
+
+### InputSearch
+
+#### InputSearch API
+
+| 参数        | 描述                   | 类型                | 默认值 |
+| ----------- | ---------------------- | ------------------- | ------ |
+| id          | 搜索框的 id 属性       | string              | ''     |
+| name        | 搜索框的 name 属性     | string              | ''     |
+| size        | 搜索框的大小           | 's'｜'m'｜'l'｜'xl' | 'l'    |
+| placeholder | 搜索框的占位文字       | string              | ''     |
+| clearable   | 搜索框是否显示清空按钮 | false ｜ true       | true   |
+| loading     | 搜索框是否为加载中状态 | false ｜ true       | false  |
+
+#### InputSearch 事件
+
+| 事件   | 描述                                      |
+| ------ | ----------------------------------------- |
+| search | 搜索框聚焦时按 Enter 或按默认搜索按钮触发 |
+
+#### InputSearch 插槽
+
+| 插槽   | 描述           |
+| ------ | -------------- |
+| prefix | 搜索框前置标签 |
+| append | 搜索框后置元素 |

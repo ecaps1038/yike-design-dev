@@ -3,22 +3,6 @@
   flex-basis: content;
   align-items: center;
   transition: all @animatb ease-in-out;
-
-  &--s {
-    border-radius: @radius-s;
-  }
-
-  &--m {
-    border-radius: @radius-s;
-  }
-
-  &--l {
-    border-radius: @radius-m;
-  }
-
-  &--xl {
-    border-radius: @radius-m;
-  }
 }
 
 .yk-input__spinner {
@@ -26,10 +10,9 @@
   align-items: center;
 }
 
-.yk-input__slot {
+.yk-input--slot {
   display: flex;
   align-items: center;
-  margin: 3px;
   word-break: keep-all;
 
   &:empty {
@@ -39,16 +22,25 @@
   svg {
     width: 20px;
     height: 16px;
+    fill: @font-color-s;
   }
 }
 
-.yk-input-inner {
+.yk-input--before {
+  margin-left: 5px;
+}
+
+.yk-input--after {
+  margin-right: 5px;
+}
+
+.yk-input__inner {
   display: flex;
   flex-grow: 1;
   width: 270px;
   transition: all @animatb ease-in-out;
 
-  .yk-input-widget {
+  .yk-input__widget {
     border: none;
     color: @gray;
     background: inherit;
@@ -63,7 +55,7 @@
   background-color: inherit;
 }
 
-.yk-input-button {
+.yk-input__button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +77,7 @@
   }
 }
 
-.yk-input-button svg {
+.yk-input__button svg {
   padding: 3px;
   width: 22px;
   height: 22px;
@@ -101,7 +93,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
+  margin-right: 6px;
+  font-size: 14px;
   color: @font-color-s;
 
   span {
@@ -110,15 +103,21 @@
   }
 }
 
-.input-size(@size, @height, @padding, @fs) {
-  .normal() {
+.input-size(@size, @height, @padding, @fs, @br) {
+  .inner() {
+    border-radius: @br;
+  }
+  .widget() {
     padding: 0px @padding;
     height: @height;
     font-size: @fs;
   }
 
-  &.yk-input-size--@{size} {
-    .normal();
+  &.yk-input-size__@{size} {
+    .inner();
+  }
+  &.yk-input-size__@{size} input {
+    .widget();
   }
 }
 
@@ -142,11 +141,20 @@
   }
 }
 
+.yk-input__append {
+  display: flex;
+
+  .yk-button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
 // copy from YkButton
-.yk-input--loading {
+.yk-input__loading {
   // opacity: 0.7 !important;
   #spinner {
-    margin-right: 4px;
+    margin-right: 6px;
     width: 16px;
     transform-origin: center;
     animation: rotate4 2s linear infinite;
@@ -185,13 +193,13 @@
   }
 }
 
-.input-size(s, 24px, 4px, @size-s);
-.input-size(m, 32px, 6px, @size-s);
-.input-size(l, 36px, 6px, @size-s);
-.input-size(xl, 48px, 8px, @size-m);
+.input-size(s, 24px, 6px, @size-s, @radius-s);
+.input-size(m, 32px, 8px, @size-s, @radius-s);
+.input-size(l, 36px, 10px, @size-s, @radius-m);
+.input-size(xl, 48px, 12px, @size-m, @radius-m);
 
 .input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-l);
-.input-status(danger, transparent, @ecolor-3, @ecolor, @ecolor-1, @ecolor, @bg-color-m);
-.input-status(success, transparent, @scolor-3, @scolor, @scolor-1, @scolor, @bg-color-m);
-.input-status(warning, transparent, @wcolor-3, @wcolor, @wcolor-1, @wcolor, @bg-color-m);
+.input-status(danger, transparent, @ecolor-4, @ecolor, @ecolor-1, @ecolor, @bg-color-m);
+.input-status(success, transparent, @scolor-4, @scolor, @scolor-1, @scolor, @bg-color-m);
+.input-status(warning, transparent, @wcolor-4, @wcolor, @wcolor-1, @wcolor, @bg-color-m);
 .input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);

@@ -7,7 +7,7 @@ import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
 import YkRate from './components/rate';
-import YkInput from './components/input';
+import { YkInput, YkInputSearch } from './components/input';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -36,6 +36,7 @@ const components: {
   YkDrawer,
   YkRate,
   YkInput,
+  YkInputSearch,
   YkAlert,
   YkButton,
   YkTheme,
@@ -63,6 +64,7 @@ export {
   YkDrawer,
   YkRate,
   YkInput,
+  YkInputSearch,
   YkAlert,
   YkButton,
   YkTheme,
