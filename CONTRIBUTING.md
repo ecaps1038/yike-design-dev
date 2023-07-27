@@ -247,26 +247,20 @@ desc
 ```
 #### 单元测试
 
-目前我们已经集成了vitest来进行单元测试，但是由于之前的组件并没有进行单测，于是我们新建了一个分支`feature/testing-capabilities`来进行单元测试
+目前我们已经集成了`vitest`来进行单元测试，但是由于之前的组件并没有进行单测，于是我们新建了一个分支`feature/testing-capabilities`来进行单元测试
 
 对此，目录结构会发生一些微小的变化
 
+我们在`packages`下新建了一个子包，`yk-test`
+
 ```
 |- packages/               # 组件库开发目录
-|  |- yike-design-ui/
-|     |- src/
-|        |- assets/        # 资源文件夹
-|        |- components/    # 组件目录
-|            |- src        # 组件源码
-|            |- __test__   # 组件测试
-|            |- style      # 组件样式
-|            |- index.ts   
-|        |- styles/        # 样式文件夹
-|            |- base.less  # 公共基础样式
-|        |- types/         # 类型文件夹
-|        |- utils/         # 工具文件夹
-|        |- index.ts       # 组件库入口文件
-|     |- package.json      # 组件库 package.json 文件
+|  |- yike-test/
+|      |- components/    # 组件目录
+|          |- button        
+|            |- __test__   # 组件测试 
+|               |- button.test.ts   # 测试用例 
+|      |- package.json      # 测试 package.json 文件
 ```
 然后我们可以在`__test__`下书写我们的测试用例，例如`button.test.ts`
 
