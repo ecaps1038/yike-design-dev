@@ -1,17 +1,19 @@
 import path from 'path';
 import fs from 'fs-extra';
 import { glob } from 'fast-glob';
-import { componentPath, resolvePath } from '../../utils/paths';
+import { componentSrc, resolvePath } from '../../utils/paths';
 import less from 'less';
 import CleanCSS from 'clean-css';
+import { build } from 'vite';
 
 const buildComponentCssModule = () => {
   const files = glob.sync('**/*.{less,js}', {
     cwd: resolvePath('src/components'),
   });
   for (const filename of files) {
-    const absolute = resolvePath(componentPath, 'components', filename);
+    const absolute = resolvePath(componentSrc, 'components', filename);
     fs.copySync(absolute, resolvePath(`es/${filename}`));
+    fs.copySync(absolute, resolvePath(`lib/${filename}`));
     if (!/.less$/.test(filename)) continue;
     const lessContent = fs.readFileSync(absolute, 'utf8');
     less.render(
@@ -21,12 +23,11 @@ const buildComponentCssModule = () => {
       },
       (err, output) => {
         if (err) {
-          console.log('err: ', err);
           return err;
         } else if (output && output.css) {
           const cssFilename = filename.replace('.less', '.css');
           fs.writeFileSync(resolvePath(`es/${cssFilename}`), output.css);
-          console.log(`${filename} build success`);
+          fs.writeFileSync(resolvePath(`lib/${cssFilename}`), output.css);
         }
       },
     );
@@ -36,6 +37,7 @@ const buildComponentCssModule = () => {
 const buildCssIndex = async () => {
   const indexLessPath = resolvePath('src/index.less');
   fs.copyFileSync(indexLessPath, 'es/index.less');
+  fs.copyFileSync(indexLessPath, 'lib/index.less');
 
   const indexLessContent = fs.readFileSync(indexLessPath, 'utf-8');
   const result = await less.render(indexLessContent, {
@@ -55,9 +57,71 @@ const buildCssIndex = async () => {
   fs.writeFileSync(resolvePath('dist/index.min.css'), compress.styles);
 };
 
+import type { Plugin } from 'vite';
+
+function cssjsPlugin(): Plugin {
+  return {
+    name: 'vite:cssjs',
+    async generateBundle(outputOptions, bundle) {
+      for (const filename of Object.keys(bundle)) {
+        const chunk = bundle[filename];
+        this.emitFile({
+          type: 'asset',
+          fileName: filename.replace('index.js', 'css.js'),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          source: chunk.code.replace(/\.less/g, '.css'),
+        });
+      }
+    },
+  };
+}
+
+const buildStyleModule = async () => {
+  const entries = glob.sync(`components/**/style/index.ts`, {
+    cwd: componentSrc,
+    absolute: true,
+  });
+  console.log('entries: ', entries);
+  await build({
+    build: {
+      target: 'modules',
+      outDir: 'es',
+      emptyOutDir: false,
+      minify: false,
+      rollupOptions: {
+        external: /\.less$/,
+        input: entries,
+        output: [
+          {
+            format: 'es',
+            dir: 'es',
+            entryFileNames: '[name].js',
+            preserveModules: true,
+            preserveModulesRoot: resolvePath('src/components/'),
+          },
+          {
+            format: 'commonjs',
+            dir: 'lib',
+            entryFileNames: '[name].js',
+            preserveModules: true,
+            preserveModulesRoot: resolvePath('src/components/'),
+          },
+        ],
+      },
+      lib: {
+        entry: '',
+        formats: ['es', 'cjs'],
+      },
+    },
+    plugins: [cssjsPlugin()],
+  });
+};
+
 const buildStyle = () => {
   buildComponentCssModule();
   buildCssIndex();
+  buildStyleModule();
 };
 
 export default buildStyle;
