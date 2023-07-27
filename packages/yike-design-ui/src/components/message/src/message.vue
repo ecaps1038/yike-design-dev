@@ -12,9 +12,9 @@
 <script setup lang="ts">
 import { MessageProps } from './message'
 import { ref, onMounted, computed } from 'vue'
-import '../style'
+
 import { YkIcon } from '../../../index'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 
 const bem = createCssScope('message')
 
@@ -67,3 +67,4 @@ onMounted(() => {
   isShow.value = true
 })
 </script>
+../../utils/bem

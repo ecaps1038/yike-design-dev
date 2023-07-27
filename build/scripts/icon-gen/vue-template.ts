@@ -107,7 +107,7 @@ export const genComponentIndex = ({
   componentName: string;
 }) => `
   import _${componentName} from './${name}.vue';
-  import { withInstall } from '../../../utils/index';
+  import { withInstall } from '../../utils/index';
   const ${componentName} = withInstall(_${componentName});
   export default ${componentName};
 `;

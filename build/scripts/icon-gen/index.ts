@@ -119,11 +119,9 @@ const buildIconEntry = (data: IconData[]) => {
     iconData.list.forEach((icon) => {
       const { componentName, name } = icon;
       components.push(icon.componentName);
-      imports.push(
-        `import ${componentName} from './${iconData.type}/${name}.vue'`,
-      );
+      imports.push(`import ${componentName} from './${name}'`);
       exports.push(
-        `export {default as ${componentName} } from './${iconData.type}/${name}.vue'`,
+        `export {default as ${componentName} } from './${name}/${name}.vue'`,
       );
     });
   });

@@ -1,6 +1,6 @@
 import { createVNode, render, ref, reactive } from 'vue';
 import { MessageOptions } from './message';
-import { MESSAGETYPE } from '../../../utils/constant';
+import { MESSAGETYPE } from '../../utils/constant';
 import MessageGroup from './message-group.vue';
 
 class MessageManager {

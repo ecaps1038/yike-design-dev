@@ -91,11 +91,11 @@ import {
 } from './upload'
 import { UploadRequest } from './ajax'
 import { generateListUid, generateUid, findFileByUid } from './utils'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
 import uploadDraggle from './upload-draggle.vue'
 import UploadPictureItem from './upload-picture-item.vue'
-import '../style'
+
 defineOptions({
   name: 'YkUpload',
 })
@@ -247,3 +247,4 @@ const handleDraggleFiles = (files: File[]) => {
   })
 }
 </script>
+../../utils/bem

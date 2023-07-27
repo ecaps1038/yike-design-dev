@@ -47,8 +47,8 @@
 import { computed, toRefs } from 'vue'
 import { getArcPath, getFileTypeIconName, generateUid } from './utils'
 import { FileItemProps } from './upload'
-import { createCssScope } from '../../../utils/bem'
-import '../style'
+import { createCssScope } from '../../utils/bem'
+
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
   fileContent: () => ({
@@ -77,3 +77,4 @@ const handleReUpload = () => {
   emits('handleReUpload', uid.value)
 }
 </script>
+../../utils/bem

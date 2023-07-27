@@ -22,9 +22,9 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import '../style'
+
 import { BackTopProps } from './back-top'
-import { transformPxToNumber } from '../../../utils/tools'
+import { transformPxToNumber } from '../../utils/tools'
 
 defineOptions({
   name: 'YkBackTop',
@@ -96,3 +96,4 @@ const clickIt = (e: MouseEvent) => {
   emit('on-click', e)
 }
 </script>
+../../utils/tools

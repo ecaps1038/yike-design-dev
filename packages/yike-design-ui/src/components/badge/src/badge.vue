@@ -24,7 +24,7 @@
 </template>
 <script setup lang="ts">
 import { BadgeProps } from './badge'
-import '../style'
+
 import { ref, computed, CSSProperties, onMounted, useSlots } from 'vue'
 defineOptions({
   name: 'YkBadge',
