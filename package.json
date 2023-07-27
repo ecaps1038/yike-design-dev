@@ -21,7 +21,7 @@
     "gen:less": "pnpm --filter yike-design-ui gen:less",
     "build": "pnpm gen:icon && pnpm build:comp && pnpm gen:less && pnpm build:less",
     "test": "pnpm --filter yike-design-ui test",
-    "test:coverage": "pnpm --filter yike-design-ui test:coverage"
+    "test:coverage": "pnpm --filter @yike/test test:coverage"
   },
   "dependencies": {
     "svgo": "^3.0.2",

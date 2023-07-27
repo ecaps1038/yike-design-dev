@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Button from '../src/button.vue';
+import Button from '../../../../yike-design-ui/src/components/button/src/button.vue';
 // 我们使用 describe 函数创建了一个测试套件，名称为 Button，它包含了多个测试用例。每个测试用例都使用 it 函数来描述一个具体的测试场景，并使用断言来验证测试结果是否符合预期。
 const UI = 'yike design';
 // 第一个测试用例 create 测试了 Button 组件是否具有默认样式 yk - button--primary。我们使用 mount(Button) 创建了一个 Button 组件的包装器，并使用 expect(wrapper.classes()).toContain('yk-button--primary') 断言该组件是否包含名为 yk - button--primary 的 CSS 类。
