@@ -4,20 +4,19 @@ import { componentPath, resolvePath } from '../../utils/paths';
 import less from 'less';
 import path from 'path';
 
-const buildStyle = () => {
-  const files = glob
-    .sync('**/*.less', {
-      cwd: resolvePath('src/components'),
-    })
-    .slice(1);
+const buildComponentCssModule = () => {
+  const files = glob.sync('**/*.{less,js}', {
+    cwd: resolvePath('src/components'),
+  });
   for (const filename of files) {
     const absolute = resolvePath(componentPath, 'components', filename);
     fs.copySync(absolute, resolvePath(`es/${filename}`));
+    if (!/.less$/.test(filename)) continue;
     const lessContent = fs.readFileSync(absolute, 'utf8');
     less.render(
       lessContent,
       {
-        // filename: filename,
+        filename: filename,
         paths: [resolvePath(`src/components/${path.dirname(filename)}`)],
       },
       (err, output) => {
@@ -32,6 +31,10 @@ const buildStyle = () => {
       },
     );
   }
+};
+
+const buildStyle = () => {
+  buildComponentCssModule();
 };
 
 export default buildStyle;
