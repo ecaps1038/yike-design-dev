@@ -199,10 +199,13 @@ const handleBeforeUpload = (uploadFile: File) => {
 }
 
 const handleInputChange = (event) => {
+  const uploadFiles = Array.from(event.target.files) as File[]
+  if (!uploadFiles.length) {
+    return
+  }
   if (props.avatar) {
     currentList.value = []
   }
-  const uploadFiles = Array.from(event.target.files) as File[]
   uploadFiles.forEach((upload: File) => {
     const validate = handleBeforeUpload(upload)
     if (upload && validate) {

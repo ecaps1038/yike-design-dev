@@ -1,8 +1,6 @@
 import MarkdownIt from 'markdown-it'
-import hljs from 'highlight.js'
 import fs from 'fs'
 import path from 'path'
-
 export function camelToDashCase(str) {
   return str.replace(/([a-zA-Z])([A-Z])/g, '$1-$2').toLowerCase()
 }
@@ -61,22 +59,17 @@ export default () => ({
         ) // ButtonPrimary -> button-primary
 
         const demoCode = fetchDemoCode(demoComponentName, id)
-          .replace(/{{/g, '{ {')
-          .replace(/ /g, '\u2008') // fix {{}} in <pre> render
-        const html = hljs.highlightAuto(demoCode).value
-
         const importLine = `import ${demoTagName} from './${demoComponentName}.vue';\n`
         if (!importBucket.has(importLine)) {
           importContent += importLine
           importBucket.add(importLine)
         }
         //import vue dependence
-        const caseCardContent = `<yk-snippet title="${title}">
+        const caseCardContent = `<yk-snippet title="${title}" code="${encodeURIComponent(
+          demoCode,
+        )}" >
           <template v-slot:demo>${demoName}</template>
           <template v-slot:desc>${markdownIt.render(desc)}</template>
-          <template v-slot:code>
-            <pre class='hljs'><code>${html}</code></pre>
-          </template>
         </yk-snippet>
         `
         src = src.replace(match[0], caseCardContent) // html render

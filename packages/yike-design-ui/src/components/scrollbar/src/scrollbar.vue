@@ -8,7 +8,7 @@
     :style="{ height: scrollHeight }"
   >
     <div ref="boxRef" class="yk-scrollbar__container" @scroll="scrollChange()">
-      <div ref="wrapRef" style="width: fit-content">
+      <div ref="wrapRef">
         <slot></slot>
       </div>
     </div>
