@@ -15,7 +15,10 @@
         </div>
         <div>
           <div class="title-text">{{ title }}</div>
-          <div class="content">{{ message }}</div>
+          <div class="content">
+            <p v-if="!dangaurslyUseHtmlString">{{ realMessgae }}</p>
+            <p v-else v-html="realMessgae" />
+          </div>
         </div>
         <button
           v-if="props.closable"
@@ -35,7 +38,7 @@
 </template>
 <script setup lang="ts">
 import { NotificationProps } from './notification'
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, VNode, isVNode, createVNode, render } from 'vue'
 import '../style'
 import { YkIcon } from '../../../index'
 defineOptions({
@@ -53,10 +56,21 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   offsetY: 24,
   offsetX: 24,
   zIndex: 2001,
+  dangaurslyUseHtmlString: false,
   handleCancel: () => ({}),
   handleSubmit: () => ({}),
   onClose: () => ({}),
 })
+
+const realMessgae: string | VNode = (() => {
+  if (props.dangaurslyUseHtmlString && isVNode(props.message)) {
+    const vm = createVNode(props.message)
+    const container = document.createElement('div')
+    render(vm, container)
+    return container.innerHTML
+  }
+  return props.message
+})()
 
 const emits = defineEmits(['close'])
 
