@@ -18,9 +18,7 @@
     "build:comp": "pnpm --filter yike-design-ui build:comp",
     "build:less": "pnpm --filter yike-design-ui build:less",
     "gen:icon": "pnpm --filter yike-design-ui gen:icon",
-    "gen:less": "pnpm --filter yike-design-ui gen:less",
-    "build": "pnpm gen:icon && pnpm build:comp && pnpm gen:less && pnpm build:less",
-    "test": "pnpm --filter yike-design-ui test",
+    "test": "pnpm --filter @yike/test test",
     "test:coverage": "pnpm --filter @yike/test test:coverage"
   },
   "dependencies": {
