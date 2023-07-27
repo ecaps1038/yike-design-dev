@@ -1,8 +1,9 @@
+import path from 'path';
 import fs from 'fs-extra';
 import { glob } from 'fast-glob';
 import { componentPath, resolvePath } from '../../utils/paths';
 import less from 'less';
-import path from 'path';
+import CleanCSS from 'clean-css';
 
 const buildComponentCssModule = () => {
   const files = glob.sync('**/*.{less,js}', {
@@ -16,7 +17,6 @@ const buildComponentCssModule = () => {
     less.render(
       lessContent,
       {
-        filename: filename,
         paths: [resolvePath(`src/components/${path.dirname(filename)}`)],
       },
       (err, output) => {
@@ -33,8 +33,31 @@ const buildComponentCssModule = () => {
   }
 };
 
+const buildCssIndex = async () => {
+  const indexLessPath = resolvePath('src/index.less');
+  fs.copyFileSync(indexLessPath, 'es/index.less');
+
+  const indexLessContent = fs.readFileSync(indexLessPath, 'utf-8');
+  const result = await less.render(indexLessContent, {
+    paths: [resolvePath('src')],
+  });
+
+  fs.ensureDirSync(resolvePath('dist'));
+
+  fs.writeFileSync(
+    resolvePath('dist/index.less'),
+    `@import "../es/index.less";`,
+  );
+
+  fs.writeFileSync(resolvePath('dist/index.css'), result.css);
+
+  const compress = new CleanCSS().minify(result.css);
+  fs.writeFileSync(resolvePath('dist/index.min.css'), compress.styles);
+};
+
 const buildStyle = () => {
   buildComponentCssModule();
+  buildCssIndex();
 };
 
 export default buildStyle;
