@@ -70,7 +70,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import codesVue from '@/components/Codes.vue'
+import codesVue from '../Codes.vue'
 const datas = [
   `<yk-theme/> //默认跟随系统颜色，并显示控制主题的“太阳”和“月亮”控件
 <yk-theme :control='false'/> //默认跟随系统颜色，不显示控制主题的“太阳”和“月亮”控件

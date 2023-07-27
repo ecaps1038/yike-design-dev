@@ -55,7 +55,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import codesVue from '@/components/Codes.vue'
+import codesVue from '../Codes.vue'
 const datas = [
   `export default defineConfig({
   ...

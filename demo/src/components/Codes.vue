@@ -12,6 +12,8 @@ defineProps({
 })
 </script>
 <style scoped lang="less">
+@import url('@/style/code-color.less');
+
 .codes {
   padding-bottom: @space-m;
 }

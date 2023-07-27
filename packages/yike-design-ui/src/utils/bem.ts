@@ -25,14 +25,12 @@ const createModifier = (prefixClass: string, modifierObject?: BEMModifier) => {
       })
       .filter(Boolean);
   } else if (isObject(modifierObject)) {
-    modifiers = Object.entries(modifierObject)
-      .map(([modifier, value]) => {
-        if (!value) return '';
-        return `${prefixClass}--${modifier}`;
-      })
-      .filter(Boolean);
+    modifiers = Object.entries(modifierObject).map(([modifier, value]) => {
+      if (!value) return '';
+      return `${prefixClass}--${modifier}`;
+    });
   }
-  return [...modifiers].join(' ');
+  return modifiers;
 };
 
 /**
@@ -44,6 +42,9 @@ const createModifier = (prefixClass: string, modifierObject?: BEMModifier) => {
  * bem({ disabled }) // button button--disabled
  * bem('label', { disabled }) // button__label button__label--disabled
  * bem(['disabled', 'primary']) // button button--disabled button--primary
+ * bem(['disabled', 'primary']) // button button--disabled button--primary
+ * bem([type, status, shape, size], {loading: loading,long: long,disabled: disabled}),
+ * bem('main',[type, status, shape, size], {loading: loading,long: long,disabled: disabled}),
  */
 
 export const createCssScope = (prefix: string, identity = 'yk') => {
@@ -52,13 +53,22 @@ export const createCssScope = (prefix: string, identity = 'yk') => {
   return (
     elementOrModifier?: BEMElement | BEMModifier,
     modifier?: BEMModifier,
+    modifierLater?: BEMModifier,
   ) => {
     if (!elementOrModifier) return prefixClass;
     if (isString(elementOrModifier)) {
       const element = `${prefixClass}__${elementOrModifier}`;
       if (!modifier) return element;
-      return createModifier(element, modifier);
+      return [
+        element,
+        ...createModifier(element, modifier),
+        ...createModifier(element, modifierLater),
+      ];
     }
-    return createModifier(prefixClass, elementOrModifier);
+    return [
+      prefixClass,
+      ...createModifier(prefixClass, elementOrModifier),
+      ...createModifier(prefixClass, modifier),
+    ];
   };
 };
