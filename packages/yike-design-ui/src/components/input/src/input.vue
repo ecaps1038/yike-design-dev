@@ -11,6 +11,7 @@
           [`${status}--focus`]: isFocus && !disabled,
           loading: loading,
           disabled: disabled,
+          readonly: readonly,
           rightbr0: !!$slots.append,
           leftbr0: !!$slots.prepend,
         }),
@@ -28,6 +29,7 @@
         :name="name"
         :placeholder="placeholder"
         :disabled="disabled"
+        :readonly="readonly"
         :class="bem('widget')"
         :type="inputType"
         tabindex="0"
@@ -83,6 +85,7 @@ import { InputProps } from './input'
 import '../style'
 import { computed, ref, toRef } from 'vue'
 import { createCssScope } from '../../../utils/bem'
+import { useInputTooltip } from './utils'
 defineOptions({
   name: 'YkInput',
 })
@@ -94,12 +97,14 @@ const props = withDefaults(defineProps<InputProps>(), {
   placeholder: '',
   value: '',
   disabled: false,
+  readonly: false,
   visible: true,
   clearable: false,
   status: 'primary',
   loading: false,
   showCounter: false,
   limit: -1, // 不限制输入字数
+  tooltip: '',
 })
 const bem = createCssScope('input')
 const isTyping = ref(false)
@@ -119,19 +124,25 @@ const emits = defineEmits([
   'update:value',
 ])
 const inputRef = ref<HTMLInputElement>()
+
 const isFocus = ref(false)
 const isHovering = ref(false)
 const shouldShowButton = ref(lastValue.length > 0)
 const inputType = ref(props.type)
+let tooltip = useInputTooltip(inputRef)
 
 const focus = () => {
-  // 禁用状态不可被聚焦
-  if (props.disabled) return
+  // 禁用与只读状态不可被聚焦
+  if (props.disabled || props.readonly) return
   isFocus.value = true
+  if (props.tooltip && props.tooltip !== '') {
+    tooltip!.set(props.tooltip)
+  }
   emits('focus', lastValue)
 }
 
 const update = () => {
+  if (props.disabled || props.readonly) return
   lastValue = inputRef.value?.value ?? ''
   if (shouldLimitInput && !isTyping.value && lastValue.length > props.limit) {
     lastValue = lastValue.slice(0, props.limit)
@@ -146,6 +157,7 @@ const update = () => {
 
 const blur = () => {
   isFocus.value = false
+  tooltip.unset()
   emits('blur', lastValue)
 }
 

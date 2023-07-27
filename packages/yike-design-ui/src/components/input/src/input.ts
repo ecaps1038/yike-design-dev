@@ -8,12 +8,14 @@ export type InputProps = {
   placeholder?: string;
   value?: string;
   disabled?: boolean;
+  readonly?: boolean;
   clearable?: boolean;
   visible?: boolean;
   status?: Status;
   loading?: boolean;
   showCounter?: boolean;
   limit?: number;
+  tooltip?: string;
 };
 
 export type InputSearchProps = {

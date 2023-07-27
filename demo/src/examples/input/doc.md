@@ -38,7 +38,7 @@
 
 :::snippet
 密码输入类型
-我们贴心地为密码类型的输入框提供了了临时查看密码明文的实用功能（它可以像其他功能一样被禁用）。
+我们贴心地为密码类型的输入框提供了临时查看密码明文的实用功能（它可以像其他功能一样被禁用）。
 <InputTypes/>
 :::
 
@@ -46,6 +46,12 @@
 字数统计与限制
 可以添加对应的参数来显示输入框的字数显示器，它可以直观显示当前字数，它也可以配合字数限制工作。
 <InputCounterLimit/>
+:::
+
+:::snippet
+文字提示
+可以添加当输入框聚焦时显示的文字提示，它可以用于指导用户填写严格的数据。
+<InputTooltip/>
 :::
 
 :::snippet
@@ -74,12 +80,14 @@
 | placeholder   | 输入框的占位文字                   | string                                    | ''        |
 | value         | 输入框的初始值                     | string                                    | ''        |
 | disabled      | 输入框是否禁用                     | false ｜ true                             | false     |
+| readonly      | 输入框是否只读                     | false ｜ true                             | false     |
 | clearable     | 输入框是否显示清空按钮             | false ｜ true                             | false     |
 | visible       | 密码类型输入框是否显示查看密码按钮 | false ｜ true                             | true      |
 | statue        | 输入框的状态                       | 'danger'｜'success'｜'warning'｜'primary' | 'primary' |
 | loading       | 输入框是否为加载中状态             | false ｜ true                             | false     |
 | show-counter  | 输入框是否显示字数统计             | false ｜ true                             | false     |
 | limit         | 输入框最大输入字符数               | number                                    | -1        |
+| tooltip       | 输入框聚焦时显示的文字提示         | string                                    | ''        |
 
 #### Input 事件
 

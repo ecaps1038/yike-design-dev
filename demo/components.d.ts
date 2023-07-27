@@ -27,10 +27,11 @@ declare module 'vue' {
     YkIcon: typeof import('./../packages/yike-design-ui/src/index.ts')['YkIcon']
     YkInput: typeof import('./../packages/yike-design-ui/src/index.ts')['YkInput']
     YkInputSearch: typeof import('./../packages/yike-design-ui/src/index.ts')['YkInputSearch']
+    YkRate: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRate']
     YkSpace: typeof import('./../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkText: typeof import('./../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTitle']
-    YkUpload: typeof import('./../packages/yike-design-ui/src/index.ts')['YkUpload']
+    YkTooltip: typeof import('./../packages/yike-design-ui/src/index.ts')['YkTooltip']
   }
 }

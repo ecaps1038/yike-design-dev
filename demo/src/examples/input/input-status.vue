@@ -3,6 +3,9 @@
     <yk-input disabled placeholder="不可用" />
   </div>
   <div class="item">
+    <yk-input readonly placeholder="只读" />
+  </div>
+  <div class="item">
     <yk-input status="danger" placeholder="危险色" />
   </div>
   <div class="item">

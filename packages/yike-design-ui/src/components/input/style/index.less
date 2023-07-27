@@ -61,9 +61,24 @@
   }
 }
 
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 110%;
+  padding: 7px;
+  min-width: 300px;
+  font-size: @size-s;
+  border: 1px solid @pcolor;
+  border-radius: @radius-s;
+  background-color: @pcolor-4;
+  box-shadow: @shadow-m;
+  content: attr(data-tooltip);
+  line-height: 1.2;
+}
+
 .yk-input__buttons {
   display: flex;
   background-color: inherit;
+  flex-shrink: 1;
 }
 
 .yk-input__button {
