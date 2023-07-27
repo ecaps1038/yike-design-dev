@@ -1,5 +1,4 @@
 import MarkdownIt from 'markdown-it'
-import hljs from 'highlight.js'
 import fs from 'fs'
 import path from 'path'
 export function camelToDashCase(str) {
