@@ -15,7 +15,10 @@
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
     "gen:icon": "pnpm --filter yike-design-ui gen:icon",
-    "release": "standard-version"
+    "gen:less": "pnpm --filter yike-design-ui gen:less",
+    "release": "standard-version",
+    "prepare": "pnpm --filter @yike/build build",
+    "build:less": "pnpm --filter yike-design-ui build:less"
   },
   "dependencies": {
     "svgo": "^3.0.2",

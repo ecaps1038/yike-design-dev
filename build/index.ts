@@ -2,6 +2,8 @@ import { Command } from 'commander';
 import { iconGen } from './scripts/icon-gen';
 import fs from 'fs';
 import path from 'path';
+import lessGen from './scripts/less-gen';
+import buildStyle from './scripts/build-style';
 
 const program = new Command();
 
@@ -21,6 +23,20 @@ program
   .description('generate icon components.')
   .action(() => {
     iconGen();
+  });
+
+program
+  .command('lessgen')
+  .description('generate index.less.')
+  .action(() => {
+    lessGen();
+  });
+
+program
+  .command('buildStyle')
+  .description('compile less to css.')
+  .action(() => {
+    buildStyle();
   });
 
 program.parse(process.argv);
