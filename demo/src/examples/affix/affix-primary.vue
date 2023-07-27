@@ -1,5 +1,5 @@
 <template>
-  <yk-affix :offset="500">
+  <yk-affix :offset="100">
     <yk-button>affix</yk-button>
   </yk-affix>
   <div class="demo"></div>
