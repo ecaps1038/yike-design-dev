@@ -10,7 +10,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -18,8 +19,10 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
     "@types/jsdom": "^21.1.1",
+    "@types/less": "^3.0.3",
     "commander": "^11.0.0",
     "glob": "^10.3.3",
+    "less": "^4.0.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
