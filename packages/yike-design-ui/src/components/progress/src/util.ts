@@ -24,7 +24,7 @@ export const getIconName = (type: Status) =>
  */
 export const getSvgSize = (Size: Size) =>
   ({
-    s: 48,
-    m: 64,
-    l: 80,
+    s: '48',
+    m: '64',
+    l: '80',
   }[Size]);

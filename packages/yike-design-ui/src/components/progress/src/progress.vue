@@ -19,6 +19,10 @@
       <div :class="['yk-progress-circle-wrapper', ykProgressCircleSizeCls]">
         <svg
           class="yk-progress-svg"
+          :style="{
+            width: getSvgSize(props.size) + 'px',
+            height: getSvgSize(props.size) + 'px',
+          }"
           :viewBox="`0 0 ${getSvgSize(props.size)} ${getSvgSize(props.size)}`"
         >
           <circle
@@ -26,8 +30,7 @@
             :cx="getSvgSize(props.size)"
             :cy="getSvgSize(props.size)"
             fill="none"
-            stroke-miterlimit="20"
-            stroke-width="10"
+            stroke-width="8"
             class="yk-progress-circle"
             style="stroke-dasharray: 275, 279.602; stroke: #e8e8e8"
           ></circle>
@@ -39,16 +42,16 @@
             stroke-miterlimit="20"
             stroke-width="10"
             class="yk-progress-circle"
-            :style="`stroke-dasharray: ${progressValue}, 279.602;stroke:${'red'};`"
+            :style="`stroke-dasharray: ${progressValue}, 279.602;stroke:${setProgressState};`"
           ></circle>
         </svg>
       </div>
     </template>
   </div>
 </template>
-d
+<!-- feat(progress): 完善progress组件 -->
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { getIconColor, getIconName, getSvgSize } from './util'
 import { ProgressProps } from './progress'
 import '../style'
@@ -80,6 +83,7 @@ const setProgressState = computed(() => {
 const ykProgressCircleSizeCls = computed(
   () => `yk-progress-circle--${props.size}`,
 )
+console.log('--', getSvgSize(props.size))
 
 // const ykProgressCircleStyle = computed(() => {
 //   return {
@@ -92,9 +96,9 @@ const ykProgressCircleSizeCls = computed(
 
 // 环形进度条
 const progressValue = ref((props.percent / 100) * 250)
-watch(props.percent, (newValue) => {
-  progressValue.value = (newValue / 100) * 250
-})
+// watch(props.percent, (newValue) => {
+//   progressValue.value = (newValue / 100) * 250
+// })
 </script>
 <style lang="less">
 @progress-inner-w: v-bind(progressPercent);
