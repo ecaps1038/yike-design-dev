@@ -43,16 +43,12 @@ defineProps({
 
   .container {
     box-sizing: border-box;
-    padding: 0 @space-m @space-l;
-  }
-
-  .bar-card {
-    padding: @space-s 0;
+    padding: 0 @space-l @space-l;
   }
 
   .bar-title {
-    margin-top: @space-m;
-    padding-left: @space-m;
+    margin-top: @space-xl;
+    padding-left: @space-ss;
     height: 40px;
     line-height: 40px;
     color: @font-color-l;
@@ -60,8 +56,8 @@ defineProps({
 
   .bar-list {
     display: block;
-    margin-bottom: 5px;
-    padding: 0 @space-m;
+    margin-bottom: @space-ss;
+    padding: 0 @space-l;
     height: 40px;
     border-radius: @radius-m;
     color: @font-color-m;
@@ -69,7 +65,7 @@ defineProps({
     line-height: 40px;
 
     &:hover {
-      background-color: rgb(21 114 255 / 10%);
+      background-color: @pcolor-1;
     }
 
     &:last-child {
@@ -80,13 +76,13 @@ defineProps({
   .router-link-active {
     font-weight: 600;
     color: @pcolor;
-    background-color: rgb(21 114 255 / 10%);
+    background-color: @pcolor-1;
   }
 
   .select {
     font-weight: 600;
     color: @pcolor;
-    background-color: rgb(21 114 255 / 10%);
+    background-color: @pcolor-1;
   }
 }
 </style>
