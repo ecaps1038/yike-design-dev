@@ -4,7 +4,7 @@ import path from 'path';
 import { componentPath } from '../../utils/paths';
 
 const lessGen = () => {
-  let lessContent = `@import './styles/index.less';\n`;
+  let lessContent = `@import './components/styles/index.less';\n`;
   const lessFile = glob.sync('**/style/index.less', {
     cwd: componentPath,
   });
