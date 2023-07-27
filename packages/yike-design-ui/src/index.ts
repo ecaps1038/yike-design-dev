@@ -100,10 +100,3 @@ export default {
     app.config.globalProperties.$message = YkMessage;
   },
 };
-// 局部注册
-// for (const c in components) {
-//   const component = Object.assign(components[c], { install: {} })
-//   component.install = (app: App) => {
-//     app.component(c, component)
-//   }
-// }
