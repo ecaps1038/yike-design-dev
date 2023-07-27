@@ -7,6 +7,7 @@ import svgoConfig from './svgo.config';
 import { iconComponents, iconSvgPath } from '../../utils/paths';
 import { toPascalCase } from '../../utils/convert-case';
 import {
+  genComponentIndex,
   genEntryContent,
   genIconIndex,
   genIconType,
@@ -70,7 +71,7 @@ const buildIconComponent = async (data: IconData[]) => {
         const svgElement = JSDOM.fragment(data).firstElementChild;
         if (svgElement) {
           fs.outputFile(
-            path.resolve(iconComponents, `${iconData.type}/${item.name}.vue`),
+            path.resolve(iconComponents, `${item.name}/${item.name}.vue`),
             getIconVue({
               name: item.name,
               componentName: item.componentName,
@@ -85,6 +86,25 @@ const buildIconComponent = async (data: IconData[]) => {
             },
           );
         }
+
+        const iconIndex = genComponentIndex({
+          name: item.name,
+          componentName: item.componentName,
+        });
+
+        fs.outputFile(
+          path.resolve(iconComponents, `${item.name}/index.ts`),
+          iconIndex,
+          (err) => {
+            if (err) {
+              console.log(
+                `Build ${item.componentName} index.ts Failed: ${err}`,
+              );
+            } else {
+              console.log(`Build ${item.componentName} index.ts Success!`);
+            }
+          },
+        );
       }
     }
   });
