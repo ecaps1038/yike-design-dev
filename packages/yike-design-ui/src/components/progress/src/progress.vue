@@ -19,30 +19,28 @@
       <div :class="['yk-progress-circle-wrapper', ykProgressCircleSizeCls]">
         <svg
           class="yk-progress-svg"
-          :style="{
-            width: getSvgSize(props.size) + 'px',
-            height: getSvgSize(props.size) + 'px',
-          }"
-          :viewBox="`0 0 ${getSvgSize(props.size)} ${getSvgSize(props.size)}`"
+          :width="getSvgSize(props.size) + 'px'"
+          :height="getSvgSize(props.size) + 'px'"
         >
           <circle
-            :r="getSvgSize(props.size)"
-            :cx="getSvgSize(props.size)"
-            :cy="getSvgSize(props.size)"
+            :r="ykProgressCircleStyle.r"
+            :cx="ykProgressCircleStyle.cx"
+            :cy="ykProgressCircleStyle.cy"
+            :stroke-width="ykProgressCircleStyle.strokeWidth"
             fill="none"
-            stroke-width="8"
             class="yk-progress-circle"
-            style="stroke-dasharray: 275, 279.602; stroke: #e8e8e8"
+            stroke="#e8e8e8"
           ></circle>
           <circle
-            :r="getSvgSize(props.size)"
-            :cx="getSvgSize(props.size)"
-            :cy="getSvgSize(props.size)"
+            :r="ykProgressCircleStyle.r"
+            :cx="ykProgressCircleStyle.cx"
+            :cy="ykProgressCircleStyle.cy"
+            :stroke-width="ykProgressCircleStyle.strokeWidth"
             fill="none"
-            stroke-miterlimit="20"
-            stroke-width="10"
             class="yk-progress-circle"
-            :style="`stroke-dasharray: ${progressValue}, 279.602;stroke:${setProgressState};`"
+            :stroke="setProgressState"
+            :stroke-dasharray="progressValues.circumference"
+            :stroke-dashoffset="progressValues.val"
           ></circle>
         </svg>
       </div>
@@ -51,7 +49,7 @@
 </template>
 <!-- feat(progress): 完善progress组件 -->
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { getIconColor, getIconName, getSvgSize } from './util'
 import { ProgressProps } from './progress'
 import '../style'
@@ -83,19 +81,33 @@ const setProgressState = computed(() => {
 const ykProgressCircleSizeCls = computed(
   () => `yk-progress-circle--${props.size}`,
 )
-console.log('--', getSvgSize(props.size))
 
-// const ykProgressCircleStyle = computed(() => {
-//   return {
-//     svgViewBox: `0 0 ${getSvgSize(props.size)} ${getSvgSize(props.size)}`,
-//     r: getSvgSize(props.size),
-//     cx: getSvgSize(props.size),
-//     cy: getSvgSize(props.size),
-//   }
-// })
+const ykProgressCircleStyle = computed(() => {
+  const { size } = props
+  const strokeWidth = 5
+  const val = getSvgSize(size) / 2
+  return {
+    strokeWidth,
+    svgViewBox: `0 0 ${getSvgSize(size)} ${getSvgSize(size)}`,
+    r: (getSvgSize(size) - strokeWidth) / 2,
+    cx: val,
+    cy: val,
+  }
+})
 
-// 环形进度条
-const progressValue = ref((props.percent / 100) * 250)
+// 环形进度值
+const progressValues = computed(() => {
+  const { percent } = props
+  const { r } = ykProgressCircleStyle.value
+  const isMax = percent >= 100
+  const circumference = 2 * Math.PI * (isMax ? r : r - 1)
+  return {
+    circumference,
+    val: isMax
+      ? percent / 100
+      : circumference - (percent / 100) * circumference,
+  }
+})
 // watch(props.percent, (newValue) => {
 //   progressValue.value = (newValue / 100) * 250
 // })
