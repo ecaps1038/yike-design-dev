@@ -48,7 +48,14 @@ const buildComponent = async () => {
   ];
 
   await build({
-    plugins: [vue(), vueJsx() as any, virtualPlugin()],
+    plugins: [
+      vue(),
+      vueJsx() as any,
+      dts({
+        tsconfigPath: resolvePath('./tsconfig.json'),
+      }),
+      virtualPlugin(),
+    ],
     build: {
       lib: {
         entry,

@@ -12,8 +12,8 @@ const buildComponentCssModule = () => {
   });
   for (const filename of files) {
     const absolute = resolvePath(componentSrc, 'components', filename);
-    fs.copySync(absolute, resolvePath(`es/${filename}`));
-    fs.copySync(absolute, resolvePath(`lib/${filename}`));
+    fs.copySync(absolute, resolvePath(`es/components/${filename}`));
+    fs.copySync(absolute, resolvePath(`lib/components/${filename}`));
     if (!/.less$/.test(filename)) continue;
     const lessContent = fs.readFileSync(absolute, 'utf8');
     less.render(
@@ -26,8 +26,14 @@ const buildComponentCssModule = () => {
           return err;
         } else if (output && output.css) {
           const cssFilename = filename.replace('.less', '.css');
-          fs.writeFileSync(resolvePath(`es/${cssFilename}`), output.css);
-          fs.writeFileSync(resolvePath(`lib/${cssFilename}`), output.css);
+          fs.writeFileSync(
+            resolvePath(`es/components/${cssFilename}`),
+            output.css,
+          );
+          fs.writeFileSync(
+            resolvePath(`lib/components/${cssFilename}`),
+            output.css,
+          );
         }
       },
     );
@@ -98,14 +104,14 @@ const buildStyleModule = async () => {
             dir: 'es',
             entryFileNames: '[name].js',
             preserveModules: true,
-            preserveModulesRoot: resolvePath('src/components/'),
+            preserveModulesRoot: resolvePath('src'),
           },
           {
             format: 'commonjs',
             dir: 'lib',
             entryFileNames: '[name].js',
             preserveModules: true,
-            preserveModulesRoot: resolvePath('src/components/'),
+            preserveModulesRoot: resolvePath('src'),
           },
         ],
       },
