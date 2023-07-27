@@ -1,3 +1,5 @@
+import { Size } from '../../../utils/constant';
+
 // 进度条状态
 export type Status = 'normal' | 'success' | 'error';
 
@@ -6,7 +8,7 @@ export type ProgressProps = {
   type?: 'line' | 'circle';
   percent?: number;
   strokeColor?: string;
-  size?: string;
+  size?: Size;
   status?: Status;
   showInfo?: boolean;
 };

@@ -6,6 +6,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    height: 6px;
     border-radius: @radius-s;
     background: #e8e8e8;
   }
@@ -28,6 +29,29 @@
 
   each(@sizes,{
     .yk-progress--@{key}{
+      height: @value;
+    }
+  });
+
+  &-svg {
+    position: relative;
+    transform: rotate(-90deg);
+  }
+  &-circle {
+    stroke: #2196f3;
+    stroke-linecap: round;
+    transition: all 0.3s linear;
+  }
+  &-circle-wrappe {
+  }
+  @circleSizes: {
+    s: 48px;
+    m: 64px;
+    l: 80px;
+  };
+  each(@circleSizes,{
+    .yk-progress-circle--@{key}{
+      width: @value;
       height: @value;
     }
   });
