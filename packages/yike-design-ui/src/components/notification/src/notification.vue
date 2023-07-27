@@ -15,9 +15,11 @@
         </div>
         <div>
           <div class="title-text">{{ title }}</div>
-          <div class="content">
-            <p v-if="!dangaurslyUseHtmlString">{{ realMessgae }}</p>
-            <p v-else v-html="realMessgae" />
+          <div ref="msgContainer" class="content">
+            <template v-if="!isVNodeMessage">
+              <p v-if="!dangerouslyUseHTMLString">{{ message }}</p>
+              <p v-else v-html="message" />
+            </template>
           </div>
         </div>
         <button
@@ -38,7 +40,7 @@
 </template>
 <script setup lang="ts">
 import { NotificationProps } from './notification'
-import { onMounted, computed, VNode, isVNode, createVNode, render } from 'vue'
+import { onMounted, computed, isVNode, createVNode, render, ref } from 'vue'
 import '../style'
 import { YkIcon } from '../../../index'
 defineOptions({
@@ -62,15 +64,19 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   onClose: () => ({}),
 })
 
-const realMessgae: string | VNode = (() => {
-  if (props.dangaurslyUseHtmlString && isVNode(props.message)) {
+const msgContainer = ref<any>(null)
+const isVNodeMessage = ref(false)
+
+const updateMessgae = () => {
+  if (!props.dangaurslyUseHtmlString && isVNode(props.message)) {
+    isVNodeMessage.value = true
+
     const vm = createVNode(props.message)
-    const container = document.createElement('div')
+    const container = document.createElement('p')
     render(vm, container)
-    return container.innerHTML
+    msgContainer.value?.appendChild(container)
   }
-  return props.message
-})()
+}
 
 const emits = defineEmits(['close'])
 
@@ -125,5 +131,6 @@ function clickOK() {
 
 onMounted(() => {
   startTimer()
+  updateMessgae()
 })
 </script>
