@@ -12,6 +12,7 @@ export type NotificationProps = {
   offsetY?: number;
   offsetX?: number;
   zIndex?: number;
+  dangerouslyUseHTMLString?: boolean;
 
   onClose?: () => void;
   onDestroy?: () => void;

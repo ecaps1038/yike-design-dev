@@ -24,13 +24,16 @@ class NotificationManager {
     render(vm, this.container);
     document.body.appendChild(this.container);
   }
-  add = (config: NotificationOptions) => {
+  add = (options: NotificationOptions) => {
+    if (typeof options === 'string' || isVNode(options)) {
+      options = { message: options };
+    }
     this.seed++;
     const id = `yk-notification__${this.seed}`;
     const notification: NotificationOptions = reactive({
       id,
       zIndex: this.zIndex,
-      ...config,
+      ...options,
     });
 
     this.notifications.value.push(notification);
