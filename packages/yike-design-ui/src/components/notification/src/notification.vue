@@ -1,5 +1,10 @@
 <template>
-  <div class="yk-notification" :style="Style">
+  <div
+    class="yk-notification"
+    :style="Style"
+    @mouseenter="clearTimer"
+    @mouseleave="startTimer"
+  >
     <div class="notification-container">
       <div class="notification-body">
         <div v-if="props.showIcon" class="iconDiv">
@@ -55,6 +60,8 @@ const props = withDefaults(defineProps<NotificationProps>(), {
 
 const emits = defineEmits(['close'])
 
+let timer = 0
+
 const statusIconName = computed(() => {
   return iconStatusMap[props.type]
 })
@@ -71,10 +78,19 @@ const iconStatusMap = {
   success: 'yike-gou',
 }
 function startTimer() {
-  if (!props.duration) return
-  setTimeout(() => {
-    close()
-  }, props.duration)
+  if (props.duration <= 0) return
+  timer = Number(
+    setTimeout(() => {
+      close()
+    }, props.duration),
+  )
+}
+
+function clearTimer() {
+  if (timer) {
+    clearTimeout(timer)
+    timer = 0
+  }
 }
 
 function close() {
