@@ -44,7 +44,6 @@
 <script setup lang="ts">
 import { containerProps } from './container'
 import { ref, onMounted } from 'vue'
-import '../style'
 
 defineOptions({
   name: 'YkContainer',

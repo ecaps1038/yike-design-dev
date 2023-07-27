@@ -13,8 +13,8 @@
 import { ref, onMounted } from 'vue'
 import YkIcon from '../../icon/index'
 import { paragraphProps, ellipsisType } from './typography'
-import { tryCopy } from '../../../utils/tools'
-import '../style'
+import { tryCopy } from '../../utils/tools'
+
 const props = withDefaults(defineProps<paragraphProps>(), {
   strong: false,
   type: 'default',
@@ -85,3 +85,4 @@ onMounted(() => {
 })
 </script>
 <style lang="less" scoped></style>
+../../utils/tools

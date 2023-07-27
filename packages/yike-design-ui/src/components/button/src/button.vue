@@ -24,8 +24,8 @@ export default {
 </script>
 <script setup lang="ts">
 import { ButtonProps } from './button'
-import { createCssScope } from '../../../utils/bem'
-import '../style'
+
+import { createCssScope } from '../../utils/bem'
 
 const bem = createCssScope('button')
 
@@ -41,3 +41,4 @@ withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
 })
 </script>
+../../utils/bem

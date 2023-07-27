@@ -31,7 +31,8 @@
     "lint": "eslint . --fix",
     "gen:icon": "yike-build icongen",
     "gen:less": "yike-build lessgen",
-    "build:less": "yike-build buildStyle"
+    "build:less": "yike-build buildStyle",
+    "build:comp": "yike-build buildComp"
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",

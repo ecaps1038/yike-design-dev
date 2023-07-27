@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import lessGen from './scripts/less-gen';
 import buildStyle from './scripts/build-style';
+import buildComponent from './scripts/build-component';
 
 const program = new Command();
 
@@ -37,6 +38,13 @@ program
   .description('compile less to css.')
   .action(() => {
     buildStyle();
+  });
+
+program
+  .command('buildComp')
+  .description('build component module.')
+  .action(() => {
+    buildComponent();
   });
 
 program.parse(process.argv);

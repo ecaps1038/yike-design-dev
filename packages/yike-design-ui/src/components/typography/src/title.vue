@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import { useSlots, computed } from 'vue'
 import { titleProps } from './typography'
-import '../style'
+
 const props = withDefaults(defineProps<titleProps>(), {
   level: 1,
   type: 'default',

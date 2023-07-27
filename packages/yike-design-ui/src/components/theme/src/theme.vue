@@ -7,7 +7,7 @@
 
 <script lang="ts" setup>
 import { ThemeProps } from './theme'
-import '../style'
+
 import { YkIcon } from '../../../index'
 import { useDark, useToggle } from '@vueuse/core'
 

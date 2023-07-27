@@ -25,7 +25,6 @@
 
 <script setup lang="ts">
 import type { TooltipProps, TooltipEmit } from './tooltip'
-import '../style/index.less'
 import { computed, ref, watch } from 'vue'
 import { useEventListener, usePlacement, useDefaultSlots } from './hooks'
 defineOptions({
