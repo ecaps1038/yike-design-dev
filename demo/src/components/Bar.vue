@@ -12,7 +12,7 @@ defineProps({
 </script>
 <template>
   <div class="component-bar">
-    <yk-container class="container">
+    <yk-scrollbar class="container">
       <div v-for="(e, i) in bar" :key="i" class="bar-card">
         <div class="bar-title">
           <yk-text strong>{{ (e as any).title }}</yk-text>
@@ -26,7 +26,7 @@ defineProps({
           {{ n.name }}
         </RouterLink>
       </div>
-    </yk-container>
+    </yk-scrollbar>
   </div>
 </template>
 <style lang="less" scoped>
@@ -36,20 +36,18 @@ defineProps({
   left: 0;
   z-index: 1;
   width: 268px;
-  height: 100%;
+  height: calc(100% - 60px);
   border-right: 1px solid @line-color-s;
   background-color: @bg-color-l;
   transition: background-color @animats, border-right @animats;
 
   .container {
-    padding: 0 @space-m;
-    // fix height error
-    height: calc(100% - 60px);
-    // overflow: auto;
+    box-sizing: border-box;
+    padding: 0 @space-m @space-l;
   }
 
   .bar-card {
-    padding: @space-s 0 @space-xl;
+    padding: @space-s 0;
   }
 
   .bar-title {
