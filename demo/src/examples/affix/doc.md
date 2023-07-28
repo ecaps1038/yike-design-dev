@@ -23,3 +23,9 @@
 当元素`fixed`状态改变回调时，触发`change`事件
 <AffixChange/>
 :::
+
+:::snippet
+指定容器滚动
+传入`target`作为滚动容器
+<AffixContainer/>
+:::

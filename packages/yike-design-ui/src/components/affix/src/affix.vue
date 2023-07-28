@@ -23,7 +23,7 @@ import {
   useWindowSize,
   useEventListener,
 } from '@vueuse/core'
-
+import { getTargetRect, isWindow } from './utils'
 defineOptions({
   name: 'YkAffix',
 })
@@ -38,6 +38,11 @@ const emits = defineEmits<{ change: [boolean] }>()
 const ns = createCssScope('affix')
 
 const rootRef = shallowRef<HTMLElement>()
+
+const scrollContainer = shallowRef<HTMLElement | Window>()
+
+const targetRect = ref<{ top: number; bottom: number }>({ top: 0, bottom: 0 })
+
 const {
   top,
   bottom,
@@ -54,11 +59,22 @@ const isFixed = ref(false)
 
 const updatePos = () => {
   if (props.position === 'bottom') {
-    isFixed.value = winHeight.value - props.offset <= bottom.value
+    isFixed.value = targetRect.value!.bottom - props.offset <= bottom.value
   } else {
-    isFixed.value = top.value <= props.offset
+    isFixed.value = top.value - targetRect.value!.top <= props.offset
   }
 }
+
+// 窗口变化更新
+watch(
+  () => winHeight.value,
+  () => {
+    if (isWindow(scrollContainer.value)) {
+      targetRect.value.bottom = winHeight.value
+    }
+    updatePos()
+  },
+)
 
 const calcFixedStyle = computed<CSSProperties>(() => {
   if (!isFixed.value) {
@@ -66,7 +82,10 @@ const calcFixedStyle = computed<CSSProperties>(() => {
   }
   return {
     bottom: props.position === 'bottom' ? `${props.offset}px` : '',
-    top: props.position === 'top' ? `${props.offset}px` : '',
+    top:
+      props.position === 'top'
+        ? targetRect.value.top + `${props.offset}px`
+        : '',
     zIndex: props.zIndex,
   }
 })
@@ -83,13 +102,45 @@ watch(
   () => isFixed.value,
   () => emits('change', isFixed.value),
 )
-const scrollContainer = shallowRef<HTMLElement | Window>()
+
 const handleUpdate = () => {
   update()
+  if (props.target) {
+    console.log('handle', top.value, targetRect.value.top, props.offset)
+  }
 }
-onMounted(() => {
-  scrollContainer.value = window || document.documentElement
+// test target
+const testLog = () => {
+  if (props.target) {
+    console.log('fff', props.target, scrollContainer.value, targetRect.value)
+  }
+}
+const initTarget = () => {
+  if (props.target) {
+    if (typeof props.target === 'string') {
+      scrollContainer.value =
+        document.querySelector<HTMLElement>(props.target) ?? window
+    } else {
+      scrollContainer.value = props.target
+    }
+  } else {
+    scrollContainer.value = window || document.documentElement
+  }
+  targetRect.value = getTargetRect(scrollContainer.value)
+  testLog()
+
   update()
+}
+watch(
+  () => props.target,
+  (n) => {
+    // console.log('targetchange', n)
+
+    initTarget()
+  },
+)
+onMounted(() => {
+  initTarget()
 })
 useEventListener(scrollContainer, 'scroll', handleUpdate)
 watchEffect(updatePos)
