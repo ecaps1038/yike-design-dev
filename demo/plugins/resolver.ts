@@ -48,4 +48,10 @@ export const YikeDevResolver: ComponentResolver = (componentName) => {
       ),
     };
   }
+  if (componentName.startsWith('Icon')) {
+    return {
+      name: componentName,
+      from: '../packages/yike-design-ui/src/components/svg-icon/index.ts',
+    };
+  }
 };

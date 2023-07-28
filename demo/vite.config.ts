@@ -22,18 +22,16 @@ export default defineConfig({
   resolve: {
     alias: [
       {
+        find: /^..\/packages\/yike-design-ui\/src\/components\/svg-icon\/index\.ts$/,
+        replacement: `${compDir}/svg-icon/index.ts`,
+      },
+      {
         find: /^..\/packages\/yike-design-ui\/src\/components\/(.*)$/,
         replacement: `${compDir}/$1.ts`,
-        customResolver(resolve) {
-          return resolve;
-        },
       },
       {
         find: /^..\/packages\/yike-design-ui\/src\/index\.ts$/,
         replacement: `${indexDir}/index.ts`,
-        customResolver(resolve) {
-          return resolve;
-        },
       },
       {
         find: '@',
