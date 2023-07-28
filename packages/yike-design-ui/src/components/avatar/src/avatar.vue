@@ -14,7 +14,7 @@ import { YkIcon } from '../../../index'
 import { inject, computed, CSSProperties, onMounted, shallowRef } from 'vue'
 import { AvatarProps } from './avatar'
 // FIXME 之后不需要在这边引样式
-import '../style'
+
 import { getShape, getSize } from './util'
 
 defineOptions({

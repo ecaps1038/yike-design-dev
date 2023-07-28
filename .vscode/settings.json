@@ -32,5 +32,15 @@
   },
   "references.preferredLocation": "peek",
   "stylelint.validate": ["vue", "less", "css"],
-  "vue.codeActions.enabled": false
+  "vue.codeActions.enabled": false,
+  "cSpell.words": [
+    "animatb",
+    "animatf",
+    "animats",
+    "ecolor",
+    "lcolor",
+    "pcolor",
+    "scolor",
+    "wcolor"
+  ]
 }

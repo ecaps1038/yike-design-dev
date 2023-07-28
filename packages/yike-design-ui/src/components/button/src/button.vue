@@ -12,8 +12,9 @@
     <svg v-if="loading" viewBox="25 25 50 50">
       <circle r="20" cy="50" cx="50"></circle>
     </svg>
-    <slot name="icon"></slot>
-    <slot></slot>
+
+    <slot v-else name="icon" />
+    <span v-if="$slots.default"><slot></slot></span>
   </button>
 </template>
 
@@ -24,8 +25,8 @@ export default {
 </script>
 <script setup lang="ts">
 import { ButtonProps } from './button'
-import { createCssScope } from '../../../utils/bem'
-import '../style'
+
+import { createCssScope } from '../../utils/bem'
 
 const bem = createCssScope('button')
 
@@ -41,3 +42,4 @@ withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
 })
 </script>
+../../utils/bem

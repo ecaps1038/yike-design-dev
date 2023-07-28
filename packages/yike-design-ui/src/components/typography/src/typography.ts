@@ -1,4 +1,4 @@
-import { TitleType, TextType } from '../../../utils/constant';
+import { TitleType, TextType } from '../../utils/constant';
 import { ExtractPropTypes } from 'vue';
 export type textProps = {
   strong?: boolean;

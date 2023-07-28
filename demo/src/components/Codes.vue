@@ -20,7 +20,7 @@ defineProps({
 
 pre {
   overflow: hidden;
-  max-width: 1000px;
+  max-width: 1200px;
   border-radius: @radius-m;
   text-align: left;
 

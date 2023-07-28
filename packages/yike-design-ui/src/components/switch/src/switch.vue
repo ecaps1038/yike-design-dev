@@ -16,7 +16,7 @@
 </template>
 <script setup lang="ts">
 import { SwitchProps, switchEmits } from './switch'
-import '../style'
+
 import { computed, ref, watch } from 'vue'
 
 defineOptions({
