@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="case-card">
     <!-- id 用于锚点定位 -->
@@ -15,20 +16,27 @@
       </div>
     </yk-space>
     <div v-show="showCode" ref="codes" class="codes">
-      <slot name="code"></slot>
+      <pre class="hljs"><code v-html="html"></code></pre>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
 import { tryCopy } from '@/utils/tools'
+import hljs from 'highlight.js'
 const proxy: any = getCurrentInstance()?.proxy
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     default: '标题',
   },
+  code: {
+    type: String,
+    default: '',
+  },
 })
+
+const html = hljs.highlightAuto(decodeURIComponent(props.code)).value
 
 //复制模块
 const codes = ref(null)

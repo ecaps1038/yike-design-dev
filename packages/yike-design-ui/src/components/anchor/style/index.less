@@ -7,15 +7,17 @@
       bottom: 0;
       left: 0;
       width: 2px;
-      background: @bg-color-s;
+      background: @bg-color-ss;
       content: '';
     }
     .yk-anchor-marker {
       position: absolute;
       top: 0;
       left: 0;
+      margin-top: 7px;
       width: 2px;
-      height: 30px;
+      height: 16px;
+      border-radius: 4px;
       background-color: @pcolor;
       opacity: 0;
       transition: top 0.25s cubic-bezier(0, 1, 0.5, 1), background-color 0.5s,
@@ -26,9 +28,9 @@
 
 .yk-anchor-list {
   position: static;
-  padding-left: 16px;
+  padding-left: @space-l;
   &.yk-anchor-list-root {
-    padding-left: 8px;
+    padding-left: @space-s;
   }
 }
 
@@ -38,9 +40,9 @@
 
   .yk-anchor-item-title {
     display: inline-block;
-    padding: 0 8px;
+    padding: 0 @space-s;
     height: 30px;
-    border-radius: 4px;
+    border-radius: @radius-s;
     color: @font-color-m;
     line-height: 30px;
     &:hover {
