@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "build:comp": "pnpm --filter yike-design-ui build:comp",
+    "build:less": "pnpm --filter yike-design-ui build:less",
+    "gen:icon": "pnpm --filter yike-design-ui gen:icon",
+    "gen:less": "pnpm --filter yike-design-ui gen:less",
     "dev:demo": "pnpm --filter demo dev",
     "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",
@@ -15,11 +18,8 @@
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
-    "gen:icon": "pnpm --filter yike-design-ui gen:icon",
-    "gen:less": "pnpm --filter yike-design-ui gen:less",
     "release": "standard-version",
-    "prepare": "pnpm --filter @yike/build build",
-    "build:less": "pnpm --filter yike-design-ui build:less"
+    "prepare": "pnpm --filter @yike/build build"
   },
   "dependencies": {
     "svgo": "^3.0.2",

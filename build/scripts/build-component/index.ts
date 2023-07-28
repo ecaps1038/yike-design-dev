@@ -58,10 +58,12 @@ const buildComponent = async () => {
       virtualPlugin(),
     ],
     build: {
+      minify: false,
+      sourcemap: true,
+      outDir: 'es',
       lib: {
         entry,
       },
-      outDir: 'es',
       rollupOptions: {
         external: ['vue', '@vueuse/core'],
         treeshake: true,
@@ -89,11 +91,6 @@ const buildComponent = async () => {
     },
   });
   console.log('build success');
-  // const dtsFile = glob.sync('**/*.d.ts', {
-  //   absolute: true,
-  //   cwd: resolvePath('es'),
-  // });
-  // console.log('dtsFile: ', dtsFile);
 };
 
 export default buildComponent;

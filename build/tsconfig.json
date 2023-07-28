@@ -2,7 +2,7 @@
   "compilerOptions": {
     "sourceMap": true,
     "outDir": "dist",
-    "module": "CommonJS",
+    "module": "Node16",
     "target": "ES2015",
     "allowJs": true,
     "moduleResolution": "node",

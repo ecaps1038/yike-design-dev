@@ -13,6 +13,7 @@ import {
   genIconType,
   getIconVue,
 } from './vue-template';
+import { print } from '../../utils/print';
 
 interface IconData {
   title: string;
@@ -79,9 +80,9 @@ const buildIconComponent = async (data: IconData[]) => {
             }),
             (err) => {
               if (err) {
-                console.log(`Build ${item.componentName} Failed: ${err}`);
+                print('error', `Build ${item.componentName} failed: ${err}`);
               } else {
-                console.log(`Build ${item.componentName} Success!`);
+                print('success', `Build ${item.componentName} success!`);
               }
             },
           );
@@ -97,11 +98,12 @@ const buildIconComponent = async (data: IconData[]) => {
           iconIndex,
           (err) => {
             if (err) {
-              console.log(
-                `Build ${item.componentName} index.ts Failed: ${err}`,
+              print(
+                'error',
+                `Build ${item.componentName} index.ts failed: ${err}`,
               );
             } else {
-              console.log(`Build ${item.componentName} index.ts Success!`);
+              print('success', `Build ${item.componentName} index.ts success!`);
             }
           },
         );
@@ -132,9 +134,9 @@ const buildIconEntry = (data: IconData[]) => {
     compComp,
     (err) => {
       if (err) {
-        console.log(`Build YikeIcon Failed: ${err}`);
+        print('error', `Build yike-icon.ts failed: ${err}`);
       } else {
-        console.log('Build YikeIcon Success!');
+        print('success', `Build yike-icon.ts success!`);
       }
     },
   );
@@ -142,9 +144,9 @@ const buildIconEntry = (data: IconData[]) => {
   const entry = genIconIndex({ exports });
   fs.outputFile(path.resolve(iconComponents, 'index.ts'), entry, (err) => {
     if (err) {
-      console.log(`Build Index Failed: ${err}`);
+      print('error', `Build icon index failed: ${err}`);
     } else {
-      console.log('Build Index Success!');
+      print('success', `Build icon index success!`);
     }
   });
 };
@@ -166,9 +168,9 @@ function buildIconType(data: IconData[]) {
     typeContent,
     (err) => {
       if (err) {
-        console.log(`Build Type Failed: ${err}`);
+        print('error', `Build icon type failed: ${err}`);
       } else {
-        console.log('Build Type Success!');
+        print('success', `Build icon type success!`);
       }
     },
   );
