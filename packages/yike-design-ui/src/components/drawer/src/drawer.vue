@@ -1,6 +1,6 @@
 <template>
-  <Teleport :to="element" :disabled="!show">
-    <Transition :name="placement">
+  <Teleport :to="element" :disabled="!show && shouldDestory">
+    <Transition :name="placement" @after-leave="shouldDestory = true">
       <div
         v-if="show"
         class="yk-drawer"
@@ -42,7 +42,7 @@
 </template>
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
-import '../style'
+
 import { computed, onMounted, onUpdated, ref } from 'vue'
 import { getElement } from './utils'
 defineOptions({
@@ -58,9 +58,10 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   placement: 'right',
   to: 'body',
 })
-let element: HTMLElement
+let element: HTMLElement = getElement(props.to)
 const emits = defineEmits(['close', 'open'])
 const focuser = ref<HTMLElement>()
+const shouldDestory = ref<boolean>(false)
 const close = () => {
   emits('close')
 }
@@ -72,6 +73,7 @@ onMounted(() => {
 })
 onUpdated(() => {
   if (props.show) {
+    shouldDestory.value = false
     focuser.value?.focus()
     if (!props.scrollable) {
       document.body.style.overflow = 'hidden'

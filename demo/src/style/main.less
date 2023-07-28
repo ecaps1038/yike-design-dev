@@ -1,3 +1,5 @@
+@import './index.less';
+@import './code-color.less';
 *,
 *::before,
 *::after {
@@ -107,6 +109,10 @@ img {
 .yk-demo-doc {
   margin-top: 1em;
   margin-bottom: 0.5em;
+  strong {
+    font-weight: 500;
+    color: cadetblue;
+  }
   p {
     margin-top: 1em;
     margin-bottom: 0.5em;
@@ -138,12 +144,8 @@ img {
   }
   .hljs {
     margin: @space-m 0;
-    padding: @space-s @space-m;
+    padding: @space-l @space-xl;
     background-color: @bg-color-m;
-
-    code {
-      color: @font-color-m;
-    }
   }
 
   li:not(.yk-anchor-item) {
@@ -158,15 +160,19 @@ img {
   }
   pre {
     overflow: hidden;
-    max-width: 800px;
+    margin-bottom: @space-ss;
+    padding: @space-m;
+    max-width: 1200px;
     border-radius: 8px;
     text-align: left;
+    background-color: #e6effb;
   }
   p > code {
-    padding: 2px 8px;
-    border-radius: 3px;
-    color: #5e6d82;
-    background: #e6effb;
+    margin: 0 1px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: @font-color-l;
+    background: @gray-1;
   }
   table {
     overflow: hidden;
@@ -189,7 +195,7 @@ img {
     }
 
     td:nth-child(3) {
-      color: #1fb4a2;
+      color: @scolor;
     }
 
     th {

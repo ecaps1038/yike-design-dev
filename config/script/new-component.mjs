@@ -92,8 +92,8 @@ function createComponentMainFiles() {
 </template>
 <script setup lang="ts">
 import { ${upperComponentName}Props } from './${componentLowDashName}'
-import { createCssScope } from '../../../utils/bem'
-import '../style'
+import { createCssScope } from '../../utils/bem'
+
 
 const bem = createCssScope('${componentLowDashName}')
 

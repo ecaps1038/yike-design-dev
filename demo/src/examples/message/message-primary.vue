@@ -14,7 +14,7 @@ import { getCurrentInstance, ref } from 'vue'
 const loading = ref(false)
 const proxy: any = getCurrentInstance()?.proxy
 const handlePrimary = () => {
-  proxy.$message({ type: 'primary', message: '通用提示' })
+  proxy.$message({ type: 'primary', message: '通用提示', duration: 0 })
 }
 const handleSuccess = () => {
   proxy.$message({ type: 'success', message: '成功提示' })

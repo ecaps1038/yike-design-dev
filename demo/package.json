@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "@vueuse/core": "^10.2.1",
     "markdown-it": "^12.3.2",
     "pinia": "^2.1.4",
     "vue-router": "^4.1.6",

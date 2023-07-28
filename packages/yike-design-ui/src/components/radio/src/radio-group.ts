@@ -1,4 +1,4 @@
-import { Size, Direction } from '../../../utils/constant';
+import { Size, Direction } from '../../utils/constant';
 import { radioEmits } from './radio';
 
 export type RadioGroupProps = {

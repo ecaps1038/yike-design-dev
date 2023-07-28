@@ -2,25 +2,23 @@
   <div :class="bem()">
     <div :class="bem('main')">
       <div :class="bem('left')">
-        <yk-icon :name="iconName" class="annex-yk-icon" />
+        <component :is="iconName" class="annex-yk-icon" />
+        <!-- <yk-icon :name="iconName" /> -->
         <span :class="bem(status)">{{ name }}</span>
       </div>
       <div :class="bem('right')">
-        <yk-icon
+        <IconDeleteOutline
           v-if="status !== 'uploading'"
-          name="yk-shanchu"
           class="delete-yk-icon"
           @click="handleRemove"
         />
-        <yk-icon
+        <IconTickOutline
           v-if="'success'.includes(status)"
           class="success-yk-icon"
-          name="yk-gou1"
         />
-        <yk-icon
+        <IconLoading1Outline
           v-if="['error', 'pause'].includes(status)"
           class="re-upload-yk-icon"
-          name="yk-jiazai1"
           @click="handleReUpload"
         />
         <div
@@ -47,8 +45,8 @@
 import { computed, toRefs } from 'vue'
 import { getArcPath, getFileTypeIconName, generateUid } from './utils'
 import { FileItemProps } from './upload'
-import { createCssScope } from '../../../utils/bem'
-import '../style'
+import { createCssScope } from '../../utils/bem'
+
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
   fileContent: () => ({
@@ -64,7 +62,7 @@ const { status, name, uid } = toRefs(props.fileContent)
 
 const emits = defineEmits(['handleAbort', 'handleRemove', 'handleReUpload'])
 
-const iconName = computed(() => {
+const iconName: any = computed(() => {
   return getFileTypeIconName(name.value)
 })
 const handlePause = () => {

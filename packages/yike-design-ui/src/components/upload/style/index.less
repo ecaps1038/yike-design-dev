@@ -1,3 +1,7 @@
+@import '../../styles/color/colors.less';
+@import './draggle.less';
+@import './file-list.less';
+@import './picture-list.less';
 .yk-upload {
   width: 100%;
   &__files {
@@ -67,13 +71,14 @@
       color: @font-color-m;
       line-height: @size-l;
     }
+    &--default {
+      border-radius: @radius-m;
+    }
+    &--circle {
+      border-radius: 50%;
+    }
   }
-  &--default {
-    border-radius: @radius-m;
-  }
-  &--circle {
-    border-radius: 50%;
-  }
+
   &-pictures {
     display: flex;
     flex-direction: row;

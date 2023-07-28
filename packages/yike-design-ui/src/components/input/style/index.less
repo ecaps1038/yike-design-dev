@@ -1,0 +1,249 @@
+@import '../../styles/color/colors.less';
+
+.yk-input {
+  display: inline-flex;
+  flex-basis: content;
+  align-items: center;
+  transition: all @animatb ease-in-out;
+}
+
+.yk-input__spinner {
+  display: flex;
+  align-items: center;
+}
+
+.yk-input--slot {
+  display: flex;
+  align-items: center;
+  word-break: keep-all;
+
+  &:empty {
+    margin: unset;
+  }
+
+  svg {
+    width: 20px;
+    height: 16px;
+    fill: @font-color-l;
+  }
+}
+
+.yk-input--leftbr0,
+.yk-input--leftbr0 input {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.yk-input--rightbr0,
+.yk-input--rightbr0 input {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.yk-input--before {
+  span,
+  svg {
+    margin-left: 5px;
+  }
+}
+
+.yk-input--after {
+  span,
+  svg {
+    margin-right: 5px;
+  }
+}
+
+.yk-input__inner {
+  display: flex;
+  flex-grow: 1;
+  transition: all @animatb ease-in-out;
+
+  .yk-input__widget {
+    border: none;
+    color: @font-color-l;
+    background: inherit;
+    outline: none;
+    flex-grow: 1;
+    flex-shrink: 3;
+  }
+}
+
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 110%;
+  padding: 7px;
+  min-width: 300px;
+  font-size: @size-s;
+  border: 1px solid @pcolor;
+  border-radius: @radius-s;
+  background-color: @pcolor-4;
+  box-shadow: @shadow-m;
+  content: attr(data-tooltip);
+  line-height: 1.2;
+}
+
+.yk-input__buttons {
+  display: flex;
+  background-color: inherit;
+  flex-shrink: 1;
+}
+
+.yk-input__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  border: none;
+  background: transparent;
+  // 为了能在输入框非激活被聚焦，调整透明度而不是 display: none
+  opacity: 0;
+  cursor: text;
+
+  &:focus-within {
+    // 功能按钮被聚焦，取消隐藏
+    opacity: 1;
+  }
+
+  &-show {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.yk-input__button svg {
+  padding: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  fill: @font-color-l;
+
+  &:hover {
+    background-color: @bg-color-ss;
+  }
+}
+
+.yk-input__counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
+  font-size: 14px;
+  color: @font-color-s;
+
+  span {
+    // 这样看着舒服点
+    margin-bottom: 2px;
+  }
+}
+
+.input-size(@size, @height, @padding, @fs, @br) {
+  .inner() {
+    border-radius: @br;
+  }
+  .widget() {
+    padding: 0px @padding;
+    height: @height;
+    font-size: @fs;
+    border-radius: @br;
+  }
+
+  &.yk-input--@{size} {
+    .inner();
+  }
+  &.yk-input--@{size} input {
+    .widget();
+  }
+}
+
+.input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
+  .bow() {
+    background-color: @bgcolor;
+    outline: 1px solid @bcolor;
+
+    &:hover {
+      background-color: @hvbgcolor;
+      outline: 1px solid @hvbcolor;
+    }
+
+    &--focus {
+      background-color: @fsbgcolor;
+      outline: 1px solid @fsbcolor;
+    }
+  }
+  &.yk-input--@{status} {
+    .bow();
+  }
+}
+
+.yk-input__prepend {
+  display: flex;
+
+  button {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
+
+.yk-input__append {
+  display: flex;
+
+  .yk-button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
+// copy from YkButton
+.yk-input--loading {
+  // opacity: 0.7 !important;
+  #spinner {
+    margin-right: 6px;
+    width: 16px;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+  }
+
+  circle {
+    fill: none;
+    stroke: @font-color-l;
+    stroke-width: 6;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+}
+
+.input-size(s, 24px, 6px, @size-s, @radius-s);
+.input-size(m, 32px, 8px, @size-s, @radius-s);
+.input-size(l, 36px, 10px, @size-s, @radius-m);
+.input-size(xl, 48px, 12px, @size-m, @radius-m);
+
+.input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-l);
+.input-status(danger, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-m);
+.input-status(success, transparent, @scolor-2, @scolor, @scolor-1, @scolor, @bg-color-m);
+.input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-m);
+.input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);

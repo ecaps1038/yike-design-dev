@@ -42,16 +42,16 @@ export function findFileByUid(
 export function getFileTypeIconName(fileName: string): string | undefined {
   const fileExtension = fileName.split('.').pop()?.toLowerCase();
   const fileTypeIcons = {
-    word: 'yike-word',
-    pdf: 'yike-pdf',
-    excel: 'yike-excel',
-    ppt: 'yike-ppt',
-    mp4: 'yike-shipin',
-    audio: 'yike-shipin',
-    text: 'yike-txt',
-    png: 'yike-tupian',
-    jpg: 'yike-tupian',
-    video: 'yike-video',
+    word: 'IconWordFileOutline',
+    pdf: 'IconPdfOutline',
+    excel: 'IconExcelFileOutline',
+    ppt: 'IconPptFileOutline',
+    mp4: 'IconVideoOutline',
+    audio: 'IconAudioFileOutline',
+    text: 'IconTxtFileOutline',
+    png: 'IconImageOutline',
+    jpg: 'IconImageOutline',
+    video: 'IconVideoOutline',
   };
 
   switch (fileExtension) {
@@ -77,7 +77,7 @@ export function getFileTypeIconName(fileName: string): string | undefined {
     case 'txt':
       return fileTypeIcons.text;
     default:
-      return 'yike-wenjian';
+      return 'IconFileOutline';
   }
 }
 

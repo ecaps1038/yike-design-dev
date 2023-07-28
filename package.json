@@ -4,8 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:comp": "pnpm --filter yike-design-ui build:comp",
+    "build:less": "pnpm --filter yike-design-ui build:less",
+    "gen:icon": "pnpm --filter yike-design-ui gen:icon",
+    "gen:less": "pnpm --filter yike-design-ui gen:less",
     "dev:demo": "pnpm --filter demo dev",
-    "build:demo": "pnpm --filter demo build",
+    "build:demo": "pnpm run gen:icon && pnpm run build:comp && pnpm --filter demo dev",
     "preview:demo": "pnpm --filter demo preview",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
     "stylelint": "npx stylelint --aei .vue,.less,.css,.html . --fix",
@@ -14,7 +18,8 @@
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
-    "gen:icon": "pnpm --filter yike-design-ui gen:icon"
+    "release": "standard-version",
+    "prepare": "pnpm --filter @yike/build build"
   },
   "dependencies": {
     "svgo": "^3.0.2",
@@ -37,6 +42,7 @@
     "postcss-html": "^1.5.0",
     "postcss-less": "^6.0.0",
     "prettier": "^2.8.8",
+    "standard-version": "^9.5.0",
     "stylelint": "^15.10.1",
     "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-config-standard-vue": "^1.0.0",

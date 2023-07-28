@@ -16,7 +16,6 @@
   </label>
 </template>
 <script setup lang="ts">
-import '../style'
 import { RadioProps } from './radio'
 import { computed, nextTick } from 'vue'
 import { radioEmits } from './radio'
