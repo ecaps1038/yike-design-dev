@@ -9,7 +9,7 @@
         aria-label="抽屉"
         tabindex="-1"
       >
-        <div aria-hidden="true" class="yk-drawer-mask" @click="close"></div>
+        <div aria-hidden="true" class="yk-drawer-mask"></div>
         <div
           ref="focuser"
           aria-hidden="true"
@@ -73,15 +73,25 @@ const emits = defineEmits(['close', 'open'])
 const focuser = ref<HTMLElement>()
 const drawerMain = ref<HTMLElement>()
 const shouldDestory = ref<boolean>(false)
+const isLast = ref<boolean>(false)
 
 const close = () => {
-  drawerStats.close()
+  isLast.value = drawerStats.isLast(drawerId.value)
+  console.log('(func) close: ', isLast.value, drawerId.value)
+  if (!isLast.value) {
+    return
+  }
   emits('close')
 }
 
 const destory = () => {
+  drawerStats.close()
+  if (isLast.value) {
+    console.log('(func) destory: ', isLast.value, drawerId.value)
+    document.body.style.overflow = ''
+  }
+  console.log('==================== End ======================')
   shouldDestory.value = true
-  document.body.style.overflow = ''
   document.body.removeEventListener('keydown', escape)
 }
 
@@ -89,11 +99,7 @@ const escape = (ev: KeyboardEvent) => {
   if (ev.key === 'Escape') close()
 }
 
-const test = () => {
-  console.log('outside.')
-}
-
-onClickOutside(drawerMain, test)
+onClickOutside(drawerMain, close)
 
 onUpdated(() => {
   if (props.show) {
@@ -106,6 +112,8 @@ onUpdated(() => {
       document.body.addEventListener('keydown', escape)
     }
     drawerStats.open(drawerId.value)
+    console.log('=================== New =======================')
+    console.log('id', drawerId.value, 'is opened')
     emits('open')
   }
 })
