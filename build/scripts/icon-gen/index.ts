@@ -176,9 +176,24 @@ function buildIconType(data: IconData[]) {
   );
 }
 
+function buildIconJSON(data: IconData[]) {
+  fs.outputFile(
+    path.resolve(iconComponents, 'icons.json'),
+    JSON.stringify(data, null, 2),
+    (err) => {
+      if (err) {
+        print('error', `Build JSON failed: ${err}`);
+      } else {
+        print('success', `Build JSON success!`);
+      }
+    },
+  );
+}
+
 export const iconGen = async () => {
   const data = getSvgData();
   await buildIconComponent(data);
   buildIconEntry(data);
   buildIconType(data);
+  buildIconJSON(data);
 };
