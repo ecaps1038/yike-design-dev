@@ -19,11 +19,20 @@ const { copy, copied, text } = useClipboard({
           :class="[copied && text === `<${item.componentName}/>` && 'copied']"
           @click="copy(`<${item.componentName}/>`)"
         >
-          <component :is="item.componentName" />
           <div v-if="copied && text === `<${item.componentName}/>`" class="tip">
             <IconTickOutline />
             <span>copied!</span>
           </div>
+          <template v-else>
+            <component :is="item.componentName" />
+            <span class="name">
+              {{
+                list.type === 'outline'
+                  ? item.name.slice(5, -8)
+                  : item.name.slice(5, -5)
+              }}
+            </span>
+          </template>
         </div>
       </div>
     </div>
@@ -42,8 +51,8 @@ const { copy, copied, text } = useClipboard({
   margin-right: -1px;
   margin-bottom: -1px;
   padding: 16px;
-  width: 80px;
-  height: 80px;
+  width: 160px;
+  height: 160px;
   font-size: 28px;
   border: 1px solid @line-color-s;
   transition: all 0.2s;
@@ -52,6 +61,10 @@ const { copy, copied, text } = useClipboard({
   &:hover {
     font-size: 35px;
     background-color: @bg-color-ss;
+  }
+  .name {
+    margin-top: 4px;
+    font-size: 12px;
   }
 }
 .icon-item.copied {
