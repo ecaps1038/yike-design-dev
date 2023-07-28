@@ -12,7 +12,7 @@
           class="yk-backtop-container"
           :class="{ secondary: theme === 'secondary' }"
         >
-          <yk-icon :name="icon" class="yk-backtop__icon" />
+          <IconArrowUpCircleOutline />
         </div>
       </slot>
     </div>
@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-
+import { IconArrowUpCircleOutline } from '../../svg-icon'
 import { BackTopProps } from './back-top'
 import { transformPxToNumber } from '../../utils/tools'
 

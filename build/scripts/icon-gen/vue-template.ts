@@ -34,9 +34,9 @@ export const getIconVue = ({
         spin: false,
       },
     )
-    const cls = ['yk-icon']
+    const cls = ['yk-icon', '${name}']
     const innerStyle = computed(() => {
-      const styles: CSSProperties = {}
+      const styles: CSSProperties = { fill: "currentColor" }
       if (props.size) {
         styles.fontSize =
           typeof props.size === 'number' ? \`\${props.size}px\` : props.size

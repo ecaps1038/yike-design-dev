@@ -44,7 +44,7 @@ const buildComponent = async () => {
         absolute: true,
         cwd: componentSrc,
       })
-      .filter((file) => !file.includes('svg-icon') && !file.includes('style')),
+      .filter((file) => !file.includes('style')),
   ];
 
   await build({

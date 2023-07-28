@@ -21,9 +21,9 @@
         </div>
       </div>
       <a href="https://github.com/ecaps1038/yike-design-dev" target="_blank">
-        1
+        github
       </a>
-      <yk-theme></yk-theme>
+      <a><yk-theme></yk-theme></a>
       <yk-avatar size="m" :img-url="avatarImgUrl"></yk-avatar>
     </yk-space>
   </div>
