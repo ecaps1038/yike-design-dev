@@ -105,7 +105,7 @@ const ykProgressCircleStyle = computed(() => {
     cy: val,
   }
 })
-
+console.log('提交测试')
 // 环形进度值
 const progressValues = computed(() => {
   const { percent } = props
