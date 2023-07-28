@@ -1,13 +1,13 @@
 <template>
   <div v-show="control" class="yk-theme" @click="toggleDark()">
-    <IconAudioFileFill v-if="isDark" />
-    <IconAudioFileOutline v-else />
+    <IconMoonFill v-if="isDark" />
+    <IconSunFill v-else />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ThemeProps } from './theme'
-import { IconAudioFileFill, IconAudioFileOutline } from '../../svg-icon'
+import { IconMoonFill, IconSunFill } from '../../svg-icon'
 import { useDark, useToggle } from '@vueuse/core'
 
 const props = withDefaults(defineProps<ThemeProps>(), {

@@ -8,11 +8,11 @@
       <slot name="demo"></slot>
     </div>
     <yk-space class="space" :size="8">
-      <div v-show="showCode" class="icons" @click="onCopy">
-        <yk-icon name="yk-kaobei"></yk-icon>
+      <div class="icons" @click="onCopy">
+        <icon-copy-outline />
       </div>
       <div class="icons" :class="{ select: showCode }" @click="clickShow">
-        <yk-icon name="yk-daima"></yk-icon>
+        <icon-code-outline />
       </div>
     </yk-space>
     <div v-show="showCode" ref="codes" class="codes">
@@ -83,6 +83,7 @@ const clickShow = (): void => {
     border-radius: @radius-m;
     background-color: @bg-color-m;
     transition: all @animats;
+    color: @font-color-m;
     cursor: pointer;
 
     .icon {

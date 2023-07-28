@@ -20,11 +20,20 @@
     "yike design",
     "yike"
   ],
-  "main": "./dist/components.umd.js",
-  "module": "./dist/components.es.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
   "files": [
+    "es",
+    "lib",
     "dist",
-    "src/"
+    "json"
+  ],
+  "sideEffects": [
+    "dist/*",
+    "es/**/style/*",
+    "lib/**/style/*",
+    "*.less"
   ],
   "scripts": {
     "build": "vite build",
