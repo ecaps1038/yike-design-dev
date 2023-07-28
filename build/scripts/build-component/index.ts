@@ -90,6 +90,13 @@ const buildComponent = async () => {
       },
     },
   });
+
+  const s = resolvePath('src/components/svg-icon/icons.json');
+  console.log('s: ', s);
+  const t = resolvePath('es/components/svg-icon/icons.json');
+  console.log('t: ', t);
+  await fs.copy(s, t);
+
   console.log('build success');
 };
 
