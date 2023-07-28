@@ -53,6 +53,7 @@ const buildComponent = async () => {
       vueJsx() as any,
       dts({
         tsconfigPath: resolvePath('./tsconfig.json'),
+        outDir: [resolvePath('es'), resolvePath('lib')],
       }),
       virtualPlugin(),
     ],
@@ -87,6 +88,12 @@ const buildComponent = async () => {
       },
     },
   });
+  console.log('build success');
+  // const dtsFile = glob.sync('**/*.d.ts', {
+  //   absolute: true,
+  //   cwd: resolvePath('es'),
+  // });
+  // console.log('dtsFile: ', dtsFile);
 };
 
 export default buildComponent;
