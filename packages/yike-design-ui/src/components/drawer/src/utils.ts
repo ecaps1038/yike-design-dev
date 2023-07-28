@@ -1,13 +1,30 @@
-type DrawerOperator = {
-  target: HTMLElement | Element;
-  drawer_id: number;
+import { ref } from 'vue';
+import { createGlobalState } from '@vueuse/core';
+
+export const getElement = (selector: string): HTMLElement => {
+  return document.querySelector(selector) ?? document.body;
 };
 
 let count = 0;
 
-export const drawer = (selector: string): DrawerOperator => {
-  const drawer_id = (count += 1);
-  const target = document.querySelector(selector) ?? document.body;
+const DrawerOperator = createGlobalState(() => {
+  const drawers = ref<number[]>([]);
 
-  return { target: target, drawer_id: drawer_id };
+  const open = (id: number) => {
+    drawers.value.push(id);
+    console.log('opened drawers', drawers.value);
+  };
+
+  const close = () => {
+    drawers.value.pop();
+    console.log('opened drawers', drawers.value);
+  };
+
+  return { drawers, open, close };
+});
+
+export const getDrawerOrder = () => {
+  return (count += 1);
 };
+
+export const drawerStats = DrawerOperator();

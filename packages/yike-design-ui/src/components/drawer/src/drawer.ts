@@ -7,4 +7,6 @@ export type DrawerProps = {
   escapable?: boolean;
   placement?: 'right' | 'left' | 'top' | 'bottom';
   to?: string;
+
+  debug?: boolean;
 };

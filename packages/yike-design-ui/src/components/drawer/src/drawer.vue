@@ -1,5 +1,5 @@
 <template>
-  <Teleport :to="element" :disabled="!show && shouldDestory">
+  <Teleport :to="target" :disabled="!show && shouldDestory">
     <Transition :name="placement" @after-leave="destory">
       <div
         v-if="show"
@@ -44,8 +44,8 @@
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
 import '../style'
-import { computed, onUpdated, ref } from 'vue'
-import { drawer } from './utils'
+import { computed, onUpdated, ref, nextTick } from 'vue'
+import { getElement, getDrawerOrder, drawerStats } from './utils'
 import { onClickOutside } from '@vueuse/core'
 defineOptions({
   name: 'YkDrawer',
@@ -62,17 +62,20 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   to: 'body',
 })
 
-const instance = drawer(props.to)
-const element = instance.target
-console.log(element, 5)
-const drawer_id = instance.drawer_id
-console.log(drawer_id)
+const target = ref<HTMLElement | Element>(document.body)
+const drawerId = ref<number>(getDrawerOrder())
+
+nextTick(() => {
+  target.value = getElement(props.to)
+})
+
 const emits = defineEmits(['close', 'open'])
 const focuser = ref<HTMLElement>()
 const drawerMain = ref<HTMLElement>()
 const shouldDestory = ref<boolean>(false)
 
 const close = () => {
+  drawerStats.close()
   emits('close')
 }
 
@@ -102,6 +105,7 @@ onUpdated(() => {
     if (props.escapable) {
       document.body.addEventListener('keydown', escape)
     }
+    drawerStats.open(drawerId.value)
     emits('open')
   }
 })
