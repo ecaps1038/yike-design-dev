@@ -4,6 +4,7 @@ import createVuePlugin from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vitePluginMarkdown from './plugins/vite-plugin-md.mjs';
 import Components from 'unplugin-vue-components/vite';
+import { YikeDevResolver } from './plugins/resolver';
 import path from 'path';
 const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }); // 配置可编译 .vue 与 .md 文件
 
@@ -16,16 +17,6 @@ const indexDir = path
   .replace(/\\/g, '/');
 
 const aliasDir = fileURLToPath(new URL('./src', import.meta.url));
-
-function sideEffects(from: string) {
-  return `${from}/style/index`;
-}
-
-const kebabize = (str: string) =>
-  str.replace(
-    /[A-Z]+(?![a-z])|[A-Z]/g,
-    ($, ofs) => (ofs ? '-' : '') + $.toLowerCase(),
-  );
 
 export default defineConfig({
   resolve: {
@@ -55,24 +46,7 @@ export default defineConfig({
     vuePlugin,
     vueJsx() as any,
     Components({
-      resolvers: [
-        (componentName) => {
-          if (componentName.startsWith('Yk')) {
-            let realName = kebabize(componentName.slice(2));
-            if (['text', 'title', 'paragraph'].includes(realName)) {
-              realName = 'typography';
-            }
-            const from = `../packages/yike-design-ui/src/index.ts`;
-            return {
-              name: componentName,
-              from,
-              sideEffects: sideEffects(
-                `../packages/yike-design-ui/src/components/${realName}`,
-              ),
-            };
-          }
-        },
-      ],
+      resolvers: [YikeDevResolver],
     }),
   ],
   css: {

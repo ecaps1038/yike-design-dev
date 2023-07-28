@@ -19,7 +19,7 @@
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
     "release": "standard-version",
-    "prepare": "pnpm --filter @yike/build build"
+    "prepare": "pnpm --filter @yike/build build && pnpm gen:icon"
   },
   "dependencies": {
     "svgo": "^3.0.2",
