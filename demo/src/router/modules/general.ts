@@ -65,6 +65,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'rate',
     component: () => import('@/examples/rate/doc.md'),
   },
+  {
+    path: 'dropdown',
+    component: () => import('@/examples/dropdown/doc.md'),
+  },
 ];
 
 export default generalRoutes;

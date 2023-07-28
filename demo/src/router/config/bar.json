@@ -35,6 +35,10 @@
         {
           "name": "Anchor 锚点",
           "src": "anchor"
+        },
+        {
+          "name": "Dropdown 下拉菜单",
+          "src": "dropdown"
         }
       ]
     },

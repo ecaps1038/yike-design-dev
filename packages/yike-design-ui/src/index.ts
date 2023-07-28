@@ -8,6 +8,7 @@ import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
 import YkRate from './components/rate';
+import { YkDropdown, YkDropdownItem } from './components/dropdown';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -37,6 +38,8 @@ const components: {
   YkPopover,
   YkDrawer,
   YkRate,
+  YkDropdown,
+  YkDropdownItem,
   YkAlert,
   YkButton,
   YkTheme,
@@ -65,6 +68,8 @@ export {
   YkPopover,
   YkDrawer,
   YkRate,
+  YkDropdown,
+  YkDropdownItem,
   YkAlert,
   YkButton,
   YkTheme,
@@ -94,10 +99,3 @@ export default {
     app.config.globalProperties.$message = YkMessage;
   },
 };
-// 局部注册
-// for (const c in components) {
-//   const component = Object.assign(components[c], { install: {} })
-//   component.install = (app: App) => {
-//     app.component(c, component)
-//   }
-// }
