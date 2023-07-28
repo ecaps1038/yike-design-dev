@@ -77,6 +77,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'affix',
     component: () => import('@/examples/affix/doc.md'),
   },
+  {
+    path: 'scrollbar',
+    component: () => import('@/examples/scrollbar/doc.md'),
+  },
 ];
 
 export default generalRoutes;
