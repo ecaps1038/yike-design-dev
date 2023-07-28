@@ -122,9 +122,7 @@ const buildIconEntry = (data: IconData[]) => {
       const { componentName, name } = icon;
       components.push(icon.componentName);
       imports.push(`import ${componentName} from './${name}'`);
-      exports.push(
-        `export {default as ${componentName} } from './${name}/${name}.vue'`,
-      );
+      exports.push(`export {default as ${componentName} } from './${name}'`);
     });
   });
 
