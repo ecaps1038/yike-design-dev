@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { computed, toRefs, getCurrentInstance } from 'vue'
 import { generateUid, getArcPath } from './utils'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 import { FileItemProps } from './upload'
 const proxy: any = getCurrentInstance()?.proxy
 const props = withDefaults(defineProps<FileItemProps>(), {
@@ -85,3 +85,4 @@ const handleEdit = () => {
   emits('handleEdit', uid.value)
 }
 </script>
+../../utils/bem

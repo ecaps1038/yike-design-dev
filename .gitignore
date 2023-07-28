@@ -1,6 +1,5 @@
 node_modules/
 .DS_Store
-dist/
 .history
 # Logs
 logs
@@ -18,3 +17,7 @@ pnpm-lock.yaml
 
 # 生成的图标文件
 svg-icon
+
+es 
+lib
+dist

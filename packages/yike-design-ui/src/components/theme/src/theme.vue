@@ -1,14 +1,13 @@
 <template>
   <div v-show="control" class="yk-theme" @click="toggleDark()">
-    <yk-icon v-if="isDark" name="yike-yueliang" class="moon" />
-    <yk-icon v-else name="yike-taiyang" class="son" />
+    <IconMoonFill v-if="isDark" />
+    <IconSunFill v-else />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ThemeProps } from './theme'
-import '../style'
-import { YkIcon } from '../../../index'
+import { IconMoonFill, IconSunFill } from '../../svg-icon'
 import { useDark, useToggle } from '@vueuse/core'
 
 const props = withDefaults(defineProps<ThemeProps>(), {

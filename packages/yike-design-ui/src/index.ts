@@ -24,7 +24,6 @@ import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
-import './styles/index.less';
 
 const components: {
   [propName: string]: Component;
@@ -100,10 +99,3 @@ export default {
     app.config.globalProperties.$message = YkMessage;
   },
 };
-// 局部注册
-// for (const c in components) {
-//   const component = Object.assign(components[c], { install: {} })
-//   component.install = (app: App) => {
-//     app.component(c, component)
-//   }
-// }

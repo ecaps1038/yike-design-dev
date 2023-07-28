@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { CheckboxProps } from './checkbox'
 // import { YkIcon } from '../../../index'
-import '../style'
+
 import { computed, inject, ref, watch } from 'vue'
 import { checkboxGroupContextKey } from './constants'
 import { isArray, isUndefined, toBoolean } from './utils'
