@@ -3,7 +3,6 @@
     <div :class="bem('main')">
       <div :class="bem('left')">
         <component :is="iconName" class="annex-yk-icon" />
-        <!-- <yk-icon :name="iconName" /> -->
         <span :class="bem(status)">{{ name }}</span>
       </div>
       <div :class="bem('right')">
