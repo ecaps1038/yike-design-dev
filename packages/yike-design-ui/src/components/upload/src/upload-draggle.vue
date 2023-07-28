@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { DraggleProps } from './upload'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 const props = withDefaults(defineProps<DraggleProps>(), {
   desc: '',
   disabled: false,
@@ -41,3 +41,4 @@ const handleUpload = () => {
   emits('handleUpload')
 }
 </script>
+../../utils/bem

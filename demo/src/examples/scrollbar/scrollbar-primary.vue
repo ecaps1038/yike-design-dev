@@ -5,3 +5,12 @@
     </div>
   </yk-scrollbar>
 </template>
+<style scoped lang="less">
+div {
+  width: 100%;
+}
+div p {
+  width: 100%;
+  background: @bg-color-s;
+}
+</style>

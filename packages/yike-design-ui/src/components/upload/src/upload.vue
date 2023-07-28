@@ -64,10 +64,7 @@
       </span>
       <div
         v-if="!(avatar && currentLength) && !uploadDisabled"
-        :class="[
-          bem('picture-button', { disabled: uploadDisabled }),
-          bem([shape]),
-        ]"
+        :class="[bem('picture-button', { disabled: uploadDisabled }, [shape])]"
         @click="handleUpload"
       >
         <div class="picture-desc">
@@ -94,11 +91,11 @@ import {
 } from './upload'
 import { UploadRequest } from './ajax'
 import { generateListUid, generateUid, findFileByUid } from './utils'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
 import uploadDraggle from './upload-draggle.vue'
 import UploadPictureItem from './upload-picture-item.vue'
-import '../style'
+
 defineOptions({
   name: 'YkUpload',
 })
@@ -131,7 +128,7 @@ const currentLength = computed(() => {
   return currentList.value.length
 })
 const uploadDisabled = computed(() => {
-  return props.limit && currentLength.value >= props.limit
+  return !!props.limit && currentLength.value >= props.limit
 })
 
 isPicture.value =
@@ -202,10 +199,13 @@ const handleBeforeUpload = (uploadFile: File) => {
 }
 
 const handleInputChange = (event) => {
+  const uploadFiles = Array.from(event.target.files) as File[]
+  if (!uploadFiles.length) {
+    return
+  }
   if (props.avatar) {
     currentList.value = []
   }
-  const uploadFiles = Array.from(event.target.files) as File[]
   uploadFiles.forEach((upload: File) => {
     const validate = handleBeforeUpload(upload)
     if (upload && validate) {
@@ -250,3 +250,4 @@ const handleDraggleFiles = (files: File[]) => {
   })
 }
 </script>
+../../utils/bem

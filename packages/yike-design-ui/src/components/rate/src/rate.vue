@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { RateProps } from './rate'
 import { computed, onMounted, ref } from 'vue'
-import '../style'
+
 defineOptions({
   name: 'YkRate',
 })

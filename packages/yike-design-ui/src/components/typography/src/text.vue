@@ -6,7 +6,6 @@
 <script setup lang="ts">
 import { computed, toRefs, useSlots } from 'vue'
 import { textProps } from './typography'
-import '../style'
 
 const props = withDefaults(defineProps<textProps>(), {
   strong: false,

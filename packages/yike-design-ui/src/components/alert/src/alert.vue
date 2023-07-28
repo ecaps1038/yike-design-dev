@@ -33,8 +33,6 @@ import { computed, ref } from 'vue'
 import { getIconName } from './util'
 import type { AlertEmits, AlertProps } from './alert'
 
-import '../style/index.less'
-
 defineOptions({
   name: 'YkAlert',
 })
