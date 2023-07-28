@@ -2,7 +2,7 @@
 
 :::snippet
 基本使用
-`Message` 可以接收一个字符串或一个 VNode 作为参数，它会被显示为正文内容
+`message` 可以接收一个字符串或一个 VNode 作为参数，它会被显示为正文内容
 <NotificationVNode/>
 :::
 
