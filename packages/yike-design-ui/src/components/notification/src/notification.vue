@@ -36,6 +36,7 @@
 <script setup lang="ts">
 import { NotificationProps } from './notification'
 import { onMounted, computed } from 'vue'
+import '../style'
 
 import { YkIcon } from '../../../index'
 defineOptions({

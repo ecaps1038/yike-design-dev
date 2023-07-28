@@ -15,6 +15,7 @@ import { ref, onMounted, computed } from 'vue'
 
 import { YkIcon } from '../../../index'
 import { createCssScope } from '../../utils/bem'
+import '../style'
 
 const bem = createCssScope('message')
 
