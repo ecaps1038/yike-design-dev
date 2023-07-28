@@ -21,7 +21,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { InputSearchProps } from './input'
+import { InputSearchProps } from './input-search'
 defineOptions({
   name: 'YkInputSearch',
 })

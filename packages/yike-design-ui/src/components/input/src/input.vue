@@ -84,7 +84,7 @@
 import { InputProps } from './input'
 import '../style'
 import { computed, ref, toRef } from 'vue'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 import { useInputTooltip } from './utils'
 defineOptions({
   name: 'YkInput',

@@ -1,4 +1,4 @@
-import { Size, Status } from '../../../utils/constant';
+import { Size, Status } from '../../utils/constant';
 
 export type InputProps = {
   id?: string;
@@ -16,13 +16,4 @@ export type InputProps = {
   showCounter?: boolean;
   limit?: number;
   tooltip?: string;
-};
-
-export type InputSearchProps = {
-  name?: string;
-  id?: string;
-  size?: Size;
-  placeholder?: string;
-  clearable?: boolean;
-  loading?: boolean;
 };
