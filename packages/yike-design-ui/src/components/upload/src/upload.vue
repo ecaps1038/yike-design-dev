@@ -64,10 +64,7 @@
       </span>
       <div
         v-if="!(avatar && currentLength) && !uploadDisabled"
-        :class="[
-          bem('picture-button', { disabled: uploadDisabled }),
-          bem([shape]),
-        ]"
+        :class="[bem('picture-button', { disabled: uploadDisabled }, [shape])]"
         @click="handleUpload"
       >
         <div class="picture-desc">
@@ -131,7 +128,7 @@ const currentLength = computed(() => {
   return currentList.value.length
 })
 const uploadDisabled = computed(() => {
-  return props.limit && currentLength.value >= props.limit
+  return !!props.limit && currentLength.value >= props.limit
 })
 
 isPicture.value =
@@ -202,10 +199,13 @@ const handleBeforeUpload = (uploadFile: File) => {
 }
 
 const handleInputChange = (event) => {
+  const uploadFiles = Array.from(event.target.files) as File[]
+  if (!uploadFiles.length) {
+    return
+  }
   if (props.avatar) {
     currentList.value = []
   }
-  const uploadFiles = Array.from(event.target.files) as File[]
   uploadFiles.forEach((upload: File) => {
     const validate = handleBeforeUpload(upload)
     if (upload && validate) {

@@ -12,13 +12,15 @@ defineProps({
 })
 </script>
 <style scoped lang="less">
+@import url('@/style/code-color.less');
+
 .codes {
   padding-bottom: @space-m;
 }
 
 pre {
   overflow: hidden;
-  max-width: 1000px;
+  max-width: 1200px;
   border-radius: @radius-m;
   text-align: left;
 

@@ -23,7 +23,7 @@
     }
   ],
   "rules": {
-    "max-nesting-depth": 2,
+    "max-nesting-depth": 4,
     "selector-max-compound-selectors": 3,
     "function-url-quotes": null,
     "property-no-unknown": null,

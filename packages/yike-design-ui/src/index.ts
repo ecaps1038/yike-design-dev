@@ -7,6 +7,8 @@ import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
+import YkBadge from './components/badge';
+import YkScrollbar from './components/scrollbar';
 import YkRate from './components/rate';
 import { YkDropdown, YkDropdownItem } from './components/dropdown';
 import YkAlert from './components/alert';
@@ -37,6 +39,8 @@ const components: {
   YkAnchor,
   YkPopover,
   YkDrawer,
+  YkBadge,
+  YkScrollbar,
   YkRate,
   YkDropdown,
   YkDropdownItem,
@@ -61,12 +65,14 @@ export {
   YkUpload,
   YkRadioGroup,
   YkRadio,
+  YkBadge,
   YkCheckbox,
   YkCheckboxGroup,
   YkSwitch,
   YkAnchor,
   YkPopover,
   YkDrawer,
+  YkScrollbar,
   YkRate,
   YkDropdown,
   YkDropdownItem,
