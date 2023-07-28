@@ -15,8 +15,8 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 // 全局注入 icon
 import Icon from 'yike-design-ui/es/components/svg-icon';
 // import Icon from '../../packages/yike-design-ui/src/components/svg-icon';
-// import { YkMessage, YkNotification } from 'yike-design-ui/es/index';
-import { YkMessage, YkNotification } from '../../packages/yike-design-ui/src';
+import { YkMessage, YkNotification } from 'yike-design-ui/es/index';
+// import { YkMessage, YkNotification } from '../../packages/yike-design-ui/src';
 hljs.registerLanguage('javascript', javascript);
 const app = createApp(App);
 app.component('YkSnippet', Snippet);
