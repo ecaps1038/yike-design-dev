@@ -1,3 +1,4 @@
+@import '../../styles/mixin.less';
 @import './variables.less';
 /* stylelint-disable */
 .yk-button--loading {
@@ -61,6 +62,10 @@
   color: @btn-primary-color-text;
   circle {
     stroke: @btn-primary-color-text;
+  }
+
+  .yk-icon + span {
+    margin-left: 4px;
   }
 
   .btn-type(@type) {

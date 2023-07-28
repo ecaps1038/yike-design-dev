@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import '../style'
 import { CSSProperties, computed } from 'vue'
 import { EmptyProps } from './empty'
 

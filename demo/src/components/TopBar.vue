@@ -21,11 +21,9 @@
         </div>
       </div>
       <a href="https://github.com/ecaps1038/yike-design-dev" target="_blank">
-        <yk-icon name="yike-github" class="github" />
+        github
       </a>
-      <a>
-        <yk-theme></yk-theme>
-      </a>
+      <a><yk-theme></yk-theme></a>
       <yk-avatar size="m" :img-url="avatarImgUrl"></yk-avatar>
     </yk-space>
   </div>

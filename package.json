@@ -4,7 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev:demo": "pnpm --filter demo dev",
+    "build:comp": "pnpm --filter yike-design-ui build:comp",
+    "build:less": "pnpm --filter yike-design-ui build:less",
+    "gen:icon": "pnpm --filter yike-design-ui gen:icon",
+    "gen:less": "pnpm --filter yike-design-ui gen:less",
+    "dev:demo": "pnpm run gen:icon && pnpm run build:comp && pnpm --filter demo dev",
     "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
@@ -14,8 +18,8 @@
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
-    "gen:icon": "pnpm --filter yike-design-ui gen:icon",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepare": "pnpm --filter @yike/build build"
   },
   "dependencies": {
     "svgo": "^3.0.2",

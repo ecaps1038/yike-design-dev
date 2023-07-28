@@ -8,7 +8,6 @@
 import { computed, nextTick, provide, reactive, toRefs } from 'vue'
 import { RadioGroupProps, radioGroupEmits } from './radio-group'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT, provideKey } from './constants'
-import '../style'
 
 const emits = defineEmits(radioGroupEmits)
 const props = withDefaults(defineProps<RadioGroupProps>(), {

@@ -13,7 +13,7 @@ import { AnchorProps } from './anchor'
 import { ref, shallowRef, nextTick, onMounted } from 'vue'
 import { computed } from 'vue'
 import { useDebounceFn, useEventListener } from '@vueuse/core'
-import '../style'
+
 import { onUnmounted } from 'vue'
 import { watch } from 'vue'
 /* eslint-disable-next-line */
@@ -96,7 +96,6 @@ const handleScroll = useDebounceFn(() => {
   const distances = ref<{ dis: number; el: HTMLElement }[]>([])
 
   if (scrollContainer instanceof Window) {
-    console.log('anchorEls.value: ', anchorEls.value)
     anchorEls.value.forEach((item, idx) => {
       const rect = item?.getBoundingClientRect()
       distances.value[idx] = {

@@ -42,7 +42,7 @@
 </template>
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
-import '../style'
+
 import { computed, onMounted, onUpdated, ref } from 'vue'
 import { getElement } from './utils'
 defineOptions({

@@ -1,6 +1,6 @@
 import { createVNode, render, reactive, ref, isVNode } from 'vue';
 import { NotificationOptions } from './notification';
-import { NOTIFICATIONTYPE } from '../../../utils/constant';
+import { NOTIFICATIONTYPE } from '../../utils/constant';
 import NotificationGroup from './notification-group.vue';
 
 class NotificationManager {
