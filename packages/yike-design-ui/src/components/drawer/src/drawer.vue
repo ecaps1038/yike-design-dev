@@ -1,6 +1,6 @@
 <template>
   <Teleport :to="element" :disabled="!show && shouldDestory">
-    <Transition :name="placement" @after-leave="shouldDestory = true">
+    <Transition :name="placement" @after-leave="destory">
       <div
         v-if="show"
         class="yk-drawer"
@@ -17,6 +17,7 @@
           tabindex="0"
         ></div>
         <div
+          ref="drawerMain"
           :class="ykDrawerMainClass"
           :style="ykDrawerMainStyle"
           class="yk-drawer-main"
@@ -43,11 +44,13 @@
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
 import '../style'
-import { computed, onMounted, onUpdated, ref } from 'vue'
-import { getElement } from './utils'
+import { computed, onUpdated, ref } from 'vue'
+import { drawer } from './utils'
+import { onClickOutside } from '@vueuse/core'
 defineOptions({
   name: 'YkDrawer',
 })
+
 const props = withDefaults(defineProps<DrawerProps>(), {
   show: false,
   size: '360px',
@@ -58,19 +61,37 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   placement: 'right',
   to: 'body',
 })
-let element: HTMLElement = getElement(props.to)
+
+const instance = drawer(props.to)
+const element = instance.target
+console.log(element, 5)
+const drawer_id = instance.drawer_id
+console.log(drawer_id)
 const emits = defineEmits(['close', 'open'])
 const focuser = ref<HTMLElement>()
+const drawerMain = ref<HTMLElement>()
 const shouldDestory = ref<boolean>(false)
+
 const close = () => {
   emits('close')
 }
+
+const destory = () => {
+  shouldDestory.value = true
+  document.body.style.overflow = ''
+  document.body.removeEventListener('keydown', escape)
+}
+
 const escape = (ev: KeyboardEvent) => {
   if (ev.key === 'Escape') close()
 }
-onMounted(() => {
-  element = getElement(props.to)
-})
+
+const test = () => {
+  console.log('outside.')
+}
+
+onClickOutside(drawerMain, test)
+
 onUpdated(() => {
   if (props.show) {
     shouldDestory.value = false
@@ -82,11 +103,9 @@ onUpdated(() => {
       document.body.addEventListener('keydown', escape)
     }
     emits('open')
-  } else {
-    document.body.style.overflow = ''
-    document.body.removeEventListener('keydown', escape)
   }
 })
+
 const ykDrawerMainStyle = computed(() => {
   return {
     height:

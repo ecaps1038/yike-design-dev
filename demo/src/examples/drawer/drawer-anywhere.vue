@@ -5,6 +5,8 @@
     title="你好，世界。"
     :show="active"
     to="#drawer-hub"
+    :scrollable="true"
+    placement="left"
     @close="active = false"
   >
     你看到了什么？
