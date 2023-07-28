@@ -5,6 +5,7 @@
       <span class="name">Yike Design 开发版</span>
     </div>
     <yk-space class="net" :size="30" align="center">
+      <a :href="uiUrl" target="_blank">UI设计稿</a>
       <a :href="taskUrl" target="_blank">任务文档</a>
       <router-link to="/developStandard">开发规范</router-link>
       <router-link to="/design">设计</router-link>
@@ -38,6 +39,8 @@ import { useRouter } from 'vue-router'
 const taskUrl = ref(
   'https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK',
 )
+// 任务文档url
+const uiUrl = ref('https://codesign.qq.com/s/6W3G0m4m8q9lOwL')
 // 头像图片地址
 const avatarImgUrl = ref(
   'https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png',

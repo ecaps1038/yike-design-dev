@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical" size="large">
+  <yk-space direction="vertical" size="l">
     <yk-checkbox-group :default-value="['1']">
       <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">
         {{ item.label }}

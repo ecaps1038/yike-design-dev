@@ -52,7 +52,7 @@
   color: @btn-primary-color-text;
   background-color: @btn-primary-color-bg;
   outline: none;
-  transition: all @animatb ease-in-out;
+  transition: all @animatb;
   box-sizing: border-box;
   border-width: 1px;
   border-style: solid;
@@ -75,7 +75,7 @@
         background-color: ~'@{btn-@{type}-color-hover}';
       }
       &:not(:disabled):active {
-        background-color: ~'@{btn-@{type}-color-bg}';
+        background-color: ~'@{btn-@{type}-color-active}';
       }
     }
     &--@{type} {
@@ -95,7 +95,7 @@
         background-color: ~'@{btn-@{type}-color-hover_@{status}}';
       }
       &:not(:disabled):active {
-        background-color: ~'@{btn-@{type}-color-bg_@{status}}';
+        background-color: ~'@{btn-@{type}-color-active_@{status}}';
       }
     }
     &.yk-button--@{type}.yk-button--@{status} {

@@ -22,6 +22,10 @@
         {
           "name": "Typography 排版",
           "src": "typography"
+        },
+        {
+          "name": "Scrollbar 滚动条",
+          "src": "scrollbar"
         }
       ]
     },
@@ -73,6 +77,10 @@
         {
           "name": "Empty  空状态",
           "src": "empty"
+        },
+        {
+          "name": "Badge 徽标",
+          "src": "badge"
         }
       ]
     },
