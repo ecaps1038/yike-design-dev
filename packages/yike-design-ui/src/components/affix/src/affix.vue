@@ -17,6 +17,7 @@ import {
   watchEffect,
   onMounted,
   watch,
+  nextTick,
 } from 'vue'
 import {
   useElementBounding,
@@ -57,7 +58,7 @@ const { height: winHeight } = useWindowSize()
 
 const isFixed = ref(false)
 
-const updatePos = () => {
+const updateFixed = () => {
   if (props.position === 'bottom') {
     isFixed.value = targetRect.value!.bottom - props.offset <= bottom.value
   } else {
@@ -72,7 +73,7 @@ watch(
     if (isWindow(scrollContainer.value)) {
       targetRect.value.bottom = winHeight.value
     }
-    updatePos()
+    updateFixed()
   },
 )
 
@@ -81,10 +82,13 @@ const calcFixedStyle = computed<CSSProperties>(() => {
     return {}
   }
   return {
-    bottom: props.position === 'bottom' ? `${props.offset}px` : '',
+    bottom:
+      props.position === 'bottom'
+        ? `${winHeight.value - targetRect.value.bottom + props.offset}px`
+        : '',
     top:
       props.position === 'top'
-        ? targetRect.value.top + `${props.offset}px`
+        ? `${targetRect.value.top + props.offset}px`
         : '',
     zIndex: props.zIndex,
   }
@@ -104,18 +108,11 @@ watch(
 )
 
 const handleUpdate = () => {
+  targetRect.value = getTargetRect(scrollContainer.value!)
   update()
-  if (props.target) {
-    console.log('handle', top.value, targetRect.value.top, props.offset)
-  }
 }
-// test target
-const testLog = () => {
-  if (props.target) {
-    console.log('fff', props.target, scrollContainer.value, targetRect.value)
-  }
-}
-const initTarget = () => {
+
+const initTarget = async () => {
   if (props.target) {
     if (typeof props.target === 'string') {
       scrollContainer.value =
@@ -126,22 +123,28 @@ const initTarget = () => {
   } else {
     scrollContainer.value = window || document.documentElement
   }
+  await nextTick()
   targetRect.value = getTargetRect(scrollContainer.value)
-  testLog()
-
   update()
 }
+
+// 传入target时重新初始化容器
 watch(
   () => props.target,
-  (n) => {
-    // console.log('targetchange', n)
-
-    initTarget()
-  },
+  () => initTarget(),
 )
 onMounted(() => {
   initTarget()
 })
+
 useEventListener(scrollContainer, 'scroll', handleUpdate)
-watchEffect(updatePos)
+
+watchEffect(updateFixed)
+
+defineExpose({
+  /**
+   * 主动更新位置函数
+   */
+  updatePosition: handleUpdate,
+})
 </script>

@@ -26,6 +26,25 @@
 
 :::snippet
 指定容器滚动
-传入`target`作为滚动容器
+传入`target`作为滚动容器。注意：当容器外部还有滚动元素时，可以主动监听外部滚动事件，调用`updatePosition`方法去更新固钉位置。
 <AffixContainer/>
 :::
+
+### API
+
+`<affix>` Props
+|参数名 |描述 |类型 |默认值 |
+|---------------------|----------|------------|-------|
+|offset|偏移量 | number |0|
+|position|偏移方向 | 'top'｜'bottom' |'top'|
+|target|滚动容器，默认是 window | string ｜ window ｜ HTMLElement |window|
+
+`<affix>`Events
+|事件名|描述|参数|
+|------|------|----|
+|change|元素固定状态改变时触发事件|fixed:boolean|
+
+`<affix>`Methods
+|方法名|描述|参数|返回值|
+|------|------|----|---|
+|updatePosition|用于主动更新位置|-|-|
