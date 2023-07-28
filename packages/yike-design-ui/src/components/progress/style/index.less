@@ -1,8 +1,10 @@
 .yk-progress {
-  display: flex;
-  align-items: center;
-  width: 480px;
-  .yk-progress-inner {
+  &-line-wrapper {
+    display: flex;
+    align-items: center;
+    min-width: 480px;
+  }
+  &-inner {
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -14,6 +16,7 @@
     display: flex;
     align-items: center;
     margin-left: 16px;
+    min-width: 60px;
     font-family: PingFangSC-Regular;
     color: #1e2025cc;
   }
@@ -38,11 +41,21 @@
     transform: rotate(-90deg);
   }
   &-circle {
-    // stroke: #2196f3;
     stroke-linecap: round;
     transition: all 0.3s linear;
   }
   &-circle-wrappe {
+    position: relative;
+  }
+  &-circle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    font-family: PingFangSC-Regular;
+    text-align: center;
+    color: #1e2025cc;
+    transform: translate(-50%, -50%);
   }
   @circleSizes: {
     s: 48px;

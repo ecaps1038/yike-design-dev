@@ -25,6 +25,12 @@
 :::
 
 :::snippet
+环形进度条状态
+设置 status 将会展示不同状态的环形进度条。
+<ProgressCircleStatus/>
+:::
+
+:::snippet
 自定义内容
 通过插槽添加自定义内容。
 <ProgressSlot/>
@@ -32,13 +38,11 @@
 
 ### API
 
-通过设置 Progress 的属性来产生不同的进度条样式，推荐顺序为：type -> size -> shape -> status -> disabled。
-
 | 参数        | 描述                       | 类型                         | 默认值 |
 | ----------- | -------------------------- | ---------------------------- | ------ |
-| type        | 进度条类型                 | 'line'｜'circle'             | line   |
+| type        | 进度条类型（必填）         | 'line'｜'circle'             | line   |
 | percent     | 百分比                     | number                       | 20     |
-| size        | 尺寸                       | 's'｜'m' ｜'l'               | -      |
+| size        | 尺寸                       | 's'｜'m' ｜'l'               | m      |
 | strokeColor | 进度条颜色                 | string                       | -      |
 | status      | 进度条状态                 | 'normal'｜'success'｜'error' | normal |
 | showInfo    | 是否显示进度数值或状态图标 | boolean                      | true   |

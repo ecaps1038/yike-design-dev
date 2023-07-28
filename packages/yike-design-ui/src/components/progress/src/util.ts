@@ -3,28 +3,28 @@ import type { Size } from '../../../utils/constant';
 /**
  * 根据状态获取对应的 Icon 颜色
  */
-export const getIconColor = (type: Status) =>
+export const getIconColor = (status: Status) =>
   ({
     success: '#1fb4a2',
     error: '#fa5247',
     normal: '#2B5AED',
-  }[type]);
+  }[status]);
 
 /**
  * 根据状态获取对应的 Icon Name
  */
-export const getIconName = (type: Status) =>
+export const getIconName = (status: Status, isLinear?: boolean) =>
   ({
-    success: 'yike-gou',
-    error: 'yike-cha',
-  }[type]);
+    success: isLinear ? 'yk-gou1' : 'yike-gou',
+    error: isLinear ? 'yk-cha' : 'yike-cha',
+  }[status]);
 
 /**
- * 根据状态获取对应的 Icon Name
+ * 根据size获取对应的 svg大小
  */
-export const getSvgSize = (Size: Size) =>
+export const getSvgSize = (size: Size) =>
   ({
     s: '48',
     m: '64',
     l: '80',
-  }[Size]);
+  }[size]);
