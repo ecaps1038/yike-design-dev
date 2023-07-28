@@ -77,6 +77,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'scrollbar',
     component: () => import('@/examples/scrollbar/doc.md'),
   },
+  {
+    path: 'dropdown',
+    component: () => import('@/examples/dropdown/doc.md'),
+  },
 ];
 
 export default generalRoutes;

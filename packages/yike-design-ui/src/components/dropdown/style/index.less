@@ -1,0 +1,92 @@
+@import '../../styles/color/colors.less';
+@import '../../styles/mixin.less';
+
+.yk-dropdown {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+
+  &.disabled {
+    .disabled();
+  }
+}
+
+.yk-dropdown__icon {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform @animatb ease;
+}
+
+.yk-dropdown__content {
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+
+  &.bottom,
+  &.bl,
+  &.br {
+    padding-top: 4px;
+  }
+
+  &.top,
+  &.tl,
+  &.tr {
+    padding-bottom: 4px;
+  }
+
+  &.bl,
+  &.tl {
+    left: 0;
+  }
+
+  &.br,
+  &.tr {
+    right: 0;
+  }
+}
+
+.yk-dropdown__menu {
+  padding: 6px;
+  font-size: @size-s;
+  border-radius: @radius-m;
+  background-color: @bg-color-l;
+  box-shadow: @shadow-m;
+}
+
+.modal {
+  &-enter {
+    &-from {
+      transform: scale(1, 0);
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+
+    &-active {
+      transition: all @animatb ease-out;
+    }
+
+    &-to {
+      transform: scale(1);
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  &-leave {
+    &-from {
+      transform: scale(1);
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    &-active {
+      transition: all animatb;
+    }
+
+    &-to {
+      transform: scale(0);
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+}

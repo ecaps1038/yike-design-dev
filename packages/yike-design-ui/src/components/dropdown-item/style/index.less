@@ -1,0 +1,31 @@
+@import '../../styles/color/colors.less';
+@import '../../styles//mixin.less';
+
+.yk-dropdown-item {
+  padding: 0 12px;
+  line-height: 32px;
+  border-radius: @radius-s;
+  cursor: pointer;
+
+  &.disabled {
+    .disabled();
+  }
+
+  &:hover {
+    background-color: @bg-color-m;
+  }
+
+  &.size-s {
+    font-size: 9px;
+    line-height: 24px;
+  }
+
+  &.size-m {
+    line-height: 28px;
+  }
+
+  &.size-xl {
+    font-size: 16px;
+    line-height: 38px;
+  }
+}

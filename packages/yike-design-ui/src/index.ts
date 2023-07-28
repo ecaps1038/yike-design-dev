@@ -26,6 +26,8 @@ import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
+import YkDropdown from './components/dropdown';
+import YkDropdownItem from './components/dropdown-item';
 
 const components: {
   [propName: string]: Component;
@@ -59,6 +61,8 @@ const components: {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkDropdown,
+  YkDropdownItem,
 };
 
 export {
@@ -93,6 +97,8 @@ export {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkDropdown,
+  YkDropdownItem,
 };
 
 // 全局注册
