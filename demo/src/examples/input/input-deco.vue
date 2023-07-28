@@ -1,13 +1,13 @@
 <template>
   <div class="item">
     <yk-input placeholder="四">
-      <template #prefix>今天是星期</template>
+      <template #prefix><yk-text>今天是星期</yk-text></template>
     </yk-input>
   </div>
   <div class="item">
     <yk-input>
-      <template #prefix>衬衫的价格是</template>
-      <template #suffix>便士</template>
+      <template #prefix><yk-text>衬衫的价格是</yk-text></template>
+      <template #suffix><yk-text>便士</yk-text></template>
     </yk-input>
   </div>
   <div class="item">
