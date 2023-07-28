@@ -9,5 +9,5 @@ export type ProgressProps = {
   strokeColor?: string;
   size?: Size;
   status?: Status;
-  showInfo?: boolean;
+  showText?: boolean;
 };

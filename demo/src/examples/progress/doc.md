@@ -45,7 +45,7 @@
 | size        | 尺寸                       | 's'｜'m' ｜'l'               | m      |
 | strokeColor | 进度条颜色                 | string                       | -      |
 | status      | 进度条状态                 | 'normal'｜'success'｜'error' | normal |
-| showInfo    | 是否显示进度数值或状态图标 | boolean                      | true   |
+| showText    | 是否显示进度数值和状态图标 | boolean                      | true   |
 
 ### Slot
 
