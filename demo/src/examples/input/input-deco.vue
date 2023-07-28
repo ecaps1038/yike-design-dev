@@ -11,16 +11,16 @@
     </yk-input>
   </div>
   <div class="item">
-    <yk-input placeholder="输入链接">
+    <yk-input placeholder="输入总金额">
       <template #prefix>
-        <yk-icon name="yk-fujian"></yk-icon>
+        <icon-money-outline />
       </template>
     </yk-input>
   </div>
   <div class="item">
-    <yk-input placeholder="请输入口令...">
+    <yk-input placeholder="请输入你最喜欢的书">
       <template #suffix>
-        <yk-icon name="yk-suo" />
+        <icon-book-outline />
       </template>
     </yk-input>
   </div>
