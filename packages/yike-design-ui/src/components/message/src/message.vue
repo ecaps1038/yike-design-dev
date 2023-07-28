@@ -1,10 +1,10 @@
 <template>
   <div>
     <div :class="bem()" :style="Style">
-      <yk-icon
-        :name="statusIconName"
+      <component
+        :is="statusIconName"
         :class="`icon-${props.type} message-icon`"
-      ></yk-icon>
+      />
       <span class="text">{{ message }}</span>
     </div>
   </div>
@@ -12,8 +12,6 @@
 <script setup lang="ts">
 import { MessageProps } from './message'
 import { ref, onMounted, computed } from 'vue'
-
-import { YkIcon } from '../../../index'
 import { createCssScope } from '../../utils/bem'
 import '../style'
 
@@ -42,11 +40,11 @@ const Style = computed(() => ({
   zIndex: props.zIndex,
 }))
 const iconStatusMap = {
-  primary: 'yike-tixing',
-  warning: 'yike-jinggao',
-  error: 'yike-cha',
-  success: 'yike-gou',
-  loading: 'yk-jiazai',
+  primary: 'IconReminderFill',
+  warning: 'IconWarningFill',
+  error: 'IconCrossFill',
+  success: 'IconTickFill',
+  loading: 'IconLoadingOutline',
 }
 const isShow = ref(false)
 const startTimer = () => {

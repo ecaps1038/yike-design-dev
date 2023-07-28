@@ -14,6 +14,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 // 全局注入 icon
 import Icon from 'yike-design-ui/es/components/svg-icon';
+// import Icon from '../../packages/yike-design-ui/src/components/svg-icon';
 import { YkMessage, YkNotification } from 'yike-design-ui/es/index';
 
 hljs.registerLanguage('javascript', javascript);
