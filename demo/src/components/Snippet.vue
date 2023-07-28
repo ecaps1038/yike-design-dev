@@ -59,7 +59,7 @@ const clickShow = (): void => {
 /* stylelint-disable */
 .case-card {
   margin-top: 28px;
-  max-width: 800px;
+  max-width: 1200px;
 
   .container {
     margin: 12px 0 8px;
@@ -114,17 +114,6 @@ const clickShow = (): void => {
         color: @bg-color-l;
       }
     }
-  }
-
-  .codes {
-    padding-top: @space-m;
-  }
-
-  pre {
-    overflow: hidden;
-    max-width: 800px;
-    border-radius: @radius-m;
-    text-align: left;
   }
 }
 </style>
