@@ -18,7 +18,6 @@ const indexDir = path
 const aliasDir = fileURLToPath(new URL('./src', import.meta.url));
 
 function sideEffects(from: string) {
-  console.log('`${from}/style/index`: ', `${from}/style/index`);
   return `${from}/style/index`;
 }
 
