@@ -44,6 +44,7 @@
 import { NotificationProps } from './notification'
 import { onMounted, computed } from 'vue'
 import '../style'
+import { YkButton, YkSpace } from '../../../index'
 import IconReminderFill from '../../svg-icon/icon-reminder-fill'
 import IconWarningFill from '../../svg-icon/icon-warning-fill'
 import IconCrossFill from '../../svg-icon/icon-cross-fill'

@@ -9,7 +9,7 @@
     "gen:icon": "pnpm --filter yike-design-ui gen:icon",
     "gen:less": "pnpm --filter yike-design-ui gen:less",
     "dev:demo": "pnpm --filter demo dev",
-    "build:demo": "pnpm run gen:icon && pnpm run build:comp && pnpm --filter demo dev",
+    "build:demo": "pnpm run gen:icon && pnpm run build:comp",
     "preview:demo": "pnpm --filter demo preview",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
     "stylelint": "npx stylelint --aei .vue,.less,.css,.html . --fix",
