@@ -61,8 +61,8 @@ defineProps({
     height: 40px;
     border-radius: @radius-m;
     color: @font-color-m;
-    transition: color @animats;
     line-height: 40px;
+    transition: background-color @animatb;
 
     &:hover {
       background-color: @pcolor-1;
