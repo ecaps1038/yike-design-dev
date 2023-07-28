@@ -85,4 +85,3 @@ const handleEdit = () => {
   emits('handleEdit', uid.value)
 }
 </script>
-../../utils/bem
