@@ -23,7 +23,7 @@
         >
           <div class="yk-drawer-wrapper">
             <button v-if="closable" class="yk-drawer-close" @click="close">
-              <yk-icon name="yk-cha" />
+              <IconCrossOutline />
             </button>
             <div class="yk-drawer-header" :aria-label="title">
               <slot name="header">{{ props.title }}</slot>

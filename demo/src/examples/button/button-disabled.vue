@@ -8,6 +8,6 @@
       <IconDeleteOutline style="marginleft: 4px" />
       删除
     </yk-button>
-    <yk-button disabled shape="circle"><yk-icon name="yk-jiahao" /></yk-button>
+    <yk-button disabled shape="circle"><IconPlusOutline /></yk-button>
   </yk-space>
 </template>

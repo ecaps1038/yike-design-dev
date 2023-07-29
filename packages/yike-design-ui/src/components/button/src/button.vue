@@ -42,4 +42,3 @@ withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
 })
 </script>
-../../utils/bem
