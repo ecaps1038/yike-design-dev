@@ -21,7 +21,7 @@ const DrawerOperator = createGlobalState(() => {
     drawers.value.shift();
   };
 
-  // 判断是不是最后一个已关闭的抽屉
+  // 判断是不是最后一个未关闭的抽屉
   const isLast = (id: number): boolean => {
     const last = drawers.value[0];
     if (last === id || last === undefined) {
