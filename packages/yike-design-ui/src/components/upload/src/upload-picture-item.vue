@@ -33,7 +33,8 @@
 </template>
 <script setup lang="ts">
 import { computed, toRefs, getCurrentInstance } from 'vue'
-import { generateUid, getArcPath } from './utils'
+import { getArcPath } from './utils'
+import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
 import { FileItemProps } from './upload'
 const proxy: any = getCurrentInstance()?.proxy

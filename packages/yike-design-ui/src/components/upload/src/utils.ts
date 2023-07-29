@@ -1,4 +1,5 @@
 import type { UploadFile, UserFile } from './upload';
+import { generateUid } from '../../utils/tools';
 export const imageTypes = ['image', 'jpeg', 'png', 'gif'];
 export function getArcPath(
   cx: number,
@@ -14,11 +15,7 @@ export function getArcPath(
     endAngle < Math.PI ? '0' : '1'
   },1 ${x},${y} Z`;
 }
-export function generateUid() {
-  const randomPart = Math.floor(Math.random() * 10000); // 生成 0-9999 之间的随机数
-  const timestampPart = Date.now(); // 获取当前时间戳
-  return parseInt(`${randomPart}${timestampPart}`, 10); // 将随机数和时间戳拼接为一个整数类型的 UID
-}
+
 export function generateListUid(list: UserFile[]) {
   const uploadList = list.map((item: any) => {
     return { uid: generateUid(), status: 'success', ...item }; // 在每个元素上添加 uid 属性并将其赋值为生成的 uid

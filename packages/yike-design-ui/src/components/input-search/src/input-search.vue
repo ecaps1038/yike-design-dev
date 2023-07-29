@@ -27,7 +27,6 @@ defineOptions({
 })
 const props = withDefaults(defineProps<InputSearchProps>(), {
   name: '',
-  id: '',
   size: 'l',
   placeholder: '',
   clearable: true,

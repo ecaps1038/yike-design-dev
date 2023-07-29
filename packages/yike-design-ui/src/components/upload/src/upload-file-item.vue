@@ -42,7 +42,8 @@
 </template>
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
-import { getArcPath, getFileTypeIconName, generateUid } from './utils'
+import { getArcPath, getFileTypeIconName } from './utils'
+import { generateUid } from '../../utils/tools'
 import { FileItemProps } from './upload'
 import { createCssScope } from '../../utils/bem'
 
