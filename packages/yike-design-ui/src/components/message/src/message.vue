@@ -1,10 +1,11 @@
 <template>
   <div>
     <div :class="bem()" :style="Style">
-      <yk-icon
-        :name="statusIconName"
-        :class="`icon-${props.type} message-icon`"
-      ></yk-icon>
+      <IconReminderFill v-if="type === 'primary'" class="icon-primary" />
+      <IconWarningFill v-else-if="type === 'warning'" class="icon-warning" />
+      <IconCrossFill v-else-if="type === 'error'" class="icon-error" />
+      <IconTickFill v-else-if="type === 'success'" class="icon-success" />
+      <IconLoadingOutline v-else-if="type === 'loading'" class="icon-loading" />
       <span class="text">{{ message }}</span>
     </div>
   </div>
@@ -12,9 +13,15 @@
 <script setup lang="ts">
 import { MessageProps } from './message'
 import { ref, onMounted, computed } from 'vue'
-
-import { YkIcon } from '../../../index'
 import { createCssScope } from '../../utils/bem'
+
+import IconReminderFill from '../../svg-icon/icon-reminder-fill'
+import IconWarningFill from '../../svg-icon/icon-warning-fill'
+import IconCrossFill from '../../svg-icon/icon-cross-fill'
+import IconTickFill from '../../svg-icon/icon-tick-fill'
+import IconLoadingOutline from '../../svg-icon/icon-loading-outline'
+
+import '../style'
 
 const bem = createCssScope('message')
 
@@ -33,20 +40,10 @@ const props = withDefaults(defineProps<MessageProps>(), {
 
 const emits = defineEmits(['close'])
 
-const statusIconName = computed(() => {
-  return iconStatusMap[props.type]
-})
 const Style = computed(() => ({
   marginBottom: `${props.offset}px`,
   zIndex: props.zIndex,
 }))
-const iconStatusMap = {
-  primary: 'yike-tixing',
-  warning: 'yike-jinggao',
-  error: 'yike-cha',
-  success: 'yike-gou',
-  loading: 'yk-jiazai',
-}
 const isShow = ref(false)
 const startTimer = () => {
   if (!props.duration || props.type === 'loading') {
@@ -67,4 +64,3 @@ onMounted(() => {
   isShow.value = true
 })
 </script>
-../../utils/bem

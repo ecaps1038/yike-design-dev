@@ -1,12 +1,12 @@
-import type { Type } from "./alert";
+import type { Type } from './alert';
 
 /**
  * 根据类型获取对应的 Icon Name
  */
 export const getIconName = (type: Type) =>
-({
-  success: 'yike-gou',
-  info: 'yike-tixing',
-  warning: 'yike-tixing',
-  error: 'yike-cha',
-}[type])
+  ({
+    success: 'IconTickFill',
+    info: 'IconReminderFill',
+    warning: 'IconWarningFill',
+    error: 'IconCrossFill',
+  }[type]);

@@ -18,7 +18,7 @@
           :disabled="uploadDisabled"
           @click="handleUpload"
         >
-          <yk-icon name="yk-shangchuan2" :class="bem('file-icon')" />
+          <IconUpload2Outline :class="bem('file-icon')" />
           <div>上传文件</div>
         </yk-button>
         <yk-text type="third">{{ desc }}</yk-text>
@@ -68,10 +68,7 @@
         @click="handleUpload"
       >
         <div class="picture-desc">
-          <yk-icon
-            :class="bem('picture-button-icon')"
-            name="yk-jiahao"
-          ></yk-icon>
+          <IconPlusOutline :class="bem('picture-button-icon')" />
           <span v-if="desc" :class="bem('picture-button-desc')">
             {{ desc }}
           </span>
@@ -250,4 +247,3 @@ const handleDraggleFiles = (files: File[]) => {
   })
 }
 </script>
-../../utils/bem

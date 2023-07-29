@@ -40,7 +40,7 @@
         >
           <div :class="bem('wrapper')">
             <button v-if="closable" :class="bem('close')" @click="close">
-              <icon-close-outline />
+              <IconCrossOutline />
             </button>
             <div :class="bem('header')" :aria-label="title">
               <slot name="header">{{ props.title }}</slot>

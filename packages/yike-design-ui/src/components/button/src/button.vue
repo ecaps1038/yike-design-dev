@@ -14,7 +14,7 @@
     </svg>
 
     <slot v-else name="icon" />
-    <span v-if="$slots.default"><slot></slot></span>
+    <slot></slot>
   </button>
 </template>
 
@@ -42,4 +42,3 @@ withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
 })
 </script>
-../../utils/bem

@@ -50,7 +50,7 @@
           :class="YkInputButtonClass"
           @click="switchType"
         >
-          <yk-icon name="yk-biyan" />
+          <IconClosedEyeFill />
         </button>
         <button
           v-if="clearable && !disabled"
@@ -59,7 +59,7 @@
           :class="YkInputButtonClass"
           @click="clear"
         >
-          <yk-icon name="yk-cha" />
+          <IconCrossOutline />
         </button>
       </div>
       <div v-if="showCounter" :class="bem('counter')">
