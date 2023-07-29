@@ -5,6 +5,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "composite": true,
+    "jsx": "preserve",
     "baseUrl": ".",
     "sourceMap": true,
     "paths": {

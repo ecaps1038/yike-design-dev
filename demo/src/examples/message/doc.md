@@ -8,7 +8,7 @@
 
 :::snippet
 提示文案
-通过传入 `message` 指定不同的提示文案
+通过传入 `message` 指定不同的提示文案，支持 `jsx` 和 `VNode` 写法。
 <MessageAlter/>
 :::
 
