@@ -41,4 +41,3 @@ const handleUpload = () => {
   emits('handleUpload')
 }
 </script>
-../../utils/bem

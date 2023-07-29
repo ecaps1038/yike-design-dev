@@ -81,6 +81,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'dropdown',
     component: () => import('@/examples/dropdown/doc.md'),
   },
+  {
+    path: 'alert',
+    component: () => import('@/examples/alert/doc.md'),
+  },
 ];
 
 export default generalRoutes;

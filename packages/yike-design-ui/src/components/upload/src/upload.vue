@@ -247,4 +247,3 @@ const handleDraggleFiles = (files: File[]) => {
   })
 }
 </script>
-../../utils/bem
