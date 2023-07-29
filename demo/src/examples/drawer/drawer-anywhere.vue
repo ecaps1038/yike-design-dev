@@ -5,6 +5,9 @@
     title="你好，世界。"
     :show="active"
     to="#drawer-hub"
+    :scrollable="true"
+    placement="left"
+    :debug="true"
     @close="active = false"
   >
     你看到了什么？
@@ -28,7 +31,7 @@ const active = ref(false)
   margin-top: 10px;
   width: 100%;
   height: 500px;
-  border: 1px solid rgb(var(--gray1) 0.08);
+  border: 1px solid #e6e6e6;
   border-radius: 8px;
 }
 </style>
