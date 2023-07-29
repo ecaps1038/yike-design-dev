@@ -191,7 +191,7 @@ function buildIconJSON(data: IconData[]) {
 export const iconGen = async () => {
   const data = getSvgData();
   await buildIconComponent(data);
-  buildIconEntry(data);
-  buildIconType(data);
-  buildIconJSON(data);
+  await buildIconEntry(data);
+  await buildIconType(data);
+  await buildIconJSON(data);
 };
