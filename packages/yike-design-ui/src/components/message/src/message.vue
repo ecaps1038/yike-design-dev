@@ -6,14 +6,16 @@
       <IconCrossFill v-else-if="type === 'error'" class="icon-error" />
       <IconTickFill v-else-if="type === 'success'" class="icon-success" />
       <IconLoadingOutline v-else-if="type === 'loading'" class="icon-loading" />
-      <span class="text">{{ message }}</span>
+      <span class="text">
+        <component :is="render(props.message)" />
+      </span>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { MessageProps } from './message'
 import { ref, onMounted, computed } from 'vue'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope, render } from '../../utils'
 
 import IconReminderFill from '../../svg-icon/icon-reminder-fill'
 import IconWarningFill from '../../svg-icon/icon-warning-fill'
