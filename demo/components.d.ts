@@ -11,6 +11,7 @@ declare module 'vue' {
     Codes: typeof import('./src/components/Codes.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     Dark: typeof import('./src/components/develops/dark.vue')['default']
+    IconAppOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconAppOutline']
     IconBellOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconBellOutline']
     IconBookmarkOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconBookmarkOutline']
     IconCirclePlusOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconCirclePlusOutline']

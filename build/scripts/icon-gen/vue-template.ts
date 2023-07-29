@@ -26,7 +26,7 @@ export const getIconVue = ({
         spin?: boolean
       }>(),
       {
-        strokeWidth: 1,
+        strokeWidth: 0,
         strokeLinecap: 'butt',
         strokeLinejoin: 'arcs',
         size: 'inherit',
