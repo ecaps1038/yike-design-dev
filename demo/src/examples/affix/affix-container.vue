@@ -17,10 +17,10 @@ import { shallowRef, onMounted, onUnmounted } from 'vue'
 const targetRef = shallowRef<HTMLElement>()
 const affixRef = shallowRef()
 onMounted(() => {
-  window.addEventListener('scroll', affixRef.value!.updatePosition, true)
+  window.addEventListener('scroll', affixRef.value?.updatePosition, true)
 })
 onUnmounted(() => {
-  window.removeEventListener('scroll', affixRef.value!.updatePosition(), true)
+  window.removeEventListener('scroll', affixRef.value?.updatePosition, true)
 })
 </script>
 <style scoped>

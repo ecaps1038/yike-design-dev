@@ -7,7 +7,7 @@
 </template>
 <script setup lang="ts">
 import { AffixProps } from './affix'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 import '../style'
 import {
   CSSProperties,
