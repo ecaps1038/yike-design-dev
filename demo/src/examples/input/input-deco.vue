@@ -13,14 +13,14 @@
   <div class="item">
     <yk-input placeholder="输入总金额">
       <template #prefix>
-        <icon-money-outline />
+        <IconMoneyOutline />
       </template>
     </yk-input>
   </div>
   <div class="item">
     <yk-input placeholder="请输入你最喜欢的书">
       <template #suffix>
-        <icon-bookmark-outline />
+        <IconBookmarkOutline />
       </template>
     </yk-input>
   </div>
