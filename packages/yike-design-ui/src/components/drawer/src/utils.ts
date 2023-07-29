@@ -12,21 +12,22 @@ const DrawerOperator = createGlobalState(() => {
 
   // 记录一个抽屉打开 将抽屉 id 放入 drawers 数组
   const open = (id: number) => {
-    drawers.value.push(id);
-    console.log('(util) open: ', drawers.value, id);
+    if (drawers.value[0] === id) return;
+    drawers.value.unshift(id);
   };
 
   // 记录最后一个打开（最前面的）的抽屉关闭
   const close = () => {
-    drawers.value.pop();
-    console.log('(util) close: ', drawers.value);
+    drawers.value.shift();
   };
 
+  // 判断是不是最后一个未关闭的抽屉
   const isLast = (id: number): boolean => {
-    console.log('(util) array: ', drawers.value[drawers.value.length - 1]);
-    return drawers.value[drawers.value.length - 1] === (id || undefined)
-      ? true
-      : false;
+    const last = drawers.value[0];
+    if (last === id || last === undefined) {
+      return true;
+    }
+    return false;
   };
 
   return { drawers, open, close, isLast };

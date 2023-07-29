@@ -1,52 +1,69 @@
 <template>
-  <Teleport :to="target" :disabled="!show && shouldDestory">
-    <Transition :name="placement" @after-leave="destory">
-      <div
-        v-if="show"
-        class="yk-drawer"
-        :class="ykDrawerClass"
-        :aria-modal="show"
-        aria-label="抽屉"
-        tabindex="-1"
-      >
-        <div aria-hidden="true" class="yk-drawer-mask"></div>
+  <Teleport :to="target" :disabled="isFullscreenDrawer">
+    <div
+      v-if="show || shouldVisible"
+      :class="[
+        bem(),
+        bem({
+          'other-el': !isFullscreenDrawer,
+        }),
+      ]"
+      :aria-modal="show"
+      aria-label="抽屉"
+      tabindex="-1"
+    >
+      <Transition name="mask" appear>
         <div
-          ref="focuser"
+          v-if="showMask && shouldVisible"
+          :class="bem('mask')"
           aria-hidden="true"
-          class="yk-drawer-focus"
-          tabindex="0"
         ></div>
+      </Transition>
+      <div
+        ref="focuser"
+        aria-hidden="true"
+        :class="bem('focus')"
+        tabindex="0"
+      ></div>
+      <Transition :name="`${placement}-drawer`" appear @after-leave="destory">
         <div
+          v-if="shouldVisible"
           ref="drawerMain"
-          :class="ykDrawerMainClass"
+          :class="
+            bem({
+              main: true,
+              shadow: !isFullscreenDrawer || !props.showMask,
+              [`${props.placement}`]: true,
+            })
+          "
           :style="ykDrawerMainStyle"
-          class="yk-drawer-main"
         >
-          <div class="yk-drawer-wrapper">
-            <button v-if="closable" class="yk-drawer-close" @click="close">
-              <yk-icon name="yk-cha" />
+          <div :class="bem('wrapper')">
+            <button v-if="closable" :class="bem('close')" @click="close">
+              <icon-close-outline />
             </button>
-            <div class="yk-drawer-header" :aria-label="title">
+            <div :class="bem('header')" :aria-label="title">
               <slot name="header">{{ props.title }}</slot>
             </div>
-            <div class="yk-drawer-content">
+            <div :class="bem('content')">
               <slot></slot>
             </div>
-            <div class="yk-drawer-footer">
+            <div :class="bem('footer')">
               <slot name="footer"></slot>
             </div>
           </div>
         </div>
-      </div>
-    </Transition>
+      </Transition>
+    </div>
   </Teleport>
 </template>
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
 import '../style'
-import { computed, onUpdated, ref, nextTick } from 'vue'
+import { computed, ref, nextTick, watch, onMounted } from 'vue'
 import { getElement, getDrawerOrder, drawerStats } from './utils'
 import { onClickOutside } from '@vueuse/core'
+import { createCssScope } from '../../utils/bem'
 defineOptions({
   name: 'YkDrawer',
 })
@@ -58,39 +75,36 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   scrollable: false,
   closable: true,
   escapable: true,
+  showMask: true,
   placement: 'right',
   to: 'body',
 })
 
 const target = ref<HTMLElement | Element>(document.body)
 const drawerId = ref<number>(getDrawerOrder())
+const emits = defineEmits(['close', 'open'])
+const focuser = ref<HTMLElement>()
+const drawerMain = ref<HTMLElement>()
+const shouldDestory = ref<boolean>(false)
+const shouldVisible = ref<boolean>()
+const isLast = ref<boolean>(false)
+const isFullscreenDrawer = ref<boolean>(props.to === 'body')
+const bem = createCssScope('drawer')
 
 nextTick(() => {
   target.value = getElement(props.to)
 })
 
-const emits = defineEmits(['close', 'open'])
-const focuser = ref<HTMLElement>()
-const drawerMain = ref<HTMLElement>()
-const shouldDestory = ref<boolean>(false)
-const isLast = ref<boolean>(false)
-
 const close = () => {
   isLast.value = drawerStats.isLast(drawerId.value)
-  console.log('(func) close: ', isLast.value, drawerId.value)
   if (!isLast.value) {
     return
   }
-  emits('close')
+  shouldVisible.value = false
 }
 
 const destory = () => {
-  drawerStats.close()
-  if (isLast.value) {
-    console.log('(func) destory: ', isLast.value, drawerId.value)
-    document.body.style.overflow = ''
-  }
-  console.log('==================== End ======================')
+  emits('close')
   shouldDestory.value = true
   document.body.removeEventListener('keydown', escape)
 }
@@ -101,20 +115,33 @@ const escape = (ev: KeyboardEvent) => {
 
 onClickOutside(drawerMain, close)
 
-onUpdated(() => {
+onMounted(() => {
+  shouldVisible.value = props.show
+})
+
+watch(props, () => {
   if (props.show) {
-    shouldDestory.value = false
-    focuser.value?.focus()
+    // 非附加在 body 的抽屉不记录
+    if (isFullscreenDrawer.value) {
+      drawerStats.open(drawerId.value)
+    }
+    shouldVisible.value = true
     if (!props.scrollable) {
       document.body.style.overflow = 'hidden'
     }
     if (props.escapable) {
       document.body.addEventListener('keydown', escape)
     }
-    drawerStats.open(drawerId.value)
-    console.log('=================== New =======================')
-    console.log('id', drawerId.value, 'is opened')
+    focuser.value?.focus()
     emits('open')
+  } else {
+    if (isFullscreenDrawer.value) {
+      drawerStats.close()
+    }
+    if (drawerStats.isLast(drawerId.value) && !props.scrollable) {
+      document.body.style.overflow = ''
+    }
+    shouldVisible.value = false
   }
 })
 
@@ -128,17 +155,6 @@ const ykDrawerMainStyle = computed(() => {
       props.placement === 'left' || props.placement === 'right'
         ? props.size
         : '100%',
-  }
-})
-const ykDrawerClass = computed(() => {
-  let appentToBody = props.to === 'body'
-  return {
-    'yk-drawer-other-el': !appentToBody,
-  }
-})
-const ykDrawerMainClass = computed(() => {
-  return {
-    [`yk-drawer-${props.placement}`]: true,
   }
 })
 </script>

@@ -31,7 +31,7 @@ const active = ref(false)
   margin-top: 10px;
   width: 100%;
   height: 500px;
-  border: 1px solid rgb(var(--gray1) 0.08);
+  border: 1px solid #e6e6e6;
   border-radius: 8px;
 }
 </style>

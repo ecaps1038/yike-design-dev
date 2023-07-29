@@ -5,7 +5,7 @@
   <yk-drawer :placement="placement" :show="active" @close="active = false">
     <template #header>
       <h2>
-        <yk-icon name="yk-dengpao" />
+        <icon-cup-outline />
         非常大的字
       </h2>
     </template>
