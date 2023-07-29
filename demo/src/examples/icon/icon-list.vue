@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import iconData from 'yike-design-ui/src/components/svg-icon/icons.json'
 const { copy, copied, text } = useClipboard({
   legacy: true,

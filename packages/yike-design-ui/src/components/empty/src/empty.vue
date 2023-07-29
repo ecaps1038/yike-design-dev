@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import { CSSProperties, computed } from 'vue'
+import { IconEmpty1Fill, IconEmpty2Fill } from '../../svg-icon'
 import { EmptyProps } from './empty'
 
 defineOptions({
