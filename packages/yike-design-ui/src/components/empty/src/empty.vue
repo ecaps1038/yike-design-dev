@@ -3,8 +3,8 @@
     <div class="yk-empty__image" :style="imageStyle">
       <slot name="image">
         <img v-if="image" :src="image" ondragstart="return false" />
-        <IconEmpty1Fill v-if="!image && type == 'primary'" class="primary" />
-        <IconEmpty2Fill
+        <IconEmpty1Color v-if="!image && type == 'primary'" class="primary" />
+        <IconEmpty2Color
           v-if="!image && type == 'secondary'"
           class="secondary"
         />
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { CSSProperties, computed } from 'vue'
-import { IconEmpty1Fill, IconEmpty2Fill } from '../../svg-icon'
+import { IconEmpty1Color, IconEmpty2Color } from '../../svg-icon'
 import { EmptyProps } from './empty'
 
 defineOptions({

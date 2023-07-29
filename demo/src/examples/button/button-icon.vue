@@ -8,7 +8,7 @@
     </yk-button>
     <yk-button>
       <template #icon>
-        <icon-delete-min-outline />
+        <icon-delete-outline />
       </template>
       删除
     </yk-button>
