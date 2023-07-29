@@ -20,7 +20,7 @@
   <div class="item">
     <yk-input placeholder="请输入你最喜欢的书">
       <template #suffix>
-        <icon-book-outline />
+        <icon-bookmark-outline />
       </template>
     </yk-input>
   </div>

@@ -4,6 +4,17 @@ import iconData from 'yike-design-ui/src/components/svg-icon/icons.json'
 const { copy, copied, text } = useClipboard({
   legacy: true,
 })
+const getRealName = (list: any, name: string) => {
+  if (list.type === 'outline') {
+    return name.slice(5, -8)
+  }
+  if (list.type === 'fill') {
+    return name.slice(5, -5)
+  }
+  if (list.type === 'color') {
+    return name.slice(5, -6)
+  }
+}
 </script>
 <template>
   <div>
@@ -24,11 +35,7 @@ const { copy, copied, text } = useClipboard({
           <template v-else>
             <component :is="item.componentName" />
             <span class="name">
-              {{
-                list.type === 'outline'
-                  ? item.name.slice(5, -8)
-                  : item.name.slice(5, -5)
-              }}
+              {{ getRealName(list, item.name) }}
             </span>
           </template>
         </div>
