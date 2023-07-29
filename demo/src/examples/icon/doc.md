@@ -34,9 +34,9 @@ app.mount('#app')
 
 | 参数           | 描述     | 类型                                                    | 默认值  |
 | -------------- | -------- | ------------------------------------------------------- | ------- |
-| strokeWidth    | 线宽     | number                                                  | 1       |
+| strokeWidth    | 线宽     | number                                                  | 0       |
 | strokeLinecap  | 端点类型 | 'butt' \| 'round' \| 'square'                           | 'butt'  |
 | strokeLinejoin | 拐角类型 | 'arcs' \| 'bevel' \| 'miter' \| 'miter-clip' \| 'round' | 'miter' |
 | rotate         | 旋转角度 | number                                                  | -       |
-| spin           | 是否旋转 | number                                                  | 4       |
+| spin           | 是否旋转 | false \| true                                           | false   |
 | size           | 尺寸     | number \| string                                        | -       |

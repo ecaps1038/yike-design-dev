@@ -12,14 +12,6 @@
       <router-link to="/develop">开发</router-link>
       <router-link to="/module">组件</router-link>
       <a href="http://www.huohuo90.com" target="_blank">主站</a>
-      <div class="zz">
-        <span>赞助</span>
-        <div class="support">
-          <p>感谢您的赞助，您的支持是我最大的动力～</p>
-          <img class="zz-tp" src="@/assets/images/wx.png" />
-          <img class="zz-tp" src="@/assets/images/zfb.png" />
-        </div>
-      </div>
       <a href="https://github.com/ecaps1038/yike-design-dev" target="_blank">
         github
       </a>
@@ -94,8 +86,7 @@ provide('shape', 'circle')
   }
 }
 
-.top-bar a,
-.zz {
+.top-bar a {
   padding: 5px 8px;
   text-decoration: none;
   color: @font-color-l;
@@ -104,10 +95,6 @@ provide('shape', 'circle')
   &:hover {
     border-radius: @radius-s;
     background-color: @bg-color-s;
-
-    > .support {
-      display: block;
-    }
   }
 }
 

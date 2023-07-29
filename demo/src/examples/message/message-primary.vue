@@ -9,21 +9,27 @@
     </yk-button>
   </yk-space>
 </template>
-<script setup lang="ts">
-import { getCurrentInstance, ref } from 'vue'
+<script setup lang="tsx">
+import { getCurrentInstance, h, ref } from 'vue'
 const loading = ref(false)
 const proxy: any = getCurrentInstance()?.proxy
 const handlePrimary = () => {
   proxy.$message({ type: 'primary', message: '通用提示' })
 }
 const handleSuccess = () => {
-  proxy.$message({ type: 'success', message: '成功提示' })
+  proxy.$message({
+    type: 'success',
+    message: h('span', { style: 'color:green;' }, '成功提示'),
+  })
 }
 const handleWarning = () => {
   proxy.$message({ type: 'warning', message: '警告提示' })
 }
 const handleError = () => {
-  proxy.$message({ type: 'error', message: '失败提示' })
+  proxy.$message({
+    type: 'error',
+    message: () => <span style={{ color: 'red' }}>失败提示</span>,
+  })
 }
 const handleLoading = () => {
   loading.value = true
