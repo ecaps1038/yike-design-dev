@@ -1,7 +1,6 @@
 <template>
   <div :class="bem()">
     <Node v-for="option in options" :key="option.key" :option="option" />
-    {{ multiple }}
   </div>
 </template>
 <script setup lang="ts">
@@ -11,6 +10,9 @@ import Node from './node.vue'
 import { Key } from '../../utils'
 import { _TreeNode, tree2list } from './internal'
 import { watch, ref, onMounted, provide, shallowRef } from 'vue'
+import { IconRightFill } from '../../svg-icon'
+import { h } from 'vue'
+import { computed } from 'vue'
 
 const bem = createCssScope('tree')
 
@@ -21,12 +23,16 @@ defineOptions({
 const props = withDefaults(defineProps<TreeProps>(), {
   blockNode: false,
   multiple: false,
+  expandIcon() {
+    return () => h(IconRightFill)
+  },
   defaultExpandedKeys() {
     return []
   },
   defaultSelectedKeys() {
     return []
   },
+  fileTree: false,
 })
 
 const emits = defineEmits<{
@@ -102,6 +108,9 @@ provide(TreeInjectionKey, {
   blockNode: props.blockNode,
   expandedKeys: expandedKeys,
   selectedKeys: selectedKeys,
+  fileTree: props.fileTree,
+  fileIcons: props.fileIcons,
+  expandIcon: props.expandIcon,
   onSelect,
   onExpand,
 })
