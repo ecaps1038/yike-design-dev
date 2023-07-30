@@ -81,6 +81,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'alert',
     component: () => import('@/examples/alert/doc.md'),
   },
+  {
+    path: 'tree',
+    component: () => import('@/examples/tree/doc.md'),
+  },
 ];
 
 export default generalRoutes;

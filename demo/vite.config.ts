@@ -6,7 +6,12 @@ import vitePluginMarkdown from './plugins/vite-plugin-md.mjs';
 import Components from 'unplugin-vue-components/vite';
 import { YikeDevResolver } from './plugins/resolver';
 import path from 'path';
-const vuePlugin = createVuePlugin({ include: [/\.vue$/, /\.md$/] }); // 配置可编译 .vue 与 .md 文件
+const vuePlugin = createVuePlugin({
+  include: [/\.vue$/, /\.md$/],
+  script: {
+    defineModel: true,
+  },
+}); // 配置可编译 .vue 与 .md 文件
 
 const compDir = path
   .resolve(__dirname, '..\\packages\\yike-design-ui\\src\\components')

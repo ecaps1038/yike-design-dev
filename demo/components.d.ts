@@ -58,5 +58,6 @@ declare module 'vue' {
     YkText: typeof import('../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('../packages/yike-design-ui/src/index.ts')['YkTitle']
+    YkTree: typeof import('../packages/yike-design-ui/src/index.ts')['YkTree']
   }
 }
