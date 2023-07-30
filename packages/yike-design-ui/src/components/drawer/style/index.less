@@ -21,8 +21,12 @@
 
 .yk-drawer--other-el {
   position: absolute;
-  z-index: auto;
+  z-index: unset;
   overflow: hidden;
+
+  .yk-drawer--main {
+    z-index: unset;
+  }
 }
 
 .yk-drawer__focus {
@@ -65,13 +69,13 @@
     width: 20px;
     height: 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: @radius-r;
     background: none;
     transition: all @animats;
     cursor: pointer;
 
     &:hover {
-      background-color: @bg-color-s;
+      background-color: @bg-color-ss;
     }
 
     svg {

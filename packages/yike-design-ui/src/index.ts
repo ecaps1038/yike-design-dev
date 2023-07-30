@@ -13,6 +13,7 @@ import YkScrollbar from './components/scrollbar';
 import YkRate from './components/rate';
 import { YkInput } from './components/input';
 import { YkInputSearch } from './components/input-search';
+import YkTree from './components/tree';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -46,6 +47,7 @@ const components: {
   YkRate,
   YkInput,
   YkInputSearch,
+  YkTree,
   YkAlert,
   YkButton,
   YkTheme,
@@ -79,6 +81,7 @@ export {
   YkRate,
   YkInput,
   YkInputSearch,
+  YkTree,
   YkAlert,
   YkButton,
   YkTheme,

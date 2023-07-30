@@ -85,6 +85,10 @@
         {
           "name": "Badge 徽标",
           "src": "badge"
+        },
+        {
+          "name": "Tree 树",
+          "src": "tree"
         }
       ]
     },
