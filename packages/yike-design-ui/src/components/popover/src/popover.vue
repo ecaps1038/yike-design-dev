@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import Tooltip, { useDefaultSlots } from '../../tooltip'
 import { PopoverProps } from './popover'
+import '../style'
 
 defineOptions({
   name: 'YkPopover',
