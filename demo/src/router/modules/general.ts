@@ -75,6 +75,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/rate/doc.md'),
   },
   {
+    path: 'breadcrumb',
+    component: () => import('@/examples/breadcrumb/doc.md'),
+  },
+  {
     path: 'input',
     component: () => import('@/examples/input/doc.md'),
   },

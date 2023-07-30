@@ -7,8 +7,8 @@ import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
-import YkProgress from './components/progress';
-import { YkBadge } from './components/badge';
+import { YkBreadcrumb, YkBreadcrumbItem } from './components/breadcrumb';
+import YkBadge from './components/badge';
 import YkScrollbar from './components/scrollbar';
 import YkRate from './components/rate';
 import YkAffix from './components/affix';
@@ -46,6 +46,8 @@ const components: {
   YkBadge,
   YkScrollbar,
   YkRate,
+  YkBreadcrumb,
+  YkBreadcrumbItem,
   YkAffix,
   YkInput,
   YkInputSearch,
@@ -81,6 +83,8 @@ export {
   YkDrawer,
   YkScrollbar,
   YkRate,
+  YkBreadcrumb,
+  YkBreadcrumbItem,
   YkAffix,
   YkInput,
   YkInputSearch,
