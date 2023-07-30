@@ -135,6 +135,10 @@
         {
           "name": "BackTop 返回顶部",
           "src": "back-top"
+        },
+        {
+          "name": "Affix 固钉",
+          "src": "affix"
         }
       ]
     }

@@ -11,6 +11,7 @@ import YkProgress from './components/progress';
 import { YkBadge } from './components/badge';
 import YkScrollbar from './components/scrollbar';
 import YkRate from './components/rate';
+import YkAffix from './components/affix';
 import { YkInput } from './components/input';
 import { YkInputSearch } from './components/input-search';
 import YkTree from './components/tree';
@@ -45,6 +46,7 @@ const components: {
   YkBadge,
   YkScrollbar,
   YkRate,
+  YkAffix,
   YkInput,
   YkInputSearch,
   YkTree,
@@ -79,6 +81,7 @@ export {
   YkDrawer,
   YkScrollbar,
   YkRate,
+  YkAffix,
   YkInput,
   YkInputSearch,
   YkTree,
