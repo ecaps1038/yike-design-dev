@@ -47,22 +47,24 @@ defineProps({
   }
 
   .bar-title {
+    overflow: hidden;
     margin-top: @space-xl;
     padding-left: @space-ss;
     height: 40px;
-    line-height: 40px;
     color: @font-color-l;
+    line-height: 40px;
   }
 
   .bar-list {
     display: block;
+    overflow: hidden;
     margin-bottom: @space-ss;
     padding: 0 @space-l;
     height: 40px;
     border-radius: @radius-m;
     color: @font-color-m;
-    line-height: 40px;
     transition: background-color @animatb;
+    line-height: 40px;
 
     &:hover {
       background-color: @pcolor-1;
