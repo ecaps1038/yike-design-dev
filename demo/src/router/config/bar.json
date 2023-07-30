@@ -114,6 +114,10 @@
         {
           "name": "Drawer 抽屉",
           "src": "drawer"
+        },
+        {
+          "name": "Modal 对话框",
+          "src": "modal"
         }
       ]
     },
