@@ -20,16 +20,28 @@
     "yike design",
     "yike"
   ],
-  "main": "./dist/components.umd.js",
-  "module": "./dist/components.es.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
   "files": [
+    "es",
+    "lib",
     "dist",
-    "src/"
+    "json"
+  ],
+  "sideEffects": [
+    "dist/*",
+    "es/**/style/*",
+    "lib/**/style/*",
+    "*.less"
   ],
   "scripts": {
     "build": "vite build",
     "lint": "eslint . --fix",
-    "gen:icon": "yike-build icongen"
+    "gen:icon": "yike-build icongen",
+    "gen:less": "yike-build lessgen",
+    "build:less": "yike-build buildStyle",
+    "build:comp": "yike-build buildComp"
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",

@@ -3,7 +3,7 @@
     <div class="yk-paragraph">
       <p ref="getDivRef" :class="[type, { strong: strong }]">
         <slot></slot>
-        <yk-icon v-show="copyable" name="yk-kaobei" @click="onCopy" />
+        <IconCopyOutline v-show="copyable" @click="onCopy" />
       </p>
       <div v-show="isMore" class="more" @click="getMore">展开</div>
     </div>
@@ -13,8 +13,8 @@
 import { ref, onMounted } from 'vue'
 import YkIcon from '../../icon/index'
 import { paragraphProps, ellipsisType } from './typography'
-import { tryCopy } from '../../../utils/tools'
-import '../style'
+import { tryCopy } from '../../utils/tools'
+
 const props = withDefaults(defineProps<paragraphProps>(), {
   strong: false,
   type: 'default',
@@ -85,3 +85,4 @@ onMounted(() => {
 })
 </script>
 <style lang="less" scoped></style>
+../../utils/tools

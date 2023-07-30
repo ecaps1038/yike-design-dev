@@ -8,7 +8,11 @@ import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
 import YkProgress from './components/progress';
+import { YkBadge } from './components/badge';
+import YkScrollbar from './components/scrollbar';
 import YkRate from './components/rate';
+import { YkInput } from './components/input';
+import { YkInputSearch } from './components/input-search';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -23,7 +27,6 @@ import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
-import './styles/index.less';
 
 const components: {
   [propName: string]: Component;
@@ -38,7 +41,11 @@ const components: {
   YkPopover,
   YkDrawer,
   YkProgress,
+  YkBadge,
+  YkScrollbar,
   YkRate,
+  YkInput,
+  YkInputSearch,
   YkAlert,
   YkButton,
   YkTheme,
@@ -61,13 +68,17 @@ export {
   YkRadioGroup,
   YkRadio,
   YkProgress,
+  YkBadge,
   YkCheckbox,
   YkCheckboxGroup,
   YkSwitch,
   YkAnchor,
   YkPopover,
   YkDrawer,
+  YkScrollbar,
   YkRate,
+  YkInput,
+  YkInputSearch,
   YkAlert,
   YkButton,
   YkTheme,
@@ -97,10 +108,3 @@ export default {
     app.config.globalProperties.$message = YkMessage;
   },
 };
-// 局部注册
-// for (const c in components) {
-//   const component = Object.assign(components[c], { install: {} })
-//   component.install = (app: App) => {
-//     app.component(c, component)
-//   }
-// }

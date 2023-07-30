@@ -12,7 +12,7 @@
 import { NotificationGroupProps } from './notification'
 import Notification from './notification.vue'
 
-const props = withDefaults(defineProps<NotificationGroupProps>(), {
+withDefaults(defineProps<NotificationGroupProps>(), {
   notifications: () => [],
 })
 
@@ -26,7 +26,7 @@ const onLeave = () => {
   emits('destroy')
 }
 
-const getProps = (item) => {
+const getProps = (item: any) => {
   return Object.keys(item)
     .filter((k) => !['id', 'onClose'].includes(k))
     .reduce((res, k) => Object.assign(res, { [k]: item[k] }), {})

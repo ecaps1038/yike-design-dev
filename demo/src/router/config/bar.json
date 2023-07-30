@@ -22,6 +22,10 @@
         {
           "name": "Typography 排版",
           "src": "typography"
+        },
+        {
+          "name": "Scrollbar 滚动条",
+          "src": "scrollbar"
         }
       ]
     },
@@ -60,6 +64,10 @@
         {
           "name": "Switch 开关",
           "src": "switch"
+        },
+        {
+          "name": "Input 输入框",
+          "src": "input"
         }
       ]
     },
@@ -73,6 +81,10 @@
         {
           "name": "Empty  空状态",
           "src": "empty"
+        },
+        {
+          "name": "Badge 徽标",
+          "src": "badge"
         }
       ]
     },

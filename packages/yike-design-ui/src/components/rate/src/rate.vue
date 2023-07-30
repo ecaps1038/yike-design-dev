@@ -15,27 +15,27 @@
         @click="handleClick(n - 0.5)"
       >
         <!-- <slot name="character"></slot> -->
-        <yk-icon
-          :name="icon"
+        <component
+          :is="icon"
           :class="halfIconClass"
           :style="{ color: color }"
-        />
+        ></component>
       </div>
       <!-- <slot name="character"></slot> -->
-      <yk-icon
-        :name="icon"
+      <component
+        :is="icon"
         :class="iconClass(n)"
         :style="{ color: showValue >= n && color ? color : '' }"
         @mouseenter="handleEnter(n)"
         @click="handleClick(n)"
-      />
+      ></component>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { RateProps } from './rate'
 import { computed, onMounted, ref } from 'vue'
-import '../style'
+
 defineOptions({
   name: 'YkRate',
 })
@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<RateProps>(), {
   readonly: false, // 只读
   disabled: false, // 禁用
   color: '',
-  icon: 'yike-wujiaoxing',
+  icon: 'IconStarFill',
   size: 'l',
 })
 

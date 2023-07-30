@@ -1,10 +1,9 @@
 <template>
   <yk-space align="center">
-    <yk-icon name="yk-yike1" style="fontsize: 32px" />
-    <yk-icon name="yk-xin" style="color: #999" />
-    <yk-icon name="yike-xin" style="color: #f5ac08" />
+    <icon-plus-outline :size="20" />
+    <IconAppOutline spin :size="20" />
     <yk-button shape="circle">
-      <yk-icon name="yk-jiahao" />
+      <icon-bell-outline />
     </yk-button>
   </yk-space>
 </template>

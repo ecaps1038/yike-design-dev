@@ -1,4 +1,4 @@
-import { Size } from '../../../utils/constant';
+import { Size } from '../../utils/constant';
 
 export type RateProps = {
   count?: string | number;

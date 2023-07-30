@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical" size="large">
+  <yk-space direction="vertical" size="l">
     <yk-checkbox-group
       v-model="value1"
       :options="plainOptions"

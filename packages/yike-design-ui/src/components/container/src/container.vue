@@ -1,6 +1,6 @@
 <template>
   <div
-    class="yk-content"
+    class="yk-scroll-content"
     @mousemove="moverScroll"
     @mouseup="mouseup"
     @mouseleave="mouseup"
@@ -44,7 +44,6 @@
 <script setup lang="ts">
 import { containerProps } from './container'
 import { ref, onMounted } from 'vue'
-import '../style'
 
 defineOptions({
   name: 'YkContainer',

@@ -5,7 +5,7 @@
     @dragover.prevent="handleDragover"
     @click="handleUpload"
   >
-    <yk-icon :class="bem('icon')" name="yk-shangchuan1"></yk-icon>
+    <IconUpload1Outline :class="bem('icon')" />
     <span :class="bem('methods')">单击或拖动文件到此区域进行上传</span>
     <span :class="bem('desc')">{{ desc }}</span>
   </div>
@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { DraggleProps } from './upload'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 const props = withDefaults(defineProps<DraggleProps>(), {
   desc: '',
   disabled: false,
