@@ -25,13 +25,16 @@
 .ykcolor-white {
   display: flex;
   flex-direction: column;
+
   :deep(.ykcolor-card) {
     margin-bottom: 20px;
   }
 }
+
 .ykcolor-white {
   :deep(.ykcolor-card) {
     border: 1px solid gray;
+
     span {
       color: #000;
     }
