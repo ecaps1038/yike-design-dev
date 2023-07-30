@@ -5,7 +5,7 @@
   margin-right: 8px;
   width: 16px;
   height: 16px;
-  cursor: pointer;
+  border-radius: 2px;
 
   svg {
     opacity: 1;
@@ -14,8 +14,8 @@
     transform-origin: center;
   }
   &:hover {
-    border-radius: 2px;
     background-color: @bg-color-ss;
+    cursor: pointer;
   }
   &&--rotate {
     svg {
@@ -23,6 +23,10 @@
     }
   }
   &&--leaf {
+    &:hover {
+      background-color: transparent;
+      cursor: default;
+    }
     svg {
       opacity: 0;
       visibility: hidden;

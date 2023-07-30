@@ -1,20 +1,16 @@
 <template>
   <div :class="bem()">
     <Node v-for="option in options" :key="option.key" :option="option" />
-    {{ expandedKeys }}
+    {{ multiple }}
   </div>
 </template>
 <script setup lang="ts">
 import { TreeInjectionKey, TreeOption, TreeProps } from './tree'
 import { createCssScope } from '../../utils/bem'
 import Node from './node.vue'
-import { provide } from 'vue'
 import { Key } from '../../utils'
-import { shallowRef } from 'vue'
 import { _TreeNode, tree2list } from './internal'
-import { watch } from 'vue'
-import { onMounted } from 'vue'
-import { ref } from 'vue'
+import { watch, ref, onMounted, provide, shallowRef } from 'vue'
 
 const bem = createCssScope('tree')
 
@@ -24,17 +20,22 @@ defineOptions({
 
 const props = withDefaults(defineProps<TreeProps>(), {
   blockNode: false,
+  multiple: false,
   defaultExpandedKeys() {
+    return []
+  },
+  defaultSelectedKeys() {
     return []
   },
 })
 
 const emits = defineEmits<{
-  expand: [key: Key[]]
+  expand: [keys: Key[]]
+  select: [keys: Key[]]
 }>()
 
+// 获取节点的 map 结构
 const nodeMaps = shallowRef(tree2list(props.options))
-
 watch(
   () => props.options,
   () => {
@@ -42,15 +43,17 @@ watch(
   },
 )
 
-const expandedKeys = defineModel<Key[]>({ local: true, default: [] })
-
+// 处理节点的展开收缩逻辑
+const expandedKeys = defineModel<Key[]>('expandedKeys', {
+  local: true,
+  default: [],
+})
 const handleExpandPKey = (key: Key) => {
   onExpand(key, false, true)
   const pKey = nodeMaps.value.get(key)?.pKey
   if (!pKey) return
   handleExpandPKey(pKey)
 }
-
 onMounted(() => {
   if (props.defaultExpandedKeys.length === 0) {
     return
@@ -59,9 +62,7 @@ onMounted(() => {
     handleExpandPKey(key)
   }
 })
-
 const onExpand = (key: Key, close = false, first = false) => {
-  console.log('onExpand: ', key, close)
   const s = new Set([...expandedKeys.value])
   if (close) {
     s.delete(key)
@@ -73,9 +74,35 @@ const onExpand = (key: Key, close = false, first = false) => {
   emits('expand', expandedKeys.value)
 }
 
+// 处理节点选中的逻辑
+const selectedKeys = defineModel<Key[]>('selectedKeys', {
+  local: true,
+  default: [],
+})
+onMounted(() => {
+  if (props.defaultSelectedKeys.length === 0) {
+    return
+  }
+  selectedKeys.value = props.defaultSelectedKeys
+  for (const key of props.defaultSelectedKeys) {
+    const pKey = nodeMaps.value.get(key)?.pKey
+    if (pKey) handleExpandPKey(pKey)
+  }
+})
+const onSelect = (key: Key) => {
+  if (props.multiple) {
+    selectedKeys.value = [...new Set([...selectedKeys.value, key])]
+  } else {
+    selectedKeys.value = [key]
+  }
+  emits('select', selectedKeys.value)
+}
+
 provide(TreeInjectionKey, {
   blockNode: props.blockNode,
-  expandedKey: expandedKeys,
+  expandedKeys: expandedKeys,
+  selectedKeys: selectedKeys,
+  onSelect,
   onExpand,
 })
 </script>

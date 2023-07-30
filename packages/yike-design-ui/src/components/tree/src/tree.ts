@@ -12,12 +12,17 @@ export type TreeProps = {
   blockNode?: boolean;
   defaultExpandedKeys?: Key[];
   expandedKeys?: Key[];
+  selectedKeys?: Key[];
+  defaultSelectedKeys?: Key[];
+  multiple?: boolean;
 };
 
 export type TreeContext = {
   blockNode?: boolean;
-  expandedKey?: Ref<Key[]>;
-  onExpand: (key: Key, close?: boolean, first?: boolean) => void;
+  expandedKeys?: Ref<Key[]>;
+  selectedKeys?: Ref<Key[]>;
+  onExpand?: (key: Key, close?: boolean, first?: boolean) => void;
+  onSelect?: (key: Key) => void;
 };
 export const TreeInjectionKey: InjectionKey<TreeContext> =
   Symbol('TreeInjectionKey');

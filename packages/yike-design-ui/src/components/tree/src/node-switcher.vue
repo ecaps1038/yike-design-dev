@@ -2,13 +2,6 @@
 import { inject } from 'vue'
 import { createCssScope } from '../../utils'
 import { TreeInjectionKey, TreeNodeInjectionKey } from './tree'
-import { computed } from 'vue'
-import { watch } from 'vue'
-import { toRefs } from 'vue'
-
-const emits = defineEmits<{
-  click: [expanded: boolean]
-}>()
 
 const bem = createCssScope('tree-node-switcher')
 
@@ -25,7 +18,7 @@ const context = inject(TreeInjectionKey)
       ])
     "
     @click="
-      context?.onExpand(nodeContext?.option.key!, nodeContext?.expanded.value)
+      context?.onExpand?.(nodeContext?.option.key!, nodeContext?.expanded.value)
     "
   >
     <svg

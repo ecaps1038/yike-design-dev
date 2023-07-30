@@ -1,7 +1,13 @@
 ## YkTree 树
+
 :::snippet
 基本用法
-这里展示基本用法
+通过 `defaultExpandedKeys` 初始化默认展开的节点，可监听 `expand` 节点展开收起事件。
 <TreePrimary/>
 :::
-  
+
+:::snippet
+节点点击
+通过 `defaultSelectedKeys` 初始化默认选中的节点，点击节点，切换不同节点的选中状态。设置 `multiple` 来允许节点多选。
+<TreeSelect/>
+:::
