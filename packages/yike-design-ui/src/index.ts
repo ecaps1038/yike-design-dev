@@ -7,9 +7,11 @@ import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
+import { YkBreadcrumb, YkBreadcrumbItem } from './components/breadcrumb';
 import YkBadge from './components/badge';
 import YkScrollbar from './components/scrollbar';
 import YkRate from './components/rate';
+import YkAffix from './components/affix';
 import { YkInput } from './components/input';
 import { YkInputSearch } from './components/input-search';
 import YkTree from './components/tree';
@@ -26,7 +28,7 @@ import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
-
+import YkProgress from './components/progress';
 const components: {
   [propName: string]: Component;
 } = {
@@ -39,9 +41,13 @@ const components: {
   YkAnchor,
   YkPopover,
   YkDrawer,
+  YkProgress,
   YkBadge,
   YkScrollbar,
   YkRate,
+  YkBreadcrumb,
+  YkBreadcrumbItem,
+  YkAffix,
   YkInput,
   YkInputSearch,
   YkTree,
@@ -65,6 +71,7 @@ export {
   YkUpload,
   YkRadioGroup,
   YkRadio,
+  YkProgress,
   YkBadge,
   YkCheckbox,
   YkCheckboxGroup,
@@ -74,6 +81,9 @@ export {
   YkDrawer,
   YkScrollbar,
   YkRate,
+  YkBreadcrumb,
+  YkBreadcrumbItem,
+  YkAffix,
   YkInput,
   YkInputSearch,
   YkTree,
