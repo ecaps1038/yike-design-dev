@@ -101,9 +101,9 @@ export default () => ({
           ${importContent}
         </script>
         <template>
-          <div class='yk-demo-doc'>
+          <component-page>
             ${markdownIt.render(src)}
-          </div>
+          </component-page>
         </template>`,
         map: null,
       }

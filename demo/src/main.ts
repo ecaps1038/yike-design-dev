@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import Snippet from './components/Snippet.vue';
 import ColorCard from './components/ColorCard.vue';
+import componentPageVue from './components/component-page.vue';
 // 加载项目全局样式
 import '@/style/main.less';
 import '@/style/color-card.less';
@@ -19,6 +20,7 @@ hljs.registerLanguage('javascript', javascript);
 const app = createApp(App);
 app.component('YkSnippet', Snippet);
 app.component('ColorCard', ColorCard);
+app.component(componentPageVue.name, componentPageVue);
 app.use(Icon).use(hljsVuePlugin).use(router).mount('#app');
 
 app.config.globalProperties.$notification = YkNotification;
