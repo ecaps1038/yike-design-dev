@@ -49,7 +49,11 @@ const buildComponent = async () => {
 
   await build({
     plugins: [
-      vue(),
+      vue({
+        script: {
+          defineModel: true,
+        },
+      }),
       vueJsx() as any,
       dts({
         tsconfigPath: resolvePath('./tsconfig.json'),
