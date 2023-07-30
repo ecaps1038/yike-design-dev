@@ -1,50 +1,53 @@
 import { ComponentResolver } from 'unplugin-vue-components/types';
+import fs from 'fs';
+// 需要分析的文件路径
+const from = `../packages/yike-design-ui/src/index.ts`;
+
+// 解析文件内容
+const fileContent = fs.readFileSync(from, 'utf-8');
+
+// 存储导入路径和组件名称的映射关系
+const importPaths = {};
+
+// 提取导入路径和组件名称
+const extractImports = (content) => {
+  const importRegex = /import\s+({[^}]+}|[^{}\n]+)\s+from\s+['"](.+)['"]/g;
+
+  let match;
+  while ((match = importRegex.exec(content))) {
+    const [, imports, importPath] = match;
+    if (imports.includes('{')) {
+      // 处理解构语法导入方式：{ YkCheckbox, YkCheckboxGroup }
+      imports
+        .replace(/[{}]/g, '')
+        .split(',')
+        .map((importName) => importName.trim())
+        .forEach((componentName) => {
+          // 截取末段路径 ./components/upload -> upload
+          importPaths[componentName] = importPath.split('/').pop();
+        });
+    } else {
+      // 处理默认导入方式：YkCheckbox
+      const componentName = imports.trim();
+      // 截取末段路径 ./components/upload -> upload
+      importPaths[componentName] = importPath.split('/').pop();
+    }
+  }
+};
+
+extractImports(fileContent);
 
 function sideEffects(from: string) {
   return `${from}/style/index`;
 }
 
-const kebabize = (str: string) =>
-  str.replace(
-    /[A-Z]+(?![a-z])|[A-Z]/g,
-    ($, ofs) => (ofs ? '-' : '') + $.toLowerCase(),
-  );
-
-// 当一个组件目录导出多个组件时，需要维护这样一个匹配列表
-const matchComponents = [
-  {
-    pattern: /^(YkText|YkTitle|YkParagraph)/,
-    componentDir: 'typography',
-  },
-  {
-    pattern: /^(YkRadio|YkRadioGroup)/,
-    componentDir: 'radio',
-  },
-  {
-    pattern: /^(YkCheckbox|YkCheckboxGroup)/,
-    componentDir: 'checkbox',
-  },
-  {
-    pattern: /^(YkAvatar|YkAvatarGroup)/,
-    componentDir: 'avatar',
-  },
-];
-
 export const YikeDevResolver: ComponentResolver = (componentName) => {
   if (componentName.startsWith('Yk')) {
-    let componentDir = kebabize(componentName.slice(2));
-    for (const item of matchComponents) {
-      if (item.pattern.test(componentName)) {
-        componentDir = item.componentDir;
-        break;
-      }
-    }
-    const from = `../packages/yike-design-ui/src/index.ts`;
     return {
       name: componentName,
       from,
       sideEffects: sideEffects(
-        `../packages/yike-design-ui/src/components/${componentDir}`,
+        `../packages/yike-design-ui/src/components/${importPaths[componentName]}`,
       ),
     };
   }
