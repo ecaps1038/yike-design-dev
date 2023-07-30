@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { AnchorProps } from './anchor'
+import { AnchorOption, AnchorProps } from './anchor'
 import { ref, shallowRef, nextTick, onMounted } from 'vue'
 import { computed } from 'vue'
 import { useDebounceFn, useEventListener } from '@vueuse/core'
@@ -89,7 +89,23 @@ function treeToList(options: AnchorProps['options']) {
 const anchorList = shallowRef(treeToList(props.options))
 const anchorEls = shallowRef<HTMLElement[]>([])
 
+const stop = watch(
+  () => props.options,
+  async (v) => {
+    if (v) {
+      await nextTick()
+      anchorList.value = treeToList(props.options)
+      stop()
+    }
+  },
+  { immediate: true },
+)
+
 const handleScroll = useDebounceFn(() => {
+  if (anchorEls.value.length === 0) {
+    getEl()
+  }
+
   // 找到距离容器可见区域顶部最近的锚点元素，并高亮他
   const scrollContainer = props.scrollEl?.()
   if (!scrollContainer || anchorEls.value.length === 0) return
@@ -136,7 +152,7 @@ const handleScroll = useDebounceFn(() => {
   }
 }, props.ms)
 
-onMounted(() => {
+const getEl = () => {
   const scrollContainer = props.scrollEl?.()
   if (!scrollContainer) {
     return
@@ -145,6 +161,7 @@ onMounted(() => {
     // 获取到所有被锚点元素
     anchorList.value.forEach((a) => {
       const target = document.querySelector(a.href) as HTMLElement
+
       if (!target) return
       anchorEls.value.push(target)
     })
@@ -157,7 +174,9 @@ onMounted(() => {
     })
   }
   props.scrollEl?.().addEventListener('scroll', handleScroll)
-})
+}
+
+onMounted(getEl)
 
 onUnmounted(() => {
   props.scrollEl?.()?.removeEventListener('scroll', handleScroll)

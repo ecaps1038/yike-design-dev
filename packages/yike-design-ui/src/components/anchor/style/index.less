@@ -41,9 +41,13 @@
 
   .yk-anchor-item-title {
     display: inline-block;
+    overflow: hidden;
     padding: 0 @space-s;
+    width: 100%;
     height: 30px;
     border-radius: @radius-s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: @font-color-m;
     line-height: 30px;
     &:hover {
