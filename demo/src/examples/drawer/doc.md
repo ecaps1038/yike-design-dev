@@ -13,7 +13,7 @@
 :::
 
 :::snippet
-回调
+事件
 监听 open 和 close 事件以实现回调或访问控制。
 <DrawerCallback/>
 :::
@@ -32,7 +32,7 @@
 
 :::snippet
 附加到任何容器
-谁说在附加到 body 的才算抽屉
+谁说在附加到 body 的才算抽屉。
 <DrawerAnywhere/>
 :::
 
@@ -46,10 +46,21 @@
 | scrollable | 抽屉展开后 body 是否可滚动 | boolean                          | false   |
 | closable   | 抽屉是否显示关闭按钮       | boolean                          | true    |
 | escapable  | 抽屉是否能使用 ESC 键关闭  | boolean                          | true    |
+| show-mask  | 抽屉是否显示背景遮罩       | boolean                          | true    |
 
-### Slot
+### 事件
 
-| 插槽名 | 描述           | 参数 |
-| ------ | -------------- | ---- |
-| header | 抽屉的顶部内容 | -    |
-| footer | 抽屉的底部内容 | -    |
+| 事件名 | 描述           |
+| ------ | -------------- |
+| open   | 抽屉打开时触发 |
+| close  | 抽屉关闭时触发 |
+
+更多事件正在开发...
+
+### 插槽
+
+| 插槽名  | 描述           |
+| ------- | -------------- |
+| header  | 抽屉的顶部内容 |
+| default | 抽屉的正文内容 |
+| footer  | 抽屉的底部内容 |

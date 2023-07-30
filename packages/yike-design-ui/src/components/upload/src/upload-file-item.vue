@@ -3,7 +3,6 @@
     <div :class="bem('main')">
       <div :class="bem('left')">
         <component :is="iconName" class="annex-yk-icon" />
-        <!-- <yk-icon :name="iconName" /> -->
         <span :class="bem(status)">{{ name }}</span>
       </div>
       <div :class="bem('right')">
@@ -43,7 +42,8 @@
 </template>
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
-import { getArcPath, getFileTypeIconName, generateUid } from './utils'
+import { getArcPath, getFileTypeIconName } from './utils'
+import { generateUid } from '../../utils/tools'
 import { FileItemProps } from './upload'
 import { createCssScope } from '../../utils/bem'
 

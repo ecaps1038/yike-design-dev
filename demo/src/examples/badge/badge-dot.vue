@@ -13,10 +13,10 @@
       <yk-text>文字角标</yk-text>
     </yk-badge>
     <yk-badge is-dot out-dot>
-      <yk-icon name="yk-xin" style="color: #999" />
+      <IconHeartOutline style="color: #999" />
     </yk-badge>
     <yk-badge is-dot out-dot>
-      <yk-icon name="yike-lingdang" style="color: #999" />
+      <IconBellOutline style="color: #999" />
     </yk-badge>
   </yk-space>
 </template>

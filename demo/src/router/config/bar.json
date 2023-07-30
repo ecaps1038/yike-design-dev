@@ -89,6 +89,10 @@
         {
           "name": "Badge 徽标",
           "src": "badge"
+        },
+        {
+          "name": "Tree 树",
+          "src": "tree"
         }
       ]
     },
@@ -118,6 +122,14 @@
         {
           "name": "Drawer 抽屉",
           "src": "drawer"
+        },
+        {
+          "name": "Popover 气泡卡片",
+          "src": "popover"
+        },
+        {
+          "name": "Progress 进度条",
+          "src": "progress"
         }
       ]
     },
@@ -127,6 +139,10 @@
         {
           "name": "BackTop 返回顶部",
           "src": "back-top"
+        },
+        {
+          "name": "Affix 固钉",
+          "src": "affix"
         }
       ]
     }

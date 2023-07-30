@@ -16,24 +16,25 @@
       v-if="['error', 'pause'].includes(status)"
       class="upload-icon fail-icon"
     >
-      <yk-icon name="yk-tushangchuanshibai"></yk-icon>
+      <IconImageBackupOutline />
     </div>
     <div v-if="['error', 'pause'].includes(status)" class="hover-icons">
-      <yk-icon name="yk-shangchuan2" @click="handleReUpload"></yk-icon>
-      <yk-icon name="yk-shanchu" @click="handleRemove"></yk-icon>
+      <IconUpload2Outline @click="handleReUpload" />
+      <IconDeleteOutline @click="handleRemove" />
     </div>
     <div v-if="status === 'success' && !avatar" class="hover-icons">
-      <yk-icon name="yk-yanjing" @click="handleReview"></yk-icon>
-      <yk-icon name="yk-shanchu" @click="handleRemove"></yk-icon>
+      <IconEyeOutline @click="handleReview" />
+      <IconDeleteOutline @click="handleRemove" />
     </div>
     <div v-if="status === 'success' && avatar" class="hover-icons">
-      <yk-icon name="yk-xiugai" @click="handleEdit"></yk-icon>
+      <IconFillOutline @click="handleEdit" />
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { computed, toRefs, getCurrentInstance } from 'vue'
-import { generateUid, getArcPath } from './utils'
+import { getArcPath } from './utils'
+import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
 import { FileItemProps } from './upload'
 const proxy: any = getCurrentInstance()?.proxy
@@ -85,4 +86,3 @@ const handleEdit = () => {
   emits('handleEdit', uid.value)
 }
 </script>
-../../utils/bem

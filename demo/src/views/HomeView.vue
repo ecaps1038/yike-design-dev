@@ -15,7 +15,7 @@ const goPage = (e: string): void => {
   <main class="home" :style="{ height: bodyHeight + 'px' }">
     <div class="main">
       <div class="logo">
-        <yk-icon name="yike-yikedesign" class="bg-logo"></yk-icon>
+        <IconYike1Fill class="bg-logo" />
         <p class="title">YIKE DESIGN</p>
         <p class="slogan">包容万物，从源头出发，一切从简</p>
       </div>
@@ -25,7 +25,7 @@ const goPage = (e: string): void => {
           设计文件
         </yk-button>
       </yk-space>
-      <yk-icon name="yk-yike1" class="sign" @click="goPage('hh')"></yk-icon>
+      <IconYike1Outline class="sign" @click="goPage('hh')" />
     </div>
   </main>
 </template>

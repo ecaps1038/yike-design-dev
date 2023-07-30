@@ -2,7 +2,7 @@
 
 :::snippet
 基本用法
-通过 v-model(modelValue) 可以进行双向绑定。
+通过 `v-model(modelValue)` 可以进行双向绑定。
 <SwitchBasic/>
 :::
 
