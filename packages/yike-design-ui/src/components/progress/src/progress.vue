@@ -61,7 +61,6 @@
     </template>
   </div>
 </template>
-<!-- feat(progress): 完善progress组件 -->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { getIconColor, getIconName, getSvgSize } from './util'
@@ -105,7 +104,6 @@ const ykProgressCircleStyle = computed(() => {
     cy: val,
   }
 })
-console.log('提交测试')
 // 环形进度值
 const progressValues = computed(() => {
   const { percent } = props

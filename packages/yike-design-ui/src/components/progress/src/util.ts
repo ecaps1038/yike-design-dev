@@ -1,5 +1,5 @@
 import type { Status } from './progress';
-import type { Size } from '../../../utils/constant';
+import type { Size } from '../../utils/constant';
 
 export const statusColor = {
   success: '#1fb4a2',
