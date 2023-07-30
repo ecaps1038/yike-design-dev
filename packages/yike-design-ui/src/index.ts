@@ -29,7 +29,7 @@ import { YkParagraph, YkTitle, YkText } from './components/typography';
 import { YkBackTop } from './components/back-top';
 import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
-
+import YkProgress from './components/progress';
 const components: {
   [propName: string]: Component;
 } = {

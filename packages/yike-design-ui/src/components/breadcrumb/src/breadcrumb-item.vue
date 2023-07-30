@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import { getCurrentInstance, inject, reactive } from 'vue'
 import { BreadcrumbItemProps, breadcrumbName } from './breadcrumb'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 import type { Router } from 'vue-router'
 
 const bem = createCssScope('breadcrumb')
