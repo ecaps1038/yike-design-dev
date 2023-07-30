@@ -13,7 +13,7 @@
               class="yk-progress-icon"
               :style="{ color: getIconColor(props.status) }"
             >
-              <yk-icon :name="getIconName(props.status)"></yk-icon>
+              <component :is="getIconName(props.status)"></component>
             </div>
           </slot>
         </div>
@@ -52,7 +52,7 @@
               class="yk-progress-circle-icon"
               :style="{ color: getIconColor(props.status) }"
             >
-              <yk-icon :name="getIconName(props.status, true)"></yk-icon>
+              <component :is="getIconName(props.status, true)"></component>
             </div>
             <div v-else>{{ progressPercent }}</div>
           </slot>
@@ -69,10 +69,9 @@ import '../style'
 defineOptions({
   name: 'YkProgress',
 })
-// props
 const props = withDefaults(defineProps<ProgressProps>(), {
-  type: 'line', // 类型
-  percent: 20, // 进度条百分比
+  type: 'line',
+  percent: 20,
   strokeColor: '', // 轨道颜色
   size: 'm',
   status: 'normal',
@@ -92,14 +91,13 @@ const setProgressState = computed(
 )
 // 环形进度条
 const ykProgressCircleStyle = computed(() => {
-  const { size } = props
-  const sizeVal = getSvgSize(size)
+  const sizeVal = getSvgSize(props.size)
   const strokeWidth = Number(sizeVal.charAt(0)) - 1
-  const val = sizeVal / 2
+  const val = Number(sizeVal) / 2
   return {
     svgWh: `width:${val * 2}px;height:${val * 2}px`,
     strokeWidth,
-    r: (sizeVal - strokeWidth) / 2,
+    r: (Number(sizeVal) - strokeWidth) / 2,
     cx: val,
     cy: val,
   }

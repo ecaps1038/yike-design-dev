@@ -16,16 +16,19 @@ export const getIconColor = (status: Status) =>
 /**
  * 根据状态获取对应的 Icon Name
  */
-export const getIconName = (status: Status, isLinear?: boolean) =>
+export const getIconName: (status: Status, isLinear?: boolean) => string = (
+  status: Status,
+  isLinear?: boolean,
+) =>
   ({
-    success: isLinear ? 'yk-gou1' : 'yike-gou',
-    error: isLinear ? 'yk-cha' : 'yike-cha',
+    success: isLinear ? 'IconTickOutline' : 'IconTickFill',
+    error: isLinear ? 'IconCloseOutline' : 'IconCrossFill',
   }[status]);
 
 /**
  * 根据size获取对应的 svg大小
  */
-export const getSvgSize = (size: Size) =>
+export const getSvgSize: (size: Size) => string = (size: Size) =>
   ({
     s: '48',
     m: '64',

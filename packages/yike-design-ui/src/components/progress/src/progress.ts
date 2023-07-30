@@ -1,4 +1,4 @@
-import { Size } from '../../../utils/constant';
+import { Size } from '../../utils/constant';
 
 export type Status = 'normal' | 'success' | 'error';
 
