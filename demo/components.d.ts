@@ -24,6 +24,7 @@ declare module 'vue' {
     IconDeleteOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconDeleteOutline']
     IconEyeOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconEyeOutline']
     IconFillOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconFillOutline']
+    IconHeartOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconHeartOutline']
     IconImageBackupOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconImageBackupOutline']
     IconLoading1Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconLoading1Outline']
     IconPlusCircleOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconPlusCircleOutline']
@@ -44,6 +45,7 @@ declare module 'vue' {
     YkAnchor: typeof import('../packages/yike-design-ui/src/index.ts')['YkAnchor']
     YkAvatar: typeof import('../packages/yike-design-ui/src/index.ts')['YkAvatar']
     YkBackTop: typeof import('../packages/yike-design-ui/src/index.ts')['YkBackTop']
+    YkBadge: typeof import('../packages/yike-design-ui/src/index.ts')['YkBadge']
     YkButton: typeof import('../packages/yike-design-ui/src/index.ts')['YkButton']
     YkCheckbox: typeof import('../packages/yike-design-ui/src/index.ts')['YkCheckbox']
     YkCheckboxGroup: typeof import('../packages/yike-design-ui/src/index.ts')['YkCheckboxGroup']
@@ -60,6 +62,7 @@ declare module 'vue' {
     YkText: typeof import('../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('../packages/yike-design-ui/src/index.ts')['YkTitle']
+    YkTree: typeof import('../packages/yike-design-ui/src/index.ts')['YkTree']
     YkUpload: typeof import('../packages/yike-design-ui/src/index.ts')['YkUpload']
   }
 }

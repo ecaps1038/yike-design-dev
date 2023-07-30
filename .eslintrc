@@ -18,6 +18,9 @@
       "jsx": true
     }
   },
+  "globals": {
+    "defineModel": true
+  },
   /* 继承已有的规则 */
   "extends": [
     "eslint:recommended",
