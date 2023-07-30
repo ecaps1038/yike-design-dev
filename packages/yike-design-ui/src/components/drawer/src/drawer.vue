@@ -1,5 +1,5 @@
 <template>
-  <Teleport :to="target" :disabled="isFullscreenDrawer">
+  <Teleport :to="target">
     <div
       v-if="show || shouldVisible"
       :class="[
@@ -88,8 +88,6 @@ const shouldDestory = ref<boolean>(false)
 const shouldVisible = ref<boolean>()
 const isLast = ref<boolean>(false)
 const isFullscreenDrawer = ref<boolean>(props.to === 'body')
-// 记录这个抽屉是不是 show prop 默认就是 true
-const initialShowProp = ref<boolean>()
 const bem = createCssScope('drawer')
 
 nextTick(() => {
@@ -119,7 +117,6 @@ onClickOutside(drawerMain, close)
 onMounted(() => {
   if (props.show) {
     drawerStats.open(drawerId.value)
-    initialShowProp.value = true
   }
   shouldVisible.value = props.show
 })

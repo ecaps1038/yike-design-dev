@@ -13,7 +13,7 @@
       <router-link to="/module">组件</router-link>
       <a href="http://www.huohuo90.com" target="_blank">主站</a>
       <a href="https://github.com/ecaps1038/yike-design-dev" target="_blank">
-        github
+        <icon-github-fill />
       </a>
       <a><yk-theme></yk-theme></a>
       <yk-avatar size="m" :img-url="avatarImgUrl"></yk-avatar>
@@ -125,8 +125,9 @@ provide('shape', 'circle')
 .top-bar .net {
   display: flex;
 
-  .github {
-    font-size: 16px;
+  .yk-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .router-link-active {

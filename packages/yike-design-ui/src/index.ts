@@ -7,12 +7,14 @@ import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
-import YkBadge from './components/badge';
+import YkProgress from './components/progress';
+import { YkBadge } from './components/badge';
 import YkScrollbar from './components/scrollbar';
 import YkRate from './components/rate';
 import YkAffix from './components/affix';
 import { YkInput } from './components/input';
 import { YkInputSearch } from './components/input-search';
+import YkTree from './components/tree';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -40,12 +42,14 @@ const components: {
   YkAnchor,
   YkPopover,
   YkDrawer,
+  YkProgress,
   YkBadge,
   YkScrollbar,
   YkRate,
   YkAffix,
   YkInput,
   YkInputSearch,
+  YkTree,
   YkAlert,
   YkButton,
   YkTheme,
@@ -67,6 +71,7 @@ export {
   YkUpload,
   YkRadioGroup,
   YkRadio,
+  YkProgress,
   YkBadge,
   YkCheckbox,
   YkCheckboxGroup,
@@ -79,6 +84,7 @@ export {
   YkAffix,
   YkInput,
   YkInputSearch,
+  YkTree,
   YkAlert,
   YkButton,
   YkTheme,
