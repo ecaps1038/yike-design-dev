@@ -9,7 +9,6 @@ import { SpaceProps } from './space'
 import { CSSProperties, computed, toRefs } from 'vue'
 
 // FIXME 之后不需要在这边引样式
-import '../style'
 
 defineOptions({
   name: 'YkSpace',

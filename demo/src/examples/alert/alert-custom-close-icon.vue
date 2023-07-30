@@ -3,7 +3,7 @@
     <div>
       <yk-alert closable message="更换关闭图标">
         <template #closeElement>
-          <yk-icon name="yike-cha"></yk-icon>
+          <IconCloseOutline />
         </template>
       </yk-alert>
     </div>

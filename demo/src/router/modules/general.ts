@@ -46,6 +46,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/drawer/doc.md'),
   },
   {
+    path: 'badge',
+    component: () => import('@/examples/badge/doc.md'),
+  },
+  {
     path: 'switch',
     component: () => import('@/examples/switch/doc.md'),
   },
@@ -69,6 +73,18 @@ const generalRoutes: Array<RouteRecordRaw> = [
   {
     path: 'rate',
     component: () => import('@/examples/rate/doc.md'),
+  },
+  {
+    path: 'input',
+    component: () => import('@/examples/input/doc.md'),
+  },
+  {
+    path: 'scrollbar',
+    component: () => import('@/examples/scrollbar/doc.md'),
+  },
+  {
+    path: 'alert',
+    component: () => import('@/examples/alert/doc.md'),
   },
 ];
 

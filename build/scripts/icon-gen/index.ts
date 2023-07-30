@@ -7,11 +7,13 @@ import svgoConfig from './svgo.config';
 import { iconComponents, iconSvgPath } from '../../utils/paths';
 import { toPascalCase } from '../../utils/convert-case';
 import {
+  genComponentIndex,
   genEntryContent,
   genIconIndex,
   genIconType,
   getIconVue,
 } from './vue-template';
+import { print } from '../../utils/print';
 
 interface IconData {
   title: string;
@@ -26,6 +28,7 @@ interface IconData {
 const maps = {
   outline: '线形图标',
   fill: '面性图标',
+  color: '多彩图标',
 };
 
 export const getSvgData = () => {
@@ -70,7 +73,7 @@ const buildIconComponent = async (data: IconData[]) => {
         const svgElement = JSDOM.fragment(data).firstElementChild;
         if (svgElement) {
           fs.outputFile(
-            path.resolve(iconComponents, `${iconData.type}/${item.name}.vue`),
+            path.resolve(iconComponents, `${item.name}/${item.name}.vue`),
             getIconVue({
               name: item.name,
               componentName: item.componentName,
@@ -78,13 +81,33 @@ const buildIconComponent = async (data: IconData[]) => {
             }),
             (err) => {
               if (err) {
-                console.log(`Build ${item.componentName} Failed: ${err}`);
+                print('error', `Build ${item.componentName} failed: ${err}`);
               } else {
-                console.log(`Build ${item.componentName} Success!`);
+                print('success', `Build ${item.componentName} success!`);
               }
             },
           );
         }
+
+        const iconIndex = genComponentIndex({
+          name: item.name,
+          componentName: item.componentName,
+        });
+
+        fs.outputFile(
+          path.resolve(iconComponents, `${item.name}/index.ts`),
+          iconIndex,
+          (err) => {
+            if (err) {
+              print(
+                'error',
+                `Build ${item.componentName} index.ts failed: ${err}`,
+              );
+            } else {
+              print('success', `Build ${item.componentName} index.ts success!`);
+            }
+          },
+        );
       }
     }
   });
@@ -99,12 +122,8 @@ const buildIconEntry = (data: IconData[]) => {
     iconData.list.forEach((icon) => {
       const { componentName, name } = icon;
       components.push(icon.componentName);
-      imports.push(
-        `import ${componentName} from './${iconData.type}/${name}.vue'`,
-      );
-      exports.push(
-        `export {default as ${componentName} } from './${iconData.type}/${name}.vue'`,
-      );
+      imports.push(`import ${componentName} from './${name}'`);
+      exports.push(`export {default as ${componentName} } from './${name}'`);
     });
   });
 
@@ -114,9 +133,9 @@ const buildIconEntry = (data: IconData[]) => {
     compComp,
     (err) => {
       if (err) {
-        console.log(`Build YikeIcon Failed: ${err}`);
+        print('error', `Build yike-icon.ts failed: ${err}`);
       } else {
-        console.log('Build YikeIcon Success!');
+        print('success', `Build yike-icon.ts success!`);
       }
     },
   );
@@ -124,9 +143,9 @@ const buildIconEntry = (data: IconData[]) => {
   const entry = genIconIndex({ exports });
   fs.outputFile(path.resolve(iconComponents, 'index.ts'), entry, (err) => {
     if (err) {
-      console.log(`Build Index Failed: ${err}`);
+      print('error', `Build icon index failed: ${err}`);
     } else {
-      console.log('Build Index Success!');
+      print('success', `Build icon index success!`);
     }
   });
 };
@@ -148,9 +167,23 @@ function buildIconType(data: IconData[]) {
     typeContent,
     (err) => {
       if (err) {
-        console.log(`Build Type Failed: ${err}`);
+        print('error', `Build icon type failed: ${err}`);
       } else {
-        console.log('Build Type Success!');
+        print('success', `Build icon type success!`);
+      }
+    },
+  );
+}
+
+function buildIconJSON(data: IconData[]) {
+  fs.outputFile(
+    path.resolve(iconComponents, 'icons.json'),
+    JSON.stringify(data, null, 2),
+    (err) => {
+      if (err) {
+        print('error', `Build JSON failed: ${err}`);
+      } else {
+        print('success', `Build JSON success!`);
       }
     },
   );
@@ -161,4 +194,5 @@ export const iconGen = async () => {
   await buildIconComponent(data);
   buildIconEntry(data);
   buildIconType(data);
+  buildIconJSON(data);
 };

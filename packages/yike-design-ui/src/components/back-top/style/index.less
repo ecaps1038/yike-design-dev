@@ -1,3 +1,4 @@
+@import '../../styles/color/colors.less';
 .yk-backtop {
   position: fixed;
   z-index: 999;
@@ -15,9 +16,7 @@
     border-radius: @radius-m;
     background: @pcolor;
 
-    .yk-backtop__icon {
-      width: 24px;
-      height: 24px;
+    svg {
       color: #fff;
     }
   }
@@ -25,9 +24,7 @@
   &-container.secondary {
     background: @bg-color-ss;
 
-    .yk-backtop__icon {
-      width: 24px;
-      height: 24px;
+    svg {
       color: @font-color-l;
     }
   }

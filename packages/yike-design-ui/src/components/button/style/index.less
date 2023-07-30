@@ -1,3 +1,4 @@
+@import '../../styles/mixin.less';
 @import './variables.less';
 /* stylelint-disable */
 .yk-button--loading {
@@ -52,7 +53,7 @@
   color: @btn-primary-color-text;
   background-color: @btn-primary-color-bg;
   outline: none;
-  transition: all @animatb ease-in-out;
+  transition: all @animatb;
   box-sizing: border-box;
   border-width: 1px;
   border-style: solid;
@@ -61,6 +62,10 @@
   color: @btn-primary-color-text;
   circle {
     stroke: @btn-primary-color-text;
+  }
+
+  .yk-icon + span {
+    margin-left: 4px;
   }
 
   .btn-type(@type) {
@@ -75,7 +80,7 @@
         background-color: ~'@{btn-@{type}-color-hover}';
       }
       &:not(:disabled):active {
-        background-color: ~'@{btn-@{type}-color-bg}';
+        background-color: ~'@{btn-@{type}-color-active}';
       }
     }
     &--@{type} {
@@ -95,7 +100,7 @@
         background-color: ~'@{btn-@{type}-color-hover_@{status}}';
       }
       &:not(:disabled):active {
-        background-color: ~'@{btn-@{type}-color-bg_@{status}}';
+        background-color: ~'@{btn-@{type}-color-active_@{status}}';
       }
     }
     &.yk-button--@{type}.yk-button--@{status} {

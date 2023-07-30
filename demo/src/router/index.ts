@@ -29,16 +29,15 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
-      path: '/hh',
-      name: 'home',
-      component: () => import('@/views/yikeTt.vue'),
-    },
     componentModelRouter,
     ...developRoutes,
     ...designRoutes,
     ...developStandardRoutes,
   ],
+});
+
+router.afterEach(() => {
+  window.scrollTo({ top: 0, behavior: 'instant' });
 });
 
 export default router;

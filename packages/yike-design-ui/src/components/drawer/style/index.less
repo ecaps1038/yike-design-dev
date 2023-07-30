@@ -1,3 +1,4 @@
+@import '../../styles/color/colors.less';
 .yk-drawer {
   position: fixed;
   top: 0px;
@@ -7,24 +8,24 @@
   z-index: 1024;
   transition: all @animats;
 
-  .yk-drawer-mask {
+  .yk-drawer__mask {
     position: absolute;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
     background: #00000066;
-    transition: all @animats;
+    transition: opacity @animats;
   }
 }
 
-.yk-drawer-other-el {
+.yk-drawer--other-el {
   position: absolute;
   z-index: auto;
   overflow: hidden;
 }
 
-.yk-drawer-focus {
+.yk-drawer__focus {
   width: 0px;
   height: 0px;
 
@@ -33,23 +34,27 @@
   }
 }
 
-.yk-drawer-main {
+.yk-drawer--shadow {
+  box-shadow: 0px 0px 10px 0px #61676d;
+}
+
+.yk-drawer--main {
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
   background-color: @bg-color-l;
-  transition: all @animats;
+  transition: transform @animats;
   word-break: break-all;
 
-  .yk-drawer-wrapper {
+  .yk-drawer__wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
-  .yk-drawer-close {
+  .yk-drawer__close {
     position: absolute;
     top: 18px;
     right: 12px;
@@ -76,7 +81,7 @@
     }
   }
 
-  .yk-drawer-header {
+  .yk-drawer__header {
     padding: 12px;
     font-size: @size-m;
     font-weight: 500;
@@ -88,14 +93,14 @@
     }
   }
 
-  .yk-drawer-content {
+  .yk-drawer__content {
     overflow: auto;
     padding: 12px;
     font-size: @size-s;
     flex-grow: 1;
   }
 
-  .yk-drawer-footer {
+  .yk-drawer__footer {
     display: flex;
     justify-content: end;
     padding: 12px;
@@ -108,52 +113,55 @@
   }
 }
 
-.yk-drawer-right {
+.drawer-anim(@placement, @from, @to) {
+  .fft() {
+    transform: @from;
+  }
+  .ttf() {
+    transform: @to;
+  }
+
+  &.@{placement}-drawer-enter-from,
+  .@{placement}-drawer-appear-from,
+  .@{placement}-drawer-leave-to {
+    .fft();
+  }
+  &.@{placement}-drawer-enter-to,
+  .@{placement}-drawer-appear-to,
+  .@{placement}-drawer-leave-from {
+    .ttf();
+  }
+}
+
+.yk-drawer--right {
   left: unset;
 }
 
-.yk-drawer-left {
+.yk-drawer--left {
   right: unset;
 }
 
-.yk-drawer-top {
+.yk-drawer--top {
   bottom: unset;
 }
 
-.yk-drawer-bottom {
+.yk-drawer--bottom {
   top: unset;
 }
 
-.right-enter-from .yk-drawer-main,
-.right-leave-to .yk-drawer-main {
-  transform: translateX(100%);
-}
-
-.left-enter-from .yk-drawer-main,
-.left-leave-to .yk-drawer-main {
-  transform: translateX(-100%);
-}
-
-.top-enter-from .yk-drawer-main,
-.top-leave-to .yk-drawer-main {
-  transform: translateY(-100%);
-}
-
-.bottom-enter-from .yk-drawer-main,
-.bottom-leave-to .yk-drawer-main {
-  transform: translateY(100%);
-}
-
-.right-enter-from .yk-drawer-mask,
-.left-enter-from .yk-drawer-mask,
-.top-enter-from .yk-drawer-mask,
-.bottom-enter-from .yk-drawer-mask {
+.mask-enter-from,
+.mask-appear-from,
+.mask-leave-to {
   opacity: 0;
 }
 
-.right-leave-to .yk-drawer-mask,
-.left-leave-to .yk-drawer-mask,
-.top-leave-to .yk-drawer-mask,
-.bottom-leave-to .yk-drawer-mask {
-  opacity: 0;
+.mask-enter-to,
+.mask-appear-to,
+.mask-leave-from {
+  opacity: 1;
 }
+
+.drawer-anim(right, translateX(100%), translateX(0));
+.drawer-anim(left, translateX(-100%), translateX(0));
+.drawer-anim(top, translateY(-100%), translateY(0));
+.drawer-anim(bottom, translateY(100%), translateY(0));

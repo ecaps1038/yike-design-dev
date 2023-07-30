@@ -3,7 +3,7 @@
     <div v-if="visible" :class="cls">
       <div v-if="props.showIcon" :class="`${prefixCls}-icon`">
         <slot name="icon">
-          <yk-icon :name="getIconName(props.type)"></yk-icon>
+          <component :is="getIconName(props.type)"></component>
         </slot>
       </div>
 
@@ -21,7 +21,7 @@
         @click="handleClose"
       >
         <slot name="closeElement">
-          <yk-icon name="yk-cha"></yk-icon>
+          <IconCrossOutline />
         </slot>
       </button>
     </div>
@@ -32,8 +32,6 @@
 import { computed, ref } from 'vue'
 import { getIconName } from './util'
 import type { AlertEmits, AlertProps } from './alert'
-
-import '../style/index.less'
 
 defineOptions({
   name: 'YkAlert',
