@@ -65,7 +65,7 @@ declare module 'vue' {
     YkInputSearch: typeof import('../packages/yike-design-ui/src/index.ts')['YkInputSearch']
     YkParagraph: typeof import('../packages/yike-design-ui/src/index.ts')['YkParagraph']
     YkPopover: typeof import('../packages/yike-design-ui/src/index.ts')['YkPopover']
-    YkProgress: typeof import('./../packages/yike-design-ui/src/index.ts')['YkProgress']
+    YkProgress: typeof import('../packages/yike-design-ui/src/index.ts')['YkProgress']
     YkRadio: typeof import('../packages/yike-design-ui/src/index.ts')['YkRadio']
     YkRadioButton: typeof import('./../packages/yike-design-ui/src/index.ts')['YkRadioButton']
     YkRadioGroup: typeof import('../packages/yike-design-ui/src/index.ts')['YkRadioGroup']
