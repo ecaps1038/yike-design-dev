@@ -7,7 +7,6 @@
     to="#drawer-hub"
     :scrollable="true"
     placement="left"
-    :debug="true"
     @close="active = false"
   >
     你看到了什么？

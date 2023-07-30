@@ -50,7 +50,7 @@
           :class="YkInputButtonClass"
           @click="switchType"
         >
-          <IconClosedEyeFill />
+          <yk-icon name="yk-biyan" />
         </button>
         <button
           v-if="clearable && !disabled"
@@ -59,7 +59,7 @@
           :class="YkInputButtonClass"
           @click="clear"
         >
-          <IconCrossOutline />
+          <yk-icon name="yk-cha" />
         </button>
       </div>
       <div v-if="showCounter" :class="bem('counter')">
@@ -86,11 +86,11 @@ import '../style'
 import { computed, ref, toRef } from 'vue'
 import { createCssScope } from '../../utils/bem'
 import { useInputTooltip } from './utils'
+
 defineOptions({
   name: 'YkInput',
 })
 const props = withDefaults(defineProps<InputProps>(), {
-  id: '',
   name: '',
   size: 'l',
   type: 'text',

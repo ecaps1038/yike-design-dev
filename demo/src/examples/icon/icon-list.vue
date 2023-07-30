@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { getCurrentInstance, watch } from 'vue'
 import { useClipboard } from '@vueuse/core'
 import iconData from 'yike-design-ui/src/components/svg-icon/icons.json'
+const proxy: any = getCurrentInstance()?.proxy
 const { copy, copied, text } = useClipboard({
   legacy: true,
 })
@@ -15,6 +17,10 @@ const getRealName = (list: any, name: string) => {
     return name.slice(5, -6)
   }
 }
+// 监听copied，成功则提示用户
+watch(text, (e) => {
+  if (text.value) proxy.$message({ type: 'success', message: `复制成功：${e}` })
+})
 </script>
 <template>
   <div>
@@ -25,19 +31,16 @@ const getRealName = (list: any, name: string) => {
           v-for="(item, idx) in list.list"
           :key="idx"
           class="icon-item"
-          :class="[copied && text === `<${item.componentName}/>` && 'copied']"
           @click="copy(`<${item.componentName}/>`)"
         >
-          <div v-if="copied && text === `<${item.componentName}/>`" class="tip">
+          <!-- <div v-if="copied && text === `<${item.componentName}/>`" class="tip">
             <IconTickOutline />
             <span>copied!</span>
-          </div>
-          <template v-else>
-            <component :is="item.componentName" />
-            <span class="name">
-              {{ getRealName(list, item.name) }}
-            </span>
-          </template>
+          </div> -->
+          <div class="icon"><component :is="item.componentName" /></div>
+          <span class="name">
+            {{ getRealName(list, item.name) }}
+          </span>
         </div>
       </div>
     </div>
@@ -46,8 +49,9 @@ const getRealName = (list: any, name: string) => {
 <style lang="less" scoped>
 .list {
   display: flex;
-  flex-wrap: wrap;
+  padding-bottom: 32px;
   color: @font-color-m;
+  flex-wrap: wrap;
 }
 .icon-item {
   display: flex;
@@ -56,35 +60,24 @@ const getRealName = (list: any, name: string) => {
   margin-right: -1px;
   margin-bottom: -1px;
   padding: 16px;
-  width: 160px;
-  height: 160px;
+  width: 168px;
+  height: 148px;
   font-size: 28px;
   border: 1px solid @line-color-s;
-  transition: all 0.2s;
+  transition: all @animatb;
   flex-direction: column;
   cursor: pointer;
   &:hover {
-    font-size: 35px;
-    background-color: @bg-color-ss;
+    font-size: 38px;
+    background-color: @bg-color-s;
+  }
+  .icon {
+    display: flex;
+    align-items: center;
+    height: 88px;
   }
   .name {
-    margin-top: 4px;
     font-size: 12px;
-  }
-}
-.icon-item.copied {
-  font-size: 24px;
-  color: #fff;
-  background-color: @scolor-light;
-  transition: none;
-  .tip {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    span {
-      font-size: 12px;
-    }
   }
 }
 </style>

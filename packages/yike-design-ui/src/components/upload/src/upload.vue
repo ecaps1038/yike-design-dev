@@ -87,7 +87,8 @@ import {
   RequestInstance,
 } from './upload'
 import { UploadRequest } from './ajax'
-import { generateListUid, generateUid, findFileByUid } from './utils'
+import { generateListUid, findFileByUid } from './utils'
+import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
 import uploadDraggle from './upload-draggle.vue'
