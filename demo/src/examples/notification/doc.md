@@ -2,8 +2,8 @@
 
 :::snippet
 基本使用
-`message` 可以接收一个字符串或一个 VNode 作为参数，它会被显示为正文内容
-<NotificationVNode/>
+通过传入 `message` 指定不同的提示文案，支持 `jsx` 和 `VNode` 写法
+<NotificationAlter/>
 :::
 
 :::snippet
@@ -41,7 +41,7 @@
 | 参数          | 描述                                         | 类型                                                 | 默认值      |
 | ------------- | -------------------------------------------- | ---------------------------------------------------- | ----------- |
 | type          | 消息的类型                                   | 'primary'\|'success'\|'warning'\|'error'\| 'loading' | success     |
-| message       | 消息的内容                                   | string \| VNode                                        | ''          |
+| message       | 消息的内容                                   | string \| VNode \| JSX                                        | ''          |
 | dangerouslyUseHTMLString | 是否将 message 属性作为 HTML 片段处理 | boolean                                               | false       |
 | title         | 标题                                         | string                                               | 'Title'     |
 | closable      | 控制关闭按钮显隐                             | boolean                                              | true(显示)  |

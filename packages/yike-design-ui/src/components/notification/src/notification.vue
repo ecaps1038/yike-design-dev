@@ -22,11 +22,14 @@
         </div>
         <div>
           <div class="title-text">{{ title }}</div>
-          <div ref="msgContainer" class="content">
-            <template v-if="!isVNodeMessage">
-              <p v-if="!dangerouslyUseHTMLString">{{ message }}</p>
+          <div class="content">
+            <span class="text">
+              <component
+                :is="render(message)"
+                v-if="!dangerouslyUseHTMLString"
+              />
               <p v-else v-html="message" />
-            </template>
+            </span>
           </div>
         </div>
         <button
@@ -47,7 +50,8 @@
 </template>
 <script setup lang="ts">
 import { NotificationProps } from './notification'
-import { onMounted, computed, isVNode, createVNode, render, ref } from 'vue'
+import { onMounted, computed } from 'vue'
+import { render } from '../../utils'
 import '../style'
 import { YkButton, YkSpace } from '../../../index'
 import IconReminderFill from '../../svg-icon/icon-reminder-fill'
@@ -77,20 +81,6 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   handleSubmit: () => ({}),
   onClose: () => ({}),
 })
-
-const msgContainer = ref<any>(null)
-const isVNodeMessage = ref(false)
-
-const updateMessgae = () => {
-  if (!props.dangaurslyUseHtmlString && isVNode(props.message)) {
-    isVNodeMessage.value = true
-
-    const vm = createVNode(props.message)
-    const container = document.createElement('p')
-    render(vm, container)
-    msgContainer.value?.appendChild(container)
-  }
-}
 
 const emits = defineEmits(['close'])
 
@@ -136,6 +126,5 @@ function clickOK() {
 
 onMounted(() => {
   startTimer()
-  updateMessgae()
 })
 </script>
