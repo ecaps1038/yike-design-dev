@@ -2,17 +2,17 @@
 <template>
   <div class="case-card">
     <!-- id 用于锚点定位 -->
-    <yk-title :id="title" :level="3">{{ title }}</yk-title>
+    <yk-title :id="title.replace(/\s/g, '')" :level="3">{{ title }}</yk-title>
     <slot name="desc"></slot>
     <div class="container">
       <slot name="demo"></slot>
     </div>
     <yk-space class="space" :size="8">
-      <div v-show="showCode" class="icons" @click="onCopy">
-        <yk-icon name="yk-kaobei"></yk-icon>
+      <div class="icons" @click="onCopy">
+        <icon-copy-outline />
       </div>
       <div class="icons" :class="{ select: showCode }" @click="clickShow">
-        <yk-icon name="yk-daima"></yk-icon>
+        <icon-code-outline />
       </div>
     </yk-space>
     <div v-show="showCode" ref="codes" class="codes">
@@ -59,7 +59,7 @@ const clickShow = (): void => {
 /* stylelint-disable */
 .case-card {
   margin-top: 28px;
-  max-width: 800px;
+  max-width: 1200px;
 
   .container {
     margin: 12px 0 8px;
@@ -83,9 +83,10 @@ const clickShow = (): void => {
     border-radius: @radius-m;
     background-color: @bg-color-m;
     transition: all @animats;
+    color: @font-color-m;
     cursor: pointer;
 
-    .icon {
+    .yk-icon {
       font-size: @size-m;
       color: @font-color-m;
       transition: all @animats;
@@ -94,7 +95,7 @@ const clickShow = (): void => {
     &:hover {
       background-color: @bg-color-s;
 
-      .icon {
+      .yk-icon {
         color: @font-color-l;
       }
     }
@@ -102,29 +103,15 @@ const clickShow = (): void => {
 
   .select {
     background-color: @font-color-l;
-
-    .icon {
+    .yk-icon {
       color: @bg-color-l;
     }
-
     &:hover {
       background-color: @font-color-l;
-
-      .icon {
+      .yk-icon {
         color: @bg-color-l;
       }
     }
-  }
-
-  .codes {
-    padding-top: @space-m;
-  }
-
-  pre {
-    overflow: hidden;
-    max-width: 800px;
-    border-radius: @radius-m;
-    text-align: left;
   }
 }
 </style>

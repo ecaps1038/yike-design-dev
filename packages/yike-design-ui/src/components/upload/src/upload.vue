@@ -18,7 +18,7 @@
           :disabled="uploadDisabled"
           @click="handleUpload"
         >
-          <yk-icon name="yk-shangchuan2" :class="bem('file-icon')" />
+          <IconUpload2Outline :class="bem('file-icon')" />
           <div>上传文件</div>
         </yk-button>
         <yk-text type="third">{{ desc }}</yk-text>
@@ -68,10 +68,7 @@
         @click="handleUpload"
       >
         <div class="picture-desc">
-          <yk-icon
-            :class="bem('picture-button-icon')"
-            name="yk-jiahao"
-          ></yk-icon>
+          <IconPlusOutline :class="bem('picture-button-icon')" />
           <span v-if="desc" :class="bem('picture-button-desc')">
             {{ desc }}
           </span>
@@ -90,12 +87,13 @@ import {
   RequestInstance,
 } from './upload'
 import { UploadRequest } from './ajax'
-import { generateListUid, generateUid, findFileByUid } from './utils'
-import { createCssScope } from '../../../utils/bem'
+import { generateListUid, findFileByUid } from './utils'
+import { generateUid } from '../../utils/tools'
+import { createCssScope } from '../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
 import uploadDraggle from './upload-draggle.vue'
 import UploadPictureItem from './upload-picture-item.vue'
-import '../style'
+
 defineOptions({
   name: 'YkUpload',
 })

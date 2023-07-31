@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "outDir": "./es",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["DOM", "ESNext"],
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+    "jsx": "preserve",
+    "noImplicitThis": true,
+    "strict": true,
+    "isolatedModules": true,
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "dist",
+    "es",
+    "lib",
+    "**/__tests__/**",
+    "**/__demos__/**",
+    "**/*.md",
+    "script/**/*.ts"
+  ]
+}

@@ -1,6 +1,6 @@
-import { createVNode, render, reactive, ref, isVNode } from 'vue';
+import { createVNode, render, reactive, ref, isVNode, VNode } from 'vue';
 import { NotificationOptions } from './notification';
-import { NOTIFICATIONTYPE } from '../../../utils/constant';
+import { NOTIFICATIONTYPE } from '../../utils/constant';
 import NotificationGroup from './notification-group.vue';
 
 class NotificationManager {
@@ -64,7 +64,7 @@ class NotificationManager {
 }
 
 let Instance = <NotificationManager>{};
-const notification = (options: NotificationOptions) => {
+const notification: any = (options: NotificationOptions) => {
   if (!Instance.created) {
     Instance = new NotificationManager();
   }
@@ -72,7 +72,7 @@ const notification = (options: NotificationOptions) => {
 };
 
 NOTIFICATIONTYPE.forEach((item) => {
-  notification[item] = (options: { message }) => {
+  notification[item] = (options: { message: string | VNode }) => {
     if (typeof options === 'string' || isVNode(options)) {
       options = {
         message: options,

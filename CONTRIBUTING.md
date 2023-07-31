@@ -12,7 +12,6 @@
 5. 启动开发服务器：`npm run dev:demo`
 6. 在浏览器中访问：`http://localhost:5173`
 
-
 ### 组件重构工作
 
 目前，我们有主体有两大任务并行，`旧组件的重构`以及`新组件的开发`，
@@ -20,7 +19,6 @@
 如果您想进行旧组件的重构工作的话，您可以切换到`dev`分支，在`src`下的`yi-design`目录下就是之前的未重构前的组件，可以供您进行参考
 
 然后接下来的开发工作规范请您观看下面的指南即可
-
 
 ### 如何贡献
 
@@ -80,7 +78,6 @@ feat为你需要具体修改的内容
 5. 使用指令 `npm run new component-name 组件名` 如 npm run new checkbox 复选框 即可自动创建组件目录及文件
 6. 在编写完代码后，在确保与目标分支不存在冲突的前提下可以将该功能分支提交 PR 到主仓库的对应分支（目前主要的开发分支为 monorepo-dev 分支）
 7. PR 将由具备权限的贡献者 CR 后进行 merge,若提交的功能影响面较广，CR 人员应当及时同其他成员共同参与讨论和检验
-
 
 #### Commit 规范
 
@@ -245,9 +242,10 @@ desc
     |- index.ts: 样式导入文件
   |- index.ts: 组件入口文件
 ```
+
 #### 单元测试
 
-目前我们已经集成了`vitest`来进行单元测试，但是由于之前的组件并没有进行单测，于是我们新建了一个分支`feature/testing-capabilities`来进行单元测试
+目前我们已经集成了 `vitest` 来进行单元测试，但是由于之前的组件并没有进行单测，于是我们新建了一个分支`monorepo-test`来进行单元测试
 
 对此，目录结构会发生一些微小的变化
 
@@ -255,13 +253,22 @@ desc
 
 ```
 |- packages/               # 组件库开发目录
-|  |- yike-test/
-|      |- components/    # 组件目录
-|          |- button        
-|            |- __test__   # 组件测试 
-|               |- button.test.ts   # 测试用例 
-|      |- package.json      # 测试 package.json 文件
+|  |- yike-design-ui/
+|     |- src/
+|        |- assets/        # 资源文件夹
+|        |- components/    # 组件目录
+|            |- src        # 组件源码
+|            |- __test__   # 组件测试
+|            |- style      # 组件样式
+|            |- index.ts
+|        |- styles/        # 样式文件夹
+|            |- base.less  # 公共基础样式
+|        |- types/         # 类型文件夹
+|        |- utils/         # 工具文件夹
+|        |- index.ts       # 组件库入口文件
+|     |- package.json      # 组件库 package.json 文件
 ```
+
 然后我们可以在`__test__`下书写我们的测试用例，例如`button.test.ts`
 
 并且我已经书写了`button`对应的测试用例，加以注释，供大家学习

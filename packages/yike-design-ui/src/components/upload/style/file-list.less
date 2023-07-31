@@ -1,3 +1,4 @@
+@import '../../styles/color/colors.less';
 .yk-upload-file {
   display: flex;
   justify-content: space-between;
@@ -14,6 +15,11 @@
     border-radius: @radius-m;
     background-color: @bg-color-m;
     flex-direction: row;
+    &:hover {
+      .delete-yk-icon {
+        display: block;
+      }
+    }
     .delete-container {
       display: flex;
       justify-content: center;
@@ -32,8 +38,16 @@
       min-height: 14px;
     }
     .delete-yk-icon {
-      cursor: pointer;
+      display: none;
+      padding: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
       color: @font-color-s;
+      cursor: pointer;
+      &:hover {
+        color: @font-color-m;
+      }
     }
     .success-yk-icon {
       color: @scolor;
@@ -57,9 +71,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
     padding: @space-s 0px;
     font-size: @size-s;
     font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: @pcolor;
     flex-direction: row;
   }
@@ -69,11 +86,12 @@
   &__right {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     font-size: @size-s;
     color: @pcolor;
     flex-direction: row;
     svg {
-      margin-left: @space-m;
+      margin-left: @space-s;
     }
   }
 }

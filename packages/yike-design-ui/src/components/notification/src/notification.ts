@@ -1,5 +1,5 @@
 import type { VNode } from 'vue';
-import { NotificationType } from '../../../utils/constant';
+import { NotificationType } from '../../utils/constant';
 export type NotificationProps = {
   title?: string;
   message: string | VNode;

@@ -112,7 +112,7 @@ const datas = [
 <style scoped lang="less">
 .colorss {
   overflow: hidden;
-  max-width: 1000px;
+  max-width: 1200px;
   border: 1px solid @line-color-s;
   border-radius: @radius-m;
   background-color: #fff;

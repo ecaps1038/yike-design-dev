@@ -92,8 +92,8 @@ function createComponentMainFiles() {
 </template>
 <script setup lang="ts">
 import { ${upperComponentName}Props } from './${componentLowDashName}'
-import { createCssScope } from '../../../utils/bem'
-import '../style'
+import { createCssScope } from '../utils/bem'
+
 
 const bem = createCssScope('${componentLowDashName}')
 
@@ -129,7 +129,7 @@ const props = withDefaults(defineProps<${propsName}>(), {
   logCreateFile(componentMainStylePath)
 
   const exportContent = `import ${upperComponentName} from './src/${componentLowDashName}.vue';
-import { withInstall } from '../../utils/index';
+import { withInstall } from '../utils/index';
 export const ${upperFullComponentName} = withInstall(${upperComponentName});
 export default ${upperFullComponentName};
 export * from './src/${componentLowDashName}';

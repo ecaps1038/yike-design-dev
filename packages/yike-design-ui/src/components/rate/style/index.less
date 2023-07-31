@@ -1,3 +1,4 @@
+@import '../../styles/color/colors.less';
 @sizes: {
   s: 14px;
   m: 18px;
@@ -17,7 +18,7 @@ each(@sizes,{
 .yk-rate-item {
   position: relative;
   cursor: pointer;
-  transition: all @animatf;
+  transition: all @animatb;
 
   &:hover {
     transform: scale(1.2);
@@ -56,6 +57,9 @@ each(@sizes,{
 
 .yk-rate.yk-rate-disabled,
 .yk-rate.yk-rate-readonly {
+  .yk-rate-item {
+    transform: none;
+  }
   .yk-rate-icon {
     transition: none;
     &:hover {

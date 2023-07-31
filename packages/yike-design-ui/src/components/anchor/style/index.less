@@ -1,3 +1,4 @@
+@import '../../styles/color/colors.less';
 .yk-anchor {
   position: relative;
   &.yk-anchor-show-marker {
@@ -40,9 +41,13 @@
 
   .yk-anchor-item-title {
     display: inline-block;
+    overflow: hidden;
     padding: 0 @space-s;
+    width: 100%;
     height: 30px;
     border-radius: @radius-s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: @font-color-m;
     line-height: 30px;
     &:hover {
@@ -53,6 +58,15 @@
     &.yk-anchor-item-title-active {
       font-weight: 500;
       color: @pcolor;
+    }
+  }
+}
+
+.yk-anchor-show-marker {
+  .yk-anchor-item-title {
+    &.yk-anchor-item-title-active {
+      font-weight: 500;
+      color: @font-color-l;
     }
   }
 }

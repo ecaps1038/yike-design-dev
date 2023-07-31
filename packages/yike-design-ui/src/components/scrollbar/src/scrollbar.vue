@@ -46,7 +46,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { ScrollbarProps } from './scrollbar'
-import '../style'
+
 import { useEventListener } from '@vueuse/core'
 
 defineOptions({

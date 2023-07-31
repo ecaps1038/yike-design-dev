@@ -3,16 +3,11 @@
     <div class="yk-empty__image" :style="imageStyle">
       <slot name="image">
         <img v-if="image" :src="image" ondragstart="return false" />
-        <yk-icon
-          v-if="!image && type == 'primary'"
-          name="yike-kongzhuangtai0"
-          class="primary"
-        ></yk-icon>
-        <yk-icon
+        <IconEmpty1Color v-if="!image && type == 'primary'" class="primary" />
+        <IconEmpty2Color
           v-if="!image && type == 'secondary'"
-          name="yike-kongzhuangtai1"
           class="secondary"
-        ></yk-icon>
+        />
       </slot>
     </div>
     <div class="yk-empty__description">
@@ -27,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import '../style'
 import { CSSProperties, computed } from 'vue'
+import { IconEmpty1Color, IconEmpty2Color } from '../../svg-icon'
 import { EmptyProps } from './empty'
 
 defineOptions({

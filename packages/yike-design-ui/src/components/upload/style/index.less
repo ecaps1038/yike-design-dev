@@ -1,3 +1,7 @@
+@import '../../styles/color/colors.less';
+@import './draggle.less';
+@import './file-list.less';
+@import './picture-list.less';
 .yk-upload {
   width: 100%;
   &__files {
@@ -39,8 +43,9 @@
     margin-right: 40px;
     width: 80px;
     height: 80px;
-    border: 1px dashed @line-color-m;
+    border: 1px dashed @line-color-s;
     background: @bg-color-m;
+    transition: all @animatb;
     cursor: pointer;
     &--disabled {
       cursor: not-allowed;
