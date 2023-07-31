@@ -2,7 +2,7 @@ import { createVNode, render, ref, reactive } from 'vue';
 import { MessageOptions } from './message';
 import { MESSAGETYPE } from '../../utils/constant';
 import MessageGroup from './message-group.vue';
-
+import { RenderContent } from '../../utils';
 class MessageManager {
   private messages = ref<MessageOptions[]>([]);
   private container: HTMLElement | null;
@@ -66,7 +66,7 @@ const message: any = (options: MessageOptions) => {
   return Instance.add(options);
 };
 MESSAGETYPE.forEach((item) => {
-  message[item] = (msg: string, duration: number, onClose: any) => {
+  message[item] = (msg: RenderContent, duration: number, onClose: any) => {
     const messageOptions: MessageOptions = {
       type: item,
       message: msg,
