@@ -3,7 +3,7 @@ import { getCurrentInstance, watch } from 'vue'
 import { useClipboard } from '@vueuse/core'
 import iconData from 'yike-design-ui/src/components/svg-icon/icons.json'
 const proxy: any = getCurrentInstance()?.proxy
-const { copy, copied, text } = useClipboard({
+const { copy } = useClipboard({
   legacy: true,
 })
 const getRealName = (list: any, name: string) => {
@@ -17,10 +17,11 @@ const getRealName = (list: any, name: string) => {
     return name.slice(5, -6)
   }
 }
-// 监听copied，成功则提示用户
-watch(text, (e) => {
-  if (text.value) proxy.$message({ type: 'success', message: `复制成功：${e}` })
-})
+const handleCopy = (item: any) => {
+  const compStr = `<${item.componentName}/>`
+  copy(compStr)
+  proxy.$message({ type: 'success', message: `复制成功：${compStr}` })
+}
 </script>
 <template>
   <div>
@@ -31,7 +32,7 @@ watch(text, (e) => {
           v-for="(item, idx) in list.list"
           :key="idx"
           class="icon-item"
-          @click="copy(`<${item.componentName}/>`)"
+          @click="handleCopy(item)"
         >
           <!-- <div v-if="copied && text === `<${item.componentName}/>`" class="tip">
             <IconTickOutline />
