@@ -8,6 +8,7 @@
           :class="className"
           :style="[overlayStyle, { zIndex }]"
         >
+          <div v-if="arrow" :class="bem('arrow')"></div>
           <slot name="content">{{ title }}</slot>
         </div>
       </template>
@@ -44,6 +45,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   autoAdjustOverflow: false,
   overlayStyle: () => ({}),
   destroyTooltipOnHide: false,
+  arrow: true,
 })
 
 // 自定义事件
