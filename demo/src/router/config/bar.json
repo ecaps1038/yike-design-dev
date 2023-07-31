@@ -26,6 +26,10 @@
         {
           "name": "Scrollbar 滚动条",
           "src": "scrollbar"
+        },
+        {
+          "name": "Collapse 折叠面板",
+          "src": "collapse"
         }
       ]
     },
