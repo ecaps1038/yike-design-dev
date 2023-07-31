@@ -1,49 +1,64 @@
 import { mount } from '@vue/test-utils';
-import Badge from '../../../../yike-design-ui/src/components/badge/src/badge.vue';
+import YkBadge from '../../../../yike-design-ui/src/components/badge/src/badge.vue';
 
-describe('Badge', () => {
-  // 测试徽标默认渲染情况
-  it('renders the badge by default', () => {
-    const wrapper = mount(Badge);
-
-    // 断言是否正确渲染了徽标容器
-    expect(wrapper.find('#yk-badge').exists()).toBe(true);
-  });
-
-  // 测试带计数的徽标渲染情况
-  it('renders the badge with count', async () => {
-    const wrapper = mount(Badge, {
-      props: { count: 5 },
+describe('YkBadge', () => {
+  it('is-dot is true and not hidden', () => {
+    const wrapper = mount(YkBadge, {
+      props: {
+        isDot: true,
+        hidden: false,
+      },
     });
 
-    // 断言徽标元素是否可见
-    expect(wrapper.find('.yk-badge').isVisible()).toBe(true);
-    // 断言计数文本是否正确显示
-    expect(wrapper.find('.count').text()).toBe('5');
+    // 验证是否渲染了红点样式
+    expect(wrapper.find('.yk-badge__dot').exists()).toBe(true);
   });
 
-  // 测试超过最大限制的计数显示情况
-  it('renders the badge with max count', async () => {
-    const wrapper = mount(Badge, {
-      props: { count: 100, max: 99 },
+  it('count and not hidden', () => {
+    const wrapper = mount(YkBadge, {
+      props: {
+        count: 10,
+        hidden: false,
+      },
     });
 
-    // 断言计数文本是否正确显示为最大限制值加上'+'
-    expect(wrapper.find('.count').text()).toBe('99+');
+    // 验证是否正确渲染了数字计数
+    expect(wrapper.find('.yk-badge__count').exists()).toBe(true);
+    expect(wrapper.find('.yk-badge__count').text()).toBe('10');
   });
 
-  // 测试是否正确设置徽标样式
-  it('renders the badge with custom styles', async () => {
-    const wrapper = mount(Badge, {
-      props: { color: 'red', border: 2 },
+  it('hide dot', () => {
+    const wrapper = mount(YkBadge, {
+      props: {
+        isDot: true,
+        hidden: true,
+      },
     });
 
-    // 断言徽标容器的背景颜色和边框宽度是否正确设置
-    expect(wrapper.find('.yk-badge').attributes().style).toContain(
-      'background-color: red;',
-    );
-    expect(wrapper.find('.yk-badge').attributes().style).toContain(
-      'border-width: 2px;',
-    );
+    // 验证是否隐藏了红点样式
+    expect(wrapper.find('.yk-badge__dot').exists()).toBe(false);
+  });
+
+  it('hide count', () => {
+    const wrapper = mount(YkBadge, {
+      props: {
+        count: 0,
+        showZero: false,
+      },
+    });
+
+    // 验证是否隐藏了数字计数
+    expect(wrapper.find('.yk-badge__count').exists()).toBe(false);
+  });
+
+  it('hides count when negative', () => {
+    const wrapper = mount(YkBadge, {
+      props: {
+        count: -5,
+      },
+    });
+
+    // 验证是否隐藏了数字计数
+    expect(wrapper.find('.yk-badge__count').exists()).toBe(false);
   });
 });

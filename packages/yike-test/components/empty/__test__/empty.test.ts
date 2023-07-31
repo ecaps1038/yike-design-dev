@@ -1,52 +1,59 @@
 import { mount } from '@vue/test-utils';
-import Empty from '../../../../yike-design-ui/src/components/empty/src/empty.vue';
+import YkEmpty from '../../../../yike-design-ui/src/components/empty/src/empty.vue';
 
-describe('Empty', () => {
-  it('renders default description when no slot is provided', () => {
-    const wrapper = mount(Empty);
+describe('YkEmpty', () => {
+  it('renders default description when no slot content is provided', () => {
+    const wrapper = mount(YkEmpty);
 
+    // 验证默认描述文本是否正确渲染
     expect(wrapper.find('.yk-empty__description p').text()).toBe('No Data');
   });
-  // 验证自定义描述是否正确渲染
-  it('renders custom description when description slot is provided', () => {
-    const wrapper = mount(Empty, {
+
+  it('slot', () => {
+    const wrapper = mount(YkEmpty, {
       slots: {
-        description: 'Custom Description',
+        image: '<img src="custom-image.png" />',
       },
     });
 
-    // expect(wrapper.find('.yk-empty__description p').text()).toBe('Custom Description');
+    // 验证自定义图像是否正确渲染
+    expect(wrapper.find('.yk-empty__image img').exists()).toBe(true);
+    expect(wrapper.find('.yk-empty__image img').attributes('src')).toBe(
+      'custom-image.png',
+    );
   });
-  // 验证图像插槽是否正确渲染
-  it('renders image slot when image prop is not provided', () => {
-    const wrapper = mount(Empty, {
-      slots: {
-        image: '<img src="custom-image.jpg" />',
-      },
-    });
 
-    expect(
-      wrapper.find('.yk-empty__image img[src="custom-image.jpg"]').exists(),
-    ).toBe(true);
-  });
-  // 验证主题类是否正确应用
-  it('applies dark theme class when theme prop value is "dark"', () => {
-    const wrapper = mount(Empty, {
+  it('no image and type is primary', () => {
+    const wrapper = mount(YkEmpty, {
       props: {
-        theme: 'dark',
+        type: 'primary',
       },
     });
 
-    expect(wrapper.classes('dark')).toBe(true);
+    // 验证主要类型图标是否正确渲染
+    expect(wrapper.find('.primary').exists()).toBe(true);
   });
-  // 验证底部插槽是否正确渲染
-  it('renders content in the default slot', () => {
-    const wrapper = mount(Empty, {
-      slots: {
-        default: '<div>Some content</div>',
+
+  it('no image and type is secondary', () => {
+    const wrapper = mount(YkEmpty, {
+      props: {
+        type: 'secondary',
       },
     });
 
-    expect(wrapper.find('.yk-empty__bottom div').text()).toBe('Some content');
+    // 验证次要类型图标是否正确渲染
+    expect(wrapper.find('.secondary').exists()).toBe(true);
+  });
+
+  it('bottom slot', () => {
+    const wrapper = mount(YkEmpty, {
+      slots: {
+        default: '<button>Retry</button>',
+      },
+    });
+
+    // 验证插槽内容是否正确渲染在底部插槽中
+    expect(wrapper.find('.yk-empty__bottom button').exists()).toBe(true);
+    expect(wrapper.find('.yk-empty__bottom button').text()).toBe('Retry');
   });
 });
