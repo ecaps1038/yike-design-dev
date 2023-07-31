@@ -1,3 +1,5 @@
+type DrawerPlacements = 'right' | 'left' | 'top' | 'bottom';
+
 export type DrawerProps = {
   show?: boolean;
   size?: string;
@@ -6,6 +8,6 @@ export type DrawerProps = {
   closable?: boolean;
   escapable?: boolean;
   showMask?: boolean;
-  placement?: 'right' | 'left' | 'top' | 'bottom';
+  placement?: DrawerPlacements;
   to?: string;
 };
