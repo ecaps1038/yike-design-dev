@@ -72,6 +72,10 @@
         {
           "name": "Input 输入框",
           "src": "input"
+        },
+        {
+          "name": "TimePicker 时间选择器",
+          "src": "time-picker"
         }
       ]
     },

@@ -1,0 +1,125 @@
+.yk-time-picker {
+  position: relative;
+  display: flex;
+  padding: 4px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  background: #ffffff;
+  outline: 0;
+  box-sizing: border-box;
+  .yk-time-picker__input {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 260px;
+    height: 36px;
+
+    box-sizing: border-box;
+    .yk-time-picker__icon {
+      position: relative;
+      height: 20px;
+      white-space: nowrap;
+      color: #000000;
+    }
+  }
+  input {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    width: auto;
+    height: auto;
+    border: 0;
+    background: transparent;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  input[disabled] {
+    cursor: not-allowed;
+    color: #e8e9eb;
+  }
+}
+.yk-time-picker__panel-container {
+  position: absolute;
+  padding: 10px;
+  border-radius: 4px;
+  color: #000000;
+  background: #ffffff;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.2);
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+  ul:not(:last-child) {
+    border-right: 1px solid rgba(5, 5, 5, 0.06);
+  }
+  li {
+    padding-left: 12px;
+    width: 48px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f6f6f8;
+    }
+  }
+  .yk-time-picker__panel-content {
+    position: relative;
+    display: flex;
+    max-height: 200px;
+    .yk-time-picker__panel-column {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+  }
+  .yk-time-picker__panel-bottom {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 12px;
+    border-top: 1px solid rgba(5, 5, 5, 0.06);
+    .yk-time-picker__panel-bottom-now {
+      color: #1890ff;
+      cursor: pointer;
+    }
+  }
+}
+.yk-time-picker--disabled {
+  cursor: not-allowed;
+  background-color: #f3f3f4;
+}
+.yk-slide-down-enter {
+  animation: slideDownIn 0.2s;
+}
+.yk-slide-down-leave {
+  animation: slideDownOut 0.2s;
+}
+.yk-slide-up-enter {
+  animation: slideUpIn 0.2s;
+}
+.yk-slide-up-leave {
+  animation: slideUpOut 0.2s;
+}
+@keyframes slideDownIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes slideDownOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

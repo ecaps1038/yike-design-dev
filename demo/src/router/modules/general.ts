@@ -98,6 +98,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'tree',
     component: () => import('@/examples/tree/doc.md'),
   },
+  {
+    path: 'time-picker',
+    component: () => import('@/examples/time-picker/doc.md'),
+  },
 ];
 
 export default generalRoutes;

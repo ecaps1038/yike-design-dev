@@ -45,7 +45,8 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
-    "@yike/build": "workspace:*"
+    "@yike/build": "workspace:*",
+    "dayjs": "^1.11.9"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^0.32.4",
