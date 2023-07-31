@@ -16,11 +16,11 @@
 
 #### TimePicker Attribute
 
-| 名称                      | 说明     | 类型                                                  | 默认值 |
-| ------------------------- | -------- | ----------------------------------------------------- | ------ |
-| model-value/value/v-model | 绑定值   | number ｜ string ｜ Array&lt;number &#124; string&gt; | --     |
-| disabled                  | 禁用     | boolean                                               | false  |
-| placeholder               | 占位内容 | string                                                | ""     |
+| 名称                      | 说明     | 类型             | 默认值 |
+| ------------------------- | -------- | ---------------- | ------ |
+| model-value/value/v-model | 绑定值   | number ｜ string | --     |
+| disabled                  | 禁用     | boolean          | false  |
+| placeholder               | 占位内容 | string           | ""     |
 
 #### TimePicker Slots
 

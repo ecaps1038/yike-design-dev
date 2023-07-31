@@ -1,6 +1,6 @@
 export type TimePickerProps = {
-  modelValue?: string | number | Array<number | string>;
-  value?: string | number | Array<number | string>;
+  modelValue?: string | number;
+  value?: string | number;
   disabled?: boolean;
   placeholder?: string;
 };
