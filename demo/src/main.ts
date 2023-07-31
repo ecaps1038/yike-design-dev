@@ -5,9 +5,9 @@ import Snippet from './components/Snippet.vue';
 import ColorCard from './components/ColorCard.vue';
 import componentPageVue from './components/component-page.vue';
 // 加载项目全局样式
+import 'yike-design-ui/src/components/styles/index.less';
 import '@/style/main.less';
 import '@/style/color-card.less';
-import '@/style/icon.less';
 
 //highlight 的样式，依赖包，组件
 import hljs from 'highlight.js/lib/core';

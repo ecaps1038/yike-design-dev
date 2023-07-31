@@ -25,6 +25,7 @@ declare module 'vue' {
     IconImageBackupOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconImageBackupOutline']
     IconLoading1Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconLoading1Outline']
     IconMoneyOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconMoneyOutline']
+    IconPlusCircleOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconPlusCircleOutline']
     IconPlusOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconPlusOutline']
     IconSearchOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconSearchOutline']
     IconTickOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconTickOutline']
