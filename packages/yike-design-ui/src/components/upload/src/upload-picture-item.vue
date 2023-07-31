@@ -28,15 +28,22 @@
     </div>
     <div v-if="status === 'success' && avatar" class="hover-icons">
       <IconFillOutline @click="handleEdit" />
+      <IconDeleteOutline @click="handleRemove" />
     </div>
+    <yk-modal v-model="editModalVisible" title="图片裁剪" size="small">
+      <cropPicture :url="url" :blob-raw="blobRaw" />
+    </yk-modal>
   </div>
 </template>
 <script setup lang="ts">
-import { computed, toRefs, getCurrentInstance } from 'vue'
+import { computed, toRefs, getCurrentInstance, ref } from 'vue'
 import { getArcPath } from './utils'
 import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
 import { FileItemProps } from './upload'
+import cropPicture from './crop-picture.vue'
+import { YkModal } from '../../../index'
+
 const proxy: any = getCurrentInstance()?.proxy
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
@@ -50,6 +57,8 @@ const props = withDefaults(defineProps<FileItemProps>(), {
 })
 const bem = createCssScope('upload-picture')
 const { status, uid, raw, url } = toRefs(props.fileContent)
+
+const editModalVisible = ref(false)
 
 const blobRaw = computed(() => {
   if (raw?.value) {
@@ -81,8 +90,8 @@ const handleReUpload = () => {
 }
 const handleEdit = () => {
   console.log('edit')
+  editModalVisible.value = true
+  // proxy.$message.success('先走重传，后续修改为裁剪逻辑')
   // emits('handleEdit', uid.value)
-  proxy.$message.success('先走重传，后续修改为裁剪逻辑')
-  emits('handleEdit', uid.value)
 }
 </script>

@@ -9,7 +9,6 @@ const anchors = ref<any[]>([])
 onMounted(() => {
   const h3es = document.querySelectorAll('.case-card>h3.yk-title')
   const docH3es = document.querySelectorAll('.yk-demo-doc>h3.yk-title')
-  console.log('docH3es: ', docH3es)
 
   h3es.forEach((el) => {
     anchors.value.push({
