@@ -27,7 +27,6 @@
 import type { TooltipProps, TooltipEmit } from './tooltip'
 import { computed, ref, watch } from 'vue'
 import { useEventListener, usePlacement, useDefaultSlots } from './hooks'
-import '../style'
 defineOptions({
   name: 'YkTooltip',
 })
