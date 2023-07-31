@@ -5,7 +5,8 @@
   width: fit-content;
   height: fit-content;
   border-radius: 8px;
-  background: #ffffff;
+  background-color: var(--bgColor3);
+  outline: 1px solid var(--bgColor3);
   outline: 0;
   box-sizing: border-box;
   .yk-time-picker__input {
@@ -19,7 +20,9 @@
     box-sizing: border-box;
     .yk-time-picker__icon {
       position: relative;
+      margin-right: 5px;
       height: 20px;
+      line-height: 20px;
       white-space: nowrap;
       color: #000000;
     }
@@ -45,9 +48,11 @@
 .yk-time-picker__panel-container {
   position: absolute;
   padding: 10px;
+  border: 1px solid rgba(var(--gray), 0.08);
   border-radius: 4px;
-  color: #000000;
-  background: #ffffff;
+  color: rgb(var(--gray));
+  background-color: var(--bgColor3);
+  outline: 1px solid var(--bgColor3);
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.2);
   ::-webkit-scrollbar {
     display: none;
@@ -91,7 +96,8 @@
 }
 .yk-time-picker--disabled {
   cursor: not-allowed;
-  background-color: #f3f3f4;
+  background-color: var(--bgColor4);
+  outline: 1px solid var(--bgColor4);
 }
 .yk-slide-down-enter {
   animation: slideDownIn 0.2s;
