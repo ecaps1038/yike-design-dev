@@ -13,7 +13,7 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "jsx": "preserve",
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "vitest/globals"],
     "lib": ["esnext", "dom"],
     "paths": {
       "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
