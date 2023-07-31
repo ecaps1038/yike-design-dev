@@ -98,6 +98,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'tree',
     component: () => import('@/examples/tree/doc.md'),
   },
+  {
+    path: 'collapse',
+    component: () => import('@/examples/collapse/doc.md'),
+  },
 ];
 
 export default generalRoutes;

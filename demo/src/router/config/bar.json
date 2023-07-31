@@ -26,6 +26,10 @@
         {
           "name": "Scrollbar 滚动条",
           "src": "scrollbar"
+        },
+        {
+          "name": "Collapse 折叠面板",
+          "src": "collapse"
         }
       ]
     },
@@ -126,6 +130,10 @@
         {
           "name": "Progress 进度条",
           "src": "progress"
+        },
+        {
+          "name": "Modal 对话框",
+          "src": "modal"
         }
       ]
     },
