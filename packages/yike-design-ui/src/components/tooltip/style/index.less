@@ -29,12 +29,11 @@
     box-shadow: @shadow-m;
     word-wrap: break-word;
   }
-  &__content::after {
+  &__content &__arrow {
     position: absolute;
     width: @arrowSize;
     height: @arrowSize;
     background-color: inherit;
-    content: '';
     clip-path: polygon(50% 50%, 0 0, 100% 0);
   }
 
@@ -123,57 +122,57 @@
     clip-path: polygon(50% 50%, 100% 100%, 100% 0);
     transform: translateX(-100%);
   }
-  &__content--left::after {
+  &__content--left &__arrow {
     .l();
     top: 50%;
     transform: translateX(100%) translateY(-50%);
   }
-  &__content--leftTop::after {
+  &__content--leftTop &__arrow {
     .l();
     top: @brSize;
   }
-  &__content--leftBottom::after {
+  &__content--leftBottom &__arrow {
     .l();
     bottom: @brSize;
   }
-  &__content--top::after {
+  &__content--top &__arrow {
     .t();
     left: 50%;
     transform: translateX(-50%) translateY(100%);
   }
-  &__content--topLeft::after {
+  &__content--topLeft &__arrow {
     .t();
     left: @brSize;
   }
-  &__content--topRight::after {
+  &__content--topRight &__arrow {
     .t();
     right: @brSize;
   }
 
-  &__content--bottom::after {
+  &__content--bottom &__arrow {
     .b();
     left: 50%;
     transform: translateX(-50%) translateY(-100%);
   }
-  &__content--bottomLeft::after {
+  &__content--bottomLeft &__arrow {
     .b();
     left: @brSize;
   }
-  &__content--bottomRight::after {
+  &__content--bottomRight &__arrow {
     .b();
     right: @brSize;
   }
 
-  &__content--right::after {
+  &__content--right &__arrow {
     .r();
     top: 50%;
     transform: translateX(-100%) translateY(-50%);
   }
-  &__content--rightTop::after {
+  &__content--rightTop &__arrow {
     .r();
     top: @brSize;
   }
-  &__content--rightBottom::after {
+  &__content--rightBottom &__arrow {
     .r();
     bottom: @brSize;
   }
