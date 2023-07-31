@@ -28,7 +28,11 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-  "plugins": ["vue", "@typescript-eslint", "unused-imports"],
+  "plugins": [
+    "vue",
+    "@typescript-eslint",
+    "unused-imports"
+  ],
   /*
    * "off" 或 0    ==>  关闭规则
    * "warn" 或 1   ==>  打开的规则作为警告（不影响代码执行）
@@ -47,14 +51,22 @@
     ],
     // eslint（https://eslint.bootcss.com/docs/rules/）
     // "no-var": "off", // 要求使用 let 或 const 而不是 var
-    "no-multiple-empty-lines": ["warn", { "max": 1 }], // 不允许超过1个空行
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 1
+      }
+    ], // 不允许超过1个空行
     // "no-unexpected-multiline": "error", // 禁止空余的多行
     // "no-useless-escape": "off", // 禁止不必要的转义字符,
     // "no-redeclare": "off",
     // "no-self-assign": "off",
     // "prefer-const": "off",
     "vue/require-v-for-key": 0,
-    "semi": [0, "never"],
+    "semi": [
+      0,
+      "never"
+    ],
     "@typescript-eslint/no-non-null-assertion": "off",
     // // typeScript (https://typescript-eslint.io/rules)
     "@typescript-eslint/no-unused-vars": "off", // 禁止定义未使用的变量
