@@ -72,6 +72,10 @@
         {
           "name": "Input 输入框",
           "src": "input"
+        },
+        {
+          "name": "Slider 滑动输入条",
+          "src": "slider"
         }
       ]
     },
