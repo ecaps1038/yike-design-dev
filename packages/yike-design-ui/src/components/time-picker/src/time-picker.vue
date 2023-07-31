@@ -7,7 +7,7 @@
     >
       <input
         v-model="inputTimer"
-        :disabled="disabled"
+        :disabled="$props.disabled"
         :placeholder="$props.placeholder ?? '请选择'"
         @focus="handleFocus"
         @blur="handleBlur"
