@@ -2,7 +2,7 @@
 <template>
   <div class="case-card">
     <!-- id 用于锚点定位 -->
-    <yk-title :id="title" :level="3">{{ title }}</yk-title>
+    <yk-title :id="title.replace(/\s/g, '')" :level="3">{{ title }}</yk-title>
     <slot name="desc"></slot>
     <div class="container">
       <slot name="demo"></slot>
@@ -86,7 +86,7 @@ const clickShow = (): void => {
     color: @font-color-m;
     cursor: pointer;
 
-    .icon {
+    .yk-icon {
       font-size: @size-m;
       color: @font-color-m;
       transition: all @animats;
@@ -95,7 +95,7 @@ const clickShow = (): void => {
     &:hover {
       background-color: @bg-color-s;
 
-      .icon {
+      .yk-icon {
         color: @font-color-l;
       }
     }
@@ -103,15 +103,12 @@ const clickShow = (): void => {
 
   .select {
     background-color: @font-color-l;
-
-    .icon {
+    .yk-icon {
       color: @bg-color-l;
     }
-
     &:hover {
       background-color: @font-color-l;
-
-      .icon {
+      .yk-icon {
         color: @bg-color-l;
       }
     }

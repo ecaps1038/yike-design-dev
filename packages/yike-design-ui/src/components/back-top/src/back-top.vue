@@ -96,4 +96,3 @@ const clickIt = (e: MouseEvent) => {
   emit('on-click', e)
 }
 </script>
-../../utils/tools

@@ -3,7 +3,7 @@
     <div class="yk-paragraph">
       <p ref="getDivRef" :class="[type, { strong: strong }]">
         <slot></slot>
-        <yk-icon v-show="copyable" name="yk-kaobei" @click="onCopy" />
+        <IconCopyOutline v-show="copyable" @click="onCopy" />
       </p>
       <div v-show="isMore" class="more" @click="getMore">展开</div>
     </div>

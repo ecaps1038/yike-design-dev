@@ -5,7 +5,7 @@
   <div class="item">
     <yk-input-search>
       <template #prefix>
-        <yk-icon name="yk-sousuo" />
+        <IconSearchOutline />
       </template>
       <template #suffix>
         <yk-button type="secondary">搜索</yk-button>
@@ -15,7 +15,7 @@
   <div class="item">
     <yk-input-search size="xl" placeholder="搜点什么">
       <template #suffix>
-        <yk-button size="xl"><yk-icon name="yk-sousuo" /></yk-button>
+        <yk-button size="xl"><IconSearchOutline /></yk-button>
       </template>
     </yk-input-search>
   </div>

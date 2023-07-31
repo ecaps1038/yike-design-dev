@@ -39,6 +39,10 @@
         {
           "name": "Anchor 锚点",
           "src": "anchor"
+        },
+        {
+          "name": "Breadcrumb 面包屑",
+          "src": "breadcrumb"
         }
       ]
     },
@@ -85,6 +89,10 @@
         {
           "name": "Badge 徽标",
           "src": "badge"
+        },
+        {
+          "name": "Tree 树",
+          "src": "tree"
         }
       ]
     },
@@ -114,6 +122,10 @@
         {
           "name": "Drawer 抽屉",
           "src": "drawer"
+        },
+        {
+          "name": "Progress 进度条",
+          "src": "progress"
         }
       ]
     },
@@ -123,6 +135,10 @@
         {
           "name": "BackTop 返回顶部",
           "src": "back-top"
+        },
+        {
+          "name": "Affix 固钉",
+          "src": "affix"
         }
       ]
     }

@@ -66,12 +66,37 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/color/doc.md'),
   },
   {
+    path: 'progress',
+    component: () => import('@/examples/progress/doc.md'),
+  },
+
+  {
     path: 'rate',
     component: () => import('@/examples/rate/doc.md'),
   },
   {
+    path: 'breadcrumb',
+    component: () => import('@/examples/breadcrumb/doc.md'),
+  },
+  {
     path: 'input',
     component: () => import('@/examples/input/doc.md'),
+  },
+  {
+    path: 'affix',
+    component: () => import('@/examples/affix/doc.md'),
+  },
+  {
+    path: 'scrollbar',
+    component: () => import('@/examples/scrollbar/doc.md'),
+  },
+  {
+    path: 'alert',
+    component: () => import('@/examples/alert/doc.md'),
+  },
+  {
+    path: 'tree',
+    component: () => import('@/examples/tree/doc.md'),
   },
 ];
 

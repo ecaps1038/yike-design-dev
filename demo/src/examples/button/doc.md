@@ -60,3 +60,9 @@
 | disabled | 按钮是否被禁用 | false ｜ true                             | false   |
 | loading  | 按钮是否加载中 | false ｜ true                             | false   |
 | long     | 按钮是否通栏   | false ｜ true                             | false   |
+
+#### Button Slots
+
+| 参数 | 描述 | 默认值 |
+| ---- | ---- | ------ |
+| icon | 图标 | -      |

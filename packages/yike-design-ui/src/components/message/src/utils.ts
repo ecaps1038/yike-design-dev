@@ -59,14 +59,14 @@ class MessageManager {
   };
 }
 let Instance = <MessageManager>{};
-const message = (options: MessageOptions) => {
+const message: any = (options: MessageOptions) => {
   if (!Instance.created) {
     Instance = new MessageManager();
   }
   return Instance.add(options);
 };
 MESSAGETYPE.forEach((item) => {
-  message[item] = (msg, duration, onClose) => {
+  message[item] = (msg: string, duration: number, onClose: any) => {
     const messageOptions: MessageOptions = {
       type: item,
       message: msg,

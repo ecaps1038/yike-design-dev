@@ -1,0 +1,30 @@
+@import '../../styles/color/colors.less';
+
+.yk-tree-node {
+  display: flex;
+  align-items: center;
+  height: 32px;
+
+  &__content {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 4px;
+    height: 100%;
+    cursor: pointer;
+    &:hover {
+      border-radius: 4px;
+      background-color: @bg-color-ss;
+    }
+    &&--block {
+      display: flex;
+      width: 100%;
+    }
+
+    &&--active {
+      color: @pcolor;
+    }
+  }
+  &__file {
+    margin-right: 4px;
+  }
+}

@@ -28,6 +28,10 @@
   }
 }
 
+.yk-input--disabled input {
+  cursor: not-allowed;
+}
+
 .yk-input--leftbr0,
 .yk-input--leftbr0 input {
   border-top-left-radius: 0px !important;
@@ -116,7 +120,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  fill: @font-color-l;
+  fill: @font-color-l !important;
 
   &:hover {
     background-color: @bg-color-ss;
