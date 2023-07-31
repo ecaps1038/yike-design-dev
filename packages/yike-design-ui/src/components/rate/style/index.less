@@ -8,9 +8,11 @@
 
 each(@sizes,{ 
   .yk-rate-icon-@{key}{
-  font-size: @value; 
+  width: @value; 
+  height: @value;
  } 
-}) .yk-rate {
+})
+  .yk-rate {
   display: inline-flex;
   column-gap: @space-s;
 }

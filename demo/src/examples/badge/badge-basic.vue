@@ -6,7 +6,7 @@
     <yk-badge is-dot>
       <yk-avatar size="l" shape="square"></yk-avatar>
     </yk-badge>
-    <yk-badge is-dot out-dot>
+    <yk-badge is-dot in-dot>
       <yk-avatar size="l" shape="square"></yk-avatar>
     </yk-badge>
     <yk-badge :count="2">

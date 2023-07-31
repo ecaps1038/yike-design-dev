@@ -16,6 +16,7 @@ import { YkInput } from './components/input';
 import { YkInputSearch } from './components/input-search';
 import YkTree from './components/tree';
 import YkSlider from './components/slider';
+import { YkCollapse, YkCollapseGroup } from './components/collapse';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -30,6 +31,8 @@ import { YkBackTop } from './components/back-top';
 import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
 import YkProgress from './components/progress';
+import YkModal from './components/modal';
+
 const components: {
   [propName: string]: Component;
 } = {
@@ -53,6 +56,8 @@ const components: {
   YkInputSearch,
   YkTree,
   YkSlider,
+  YkCollapse,
+  YkCollapseGroup,
   YkAlert,
   YkButton,
   YkTheme,
@@ -67,6 +72,7 @@ const components: {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkModal,
 };
 
 export {
@@ -90,6 +96,8 @@ export {
   YkInputSearch,
   YkTree,
   YkSlider,
+  YkCollapse,
+  YkCollapseGroup,
   YkAlert,
   YkButton,
   YkTheme,
@@ -106,6 +114,7 @@ export {
   YkEmpty,
   YkBackTop,
   YkTooltip,
+  YkModal,
 };
 
 // 全局注册

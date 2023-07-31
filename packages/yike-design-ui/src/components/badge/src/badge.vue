@@ -33,7 +33,7 @@ defineOptions({
 // ======================= props ===========================
 const props = withDefaults(defineProps<BadgeProps>(), {
   count: 0,
-  border: 2,
+  border: 0,
   overflowCount: 99,
   showZero: false,
   status: 'danger',
@@ -66,7 +66,7 @@ const dotStyle = computed<CSSProperties>(() => {
 
 const dotClass = computed(() => {
   return {
-    'yk-badge__dot--outer': props.outDot,
+    'yk-badge__dot--inner': props.inDot,
     [`yk-badge__dot--${props.status}`]: props.status !== undefined,
     'yk-badge__dot--stand': !!useSlots().default === false,
   }
@@ -114,9 +114,9 @@ const countStyle = computed<CSSProperties>(() => {
 
   // count的方位  定位右边，就左移动，左边，就右边移动
   if (props.offset && props.offset === 'right') {
-    styles.translate = `-50% ${offsetValue.value}px`
+    styles.translate = `-16px ${offsetValue.value}px`
   } else if (props.offset && props.offset === 'left') {
-    styles.translate = `50% ${offsetValue.value}px`
+    styles.translate = `16px ${offsetValue.value}px`
   }
 
   // 自定义border时候
@@ -157,7 +157,7 @@ onMounted(() => {
   const badgeDom: HTMLDivElement = badgeRef.value
   const supDomHeight = ref(0)
   if (props.count && props.count > props.overflowCount) {
-    supDomHeight.value = 12
+    supDomHeight.value = 10
   } else {
     supDomHeight.value = 10
   }

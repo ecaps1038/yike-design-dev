@@ -22,7 +22,15 @@
         </div>
         <div>
           <div class="title-text">{{ title }}</div>
-          <div class="content">{{ message }}</div>
+          <div class="content">
+            <span class="text">
+              <component
+                :is="render(message)"
+                v-if="!dangerouslyUseHTMLString"
+              />
+              <p v-else v-html="message" />
+            </span>
+          </div>
         </div>
         <button
           v-if="props.closable"
@@ -43,6 +51,7 @@
 <script setup lang="ts">
 import { NotificationProps } from './notification'
 import { onMounted, computed } from 'vue'
+import { render } from '../../utils'
 import '../style'
 import { YkButton, YkSpace } from '../../../index'
 import IconReminderFill from '../../svg-icon/icon-reminder-fill'
@@ -67,6 +76,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   offsetY: 24,
   offsetX: 24,
   zIndex: 2001,
+  dangaurslyUseHtmlString: false,
   handleCancel: () => ({}),
   handleSubmit: () => ({}),
   onClose: () => ({}),

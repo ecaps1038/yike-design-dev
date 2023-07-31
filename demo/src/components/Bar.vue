@@ -35,7 +35,7 @@ defineProps({
   top: 60px;
   left: 0;
   z-index: 1;
-  width: 200px;
+  width: 268px;
   height: calc(100% - 60px);
   border-right: 1px solid @line-color-s;
   background-color: @bg-color-l;
