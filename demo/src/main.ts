@@ -14,14 +14,21 @@ import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 // 全局注入 icon
-import Icon from '../../packages/yike-design-ui/src/components/svg-icon';
-import { YkMessage, YkNotification } from '../../packages/yike-design-ui/src';
+import Icon from 'yike-design-ui/src/components/svg-icon';
+import { YkTitle, YkMessage, YkNotification } from 'yike-design-ui/src';
+
 hljs.registerLanguage('javascript', javascript);
+
 const app = createApp(App);
-app.component('YkSnippet', Snippet);
-app.component('ColorCard', ColorCard);
-app.component(componentPageVue.name, componentPageVue);
-app.use(Icon).use(hljsVuePlugin).use(router).mount('#app');
+app
+  .component('YkTitle', YkTitle)
+  .component('YkSnippet', Snippet)
+  .component('ColorCard', ColorCard)
+  .component(componentPageVue.name, componentPageVue)
+  .use(Icon)
+  .use(hljsVuePlugin)
+  .use(router)
+  .mount('#app');
 
 app.config.globalProperties.$notification = YkNotification;
 app.config.globalProperties.$message = YkMessage;

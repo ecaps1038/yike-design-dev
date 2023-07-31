@@ -1,3 +1,4 @@
+@import '../../styles/color/colors.less';
 .yk-progress {
   &-line-wrapper {
     display: flex;
@@ -11,6 +12,17 @@
     height: 6px;
     border-radius: @radius-s;
     background: #e8e8e8;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--progress-inner-w);
+      height: 100%;
+      border-radius: @radius-s;
+      background-color: var(--progress-inner-color);
+      transition: width 0.3s linear;
+      content: '';
+    }
   }
   &-text {
     display: flex;
