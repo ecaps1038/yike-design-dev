@@ -1,5 +1,5 @@
 <template>
-  <Teleport :to="to">
+  <Teleport :to="target">
     <div>
       <Transition name="fade" appear>
         <div
@@ -42,10 +42,12 @@
             <div v-if="showFooter" :class="bem('footer')">
               <div class="yk-modal-footer-option">
                 <slot name="footer">
-                  <yk-button type="secondary" @click="closeModal">
-                    取消
-                  </yk-button>
-                  <yk-button style="margin-left: 16px">确定</yk-button>
+                  <yk-space>
+                    <yk-button type="secondary" @click="closeModal">
+                      取消
+                    </yk-button>
+                    <yk-button>确定</yk-button>
+                  </yk-space>
                 </slot>
               </div>
             </div>
@@ -63,7 +65,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { watch, onMounted, ref } from 'vue'
+import { watch, onUnmounted, ref } from 'vue'
 import { createCssScope } from '../../utils/bem'
 import { modalBaseProps } from './modal'
 import '../style'
@@ -71,7 +73,7 @@ import '../style'
 const props = withDefaults(defineProps<modalBaseProps>(), {
   modelValue: false,
   title: '',
-  size: 'small',
+  size: 'large',
   showFooter: true,
   to: 'body',
   scrollable: false,
@@ -81,12 +83,12 @@ const props = withDefaults(defineProps<modalBaseProps>(), {
 })
 const bem = createCssScope('modal')
 const emit = defineEmits(['onCloseModal', 'update:modelValue'])
-const target = ref<string>('body')
+const target = ref<HTMLElement>(document.body)
 const closeModal = () => {
   emit('update:modelValue', false)
   emit('onCloseModal')
 }
-onMounted(() => {
+onUnmounted(() => {
   document.body.removeEventListener('keydown', escapeClose)
 })
 watch(props, () => {
@@ -99,7 +101,7 @@ watch(props, () => {
     document.body.style.overflow = ''
   }
   if (props.to) {
-    target.value = props.to || 'body'
+    target.value = getElement(props.to || 'body')
   }
 })
 const escapeClose = (ev: KeyboardEvent) => {
