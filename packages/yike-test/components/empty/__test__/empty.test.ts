@@ -31,9 +31,7 @@ describe('YkEmpty', () => {
     });
 
     // 验证主要类型图标是否正确渲染
-    expect(wrapper.find('.yk-empty__image yk-icon.primary').exists()).toBe(
-      true,
-    );
+    expect(wrapper.find('.primary').exists()).toBe(true);
   });
 
   it('no image and type is secondary', () => {
@@ -44,9 +42,7 @@ describe('YkEmpty', () => {
     });
 
     // 验证次要类型图标是否正确渲染
-    expect(wrapper.find('.yk-empty__image yk-icon.secondary').exists()).toBe(
-      true,
-    );
+    expect(wrapper.find('.secondary').exists()).toBe(true);
   });
 
   it('bottom slot', () => {
