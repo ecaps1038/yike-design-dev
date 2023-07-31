@@ -1,7 +1,8 @@
 @import '../../styles/color/colors.less';
+
 .yk-tooltip {
   --tooltip-theme-bg-color: @dark;
-  --tooltip-theme-font-color: @light;
+  --tooltip-theme-font-color: @white;
   --tooltip-theme-min-width: 2em;
   --tooltip-theme-min-height: 2em;
   --tooltip-theme-max-width: 250px;
@@ -23,8 +24,8 @@
     font-size: @size-s;
     border-radius: @brSize;
     text-align: start;
-    color: @white;
-    background-color: @dark;
+    color: var(--tooltip-theme-font-color);
+    background-color: var(--tooltip-theme-bg-color);
     box-shadow: @shadow-m;
     word-wrap: break-word;
   }
