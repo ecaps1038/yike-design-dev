@@ -35,9 +35,9 @@ onMounted(() => {
 
   .anchor-wrap {
     position: fixed;
-    top: 100px;
+    top: 88px;
     right: 0;
-    width: 150px;
+    width: 168px;
     height: 100%;
   }
 }

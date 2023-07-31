@@ -1,8 +1,7 @@
-import type { VNode } from 'vue';
-import { NotificationType } from '../../utils/constant';
+import { NotificationType, type RenderContent } from '../../utils';
 export type NotificationProps = {
   title?: string;
-  message: string | VNode;
+  message: RenderContent;
   closable?: boolean;
   showFooterBtn?: boolean;
   showIcon?: boolean;
@@ -12,6 +11,7 @@ export type NotificationProps = {
   offsetY?: number;
   offsetX?: number;
   zIndex?: number;
+  dangerouslyUseHTMLString?: boolean;
 
   onClose?: () => void;
   onDestroy?: () => void;
