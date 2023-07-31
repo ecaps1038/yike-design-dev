@@ -29,6 +29,7 @@ declare module 'vue' {
     IconLoading1Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconLoading1Outline']
     IconPlusCircleOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconPlusCircleOutline']
     IconPlusOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconPlusOutline']
+    IconRightOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconRightOutline']
     IconTickOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconTickOutline']
     IconUpload1Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconUpload1Outline']
     IconUpload2Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconUpload2Outline']
