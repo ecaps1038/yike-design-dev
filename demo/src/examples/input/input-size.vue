@@ -1,26 +1,12 @@
 <template>
-  <div class="item">
-    <yk-input v-model:value="words" size="s" />
-  </div>
-  <div class="item">
-    <yk-input v-model:value="words" size="m" />
-  </div>
-  <div class="item">
-    <yk-input v-model:value="words" size="l" />
-  </div>
-  <div class="item">
-    <yk-input v-model:value="words" size="xl" />
-  </div>
+  <yk-space direction="vertical">
+    <yk-input v-model:value="words" size="s" style="width: 360px" clearable />
+    <yk-input v-model:value="words" size="m" style="width: 360px" />
+    <yk-input v-model:value="words" size="l" style="width: 360px" />
+    <yk-input v-model:value="words" size="xl" style="width: 360px" />
+  </yk-space>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
 const words = ref<string>('你好，Yike Design')
 </script>
-<style scoped>
-.item {
-  display: flex;
-  margin-bottom: 5px;
-  width: 350px;
-  flex-direction: column;
-}
-</style>

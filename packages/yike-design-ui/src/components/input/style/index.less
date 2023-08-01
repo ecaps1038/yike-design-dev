@@ -22,14 +22,13 @@
   }
 
   svg {
-    width: 20px;
-    height: 16px;
     fill: @font-color-l;
   }
 }
 
 .yk-input--disabled input {
   cursor: not-allowed;
+  color: @font-color-s !important;
 }
 
 .yk-input--leftbr0,
@@ -44,24 +43,11 @@
   border-bottom-right-radius: 0px !important;
 }
 
-.yk-input--before {
-  span,
-  svg {
-    margin-left: 5px;
-  }
-}
-
-.yk-input--after {
-  span,
-  svg {
-    margin-right: 5px;
-  }
-}
-
 .yk-input__inner {
   display: flex;
   flex-grow: 1;
   transition: all @animatb ease-in-out;
+  box-sizing: border-box;
 
   .yk-input__widget {
     border: none;
@@ -89,7 +75,7 @@
 
 .yk-input__buttons {
   display: flex;
-  background-color: inherit;
+  background: transparent;
   flex-shrink: 1;
 }
 
@@ -97,7 +83,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
+  margin-right: 8px;
+  width: 24px;
   border: none;
   background: transparent;
   // 为了能在输入框非激活被聚焦，调整透明度而不是 display: none
@@ -117,12 +104,14 @@
 
 .yk-input__button svg {
   padding: 3px;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  fill: @font-color-l !important;
+  fill: @font-color-m !important;
+  transition: all @animatb;
 
   &:hover {
+    fill: @font-color-l !important;
     background-color: @bg-color-ss;
   }
 }
@@ -131,8 +120,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 6px;
-  font-size: 14px;
+  margin-right: @space-s;
+  font-size: 12px;
   color: @font-color-s;
 
   span {
@@ -152,11 +141,41 @@
     border-radius: @br;
   }
 
+  .before {
+    span {
+      margin-left: @padding;
+      font-size: @fs;
+    }
+    svg {
+      margin-left: @padding;
+      width: @fs+2px;
+      height: @fs+2px;
+    }
+  }
+
+  .after {
+    span {
+      margin-right: @padding;
+      font-size: @fs;
+    }
+    svg {
+      margin-right: @padding;
+      width: @fs+2px;
+      height: @fs+2px;
+    }
+  }
+
   &.yk-input--@{size} {
     .inner();
   }
   &.yk-input--@{size} input {
     .widget();
+  }
+  &.yk-input--@{size} .yk-input--before {
+    .before();
+  }
+  &.yk-input--@{size} .yk-input--after {
+    .after();
   }
 }
 
@@ -210,8 +229,8 @@
 
   circle {
     fill: none;
-    stroke: @font-color-l;
-    stroke-width: 6;
+    stroke: @pcolor;
+    stroke-width: 3;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
     stroke-linecap: round;
@@ -241,13 +260,14 @@
   }
 }
 
-.input-size(s, 24px, 6px, @size-s, @radius-s);
-.input-size(m, 32px, 8px, @size-s, @radius-s);
-.input-size(l, 36px, 10px, @size-s, @radius-m);
-.input-size(xl, 48px, 12px, @size-m, @radius-m);
+.input-size(s, 22px, @space-s, @size-ss, @radius-s);
+.input-size(m, 30px, @space-m, @size-s, @radius-s);
+.input-size(l, 34px, @space-m, @size-s, @radius-m);
+.input-size(xl, 46px, @space-l, @size-m, @radius-m);
 
 .input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-l);
 .input-status(danger, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-m);
 .input-status(success, transparent, @scolor-2, @scolor, @scolor-1, @scolor, @bg-color-m);
 .input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-m);
 .input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);
+.input-status(readonly,  @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s);
