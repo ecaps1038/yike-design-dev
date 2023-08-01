@@ -54,8 +54,6 @@ const canvasContainer = ref()
 
 // 缩放比率 0-1
 const scale = ref(0.5)
-const rotation = ref(0)
-
 // slider百分比 0-100
 const scalePercent = ref(50)
 const rotationPercent = ref(50)
@@ -240,7 +238,7 @@ const handleMouseUp = (event: MouseEvent) => {
 onMounted(() => {
   initDrawer()
 })
-// 截取canvas获取blol
+// 截取canvas获取blob
 const handleCrop = async () => {
   const canvas = canvasRef.value
   const rectSize = 240
