@@ -1,19 +1,19 @@
 <template>
-  <div :class="ykSliderClass">
+  <div :class="bem({ withMarks: !!marks.length, disabled }, [direction])">
     <div
       ref="runwayRef"
-      class="yk-slider__runway"
+      :class="bem('runway')"
       :style="ykSliderRunwayStyle"
       @click="handleBarClick"
     >
-      <div class="yk-slider__bar" :style="ykSliderBarStyle">
+      <div :class="bem('bar')" :style="ykSliderBarStyle">
         <div
           v-if="isRange"
-          class="yk-slider__button yk-slider__button--start"
+          :class="bem('button', { start: true })"
           @mousedown="handleStartMouseDown"
         ></div>
         <div
-          class="yk-slider__button yk-slider__button--end"
+          :class="bem('button', { end: true })"
           @mousedown="handleEndMouseDown"
         ></div>
       </div>
@@ -28,9 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import '../style'
 import sliderMarks from './slider-marks.vue'
 import { computed, ref, toRefs, watch } from 'vue'
+import { createCssScope } from '../../utils'
 import {
   SliderProps,
   DirectionType,
@@ -41,6 +41,8 @@ import { useSlider } from './useSlider'
 defineOptions({
   name: 'YKSlider',
 })
+
+const bem = createCssScope('slider')
 
 const props = withDefaults(defineProps<SliderProps>(), {
   modelValue: 0,
@@ -94,6 +96,7 @@ const percentBarEnd = computed(() => {
     return Math.round((value / runwayLen.value) * 100) / 100
   } else {
     const modelVal = modelValue.value as number
+
     return Math.round((modelVal / runwayLen.value) * 100) / 100
   }
 })
@@ -101,15 +104,6 @@ const percentBarEnd = computed(() => {
 const barStartPoint = ref(0)
 const barEndPoint = ref(0)
 
-const ykSliderClass = computed(() => {
-  return {
-    'yk-slider': true,
-    'yk-slider--withMarks': props.marks.length,
-    'yk-slider--horizontal': props.direction === DirectionType.HORIZONTAL,
-    'yk-slider--vertical': props.direction === DirectionType.VERTICAL,
-    'yk-slider--disabled': props.disabled,
-  }
-})
 const ykSliderRunwayStyle = computed(() => {
   if (props.direction === DirectionType.HORIZONTAL) {
     return {
@@ -174,6 +168,8 @@ watch(
 watch(
   runwayWidth,
   () => {
+    console.log('🚀 ~ file: slider.vue:177 ~ runwayWidth:', runwayWidth.value)
+
     barStartPoint.value = percentBarStart.value * runwayWidth.value
     barEndPoint.value = percentBarEnd.value * runwayWidth.value
   },

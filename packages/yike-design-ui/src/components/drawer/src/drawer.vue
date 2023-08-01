@@ -103,11 +103,11 @@ const onAfterOpen = () => {
 }
 
 const close = () => {
-  emits('before-close')
   // 当前抽屉不是最后一个抽屉 直接 return 不关闭
   if (!drawerStats.isLast(drawerId.value)) {
     return
   }
+  emits('before-close')
   emits('close')
 }
 
