@@ -7,19 +7,33 @@
       @click="handleBarClick"
     >
       <div :class="bem('bar')" :style="ykSliderBarStyle">
-        <div
+        <yk-tooltip
           v-if="isRange"
           :class="bem('button', { start: true })"
+          :placement="toolTipPlacement"
+          :open="moving && !isEndBtn"
+          trigger="hover"
+          :title="toolTipTitleStart"
           @mousedown="handleStartMouseDown"
-        ></div>
-        <div
+        >
+          <div :class="bem('tooltipSpan')"></div>
+        </yk-tooltip>
+        <yk-tooltip
           :class="bem('button', { end: true })"
+          :placement="toolTipPlacement"
+          :open="moving && isEndBtn"
+          trigger="hover"
+          :title="toolTipTitleEnd"
           @mousedown="handleEndMouseDown"
-        ></div>
+        >
+          <div :class="bem('tooltipSpan')"></div>
+        </yk-tooltip>
       </div>
     </div>
     <slider-marks
-      v-model="props.marks"
+      v-model="marks"
+      :range-min="min"
+      :range-max="max"
       :percent-start="percentBarStart"
       :percent-end="percentBarEnd"
       @position="handlePosition"
@@ -30,13 +44,8 @@
 <script setup lang="ts">
 import sliderMarks from './slider-marks.vue'
 import { computed, ref, toRefs, watch } from 'vue'
-import { createCssScope } from '../../utils'
-import {
-  SliderProps,
-  DirectionType,
-  SliderEmits,
-  SliderEmitEvents,
-} from './slider'
+import { SliderProps, SliderEmits, SliderEmitEvents } from './slider'
+import { DIRECTION, createCssScope } from '../../utils'
 import { useSlider } from './useSlider'
 defineOptions({
   name: 'YKSlider',
@@ -49,13 +58,13 @@ const props = withDefaults(defineProps<SliderProps>(), {
   disabled: false,
   min: 0,
   max: 100,
-  direction: DirectionType.HORIZONTAL,
+  direction: DIRECTION[1],
   height: 200,
   step: 1,
   marks: () => [],
   showInput: false,
 })
-const { modelValue } = toRefs(props)
+const { modelValue, marks, min, max } = toRefs(props)
 const runwayRef = ref()
 const emits: SliderEmits = defineEmits([
   'update:modelValue',
@@ -65,20 +74,26 @@ const emits: SliderEmits = defineEmits([
 const isRange = computed(() => {
   return Array.isArray(modelValue.value)
 })
+// 滑道区间 - 逻辑长度
 const runwayLen = computed(() => {
   return props.max - props.min
 })
+// 滑道区间 - 渲染长度
 const runwayWidth = computed(() => {
-  if (props.direction === DirectionType.HORIZONTAL) {
+  if (props.direction === DIRECTION[1]) {
     return runwayRef.value ? runwayRef.value.offsetWidth : 0
-  } else if (props.direction === DirectionType.VERTICAL) {
+  } else if (props.direction === DIRECTION[0]) {
     return runwayRef.value ? runwayRef.value.offsetHeight : 0
   } else {
     return 0
   }
 })
 
-// bar 开始位置 百分比
+// bar 渲染参数
+const barStartPoint = ref(0)
+const barEndPoint = ref(0)
+
+// bar 开始位置 百分比系数
 const percentBarStart = computed(() => {
   if (isRange.value) {
     const modelVal = modelValue.value as number[]
@@ -88,11 +103,11 @@ const percentBarStart = computed(() => {
     return 0
   }
 })
-// bar 所占的百分比
+// bar 结束位置 百分比系数
 const percentBarEnd = computed(() => {
   if (isRange.value) {
     const modelVal = modelValue.value as number[]
-    const value = (modelVal[1] || 0) - (modelVal[0] || 0)
+    const value = (modelVal[1] || 0) - props.min
     return Math.round((value / runwayLen.value) * 100) / 100
   } else {
     const modelVal = modelValue.value as number
@@ -101,15 +116,35 @@ const percentBarEnd = computed(() => {
   }
 })
 
-const barStartPoint = ref(0)
-const barEndPoint = ref(0)
+// 文本提示 - 开始值
+const toolTipTitleStart = computed(() => {
+  if (isRange.value) {
+    const modelVal = modelValue.value as number[]
+    return (modelVal[0] || 0).toString()
+  } else {
+    return '0'
+  }
+})
+// 文本提示 - 结束值
+const toolTipTitleEnd = computed(() => {
+  if (isRange.value) {
+    const modelVal = modelValue.value as number[]
+    return (modelVal[1] || 0).toString()
+  } else {
+    return modelValue.value.toString()
+  }
+})
+// 文本提示 - 位置
+const toolTipPlacement = computed(() => {
+  return props.direction === DIRECTION[1] ? 'top' : 'right'
+})
 
 const ykSliderRunwayStyle = computed(() => {
-  if (props.direction === DirectionType.HORIZONTAL) {
+  if (props.direction === DIRECTION[1]) {
     return {
       height: '2px',
     }
-  } else if (props.direction === DirectionType.VERTICAL) {
+  } else if (props.direction === DIRECTION[0]) {
     return {
       height: props.height + 'px',
       width: '2px',
@@ -119,34 +154,34 @@ const ykSliderRunwayStyle = computed(() => {
   }
 })
 const ykSliderBarStyle = computed(() => {
-  if (props.direction === DirectionType.HORIZONTAL) {
+  if (props.direction === DIRECTION[1]) {
     return {
       top: 0,
       height: '2px',
       left: barStartPoint.value + 'px',
-      width: barEndPoint.value + 'px',
+      width: barEndPoint.value - barStartPoint.value + 'px',
     }
-  } else if (props.direction === DirectionType.VERTICAL) {
+  } else if (props.direction === DIRECTION[0]) {
     return {
       left: 0,
       width: '2px',
       bottom: barStartPoint.value + 'px',
-      height: barEndPoint.value + 'px',
+      height: barEndPoint.value - barStartPoint.value + 'px',
     }
   } else {
     return {}
   }
 })
 
-const { moving, handleStartMouseDown, handleEndMouseDown } = useSlider(
-  props,
-  runwayRef,
-  barStartPoint,
-  barEndPoint,
-  isRange,
-  emits,
-)
+const {
+  moving,
+  isEndBtn,
+  handleStartMouseDown,
+  handleEndMouseDown,
+  emitValue,
+} = useSlider(props, runwayWidth, barStartPoint, barEndPoint, isRange, emits)
 
+// 监听初始化 和 外部数据变化
 watch(
   percentBarStart,
   () => {
@@ -177,30 +212,34 @@ watch(
 )
 
 const handlePosition = (percent: number) => {
+  if (props.disabled) return
+  let _percent = percent / 100
   if (isRange.value) {
-    const modelVal = modelValue.value as number[]
-    const startDistance = Math.abs(modelVal[0] - percent)
-    const endDistance = Math.abs(modelVal[1] - percent)
+    const startDistance = Math.abs(percentBarStart.value - _percent)
+    const endDistance = Math.abs(percentBarEnd.value - _percent)
     if (startDistance >= endDistance) {
-      modelVal[1] = percent
+      barEndPoint.value = _percent * runwayWidth.value
     } else {
-      modelVal[0] = percent
+      barStartPoint.value = _percent * runwayWidth.value
     }
-    emits('update:modelValue', modelVal)
   } else {
-    emits('update:modelValue', percent)
+    barEndPoint.value = _percent * runwayWidth.value
   }
+  emitValue('update:modelValue')
 }
 const handleBarClick = (e: MouseEvent) => {
+  if (props.disabled) return
   const dom = runwayRef.value as HTMLBaseElement
   const rect = dom.getBoundingClientRect()
-  if (props.direction === DirectionType.HORIZONTAL) {
-    const position = e.pageX - rect.left
-    const percent = Math.round((position / runwayWidth.value) * 100)
+  if (props.direction === DIRECTION[1]) {
+    const position = e.clientX - rect.left
+    let percent = Math.round((position / runwayWidth.value) * 100)
+    percent = Math.round(percent / props.step) * props.step
     handlePosition(percent)
-  } else if (props.direction === DirectionType.VERTICAL) {
+  } else if (props.direction === DIRECTION[0]) {
     const position = runwayWidth.value - (e.clientY - rect.top)
-    const percent = Math.round((position / runwayWidth.value) * 100)
+    let percent = Math.round((position / runwayWidth.value) * 100)
+    percent = Math.round(percent / props.step) * props.step
     handlePosition(percent)
   }
 }

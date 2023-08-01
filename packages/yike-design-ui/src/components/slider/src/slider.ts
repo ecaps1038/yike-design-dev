@@ -1,23 +1,12 @@
-import { StyleValue, VNode } from 'vue';
-
-export enum DirectionType {
-  VERTICAL = 'vertical',
-  HORIZONTAL = 'horizontal',
-}
-
-export interface SliderMark {
-  percent: number;
-  label: string;
-  style?: StyleValue;
-  titleNode?: VNode;
-}
+import { Direction } from '../../utils';
+import { SliderMark } from './slider-marks';
 
 export interface SliderProps {
   modelValue: number | number[];
   disabled?: boolean;
   min?: number;
   max?: number;
-  direction?: DirectionType;
+  direction?: Direction;
   step?: number;
   marks?: SliderMark[];
   height?: number;
@@ -29,7 +18,7 @@ export interface UseSliderProps {
   disabled: boolean;
   min: number;
   max: number;
-  direction: DirectionType;
+  direction: Direction;
   step: number;
 }
 
