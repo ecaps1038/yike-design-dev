@@ -8,7 +8,7 @@
     :style="{ height: scrollHeight }"
   >
     <div ref="boxRef" class="yk-scrollbar__container" @scroll="scrollChange()">
-      <div ref="wrapRef">
+      <div ref="wrapRef" style="width: fit-content">
         <slot></slot>
       </div>
     </div>
@@ -168,9 +168,12 @@ function onWindowResize() {
   // 创建一个新的计时器
   resizeTimer = requestAnimationFrame(() => {
     boxWidth.value = boxRef.value.clientWidth
+    console.log('boxWidth.value: ', boxWidth.value)
     wrapWidth.value = wrapRef.value.clientWidth
+    console.log('wrapWidth.value: ', wrapWidth.value)
     scrollBodyWidth.value = (boxWidth.value * boxWidth.value) / wrapWidth.value
     isx.value = wrapWidth.value > boxWidth.value
+    console.log('isx.value: ', isx.value)
 
     //纵向滚动
     boxHeight.value = boxRef.value.clientHeight
