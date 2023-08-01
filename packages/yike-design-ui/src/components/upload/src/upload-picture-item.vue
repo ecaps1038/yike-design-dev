@@ -33,10 +33,12 @@
     <yk-modal
       v-if="editModalVisible"
       v-model="editModalVisible"
+      :scrollable="false"
       title="图片裁剪"
       size="small"
+      @on-submit="handleSubmit"
     >
-      <cropPicture :url="url" :blob-raw="blobRaw" />
+      <cropPicture ref="cropRef" :url="url" :blob-raw="blobRaw" :uid="uid" />
     </yk-modal>
   </div>
 </template>
@@ -64,6 +66,8 @@ const bem = createCssScope('upload-picture')
 const { status, uid, raw, url } = toRefs(props.fileContent)
 
 const editModalVisible = ref(false)
+
+const cropRef = ref()
 
 const blobRaw = computed(() => {
   if (raw?.value) {
@@ -94,9 +98,11 @@ const handleReUpload = () => {
   emits('handleReUpload', uid.value)
 }
 const handleEdit = () => {
-  console.log('edit')
   editModalVisible.value = true
-  // proxy.$message.success('先走重传，后续修改为裁剪逻辑')
-  // emits('handleEdit', uid.value)
+}
+const handleSubmit = () => {
+  cropRef.value.handleCrop()
+  const { blob, uid } = cropRef.value.handleCrop()
+  emits('handleEdit', blob, uid)
 }
 </script>

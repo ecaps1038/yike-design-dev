@@ -76,6 +76,7 @@ export type DraggleProps = {
 };
 
 export type CropImageProps = {
+  uid: number;
   url?: string;
   blobRaw?: string;
 };

@@ -196,7 +196,7 @@ const handleBeforeUpload = (uploadFile: File) => {
   return true
 }
 
-const handleInputChange = (event) => {
+const handleInputChange = (event: any) => {
   const uploadFiles = Array.from(event.target.files) as File[]
   if (!uploadFiles.length) {
     return
@@ -235,10 +235,9 @@ const handleReUpload = (uid: number) => {
   onUploadRequest(raw)
 }
 
-const handleEdit = (uid: number) => {
-  findFileByUid(uid, currentList.value)
-  // ToDo use idx filter file to edit
-  handleUpload()
+const handleEdit = (blob: string, uid: number) => {
+  const idx = findFileByUid(uid, currentList.value)
+  currentList.value[idx].url = blob
 }
 
 // dragger methods
