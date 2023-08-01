@@ -3,26 +3,27 @@
 </template>
 <script setup lang="ts">
 import { ref, createVNode } from 'vue'
+import { SliderMark } from '../../../../packages/yike-design-ui/src/components/slider/src/slider-marks'
 const value = ref([10, 40])
-const marks = ref([
+const marks = ref<SliderMark[]>([
   {
-    percent: 0,
+    key: 0,
     label: '0°C',
   },
   {
-    percent: 8,
+    key: 8,
     label: '8°C',
   },
   {
-    percent: 40,
+    key: 40,
     label: '40°C',
     style: {
       color: 'red',
     },
   },
   {
-    percent: 60,
-    titleNode: createVNode('em', null, '60%'),
+    key: 60,
+    labelNode: createVNode('em', null, '60%'),
   },
 ])
 </script>
