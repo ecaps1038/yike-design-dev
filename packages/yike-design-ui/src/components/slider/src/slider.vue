@@ -1,32 +1,32 @@
 <template>
-  <div :class="ykSliderClass">
+  <div :class="bem({ withMarks: !!marks.length, disabled }, [direction])">
     <div
       ref="runwayRef"
-      class="yk-slider__runway"
+      :class="bem('runway')"
       :style="ykSliderRunwayStyle"
       @click="handleBarClick"
     >
-      <div class="yk-slider__bar" :style="ykSliderBarStyle">
+      <div :class="bem('bar')" :style="ykSliderBarStyle">
         <yk-tooltip
           v-if="isRange"
-          class="yk-slider__button yk-slider__button--start"
-          placement="top"
+          :class="bem('button', { start: true })"
+          :placement="toolTipPlacement"
           :open="moving && !isEndBtn"
           trigger="hover"
           :title="toolTipTitleStart"
           @mousedown="handleStartMouseDown"
         >
-          <div class="yk-slider__button--tooltipSpan"></div>
+          <div :class="bem('tooltipSpan')"></div>
         </yk-tooltip>
         <yk-tooltip
-          class="yk-slider__button yk-slider__button--end"
-          placement="top"
+          :class="bem('button', { end: true })"
+          :placement="toolTipPlacement"
           :open="moving && isEndBtn"
           trigger="hover"
           :title="toolTipTitleEnd"
           @mousedown="handleEndMouseDown"
         >
-          <div class="yk-slider__button--tooltipSpan"></div>
+          <div :class="bem('tooltipSpan')"></div>
         </yk-tooltip>
       </div>
     </div>
@@ -45,11 +45,13 @@
 import sliderMarks from './slider-marks.vue'
 import { computed, ref, toRefs, watch } from 'vue'
 import { SliderProps, SliderEmits, SliderEmitEvents } from './slider'
-import { DIRECTION } from '../../utils'
+import { DIRECTION, createCssScope } from '../../utils'
 import { useSlider } from './useSlider'
 defineOptions({
   name: 'YKSlider',
 })
+
+const bem = createCssScope('slider')
 
 const props = withDefaults(defineProps<SliderProps>(), {
   modelValue: 0,
@@ -109,6 +111,7 @@ const percentBarEnd = computed(() => {
     return Math.round((value / runwayLen.value) * 100) / 100
   } else {
     const modelVal = modelValue.value as number
+
     return Math.round((modelVal / runwayLen.value) * 100) / 100
   }
 })
@@ -131,16 +134,11 @@ const toolTipTitleEnd = computed(() => {
     return modelValue.value.toString()
   }
 })
-
-const ykSliderClass = computed(() => {
-  return {
-    'yk-slider': true,
-    'yk-slider--withMarks': props.marks.length,
-    'yk-slider--horizontal': props.direction === DIRECTION[1],
-    'yk-slider--vertical': props.direction === DIRECTION[0],
-    'yk-slider--disabled': props.disabled,
-  }
+// 文本提示 - 位置
+const toolTipPlacement = computed(() => {
+  return props.direction === DIRECTION[1] ? 'top' : 'right'
 })
+
 const ykSliderRunwayStyle = computed(() => {
   if (props.direction === DIRECTION[1]) {
     return {
@@ -205,6 +203,8 @@ watch(
 watch(
   runwayWidth,
   () => {
+    console.log('🚀 ~ file: slider.vue:177 ~ runwayWidth:', runwayWidth.value)
+
     barStartPoint.value = percentBarStart.value * runwayWidth.value
     barEndPoint.value = percentBarEnd.value * runwayWidth.value
   },

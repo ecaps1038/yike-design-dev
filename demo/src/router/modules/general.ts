@@ -102,6 +102,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'slider',
     component: () => import('@/examples/slider/doc.md'),
   },
+  {
+    path: 'collapse',
+    component: () => import('@/examples/collapse/doc.md'),
+  },
 ];
 
 export default generalRoutes;

@@ -1,14 +1,14 @@
 <template>
-  <div class="yk-tooltip">
+  <div :class="bem()">
     <transition name="show">
       <template v-if="!(destroyTooltipOnHide && !showTooltip)">
         <div
           v-show="showTooltip"
           ref="tooltip"
-          class="yk-tooltip-content"
           :class="className"
           :style="[overlayStyle, { zIndex }]"
         >
+          <div v-if="arrow" :class="bem('arrow')"></div>
           <slot name="content">{{ title }}</slot>
         </div>
       </template>
@@ -27,10 +27,12 @@
 import type { TooltipProps, TooltipEmit } from './tooltip'
 import { computed, ref, watch } from 'vue'
 import { useEventListener, usePlacement, useDefaultSlots } from './hooks'
-import '../style'
+import { createCssScope } from '../../utils/bem'
+
 defineOptions({
   name: 'YkTooltip',
 })
+const bem = createCssScope('tooltip')
 
 // props 属性定义
 const props = withDefaults(defineProps<TooltipProps>(), {
@@ -43,6 +45,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   autoAdjustOverflow: false,
   overlayStyle: () => ({}),
   destroyTooltipOnHide: false,
+  arrow: true,
 })
 
 // 自定义事件
@@ -108,10 +111,11 @@ const placement = usePlacement(tooltip, props.placement)
 // 类名计算
 const className = computed(() => {
   const { autoAdjustOverflow, overlayClassName } = props
-  return {
-    [`yk-tooltip-${autoAdjustOverflow ? placement.join('') : props.placement}`]:
-      true,
-    [overlayClassName || '']: true,
-  }
+  return [
+    ...bem('content', {
+      [autoAdjustOverflow ? placement.join('') : props.placement]: true,
+    }),
+    overlayClassName || '',
+  ]
 })
 </script>

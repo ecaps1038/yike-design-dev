@@ -1,17 +1,30 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue'
-import { ref } from 'vue'
-import { onMounted } from 'vue'
-import { AnchorOption } from 'yike-design-ui/src/components/anchor'
+import { onMounted, ref } from 'vue'
 
 defineOptions({
   name: 'ComponentPage',
 })
 
-const anchors = ref<AnchorOption[]>([])
+const anchors = ref<any[]>([])
 onMounted(() => {
   const h3es = document.querySelectorAll('.case-card>h3.yk-title')
-  h3es.forEach((el) => {
+  const docH3es = document.querySelectorAll('.yk-demo-doc>h3.yk-title')
+  console.log('docH3es: ', docH3es)
+
+  const els = Array.from(h3es)
+  els.push(...Array.from(docH3es))
+
+  els.sort((a, b) => {
+    const rect1 = a.getBoundingClientRect().top
+    console.log('rect1: ', rect1)
+    const rect2 = b.getBoundingClientRect().top
+    console.log('rect2: ', rect2)
+
+    return rect1 - rect2
+  })
+  console.log('els: ', els)
+
+  els.forEach((el) => {
     anchors.value.push({
       href: `#${el.id}`,
       title: el.id,
@@ -35,9 +48,9 @@ onMounted(() => {
 
   .anchor-wrap {
     position: fixed;
-    top: 100px;
+    top: 88px;
     right: 0;
-    width: 150px;
+    width: 168px;
     height: 100%;
   }
 }

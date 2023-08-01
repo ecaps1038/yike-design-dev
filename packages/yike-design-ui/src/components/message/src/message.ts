@@ -1,4 +1,5 @@
 import { MessageType, type RenderContent } from '../../utils';
+
 export type MessageProps = {
   message: RenderContent;
   type?: MessageType;

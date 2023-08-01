@@ -3,7 +3,6 @@ import { Size } from '../../utils/constant';
 export type AvatarProps = {
   shape?: 'circle' | 'square' | number;
   size?: number | Size;
-  icon?: string;
   imgUrl?: string;
 };
 

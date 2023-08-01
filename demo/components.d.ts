@@ -29,7 +29,6 @@ declare module 'vue' {
     IconTickOutline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconTickOutline']
     IconUpload1Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconUpload1Outline']
     IconUpload2Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconUpload2Outline']
-    IconYike1Fill: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconYike1Fill']
     IconYike1Outline: typeof import('../packages/yike-design-ui/src/components/svg-icon/index.ts')['IconYike1Outline']
     Principle: typeof import('./src/components/design/principle.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

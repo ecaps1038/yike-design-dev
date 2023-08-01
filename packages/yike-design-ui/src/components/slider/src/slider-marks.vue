@@ -1,23 +1,24 @@
 <template>
-  <div class="yk-slider__marks">
+  <div :class="bem('marks')">
     <div
       v-for="item in renderMarks"
       :key="item.key"
-      class="yk-slider__mark-item"
-      :class="{
-        'yk-slider__mark-item--over': item.isOver,
-        'yk-slider__mark-item--overed': item.isOvered,
-      }"
+      :class="
+        bem('mark-item', {
+          over: item.isOver,
+          overed: item.isOvered,
+        })
+      "
       :style="{
         left: item.percent + '%',
       }"
     >
       <div
-        class="yk-slider__mark-item--pointer"
+        :class="bem('mark-item-pointer')"
         @click="emits('position', item.percent)"
       ></div>
       <div
-        class="yk-slider__mark-item--box"
+        :class="bem('mark-item-box')"
         @click="emits('position', item.percent)"
       >
         <component :is="item.markInfo"></component>
@@ -27,8 +28,10 @@
 </template>
 
 <script lang="ts" setup>
+import { createCssScope } from '../../utils'
 import { computed, createVNode } from 'vue'
 import { SliderMarksProps, SliderMarkRenderItem } from './slider-marks'
+const bem = createCssScope('slider')
 defineOptions({
   inheritAttrs: false,
 })

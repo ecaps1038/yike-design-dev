@@ -31,6 +31,7 @@
         :disabled="disabled"
         :readonly="readonly"
         :class="bem('widget')"
+        :style="style"
         :type="inputType"
         tabindex="0"
         :value="realValue"
@@ -148,7 +149,7 @@ const update = () => {
     lastValue = lastValue.slice(0, props.limit)
     inputRef.value!.value = lastValue
   }
-  ;(realValue as any) = lastValue // 别删
+  ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
   valueCounter.value = lastValue.length
   emits('update:value', lastValue)

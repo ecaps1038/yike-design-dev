@@ -1,7 +1,7 @@
 <template>
   <Teleport :to="target">
     <div
-      v-if="show"
+      v-if="shouldVisible || show"
       :class="
         bem({
           'other-el': !isFullscreenDrawer,
@@ -13,7 +13,7 @@
     >
       <Transition name="mask" appear>
         <div
-          v-if="showMask && shouldVisible"
+          v-if="showMask && show"
           :class="bem('mask')"
           aria-hidden="true"
         ></div>
@@ -32,12 +32,12 @@
         @after-leave="onDestory"
       >
         <div
-          v-if="shouldVisible"
+          v-if="show"
           ref="drawerMain"
           :class="
             bem({
               main: true,
-              shadow: !isFullscreenDrawer || !props.showMask,
+              shadow: !props.showMask,
               [`${props.placement}`]: true,
             })
           "
@@ -69,7 +69,6 @@ import { computed, ref, nextTick, watch, onMounted } from 'vue'
 import { getElement, getDrawerOrder, drawerStats } from './utils'
 import { onClickOutside } from '@vueuse/core'
 import { createCssScope } from '../../utils/bem'
-import { onUpdated } from 'vue'
 defineOptions({
   name: 'YkDrawer',
 })
@@ -104,13 +103,12 @@ const onAfterOpen = () => {
 }
 
 const close = () => {
-  emits('before-close', shouldVisible)
-  console.log('here', shouldVisible.value, props.show)
   // 当前抽屉不是最后一个抽屉 直接 return 不关闭
   if (!drawerStats.isLast(drawerId.value)) {
     return
   }
-  shouldVisible.value = false
+  emits('before-close')
+  emits('close')
 }
 
 const onDestory = () => {
@@ -121,8 +119,7 @@ const onDestory = () => {
   if (drawerStats.isLast(drawerId.value) && !props.scrollable) {
     document.body.style.overflow = ''
   }
-  shouldVisible.value = props.show
-  emits('close')
+  shouldVisible.value = false
 }
 
 const onEscape = (ev: KeyboardEvent) => {

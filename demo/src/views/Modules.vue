@@ -14,7 +14,7 @@ import * as barData from '../router/config/bar.json'
 </template>
 <style scoped lang="less">
 .main {
-  padding: 0 166px 56px 216px;
+  padding: 24px 224px 56px 324px;
 
   .module {
     max-width: 1200px;
