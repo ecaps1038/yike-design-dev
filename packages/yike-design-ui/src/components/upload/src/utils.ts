@@ -101,3 +101,40 @@ export function filesFiltered(files: File[], accept: string) {
       });
   });
 }
+
+/**
+ * 将 Base64 数据转换为 File 对象
+ * @param {string} base64Data - Base64 编码的数据
+ * @param {string} fileName - 文件名
+ * @returns {File} - 转换后的 File 对象
+ */
+export function base64ToFile(base64Data: string, fileName: string) {
+  const byteCharacters = atob(base64Data);
+  const byteArrays = [];
+
+  for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+    const slice = byteCharacters.slice(offset, offset + 512);
+
+    const byteNumbers = new Array(slice.length);
+    for (let i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+
+  const file = new File(byteArrays, fileName, { type: 'image/jpeg' });
+  return file;
+}
+
+/**
+ * 将 Blob 对象转换为 File 对象
+ * @param {Blob} blob - Blob 对象
+ * @param {string} fileName - 文件名
+ * @returns {File} - 转换后的 File 对象
+ */
+export function blobToFile(blob: Blob, fileName: string) {
+  const file = new File([blob], fileName, { type: blob.type });
+  return file;
+}
