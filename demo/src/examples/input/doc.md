@@ -88,6 +88,7 @@
 | show-counter  | 输入框是否显示字数统计             | false ｜ true                             | false     |
 | limit         | 输入框最大输入字符数               | number                                    | -1        |
 | tooltip       | 输入框聚焦时显示的文字提示         | string                                    | ''        |
+| style         | 输入框内部原生 Input 的样式        | CSSProperties                             | undefined |
 
 #### Input 事件
 

@@ -1,5 +1,5 @@
 <template>
-  <div :class="bem()">
+  <div :class="bem()" :style="style">
     <div v-if="$slots.prepend" :class="bem('prepend')">
       <slot name="prepend" />
     </div>
@@ -148,7 +148,7 @@ const update = () => {
     lastValue = lastValue.slice(0, props.limit)
     inputRef.value!.value = lastValue
   }
-  ;(realValue as any) = lastValue // 别删
+  ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
   valueCounter.value = lastValue.length
   emits('update:value', lastValue)

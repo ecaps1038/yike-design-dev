@@ -31,6 +31,7 @@ export type TooltipProps = {
   overlayClassName?: string;
   zIndex?: number;
   destroyTooltipOnHide?: boolean;
+  arrow?: boolean;
 };
 
 export type TooltipEmit = {

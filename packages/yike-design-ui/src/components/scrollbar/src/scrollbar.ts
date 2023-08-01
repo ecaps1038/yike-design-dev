@@ -13,4 +13,6 @@ export type ScrollbarProps = {
   space?: number;
   // 是否显示
   show?: boolean;
+  // 横向滚动是否开启
+  xScrollable?: boolean;
 };

@@ -1,20 +1,14 @@
 <template>
   <div :class="['yk-avatar', size && 'yk-avatar-group']" :style="style">
-    <div v-if="icon" class="disembark">
-      <component :is="icon"></component>
-    </div>
-    <img v-else-if="props.imgUrl" :src="imgUrl" />
+    <img v-if="props.imgUrl" :src="imgUrl" />
     <span v-else ref="$text" class="yk-avatar-text">
       <slot />
     </span>
   </div>
 </template>
 <script setup lang="ts">
-import { YkIcon } from '../../../index'
 import { inject, computed, CSSProperties, onMounted, shallowRef } from 'vue'
 import { AvatarProps } from './avatar'
-// FIXME 之后不需要在这边引样式
-
 import { getShape, getSize } from './util'
 
 defineOptions({

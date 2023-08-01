@@ -41,6 +41,7 @@
 | 参数                 | 描述                                                                                                                                                       | 类型                    | 默认值          |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------------- |
 | title                | 气泡消息内容                                                                                                                                               | string                  | "hello tooltip" |
+| arrow                | 是否展示气泡箭头                                                                                                                                           | boolean                 | true            |
 | placement            | 气泡框位置，可选 `top`，`left`，`right`，`bottom`，`topLeft`，`topRight`，`bottomLeft`，`bottomRight`，`leftTop`，`leftBottom` ，`rightTop`，`rightBottom` | string                  | top             |
 | trigger              | 触发行为，可选 `hover`，`focus`，`click`，`contextMenu`，可使用数组设置多个触发行为                                                                        | string ｜ string[]      | hover           |
 | open                 | 气泡打开状态                                                                                                                                               | false ｜ true           | false           |

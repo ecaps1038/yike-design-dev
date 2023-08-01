@@ -182,9 +182,15 @@ export function useDefaultSlots() {
         const VNodes = slots.default
           ? slots.default()
           : [h('span', {}, 'tooltip')];
+        if (VNodes.length > 1)
+          console.error(
+            new Error(
+              'Component can only have one root element, but you have used multiple root elements',
+            ),
+          );
         VNodes[0] = h(VNodes[0], { ...componentProps, ...context.attrs });
 
-        return h('div', {}, VNodes);
+        return VNodes;
       };
     },
     { inheritAttrs: false },

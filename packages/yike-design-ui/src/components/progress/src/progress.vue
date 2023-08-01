@@ -4,6 +4,10 @@
       <div class="yk-progress-line-wrapper">
         <div
           :class="['yk-progress-inner', ykProgressSizeCls[props.type]]"
+          :style="{
+            '--progress-inner-w': progressPercent,
+            '--progress-inner-color': setProgressState,
+          }"
         ></div>
         <div v-if="props.showText" class="yk-progress-text">
           <slot name="format" :percent="props.percent">
@@ -65,7 +69,6 @@
 import { computed } from 'vue'
 import { getIconColor, getIconName, getSvgSize } from './util'
 import { ProgressProps } from './progress'
-import '../style'
 defineOptions({
   name: 'YkProgress',
 })
@@ -116,21 +119,3 @@ const progressValues = computed(() => {
   }
 })
 </script>
-<style lang="less">
-@progress-inner-w: v-bind(progressPercent);
-@progress-inner-color: v-bind(setProgressState);
-
-.yk-progress {
-  .yk-progress-inner::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: @progress-inner-w;
-    height: 100%;
-    border-radius: @radius-s;
-    background-color: @progress-inner-color;
-    content: '';
-    transition: width 0.3s linear;
-  }
-}
-</style>
