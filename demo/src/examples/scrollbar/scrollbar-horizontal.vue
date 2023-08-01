@@ -1,5 +1,5 @@
 <template>
-  <yk-scrollbar class="container">
+  <yk-scrollbar>
     <div style="display: flex">
       <p v-for="item in 20" :key="item" class="item">{{ item }}</p>
     </div>
