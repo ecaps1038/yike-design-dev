@@ -49,9 +49,11 @@ declare module 'vue' {
     YkInput: typeof import('../packages/yike-design-ui/src/index.ts')['YkInput']
     YkInputSearch: typeof import('../packages/yike-design-ui/src/index.ts')['YkInputSearch']
     YkScrollbar: typeof import('../packages/yike-design-ui/src/index.ts')['YkScrollbar']
+    YkSlider: typeof import('../packages/yike-design-ui/src/index.ts')['YkSlider']
     YkSpace: typeof import('../packages/yike-design-ui/src/index.ts')['YkSpace']
     YkText: typeof import('../packages/yike-design-ui/src/index.ts')['YkText']
     YkTheme: typeof import('../packages/yike-design-ui/src/index.ts')['YkTheme']
     YkTitle: typeof import('../packages/yike-design-ui/src/index.ts')['YkTitle']
+    YkTooltip: typeof import('../packages/yike-design-ui/src/index.ts')['YkTooltip']
   }
 }
