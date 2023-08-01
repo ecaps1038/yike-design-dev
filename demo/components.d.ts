@@ -56,6 +56,8 @@ declare module 'vue' {
     YkAvatar: typeof import('../packages/yike-design-ui/src/index.ts')['YkAvatar']
     YkAvatarGroup: typeof import('../packages/yike-design-ui/src/index.ts')['YkAvatarGroup']
     YkBackTop: typeof import('../packages/yike-design-ui/src/index.ts')['YkBackTop']
+    YkBreadcrumb: typeof import('../packages/yike-design-ui/src/index.ts')['YkBreadcrumb']
+    YkBreadcrumbItem: typeof import('../packages/yike-design-ui/src/index.ts')['YkBreadcrumbItem']
     YkButton: typeof import('../packages/yike-design-ui/src/index.ts')['YkButton']
     YkCheckbox: typeof import('../packages/yike-design-ui/src/index.ts')['YkCheckbox']
     YkCheckboxGroup: typeof import('../packages/yike-design-ui/src/index.ts')['YkCheckboxGroup']
