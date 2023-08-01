@@ -8,7 +8,11 @@
     :style="{ height: scrollHeight }"
   >
     <div ref="boxRef" class="yk-scrollbar__container" @scroll="scrollChange()">
-      <div ref="wrapRef" style="width: fit-content">
+      <div
+        ref="wrapRef"
+        class="yk-scrollbar__content"
+        :style="{ width: xScrollable ? 'fit-content' : '100%' }"
+      >
         <slot></slot>
       </div>
     </div>
@@ -58,6 +62,7 @@ const props = withDefaults(defineProps<ScrollbarProps>(), {
   space: 2,
   show: true,
   always: false,
+  xScrollable: false,
 })
 
 //获取dome
