@@ -7,6 +7,7 @@
           ref="tooltip"
           :class="className"
           :style="[overlayStyle, { zIndex }]"
+          @click.stop
           @mouseenter="openTooltip"
           @mouseleave="onLeave"
         >
