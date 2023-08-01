@@ -241,7 +241,7 @@ onMounted(() => {
   initDrawer()
 })
 // 截取canvas获取blol
-const handleCrop = () => {
+const handleCrop = async () => {
   const canvas = canvasRef.value
   const rectSize = 240
   const rectX = (canvas.width - rectSize) / 2
@@ -266,9 +266,26 @@ const handleCrop = () => {
     rectSize,
     rectSize,
   )
-  const base64Data = newCanvas.toDataURL()
-  return { blob: base64Data, uid: props.uid }
+  let blobRaw
+  await getBlobAsync(newCanvas).then(function (blob) {
+    blobRaw = blob
+  })
+  // 在这里使用blobRaw
+  return { blobRaw, uid: props.uid }
 }
+
+const getBlobAsync = (newCanvas: HTMLCanvasElement) => {
+  return new Promise(function (resolve, reject) {
+    newCanvas.toBlob(
+      function (blob) {
+        resolve(blob)
+      },
+      'image/jpeg',
+      0.8,
+    )
+  })
+}
+
 defineExpose({
   handleCrop,
 })

@@ -100,9 +100,9 @@ const handleReUpload = () => {
 const handleEdit = () => {
   editModalVisible.value = true
 }
-const handleSubmit = () => {
-  cropRef.value.handleCrop()
-  const { blob, uid } = cropRef.value.handleCrop()
-  emits('handleEdit', blob, uid)
+const handleSubmit = async () => {
+  const { blobRaw, uid } = await cropRef.value.handleCrop()
+  emits('handleEdit', blobRaw, uid)
+  editModalVisible.value = false
 }
 </script>
