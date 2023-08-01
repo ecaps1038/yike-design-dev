@@ -1,47 +1,99 @@
 <template>
-  <div class="canvas-container">
-    <canvas ref="canvasRef"></canvas>
+  <div :class="bem()">
+    <div class="canvas-container">
+      <canvas ref="canvasRef"></canvas>
+    </div>
+    <div :class="bem('operate')">
+      <div :class="bem('operate-left')">
+        <IconMinusOutline @click="zoomOut" />
+        <YkSlider v-model="scalePercent" :class="bem('scale-bar')" />
+        <IconPlusOutline @click="zoomIn" />
+      </div>
+      <div :class="bem('operate-right')">
+        <IconRotateLeftOutline @click="rotateCounterClockwise" />
+        <YkSlider v-model="rotationPercent" :class="bem('scale-bar')" />
+        <IconRotateRightOutline @click="rotateClockwise" />
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { CropImageProps } from './upload'
 import { onMounted } from 'vue'
+import { YkSlider } from '../../../index'
+import { createCssScope } from '../../utils'
 
+const bem = createCssScope('image-crop')
 const props = defineProps<CropImageProps>()
+
+const MINAVATARWIDTH = 20
 
 const canvasRef = ref()
 
-const scale = ref(1)
+// 缩放比率
+const scale = ref(0.5)
 const rotation = ref(0)
+
+// slider百分比
+const scalePercent = ref(50)
+const rotationPercent = ref(50)
+// image缩放比率
+const scaleFactor = ref(0)
+
+const image = new Image()
+
+const canvasWidth = ref(0)
+const canvasHeight = ref(0)
 
 // 初始化canvas
 const initDrawer = () => {
   const canvas = canvasRef.value
   const context = canvas.getContext('2d')
-  const image = new Image()
   image.src = (props.url || props.blobRaw) ?? '' // 替换为你的图片URL
 
   image.onload = () => {
+    // image aspect ratio
     const aspectRatio = image.width / image.height
-    const canvasHeight = 300
-    const canvasWidth =
-      canvasHeight * aspectRatio <= 700 ? canvasHeight * aspectRatio : 700
+    scale.value = Math.max((300 - MINAVATARWIDTH) / image.height, 0)
+    scalePercent.value = scale.value * 100
 
-    canvas.width = canvasWidth
-    canvas.height = canvasHeight
+    canvasHeight.value = 300
+    canvasWidth.value = Math.min(canvasHeight.value * aspectRatio, 700)
+    canvas.width = canvasWidth.value
+    canvas.height = canvasHeight.value
 
-    const scaleFactor = canvasHeight / image.height
+    scaleFactor.value = canvasHeight.value / image.height
 
     context.drawImage(
       image,
       0,
       0,
-      image.width * scaleFactor,
-      image.height * scaleFactor,
+      image.width * scaleFactor.value,
+      image.height * scaleFactor.value,
     )
     initCropArea()
   }
+}
+
+watch(
+  () => scalePercent.value,
+  (val) => {
+    console.log('value-change', val)
+  },
+)
+const reDraw = () => {
+  const canvas = canvasRef.value
+  const context = canvas.getContext('2d')
+  context.clearRect(0, 0, canvasWidth.value, canvasHeight.value)
+  context.drawImage(
+    image,
+    0,
+    0,
+    image.width * scaleFactor.value,
+    image.height * scaleFactor.value,
+  )
+  initCropArea()
 }
 
 // 绘制裁剪框
@@ -73,6 +125,33 @@ const initCropArea = () => {
     canvas.width - (rectX + rectSize),
     rectSize,
   ) // 右侧遮罩
+}
+
+// 顺时针旋转图像
+const rotateClockwise = () => {
+  const canvas = canvasRef.value
+  const context = canvas.getContext('2d')
+}
+
+// 逆时针旋转图像
+const rotateCounterClockwise = () => {
+  const canvas = canvasRef.value
+  const context = canvas.getContext('2d')
+}
+
+// 缩小图像
+const zoomOut = () => {
+  const canvas = canvasRef.value
+  const context = canvas.getContext('2d')
+  console.log('out', scaleFactor.value)
+  scaleFactor.value += 0.05
+  reDraw()
+}
+
+// 放大图像
+const zoomIn = () => {
+  const canvas = canvasRef.value
+  const context = canvas.getContext('2d')
 }
 
 onMounted(() => {
