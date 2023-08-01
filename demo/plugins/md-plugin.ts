@@ -13,7 +13,10 @@ export const mdCustomH3: MarkdownIt.PluginSimple = (md) => {
         const headingContent = tokens[i + 1].content;
 
         // 生成自定义组件形式的字符串
-        const customComponent = `<yk-title :level="${headingLevel}" id="${headingContent}">${headingContent}</yk-title>`;
+        const customComponent = `<yk-title :level="${headingLevel}" id="${headingContent.replace(
+          /\s/,
+          '',
+        )}">${headingContent}</yk-title>`;
 
         // 替换标题 Token 为自定义组件字符串
         tokens[i].type = 'html_inline';
