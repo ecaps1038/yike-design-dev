@@ -13,7 +13,7 @@
       <circle r="20" cy="50" cx="50"></circle>
     </svg>
 
-    <span v-if="isIcon" ref="$icon" :class="icon">
+    <span v-if="$slots.icon" :class="icon">
       <slot name="icon" />
     </span>
     <slot></slot>
@@ -26,13 +26,10 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { computed } from 'vue'
 import { ButtonProps } from './button'
 
 import { createCssScope } from '../../utils/bem'
-
-const $icon = ref<HTMLSpanElement>()
-const isIcon = ref<boolean>(true)
 
 const bem = createCssScope('button')
 
@@ -52,11 +49,5 @@ const icon = computed(() => {
   return {
     'yk-button__icon': props.shape != 'circle' && props.shape != 'square',
   }
-})
-onMounted(() => {
-  if ($icon.value)
-    if (!$icon.value.innerHTML) {
-      isIcon.value = false
-    }
 })
 </script>

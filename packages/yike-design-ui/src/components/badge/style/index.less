@@ -45,8 +45,8 @@
   .yk-badge__dot {
     // 定位
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -@space-ss;
+    right: -@space-ss;
     z-index: 1;
 
     //由外到内 设置margin -> padding -> width -> height
@@ -60,9 +60,9 @@
     background: @ecolor;
     box-shadow: 0 0 0 2px #ffffff;
 
-    &--outer {
-      top: -4px;
-      right: -4px;
+    &--inner {
+      top: @space-ss;
+      right: @space-ss;
     }
 
     &--stand {
@@ -95,7 +95,7 @@
     right: 0px;
     z-index: 1;
     // 由外到内 设置margin -> padding -> width -> height
-    padding: 2px 6px;
+    padding: 0 6px;
 
     // 字体边框相关
     font-size: @size-ss;
@@ -105,11 +105,10 @@
     text-align: center;
 
     // 颜色、透明度、阴影等
-    color: white;
+    color: @white;
     background: @ecolor;
     box-shadow: 0 0 0 2px #ffffff;
     line-height: 20px;
-    letter-spacing: -0.41px;
 
     &--left {
       top: 0;
@@ -140,9 +139,6 @@
 
   .yk-badge__count.yk-badge__count--danger {
     background: @ecolor;
-  }
-
-  .yk-badge__count--outer {
   }
 
   .yk-badge__count.isRound {

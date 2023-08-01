@@ -99,6 +99,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/tree/doc.md'),
   },
   {
+    path: 'slider',
+    component: () => import('@/examples/slider/doc.md'),
+  },
+  {
     path: 'collapse',
     component: () => import('@/examples/collapse/doc.md'),
   },

@@ -15,7 +15,7 @@ const goPage = (e: string): void => {
   <main class="home" :style="{ height: bodyHeight + 'px' }">
     <div class="main">
       <div class="logo">
-        <IconYike1Fill class="bg-logo" />
+        <IconLogoBackup5Fill class="bg-logo" />
         <p class="title">YIKE DESIGN</p>
         <p class="slogan">包容万物，从源头出发，一切从简</p>
       </div>
@@ -43,7 +43,8 @@ const goPage = (e: string): void => {
     .sign {
       position: absolute;
       bottom: 60px;
-      font-size: 56px;
+      width: 56px;
+      height: 56px;
     }
 
     .bt {
