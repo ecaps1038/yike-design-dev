@@ -35,18 +35,15 @@
   &-icon {
     margin-left: 8px;
   }
-
-  @sizes: {
-    s: 4px;
-    m: 6px;
-    l: 8px;
-  };
-
-  each(@sizes,{
-    .yk-progress--@{key}{
-      height: @value;
-    }
-  });
+  &--s {
+    height: 4px;
+  }
+  &--m {
+    height: 6px;
+  }
+  &--l {
+    height: 8px;
+  }
 
   &-svg {
     position: relative;
@@ -69,15 +66,18 @@
     color: #1e2025cc;
     transform: translate(-50%, -50%);
   }
-  @circleSizes: {
-    s: 48px;
-    m: 64px;
-    l: 80px;
-  };
-  each(@circleSizes,{
-    .yk-progress-circle--@{key}{
-      width: @value;
-      height: @value;
+  &-circle {
+    &--s {
+      width: 48px;
+      height: 48px;
     }
-  });
+    &--m {
+      width: 64px;
+      height: 64px;
+    }
+    &--l {
+      width: 80px;
+      height: 80px;
+    }
+  }
 }
