@@ -8,17 +8,15 @@ const checkPercentNum = (num: number): number => {
 
 const useSlider = (
   props: UseSliderProps,
+  runwayRef: Ref<HTMLElement>,
   runwayWidth: Ref<number>,
   barStartPoint: Ref<number>,
   barEndPoint: Ref<number>,
   isRange: Ref<boolean>,
   emits: SliderEmits,
 ) => {
-  let pointStart = 0,
-    runwayLength = 0,
-    prevDistance = 0, // 上一次步径偏差
-    prevDirection = 0, // 上一次位移方向 -1 负向移动  0 未移动 1 正向移动
-    isOver = false, // 是否过界
+  let runwayLength = 0,
+    rect: unknown = null,
     propsStep = 0; // 步法值
   const isEndBtn = ref(true), // false 开始按钮 true 结束按钮
     moving = ref(false); // 是否在移动中
@@ -40,23 +38,17 @@ const useSlider = (
       emits(event, modelVal);
     });
   };
-
   // 按钮按步位移
   const handleStep = (step: number) => {
-    // console.log(step);
     let start = barStartPoint.value,
       end = barEndPoint.value;
     if (isRange.value) {
       if (isEndBtn.value) {
-        end += step;
-        end = end >= runwayLength ? runwayLength : end;
+        end = step >= runwayLength ? runwayLength : step;
         end = end <= 0 ? 0 : end;
-        isOver = end <= 0 || end >= runwayLength;
       } else {
-        start += step;
-        start = start >= runwayLength ? runwayLength : start;
+        start = step >= runwayLength ? runwayLength : step;
         start = start <= 0 ? 0 : start;
-        isOver = start <= 0 || start >= runwayLength;
       }
       if (start >= end) {
         const cache = start;
@@ -65,96 +57,64 @@ const useSlider = (
         isEndBtn.value = !isEndBtn.value;
       }
     } else {
-      end += step;
-      end = end >= runwayLength ? runwayLength : end;
+      end = step >= runwayLength ? runwayLength : step;
       end = end <= 0 ? 0 : end;
-      isOver = end <= 0 || end >= runwayLength;
     }
     barStartPoint.value = start;
     barEndPoint.value = end;
     emitValue('update:modelValue');
   };
-  // 滑动距离计算
-  const handleDistance = (diff: number, point: number) => {
-    // 当前移动方向
-    const curDirection = diff > 0 ? 1 : -1;
-    if (
-      curDirection !== prevDirection &&
-      Math.abs(diff) + prevDistance >= propsStep / 2
-    ) {
-      // 掉头 && 位移距离 + 上一次步径偏差 >= 步径值一半
-      isOver && (isOver = false);
-      const step =
-        Math.round(diff / propsStep) * propsStep || propsStep * curDirection;
-      // console.log('掉头', diff, Math.round(diff / propsStep) * propsStep, step);
-      handleStep(step);
-      prevDistance =
-        Math.abs(diff) >= propsStep * 2
-          ? propsStep -
-            (Math.abs((diff + prevDistance) % propsStep) || propsStep) -
-            prevDistance
-          : propsStep - Math.abs(diff) - prevDistance;
-      pointStart = point;
-      prevDirection = curDirection; // 存储本次移动方向
-      // console.log('掉头', Math.abs(diff), prevDistance);
-    } else if (Math.abs(diff) - prevDistance >= propsStep / 2) {
-      // 位移距离 - 上一次步径偏差 >= 步径值一半
-      const step =
-        Math.round(diff / propsStep) * propsStep || propsStep * curDirection;
-      // console.log('直行', diff, Math.round(diff / propsStep) * propsStep, step);
-      handleStep(step);
-      prevDistance =
-        Math.abs(diff) >= propsStep * 2
-          ? propsStep -
-            (Math.abs((diff - prevDistance) % propsStep) || propsStep)
-          : propsStep - Math.abs(diff) + prevDistance;
-      pointStart = point;
-      prevDirection = curDirection; // 存储本次移动方向
-      // console.log('直行', Math.abs(diff), prevDistance);
-    }
-  };
   // 滑动事件处理
   const handleMove = (e: MouseEvent) => {
+    const _rect = rect as DOMRect;
     if (props.direction === DIRECTION[1]) {
-      const diff = e.clientX - pointStart;
-      handleDistance(diff, e.clientX);
+      if (e.clientX >= _rect.left && e.clientX <= _rect.right) {
+        const diff = e.clientX - _rect.left;
+        const step = Math.round(diff / propsStep) * propsStep;
+        handleStep(step);
+      } else {
+        const step = e.clientX < _rect.left ? -9999 : 9999;
+        handleStep(step);
+      }
     } else if (props.direction === DIRECTION[0]) {
-      const diff = pointStart - e.clientY;
-      handleDistance(diff, e.clientY);
+      if (e.clientY >= _rect.top && e.clientY <= _rect.bottom) {
+        const diff = _rect.bottom - e.clientY;
+        const step = Math.round(diff / propsStep) * propsStep;
+        handleStep(step);
+      } else {
+        const step = e.clientY < _rect.top ? 9999 : -9999;
+        handleStep(step);
+      }
     }
   };
   // 鼠标拖拽滑动初始化
-  const handlerBtnInit = (e: MouseEvent) => {
+  const handlerBtnInit = () => {
     moving.value = true;
     runwayLength = runwayWidth.value;
-    prevDistance = 0;
     window.addEventListener('mousemove', handleMove);
     window.addEventListener('mouseup', handleMouseUp);
+    rect = runwayRef.value.getBoundingClientRect();
     if (props.direction === DIRECTION[1]) {
-      pointStart = e.clientX;
       propsStep = (runwayLength * props.step) / 100;
     } else if (props.direction === DIRECTION[0]) {
-      pointStart = e.clientY;
       propsStep = (runwayLength * props.step) / 100;
     }
     // console.log('propsStep', propsStep);
   };
   // 开始按钮 鼠标按下事件
-  const handleStartMouseDown = (e: MouseEvent) => {
+  const handleStartMouseDown = () => {
     if (props.disabled) return;
-    handlerBtnInit(e);
+    handlerBtnInit();
     isEndBtn.value = false;
   };
   // 结束按钮 鼠标按下事件
-  const handleEndMouseDown = (e: MouseEvent) => {
+  const handleEndMouseDown = () => {
     if (props.disabled) return;
-    handlerBtnInit(e);
+    handlerBtnInit();
     isEndBtn.value = true;
   };
   // 鼠标抬起事件
   const handleMouseUp = () => {
-    prevDistance = 0;
-    isOver = false;
     moving.value = false;
     window.removeEventListener('mousemove', handleMove);
     window.removeEventListener('mouseup', handleMouseUp);
