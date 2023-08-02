@@ -14,7 +14,7 @@ const props = defineProps<{
 
 const context = inject(TreeInjectionKey)
 const expanded = computed(() => {
-  return !!context?.expandedKeys?.value.includes(props.option.key)
+  return !!context?.expandedKeys?.includes(props.option.key)
 })
 const canOpen = computed(() => expanded.value && !isLeaf.value)
 const isLeaf = computed(
@@ -30,7 +30,6 @@ provide(TreeNodeInjectionKey, {
 
 <template>
   <TreeNode :label="option.label" :node="option" />
-
   <ExpandTransition>
     <div v-if="canOpen" class="yk-tree__list">
       <node v-for="item in option.children" :key="item.key" :option="item" />
