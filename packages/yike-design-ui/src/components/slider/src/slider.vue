@@ -218,7 +218,6 @@ watch(
 watch(
   runwayWidth,
   () => {
-    // console.log('🚀 ~ file: slider.vue:177 ~ runwayWidth:', runwayWidth.value)
     barStartPoint.value = percentBarStart.value * runwayWidth.value
     barEndPoint.value = percentBarEnd.value * runwayWidth.value
   },

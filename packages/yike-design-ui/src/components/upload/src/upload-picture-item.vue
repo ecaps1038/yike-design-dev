@@ -27,16 +27,41 @@
       <IconDeleteOutline @click="handleRemove" />
     </div>
     <div v-if="status === 'success' && avatar" class="hover-icons">
-      <IconFillOutline @click="handleEdit" />
+      <IconModifyOutline @click="handleEdit" />
+      <IconDeleteOutline @click="handleRemove" />
     </div>
+    <yk-modal
+      v-if="editModalVisible"
+      v-model="editModalVisible"
+      :scrollable="false"
+      title="图片裁剪"
+      size="small"
+      @on-submit="handleSubmit"
+    >
+      <cropPicture ref="cropRef" :url="url" :blob-raw="blobRaw" :uid="uid" />
+    </yk-modal>
+
+    <yk-modal
+      v-if="reviewVisible"
+      v-model="reviewVisible"
+      title="图片预览"
+      :show-footer="false"
+    >
+      <div :class="bem('review')">
+        <img :src="blobRaw || url" alt="" />
+      </div>
+    </yk-modal>
   </div>
 </template>
 <script setup lang="ts">
-import { computed, toRefs, getCurrentInstance } from 'vue'
+import { computed, toRefs, getCurrentInstance, ref } from 'vue'
 import { getArcPath } from './utils'
 import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
 import { FileItemProps } from './upload'
+import cropPicture from './crop-picture.vue'
+import { YkModal } from '../../../index'
+
 const proxy: any = getCurrentInstance()?.proxy
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
@@ -50,6 +75,11 @@ const props = withDefaults(defineProps<FileItemProps>(), {
 })
 const bem = createCssScope('upload-picture')
 const { status, uid, raw, url } = toRefs(props.fileContent)
+
+const editModalVisible = ref(false)
+const reviewVisible = ref(false)
+
+const cropRef = ref()
 
 const blobRaw = computed(() => {
   if (raw?.value) {
@@ -67,7 +97,7 @@ const emits = defineEmits([
 ])
 
 const handleReview = () => {
-  proxy.$message.success('此处唤起图片组件进行预览')
+  reviewVisible.value = true
 }
 
 const handlePause = () => {
@@ -80,9 +110,11 @@ const handleReUpload = () => {
   emits('handleReUpload', uid.value)
 }
 const handleEdit = () => {
-  console.log('edit')
-  // emits('handleEdit', uid.value)
-  proxy.$message.success('先走重传，后续修改为裁剪逻辑')
-  emits('handleEdit', uid.value)
+  editModalVisible.value = true
+}
+const handleSubmit = async () => {
+  const { blobRaw, uid } = await cropRef.value.handleCrop()
+  emits('handleEdit', blobRaw, uid)
+  editModalVisible.value = false
 }
 </script>

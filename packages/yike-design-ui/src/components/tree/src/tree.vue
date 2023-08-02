@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<TreeProps>(), {
   blockNode: false,
   multiple: false,
   expandIcon() {
-    return () => h(IconRightFill)
+    return h(IconRightFill)
   },
   defaultExpandedKeys() {
     return []

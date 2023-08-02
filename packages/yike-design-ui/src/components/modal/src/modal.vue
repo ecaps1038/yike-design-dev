@@ -46,7 +46,7 @@
                     <yk-button type="secondary" @click="closeModal">
                       取消
                     </yk-button>
-                    <yk-button>确定</yk-button>
+                    <yk-button @click="handleSubmit">确定</yk-button>
                   </yk-space>
                 </slot>
               </div>
@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<modalBaseProps>(), {
   escapable: true,
 })
 const bem = createCssScope('modal')
-const emit = defineEmits(['onCloseModal', 'update:modelValue'])
+const emit = defineEmits(['onCloseModal', 'update:modelValue', 'onSubmit'])
 const target = ref<HTMLElement>(document.body)
 const closeModal = () => {
   emit('update:modelValue', false)
@@ -112,6 +112,9 @@ const closeMaskToCloseModal = () => {
 }
 const getElement = (selector: string): HTMLElement => {
   return document.querySelector(selector) ?? document.body
+}
+const handleSubmit = () => {
+  emit('onSubmit')
 }
 </script>
 

@@ -27,6 +27,7 @@ defineOptions({
 withDefaults(defineProps<PopoverProps>(), {
   title: '标题',
   content: 'popover 组件',
+  arrow: true,
 })
 
 const bem = createCssScope('popover')

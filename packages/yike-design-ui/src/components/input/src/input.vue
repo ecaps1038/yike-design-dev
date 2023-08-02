@@ -1,5 +1,5 @@
 <template>
-  <div :class="bem()">
+  <div :class="bem()" :style="style">
     <div v-if="$slots.prepend" :class="bem('prepend')">
       <slot name="prepend" />
     </div>
@@ -31,7 +31,6 @@
         :disabled="disabled"
         :readonly="readonly"
         :class="bem('widget')"
-        :style="style"
         :type="inputType"
         tabindex="0"
         :value="realValue"

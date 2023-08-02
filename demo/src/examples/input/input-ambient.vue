@@ -1,24 +1,15 @@
 <template>
-  <div class="item">
-    <yk-input placeholder="请输入...">
+  <yk-space direction="vertical">
+    <yk-input placeholder="请输入..." style="width: 360px">
       <template #prepend>
         <yk-button>提交</yk-button>
       </template>
     </yk-input>
-  </div>
-  <div class="item">
-    <yk-input placeholder="请输入...">
+    <yk-input placeholder="请输入..." style="width: 360px">
       <template #append>
         <yk-button>提交</yk-button>
       </template>
     </yk-input>
-  </div>
+  </yk-space>
 </template>
-<style scoped>
-.item {
-  display: flex;
-  margin-bottom: 5px;
-  width: 350px;
-  flex-direction: column;
-}
-</style>
+<style scoped></style>

@@ -7,6 +7,9 @@
           ref="tooltip"
           :class="className"
           :style="[overlayStyle, { zIndex }]"
+          @click.stop
+          @mouseenter="openTooltip"
+          @mouseleave="onLeave"
         >
           <div v-if="arrow" :class="bem('arrow')"></div>
           <slot name="content">{{ title }}</slot>
@@ -15,7 +18,7 @@
     </transition>
     <DefaultSlot
       @focus="onFocus"
-      @mouseover="onEnter"
+      @mouseenter="onEnter"
       @mouseleave="onLeave"
       @click.stop="onClick"
       @contextmenu.prevent="onOpenMenu"
@@ -63,20 +66,30 @@ watch(
   (open) => (showTooltip.value = open),
 )
 
+// 修改tooltip 状态
+const changeTooltipType = (() => {
+  let timer: any
+  // 修改tooltip 状态
+  return function (openType: boolean, delay: number) {
+    clearTimeout(timer)
+    if (showTooltip.value === openType) return
+    timer = setTimeout(() => {
+      showTooltip.value = openType
+      emit('openChange', showTooltip.value)
+    }, delay)
+  }
+})()
+
 // 打开气泡
 function openTooltip() {
-  setTimeout(() => {
-    showTooltip.value = true
-    emit('openChange', showTooltip.value)
-  }, props.openDelay)
+  changeTooltipType(true, props.openDelay)
 }
+
 // 关闭气泡
 function closeTooltip() {
-  setTimeout(() => {
-    showTooltip.value = false
-    emit('openChange', showTooltip.value)
-  }, props.closeDelay)
+  changeTooltipType(false, props.closeDelay)
 }
+
 // 展示隐藏 气泡 事件函数
 function onEnter() {
   if (props.trigger === 'hover' || props.trigger.includes('hover'))
