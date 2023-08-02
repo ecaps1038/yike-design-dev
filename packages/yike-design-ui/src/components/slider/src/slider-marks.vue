@@ -49,7 +49,7 @@ const renderMarks = computed<SliderMarkRenderItem[]>(() => {
   return props.modelValue.map((item) => {
     const value = item.key - props.rangeMin
     const percent = Math.round((value / runwayLen) * 100) || 0
-    console.log(value, runwayLen)
+    // console.log(value, runwayLen)
     const percentRatio = percent / 100
     return {
       ...item,
