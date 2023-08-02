@@ -2,8 +2,8 @@
   <div
     class="yk-notification"
     :style="Style"
-    @mouseenter="clearTimer"
-    @mouseleave="startTimer"
+    @mouseenter="mouseEnter"
+    @mouseleave="mouseLeave"
   >
     <div class="notification-container">
       <div class="notification-body">
@@ -50,7 +50,8 @@
 </template>
 <script setup lang="ts">
 import { NotificationProps } from './notification'
-import { onMounted, computed } from 'vue'
+import { pauseSetTimeout } from './utils'
+import { onMounted, computed, ref } from 'vue'
 import { render } from '../../utils'
 import '../style'
 import { YkButton, YkSpace } from '../../../index'
@@ -68,7 +69,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   title: 'Title',
   message: '',
   type: 'primary',
-  duration: 4500,
+  duration: 4000,
   closable: true,
   showFooterBtn: false,
   showIcon: true,
@@ -82,9 +83,10 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   onClose: () => ({}),
 })
 
-const emits = defineEmits(['close'])
+const emits = defineEmits(['close', 'lockNotifications', 'unlockNotifications'])
 
-let timer = 0
+let timer: any = ref()
+let remainTime = ref(0)
 
 const Style = computed(() => ({
   marginBottom: `${props.space}px`,
@@ -92,20 +94,21 @@ const Style = computed(() => ({
   right: `${props.offsetX}px`,
   zIndex: props.zIndex,
 }))
-function startTimer() {
-  if (props.duration <= 0) return
-  timer = Number(
-    setTimeout(() => {
-      close()
-    }, props.duration),
-  )
+
+function mouseLeave() {
+  emits('unlockNotifications')
 }
 
-function clearTimer() {
-  if (timer) {
-    clearTimeout(timer)
-    timer = 0
-  }
+function mouseEnter() {
+  emits('lockNotifications')
+}
+
+function pause() {
+  timer.value.pause()
+}
+
+function play(firstReaminTime: number) {
+  timer.value.play(firstReaminTime)
 }
 
 function close() {
@@ -125,6 +128,19 @@ function clickOK() {
 }
 
 onMounted(() => {
-  startTimer()
+  timer.value = new pauseSetTimeout(() => {
+    close()
+  }, props.duration)
+
+  if (props.duration > 0) {
+    timer.value.play(0, true)
+  }
+})
+
+defineExpose({
+  pause,
+  play,
+  timer,
+  remainTime,
 })
 </script>
