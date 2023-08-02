@@ -47,6 +47,10 @@
         {
           "name": "Breadcrumb 面包屑",
           "src": "breadcrumb"
+        },
+        {
+          "name": "Dropdown 下拉菜单",
+          "src": "dropdown"
         }
       ]
     },

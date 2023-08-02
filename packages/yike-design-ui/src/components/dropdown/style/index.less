@@ -1,0 +1,55 @@
+@import '../../tooltip/style/index.less';
+
+.yk-dropdown {
+  .yk-tooltip {
+    --tooltip-theme-bg-color: @bg-color-l;
+    --tooltip-theme-font-color: @font-color-l;
+  }
+
+  &.disabled {
+    .disabled();
+  }
+
+  .yk-tooltip__content {
+    padding: @space-s;
+    min-width: auto;
+    max-width: none;
+    min-height: auto;
+    max-height: none;
+  }
+}
+
+.yk-dropdown__icon {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform @animatb ease;
+}
+
+.yk-dropdown-item {
+  padding: 0 12px;
+  line-height: 32px;
+  border-radius: @radius-s;
+  cursor: pointer;
+
+  &.disabled {
+    .disabled();
+  }
+
+  &:hover {
+    background-color: @bg-color-ss;
+  }
+
+  &.size-s {
+    font-size: 9px;
+    line-height: 24px;
+  }
+
+  &.size-m {
+    line-height: 28px;
+  }
+
+  &.size-xl {
+    font-size: 16px;
+    line-height: 38px;
+  }
+}

@@ -33,6 +33,7 @@ import YkTooltip from './components/tooltip';
 import YkEmpty from './components/empty';
 import YkProgress from './components/progress';
 import YkModal from './components/modal';
+import { YkDropdown, YkDropdownItem } from './components/dropdown';
 
 const components: {
   [propName: string]: Component;
@@ -75,6 +76,8 @@ const components: {
   YkBackTop,
   YkTooltip,
   YkModal,
+  YkDropdown,
+  YkDropdownItem,
 };
 
 export {
@@ -118,6 +121,8 @@ export {
   YkBackTop,
   YkTooltip,
   YkModal,
+  YkDropdown,
+  YkDropdownItem,
 };
 
 // 全局注册
