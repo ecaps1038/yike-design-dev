@@ -27,5 +27,10 @@ function cancel() {
 }
 function confirm() {
   proxy.$message({ type: 'primary', message: '你点击了确认按钮' })
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true)
+    }, 5000)
+  })
 }
 </script>
