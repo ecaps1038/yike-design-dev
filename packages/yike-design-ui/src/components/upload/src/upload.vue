@@ -87,7 +87,7 @@ import {
   RequestInstance,
 } from './upload'
 import { UploadRequest } from './ajax'
-import { generateListUid, findFileByUid } from './utils'
+import { generateListUid, findFileByUid, blobToFile } from './utils'
 import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
@@ -196,7 +196,7 @@ const handleBeforeUpload = (uploadFile: File) => {
   return true
 }
 
-const handleInputChange = (event) => {
+const handleInputChange = (event: any) => {
   const uploadFiles = Array.from(event.target.files) as File[]
   if (!uploadFiles.length) {
     return
@@ -235,10 +235,12 @@ const handleReUpload = (uid: number) => {
   onUploadRequest(raw)
 }
 
-const handleEdit = (uid: number) => {
-  findFileByUid(uid, currentList.value)
-  // ToDo use idx filter file to edit
-  handleUpload()
+const handleEdit = (blob: Blob, uid: number) => {
+  const idx = findFileByUid(uid, currentList.value)
+  const fileName = currentList.value[idx].name
+  currentList.value.splice(findFileByUid(uid, currentList.value), 1)
+  const newFile = blobToFile(blob, fileName)
+  onUploadRequest(newFile)
 }
 
 // dragger methods

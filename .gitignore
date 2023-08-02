@@ -21,3 +21,5 @@ svg-icon
 es 
 lib
 dist
+# test
+coverage

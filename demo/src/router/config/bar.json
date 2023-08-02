@@ -26,6 +26,10 @@
         {
           "name": "Scrollbar 滚动条",
           "src": "scrollbar"
+        },
+        {
+          "name": "Collapse 折叠面板",
+          "src": "collapse"
         }
       ]
     },
@@ -43,6 +47,10 @@
         {
           "name": "Breadcrumb 面包屑",
           "src": "breadcrumb"
+        },
+        {
+          "name": "Dropdown 下拉菜单",
+          "src": "dropdown"
         }
       ]
     },
@@ -72,6 +80,14 @@
         {
           "name": "Input 输入框",
           "src": "input"
+        },
+        {
+          "name": "Slider 滑动输入条",
+          "src": "slider"
+        },
+        {
+          "name": "InputNumber 数字输入框",
+          "src": "input-number"
         }
       ]
     },
@@ -126,6 +142,14 @@
         {
           "name": "Progress 进度条",
           "src": "progress"
+        },
+        {
+          "name": "Modal 对话框",
+          "src": "modal"
+        },
+        {
+          "name": "Popconfirm 气泡确认框",
+          "src": "popconfirm"
         }
       ]
     },

@@ -1,0 +1,36 @@
+.yk-input-number {
+}
+
+.yk-input-number__buttons-r {
+  display: flex;
+  flex-direction: column;
+  margin-right: 3px;
+
+  .yk-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: unset;
+    width: 24px;
+    min-width: unset;
+    height: 12px;
+    border: none;
+    background-color: @bg-color-ss;
+    aspect-ratio: 3 / 2;
+
+    svg {
+      margin: unset !important;
+      width: 12px !important;
+      height: 12px !important;
+      fill: @font-color-s !important;
+    }
+
+    &:first-child {
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    &:last-child {
+      border-radius: 0px 0px 4px 4px;
+    }
+  }
+}

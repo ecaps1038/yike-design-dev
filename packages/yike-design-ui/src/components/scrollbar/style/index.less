@@ -2,7 +2,6 @@
 .yk-scrollbar {
   position: relative;
   overflow: hidden;
-  // padding: @space-s;
   height: 100%;
 
   &__container {
@@ -40,11 +39,14 @@
   }
 
   &--native {
-    padding: 0;
-
-    .yk-scrollbar__container::-webkit-scrollbar {
-      width: initial;
-      height: initial;
+    .yk-scrollbar__container {
+      &::-webkit-scrollbar,
+      &::-webkit-scrollbar-thumb,
+      &::-webkit-scrollbar-track-piece {
+        display: block;
+        width: initial;
+        height: initial;
+      }
     }
   }
 

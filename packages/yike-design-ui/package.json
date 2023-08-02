@@ -41,7 +41,9 @@
     "gen:icon": "yike-build icongen",
     "gen:less": "yike-build lessgen",
     "build:less": "yike-build buildStyle",
-    "build:comp": "yike-build buildComp"
+    "build:comp": "yike-build buildComp",
+    "test": "vitest --watch=false",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
