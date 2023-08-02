@@ -54,6 +54,7 @@ declare module 'vue' {
     YkIcon: typeof import('../packages/yike-design-ui/src/index.ts')['YkIcon']
     YkInput: typeof import('../packages/yike-design-ui/src/index.ts')['YkInput']
     YkModal: typeof import('../packages/yike-design-ui/src/index.ts')['YkModal']
+    YkPopconfirm: typeof import('../packages/yike-design-ui/src/index.ts')['YkPopconfirm']
     YkProgress: typeof import('../packages/yike-design-ui/src/index.ts')['YkProgress']
     YkScrollbar: typeof import('../packages/yike-design-ui/src/index.ts')['YkScrollbar']
     YkSlider: typeof import('../packages/yike-design-ui/src/index.ts')['YkSlider']
