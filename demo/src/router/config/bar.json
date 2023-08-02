@@ -80,6 +80,10 @@
         {
           "name": "Slider 滑动输入条",
           "src": "slider"
+        },
+        {
+          "name": "InputNumber 数字输入框",
+          "src": "input-number"
         }
       ]
     },

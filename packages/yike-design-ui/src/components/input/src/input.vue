@@ -91,6 +91,7 @@ defineOptions({
   name: 'YkInput',
 })
 const props = withDefaults(defineProps<InputProps>(), {
+  id: '',
   name: '',
   size: 'l',
   type: 'text',

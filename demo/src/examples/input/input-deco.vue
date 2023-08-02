@@ -3,7 +3,7 @@
     <yk-input placeholder="四" style="width: 360px">
       <template #prefix><yk-text>今天是星期</yk-text></template>
     </yk-input>
-    <yk-input style="width: 360px" clearable>
+    <yk-input style="width: 360px">
       <template #prefix><yk-text>衬衫的价格是</yk-text></template>
       <template #suffix><yk-text>便士</yk-text></template>
     </yk-input>

@@ -114,6 +114,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'collapse',
     component: () => import('@/examples/collapse/doc.md'),
   },
+  {
+    path: 'input-number',
+    component: () => import('@/examples/input-number/doc.md'),
+  },
 ];
 
 export default generalRoutes;
