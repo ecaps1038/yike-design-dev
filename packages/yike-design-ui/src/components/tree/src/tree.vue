@@ -9,10 +9,13 @@ import { createCssScope } from '../../utils/bem'
 import Node from './node.vue'
 import { Key } from '../../utils'
 import { _TreeNode, tree2list } from './internal'
-import { watch, ref, onMounted, provide, shallowRef } from 'vue'
+import { watch, ref, onMounted, provide, shallowRef, toRefs } from 'vue'
 import { IconRightFill } from '../../svg-icon'
 import { h } from 'vue'
 import { computed } from 'vue'
+import { getOffspringKeys } from './util'
+import { reactive } from 'vue'
+import { readonly } from 'vue'
 
 const bem = createCssScope('tree')
 
@@ -33,6 +36,9 @@ const props = withDefaults(defineProps<TreeProps>(), {
     return []
   },
   fileTree: false,
+  checkable: false,
+  checkStrategy: 'all',
+  checkStrictly: false,
 })
 
 const emits = defineEmits<{
@@ -104,14 +110,41 @@ const onSelect = (key: Key) => {
   emits('select', selectedKeys.value)
 }
 
-provide(TreeInjectionKey, {
-  blockNode: props.blockNode,
-  expandedKeys: expandedKeys,
-  selectedKeys: selectedKeys,
-  fileTree: props.fileTree,
-  fileIcons: props.fileIcons,
-  expandIcon: props.expandIcon,
-  onSelect,
-  onExpand,
+// handle node check logic
+const checkedKeys = defineModel<Key[]>('checkedKeys', {
+  default: [],
+  local: true,
 })
+const _checkedKeys = ref<Key[]>([])
+
+_checkedKeys.value = checkedKeys.value
+
+const onChecked = (keys: Key[], checked: boolean) => {
+  if (checked) {
+    checkedKeys.value.push(...keys)
+  } else {
+    checkedKeys.value = checkedKeys.value.filter((k) => !keys.includes(k))
+  }
+}
+
+const { checkStrictly } = toRefs(props)
+
+provide(
+  TreeInjectionKey,
+  reactive({
+    blockNode: props.blockNode,
+    expandedKeys: expandedKeys,
+    selectedKeys: selectedKeys,
+    checkedKeys: checkedKeys,
+    fileTree: props.fileTree,
+    fileIcons: props.fileIcons,
+    checkable: props.checkable,
+    checkStrategy: props.checkStrategy,
+    checkStrictly: checkStrictly,
+    expandIcon: props.expandIcon,
+    onSelect,
+    onExpand,
+    onChecked,
+  }),
+)
 </script>
