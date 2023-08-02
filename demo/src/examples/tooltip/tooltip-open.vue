@@ -3,7 +3,7 @@
     <input v-model="open" type="checkbox" />
     <span>切换气泡显示状态</span>
   </label>
-  <yk-tooltip v-model:open="open" placement="right" trigger="click">
+  <yk-tooltip v-model:open="open" placement="right" trigger="none">
     <yk-button type="outline">tooltip</yk-button>
   </yk-tooltip>
 </template>
