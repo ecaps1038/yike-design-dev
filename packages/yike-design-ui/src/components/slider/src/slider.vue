@@ -43,10 +43,11 @@
 
 <script setup lang="ts">
 import sliderMarks from './slider-marks.vue'
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed, ref, toRefs, watch, onMounted } from 'vue'
 import { SliderProps, SliderEmits, SliderEmitEvents } from './slider'
 import { DIRECTION, createCssScope } from '../../utils'
 import { useSlider } from './useSlider'
+import { onUnmounted } from 'vue'
 defineOptions({
   name: 'YKSlider',
 })
@@ -79,14 +80,20 @@ const runwayLen = computed(() => {
   return props.max - props.min
 })
 // 滑道区间 - 渲染长度
-const runwayWidth = computed(() => {
+const runwayWidth = ref(0)
+const setRunwayWidth = () => {
   if (props.direction === DIRECTION[1]) {
-    return runwayRef.value ? runwayRef.value.offsetWidth : 0
+    runwayWidth.value = runwayRef.value ? runwayRef.value.offsetWidth : 0
   } else if (props.direction === DIRECTION[0]) {
-    return runwayRef.value ? runwayRef.value.offsetHeight : 0
-  } else {
-    return 0
+    runwayWidth.value = runwayRef.value ? runwayRef.value.offsetHeight : 0
   }
+}
+onMounted(() => {
+  setRunwayWidth()
+  window.addEventListener('resize', setRunwayWidth)
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', setRunwayWidth)
 })
 
 // bar 渲染参数
@@ -179,7 +186,15 @@ const {
   handleStartMouseDown,
   handleEndMouseDown,
   emitValue,
-} = useSlider(props, runwayWidth, barStartPoint, barEndPoint, isRange, emits)
+} = useSlider(
+  props,
+  runwayRef,
+  runwayWidth,
+  barStartPoint,
+  barEndPoint,
+  isRange,
+  emits,
+)
 
 // 监听初始化 和 外部数据变化
 watch(

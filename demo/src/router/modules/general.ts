@@ -107,12 +107,20 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/collapse/doc.md'),
   },
   {
+    path: 'dropdown',
+    component: () => import('@/examples/dropdown/doc.md'),
+  },
+  {
     path: 'popconfirm',
     component: () => import('@/examples/popconfirm/doc.md'),
   },
   {
     path: 'collapse',
     component: () => import('@/examples/collapse/doc.md'),
+  },
+  {
+    path: 'input-number',
+    component: () => import('@/examples/input-number/doc.md'),
   },
 ];
 
