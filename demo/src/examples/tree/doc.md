@@ -23,3 +23,9 @@
 通过 `fileIcons` 自定义目录展开、目录收起、文件图标，也支持定制单个节点图标。
 <TreeCustomFileIcon/>
 :::
+
+:::snippet
+可选择树
+通过 `checkable` 开启选择模式，`checkedKeys` 获取已选中的 keys 。
+<TreeCheckable/>
+:::

@@ -8,7 +8,7 @@ export const tree2list = (tree?: TreeOption[], pKey?: Key) => {
   if (tree && tree.length === 0) return nodeMap;
 
   tree?.forEach((item) => {
-    nodeMap.set(item.key, { ...item, children: undefined, pKey });
+    nodeMap.set(item.key, { ...item, pKey });
     for (const [k, v] of tree2list(item.children, item.key)) {
       nodeMap.set(k, v);
     }
