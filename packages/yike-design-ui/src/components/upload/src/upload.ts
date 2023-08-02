@@ -74,3 +74,9 @@ export type DraggleProps = {
   disabled?: boolean;
   accept?: string;
 };
+
+export type CropImageProps = {
+  uid: number;
+  url?: string;
+  blobRaw?: string;
+};

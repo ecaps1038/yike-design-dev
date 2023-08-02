@@ -25,9 +25,9 @@ export const UploadRequest = ({
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText);
       if (response.error || response.err) {
-        onError(uid, response.error);
+        onError(uid, response);
       } else {
-        onSuccess(uid, xhr.responseText);
+        onSuccess(uid, response);
       }
     }
   };
