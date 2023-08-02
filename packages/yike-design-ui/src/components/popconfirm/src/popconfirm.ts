@@ -6,9 +6,9 @@ export interface PopconfirmProps extends PopoverProps {
   showCancel?: boolean;
   cancelButtonProps?: ButtonProps;
   okButtonProps?: ButtonProps;
+  onCancel?: (() => Promise<boolean>) | (() => void);
+  onConfirm?: (() => Promise<boolean>) | (() => void);
 }
 export type PopconfirmEmit = {
-  (e: 'cancel'): void;
-  (e: 'confirm'): void;
   (e: 'update:open', ev: boolean): void;
 };
