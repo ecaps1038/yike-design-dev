@@ -25,16 +25,16 @@ onMounted(() => {
 </script>
 <style scoped>
 .scroll-box {
+  overflow: scroll;
   width: 100%;
   height: 400px;
-  overflow: scroll;
   border: 1px solid #f0f0f0;
 }
 .scroll-view {
-  width: 300%;
-  height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 300%;
+  height: 900px;
 }
 </style>

@@ -1,0 +1,3 @@
+<template>
+  <yk-rate />
+</template>

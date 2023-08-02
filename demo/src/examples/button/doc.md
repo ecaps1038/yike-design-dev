@@ -8,7 +8,7 @@
 
 :::snippet
 按钮尺寸 size
-按钮分为：`s`、`m`、`l`、`xl` 四种尺寸。高度分别为：`24px`、`32px`、`36px`、`48px`。默认尺寸为 l。
+按钮分为：`s`、`m`、`l`、`xl` 四种尺寸。高度分别为：`24px`、`32px`、`36px`、`48px`。默认尺寸为`l`。
 <ButtonSize/>
 :::
 
@@ -38,7 +38,7 @@
 
 :::snippet
 加载中按钮 loading
-通过设置 loading 可以让按钮处于加载中状态。处于加载中状态的按钮不会触发点击事件。
+通过设置 `loading` 可以让按钮处于加载中状态。处于加载中状态的按钮不会触发点击事件。
 <ButtonLoading/>
 :::
 
@@ -60,3 +60,9 @@
 | disabled | 按钮是否被禁用 | false ｜ true                             | false   |
 | loading  | 按钮是否加载中 | false ｜ true                             | false   |
 | long     | 按钮是否通栏   | false ｜ true                             | false   |
+
+#### Button Slots
+
+| 参数 | 描述 | 默认值 |
+| ---- | ---- | ------ |
+| icon | 图标 | -      |

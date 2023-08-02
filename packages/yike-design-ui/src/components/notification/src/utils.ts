@@ -1,6 +1,6 @@
-import { createVNode, render, reactive, ref, isVNode } from 'vue';
+import { createVNode, render, reactive, ref } from 'vue';
 import { NotificationOptions } from './notification';
-import { NOTIFICATIONTYPE } from '../../../utils/constant';
+import { NOTIFICATIONTYPE } from '../../utils/constant';
 import NotificationGroup from './notification-group.vue';
 
 class NotificationManager {
@@ -24,13 +24,13 @@ class NotificationManager {
     render(vm, this.container);
     document.body.appendChild(this.container);
   }
-  add = (config: NotificationOptions) => {
+  add = (options: NotificationOptions) => {
     this.seed++;
     const id = `yk-notification__${this.seed}`;
     const notification: NotificationOptions = reactive({
       id,
       zIndex: this.zIndex,
-      ...config,
+      ...options,
     });
 
     this.notifications.value.push(notification);
@@ -61,7 +61,7 @@ class NotificationManager {
 }
 
 let Instance = <NotificationManager>{};
-const notification = (options: NotificationOptions) => {
+const notification: any = (options: NotificationOptions) => {
   if (!Instance.created) {
     Instance = new NotificationManager();
   }
@@ -69,12 +69,7 @@ const notification = (options: NotificationOptions) => {
 };
 
 NOTIFICATIONTYPE.forEach((item) => {
-  notification[item] = (options: { message }) => {
-    if (typeof options === 'string' || isVNode(options)) {
-      options = {
-        message: options,
-      };
-    }
+  notification[item] = (options: NotificationOptions) => {
     return notification({
       ...options,
       type: item,

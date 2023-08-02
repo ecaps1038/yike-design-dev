@@ -1,16 +1,36 @@
 <template>
-  <div class="yk-notification" :style="Style">
+  <div
+    class="yk-notification"
+    :style="Style"
+    @mouseenter="clearTimer"
+    @mouseleave="startTimer"
+  >
     <div class="notification-container">
       <div class="notification-body">
         <div v-if="props.showIcon" class="iconDiv">
-          <YkIcon
-            :name="statusIconName"
-            :class="`icon-${props.type} notification-icon`"
-          ></YkIcon>
+          <IconReminderFill v-if="type === 'primary'" class="icon-primary" />
+          <IconWarningFill
+            v-else-if="type === 'warning'"
+            class="icon-warning"
+          />
+          <IconCrossFill v-else-if="type === 'error'" class="icon-error" />
+          <IconTickFill v-else-if="type === 'success'" class="icon-success" />
+          <IconLoadingOutline
+            v-else-if="type === 'loading'"
+            class="icon-loading"
+          />
         </div>
         <div>
           <div class="title-text">{{ title }}</div>
-          <div class="content">{{ message }}</div>
+          <div class="content">
+            <span class="text">
+              <component
+                :is="render(message)"
+                v-if="!dangerouslyUseHTMLString"
+              />
+              <p v-else v-html="message" />
+            </span>
+          </div>
         </div>
         <button
           v-if="props.closable"
@@ -18,7 +38,7 @@
           :class="`yk-notification-close-icon`"
           @click="handleClose"
         >
-          <yk-icon name="yk-cha"></yk-icon>
+          <IconCloseOutline />
         </button>
       </div>
       <yk-space v-if="props.showFooterBtn" class="notification-footer">
@@ -31,8 +51,16 @@
 <script setup lang="ts">
 import { NotificationProps } from './notification'
 import { onMounted, computed } from 'vue'
+import { render } from '../../utils'
 import '../style'
-import { YkIcon } from '../../../index'
+import { YkButton, YkSpace } from '../../../index'
+import IconReminderFill from '../../svg-icon/icon-reminder-fill'
+import IconWarningFill from '../../svg-icon/icon-warning-fill'
+import IconCrossFill from '../../svg-icon/icon-cross-fill'
+import IconTickFill from '../../svg-icon/icon-tick-fill'
+import IconLoadingOutline from '../../svg-icon/icon-loading-outline'
+import IconCloseOutline from '../../svg-icon/icon-close-outline'
+
 defineOptions({
   name: 'YkNotification',
 })
@@ -40,7 +68,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   title: 'Title',
   message: '',
   type: 'primary',
-  duration: 3000,
+  duration: 4500,
   closable: true,
   showFooterBtn: false,
   showIcon: true,
@@ -48,6 +76,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   offsetY: 24,
   offsetX: 24,
   zIndex: 2001,
+  dangaurslyUseHtmlString: false,
   handleCancel: () => ({}),
   handleSubmit: () => ({}),
   onClose: () => ({}),
@@ -55,26 +84,28 @@ const props = withDefaults(defineProps<NotificationProps>(), {
 
 const emits = defineEmits(['close'])
 
-const statusIconName = computed(() => {
-  return iconStatusMap[props.type]
-})
+let timer = 0
+
 const Style = computed(() => ({
   marginBottom: `${props.space}px`,
   top: `${props.offsetY}px`,
   right: `${props.offsetX}px`,
   zIndex: props.zIndex,
 }))
-const iconStatusMap = {
-  primary: 'yike-tixing',
-  warning: 'yike-jinggao',
-  error: 'yike-cha',
-  success: 'yike-gou',
-}
 function startTimer() {
-  if (!props.duration) return
-  setTimeout(() => {
-    close()
-  }, props.duration)
+  if (props.duration <= 0) return
+  timer = Number(
+    setTimeout(() => {
+      close()
+    }, props.duration),
+  )
+}
+
+function clearTimer() {
+  if (timer) {
+    clearTimeout(timer)
+    timer = 0
+  }
 }
 
 function close() {

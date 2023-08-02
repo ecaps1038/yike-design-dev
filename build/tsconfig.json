@@ -2,7 +2,7 @@
   "compilerOptions": {
     "sourceMap": true,
     "outDir": "dist",
-    "module": "CommonJS",
+    "module": "Node16",
     "target": "ES2015",
     "allowJs": true,
     "moduleResolution": "node",
@@ -11,6 +11,11 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["DOM", "ES2020"]
-  }
+    "lib": ["DOM", "ES2020"],
+    "paths": {
+      "utils": ["./utils"],
+      "scripts": ["./scripts"]
+    }
+  },
+  "include": ["./"]
 }

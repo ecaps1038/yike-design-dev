@@ -1,7 +1,7 @@
-import type { VNode } from 'vue';
-import { MessageType } from '../../../utils/constant';
+import { MessageType, type RenderContent } from '../../utils';
+
 export type MessageProps = {
-  message: string | VNode;
+  message: RenderContent;
   type?: MessageType;
   duration?: number;
   offset?: number;
@@ -19,3 +19,23 @@ export interface MessageOptions extends MessageProps {
 export type MessageGroupProps = {
   messages: MessageOptions[];
 };
+
+export type MessageFunctions = {
+  success: () => void;
+  error: () => void;
+  loading: () => void;
+  primary: () => void;
+  warning: () => void;
+};
+
+export interface MessageReturn {
+  close: () => void;
+}
+
+export interface MessageMethod {
+  primary: (config: MessageProps) => MessageReturn;
+  success: (config: MessageProps) => MessageReturn;
+  warning: (config: MessageProps) => MessageReturn;
+  error: (config: MessageProps) => MessageReturn;
+  loading: (config: MessageProps) => MessageReturn;
+}

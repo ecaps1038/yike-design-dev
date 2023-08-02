@@ -7,12 +7,6 @@
       <div class="hz b"></div>
       <div class="hz c"></div>
       <div class="hz d"></div>
-      <div class="hz e"></div>
-      <div class="hz f"></div>
-      <div class="hz g"></div>
-      <div class="hz h"></div>
-      <div class="hz i"></div>
-      <div class="hz j"></div>
     </yk-space>
   </main>
 </template>
@@ -29,42 +23,18 @@
 }
 
 .a {
-  background-color: @gray-1;
+  background-color: @bg-color-l;
 }
 
 .b {
-  background-color: @gray-2;
+  background-color: @bg-color-m;
 }
 
 .c {
-  background-color: @gray-3;
+  background-color: @bg-color-s;
 }
 
 .d {
-  background-color: @gray-4;
-}
-
-.e {
-  background-color: @gray-5;
-}
-
-.f {
-  background-color: @gray-6;
-}
-
-.g {
-  background-color: @gray-7;
-}
-
-.h {
-  background-color: @gray-8;
-}
-
-.i {
-  background-color: @gray-9;
-}
-
-.j {
-  background-color: @gray-10;
+  background-color: @bg-color-ss;
 }
 </style>

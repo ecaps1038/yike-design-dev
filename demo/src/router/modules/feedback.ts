@@ -21,8 +21,8 @@ const feedbackRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/popover/doc.md'),
   },
   {
-    path: 'notification',
-    component: () => import('@/examples/notification/doc.md'),
+    path: 'modal',
+    component: () => import('@/examples/modal/doc.md'),
   },
 ];
 

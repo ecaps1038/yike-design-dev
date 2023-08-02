@@ -7,15 +7,15 @@
 :::
 
 :::snippet
-自定义图片
-通过设置 `image` 属性传入图片 URL。
-<EmptyPicture/>
+切换风格
+通过使用 type 属性来切换不同风格空状态。
+<EmptyStyle/>
 :::
 
 :::snippet
-图片尺寸
-通过使用 imageStyle 属性来控制图片样式。
-<EmptyStyle/>
+自定义图片
+通过设置 `image` 属性传入图片 URL,通过使用 imageStyle 属性来控制图片样式。
+<EmptyPicture/>
 :::
 
 :::snippet

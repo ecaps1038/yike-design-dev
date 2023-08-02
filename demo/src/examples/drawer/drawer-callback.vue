@@ -5,7 +5,7 @@
   <yk-drawer
     title="你好，世界。"
     :show="active"
-    @close="onClose"
+    @before-close="onClose"
     @open="onOpen"
   >
     你看到了什么？

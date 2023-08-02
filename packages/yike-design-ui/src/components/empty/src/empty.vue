@@ -1,13 +1,13 @@
 <template>
-  <div :class="['yk-empty', { dark: theme === 'dark' }]">
+  <div class="yk-empty">
     <div class="yk-empty__image" :style="imageStyle">
       <slot name="image">
         <img v-if="image" :src="image" ondragstart="return false" />
-        <yk-icon
-          v-else
-          name="yike-kongzhuangtai0"
-          :style="defaultStyle"
-        ></yk-icon>
+        <IconEmpty1Color v-if="!image && type == 'primary'" class="primary" />
+        <IconEmpty2Color
+          v-if="!image && type == 'secondary'"
+          class="secondary"
+        />
       </slot>
     </div>
     <div class="yk-empty__description">
@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import '../style'
 import { CSSProperties, computed } from 'vue'
+import { IconEmpty1Color, IconEmpty2Color } from '../../svg-icon'
 import { EmptyProps } from './empty'
 
 defineOptions({
@@ -32,11 +32,11 @@ defineOptions({
 const props = withDefaults(defineProps<EmptyProps>(), {
   description: 'No Data',
   image: '',
-  imageStyle: () => ({ width: '140px' }),
-  theme: 'light',
+  imageStyle: () => ({}),
+  type: 'primary',
 })
 
-const defaultStyle = computed<CSSProperties>(() => {
+computed<CSSProperties>(() => {
   return {
     ...props.imageStyle,
     fontSize: props.imageStyle?.width,

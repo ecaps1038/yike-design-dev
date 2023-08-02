@@ -1,0 +1,38 @@
+@import '../../styles/color/colors.less';
+.yk-table {
+  table {
+    overflow: hidden;
+    margin-top: @space-s;
+    width: 100%;
+    min-width: 800px;
+    border: 1px solid @line-color-s;
+    border-radius: @radius-m;
+    transition: border @animats;
+
+    tr:hover {
+      background-color: @bg-color-m;
+    }
+
+    th {
+      padding-left: @space-m;
+      font-size: @size-s;
+      font-weight: 600;
+      text-align: left;
+      background-color: @bg-color-m;
+      transition: background-color @animats;
+      line-height: 44px;
+    }
+
+    td {
+      padding: 10px @space-m;
+      max-width: 240px;
+      border-top: 1px solid @line-color-s;
+      text-align: left;
+      transition: border @animats;
+    }
+
+    .light {
+      color: @scolor;
+    }
+  }
+}
