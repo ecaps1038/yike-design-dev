@@ -1,4 +1,4 @@
-import { Ref, onMounted, ref } from 'vue';
+import { Ref, onMounted } from 'vue';
 
 export const useInputTooltip = (
   inputRef: Ref<HTMLInputElement | undefined>,

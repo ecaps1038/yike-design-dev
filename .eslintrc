@@ -76,7 +76,8 @@
         "args": "after-used",
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "vue/no-setup-props-destructure": "warn"
   },
   "overrides": [
     {

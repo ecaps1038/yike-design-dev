@@ -12,8 +12,7 @@
   </yk-drawer>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getCurrentInstance } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
 const active = ref(false)
 const onClose = () => {

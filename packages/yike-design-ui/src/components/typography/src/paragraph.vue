@@ -11,7 +11,6 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import YkIcon from '../../icon/index'
 import { paragraphProps, ellipsisType } from './typography'
 import { tryCopy } from '../../utils/tools'
 

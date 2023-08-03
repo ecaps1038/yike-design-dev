@@ -9,13 +9,18 @@
   </div>
 </template>
 <script setup lang="ts">
-import { AnchorOption, AnchorProps } from './anchor'
-import { ref, shallowRef, nextTick, onMounted } from 'vue'
-import { computed } from 'vue'
+import { AnchorProps } from './anchor'
+import {
+  ref,
+  shallowRef,
+  nextTick,
+  onMounted,
+  computed,
+  onUnmounted,
+  watch,
+} from 'vue'
 import { useDebounceFn, useEventListener } from '@vueuse/core'
 
-import { onUnmounted } from 'vue'
-import { watch } from 'vue'
 /* eslint-disable-next-line */
 import AnchorList from './anchor-list.vue'
 

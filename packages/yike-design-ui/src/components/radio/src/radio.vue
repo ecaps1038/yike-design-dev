@@ -16,9 +16,8 @@
   </label>
 </template>
 <script setup lang="ts">
-import { RadioProps } from './radio'
+import { RadioProps, radioEmits } from './radio'
 import { computed, nextTick } from 'vue'
-import { radioEmits } from './radio'
 import { useRadio } from './useRadio'
 import { CHANGE_EVENT } from './constants'
 

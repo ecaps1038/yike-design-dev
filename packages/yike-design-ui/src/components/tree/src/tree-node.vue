@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, inject, h } from 'vue'
 import { createCssScope } from '../../utils'
-import { inject } from 'vue'
 import { TreeInjectionKey, TreeNodeInjectionKey, TreeOption } from './tree'
 import NodeSwitcher from './node-switcher.vue'
-import { h } from 'vue'
 import {
   IconFolderCloseOutline,
   IconFolderOpenOutline,
