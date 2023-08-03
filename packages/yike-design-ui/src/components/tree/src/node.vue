@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { TreeInjectionKey, TreeNodeInjectionKey, TreeOption } from './tree'
 import TreeNode from './tree-node.vue'
-import { computed } from 'vue'
+import { computed, inject, provide } from 'vue'
 import ExpandTransition from './expand-transition.vue'
-import { inject } from 'vue'
-import { provide } from 'vue'
-import { toRefs } from 'vue'
 
 const props = defineProps<{
   option: TreeOption

@@ -45,8 +45,7 @@ import { createCssScope } from '../../utils/bem'
 import { useDefaultSlots } from '../../tooltip'
 import YkPopover from '../../popover'
 import YkButton from '../../button'
-import { ref, watch } from 'vue'
-import { Ref } from 'vue'
+import { ref, watch, Ref } from 'vue'
 
 const bem = createCssScope('popconfirm')
 

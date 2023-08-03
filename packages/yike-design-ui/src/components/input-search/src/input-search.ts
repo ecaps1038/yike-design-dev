@@ -1,4 +1,4 @@
-import { Size, Status } from '../../utils/constant';
+import { Size } from '../../utils/constant';
 
 export type InputSearchProps = {
   name?: string;

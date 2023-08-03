@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getCurrentInstance, watch } from 'vue'
+import { getCurrentInstance } from 'vue'
 import { useClipboard } from '@vueuse/core'
 import iconData from 'yike-design-ui/src/components/svg-icon/icons.json'
 const proxy: any = getCurrentInstance()?.proxy

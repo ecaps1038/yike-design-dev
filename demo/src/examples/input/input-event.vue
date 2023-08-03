@@ -16,8 +16,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 onMounted(() => {
   messege.value.push('输入框创建')
 })

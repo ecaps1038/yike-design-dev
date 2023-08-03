@@ -43,11 +43,10 @@
 
 <script setup lang="ts">
 import sliderMarks from './slider-marks.vue'
-import { computed, ref, toRefs, watch, onMounted } from 'vue'
+import { computed, ref, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { SliderProps, SliderEmits, SliderEmitEvents } from './slider'
 import { DIRECTION, createCssScope } from '../../utils'
 import { useSlider } from './useSlider'
-import { onUnmounted } from 'vue'
 defineOptions({
   name: 'YKSlider',
 })

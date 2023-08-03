@@ -12,8 +12,7 @@
 </template>
 <script setup lang="ts">
 import { repeat } from 'seemly'
-import { h, shallowRef } from 'vue'
-import { ref } from 'vue'
+import { h, shallowRef, ref } from 'vue'
 import {
   IconAppOutline,
   IconAppFill,
