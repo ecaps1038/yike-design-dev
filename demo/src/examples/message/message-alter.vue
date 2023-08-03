@@ -6,8 +6,7 @@
   </yk-space>
 </template>
 <script setup lang="tsx">
-import { h } from 'vue'
-import { getCurrentInstance } from 'vue'
+import { h, getCurrentInstance } from 'vue'
 import { IconFireFireFill } from 'yike-design-ui/src/components/svg-icon'
 const proxy: any = getCurrentInstance()?.proxy
 const handleSuccess = () => {

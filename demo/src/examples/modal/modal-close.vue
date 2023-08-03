@@ -5,8 +5,7 @@
   <yk-button @click="showModal">modal 对话框</yk-button>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getCurrentInstance } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
 const visible = ref<boolean>(false)
 const showModal = () => {

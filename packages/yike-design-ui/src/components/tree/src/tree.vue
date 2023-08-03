@@ -4,18 +4,22 @@
   </div>
 </template>
 <script setup lang="ts">
-import { TreeInjectionKey, TreeOption, TreeProps } from './tree'
+import { TreeInjectionKey, TreeProps } from './tree'
 import { createCssScope } from '../../utils/bem'
 import Node from './node.vue'
 import { Key } from '../../utils'
-import { _TreeNode, tree2list } from './internal'
-import { watch, ref, onMounted, provide, shallowRef, toRefs } from 'vue'
+import { tree2list } from './internal'
+import {
+  watch,
+  ref,
+  onMounted,
+  provide,
+  shallowRef,
+  toRefs,
+  h,
+  reactive,
+} from 'vue'
 import { IconRightFill } from '../../svg-icon'
-import { h } from 'vue'
-import { computed } from 'vue'
-import { getOffspringKeys } from './util'
-import { reactive } from 'vue'
-import { readonly } from 'vue'
 
 const bem = createCssScope('tree')
 

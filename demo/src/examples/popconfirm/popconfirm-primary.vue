@@ -19,7 +19,7 @@
   </yk-space>
 </template>
 <script lang="ts" setup>
-import { getCurrentInstance, h, ref } from 'vue'
+import { getCurrentInstance } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
 function cancel() {
   proxy.$message({ type: 'warning', message: '你点击了取消按钮' })

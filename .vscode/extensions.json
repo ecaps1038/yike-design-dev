@@ -3,6 +3,5 @@
     "vue.volar",
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
-    "davidanson.vscode-markdownlint"
   ]
 }
