@@ -35,6 +35,7 @@ const contentCls = computed(() => {
     selected.value ? 'active' : undefined,
   ])
 })
+// eslint-disable-next-line vue/no-setup-props-destructure
 const icons = Object.assign(
   {
     fold: () => h(IconFolderCloseOutline),
@@ -51,12 +52,26 @@ const fileIcon = computed<any>(() => {
   return icons['fold']
 })
 
-const handleChange = (checked: boolean) => {
+const handleChange = (_checked: boolean) => {
   let keys = [props.node.key]
   if (!context?.checkStrictly) {
+    // 判断当前节点的父节点的所有子节点是否都被选上了
+    const curNode = context?.nodeMaps?.get(props.node.key)
+    if (curNode && curNode.pKey) {
+      const pNode = context?.nodeMaps?.get(curNode.pKey)
+
+      if (
+        pNode &&
+        pNode.children?.every((child) =>
+          context?.checkedKeys?.concat([props.node.key])?.includes(child.key),
+        )
+      ) {
+        keys.push(pNode.key)
+      }
+    }
     keys.push(...getOffspringKeys(props.node))
   }
-  context?.onChecked?.(keys, checked)
+  context?.onChecked?.(keys, _checked)
 }
 
 const indeterminate = computed(() => {
