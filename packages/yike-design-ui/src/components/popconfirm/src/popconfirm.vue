@@ -45,8 +45,8 @@ import { createCssScope } from '../../utils/bem'
 import { useDefaultSlots } from '../../tooltip'
 import YkPopover from '../../popover'
 import YkButton from '../../button'
-import { ref, watch } from 'vue'
-import { Ref } from 'vue'
+import { ref, watch, toRaw } from 'vue'
+import type { Ref } from 'vue'
 
 const bem = createCssScope('popconfirm')
 
@@ -67,7 +67,7 @@ const props = withDefaults(defineProps<PopconfirmProps>(), {
 const emit = defineEmits<PopconfirmEmit>()
 
 // 气泡状态控制
-const open = ref(props.open)
+const open = ref(toRaw(props).open)
 watch(open, (show) => emit('update:open', show))
 watch(
   () => props.open,
@@ -79,7 +79,7 @@ function changeOpen(e: boolean) {
 }
 
 // 用户点击确认取消按钮 反馈处理
-const trigger = ref(props.trigger)
+const trigger = ref(toRaw(props).trigger)
 const cancelLoading = ref(false)
 const okLoading = ref(false)
 
@@ -90,9 +90,11 @@ async function loading(loadingType: Ref<boolean>) {
     loadingType.value = true
     trigger.value = 'none'
     await promise
-    promise = null
-    loadingType.value = false
-    trigger.value = props.trigger
+    setTimeout(() => {
+      promise = null
+      loadingType.value = false
+      trigger.value = props.trigger
+    })
   }
   open.value = false
 }
