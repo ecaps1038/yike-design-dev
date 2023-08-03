@@ -77,7 +77,8 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "vue/no-setup-props-destructure": "warn"
+    "vue/no-setup-props-destructure": "warn",
+    "import/no-unresolved": "off"
   },
   "overrides": [
     {
