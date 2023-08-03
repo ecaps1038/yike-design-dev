@@ -1,16 +1,16 @@
 <template>
-  <label :class="ykRadioCls" role="radio">
-    <span :class="ykRadioInputCls">
-      <span class="yk-radio--inner"></span>
-      <input
-        v-model="modelValue"
-        type="radio"
-        :value="label"
-        :disabled="disabled"
-        @change="handleChange"
-      />
+  <label :class="bem({ checked: isChecked, disabled }, [type])" role="radio">
+    <input
+      v-model="modelValue"
+      type="radio"
+      :value="label"
+      :disabled="disabled"
+      @change="handleChange"
+    />
+    <span :class="bem('box', { checked: isChecked, disabled })">
+      <span :class="bem('inner')"></span>
     </span>
-    <span class="yk-radio--label">
+    <span :class="bem('label')">
       <slot />
     </span>
   </label>
@@ -19,30 +19,20 @@
 import { RadioProps, radioEmits } from './radio'
 import { computed, nextTick } from 'vue'
 import { useRadio } from './useRadio'
+import { createCssScope } from '../../utils'
 import { CHANGE_EVENT } from './constants'
 
 defineOptions({ name: 'YkRadio' })
+
+const bem = createCssScope('radio')
 const emits = defineEmits(radioEmits)
-const props = withDefaults(defineProps<RadioProps>(), {})
+const props = withDefaults(defineProps<RadioProps>(), {
+  solid: false,
+})
 
 const { modelValue, disabled } = useRadio(props, emits)
 
 const isChecked = computed<boolean>(() => modelValue.value === props.label)
-const ykRadioCls = computed(() => {
-  return {
-    'yk-radio': true,
-    'is-checked': isChecked.value,
-    'is-disabled': disabled.value,
-  }
-})
-
-const ykRadioInputCls = computed(() => {
-  return {
-    'yk-radio--input': true,
-    'is-checked': isChecked.value,
-    'is-disabled': disabled.value,
-  }
-})
 
 const handleChange = () => {
   nextTick(() => emits(CHANGE_EVENT, modelValue.value))

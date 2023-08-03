@@ -11,6 +11,8 @@ export type RadioProps = RadioBaseProps & {
   modelValue?: number | string | boolean;
   name?: string;
   border?: boolean;
+  type?: 'radio' | 'button';
+  solid?: boolean;
 };
 
 export const radioEmits = {
