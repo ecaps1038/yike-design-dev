@@ -1,8 +1,21 @@
 <template>
   <div>
+    <YkSpace align="center">
+      <label for="">
+        关闭父子关联：
+        <yk-switch v-model="checkStrictly"></yk-switch>
+      </label>
+      <yk-radio-group v-model="checkStrategy" type="button">
+        <yk-radio label="all">父亲和孩儿们</yk-radio>
+        <yk-radio label="parent">父亲们</yk-radio>
+        <yk-radio label="child">孩儿们</yk-radio>
+      </yk-radio-group>
+    </YkSpace>
     <yk-tree
       v-model:checkedKeys="checkedKeys"
       :options="options"
+      :check-strictly="checkStrictly"
+      :check-strategy="checkStrategy"
       checkable
     ></yk-tree>
     {{ checkedKeys }}
@@ -22,6 +35,8 @@ function createData(level = 3, pk = '') {
     }
   })
 }
+const checkStrictly = ref(false)
+const checkStrategy = ref<any>('all')
 const options = shallowRef(createData())
-const checkedKeys = ref([])
+const checkedKeys = ref(['0-3-0-2'])
 </script>

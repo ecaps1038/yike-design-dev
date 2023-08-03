@@ -1,5 +1,8 @@
 import { InjectionKey, Ref, RenderFunction } from 'vue';
 import { Key } from '../../utils';
+import { _TreeNode } from './internal';
+
+export type TreeCheckStrategy = 'all' | 'parent' | 'child';
 
 export type TreeProps = {
   options?: TreeOption[];
@@ -14,7 +17,7 @@ export type TreeProps = {
   fileIcons?: Icons;
   checkable?: boolean;
   checkedKeys?: Key[];
-  checkStrategy?: 'all' | 'parent' | 'child';
+  checkStrategy?: TreeCheckStrategy;
   /** 是否取消父子节点关联 */
   checkStrictly?: boolean;
 };
@@ -42,6 +45,7 @@ export type TreeContext = Readonly<{
   checkedKeys?: Key[];
   checkStrategy?: 'all' | 'parent' | 'child';
   checkStrictly?: boolean;
+  nodeMaps?: Map<Key, _TreeNode>;
   onExpand?: (key: Key, close?: boolean, first?: boolean) => void;
   onChecked?: (key: Key[], checked: boolean) => void;
   onSelect?: (key: Key) => void;
