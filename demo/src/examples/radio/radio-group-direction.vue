@@ -1,8 +1,9 @@
 <template>
   <yk-radio-group v-model="radio" direction="vertical">
-    <yk-radio label="love">这个世界最需要的就是爱与和平</yk-radio>
-    <yk-radio label="and">这个世界最需要的就是爱与和平</yk-radio>
-    <yk-radio label="peace" disabled>这个世界最需要的就是爱与和平</yk-radio>
+    {{ radio }}
+    <yk-radio value="love">Love</yk-radio>
+    <yk-radio value="and">And</yk-radio>
+    <yk-radio value="peace" disabled>Peace</yk-radio>
   </yk-radio-group>
 </template>
 <script lang="ts" setup>
