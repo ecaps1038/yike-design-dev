@@ -10,6 +10,7 @@ export type InputProps = {
   value?: string;
   disabled?: boolean;
   readonly?: boolean;
+  required?: boolean;
   clearable?: boolean;
   visible?: boolean;
   status?: Status;

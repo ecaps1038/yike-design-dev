@@ -1,0 +1,66 @@
+@import '../../styles/color/colors.less';
+.yk-radio--button {
+  cursor: pointer;
+  input {
+    display: none;
+  }
+  .yk-radio__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: @font-color-m;
+    transition: 0.3s;
+    flex-direction: row;
+    &--s {
+      margin-left: 2px;
+      width: 48px;
+      height: 20px;
+      font-size: @size-ss;
+      border-radius: 2px;
+    }
+    &--m {
+      margin-left: 3px;
+      width: 52px;
+      height: 26px;
+      font-size: @size-s;
+      border-radius: 3px;
+    }
+    &--l {
+      margin-left: 3px;
+      width: 60px;
+      height: 30px;
+      font-size: @size-s;
+      border-radius: 6px;
+    }
+    &--xl {
+      margin-left: 4px;
+      width: 64px;
+      height: 40px;
+      font-size: @size-m;
+      border-radius: 6px;
+    }
+    &--checked {
+      color: @pcolor !important;
+      background-color: @bg-color-l !important;
+    }
+    &--disabled {
+      opacity: 0.4;
+    }
+  }
+}
+
+.yk-radio--solid {
+  .yk-radio__label--checked {
+    color: #fff !important;
+    background-color: @pcolor !important;
+  }
+}
+.yk-radio--button:hover {
+  .yk-radio__label {
+    background-color: @bg-color-l;
+  }
+}
+
+.yk-radio--disabled {
+  cursor: not-allowed;
+}

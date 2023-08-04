@@ -35,6 +35,11 @@ import YkEmpty from './components/empty';
 import YkProgress from './components/progress';
 import YkModal from './components/modal';
 import { YkDropdown, YkDropdownItem } from './components/dropdown';
+import {
+  YkImage,
+  YkImagePreview,
+  YkImagePreviewGroup,
+} from './components/image';
 
 const components: {
   [propName: string]: Component;
@@ -80,6 +85,9 @@ const components: {
   YkModal,
   YkDropdown,
   YkDropdownItem,
+  YkImage,
+  YkImagePreview,
+  YkImagePreviewGroup,
 };
 
 export {
@@ -126,6 +134,9 @@ export {
   YkModal,
   YkDropdown,
   YkDropdownItem,
+  YkImage,
+  YkImagePreview,
+  YkImagePreviewGroup,
 };
 
 // 全局注册

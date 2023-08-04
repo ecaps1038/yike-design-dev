@@ -7,9 +7,9 @@
 :::
 
 :::snippet
-禁用状态的单选框
-设置 `disabled` 属性开启组件禁用模式
-<RadioDisabled/>
+控制状态
+通过 v-model (modelValue) 属性控制是否选中
+<RadioControl/>
 :::
 
 :::snippet
@@ -37,9 +37,9 @@
 :::
 
 :::snippet
-按钮单选框组主题
-设置单选框组的`theme`属性支持`primary`、`secondary`
-<RadioGroupButtonTheme/>
+按钮单选框组风格
+设置单选框组的`solid`切换填充风格
+<RadioGroupSolid/>
 :::
 
 :::snippet
@@ -72,14 +72,14 @@
 
 #### RadioGroup Attributes
 
-| 参数           | 描述                                          | 类型                        | 默认值       |
-| -------------- | --------------------------------------------- | --------------------------- | ------------ |
-| value(v-model) | 选中项绑定值                                  | number ｜ string ｜ boolean | --           |
-| theme          | 单选框组的主题 （仅当 type 为 button 时生效） | 'primary'｜'secondary'      | 'primary'    |
-| type           | 单选框组的类型                                | 'radio'｜'button'           | 'radio'      |
-| size           | 单选框组的尺寸（仅当 type 为 button 时生效）  | 's'｜ 'm'｜ 'l'｜'xl'       | 'l'          |
-| disabled       | 单选框组是否被禁用                            | boolean                     | false        |
-| direction      | 单选框的方向                                  | 'horizontal'｜'vertical'    | 'horizontal' |
+| 参数           | 描述                             | 类型                        | 默认值       |
+| -------------- | -------------------------------- | --------------------------- | ------------ |
+| value(v-model) | 选中项绑定值                     | number ｜ string ｜ boolean | --           |
+| solid          | 当 type='button'时，按钮是否填充 | boolean                     | false        |
+| type           | 单选框组的类型                   | 'radio'｜'button'           | 'radio'      |
+| size           | 单选框组的尺寸、间距             | 's'｜ 'm'｜ 'l'｜'xl'       | 'l'          |
+| disabled       | 单选框组是否被禁用               | boolean                     | false        |
+| direction      | 单选框的方向                     | 'horizontal'｜'vertical'    | 'horizontal' |
 
 #### RadioGroup Slots
 
