@@ -1,6 +1,8 @@
 <template>
   <div :class="bem()">
-    <Node v-for="option in options" :key="option.key" :option="option" />
+    <YkScrollbar :height="props.height">
+      <Node v-for="option in options" :key="option.key" :option="option" />
+    </YkScrollbar>
   </div>
 </template>
 <script setup lang="ts">
@@ -21,6 +23,7 @@ import {
 } from 'vue'
 import { IconRightFill } from '../../svg-icon'
 import { getOffspringKeys } from './util'
+import YkScrollbar from '../../scrollbar'
 
 const bem = createCssScope('tree')
 
@@ -63,6 +66,7 @@ const {
 } = toRefs(props)
 
 // 获取节点的 map 结构
+// eslint-disable-next-line vue/no-setup-props-destructure
 const nodeMaps = shallowRef(tree2list(props.options))
 watch(
   () => props.options,

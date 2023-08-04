@@ -2,6 +2,7 @@
   <yk-tree
     :options="options"
     :default-expanded-keys="expandedKey"
+    height="300px"
     @expand="handleExpand"
   ></yk-tree>
 </template>
@@ -29,6 +30,6 @@ function createLabel(level: number): string {
 const options = shallowRef(createData())
 const expandedKey = ref(['41', '403122'])
 const handleExpand = (exp) => {
-  console.log('exp: ', exp)
+  // console.log('exp: ', exp)
 }
 </script>

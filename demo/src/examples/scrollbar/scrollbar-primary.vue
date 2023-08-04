@@ -1,16 +1,17 @@
 <template>
   <yk-scrollbar height="400px">
-    <div class="wrapper">
-      <p v-for="item in 20" :key="item" class="item">{{ item }}</p>
+    <div class="content">
+      <div v-for="item in 20" :key="item" class="item">{{ item }}</div>
     </div>
   </yk-scrollbar>
 </template>
 <style scoped lang="less">
-.wrapper {
-  width: 1300px;
+.content {
+  overflow: hidden;
 }
-div p {
-  width: 100%;
+.item {
+  margin: 10px;
+  padding: 10px;
   background: @bg-color-s;
 }
 </style>
