@@ -3,7 +3,7 @@ import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from './constants';
 
 export type RadioBaseProps = {
   size?: Size;
-  label: number | string | boolean;
+  value: number | string | boolean;
   disabled?: boolean;
 };
 

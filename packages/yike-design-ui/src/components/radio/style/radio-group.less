@@ -1,0 +1,31 @@
+@import '../../styles/color/colors.less';
+.yk-radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  &__container {
+    display: flex;
+    background: @gray-1;
+    &--xl {
+      padding: 4px 0px;
+      padding-right: 4px;
+      border-radius: @radius-m;
+    }
+    &--l {
+      padding: 3px 0px;
+      padding-right: 3px;
+      border-radius: @radius-m;
+    }
+    &--m {
+      padding: 3px 0px;
+      padding-right: 3px;
+      border-radius: @radius-s;
+    }
+    &--s {
+      padding: 2px 0px;
+      padding-right: 2px;
+      border-radius: @radius-s;
+    }
+  }
+}
