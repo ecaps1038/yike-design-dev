@@ -12,7 +12,7 @@
     ></yk-image>
   </yk-space>
   <yk-image-preview
-    :visible="priviewVisible"
+    :visible="previewVisible"
     :src="currentSrc"
     :closable="props.closable"
     :mask-closable="props.maskClosable"
@@ -39,7 +39,8 @@ const emit = defineEmits<{
 }>()
 
 const currentIndex = ref(props.defaultCurrent)
-const priviewVisible = ref(!!props.visible)
+console.log('🚀 ~ file: preview-group.vue:42 ~ currentIndex:', currentIndex)
+const previewVisible = ref(!!props.visible)
 const imageCount = computed(() => props.srcList?.length)
 
 const currentSrc = computed(() => {
@@ -50,11 +51,11 @@ const currentSrc = computed(() => {
 
 watch(
   () => props.visible,
-  (v) => (priviewVisible.value = v),
+  (v) => (previewVisible.value = v),
 )
 
 const setVisible = (visible: boolean) => {
-  priviewVisible.value = visible
+  previewVisible.value = visible
   emit('update:visible', visible)
 }
 

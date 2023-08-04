@@ -40,17 +40,6 @@
     >
       <cropPicture ref="cropRef" :url="url" :blob-raw="blobRaw" :uid="uid" />
     </yk-modal>
-
-    <yk-modal
-      v-if="reviewVisible"
-      v-model="reviewVisible"
-      title="图片预览"
-      :show-footer="false"
-    >
-      <div :class="bem('review')">
-        <img :src="blobRaw || url" alt="" />
-      </div>
-    </yk-modal>
   </div>
 </template>
 <script setup lang="ts">
@@ -77,7 +66,6 @@ const bem = createCssScope('upload-picture')
 const { status, uid, raw, url } = toRefs(props.fileContent)
 
 const editModalVisible = ref(false)
-const reviewVisible = ref(false)
 
 const cropRef = ref()
 
@@ -94,10 +82,11 @@ const emits = defineEmits([
   'handleRemove',
   'handleReUpload',
   'handleEdit',
+  'handleReview',
 ])
 
 const handleReview = () => {
-  reviewVisible.value = true
+  emits('handleReview', uid.value)
 }
 
 const handlePause = () => {
