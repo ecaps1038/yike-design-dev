@@ -109,6 +109,10 @@
         {
           "name": "Tree 树",
           "src": "tree"
+        },
+        {
+          "name": "Image 图片",
+          "src": "image"
         }
       ]
     },
