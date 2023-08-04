@@ -1,5 +1,10 @@
 <template>
-  <div :class="bem()" :style="style">
+  <div
+    :class="bem()"
+    :style="style"
+    @mouseenter="mouseenter"
+    @mouseleave="mouseleave"
+  >
     <div v-if="$slots.prepend" :class="bem('prepend')">
       <slot name="prepend" />
     </div>
@@ -17,8 +22,6 @@
         }),
         bem([size]),
       ]"
-      @mouseenter="mouseenter"
-      @mouseleave="mouseleave"
     >
       <div v-if="$slots.prefix" :class="bem(['slot', 'before'])">
         <slot name="prefix" />
@@ -30,6 +33,7 @@
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
+        :required="required"
         :class="bem('widget')"
         :type="inputType"
         tabindex="0"
@@ -40,7 +44,7 @@
         @blur="blur"
         @compositionstart="compositionstart"
         @compositionend="compositionend"
-        @keydown.enter="submit"
+        @keydown="keydown"
       />
       <div :class="bem('buttons')">
         <button
@@ -91,13 +95,13 @@ defineOptions({
   name: 'YkInput',
 })
 const props = withDefaults(defineProps<InputProps>(), {
-  name: '',
   size: 'l',
   type: 'text',
   placeholder: '',
   value: '',
   disabled: false,
   readonly: false,
+  required: false,
   visible: true,
   clearable: false,
   status: 'primary',
@@ -121,6 +125,7 @@ const emits = defineEmits([
   'clear',
   'change',
   'submit',
+  'keydown',
   'update:value',
 ])
 const inputRef = ref<HTMLInputElement>()
@@ -135,7 +140,7 @@ const focus = () => {
   // 禁用与只读状态不可被聚焦
   if (props.disabled || props.readonly) return
   isFocus.value = true
-  if (props.tooltip && props.tooltip !== '') {
+  if (props.tooltip.length > 0) {
     tooltip!.set(props.tooltip)
   }
   emits('focus', lastValue)
@@ -186,8 +191,8 @@ const compositionend = () => {
   isTyping.value = false
 }
 
-const submit = () => {
-  emits('submit', lastValue)
+const keydown = (ev: KeyboardEvent) => {
+  emits('keydown', ev)
 }
 
 const switchType = () => {
