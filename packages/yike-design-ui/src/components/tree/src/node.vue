@@ -17,6 +17,7 @@ const isLeaf = computed(
   () => !props.option.children || !props.option.children.length,
 )
 
+// eslint-disable-next-line vue/no-setup-props-destructure
 provide(TreeNodeInjectionKey, {
   option: props.option,
   isLeaf: isLeaf.value,
