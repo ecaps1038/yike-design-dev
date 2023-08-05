@@ -6,9 +6,9 @@
         <yk-switch v-model="checkStrictly"></yk-switch>
       </label>
       <yk-radio-group v-model="checkStrategy" type="button">
-        <yk-radio label="all">父亲和孩儿们</yk-radio>
-        <yk-radio label="parent">父亲们</yk-radio>
-        <yk-radio label="child">孩儿们</yk-radio>
+        <yk-radio value="all">父亲和孩儿们</yk-radio>
+        <yk-radio value="parent">父亲们</yk-radio>
+        <yk-radio value="child">孩儿们</yk-radio>
       </yk-radio-group>
     </YkSpace>
     <yk-tree

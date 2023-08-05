@@ -1,8 +1,11 @@
 <template>
   <div :class="bem()">
-    <YkScrollbar :height="props.height">
+    <YkScrollbar v-if="props.scrollbar" v-bind="props.scrollbar">
       <Node v-for="option in options" :key="option.key" :option="option" />
     </YkScrollbar>
+    <template v-else>
+      <Node v-for="option in options" :key="option.key" :option="option" />
+    </template>
   </div>
 </template>
 <script setup lang="ts">
@@ -23,7 +26,7 @@ import {
 } from 'vue'
 import { IconRightFill } from '../../svg-icon'
 import { getOffspringKeys } from './util'
-import YkScrollbar from '../../scrollbar'
+import { YkScrollbar } from '../../scrollbar'
 
 const bem = createCssScope('tree')
 
@@ -47,6 +50,7 @@ const props = withDefaults(defineProps<TreeProps>(), {
   checkable: false,
   checkStrategy: 'all',
   checkStrictly: false,
+  scrollbar: false,
 })
 
 const emits = defineEmits<{

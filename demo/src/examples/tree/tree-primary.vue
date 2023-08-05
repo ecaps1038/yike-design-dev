@@ -2,7 +2,7 @@
   <yk-tree
     :options="options"
     :default-expanded-keys="expandedKey"
-    height="300px"
+    :scrollbar="{ height: 300 }"
     @expand="handleExpand"
   ></yk-tree>
 </template>

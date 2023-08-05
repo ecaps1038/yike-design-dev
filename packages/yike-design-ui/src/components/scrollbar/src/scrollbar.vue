@@ -11,8 +11,19 @@
       </div>
     </div>
     <template v-if="!props.native">
-      <Thumb vertical :size="thumbHeight" :move="moveY" :show="showThumbY" />
-      <Thumb :size="thumbWidth" :move="moveX" :show="showThumbX" />
+      <Thumb
+        vertical
+        :size="thumbHeight"
+        :move="moveY"
+        :always="always"
+        :ratio="ratioY"
+      />
+      <Thumb
+        :size="thumbWidth"
+        :move="moveX"
+        :always="always"
+        :ratio="ratioX"
+      />
     </template>
   </div>
 </template>
@@ -27,6 +38,7 @@ import {
   provide,
   reactive,
   watch,
+  onMounted,
 } from 'vue'
 import { createCssScope, toPx } from '../../utils'
 import { ScrollbarProps, scrollbarContextKey } from './scrollbar'
@@ -65,28 +77,8 @@ const $content = shallowRef<HTMLDivElement>()
 
 const moveY = ref(0)
 const moveX = ref(0)
-const mouseEnterShow = ref(false)
-const showThumbY = computed(() => {
-  mouseEnterShow.value
-  if (!$wrap.value || !$content.value) return false
-  if (props.always) return true
-
-  if ($wrap.value.clientHeight < $wrap.value.scrollHeight) {
-    return mouseEnterShow.value
-  }
-  return false
-})
-const showThumbX = computed(() => {
-  if (!$wrap.value || !$content.value) return false
-  if ($wrap.value.clientWidth < $wrap.value.scrollWidth) {
-    if (props.always) return true
-    return mouseEnterShow.value
-  }
-  return false
-})
 
 const handleScroll = (e: Event) => {
-  mouseEnterShow.value
   const wrap = unref($wrap)
   const content = unref($content)
   if (!wrap || !content) return
@@ -94,14 +86,9 @@ const handleScroll = (e: Event) => {
   const offsetWidth = wrap.offsetWidth - GAP
   moveY.value = (wrap.scrollTop * offsetHeight) / content.scrollHeight
   moveX.value = (wrap.scrollLeft * offsetWidth) / content.scrollWidth
+  emits('scroll', e)
 }
 
-useEventListener($scrollbar, 'mousemove', () => {
-  mouseEnterShow.value = true
-})
-useEventListener($scrollbar, 'mouseleave', () => {
-  mouseEnterShow.value = false
-})
 const ratioY = ref(1)
 const ratioX = ref(1)
 const thumbHeight = ref('0')
@@ -114,6 +101,7 @@ const update = () => {
   const ogH = offsetHeight ** 2 / wrap.scrollHeight // 计算出来实际的滚动条高度
   const ogW = offsetWidth ** 2 / wrap.scrollWidth // 计算出来实际的滚动条宽度
   thumbHeight.value = ogH + 'px'
+  console.log('thumbHeight.value: ', thumbHeight.value)
   thumbWidth.value = ogW + 'px'
 
   ratioY.value = ogH / offsetHeight
@@ -128,7 +116,8 @@ let stopWindowResize: () => void
 watch(
   () => props.noresize,
   (noresize) => {
-    if (noresize) {
+    if (noresize || props.native) {
+      // 如果指定内容高度不会变化或者采用原生滚动条
       stopResizeObs?.()
       stopWindowResize?.()
     } else {
@@ -138,6 +127,7 @@ watch(
   },
   { immediate: true },
 )
+onMounted(update)
 
 provide(
   scrollbarContextKey,
@@ -146,4 +136,17 @@ provide(
     wrapEl: $wrap,
   }),
 )
+
+const scrollBy: (options?: ScrollToOptions | undefined) => void = (options) => {
+  $wrap.value?.scrollBy(options)
+}
+
+const scrollTo: (options?: ScrollToOptions | undefined) => void = (options) => {
+  $wrap.value?.scrollTo(options)
+}
+
+defineExpose({
+  scrollBy: scrollBy,
+  scrollTo: scrollTo,
+})
 </script>

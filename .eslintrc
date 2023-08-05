@@ -86,6 +86,12 @@
       "rules": {
         "no-multiple-empty-lines": ["error", { "max": 0 }] // 设置规则
       }
+    },
+    {
+      "files": ["*.ts", "*.vue"],
+      "rules": {
+        "no-undef": "off"
+      }
     }
   ]
 }

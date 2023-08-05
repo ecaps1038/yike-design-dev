@@ -38,22 +38,23 @@
 
 ### Props
 
-| 参数                  | 描述                           | 类型                | 默认值          |
-| --------------------- | ------------------------------ | ------------------- | --------------- |
-| `options`             | 渲染数据                       | `TreeOption[]`      | -               |
-| `blockNode`           | 节点占据一行                   | `boolean`           | `false`         |
-| `defaultExpandedKeys` | 默认展开的节点                 | `Key[]`             | -               |
-| `defaultSelectedKeys` | 默认选中的节点                 | `Key[]`             | -               |
-| `expandedKeys`(受控)  | 展开的节点                     | `Key[]`             | -               |
-| `selectedKeys`(受控)  | 选中的节点                     | `Key[]`             | -               |
-| `multiple`            | 多选模式，开启可以高亮多个节点 | `boolean`           | false           |
-| `expandIcon`          | 展开收起图标                   | `RenderFunction`    | `IconRightFill` |
-| `fileTree`            | 目录树模式                     | `boolean`           | `false`         |
-| `fileIcons`           | 定制目录树的图标               | `Icons`             | -               |
-| `checkable`           | 复选框模式                     | `boolean`           | `false`         |
-| `checkedKeys`(受控)   | 复选框勾选的节点               | `Key[]`             | -               |
-| `checkStrategy`       | 节点勾选模式                   | `TreeCheckStrategy` | `'all'`         |
-| `checkStrictly`       | 取消父子节点关联               | `boolean`           | `false`         |
+| 参数                  | 描述                           | 类型                      | 默认值          |
+| --------------------- | ------------------------------ | ------------------------- | --------------- |
+| `options`             | 渲染数据                       | `TreeOption[]`            | -               |
+| `blockNode`           | 节点占据一行                   | `boolean`                 | `false`         |
+| `defaultExpandedKeys` | 默认展开的节点                 | `Key[]`                   | -               |
+| `defaultSelectedKeys` | 默认选中的节点                 | `Key[]`                   | -               |
+| `expandedKeys`(受控)  | 展开的节点                     | `Key[]`                   | -               |
+| `selectedKeys`(受控)  | 选中的节点                     | `Key[]`                   | -               |
+| `multiple`            | 多选模式，开启可以高亮多个节点 | `boolean`                 | false           |
+| `expandIcon`          | 展开收起图标                   | `RenderFunction`          | `IconRightFill` |
+| `fileTree`            | 目录树模式                     | `boolean`                 | `false`         |
+| `fileIcons`           | 定制目录树的图标               | `Icons`                   | -               |
+| `checkable`           | 复选框模式                     | `boolean`                 | `false`         |
+| `checkedKeys`(受控)   | 复选框勾选的节点               | `Key[]`                   | -               |
+| `checkStrategy`       | 节点勾选模式                   | `TreeCheckStrategy`       | `'all'`         |
+| `checkStrictly`       | 取消父子节点关联               | `boolean`                 | `false`         |
+| `scrollbar`           | 内置滚动条                     | `ScrollbarProps\|boolean` | `false`         |
 
 ### Event
 
