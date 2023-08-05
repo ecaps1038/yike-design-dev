@@ -1,6 +1,7 @@
 import { InjectionKey, Ref, RenderFunction } from 'vue';
 import { Key } from '../../utils';
 import { _TreeNode } from './internal';
+import { ScrollbarProps } from '../../scrollbar';
 
 export type TreeCheckStrategy = 'all' | 'parent' | 'child';
 
@@ -20,7 +21,7 @@ export type TreeProps = {
   checkStrategy?: TreeCheckStrategy;
   /** 是否取消父子节点关联 */
   checkStrictly?: boolean;
-  height?: string;
+  scrollbar?: ScrollbarProps | boolean;
 };
 
 export type Icons = {

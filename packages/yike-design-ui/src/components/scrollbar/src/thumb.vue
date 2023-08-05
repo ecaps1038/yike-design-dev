@@ -35,12 +35,12 @@ let scrollPos = 0
 const visible = ref(false)
 const mouseY = ref(0)
 const mouseX = ref(0)
+const drag = ref(false)
 const handleThumbClick = (e: MouseEvent) => {
   // prevent click event of middle and right button
   e.stopPropagation()
   if (e.ctrlKey || [1, 2].includes(e.button)) return
-
-  visible.value = true
+  drag.value = true
   window.getSelection()?.removeAllRanges()
   e.stopImmediatePropagation()
   document.addEventListener('mousemove', mouseMove)
@@ -72,7 +72,7 @@ const mouseMove = (e: MouseEvent) => {
   }
 }
 const mouseUp = () => {
-  visible.value = false
+  drag.value = false
   document.removeEventListener('mousemove', mouseMove)
   document.removeEventListener('mouseup', mouseUp)
   restoreOnselectstart()
@@ -93,7 +93,7 @@ useEventListener(toRef(context, 'scrollbarEl'), 'mouseleave', () => {
 const show = computed(() => {
   if (props.ratio === 1) return false
   if (props.always) return true
-  return visible.value
+  return visible.value || drag.value
 })
 </script>
 

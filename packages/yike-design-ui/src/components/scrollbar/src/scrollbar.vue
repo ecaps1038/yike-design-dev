@@ -101,6 +101,7 @@ const update = () => {
   const ogH = offsetHeight ** 2 / wrap.scrollHeight // 计算出来实际的滚动条高度
   const ogW = offsetWidth ** 2 / wrap.scrollWidth // 计算出来实际的滚动条宽度
   thumbHeight.value = ogH + 'px'
+  console.log('thumbHeight.value: ', thumbHeight.value)
   thumbWidth.value = ogW + 'px'
 
   ratioY.value = ogH / offsetHeight
@@ -115,7 +116,7 @@ let stopWindowResize: () => void
 watch(
   () => props.noresize,
   (noresize) => {
-    if (noresize || !props.native) {
+    if (noresize || props.native) {
       // 如果指定内容高度不会变化或者采用原生滚动条
       stopResizeObs?.()
       stopWindowResize?.()
