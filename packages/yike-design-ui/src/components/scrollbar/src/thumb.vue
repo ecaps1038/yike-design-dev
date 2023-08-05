@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed, CSSProperties, ref, inject } from 'vue'
+import { computed, CSSProperties, ref, inject, toRef } from 'vue'
 import { createCssScope } from '../../utils'
 import { scrollbarContextKey } from './scrollbar'
+import { useEventListener } from '@vueuse/core'
 
 const bem = createCssScope('scrollbar')
 const props = defineProps<{
   vertical?: boolean
-  show?: boolean
+  always?: boolean
   size: string
   move: number
+  ratio: number
 }>()
 
 const context = inject(scrollbarContextKey)
@@ -80,12 +82,25 @@ const restoreOnselectstart = () => {
   if (document.onselectstart !== originalOnSelectStart)
     document.onselectstart = originalOnSelectStart
 }
+
+useEventListener(toRef(context, 'scrollbarEl'), 'mousemove', () => {
+  visible.value = true
+})
+useEventListener(toRef(context, 'scrollbarEl'), 'mouseleave', () => {
+  visible.value = false
+})
+
+const show = computed(() => {
+  if (props.ratio === 1) return false
+  if (props.always) return true
+  return visible.value
+})
 </script>
 
 <template>
   <Transition :name="`${bem('fade')}`">
     <div
-      v-show="show || visible"
+      v-show="show"
       :class="[bem('bar', [vertical ? 'vertical' : 'horizontal'])]"
     >
       <div
