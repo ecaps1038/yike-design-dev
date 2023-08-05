@@ -36,7 +36,7 @@
 
 ### Methods
 
-| 事件名     | 说明                                                                          | 类型     |
-| ---------- | ----------------------------------------------------------------------------- | -------- |
-| `scrollTo` | [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollTo) | Function |
-| `scrollBy` | [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollBy) | Function |
+| 事件名     | 说明                                                                          | 类型                                  |
+| ---------- | ----------------------------------------------------------------------------- | ------------------------------------- |
+| `scrollTo` | [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollTo) | `(options?: ScrollToOptions) => void` |
+| `scrollBy` | [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollBy) | `(options?: ScrollToOptions) => void` |
