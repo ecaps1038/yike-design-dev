@@ -126,6 +126,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'image',
     component: () => import('@/examples/image/doc.md'),
   },
+  {
+    path: 'form',
+    component: () => import('@/examples/form/doc.md'),
+  },
 ];
 
 export default generalRoutes;
