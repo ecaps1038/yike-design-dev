@@ -1,11 +1,21 @@
 <template>
   <div ref="$anchor" :class="cls">
-    <anchor-list :options="options" :active="active" :root="true" />
-    <span
-      v-if="props.showMarker && markerY !== undefined"
-      class="yk-anchor-marker"
-      :style="markerStyle"
-    ></span>
+    <YkScrollbar v-if="props.scrollbar" v-bind="props.scrollbar">
+      <anchor-list :options="options" :active="active" :root="true" />
+      <span
+        v-if="props.showMarker && markerY !== undefined"
+        class="yk-anchor-marker"
+        :style="markerStyle"
+      ></span>
+    </YkScrollbar>
+    <template v-else>
+      <anchor-list :options="options" :active="active" :root="true" />
+      <span
+        v-if="props.showMarker && markerY !== undefined"
+        class="yk-anchor-marker"
+        :style="markerStyle"
+      ></span>
+    </template>
   </div>
 </template>
 <script setup lang="ts">
@@ -23,6 +33,7 @@ import { useDebounceFn, useEventListener } from '@vueuse/core'
 
 /* eslint-disable-next-line */
 import AnchorList from './anchor-list.vue'
+import YkScrollbar from '../../scrollbar'
 
 defineOptions({
   name: 'YkAnchor',
@@ -33,6 +44,7 @@ const props = withDefaults(defineProps<AnchorProps>(), {
   scrollEl: () => window,
   offset: 0,
   ms: 100,
+  scrollbar: false,
 })
 
 const cls = computed(() => {

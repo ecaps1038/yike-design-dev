@@ -1,4 +1,5 @@
 import { InjectionKey, Ref } from 'vue';
+import { ScrollbarProps } from '../../scrollbar';
 
 export type AnchorOption = {
   title: string;
@@ -16,6 +17,7 @@ export type AnchorProps = {
   offset?: number;
   /** 滚动防抖延时 */
   ms?: number;
+  scrollbar?: ScrollbarProps | boolean;
 };
 
 export type AnchorListProps = {
