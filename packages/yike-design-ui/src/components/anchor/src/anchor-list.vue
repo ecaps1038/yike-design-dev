@@ -1,7 +1,19 @@
 <script setup lang="ts">
-import { AnchorListProps } from './anchor'
+import { AnchorListProps, AnchorOption } from './anchor'
 
 const props = defineProps<AnchorListProps>()
+
+const emits = defineEmits(['updateActive'])
+
+const handleClick = (item: AnchorOption, e: Event) => {
+  window.history.pushState('', '', item.href)
+  e.preventDefault()
+  const el = document.querySelector(item.href)
+  el?.scrollIntoView({
+    behavior: 'smooth',
+  })
+  emits('updateActive', item.href)
+}
 </script>
 
 <template>
@@ -10,16 +22,18 @@ const props = defineProps<AnchorListProps>()
       <a
         :class="{
           'yk-anchor-item-title': true,
-          'yk-anchor-item-title-active': props.active === item.href,
+          'yk-anchor-item-title-active': active === item.href,
         }"
         :href="item.href"
+        @click="handleClick(item, $event)"
       >
         {{ item.title }}
       </a>
       <anchor-list
         v-if="item.children && item.children.length > 0"
-        :options="item.children"
         :active="active"
+        :options="item.children"
+        @update-active="emits('updateActive', $event)"
       />
     </li>
   </ul>
