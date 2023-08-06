@@ -127,9 +127,11 @@ export type FormItemProps = {
 };
 
 export type FormContext = {
-  labelWidth: number;
-  disabled: boolean;
-  validate: () => void;
+  labelWidth?: number;
+  disabled?: boolean;
+  rules?: Record<string, FieldRule | FieldRule[]>;
+  validateForm?: () => void;
 };
 
-export const formContext: InjectionKey<FormContext> = Symbol('formContextKey');
+export const formContextKey: InjectionKey<FormContext> =
+  Symbol('formContextKey');

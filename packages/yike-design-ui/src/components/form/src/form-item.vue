@@ -15,7 +15,7 @@ const bem = createCssScope('form-item')
 defineOptions({
   name: 'YkForm',
 })
-const props = withDefaults(defineProps<FormItemProps>(), {
+withDefaults(defineProps<FormItemProps>(), {
   labelWidth: 60,
 })
 
