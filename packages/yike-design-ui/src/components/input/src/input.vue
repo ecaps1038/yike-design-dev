@@ -98,7 +98,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   size: 'l',
   type: 'text',
   placeholder: '',
-  value: '',
+  modelValue: '',
   disabled: false,
   readonly: false,
   required: false,
@@ -116,7 +116,7 @@ const shouldLimitInput = props.limit > 0
 const shouldShowLimit = props.showCounter && shouldLimitInput
 const shouldShowVisiblePasswordButton =
   props.type === 'password' && !props.disabled && props.visible
-let realValue = toRef(props, 'value')
+let realValue = toRef(props, 'modelValue')
 let lastValue = realValue.value
 const valueCounter = ref<number>(lastValue.length)
 const emits = defineEmits([
@@ -126,7 +126,7 @@ const emits = defineEmits([
   'change',
   'submit',
   'keydown',
-  'update:value',
+  'update:modelValue',
 ])
 const inputRef = ref<HTMLInputElement>()
 
@@ -156,7 +156,7 @@ const update = () => {
   ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
   valueCounter.value = lastValue.length
-  emits('update:value', lastValue)
+  emits('update:modelValue', lastValue)
   emits('change', lastValue)
 }
 
