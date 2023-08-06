@@ -126,7 +126,7 @@ const stop = watch(
 )
 
 const handleScroll = useDebounceFn(() => {
-  console.log(123123)
+  // console.log(123123)
 
   if (anchorEls.value.length === 0) {
     getEl()
