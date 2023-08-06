@@ -1,18 +1,21 @@
 <template>
-  <form :class="bem()" @submit.prevent="handleSubmit">
+  <div :class="bem()">
+    <div :class="bem('label')" :style="{ width: `${labelWidth}px` }">
+      {{ label }}
+    </div>
     <slot />
-  </form>
+  </div>
 </template>
 <script setup lang="ts">
-import { FormProps } from './form'
+import { FormItemProps } from './form'
 import { createCssScope } from '../../utils/bem'
-const bem = createCssScope('form')
+
+const bem = createCssScope('form-item')
 
 defineOptions({
   name: 'YkForm',
 })
-
-const props = withDefaults(defineProps<FormProps>(), {
+const props = withDefaults(defineProps<FormItemProps>(), {
   labelWidth: 60,
 })
 
