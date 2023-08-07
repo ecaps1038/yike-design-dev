@@ -10,7 +10,7 @@ export const mdCustomH3: MarkdownIt.PluginSimple = (md) => {
         const headingLevel = tokens[i].tag.replace('h', '');
 
         // 获取标题内容
-        const headingContent = tokens[i + 1].content;
+        const headingContent = md.renderInline(tokens[i + 1].content);
 
         // 生成自定义组件形式的字符串
         const customComponent = `<yk-title :level="${headingLevel}" id="${headingContent.replace(

@@ -87,7 +87,7 @@
 <script setup lang="ts">
 import { InputProps } from './input'
 import '../style'
-import { computed, ref, toRef } from 'vue'
+import { computed, ref, toRef, watch } from 'vue'
 import { createCssScope } from '../../utils/bem'
 import { useInputTooltip } from './utils'
 
@@ -118,7 +118,7 @@ const shouldShowVisiblePasswordButton =
   props.type === 'password' && !props.disabled && props.visible
 let realValue = toRef(props, 'value')
 let lastValue = realValue.value
-const valueCounter = ref<number>(lastValue.length)
+const valueCounter = ref<number>((lastValue as string).length)
 const emits = defineEmits([
   'focus',
   'blur',
@@ -127,13 +127,15 @@ const emits = defineEmits([
   'submit',
   'keydown',
   'update:value',
+  'hoverin',
+  'hoverout',
 ])
 const inputRef = ref<HTMLInputElement>()
 
 const isFocus = ref(false)
 const isHovering = ref(false)
-const shouldShowButton = ref(lastValue.length > 0)
-const inputType = ref(props.type)
+const shouldShowButton = ref((lastValue as string).length > 0)
+const inputType = toRef(props, 'type')
 let tooltip = useInputTooltip(inputRef)
 
 const focus = () => {
@@ -168,10 +170,12 @@ const blur = () => {
 
 const mouseenter = () => {
   isHovering.value = true
+  emits('hoverin')
 }
 
 const mouseleave = () => {
   isHovering.value = false
+  emits('hoverout')
 }
 
 const clear = () => {
@@ -206,5 +210,15 @@ const YkInputButtonClass = computed(() => {
       (props.clearable || props.visible) &&
       (isFocus.value || isHovering.value),
   }
+})
+
+watch(props, () => {
+  lastValue = props.value
+  ;(realValue as any) = lastValue
+  emits('update:value', lastValue)
+})
+
+defineExpose({
+  inputRef,
 })
 </script>

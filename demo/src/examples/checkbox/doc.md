@@ -44,51 +44,58 @@
 
 ### API
 
-`<checkbox>` Props
-|参数名 |描述 |类型 |默认值 |
-|---------------------|----------|------------|-------|
-|checked (v-model) |绑定值 | boolean |-|
-|default-checked|默认是否选中（非受控状态） | boolean |false|
-|value|选项的 value，当为选项组时为被选中的值 | boolean ｜ number ｜ string |-|
-|disabled|是否禁用 | boolean |false|
-|indeterminate|是否为半选状态|boolean|false|
+#### `Checkbox` Props
 
-`<checkbox>` Events
-|事件名 |描述 |参数 |
-|---------------|----------|----|
-|change |值改变时触发 | value: boolean ｜ string ｜ number |-|
+| 参数名            | 描述                                   | 类型                        | 默认值 |
+| ----------------- | -------------------------------------- | --------------------------- | ------ |
+| checked (v-model) | 绑定值                                 | boolean                     | -      |
+| default-checked   | 默认是否选中（非受控状态）             | boolean                     | false  |
+| value             | 选项的 value，当为选项组时为被选中的值 | boolean ｜ number ｜ string | -      |
+| disabled          | 是否禁用                               | boolean                     | false  |
+| indeterminate     | 是否为半选状态                         | boolean                     | false  |
 
-`<checkbox>` Slots
-|插槽名 |描述 |参数 |版本|
-|---------------|----------|----|----|
-|default |自定义 label | - |-|
+#### `Checkbox` Events
 
-`<checkbox-group>` Props
-|参数名 |描述 |类型 |默认值|版本|
-|---------------|----------|----|----|---|
-|model-value (v-model) |绑定值 | Array<string ｜ number ｜ boolean> |-|-|
-|default-value |默认值（非受控状态） | Array<string ｜ number ｜ boolean> |[]|-|
-|options |选项 | Array<string ｜ number ｜ CheckboxOption> |[]|-|
-|direction |复选框的排列方向 | 'horizontal'｜'vertical' |'horizontal'|-|
-|disabled|是否禁用 | boolean |false|-|
-|max|支持最多选中的数量|number|-|-|
-|size|间距|'s' ｜ 'm' ｜ 'l' ｜ 'xl' ｜ number ｜ number[]|l|
+| 事件名 | 描述         | 参数                               |
+| ------ | ------------ | ---------------------------------- |
+| change | 值改变时触发 | value: boolean \| string \| number |
 
-`<checkbox-group>` Events
-|事件名 |描述 |参数 |
-|---------------|----------|----|
-|change |值改变时触发 | Array<string ｜ number ｜ boolean> |-|
+#### `Checkbox` Slots
 
-`<checkbox-group>` Slots
-|插槽名 |描述 |参数 |版本|
-|---------------|----------|----|----|
-|default |自定义内容 | - |-|
-|label |checkbox 文案内容 | data: CheckboxOption |-|
+| 插槽名  | 描述         | 参数 | 版本 |
+| ------- | ------------ | ---- | ---- |
+| default | 自定义 label | -    | -    |
 
-CheckboxOption
-|插槽名 |描述 |类型 |默认值|
-|---------------|----------|----|----|
-|label |文案 | string |-|
-|value |选项的 `value` | string ｜ boolean ｜ number |-|
-|disabled |是否禁用 | boolean |-|
-|indeterminate|是否为半选状态|boolean|false|
+#### `CheckboxGroup` Props
+
+| 参数名                | 描述                 | 类型                                            | 默认值       | 版本 |
+| --------------------- | -------------------- | ----------------------------------------------- | ------------ | ---- |
+| model-value (v-model) | 绑定值               | Array<string ｜ number ｜ boolean>              | -            | -    |
+| default-value         | 默认值（非受控状态） | Array<string ｜ number ｜ boolean>              | []           | -    |
+| options               | 选项                 | Array<string ｜ number ｜ CheckboxOption>       | []           | -    |
+| direction             | 复选框的排列方向     | 'horizontal'｜'vertical'                        | 'horizontal' | -    |
+| disabled              | 是否禁用             | boolean                                         | false        | -    |
+| max                   | 支持最多选中的数量   | number                                          | -            | -    |
+| size                  | 间距                 | 's' ｜ 'm' ｜ 'l' ｜ 'xl' ｜ number ｜ number[] | l            |
+
+#### `CheckboxGroup` Events
+
+| 事件名 | 描述         | 参数                               |
+| ------ | ------------ | ---------------------------------- |
+| change | 值改变时触发 | Array<string \| number \| boolean> |
+
+#### `CheckboxGroup` Slots
+
+| 插槽名  | 描述              | 参数                 | 版本 |
+| ------- | ----------------- | -------------------- | ---- |
+| default | 自定义内容        | -                    | -    |
+| label   | checkbox 文案内容 | data: CheckboxOption | -    |
+
+#### `CheckboxOption`
+
+| 插槽名        | 描述           | 类型                        | 默认值 |
+| ------------- | -------------- | --------------------------- | ------ |
+| label         | 文案           | string                      | -      |
+| value         | 选项的 `value` | string ｜ boolean ｜ number | -      |
+| disabled      | 是否禁用       | boolean                     | -      |
+| indeterminate | 是否为半选状态 | boolean                     | false  |
