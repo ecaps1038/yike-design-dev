@@ -30,6 +30,7 @@
       <IconModifyOutline @click="handleEdit" />
       <IconDeleteOutline @click="handleRemove" />
     </div>
+
     <yk-modal
       v-if="editModalVisible"
       v-model="editModalVisible"
