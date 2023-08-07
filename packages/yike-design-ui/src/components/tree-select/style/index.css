@@ -1,0 +1,175 @@
+:root {
+  --pcolor: 43, 90, 237;
+  --lcolo: 24, 144, 255;
+  --scolor: 31, 180, 162;
+  --wcolor: 245, 172, 8;
+  --ecolor: 250, 82, 71;
+  --gray: 30, 32, 37;
+  --bgColor1: #fff;
+  --bgColor2: color-mix(in srgb, #fff, #1e2025 3.6%);
+  --bgColor3: color-mix(in srgb, #fff, #1e2025 4.8%);
+  --bgColor4: color-mix(in srgb, #fff, #1e2025 9.4%);
+  --bgColor5: #fff;
+  --bgColor6: #1e2025;
+}
+[data-theme='dark'] {
+  --pcolor: 53, 117, 246;
+  --lcolo: 48, 140, 225;
+  --scolor: 61, 199, 153;
+  --wcolor: 251, 173, 59;
+  --ecolor: 223, 77, 67;
+  --gray: 255, 255, 255;
+  --bgColor1: #1e2025;
+  --bgColor2: color-mix(in srgb, #1e2025, #fff 2.4%);
+  --bgColor3: color-mix(in srgb, #1e2025, #fff 4%);
+  --bgColor4: color-mix(in srgb, #1e2025, #fff 7.8%);
+  --bgColor5: color-mix(in srgb, #1e2025, #fff 2.4%);
+  --bgColor6: color-mix(in srgb, #1e2025, #fff 4%);
+}
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.24s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.upward-move,
+.upward-enter-active,
+.upward-leave-active {
+  transition: all 0.24s;
+  transform: translateY(0px);
+}
+.upward-enter-from,
+.upward-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.down-move,
+.down-enter-active,
+.down-leave-active {
+  transition: all 0.24s;
+  transform: translateY(0px);
+}
+.down-enter-from,
+.down-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.down-leave-active {
+  position: absolute;
+}
+.right-move,
+.right-enter-active,
+.right-leave-active {
+  transition: all 0.24s;
+  transform: translateX(0px);
+}
+.right-enter-from,
+.right-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.right-leave-active {
+  position: absolute;
+}
+*,
+*::before,
+*::after {
+  position: relative;
+  margin: 0;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  font-size: 14px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: rgb(var(--gray));
+  background: var(--bgColor1);
+  transition: color 0.3s, background-color 0.3s;
+  line-height: 20px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+img {
+  margin: 0;
+  padding: 0;
+}
+.yk-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  color: inherit;
+  font-style: normal;
+  vertical-align: -2px;
+  outline: none;
+  stroke: currentColor;
+}
+.yk-icon.yk-icon--loading,
+.yk-icon.yk-icon--spin {
+  animation: yk-loading-circle 1s infinite linear;
+}
+@keyframes yk-loading-circle {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.yk-tree-select__main-container {
+  position: relative;
+}
+.yk-tree-select__main-container .yk-tree-select__container-box {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  z-index: 10;
+  padding: 12px 8px 24px 8px;
+  width: 100%;
+  background-color: var(--bgColor1);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16);
+}
