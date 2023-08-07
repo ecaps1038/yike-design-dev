@@ -7,7 +7,7 @@ export type InputProps = {
   size?: Size;
   type?: 'text' | 'password';
   placeholder?: string;
-  value?: string;
+  value?: string | number;
   disabled?: boolean;
   readonly?: boolean;
   required?: boolean;
