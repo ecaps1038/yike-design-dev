@@ -1,18 +1,18 @@
 <template>
   <yk-form :model="form">
-    <yk-form-item labyk="姓名" prop="name">
+    <yk-form-item label="姓名" prop="name">
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
-    <yk-form-item labyk="性别" prop="sex">
+    <yk-form-item label="性别" prop="sex">
       <yk-radio-group v-model="form.sex">
         <yk-radio value="man">男</yk-radio>
         <yk-radio value="woman">女</yk-radio>
       </yk-radio-group>
     </yk-form-item>
-    <yk-form-item labyk="日期" prop="date">
+    <yk-form-item label="日期" prop="date">
       <yk-checkbox-group v-model="form.date">
         <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">
-          {{ item.labyk }}
+          {{ item.label }}
         </yk-checkbox>
       </yk-checkbox-group>
     </yk-form-item>
@@ -32,9 +32,9 @@ const form = reactive({
   date: ['2'],
 })
 const data = ref([
-  { id: '1', labyk: '昨天' },
-  { id: '2', labyk: '今天' },
-  { id: '3', labyk: '明天' },
+  { id: '1', label: '昨天' },
+  { id: '2', label: '今天' },
+  { id: '3', label: '明天' },
 ])
 const submitForm = () => {
   console.log('submit')
