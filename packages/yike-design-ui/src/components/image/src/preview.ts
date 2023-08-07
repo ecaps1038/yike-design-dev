@@ -22,6 +22,8 @@ export interface ImagePreviewProps {
 export interface ImagePreviewGroupProps {
   /** 显示或隐藏 */
   visible?: boolean;
+  /** 当前展示图像的下标 */
+  current?: number;
   /** 图像路径集 */
   srcList?: string[];
   /** 图像的统一宽度 */

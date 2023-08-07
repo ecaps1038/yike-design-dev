@@ -78,11 +78,10 @@
     </div>
   </div>
   <yk-image-preview-group
-    v-if="reviewVisible"
     v-model:visible="reviewVisible"
+    v-model:current="defaultReviewIndex"
     :src-list="imagesUrlList"
     :is-render="false"
-    :default-current="defaultReviewIndex"
     width="300"
     height="200"
     fit="cover"
