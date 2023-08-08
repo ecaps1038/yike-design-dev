@@ -49,8 +49,8 @@
       <div :class="bem('buttons')">
         <button
           v-if="shouldShowVisiblePasswordButton"
+          id="yki_switch"
           aria-label="查看/隐藏密码"
-          class="yk-input__button"
           :class="YkInputButtonClass"
           @click="switchType"
         >
@@ -58,8 +58,8 @@
         </button>
         <button
           v-if="clearable && !disabled"
+          id="yki_clear"
           aria-label="清空内容"
-          class="yk-input__button"
           :class="YkInputButtonClass"
           @click="clear"
         >
@@ -90,6 +90,7 @@ import '../style'
 import { computed, ref, toRef, watch } from 'vue'
 import { createCssScope } from '../../utils/bem'
 import { useInputTooltip } from './utils'
+import { IconCloseEyeOutline, IconCloseOutline } from '../../svg-icon'
 
 defineOptions({
   name: 'YkInput',
@@ -97,7 +98,6 @@ defineOptions({
 const props = withDefaults(defineProps<InputProps>(), {
   size: 'l',
   type: 'text',
-  placeholder: '',
   value: '',
   disabled: false,
   readonly: false,
@@ -135,7 +135,7 @@ const inputRef = ref<HTMLInputElement>()
 const isFocus = ref(false)
 const isHovering = ref(false)
 const shouldShowButton = ref((lastValue as string).length > 0)
-const inputType = toRef(props, 'type')
+const inputType = ref(props.type)
 let tooltip = useInputTooltip(inputRef)
 
 const focus = () => {
@@ -205,6 +205,7 @@ const switchType = () => {
 
 const YkInputButtonClass = computed(() => {
   return {
+    'yk-input__button': true,
     'yk-input__button-show':
       shouldShowButton.value &&
       (props.clearable || props.visible) &&

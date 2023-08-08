@@ -14,7 +14,18 @@ each(@sizes,{
 })
   .yk-rate {
   display: inline-flex;
-  column-gap: @space-s;
+  &--s {
+    column-gap: @space-ss;
+  }
+  &--m {
+    column-gap: 6px;
+  }
+  &--l {
+    column-gap: @space-s;
+  }
+  &--xl {
+    column-gap: 10px;
+  }
 }
 
 .yk-rate-item {
