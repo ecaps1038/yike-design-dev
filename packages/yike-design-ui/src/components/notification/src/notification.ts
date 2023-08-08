@@ -1,8 +1,7 @@
-import type { VNode } from 'vue';
-import { NotificationType } from '../../../utils/constant';
+import { NotificationType, type RenderContent } from '../../utils';
 export type NotificationProps = {
   title?: string;
-  message: string | VNode;
+  message: RenderContent;
   closable?: boolean;
   showFooterBtn?: boolean;
   showIcon?: boolean;
@@ -12,6 +11,8 @@ export type NotificationProps = {
   offsetY?: number;
   offsetX?: number;
   zIndex?: number;
+  dangerouslyUseHTMLString?: boolean;
+  position?: NotificationPosition;
 
   onClose?: () => void;
   onDestroy?: () => void;
@@ -26,4 +27,14 @@ export interface NotificationOptions extends NotificationProps {
 
 export type NotificationGroupProps = {
   notifications: NotificationOptions[];
+  position: NotificationPosition;
 };
+
+export const NOTIFICATION_POSITION = [
+  'topLeft',
+  'topRight',
+  'bottomLeft',
+  'bottomRight',
+] as const;
+
+export type NotificationPosition = (typeof NOTIFICATION_POSITION)[number];

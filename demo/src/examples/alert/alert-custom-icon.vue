@@ -6,7 +6,7 @@
     <div>
       <yk-alert type="success" message="hello，欢迎使用 Yike Design 组件库">
         <template #icon>
-          <yk-icon name="yk-biaoqing"></yk-icon>
+          <IconEmojiOutline />
         </template>
       </yk-alert>
     </div>
@@ -18,7 +18,7 @@
         message="您无权访问当前内容，请登录后重试。"
       >
         <template #icon>
-          <yk-icon name="yk-suo"></yk-icon>
+          <IconLockOutline />
         </template>
       </yk-alert>
     </div>
@@ -30,7 +30,7 @@
         message="您当前访问的内容已经被删除。"
       >
         <template #icon>
-          <yk-icon name="yk-shanchu"></yk-icon>
+          <IconDeleteOutline />
         </template>
       </yk-alert>
     </div>

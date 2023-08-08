@@ -1,11 +1,11 @@
 <template>
   <yk-space>
-    <yk-button @click="avtivate('right')">打开抽屉</yk-button>
+    <yk-button @click="active = true">打开抽屉</yk-button>
   </yk-space>
-  <yk-drawer :placement="placement" :show="active" @close="active = false">
+  <yk-drawer placement="right" :show="active" @close="active = false">
     <template #header>
       <h2>
-        <yk-icon name="yk-dengpao" />
+        <IconBulbOutline />
         非常大的字
       </h2>
     </template>
@@ -18,9 +18,4 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const active = ref(false)
-let placement = ref<string>('right')
-const avtivate = (placement_to: string) => {
-  placement.value = placement_to
-  active.value = true
-}
 </script>

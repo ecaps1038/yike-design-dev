@@ -1,15 +1,31 @@
+@import '../../styles/color/colors.less';
 .yk-notification-container {
   position: fixed;
-  top: @space-l;
-  right: @space-l;
   z-index: 2002;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  &-topRight {
+    top: @space-l;
+    right: @space-l;
+  }
+  &-topLeft {
+    top: @space-l;
+    left: @space-l;
+  }
+  &-bottomRight {
+    right: @space-l;
+    bottom: @space-l;
+  }
+  &-bottomLeft {
+    bottom: @space-l;
+    left: @space-l;
+  }
 }
 
 .yk-notification {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   color: @font-color-l;
@@ -26,14 +42,14 @@
   .notification-body {
     display: flex;
     flex-direction: row;
-    .iconDiv {
-      margin-right: 9px;
-      width: 18px;
-    }
-    .notification-icon {
+    svg {
       margin-top: 3px;
       width: 18px;
       height: 18px;
+    }
+    .iconDiv {
+      margin-right: 9px;
+      width: 18px;
     }
     .title-text {
       padding-right: 16px;
@@ -50,6 +66,22 @@
       font-weight: 400;
       text-align: justify;
       line-height: 22px;
+    }
+    //icon颜色
+    .icon-success {
+      color: @scolor;
+    }
+
+    .icon-warning {
+      color: @wcolor;
+    }
+
+    .icon-error {
+      color: @ecolor;
+    }
+
+    .icon-primary {
+      color: @pcolor;
     }
   }
   .notification-footer {
@@ -88,21 +120,4 @@
       vertical-align: -3px !important;
     }
   }
-}
-
-//icon颜色
-.icon-success {
-  color: @scolor;
-}
-
-.icon-warning {
-  color: @wcolor;
-}
-
-.icon-error {
-  color: @ecolor;
-}
-
-.icon-primary {
-  color: @pcolor;
 }

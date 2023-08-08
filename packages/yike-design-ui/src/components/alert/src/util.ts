@@ -5,8 +5,8 @@ import type { Type } from './alert';
  */
 export const getIconName = (type: Type) =>
   ({
-    success: 'yike-gou',
-    info: 'yike-tixing',
-    warning: 'yike-tixing',
-    error: 'yike-cha',
+    success: 'IconTickFill',
+    info: 'IconReminderFill',
+    warning: 'IconWarningFill',
+    error: 'IconCrossFill',
   }[type]);

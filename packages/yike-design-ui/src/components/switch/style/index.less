@@ -1,0 +1,108 @@
+@import '../../styles/color/colors.less';
+.yk-switch {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  background-color: @bg-color-ss;
+  outline: none;
+  transition: background-color 0.2s ease-in-out;
+  box-sizing: border-box;
+  vertical-align: middle;
+  cursor: pointer;
+
+  &--m {
+    min-width: 40px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 11px;
+  }
+
+  &--s {
+    min-width: 32px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 10px;
+  }
+
+  &-dot {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: @white;
+    background-color: @white;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &--m &-dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--s &-dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  &--checked {
+    background-color: @pcolor;
+  }
+
+  &--m&--checked &-dot {
+    left: calc(100% - 19px);
+  }
+
+  &--s&--checked &-dot {
+    left: calc(100% - 15px);
+  }
+
+  &[disabled] {
+    opacity: 0.48;
+    cursor: not-allowed;
+  }
+}
+
+.yk-switch--loading {
+  opacity: 0.72 !important;
+  svg {
+    width: 16px;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+  }
+
+  circle {
+    fill: none;
+    stroke: @pcolor;
+    stroke-width: 3;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+}

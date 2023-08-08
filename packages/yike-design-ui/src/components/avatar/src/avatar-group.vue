@@ -18,7 +18,6 @@
 import { ref, provide, onMounted } from 'vue'
 import { getSize, getShape } from './util'
 import { AvatarGroupProps } from './avatar'
-import '../style'
 
 defineOptions({
   name: 'YkAvatarGroup',

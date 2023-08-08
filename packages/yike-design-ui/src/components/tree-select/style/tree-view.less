@@ -1,0 +1,59 @@
+@import '../../styles/color/colors.less';
+
+.yk-tree-container {
+  // height: 100%;
+  cursor: default;
+  .yk-tree-item-disabled {
+    color: @font-color-m;
+    cursor: not-allowed;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    .yk-tree-focus {
+      color: @font-color-ss;
+      cursor: not-allowed;
+      &:hover {
+        background: none;
+      }
+    }
+  }
+  .yk-tree-item {
+    padding-left: @space-xl;
+  }
+
+  .yk-tree-focus {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: @space-s 0 @space-s 0;
+    padding: 0 @space-ss 0 @space-ss;
+    border-radius: @space-ss;
+    color: @font-color-l;
+    .yk-tree-select {
+      color: @pcolor;
+    }
+    .yk-tree-silder-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: @radius-s;
+    }
+    .yk-tree-silder-icon-select {
+      background-color: @bg-color-s;
+    }
+    & span {
+      padding-left: @space-s;
+      font-size: @size-m;
+      font-family: PingFangSC-Regular;
+    }
+    &:hover {
+      background: @bg-color-s;
+    }
+  }
+  .yk-tree-focus-select {
+    background: @bg-color-s;
+  }
+}
