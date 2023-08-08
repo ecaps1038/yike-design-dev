@@ -26,6 +26,7 @@ import YkIcon from './components/icon';
 import { YkAvatar, YkAvatarGroup } from './components/avatar';
 import YkSpace from './components/space';
 import YkTable from './components/table';
+import { YkTimeline, YkTimelineItem } from './components/timeline';
 import YkMessage from './components/message';
 import YkNotification from './components/notification';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
@@ -76,6 +77,8 @@ const components: {
   YkAvatarGroup,
   YkSpace,
   YkTable,
+  YkTimeline,
+  YkTimelineItem,
   YkParagraph,
   YkTitle,
   YkText,
@@ -124,6 +127,8 @@ export {
   YkAvatarGroup,
   YkSpace,
   YkTable,
+  YkTimeline,
+  YkTimelineItem,
   YkTitle,
   YkText,
   YkMessage,

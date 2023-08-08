@@ -45,3 +45,15 @@ export type TextType = (typeof TEXTTYPE)[number];
 export const DIRECTION = ['vertical', 'horizontal'] as const;
 export type Direction = (typeof DIRECTION)[number];
 export type AnimationType = 'upward' | 'fade';
+
+export const TIMELINEPLACEMENT = [
+  'left',
+  'right',
+  'top',
+  'bottom',
+  'alternate',
+] as const;
+export type TimelinePlacement = (typeof TIMELINEPLACEMENT)[number];
+
+export const TIMELINEPTYPE = ['solid', 'dashed', 'dotted'] as const;
+export type TimelineType = (typeof TIMELINEPTYPE)[number];
