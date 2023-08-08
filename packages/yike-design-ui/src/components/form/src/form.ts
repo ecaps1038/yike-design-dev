@@ -1,4 +1,7 @@
 import { InjectionKey } from 'vue';
+
+export type FieldValue = any;
+export type Field = string;
 export interface FieldRule<FieldValue = any> {
   /**
    * @zh 校验的值的类型，默认为 `'string'`
@@ -112,26 +115,67 @@ export interface FieldRule<FieldValue = any> {
   ) => void;
 }
 
+/**
+ * Form键值对校验规则
+ */
+export type RulesType = Record<Field, FieldRule | FieldRule[]>;
+
 export type FormProps = {
-  model: any;
+  model?: any;
   id?: string;
-  rules?: Record<string, FieldRule | FieldRule[]>;
+
+  rules?: RulesType;
   labelWidth?: number;
+  disabled?: boolean;
 };
 export type FormItemProps = {
-  prop?: string;
+  field?: Field;
   labelWidth?: number;
   label?: string;
   required?: boolean;
-  rules?: Record<string, FieldRule | FieldRule[]>;
+  /*
+   * 校验规则列表
+   */
+  rules?: FieldRule | FieldRule[];
+  disabled?: boolean;
 };
 
 export type FormContext = {
+  model: any;
   labelWidth?: number;
   disabled?: boolean;
-  rules?: Record<string, FieldRule | FieldRule[]>;
-  validateForm?: () => void;
+  rules?: RulesType;
+  validateField?: (field: Field) => void;
+  addField: (field: Field) => void;
+  initFieldRule: (field: Field, rules: FieldRule | FieldRule[]) => void;
+  fields: Field[] | undefined;
+  fieldsMap: Map<Field, FormItemContext>;
 };
+
+export type FormItemContext = {
+  rules?: FieldRule | FieldRule[];
+  disabled?: boolean;
+  status?: 'success' | 'error' | 'primary';
+  error?: string;
+};
+
+export type ValidateFieldsError = {
+  message: string;
+};
+
+export type FormValidateCallback = (
+  isValid: boolean,
+  invalidFields?: ValidateFieldsError,
+) => void;
 
 export const formContextKey: InjectionKey<FormContext> =
   Symbol('formContextKey');
+
+export const formItemContextKey: InjectionKey<FormItemContext> =
+  Symbol('formItemContextKey');
+
+export interface ValidateError {
+  message?: string;
+  fieldValue?: any;
+  field?: string;
+}

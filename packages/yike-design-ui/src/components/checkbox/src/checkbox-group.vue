@@ -57,7 +57,7 @@ const calcVal = computed(() =>
 )
 const handleChange = (val: Array<string | number>) => {
   curVal.value = val
-  emits('update:modelValue', val)
+  emits('update:model', val)
   emits('change', val)
   // todo:form trigger
 }

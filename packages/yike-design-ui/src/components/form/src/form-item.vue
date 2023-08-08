@@ -7,19 +7,57 @@
   </div>
 </template>
 <script setup lang="ts">
-import { FormItemProps } from './form'
+import {
+  FormItemProps,
+  formContextKey,
+  formItemContextKey,
+  FieldRule,
+} from './form'
 import { createCssScope } from '../../utils/bem'
+import { inject, reactive, provide, computed, toRefs, onMounted } from 'vue'
 
 const bem = createCssScope('form-item')
 
 defineOptions({
   name: 'YkForm',
 })
-withDefaults(defineProps<FormItemProps>(), {
+const formContext = inject(formContextKey, undefined)
+const props = withDefaults(defineProps<FormItemProps>(), {
   labelWidth: 60,
 })
 
-const handleSubmit = (e: Event) => {
-  console.log('🚀 ~ file: form.vue:22 ~ handleSubmit ~ e:', e)
-}
+const { field } = toRefs(props)
+
+const mergedRules = computed(() => {
+  const baseRules = ([] as FieldRule[]).concat(
+    props.rules ?? formContext?.rules?.[props?.field ?? ''] ?? [],
+  )
+  const hasRequiredRule = baseRules.some((item) => item.required)
+
+  if (props.required && !hasRequiredRule) {
+    return ([{ required: true }] as FieldRule[]).concat(baseRules)
+  }
+  return baseRules
+})
+
+const computedDisabled = computed(
+  () => !!props.disabled ?? formContext?.disabled,
+)
+
+onMounted(() => {
+  if (field?.value) {
+    formContext!.addField(field.value)
+    formContext!.initFieldRule(field.value, mergedRules.value)
+    console.log(formContext?.fieldsMap)
+  }
+})
+
+provide(
+  formItemContextKey,
+  reactive({
+    disabled: computedDisabled.value,
+    stattus: 'error',
+    error: 'At least select two items',
+  }),
+)
 </script>
