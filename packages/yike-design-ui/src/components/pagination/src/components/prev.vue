@@ -1,13 +1,22 @@
 <template>
-  <button :class="prevCls" @click="handleClick">
-    <yk-icon name="yk-xiangzuo"></yk-icon>
+  <button
+    :class="
+      nsPrev({
+        s: props.size === 's',
+        m: props.size === 'm',
+        l: props.size === 'l',
+        xl: props.size === 'xl',
+        disabled: props.disabled,
+      })
+    "
+    @click="handleClick"
+  >
+    <IconLeftOutline />
   </button>
 </template>
 
 <script lang="ts" setup>
-import { computed, inject } from 'vue'
-import { useNamespace } from '../utils'
-import YkIcon from '../../../icon'
+import { createCssScope } from '../../../utils/bem'
 
 import { PrevProps, PrevEmits } from './prev'
 
@@ -18,18 +27,11 @@ defineOptions({
 const props = defineProps(PrevProps)
 const emits = defineEmits<PrevEmits>()
 
-const namespace = inject('namespace', 'pagination')
-const nsNext = useNamespace(namespace)
+const nsPrev = createCssScope('pagination-prev')
 
 const handleClick = () => {
   if (!props.disabled) {
     emits('prev')
   }
 }
-
-const prevCls = computed(() => [
-  nsNext.b('prev'),
-  nsNext.bm('prev', props.size),
-  nsNext.is('disabled', props.disabled),
-])
 </script>

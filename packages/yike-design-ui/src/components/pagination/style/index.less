@@ -1,14 +1,18 @@
-@import './variables.less';
+@pagination-color-bg: @bg-color-s;
+@pagination-color-bg__hover: @bg-color-ss;
+@pagination-color-bg__active: @pcolor;
+@pagination-color-bg__disabled: @bg-color-s;
+@pagination-color-font: @font-color-l;
+@pagination-color-font__active: #fff;
 
 .is-disabled() {
   opacity: 0.56;
   cursor: not-allowed !important;
   &:hover {
     color: @pagination-color-font !important;
-    background-color: @pagination-color-bg__disabled;
   }
 
-  &.is-active:hover {
+  &--active:hover {
     background-color: @pagination-color-bg__active;
   }
 }
@@ -18,18 +22,13 @@
   align-items: center;
   user-select: none;
 
-  &.is-disabled {
-    cursor: not-allowed;
+  &--disabled {
+    .is-disabled();
 
     .yk-pagination-prev,
     .yk-pagination-next,
-    .yk-pagination-pager__item {
-      .is-disabled();
-    }
-
-    .prev-more,
-    .next-more {
-      background-color: transparent !important;
+    .yk-pagination-pager {
+      pointer-events: none;
     }
   }
 
@@ -51,12 +50,8 @@
   outline: none;
   cursor: pointer;
 
-  &.is-disabled {
+  &--disabled {
     .is-disabled();
-  }
-
-  &:not(.is-active):hover {
-    color: @pagination-color-bg__active;
   }
 
   &--s {
@@ -102,8 +97,8 @@
     vertical-align: middle;
   }
 
-  &__item.is-active {
-    color: #fff;
+  &__item--active {
+    color: #fff !important;
     background-color: @pagination-color-bg__active;
   }
 
@@ -171,7 +166,7 @@
     }
   }
 
-  &__jumper-tips {
+  &__tips {
     margin-left: 8px;
 
     .slash {

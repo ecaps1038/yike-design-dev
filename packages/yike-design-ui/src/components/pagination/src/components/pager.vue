@@ -1,8 +1,8 @@
 <template>
-  <span :class="nsPager.b()" @click="onPagerClick">
+  <span :class="nsPager()" @click="onPagerClick">
     <span
       v-if="total > 0"
-      :class="[...pagerCls, nsPager.is('active', !disabled && current === 1)]"
+      :class="[...pagerCls, isActive(current === 1 && !disabled)]"
       class="number"
     >
       1
@@ -13,7 +13,7 @@
     <span
       v-for="pager in pagers"
       :key="pager"
-      :class="[...pagerCls, nsPager.is('active', current === pager)]"
+      :class="[...pagerCls, isActive(pager === current)]"
       class="number"
     >
       {{ pager }}
@@ -23,7 +23,7 @@
 
     <span
       v-if="total > 1"
-      :class="[...pagerCls, nsPager.is('active', current === total)]"
+      :class="[...pagerCls, isActive(current === total)]"
       class="number"
     >
       {{ total }}
@@ -32,26 +32,29 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 import { PagerProps, PagerEmits } from './pager'
-import { useNamespace } from '../utils'
+import { createCssScope } from '../../../utils/bem'
 
 defineOptions({
   name: 'YkPaginationPager',
 })
 
-const namespace = inject('namespace', 'pagination')
-const nsPager = useNamespace(`${namespace}-pager`)
+const nsPager = createCssScope(`pagination-pager`)
 
 const props = defineProps(PagerProps)
 const emits = defineEmits<PagerEmits>()
 
 const { current, disabled, fixWidth, total } = toRefs(props)
 
-const pagerCls = computed(() => [
-  nsPager.e('item'),
-  nsPager.em('item', props.size),
-])
+const pagerCls = computed(() =>
+  nsPager('item', {
+    s: props.size === 's',
+    m: props.size === 'm',
+    l: props.size === 'l',
+    xl: props.size === 'xl',
+  }),
+)
 
 const pagerSize = computed(() =>
   props.total > props.pagerCount ? props.pagerCount - 2 : props.total - 2,
@@ -101,6 +104,9 @@ const showNextMore = computed(() =>
     ? false
     : current.value < showNextMoreThreshold.value,
 )
+
+const isActive = (activeClause: boolean) =>
+  activeClause ? 'yk-pagination-pager__item--active' : ''
 
 function onPagerClick(ev: UIEvent) {
   if (disabled.value) {

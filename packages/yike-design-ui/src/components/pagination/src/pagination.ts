@@ -1,4 +1,4 @@
-import type { Size } from '../../../utils/constant';
+import type { Size } from '../../utils/constant';
 import type { PropType } from 'vue';
 import { JumperProps, PrevProps, NextProps, PagerProps } from './components';
 

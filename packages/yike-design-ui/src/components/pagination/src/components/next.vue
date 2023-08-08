@@ -1,13 +1,22 @@
 <template>
-  <button :class="nextCls" @click="handleClick">
-    <yk-icon name="yk-xiangyou"></yk-icon>
+  <button
+    :class="
+      nsNext({
+        s: props.size === 's',
+        m: props.size === 'm',
+        l: props.size === 'l',
+        xl: props.size === 'xl',
+        disabled: props.disabled,
+      })
+    "
+    @click="handleClick"
+  >
+    <IconRightOutline />
   </button>
 </template>
 
 <script lang="ts" setup>
-import { computed, inject } from 'vue'
-import { useNamespace } from '../utils'
-import YkIcon from '../../../icon'
+import { createCssScope } from '../../../utils/bem'
 import { NextProps, NextEmits } from './next'
 
 defineOptions({
@@ -17,18 +26,11 @@ defineOptions({
 const props = defineProps(NextProps)
 const emits = defineEmits<NextEmits>()
 
-const namespace = inject('namespace', 'pagination')
-const nsNext = useNamespace(namespace)
+const nsNext = createCssScope('pagination-next')
 
 const handleClick = () => {
   if (!props.disabled) {
     emits('next')
   }
 }
-
-const nextCls = computed(() => [
-  nsNext.b('next'),
-  nsNext.bm('next', props.size),
-  nsNext.is('disabled', props.disabled),
-])
 </script>

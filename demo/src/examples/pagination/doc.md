@@ -7,27 +7,33 @@
 :::
 
 :::snippet
-最大页码按钮数
-默认情况下，当总页数超过 `7` 页时，分页组件会自动折叠多余的页码按钮。可通过 `pager-count` 属性来设置显示的最大页码按钮数
-<PaginationPagerCount/>
+简单翻页
+简单显示
+<PaginationSimple/>
 :::
 
 :::snippet
-固定长度
-开启固定长度时，分页组件在计算需要折叠多余的页码时总会减去 `1`，已确保分页切换时组件的长度不变，防止误切换到最后一页
+禁用组件
+设置 `disabled` 属性以禁用组件
+<PaginationDisabled/>
+:::
+
+:::snippet
+固定组件宽度
+设置 `fix-width` 属性以固定组件宽度
 <PaginationFixWidth/>
+:::
+
+:::snippet
+设置最大页码按钮数
+默认情况下，当总页数超过 7 页时，Pagination 会折叠多余的页码按钮。 通过 pager-count 属性可以设置最大页码按钮数。
+<PaginationPagerCount/>
 :::
 
 :::snippet
 页码跳转
 快速跳转到某一页。
 <PaginationShowJumper/>
-:::
-
-:::snippet
-简单翻页
-简单显示
-<PaginationSimple/>
 :::
 
 :::snippet
@@ -38,15 +44,16 @@
 
 ### API
 
-#### Pagination Props
+#### Pagination Attributes
 
-| 参数               | 描述               | 类型                | 默认值 |
-| ------------------ | ------------------ | ------------------- | ------ |
-| current（v-model） | 当前分页           | number              | 1      |
-| total（必填）      | 页码数量           | number              | 0      |
-| disabled           | 是否禁用组件       | boolean             | false  |
-| fixWidth           | 是否固定组件的长度 | boolean             | false  |
-| pagerCount         | 最大看见分页按钮数 | number              | 7      |
-| simple             | 是否简单分页       | boolean             | false  |
-| showJumper         | 是否显示页码跳转   | boolean             | false  |
-| size               | 分页组件尺寸       | 's'｜'m'｜'l'｜'xl' | 'l'    |
+| 参数                      | 描述             | 类型                | 默认值 |
+| ------------------------- | ---------------- | ------------------- | ------ |
+| total（必填）             | 总分页数         | number              | -      |
+| current / v-model:current | 当前页数         | number              | 1      |
+| disabled                  | 禁用组件         | boolean             | false  |
+| fixWidth                  | 固定宽度         | boolean             | false  |
+| pagerCount                | 最大显示页码数量 | number              | 7      |
+| simple                    | 是否为简单分页   | boolean             | false  |
+| showJumper                | 是否显示页码跳转 | boolean             | false  |
+| showTotal                 | 是否显示总分页数 | boolean             | false  |
+| size                      | 组件尺寸         | 's'｜'m'｜'l'｜'xl' | 'l'    |

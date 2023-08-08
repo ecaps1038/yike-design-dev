@@ -1,6 +1,12 @@
 <template>
-  <div :class="[nsPagination.b(), nsPagination.is('disabled', disabled)]">
-    <span v-if="showTotal" :class="nsPagination.e('total-text')">
+  <div
+    :class="[
+      nsPagination({
+        disabled: disabled,
+      }),
+    ]"
+  >
+    <span v-if="showTotal" :class="nsPagination('total-text')">
       {{ total }}
     </span>
     <prev
@@ -15,7 +21,8 @@
     ></pager>
     <jumper
       v-else
-      v-bind="extractProps(JumperProps)"
+      v-bind="extractProps(JumperProps, 'current')"
+      :current="internalCurrent"
       @jump="handleJump"
     ></jumper>
     <next
@@ -32,13 +39,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, reactive, ref, toRefs, watch } from 'vue'
+import { computed, reactive, toRefs, ref, watch, onMounted } from 'vue'
 import {
   PaginationProps,
   PaginationEmits,
   SubComponentProps,
 } from './pagination'
-import { useNamespace } from './utils'
+import { createCssScope } from '../../utils/bem'
 
 import Prev from './components/prev.vue'
 import Pager from './components/pager.vue'
@@ -47,10 +54,7 @@ import Jumper from './components/jumper.vue'
 import { PagerProps, JumperProps, PrevProps, NextProps } from './components'
 import '../style'
 
-const namespace = 'pagination'
-provide('namespace', namespace)
-
-const nsPagination = useNamespace(namespace)
+const nsPagination = createCssScope('pagination')
 
 defineOptions({
   name: 'YkPagination',
@@ -59,8 +63,8 @@ defineOptions({
 const props = defineProps(PaginationProps)
 const emits = defineEmits<PaginationEmits>()
 
-const { total, disabled } = toRefs(props)
 const internalCurrent = ref<number>(1)
+const { total, disabled, current } = toRefs(props)
 
 const canPrev = computed(() => internalCurrent.value > 1)
 const canNext = computed(() => internalCurrent.value < total.value)
@@ -72,23 +76,32 @@ const extractProps = <T extends SubComponentProps>(
   const newProps = reactive<any>({})
   Object.keys(comProps).forEach((key: any) => {
     if (!excludes.includes(key)) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       newProps[key] = props[key]
     }
   })
   return newProps
 }
 
-const handlePrev = () => internalCurrent.value--
-const handleNext = () => internalCurrent.value++
+const handlePrev = () => !disabled.value && internalCurrent.value--
+const handleNext = () => !disabled.value && internalCurrent.value++
 const handleJump = (page: number) => {
-  internalCurrent.value = page < 1 ? 1 : page > total.value ? total.value : page
+  if (!disabled.value) {
+    internalCurrent.value =
+      page < 1 ? 1 : page > total.value ? total.value : page
+  }
 }
 
-watch(
-  internalCurrent,
-  (newVal) => {
+onMounted(() => {
+  if (!disabled.value) {
+    internalCurrent.value = current.value
+  }
+})
+
+watch(internalCurrent, (newVal) => {
+  if (!disabled.value) {
     emits('update:current', newVal)
-  },
-  { immediate: true },
-)
+  }
+})
 </script>

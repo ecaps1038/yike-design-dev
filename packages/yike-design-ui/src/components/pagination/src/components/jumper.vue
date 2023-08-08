@@ -1,8 +1,15 @@
 <template>
-  <div :class="nsJumper.b()">
-    <span v-if="!simple" :class="nsJumper.e('prepend')">{{ jumperLabel }}</span>
+  <div :class="nsJumper()">
+    <span v-if="!simple" :class="nsJumper('prepend')">{{ jumperLabel }}</span>
     <div
-      :class="[nsJumper.e('input-wrapper'), nsJumper.em('input-wrapper', size)]"
+      :class="
+        nsJumper('input-wrapper', {
+          s: props.size === 's',
+          m: props.size === 'm',
+          l: props.size === 'l',
+          xl: props.size === 'xl',
+        })
+      "
     >
       <input
         v-model="inputValue"
@@ -12,7 +19,7 @@
         @keyup.enter="handleJump"
       />
     </div>
-    <div v-if="simple" :class="nsJumper.e('jumper-tips')">
+    <div v-if="simple" :class="nsJumper('tips')">
       <span class="slash">/</span>
       <span>{{ total }}</span>
     </div>
@@ -20,29 +27,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, inject, watch, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import { JumperProps, JumperEmits } from './jumper'
-import { useNamespace } from '../utils'
+import { createCssScope } from '../../../utils/bem'
 
-const namespace = inject('namespace', 'pagination')
-const nsJumper = useNamespace(`${namespace}-jumper`)
+const nsJumper = createCssScope(`pagination-jumper`)
 
 const props = defineProps(JumperProps)
 const emits = defineEmits<JumperEmits>()
 
 const inputValue = ref<string>('')
-
-onMounted(() => {
-  if (props.simple) {
-    watch(
-      () => props.current,
-      (newVal) => {
-        inputValue.value = newVal.toString()
-      },
-      { immediate: true },
-    )
-  }
-})
 
 const handleJump = () => {
   if (inputValue.value) {
@@ -57,4 +51,14 @@ const handleJump = () => {
     }
   }
 }
+
+watch(
+  () => props.current,
+  (newVal) => {
+    if (props.simple) {
+      inputValue.value = newVal.toString()
+    }
+  },
+  { immediate: true },
+)
 </script>

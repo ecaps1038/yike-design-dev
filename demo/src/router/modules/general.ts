@@ -130,6 +130,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'image',
     component: () => import('@/examples/image/doc.md'),
   },
+  {
+    path: 'pagination',
+    component: () => import('@/examples/pagination/doc.md'),
+  },
 ];
 
 export default generalRoutes;
