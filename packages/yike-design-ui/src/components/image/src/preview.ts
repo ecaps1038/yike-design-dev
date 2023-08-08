@@ -43,5 +43,3 @@ export interface ImagePreviewGroupProps {
   /** 取消按钮点击事件 */
   onCancel?: () => void;
 }
-
-export type ZoomType = 'zoomIn' | 'zoomOut';

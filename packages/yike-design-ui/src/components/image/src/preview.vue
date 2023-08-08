@@ -4,6 +4,7 @@
       <div
         v-if="mounted"
         v-show="props.visible"
+        ref="wrapperRef"
         :class="bem()"
         :style="wrapperStyles"
       >
@@ -79,7 +80,7 @@
             <button
               :class="bem('toolbar-btn')"
               style="width: 50px"
-              @click="resetScale"
+              @click="restoreScale"
             >
               <span>{{ formatePercentage(scale) }}</span>
             </button>
@@ -95,13 +96,9 @@ import { computed, onMounted, reactive, ref, watch } from 'vue'
 import type { CSSProperties } from 'vue'
 import { ImagePreviewProps } from './preview'
 import { useImageDrag } from './hooks/use-image-drag'
+import { useImageScale } from './hooks/use-image-scale'
 import { createCssScope, popupManager } from '../../utils'
-import {
-  scaleAttr,
-  getScale,
-  formatePercentage,
-  getPopupContainer,
-} from './utils'
+import { formatePercentage, getPopupContainer } from './utils'
 
 defineOptions({
   name: 'YkImagePreview',
@@ -127,10 +124,13 @@ const mounted = ref(props.visible)
 const ROTATE_STEP = 90
 /** 旋转后的角度 */
 const rotate = ref(0)
-/** 缩放的倍率 */
-const scale = ref<(typeof scaleAttr)[number]>(1)
 
 const imageRef = ref()
+const wrapperRef = ref()
+
+const { scale, resetScale, adjustZoom } = useImageScale(
+  reactive({ wrapperEl: wrapperRef }),
+)
 
 const { translate, resetTranslate } = useImageDrag(
   reactive({ imageEl: imageRef, scale }),
@@ -184,17 +184,17 @@ const rotateRight = () => {
 
 /** 放大 */
 const scaleIn = () => {
-  scale.value = getScale(scale.value, 'zoomIn')
+  adjustZoom('zoomIn')
 }
 
 /** 缩小 */
 const scaleOut = () => {
-  scale.value = getScale(scale.value, 'zoomOut')
+  adjustZoom('zoomOut')
 }
 
 /** 原始比例 */
-const resetScale = () => {
-  scale.value = 1
+const restoreScale = () => {
+  resetScale()
   resetTranslate()
 }
 </script>
