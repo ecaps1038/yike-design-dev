@@ -1,13 +1,27 @@
 @import '../../styles/color/colors.less';
 .yk-notification-container {
   position: fixed;
-  top: @space-l;
-  right: @space-l;
   z-index: 2002;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  &-topRight {
+    top: @space-l;
+    right: @space-l;
+  }
+  &-topLeft {
+    top: @space-l;
+    left: @space-l;
+  }
+  &-bottomRight {
+    right: @space-l;
+    bottom: @space-l;
+  }
+  &-bottomLeft {
+    bottom: @space-l;
+    left: @space-l;
+  }
 }
 
 .yk-notification {

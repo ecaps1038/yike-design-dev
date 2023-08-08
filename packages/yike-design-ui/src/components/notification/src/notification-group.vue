@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="right" @after-leave="onLeave">
+  <TransitionGroup :name="slideName" @after-leave="onLeave">
     <Notification
       v-for="item in notifications"
       :ref="(el) => setRefs(el, item.id)"
@@ -16,8 +16,9 @@ import { NotificationGroupProps } from './notification'
 import Notification from './notification.vue'
 import { ref, computed } from 'vue'
 
-withDefaults(defineProps<NotificationGroupProps>(), {
+const props = withDefaults(defineProps<NotificationGroupProps>(), {
   notifications: () => [],
+  position: 'topRight',
 })
 
 const emits = defineEmits(['close', 'destroy'])
@@ -36,6 +37,10 @@ const getProps = (item: any) => {
     .filter((k) => !['id', 'onClose'].includes(k))
     .reduce((res, k) => Object.assign(res, { [k]: item[k] }), {})
 }
+
+const slideName = computed(() => {
+  return props.position + 'Notification'
+})
 
 const computedChildRefs = computed(() => {
   return Object.values(notifyRefs.value)

@@ -78,6 +78,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   offsetX: 24,
   zIndex: 2001,
   dangaurslyUseHtmlString: false,
+  position: 'topRight',
   handleCancel: () => ({}),
   handleSubmit: () => ({}),
   onClose: () => ({}),
@@ -88,12 +89,17 @@ const emits = defineEmits(['close', 'lockNotifications', 'unlockNotifications'])
 let timer: any = ref()
 let remainTime = ref(0)
 
-const Style = computed(() => ({
-  marginBottom: `${props.space}px`,
-  top: `${props.offsetY}px`,
-  right: `${props.offsetX}px`,
-  zIndex: props.zIndex,
-}))
+const Style = computed(() => {
+  const position = props.position.split(/(?=[A-Z])/)
+  let Y = position[0]
+  let X = position[1].toLowerCase()
+  return {
+    marginBottom: `${props.space}px`,
+    zIndex: props.zIndex,
+    [Y]: `${props.offsetY}px`,
+    [X]: `${props.offsetX}px`,
+  }
+})
 
 function mouseLeave() {
   emits('unlockNotifications')
