@@ -11,8 +11,8 @@ export const useImageScale = (props: ImageScaleProps) => {
   const { wrapperEl } = toRefs(props);
 
   const ZOOM_INCREMENT = 0.1;
-  const MIN_ZOOM_INCREMENT = 0.1;
-  const MAX_ZOOM_INCREMENT = 10;
+  const MIN_SCALE = 0.1;
+  const MAX_SCALE = 10;
 
   const scale = ref(1);
 
@@ -24,10 +24,7 @@ export const useImageScale = (props: ImageScaleProps) => {
     scale.value += increment;
 
     // 限制缩放在最小和最大增量值之间
-    scale.value = Math.min(
-      Math.max(scale.value, MIN_ZOOM_INCREMENT),
-      MAX_ZOOM_INCREMENT,
-    );
+    scale.value = Math.min(Math.max(scale.value, MIN_SCALE), MAX_SCALE);
   };
 
   /** 鼠标滚轮事件 */
