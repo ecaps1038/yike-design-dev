@@ -45,6 +45,7 @@ program
   .description('build component module.')
   .action(() => {
     buildComponent();
+    buildComponent(true);
   });
 
 program.parse(process.argv);
