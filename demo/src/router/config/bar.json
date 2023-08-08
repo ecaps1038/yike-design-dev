@@ -111,6 +111,10 @@
           "src": "tree"
         },
         {
+          "name": "TreeSelect 树形选择",
+          "src": "tree-select"
+        },
+        {
           "name": "Image 图片",
           "src": "image"
         }

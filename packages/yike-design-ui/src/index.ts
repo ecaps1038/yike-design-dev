@@ -15,6 +15,7 @@ import YkAffix from './components/affix';
 import { YkInput } from './components/input';
 import { YkInputSearch } from './components/input-search';
 import YkTree from './components/tree';
+import YkTreeSelect from './components/tree-select';
 import YkSlider from './components/slider';
 import { YkCollapse, YkCollapseGroup } from './components/collapse';
 import YkPopconfirm from './components/popconfirm';
@@ -63,6 +64,7 @@ const components: {
   YkInput,
   YkInputSearch,
   YkTree,
+  YkTreeSelect,
   YkSlider,
   YkCollapse,
   YkCollapseGroup,
@@ -110,6 +112,7 @@ export {
   YkInput,
   YkInputSearch,
   YkTree,
+  YkTreeSelect,
   YkSlider,
   YkCollapse,
   YkCollapseGroup,
