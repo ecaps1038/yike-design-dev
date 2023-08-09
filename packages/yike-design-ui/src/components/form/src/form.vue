@@ -26,9 +26,10 @@ const props = withDefaults(defineProps<FormProps>(), {
 })
 
 const validate = async (): Promise<boolean | undefined> => {
+  const validateList: Promise<any>[] = []
   let hasError = false
   Object.keys(validateMap).forEach((field) => {
-    validateMap[field].validate()
+    validateList.push(validateMap[field].validate())
     hasError = hasError || (validateMap[field]?.isError ?? false)
   })
   return !hasError
@@ -62,6 +63,7 @@ provide(
     disabled: props.disabled,
     addField,
     updateValidateState,
+    validateMap,
   }),
 )
 

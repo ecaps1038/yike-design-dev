@@ -14,7 +14,7 @@ export type FormItemProps = {
   labelWidth?: number;
   label?: string;
   required?: boolean;
-  rules?: SchemaRuleType | SchemaRuleType[];
+  rules?: SchemaRuleType[];
   disabled?: boolean;
 };
 
@@ -25,26 +25,31 @@ export type FormContext = {
   rules?: SchemaType;
   addField: (formItemInstance: FormItemInstance) => void;
   updateValidateState: (field: Field, formItemInstance: any) => void;
+  validateMap: ValidateStatusMap;
 };
+
+export const formContextKey: InjectionKey<FormContext> =
+  Symbol('formContextKey');
+
+export type FormItemContext = {
+  isError?: boolean;
+  message?: string;
+  status?: string;
+  disabled?: boolean;
+};
+
+export const formItemContextKey: InjectionKey<FormItemContext> =
+  Symbol('formItemContextKey');
 
 export type FormItemInstance = {
   field: string;
   isError?: boolean;
   message?: string;
-  status: ValidateStatus;
-  rules?: SchemaRuleType | SchemaRuleType[];
+  status?: ValidateStatus;
+  rules?: SchemaRuleType[];
   validate: () => Promise<any>;
 };
 
 export type ValidateStatusMap = {
   [key: string]: FormItemInstance;
 };
-
-export const formContextKey: InjectionKey<FormContext> =
-  Symbol('formContextKey');
-
-export interface ValidateError {
-  message?: string;
-  fieldValue?: any;
-  field?: string;
-}

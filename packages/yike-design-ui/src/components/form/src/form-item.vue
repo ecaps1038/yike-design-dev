@@ -7,10 +7,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { FormItemProps, formContextKey, FormItemInstance } from './form'
+import {
+  FormItemProps,
+  formContextKey,
+  FormItemInstance,
+  formItemContextKey,
+} from './form'
 import { createCssScope } from '../../utils/bem'
-import { inject, computed, ref, onMounted, reactive } from 'vue'
-import { SchemaRuleType, Schema } from '../../utils/validate'
+import { inject, computed, ref, onMounted, reactive, provide } from 'vue'
+import { Schema } from '../../utils/validate'
 
 const bem = createCssScope('form-item')
 
@@ -23,15 +28,31 @@ const props = withDefaults(defineProps<FormItemProps>(), {
 })
 const isError = ref(false)
 const mergedRules = computed(() => {
-  const baseRules = ([] as SchemaRuleType[]).concat(
-    props.rules ?? formContext?.rules?.[props?.field ?? ''] ?? [],
-  )
-  const hasRequiredRule = baseRules.some((item) => item.required)
-
-  if (props.required && !hasRequiredRule) {
-    return ([{ required: true }] as SchemaRuleType[]).concat(baseRules)
+  const rules = []
+  if (props.rules) {
+    rules.push(...props.rules)
   }
-  return baseRules
+  if (props.field) {
+    if (formContext?.rules) {
+      const formFieldRules = formContext?.rules?.[props.field] ?? []
+      rules.push(...formFieldRules)
+    }
+  }
+  if (props.required) {
+    rules.push({ required: true })
+  }
+  return rules
+})
+
+const validateInstance = computed(() => {
+  if (props.field) {
+    return formContext?.validateMap[props.field]
+  }
+  return {
+    isError: false,
+    message: '',
+    status: 'primary',
+  }
 })
 
 const validateField = (): Promise<any> => {
@@ -81,9 +102,7 @@ const validateField = (): Promise<any> => {
   })
 }
 
-const computedDisabled = computed(
-  () => !!props.disabled ?? formContext?.disabled,
-)
+const computedDisabled = computed(() => props.disabled || formContext?.disabled)
 
 onMounted(() => {
   if (props.field) {
@@ -98,4 +117,12 @@ onMounted(() => {
     formContext!.addField(formItemInfo)
   }
 })
+
+provide(
+  formItemContextKey,
+  reactive({
+    ...validateInstance.value,
+    disabled: computedDisabled.value,
+  }),
+)
 </script>

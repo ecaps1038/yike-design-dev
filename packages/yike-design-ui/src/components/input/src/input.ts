@@ -17,6 +17,6 @@ export type InputProps = {
   loading?: boolean;
   showCounter?: boolean;
   limit?: number;
-  tooltip?: string;
   style?: CSSProperties;
+  message?: string;
 };

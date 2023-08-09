@@ -1,6 +1,6 @@
 <template>
   <yk-form ref="formRef" :model="form" :rules="rulesMap">
-    <yk-form-item label="姓名" field="name" :rules="rulesMap.name">
+    <yk-form-item label="姓名" field="name" :rules="nameExtraRule">
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
     <yk-form-item label="性别" field="sex" :rules="rulesMap.sex">
@@ -50,6 +50,12 @@ const rulesMap = {
     },
   ],
 }
+const nameExtraRule = [
+  {
+    maxLength: 6,
+    require: true,
+  },
+]
 const data = ref([
   { id: '1', label: '昨天' },
   { id: '2', label: '今天' },
