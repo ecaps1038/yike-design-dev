@@ -4,7 +4,7 @@
     <yk-input-number
       :value="6"
       :max="10"
-      style="width: 360px"
+      style="width: 300px"
     ></yk-input-number>
   </yk-space>
 </template>
