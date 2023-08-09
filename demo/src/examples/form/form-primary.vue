@@ -1,15 +1,15 @@
 <template>
   <yk-form ref="formRef" :model="form">
-    <yk-form-item label="姓名" prop="name" :rules="rulesMap.name">
+    <yk-form-item label="姓名" field="name" :rules="rulesMap.name">
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
-    <yk-form-item label="性别" prop="sex" :rules="rulesMap.sex">
+    <yk-form-item label="性别" field="sex" :rules="rulesMap.sex">
       <yk-radio-group v-model="form.sex">
         <yk-radio value="man">男</yk-radio>
         <yk-radio value="woman">女</yk-radio>
       </yk-radio-group>
     </yk-form-item>
-    <yk-form-item label="日期" prop="date" :required="true">
+    <yk-form-item label="日期" field="date" :required="true">
       <yk-checkbox-group v-model="form.date">
         <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">
           {{ item.label }}
@@ -26,7 +26,7 @@
 </template>
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-const formRef = ref<FormInstance>()
+const formRef = ref()
 const form = reactive({
   name: '大飞',
   sex: 'man',
@@ -68,7 +68,6 @@ const submitForm = (formEl) => {
   if (!formEl) {
     return
   }
-  console.log('🚀 ~ file: form-primary.vue:69 ~ submitForm ~ formEl:', formEl)
   formEl.validate()
 }
 </script>

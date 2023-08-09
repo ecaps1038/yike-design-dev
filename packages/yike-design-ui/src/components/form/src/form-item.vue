@@ -48,7 +48,6 @@ onMounted(() => {
   if (field?.value) {
     formContext!.addField(field.value)
     formContext!.initFieldRule(field.value, mergedRules.value)
-    console.log(formContext?.fieldsMap)
   }
 })
 

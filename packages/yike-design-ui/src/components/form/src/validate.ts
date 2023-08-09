@@ -4,10 +4,10 @@ export const validator = (
   rule: FieldRule,
 ): Promise<boolean> => {
   return new Promise((resolve, reject) => {
-    console.log('🚀 ~ file: validate.ts:3 ~ validator ~ rule:', rule);
     console.log(
       '🚀 ~ file: validate.ts:3 ~ validator ~ fieldValue:',
       fieldValue,
+      rule,
     );
     // 进行校验逻辑...
 

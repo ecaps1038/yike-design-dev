@@ -4,11 +4,10 @@
   </form>
 </template>
 <script setup lang="ts">
-import { provide, reactive, ref } from 'vue'
+import { provide, reactive } from 'vue'
 import {
   FormProps,
   formContextKey,
-  FieldValue,
   Field,
   FormItemContext,
   FieldRule,
@@ -20,13 +19,9 @@ const bem = createCssScope('form')
 defineOptions({
   name: 'YkForm',
 })
-const emits = defineEmits<{
-  'update:model': [FieldValue]
-}>()
 
 // item数据项
 const fields: Field[] = []
-const testRef = ref([])
 // item状态
 const fieldsMap = new Map<Field, FormItemContext>()
 
@@ -36,8 +31,6 @@ const props = withDefaults(defineProps<FormProps>(), {
 })
 
 const validate = async (): Promise<boolean[]> => {
-  console.log('🚀 ~ file: form.vue:46 ~ validate ~ validate:', fields)
-
   const validationPromises = fields.map((field) => validateField(field))
 
   // 等待所有字段的校验结果

@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
+    "async-validator": "^4.2.5",
     "vue": "^3.3.4"
   },
   "devDependencies": {
