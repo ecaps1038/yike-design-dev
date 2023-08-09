@@ -1,5 +1,5 @@
 <template>
-  <yk-form ref="formRef" :model="form">
+  <yk-form ref="formRef" :model="form" :rules="rulesMap">
     <yk-form-item label="姓名" field="name" :rules="rulesMap.name">
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
@@ -37,10 +37,9 @@ const rulesMap = {
     {
       required: true,
       message: 'Please select Activity count',
-      trigger: 'change',
     },
     {
-      maxLength: 30,
+      minLength: 4,
       trigger: 'change',
     },
   ],
@@ -48,7 +47,6 @@ const rulesMap = {
     {
       required: true,
       message: 'Please select Activity count',
-      trigger: 'change',
     },
   ],
 }
