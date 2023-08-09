@@ -50,6 +50,7 @@
     // "no-redeclare": "off",
     // "no-self-assign": "off",
     // "prefer-const": "off",
+    "no-useless-escape":"off",
     "vue/require-v-for-key": 0,
     "semi": [0, "never"],
     "@typescript-eslint/no-non-null-assertion": "off",
