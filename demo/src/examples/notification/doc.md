@@ -19,12 +19,6 @@
 :::
 
 :::snippet
-有位置偏移的通知栏
-通过传入 `offsetY` 或 `offsetX` 设置偏移量来使 Notification 偏移默认位置
-<NotificationOffset/>
-:::
-
-:::snippet
 隐藏关闭按钮
 通过传入 `closable` 设置是否隐藏关闭按钮
 <NotificationClose/>
@@ -56,8 +50,6 @@
 | duration      | 显示时间, 单位为毫秒。 值为 0 则不会自动关闭 | number                                               | 4500        |
 | space         | 提醒框间距, 单位是 px                        | number                                               | 24          |
 | position          | 自定义弹出位置                                   | 'topRight' \| 'topLeft' \| 'bottomRight' \| 'bottomLeft' | 'topRight'     |
-| offsetY       | 相对屏幕顶部/底部（根据position的值）的偏移量 偏移的距离, 单位是 px|number                                               | 24          |
-| offsetX       | 相对屏幕右部/左部（根据position的值）的偏移量 偏移的距离, 单位是 px| number                                               | 24          |
 | onClose       | 关闭时的回调函数                             | Function                                             | ()=>{}      |
 | handleCancel  | 底部操作按钮展示时, 点击取消按钮的回调函数   | Function                                             | ()=>{}      |
 | handleSubmit  | 底部操作按钮展示时, 点击确定按钮的回调函数   | Function                                             | ()=>{}      |

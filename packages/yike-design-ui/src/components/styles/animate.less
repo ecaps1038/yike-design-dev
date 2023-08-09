@@ -55,14 +55,15 @@
 .topLeftNotification-leave-active,
 .bottomRightNotification-leave-active,
 .bottomLeftNotification-leave-active {
-  transition: all 0.01s;
+  position: absolute;
+  transition: all 0.24s;
 }
 
 .topRightNotification-leave-to,
 .topLeftNotification-leave-to,
 .bottomRightNotification-leave-to,
 .bottomLeftNotification-leave-to {
-  display: none;
+  opacity: 0;
 }
 
 .topRightNotification-enter-from,
@@ -73,11 +74,4 @@
 .topLeftNotification-enter-from,
 .bottomLeftNotification-enter-from {
   transform: translateX(-100%);
-}
-
-.topRightNotification-leave-active,
-.topLeftNotification-leave-active,
-.bottomRightNotification-leave-active,
-.bottomLeftNotification-leave-active {
-  position: absolute;
 }
