@@ -4,7 +4,7 @@
   </form>
 </template>
 <script setup lang="ts">
-import { provide, reactive } from 'vue'
+import { provide, reactive, toRefs } from 'vue'
 import {
   FormProps,
   formContextKey,
@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<FormProps>(), {
   labelWidth: 60,
   disabled: false,
 })
+const { model, disabled, rules, labelWidth } = toRefs(props)
 
 const validate = async (): Promise<boolean | undefined> => {
   const validateList: Promise<any>[] = []
@@ -47,7 +48,9 @@ const updateValidateState = (field: string, formItemInstance: any) => {
 }
 
 const resetFields = () => {
-  console.log('🚀 ~ file: form.vue:48 ~ addField ~ field:', validateMap)
+  Object.keys(validateMap).forEach((field) => {
+    validateMap[field].resetValidate()
+  })
 }
 
 const handleSubmit = (e: Event) => {
@@ -57,13 +60,12 @@ const handleSubmit = (e: Event) => {
 provide(
   formContextKey,
   reactive({
-    model: props.model,
-    labelWidth: props.labelWidth,
-    rules: props.rules,
-    disabled: props.disabled,
+    model,
+    labelWidth,
+    disabled,
+    rules,
     addField,
     updateValidateState,
-    validateMap,
   }),
 )
 

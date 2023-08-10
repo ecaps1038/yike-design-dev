@@ -13,10 +13,10 @@
         :class="[
           bem('inner'),
           bem({
-            [`${status}`]: !disabled,
-            [`${status}--focus`]: isFocus && !disabled,
+            [`${status}`]: !mergedDisabled,
+            [`${status}--focus`]: isFocus && !mergedDisabled,
             loading: loading,
-            disabled: disabled,
+            disabled: mergedDisabled,
             readonly: readonly,
             rightbr0: !!$slots.append,
             leftbr0: !!$slots.prepend,
@@ -32,14 +32,14 @@
           ref="inputRef"
           :name="name"
           :placeholder="placeholder"
-          :disabled="disabled"
+          :disabled="mergedDisabled"
           :readonly="readonly"
           :required="required"
           :class="bem('widget')"
           :type="inputType"
           tabindex="0"
           :value="realValue"
-          :aria-disabled="disabled"
+          :aria-disabled="mergedDisabled"
           @focus="focus"
           @input="update"
           @blur="blur"
@@ -84,16 +84,19 @@
         <slot name="append" />
       </div>
     </div>
-    <div v-if="message" :class="bem('hint', [status])">{{ message }}</div>
+    <Transition name="fade">
+      <div v-if="mergedMessage" :class="bem('hint', [mergedStatus])">
+        {{ mergedMessage }}
+      </div>
+    </Transition>
   </div>
 </template>
 <script setup lang="ts">
 import { InputProps } from './input'
 import '../style'
-import { computed, ref, toRef, inject } from 'vue'
+import { computed, ref, toRef, toRefs } from 'vue'
 import { createCssScope } from '../../utils/bem'
-import { formItemContextKey } from '../../form'
-
+import { useFormItem } from '../../utils'
 defineOptions({
   name: 'YkInput',
 })
@@ -111,27 +114,23 @@ const props = withDefaults(defineProps<InputProps>(), {
   loading: false,
   showCounter: false,
   limit: -1, // 不限制输入字数
+  message: '',
 })
 const bem = createCssScope('input')
 
-const formItemContext = inject(formItemContextKey, {})
+const { disabled, status, message } = toRefs(props)
 
-const disabled = computed(() => {
-  return props.disabled || formItemContext?.disabled
-})
-
-const status = computed(() => {
-  if (formItemContext.isError) {
-    return formItemContext.status
-  }
-  return props.status
+const { mergedDisabled, isError, mergedMessage, mergedStatus } = useFormItem({
+  disabled,
+  status,
+  message,
 })
 
 const isTyping = ref(false)
 const shouldLimitInput = props.limit > 0
 const shouldShowLimit = props.showCounter && shouldLimitInput
 const shouldShowVisiblePasswordButton =
-  props.type === 'password' && !disabled.value && props.visible
+  props.type === 'password' && !mergedDisabled.value && props.visible
 let realValue = toRef(props, 'modelValue')
 let lastValue = realValue.value
 const valueCounter = ref<number>(lastValue.length)
@@ -153,14 +152,14 @@ const inputType = ref(props.type)
 
 const focus = () => {
   // 禁用与只读状态不可被聚焦
-  if (disabled.value || props.readonly) return
+  if (mergedDisabled.value || props.readonly) return
   isFocus.value = true
 
   emits('focus', lastValue)
 }
 
 const update = () => {
-  if (disabled.value || props.readonly) return
+  if (mergedDisabled.value || props.readonly) return
   lastValue = inputRef.value?.value ?? ''
   if (shouldLimitInput && !isTyping.value && lastValue.length > props.limit) {
     lastValue = lastValue.slice(0, props.limit)

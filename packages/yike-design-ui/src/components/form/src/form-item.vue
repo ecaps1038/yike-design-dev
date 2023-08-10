@@ -11,10 +11,12 @@ import {
   FormItemProps,
   formContextKey,
   FormItemInstance,
+  FormContext,
   formItemContextKey,
+  FormItemStatus,
 } from './form'
 import { createCssScope } from '../../utils/bem'
-import { inject, computed, ref, onMounted, reactive, provide } from 'vue'
+import { inject, computed, onMounted, reactive, provide } from 'vue'
 import { Schema } from '../../utils/validate'
 
 const bem = createCssScope('form-item')
@@ -22,19 +24,27 @@ const bem = createCssScope('form-item')
 defineOptions({
   name: 'YkForm',
 })
-const formContext = inject(formContextKey, undefined)
+const formContext = inject<Partial<FormContext>>(formContextKey, {})
 const props = withDefaults(defineProps<FormItemProps>(), {
   labelWidth: 60,
 })
-const isError = ref(false)
+
+const validateStatus = reactive<FormItemStatus>({
+  status: 'primary',
+  isError: false,
+  message: '',
+})
+
+const computedDisabled = computed(() => props.disabled || formContext.disabled)
+
 const mergedRules = computed(() => {
   const rules = []
   if (props.rules) {
     rules.push(...props.rules)
   }
   if (props.field) {
-    if (formContext?.rules) {
-      const formFieldRules = formContext?.rules?.[props.field] ?? []
+    if (formContext.rules) {
+      const formFieldRules = formContext.rules?.[props.field] ?? []
       rules.push(...formFieldRules)
     }
   }
@@ -42,17 +52,6 @@ const mergedRules = computed(() => {
     rules.push({ required: true })
   }
   return rules
-})
-
-const validateInstance = computed(() => {
-  if (props.field) {
-    return formContext?.validateMap[props.field]
-  }
-  return {
-    isError: false,
-    message: '',
-    status: 'primary',
-  }
 })
 
 const validateField = (): Promise<any> => {
@@ -80,12 +79,14 @@ const validateField = (): Promise<any> => {
   return new Promise((resolve) => {
     schema.validate({ [_field]: _value }, (err: any) => {
       const isError = Boolean(err?.[_field])
-      formContext?.updateValidateState(_field, {
+      formContext.updateValidateState?.(_field, {
         isError,
         status: isError ? 'error' : 'primary',
         message: err?.[_field].message ?? '',
       })
-
+      validateStatus.isError = isError
+      validateStatus.status = isError ? 'error' : 'primary'
+      validateStatus.message = err?.[_field].message ?? ''
       const error = isError
         ? {
             label: props.label,
@@ -102,7 +103,20 @@ const validateField = (): Promise<any> => {
   })
 }
 
-const computedDisabled = computed(() => props.disabled || formContext?.disabled)
+const resetValidate = () => {
+  console.log('reset')
+  if (!props.field) {
+    return
+  }
+  formContext.updateValidateState?.(props.field, {
+    isError: false,
+    status: 'primary',
+    message: '',
+  })
+  validateStatus.isError = false
+  validateStatus.status = 'primary'
+  validateStatus.message = ''
+}
 
 onMounted(() => {
   if (props.field) {
@@ -110,18 +124,19 @@ onMounted(() => {
       field: props.field,
       disabled: computedDisabled,
       status: 'primary',
-      isError: isError.value,
+      isError: false,
       rules: mergedRules,
       validate: validateField,
+      resetValidate,
     })
-    formContext!.addField(formItemInfo)
+    formContext.addField?.(formItemInfo)
   }
 })
 
 provide(
   formItemContextKey,
   reactive({
-    ...validateInstance.value,
+    validateInstance: validateStatus,
     disabled: computedDisabled.value,
   }),
 )
