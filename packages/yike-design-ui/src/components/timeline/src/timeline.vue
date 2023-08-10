@@ -1,22 +1,18 @@
 <template>
   <div
     :class="[
-      'yk-timeline',
-      horizontal ? 'yk-timeline--horizontal' : '',
-      placement !== 'alternate'
-        ? `yk-timeline--${placement}`
-        : horizontal
-        ? 'yk-timeline--alternate--horizontal'
-        : `yk-timeline--${placement}`,
-      reverse ? 'yk-timeline--reverse' : 'yk-timeline--no-reverse',
+      bem(
+        {
+          horizontal: horizontal,
+          reverse: reverse,
+          reverseHorizontal: horizontal && reverse,
+        },
+        placement !== 'alternate' ? [placement] : [],
+      ),
+      placement === 'alternate'
+        ? bem('alternate', { horizontal: horizontal })
+        : '',
     ]"
-    :style="
-      horizontal && reverse
-        ? { flexDirection: 'row-reverse' }
-        : !horizontal && reverse
-        ? { flexDirection: 'column-reverse' }
-        : {}
-    "
   >
     <slot></slot>
   </div>
@@ -26,6 +22,9 @@
 import { provide } from 'vue'
 import { TimelineProps } from './timeline'
 import '../style'
+
+import { createCssScope } from '../../utils/bem'
+const bem = createCssScope('timeline')
 
 const props = withDefaults(defineProps<TimelineProps>(), {
   horizontal: false,
