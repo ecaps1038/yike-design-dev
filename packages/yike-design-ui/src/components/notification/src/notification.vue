@@ -41,7 +41,7 @@
           <IconCloseOutline />
         </button>
       </div>
-      <yk-space v-if="props.showFooterBtn" class="notification-footer">
+      <yk-space v-if="props.showFooterBtn" class="notification-footer" size="m">
         <yk-button type="secondary" @click="clickCancel">取消</yk-button>
         <yk-button @click="clickOK">确定</yk-button>
       </yk-space>
@@ -88,7 +88,7 @@ let timer: any = ref()
 let remainTime = ref(0)
 
 const Style = computed(() => ({
-  marginBottom: `${props.space}px`,
+  margin: `${props.space}px`,
   zIndex: props.zIndex,
 }))
 
@@ -118,6 +118,7 @@ function handleClose() {
 
 function clickCancel() {
   props.handleCancel && props.handleCancel()
+  close()
 }
 
 function clickOK() {
