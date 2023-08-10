@@ -104,7 +104,6 @@ const validateField = (): Promise<any> => {
 }
 
 const resetValidate = () => {
-  console.log('reset')
   if (!props.field) {
     return
   }
