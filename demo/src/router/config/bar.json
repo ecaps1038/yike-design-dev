@@ -113,6 +113,10 @@
         {
           "name": "Image 图片",
           "src": "image"
+        },
+        {
+          "name": "Timeline 时间线",
+          "src": "timeline"
         }
       ]
     },
