@@ -46,14 +46,14 @@ export const DIRECTION = ['vertical', 'horizontal'] as const;
 export type Direction = (typeof DIRECTION)[number];
 export type AnimationType = 'upward' | 'fade';
 
-export const TIMELINEPLACEMENT = [
+export const TIMELINE_PLACEMENT = [
   'left',
   'right',
   'top',
   'bottom',
   'alternate',
 ] as const;
-export type TimelinePlacement = (typeof TIMELINEPLACEMENT)[number];
+export type TimelinePlacement = (typeof TIMELINE_PLACEMENT)[number];
 
-export const TIMELINEPTYPE = ['solid', 'dashed', 'dotted'] as const;
-export type TimelineType = (typeof TIMELINEPTYPE)[number];
+export const TIMELINE_TYPE = ['solid', 'dashed', 'dotted'] as const;
+export type TimelineType = (typeof TIMELINE_TYPE)[number];

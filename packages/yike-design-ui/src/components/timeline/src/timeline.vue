@@ -19,11 +19,12 @@
 </template>
 
 <script setup lang="ts">
-import { provide } from 'vue'
+import { provide, reactive } from 'vue'
 import { TimelineProps } from './timeline'
 import '../style'
 
 import { createCssScope } from '../../utils/bem'
+import { timelineContextKey } from './internal'
 const bem = createCssScope('timeline')
 
 const props = withDefaults(defineProps<TimelineProps>(), {
@@ -31,6 +32,11 @@ const props = withDefaults(defineProps<TimelineProps>(), {
   placement: 'right',
   reverse: false,
 })
-provide('horizontal', props.horizontal)
-provide('placement', props.placement)
+provide(
+  timelineContextKey,
+  reactive({
+    horizontal: props.horizontal,
+    placement: props.placement,
+  }),
+)
 </script>

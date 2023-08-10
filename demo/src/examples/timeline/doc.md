@@ -64,11 +64,11 @@ pending
 
 #### Timeline Props
 
-| 参数       | 描述     | 类型                                               | 默认值                   | 描述                                                                             |     |
-| ---------- | -------- | -------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------- | --- |
-| horizontal | 水平的   | boolean                                            | false                    |                                                                                  |
-| placement  | 文字位置 | `'left' \| 'right'\| 'top'\|'bottom'\|'alternate'` | 竖直'right' 水平'bottom' | 竖直时仅`'left'\|'right'`生效，水平时仅`'top'\|'bottom'`生效,`'alternate'`均生效 |
-| reverse    | 倒转     | boolean                                            | false                    |                                                                                  |
+| 参数       | 描述                                                                   | 类型                                               | 默认值 |
+| ---------- | ---------------------------------------------------------------------- | -------------------------------------------------- | ------ |
+| horizontal | 水平的                                                                 | boolean                                            | false  |
+| placement  | 文字位置，竖直时仅 `left \| right` 生效，水平时仅 `top \| bottom` 生效 | `'left' \| 'right'\| 'top'\|'bottom'\|'alternate'` |        |
+| reverse    | 倒转                                                                   | boolean                                            | false  |
 
 #### TimelineItem Props
 
@@ -85,9 +85,9 @@ pending
 
 #### Timeline Slots
 
-| 参数    | 描述       | 默认值 |
-| ------- | ---------- | ------ |
-| title   | 自定义标题 | -      |
-| content | 自定义内容 | -      |
-| title   | 自定义时间 | -      |
-| dot     | 自定义节点 | -      |
+| 参数    | 描述       |
+| ------- | ---------- |
+| title   | 自定义标题 |
+| content | 自定义内容 |
+| title   | 自定义时间 |
+| dot     | 自定义节点 |

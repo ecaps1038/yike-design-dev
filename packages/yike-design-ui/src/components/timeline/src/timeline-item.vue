@@ -2,9 +2,9 @@
   <div :class="bem()">
     <div :class="bem('timeline')">
       <span
-        :class="[bem('timeline__tail', { horizontal: horizontal })]"
+        :class="[bem('timeline__tail', { horizontal: context?.horizontal })]"
         :style="
-          horizontal
+          context?.horizontal
             ? { borderTopStyle: lineType }
             : { borderLeftStyle: lineType }
         "
@@ -12,7 +12,7 @@
       <div
         :class="[
           bem('timeline__dot-item', {
-            horizontal: horizontal,
+            horizontal: context?.horizontal,
             pending: pending,
           }),
         ]"
@@ -44,9 +44,10 @@
 </template>
 <script setup lang="ts">
 import { inject } from 'vue'
-import { TimelineItemProps } from './timelineitem'
+import type { TimelineItemProps } from './timeline'
 import '../style'
 import { createCssScope } from '../../utils/bem'
+import { timelineContextKey } from './internal'
 const bem = createCssScope('timeline__item')
 
 withDefaults(defineProps<TimelineItemProps>(), {
@@ -54,5 +55,5 @@ withDefaults(defineProps<TimelineItemProps>(), {
   pending: false,
 })
 
-const horizontal = inject('horizontal') as boolean
+const context = inject(timelineContextKey)
 </script>
