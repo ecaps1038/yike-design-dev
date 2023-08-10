@@ -8,8 +8,6 @@ export type NotificationProps = {
   type?: NotificationType;
   duration?: number;
   space?: number;
-  offsetY?: number;
-  offsetX?: number;
   zIndex?: number;
   dangerouslyUseHTMLString?: boolean;
   position?: NotificationPosition;
