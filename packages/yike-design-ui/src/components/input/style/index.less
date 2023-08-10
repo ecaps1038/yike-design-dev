@@ -61,13 +61,12 @@
   bottom: 110%;
   padding: 7px;
   min-width: 300px;
-  font-size: @size-s;
+  .font-s();
   border: 1px solid @wcolor;
   border-radius: @radius-s;
   background-color: @wcolor-4;
   box-shadow: @shadow-m;
   content: attr(data-tooltip);
-  line-height: 1.2;
 }
 
 .yk-input__buttons {
@@ -178,19 +177,40 @@
 
 .input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
   .bow() {
-    background-color: @bgcolor;
+    background-color: @bgcolor !important;
     outline: 1px solid @bcolor;
 
     &:hover {
-      background-color: @hvbgcolor;
+      background-color: @hvbgcolor !important;
       outline: 1px solid @hvbcolor;
     }
 
     &--focus {
-      background-color: @fsbgcolor;
-      outline: 1px solid @fsbcolor;
+      background-color: @fsbgcolor !important;
+      outline: 1px solid @fsbcolor !important;
     }
   }
+  &.yk-input--@{status} {
+    .bow();
+  }
+}
+
+.input-status-special(@status, @bcolor, @bgcolor) {
+  .bow() {
+    background-color: @bgcolor;
+    outline: 1px solid @bcolor;
+
+    &:hover {
+      background-color: @bgcolor;
+      outline: 1px solid @bcolor;
+    }
+
+    &--focus {
+      background-color: @bgcolor;
+      outline: 1px solid @bcolor;
+    }
+  }
+
   &.yk-input--@{status} {
     .bow();
   }
@@ -266,5 +286,5 @@
 .input-status(danger, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-l);
 .input-status(success, transparent, @scolor-2, @scolor, @scolor-1, @scolor, @bg-color-l);
 .input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-l);
-.input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);
-.input-status(readonly,  @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s);
+.input-status-special(disabled, @bg-color-m, @bg-color-m);
+.input-status-special(readonly,  @bg-color-s, @bg-color-s);

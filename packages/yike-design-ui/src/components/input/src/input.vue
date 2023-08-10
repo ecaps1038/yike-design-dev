@@ -12,8 +12,8 @@
       :class="[
         bem('inner'),
         bem({
-          [`${status}`]: !disabled,
-          [`${status}--focus`]: isFocus && !disabled,
+          [`${status}`]: true,
+          [`${status}--focus`]: isFocus && true,
           loading: loading,
           disabled: disabled,
           readonly: readonly,
