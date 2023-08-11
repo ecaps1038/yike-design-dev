@@ -3,35 +3,105 @@
   display: flex;
   flex-direction: column;
 }
-
 .yk-form-item {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  min-height: 60px;
   &__label {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: @space-l;
-    height: 36px;
-    font-size: @size-m;
     flex-direction: row;
   }
   &__field {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    padding-right: @space-l;
-    min-height: 36px;
-    font-size: @size-m;
     flex-direction: column;
   }
-  &__extra {
-    margin-left: @space-ss;
-    font-size: @size-ss;
-    color: @ecolor;
-    line-height: 16px;
+  &--l {
+    min-height: 60px;
+    .yk-form-item {
+      &__label {
+        padding-right: @space-l;
+        height: 36px;
+        font-size: @size-m;
+      }
+      &__field {
+        padding-right: @space-l;
+        min-height: 36px;
+        font-size: @size-m;
+      }
+      &__extra {
+        margin-left: @space-ss;
+        font-size: @size-ss;
+        color: @ecolor;
+        line-height: 16px;
+      }
+    }
+  }
+  &--s {
+    min-height: 48px;
+    .yk-form-item {
+      &__label {
+        padding-right: @space-s;
+        height: 24px;
+        font-size: @size-s;
+      }
+      &__field {
+        padding-right: @space-s;
+        min-height: 24px;
+        font-size: @size-s;
+      }
+      &__extra {
+        margin-left: @space-s;
+        font-size: @size-s;
+        color: @ecolor;
+        line-height: 16px;
+      }
+    }
+  }
+  &--xl {
+    min-height: 72px;
+    .yk-form-item {
+      &__label {
+        padding-right: @space-xl;
+        height: 48px;
+        font-size: @size-m;
+      }
+      &__field {
+        padding-right: @space-xl;
+        min-height: 48px;
+        font-size: @size-xl;
+      }
+      &__extra {
+        margin-left: @space-xl;
+        font-size: @size-xl;
+        color: @ecolor;
+        line-height: 16px;
+      }
+    }
+  }
+  &--m {
+    min-height: 56px;
+    .yk-form-item {
+      &__label {
+        padding-right: @space-l;
+        height: 36px;
+        font-size: @size-m;
+      }
+      &__field {
+        padding-right: @space-l;
+        min-height: 36px;
+        font-size: @size-m;
+      }
+      &__extra {
+        margin-left: @space-ss;
+        font-size: @size-ss;
+        color: @ecolor;
+        line-height: 16px;
+      }
+    }
   }
 }

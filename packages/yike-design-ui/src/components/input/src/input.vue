@@ -21,7 +21,7 @@
             rightbr0: !!$slots.append,
             leftbr0: !!$slots.prepend,
           }),
-          bem([size]),
+          bem([mergedSize]),
         ]"
       >
         <div v-if="$slots.prefix" :class="bem(['slot', 'before'])">
@@ -118,12 +118,13 @@ const props = withDefaults(defineProps<InputProps>(), {
 })
 const bem = createCssScope('input')
 
-const { disabled, status, message } = toRefs(props)
+const { disabled, status, message, size } = toRefs(props)
 
-const { mergedDisabled, isError, mergedStatus } = useFormItem({
+const { mergedDisabled, isError, mergedStatus, mergedSize } = useFormItem({
   disabled,
   status,
   message,
+  size,
 })
 
 const isTyping = ref(false)

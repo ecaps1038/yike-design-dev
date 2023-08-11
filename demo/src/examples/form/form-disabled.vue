@@ -16,12 +16,6 @@
         </yk-checkbox>
       </yk-checkbox-group>
     </yk-form-item>
-    <yk-form-item>
-      <yk-space>
-        <yk-button type="primary" @click="submitForm">重置</yk-button>
-        <yk-button @click="resetForm">提交</yk-button>
-      </yk-space>
-    </yk-form-item>
   </yk-form>
 </template>
 <script lang="ts" setup>
@@ -36,10 +30,4 @@ const data = ref([
   { id: '2', label: '今天' },
   { id: '3', label: '明天' },
 ])
-const submitForm = () => {
-  console.log('submit')
-}
-const resetForm = () => {
-  console.log('reset')
-}
 </script>

@@ -2,14 +2,14 @@
   <yk-space
     v-if="type === 'radio'"
     :direction="direction"
-    :size="size"
+    :size="mergedSize"
     :type="type"
-    :class="bem([type])"
+    :class="bem([type, mergedSize])"
   >
     <slot />
   </yk-space>
-  <div v-else :class="bem([type], { solid })">
-    <div :class="bem('container', [size])"><slot /></div>
+  <div v-else :class="bem([type, mergedSize], { solid })">
+    <div :class="bem('container', [mergedSize])"><slot /></div>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
 
 const { size, disabled } = toRefs(props)
 
-const { mergedDisabled, isError, mergedStatus } = useFormItem({
+const { mergedSize, mergedDisabled } = useFormItem({
   size,
   disabled,
 })

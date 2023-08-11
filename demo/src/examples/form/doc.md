@@ -13,3 +13,9 @@
 通过`disabled`禁用当前表单，表单中的所有元素都将继承
 <FormDisabled/>
 :::
+
+:::snippet
+尺寸
+通过`size`控制表单元素大小，表单中的所有元素都将继承
+<FormSize/>
+:::

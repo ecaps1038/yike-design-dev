@@ -1,5 +1,5 @@
 <template>
-  <div :class="bem()">
+  <div :class="bem([mergedSize, layout])">
     <div :class="bem('label')" :style="{ width: `${labelWidth}px` }">
       {{ label }}
     </div>
