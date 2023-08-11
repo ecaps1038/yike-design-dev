@@ -1,9 +1,14 @@
 @import '../../styles/color/colors.less';
+@import './functions.less';
 
 .yk-input {
   display: inline-flex;
   align-items: center;
   transition: all @animatb ease-in-out;
+
+  svg {
+    fill: @font-color-l;
+  }
 }
 
 .yk-input__spinner {
@@ -13,14 +18,6 @@
 
 .yk-input--slot {
   word-break: keep-all;
-
-  &:empty {
-    margin: unset;
-  }
-
-  svg {
-    fill: @font-color-l;
-  }
 }
 
 .yk-input--disabled input {
@@ -42,10 +39,9 @@
 
 .yk-input__inner {
   display: flex;
+  overflow-x: scroll;
   width: inherit;
   transition: all @animatb ease-in-out;
-  flex-grow: 1;
-  box-sizing: border-box;
 
   .yk-input__widget {
     border: none;
@@ -56,23 +52,8 @@
   }
 }
 
-[data-tooltip]:before {
-  position: absolute;
-  bottom: 110%;
-  padding: 7px;
-  min-width: 300px;
-  .font-s();
-  border: 1px solid @wcolor;
-  border-radius: @radius-s;
-  background-color: @wcolor-4;
-  box-shadow: @shadow-m;
-  content: attr(data-tooltip);
-}
-
 .yk-input__buttons {
   display: flex;
-  background: transparent;
-  flex-shrink: 1;
 }
 
 .yk-input__button {
@@ -103,7 +84,6 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  fill: @font-color-m !important;
   transition: all @animatb;
 
   &:hover {
@@ -119,101 +99,6 @@
   margin-right: @space-s;
   font-size: 12px;
   color: @font-color-s;
-
-  span {
-    // 这样看着舒服点
-    margin-bottom: 2px;
-  }
-}
-
-.input-size(@size, @height, @padding, @fs, @br) {
-  .inner() {
-    border-radius: @br;
-  }
-  .widget() {
-    padding: 0px @padding;
-    height: @height;
-    font-size: @fs;
-    border-radius: @br;
-  }
-
-  .before {
-    span {
-      margin-left: @padding;
-      font-size: @fs;
-    }
-    svg {
-      margin-left: @padding;
-      width: @fs+2px;
-      height: @fs+2px;
-    }
-  }
-
-  .after {
-    span {
-      margin-right: @padding;
-      font-size: @fs;
-    }
-    svg {
-      margin-right: @padding;
-      width: @fs+2px;
-      height: @fs+2px;
-    }
-  }
-
-  &.yk-input--@{size} {
-    .inner();
-  }
-  &.yk-input--@{size} input {
-    .widget();
-  }
-  &.yk-input--@{size} .yk-input--before {
-    .before();
-  }
-  &.yk-input--@{size} .yk-input--after {
-    .after();
-  }
-}
-
-.input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
-  .bow() {
-    background-color: @bgcolor !important;
-    outline: 1px solid @bcolor;
-
-    &:hover {
-      background-color: @hvbgcolor !important;
-      outline: 1px solid @hvbcolor;
-    }
-
-    &--focus {
-      background-color: @fsbgcolor !important;
-      outline: 1px solid @fsbcolor !important;
-    }
-  }
-  &.yk-input--@{status} {
-    .bow();
-  }
-}
-
-.input-status-special(@status, @bcolor, @bgcolor) {
-  .bow() {
-    background-color: @bgcolor;
-    outline: 1px solid @bcolor;
-
-    &:hover {
-      background-color: @bgcolor;
-      outline: 1px solid @bcolor;
-    }
-
-    &--focus {
-      background-color: @bgcolor;
-      outline: 1px solid @bcolor;
-    }
-  }
-
-  &.yk-input--@{status} {
-    .bow();
-  }
 }
 
 .yk-input__prepend {
@@ -228,7 +113,7 @@
 .yk-input__append {
   display: flex;
 
-  .yk-button {
+  button {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
   }
@@ -236,7 +121,6 @@
 
 // copy from YkButton
 .yk-input--loading {
-  // opacity: 0.7 !important;
   #spinner {
     margin-right: 6px;
     width: 16px;
