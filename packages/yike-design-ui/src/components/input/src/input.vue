@@ -86,7 +86,7 @@
     </div>
     <Transition name="fade">
       <div v-if="!isError && message" :class="bem('hint', [mergedStatus])">
-        {{ mergedMessage }}
+        {{ message }}
       </div>
     </Transition>
   </div>
