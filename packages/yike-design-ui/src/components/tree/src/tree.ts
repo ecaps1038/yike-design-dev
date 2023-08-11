@@ -21,7 +21,7 @@ export type TreeProps = {
   checkStrategy?: TreeCheckStrategy;
   /** 是否取消父子节点关联 */
   checkStrictly?: boolean;
-  scrollbar?: ScrollbarProps | boolean;
+  scrollbar?: boolean | ScrollbarProps;
 };
 
 export type Icons = {
