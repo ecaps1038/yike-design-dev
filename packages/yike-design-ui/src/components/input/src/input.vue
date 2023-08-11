@@ -85,7 +85,7 @@
       </div>
     </div>
     <Transition name="fade">
-      <div v-if="mergedMessage" :class="bem('hint', [mergedStatus])">
+      <div v-if="!isError && message" :class="bem('hint', [mergedStatus])">
         {{ mergedMessage }}
       </div>
     </Transition>
@@ -120,7 +120,7 @@ const bem = createCssScope('input')
 
 const { disabled, status, message } = toRefs(props)
 
-const { mergedDisabled, isError, mergedMessage, mergedStatus } = useFormItem({
+const { mergedDisabled, isError, mergedStatus } = useFormItem({
   disabled,
   status,
   message,

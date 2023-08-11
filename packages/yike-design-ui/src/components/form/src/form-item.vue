@@ -5,6 +5,11 @@
     </div>
     <div :class="bem('field')">
       <slot />
+      <Transition name="fade">
+        <div v-if="validateStatus.isError" :class="bem('extra')">
+          {{ validateStatus.message }}
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
