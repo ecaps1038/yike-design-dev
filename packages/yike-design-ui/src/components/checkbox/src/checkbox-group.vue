@@ -50,7 +50,7 @@ const bem = createCssScope('checkbox-group')
 
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   defaultValue: () => [],
-  disabled: undefined,
+  disabled: false,
   tag: 'div',
   direction: 'horizontal',
   options: () => [],
@@ -81,7 +81,6 @@ const handleChange = (val: Array<string | number>) => {
   emits('change', val)
   // todo:form trigger
 }
-const calcDisabled = computed(() => props.disabled)
 
 const curOptions = computed<CheckboxOption[]>(() => {
   return props.options.map((i) => {
@@ -124,7 +123,7 @@ provide(
   reactive({
     name: 'YKCheckboxGroup',
     calcVal: calcVal,
-    disabled: calcDisabled,
+    disabled: mergedDisabled,
     handleChange,
     isMax,
   }),

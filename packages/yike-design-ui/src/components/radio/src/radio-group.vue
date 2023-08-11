@@ -4,7 +4,7 @@
     :direction="direction"
     :size="mergedSize"
     :type="type"
-    :class="bem([type, mergedSize])"
+    :class="bem([type, mergedSize, direction])"
   >
     <slot />
   </yk-space>
