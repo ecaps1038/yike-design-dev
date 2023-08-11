@@ -8,6 +8,24 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   margin: @space-l 0;
+  &__label {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: @space-l;
+    height: 36px;
+    font-size: @size-m;
+    flex-direction: row;
+  }
+  &__field {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-right: @space-l;
+    min-height: 36px;
+    font-size: @size-m;
+    flex-direction: column;
+  }
 }

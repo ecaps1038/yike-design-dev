@@ -3,7 +3,9 @@
     <div :class="bem('label')" :style="{ width: `${labelWidth}px` }">
       {{ label }}
     </div>
-    <slot />
+    <div :class="bem('field')">
+      <slot />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -26,7 +28,7 @@ defineOptions({
 })
 const formContext = inject<Partial<FormContext>>(formContextKey, {})
 const props = withDefaults(defineProps<FormItemProps>(), {
-  labelWidth: 60,
+  labelWidth: 116,
 })
 
 const validateStatus = reactive<FormItemStatus>({
@@ -53,6 +55,10 @@ const mergedRules = computed(() => {
   }
   return rules
 })
+
+const mergedSize = computed(() => formContext.size || 'l')
+
+const layout = computed(() => formContext.layout || 'horizontal')
 
 const validateField = (): Promise<any> => {
   const rules = mergedRules.value
@@ -135,6 +141,8 @@ onMounted(() => {
 provide(
   formItemContextKey,
   reactive({
+    size: mergedSize,
+    layout,
     validateInstance: validateStatus,
     disabled: computedDisabled.value,
   }),

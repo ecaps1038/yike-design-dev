@@ -6,3 +6,4 @@ export * from './tools';
 export * from './types';
 export * from './hooks/use-form-item';
 export * from './validate';
+export * from './validate/is';

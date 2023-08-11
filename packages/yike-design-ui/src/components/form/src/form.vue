@@ -12,6 +12,7 @@ import {
   ValidateStatusMap,
 } from './form'
 import { createCssScope } from '../../utils/bem'
+import { isFunction } from '../../utils'
 const bem = createCssScope('form')
 
 defineOptions({
@@ -21,19 +22,38 @@ defineOptions({
 const validateMap: ValidateStatusMap = {}
 
 const props = withDefaults(defineProps<FormProps>(), {
-  labelWidth: 60,
+  labelWidth: 116,
   disabled: false,
+  size: 'l',
+  layout: 'horizontal',
 })
-const { model, disabled, rules, labelWidth } = toRefs(props)
+const { model, disabled, rules, labelWidth, size, layout } = toRefs(props)
 
-const validate = async (): Promise<boolean | undefined> => {
+const validate = async (
+  callback?: (errors: undefined | Record<string, any>) => void,
+): Promise<any> => {
   const validateList: Promise<any>[] = []
   let hasError = false
   Object.keys(validateMap).forEach((field) => {
     validateList.push(validateMap[field].validate())
     hasError = hasError || (validateMap[field]?.isError ?? false)
   })
-  return !hasError
+  return Promise.all(validateList).then((result) => {
+    const errors: Record<string, any> = {}
+    let hasError = false
+    result.forEach((item) => {
+      if (item) {
+        hasError = true
+        errors[item.field] = item
+      }
+    })
+
+    if (isFunction(callback)) {
+      callback(hasError ? errors : undefined)
+    }
+
+    return hasError ? errors : undefined
+  })
 }
 
 const addField = (formItemInstance: FormItemInstance) => {
@@ -63,6 +83,8 @@ provide(
     model,
     labelWidth,
     disabled,
+    size,
+    layout,
     rules,
     addField,
     updateValidateState,

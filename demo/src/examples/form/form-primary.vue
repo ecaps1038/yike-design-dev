@@ -72,6 +72,8 @@ const submitForm = (formEl) => {
   if (!formEl) {
     return
   }
-  formEl.validate()
+  formEl.validate((errors: any) => {
+    console.log(errors)
+  })
 }
 </script>

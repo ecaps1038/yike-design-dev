@@ -1,5 +1,6 @@
 import { InjectionKey } from 'vue';
 import { SchemaType, SchemaRuleType } from '../../utils/validate';
+import { Size, Layout } from '../../utils';
 export type Field = string;
 export type ValidateStatus = 'success' | 'error' | 'primary';
 export interface FormProps {
@@ -7,7 +8,9 @@ export interface FormProps {
   id?: string;
   rules?: SchemaType;
   labelWidth?: number;
+  size?: Size;
   disabled?: boolean;
+  layout?: Layout;
 }
 export type FormItemProps = {
   field?: Field;
@@ -23,6 +26,8 @@ export interface FormContext {
   labelWidth: number;
   disabled: boolean;
   rules: SchemaType | undefined;
+  size: Size;
+  layout: Layout;
   addField: (formItemInstance: FormItemInstance) => void;
   updateValidateState: (field: Field, formItemInstance: any) => void;
 }
@@ -33,6 +38,8 @@ export const formContextKey: InjectionKey<FormContext> =
 export interface FormItemContext {
   validateInstance: any;
   disabled: boolean | undefined;
+  size: Size;
+  layout: Layout;
 }
 
 export const formItemContextKey: InjectionKey<FormItemContext> =
