@@ -1,5 +1,6 @@
 export type PaneOptionsProp = {
-  name?: string;
+  name?: string | number;
   label?: string;
+  id?: number;
 };
 export type PaneProp = PaneOptionsProp;
