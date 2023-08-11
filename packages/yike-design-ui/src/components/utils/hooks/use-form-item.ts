@@ -27,9 +27,11 @@ export const useFormItem = ({
 
   const isError = computed(() => validateInstance.value.isError);
   const mergedMessage = computed(
-    () => validateInstance.value?.message ?? message,
+    () => validateInstance.value?.message ?? message?.value,
   );
-  const mergedStatus = computed(() => validateInstance.value?.status ?? status);
+  const mergedStatus = computed(
+    () => validateInstance.value?.status ?? status?.value,
+  );
 
   // ToDo
   // 添加radio、select、input等数据录入组件样式、尺寸的适配
