@@ -22,7 +22,7 @@ import {
   formItemContextKey,
   FormItemStatus,
 } from './form'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope, isArray } from '../../utils'
 import { inject, computed, onMounted, reactive, provide } from 'vue'
 import { Schema } from '../../utils/validate'
 
@@ -69,9 +69,17 @@ const mergedSize = computed(() => formContext.size || 'l')
 
 const layout = computed(() => formContext.layout || 'horizontal')
 
-const validateField = (): Promise<any> => {
-  const rules = mergedRules.value
-
+const validateField = (trigger?: string): Promise<any> => {
+  let rules = mergedRules.value
+  if (trigger) {
+    // 根据rules列表中的trigger进行筛选
+    rules = rules.filter((rule) => {
+      if (isArray(rule.trigger)) {
+        return rule.trigger.includes(trigger)
+      }
+      return rule.trigger === trigger
+    })
+  }
   if (!props.field || rules.length === 0) {
     return Promise.resolve()
   }
@@ -154,6 +162,7 @@ provide(
     layout,
     validateInstance: validateStatus,
     disabled: computedDisabled.value,
+    validate: validateField,
   }),
 )
 </script>

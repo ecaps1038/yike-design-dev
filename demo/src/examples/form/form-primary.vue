@@ -3,6 +3,9 @@
     <yk-form-item label="姓名" field="name" :rules="nameExtraRule">
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
+    <yk-form-item label="昵称" field="nickname">
+      <yk-input v-model="form.nickname"></yk-input>
+    </yk-form-item>
     <yk-form-item label="性别" field="sex" :rules="rulesMap.sex">
       <yk-radio-group v-model="form.sex">
         <yk-radio value="man">男</yk-radio>
@@ -31,16 +34,25 @@ const form = reactive({
   name: '大飞',
   sex: 'man',
   date: ['2'],
+  nickname: '',
 })
 const rulesMap = {
   name: [
     {
       required: true,
       message: 'Please select Activity count',
+      trigger: 'change',
     },
     {
       minLength: 4,
       trigger: 'change',
+    },
+  ],
+  nickname: [
+    {
+      required: true,
+      message: '请输入昵称',
+      trigger: 'blur',
     },
   ],
   sex: [
@@ -54,6 +66,7 @@ const nameExtraRule = [
   {
     maxLength: 6,
     require: true,
+    trigger: ['change', 'blur', 'focus'],
   },
 ]
 const data = ref([

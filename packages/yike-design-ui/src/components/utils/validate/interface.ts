@@ -76,6 +76,7 @@ export type SchemaRuleType = {
 
   ignoreEmptyString?: boolean;
   strict?: boolean;
+  trigger?: string | string[];
 };
 
 export type SchemaType = {

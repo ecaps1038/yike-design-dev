@@ -120,12 +120,13 @@ const bem = createCssScope('input')
 
 const { disabled, status, message, size } = toRefs(props)
 
-const { mergedDisabled, isError, mergedStatus, mergedSize } = useFormItem({
-  disabled,
-  status,
-  message,
-  size,
-})
+const { mergedDisabled, isError, mergedStatus, mergedSize, validate } =
+  useFormItem({
+    disabled,
+    status,
+    message,
+    size,
+  })
 
 const isTyping = ref(false)
 const shouldLimitInput = props.limit > 0
@@ -169,12 +170,14 @@ const update = () => {
   ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
   valueCounter.value = lastValue.length
+  validate('change')
   emits('update:modelValue', lastValue)
   emits('change', lastValue)
 }
 
 const blur = () => {
   isFocus.value = false
+  validate('blur')
   emits('blur', lastValue)
 }
 

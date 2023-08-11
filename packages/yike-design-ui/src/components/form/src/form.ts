@@ -40,6 +40,7 @@ export interface FormItemContext {
   disabled: boolean | undefined;
   size: Size;
   layout: Layout;
+  validate: (trigger?: string) => void;
 }
 
 export const formItemContextKey: InjectionKey<FormItemContext> =

@@ -43,5 +43,6 @@ export const useFormItem = ({
     mergedStatus,
     mergedSize,
     layout,
+    validate: formItemCtx.validate,
   };
 };
