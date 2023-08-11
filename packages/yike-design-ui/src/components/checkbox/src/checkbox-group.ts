@@ -8,7 +8,7 @@ export type CheckboxGroupProps = {
   direction?: 'horizontal' | 'vertical';
   options?: Array<CheckboxOption | CheckboxGroupValue>;
   gap?: Size | number | number[];
-  size: Size;
+  size?: Size;
 };
 
 export type CheckboxOption = {
