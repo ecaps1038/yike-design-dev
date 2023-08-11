@@ -1,6 +1,6 @@
 <template>
-  <div :class="bem([mergedSize, layout])">
-    <div :class="bem('label')" :style="{ width: `${labelWidth}px` }">
+  <div :class="bem([mergedSize])">
+    <div :class="bem('label')" :style="{ width: `${mergedLabelWidth}px` }">
       {{ label }}
     </div>
     <div :class="bem('field')">
@@ -43,6 +43,10 @@ const validateStatus = reactive<FormItemStatus>({
 })
 
 const computedDisabled = computed(() => props.disabled || formContext.disabled)
+
+const mergedLabelWidth = computed(
+  () => formContext?.labelWidth ?? props.labelWidth,
+)
 
 const mergedRules = computed(() => {
   const rules = []

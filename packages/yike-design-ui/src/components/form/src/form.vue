@@ -1,5 +1,5 @@
 <template>
-  <form :class="bem()" @submit.prevent="handleSubmit">
+  <form :class="bem([layout])" @submit.prevent="handleSubmit">
     <slot />
   </form>
 </template>

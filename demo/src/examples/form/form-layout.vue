@@ -1,5 +1,25 @@
 <template>
+  <yk-button status="success" size="s">{{ `布局: vertical` }}</yk-button>
   <yk-form :model="form" layout="vertical">
+    <yk-form-item label="姓名" field="name">
+      <yk-input v-model="form.name"></yk-input>
+    </yk-form-item>
+    <yk-form-item label="性别" field="sex">
+      <yk-radio-group v-model="form.sex">
+        <yk-radio value="man">男</yk-radio>
+        <yk-radio value="woman">女</yk-radio>
+      </yk-radio-group>
+    </yk-form-item>
+    <yk-form-item label="日期" field="date">
+      <yk-checkbox-group v-model="form.date">
+        <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">
+          {{ item.label }}
+        </yk-checkbox>
+      </yk-checkbox-group>
+    </yk-form-item>
+  </yk-form>
+  <yk-button status="success" size="s">{{ `布局: inline` }}</yk-button>
+  <yk-form :model="form" layout="inline" :label-width="50">
     <yk-form-item label="姓名" field="name">
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
@@ -31,3 +51,8 @@ const data = ref([
   { id: '3', label: '明天' },
 ])
 </script>
+<style scoped>
+.yk-button {
+  margin-bottom: 16px;
+}
+</style>

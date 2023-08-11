@@ -1,7 +1,7 @@
 <template>
   <yk-space :direction="`vertical`">
     <div v-for="size in sizeList">
-      <yk-button>{{ size }}</yk-button>
+      <yk-button status="success" size="s">{{ `尺寸: ${size}` }}</yk-button>
       <yk-form :model="form" :size="size">
         <yk-form-item label="姓名" field="name">
           <yk-input v-model="form.name"></yk-input>
@@ -38,3 +38,8 @@ const data = ref([
 ])
 const sizeList = ['s', 'm', 'l', 'xl'] as Size[]
 </script>
+<style scoped>
+.yk-button {
+  margin-bottom: 16px;
+}
+</style>

@@ -2,36 +2,64 @@
 .yk-form {
   display: flex;
   flex-direction: column;
-}
-.yk-form-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  &__label {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  &--inline {
     flex-direction: row;
   }
-  &__field {
+}
+.yk-form--horizontal,
+.yk-form--inline {
+  .yk-form-item {
     display: flex;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    flex-direction: column;
+    &__label {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-direction: row;
+    }
+    &__field {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    &--l {
+      .define-form-item(60px,36px, @space-l, @size-m, @space-ss, @size-ss);
+    }
+    &--s {
+      .define-form-item(48px,24px, @space-s, @size-s, @space-s, @size-s);
+    }
+    &--xl {
+      .define-form-item(72px,48px, @space-xl, @size-m, @space-xl, @size-xl);
+    }
+    &--m {
+      .define-form-item(56px,32px, @space-l, @size-m, @space-ss, @size-ss);
+    }
   }
-  // 使用混合宏
-  &--l {
-    .define-form-item(60px,36px, @space-l, @size-m, @space-ss, @size-ss);
+}
+.yk-form--vertical {
+  .yk-form-item {
+    &__label {
+      height: 28px;
+    }
+    &__field {
+      min-height: 60px;
+    }
   }
-  &--s {
-    .define-form-item(48px,24px, @space-s, @size-s, @space-s, @size-s);
-  }
-  &--xl {
-    .define-form-item(72px,48px, @space-xl, @size-m, @space-xl, @size-xl);
-  }
-  &--m {
-    .define-form-item(56px,32px, @space-l, @size-m, @space-ss, @size-ss);
+}
+.yk-form--inline {
+  flex-wrap: wrap;
+  .yk-form-item {
+    display: flex;
+    flex-direction: row;
+    &__label {
+      height: 28px;
+    }
+    &__field {
+      margin-right: @space-xl;
+    }
   }
 }
 
