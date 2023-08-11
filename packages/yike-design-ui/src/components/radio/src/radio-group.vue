@@ -46,6 +46,7 @@ provide(
   provideKey,
   reactive({
     ...toRefs(props),
+    disabled: mergedDisabled,
     changeEvent,
   }),
 )
