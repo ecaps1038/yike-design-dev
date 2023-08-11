@@ -1,0 +1,85 @@
+.input-size(@size, @height, @padding, @fs, @br) {
+  .inner() {
+    border-radius: @br;
+  }
+
+  .widget() {
+    padding: 0px @padding;
+    height: @height;
+    font-size: @fs;
+    border-radius: @br;
+  }
+
+  .before {
+    span {
+      margin-left: @padding;
+      font-size: @fs;
+    }
+    svg {
+      margin-left: @padding;
+      width: @fs+2px;
+      height: @fs+2px;
+    }
+  }
+
+  .after {
+    span {
+      margin-right: @padding;
+      font-size: @fs;
+    }
+    svg {
+      margin-right: @padding;
+      width: @fs+2px;
+      height: @fs+2px;
+    }
+  }
+
+  &.yk-input--@{size} {
+    .inner();
+  }
+  &.yk-input--@{size} input {
+    .widget();
+  }
+  &.yk-input--@{size} .yk-input--before {
+    .before();
+  }
+  &.yk-input--@{size} .yk-input--after {
+    .after();
+  }
+}
+
+.input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
+  .bow() {
+    background-color: @bgcolor !important;
+    outline: 1px solid @bcolor;
+
+    &:hover {
+      background-color: @hvbgcolor !important;
+      outline: 1px solid @hvbcolor;
+    }
+
+    &--focus {
+      background-color: @fsbgcolor !important;
+      outline: 1px solid @fsbcolor !important;
+    }
+  }
+  &.yk-input--@{status} {
+    .bow();
+  }
+}
+
+.input-status-special(@status, @bcolor, @bgcolor) {
+  .bow() {
+    background-color: @bgcolor;
+    outline: 1px solid @bcolor;
+
+    &:hover {
+      background-color: @bgcolor;
+      outline: 1px solid @bcolor;
+    }
+  }
+
+  &.yk-input--@{status} {
+    .bow();
+  }
+}
