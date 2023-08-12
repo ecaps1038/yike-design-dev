@@ -32,7 +32,7 @@ const activedId = computed(() => {
 const onNavChange = (v: PaneOptionsProp) => {
   emits('update:modelValue', v.name)
 }
-const provideState = reactive({})
+
 provide(
   YkTabsProvideKey,
   reactive({

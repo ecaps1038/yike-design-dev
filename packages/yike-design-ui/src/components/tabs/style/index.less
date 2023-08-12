@@ -1,18 +1,52 @@
 .yk-tabs {
   &-bar {
-    height: 2px;
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    border-radius: @radius-s*.5;
     background-color: @pcolor;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+  }
+  &-nav__icon--disabled {
+    color: @font-color-s;
   }
   &-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid @line-color-s;
+    .yk-icon {
+      cursor: pointer;
+    }
+    &__wrap {
+      display: flex;
+      flex-wrap: nowrap;
+      flex: 1;
+      overflow: hidden;
+    }
+    &__scroll {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-shrink: 0;
+      transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+    }
     &__item {
+      flex-shrink: 0;
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      padding: 0 20px;
+      margin: 0px 12px;
+      padding: 4px 0px;
       min-width: 10px;
-      height: 50px;
+      height: 40px;
+      font-size: @size-m;
+      color: rgba(@gray, 0.5);
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    &__item--active {
+      color: @font-color-l;
     }
   }
 
