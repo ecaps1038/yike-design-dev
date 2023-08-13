@@ -1,5 +1,28 @@
 import { InjectionKey, Ref, RenderFunction } from 'vue';
 import { Key } from '../../utils';
+import { _TreeNode } from './internal';
+import { ScrollbarProps } from '../../scrollbar';
+
+export type TreeCheckStrategy = 'all' | 'parent' | 'child';
+
+export type TreeProps = {
+  options?: TreeOption[];
+  blockNode?: boolean;
+  defaultExpandedKeys?: Key[];
+  expandedKeys?: Key[];
+  selectedKeys?: Key[];
+  defaultSelectedKeys?: Key[];
+  multiple?: boolean;
+  expandIcon?: RenderFunction;
+  fileTree?: boolean;
+  fileIcons?: Icons;
+  checkable?: boolean;
+  checkedKeys?: Key[];
+  checkStrategy?: TreeCheckStrategy;
+  /** 是否取消父子节点关联 */
+  checkStrictly?: boolean;
+  scrollbar?: boolean | ScrollbarProps;
+};
 
 export type Icons = {
   file?: RenderFunction;
@@ -14,29 +37,22 @@ export type TreeOption = {
   icons?: Icons;
 };
 
-export type TreeProps = {
-  options?: TreeOption[];
+export type TreeContext = Readonly<{
   blockNode?: boolean;
-  defaultExpandedKeys?: Key[];
+  fileTree?: boolean;
   expandedKeys?: Key[];
   selectedKeys?: Key[];
-  defaultSelectedKeys?: Key[];
-  multiple?: boolean;
-  expandIcon?: RenderFunction;
-  fileTree?: boolean;
   fileIcons?: Icons;
-};
-
-export type TreeContext = {
-  blockNode?: boolean;
-  fileTree?: boolean;
-  expandedKeys?: Ref<Key[]>;
-  selectedKeys?: Ref<Key[]>;
-  fileIcons?: Icons;
+  checkable?: boolean;
+  checkedKeys?: Key[];
+  checkStrategy?: 'all' | 'parent' | 'child';
+  checkStrictly?: boolean;
+  nodeMaps?: Map<Key, _TreeNode>;
   onExpand?: (key: Key, close?: boolean, first?: boolean) => void;
+  onChecked?: (key: Key[], checked: boolean) => void;
   onSelect?: (key: Key) => void;
   expandIcon?: RenderFunction;
-};
+}>;
 export const TreeInjectionKey: InjectionKey<TreeContext> =
   Symbol('TreeInjectionKey');
 

@@ -1,10 +1,11 @@
 import { glob } from 'fast-glob';
-import { componentSrc, resolvePath } from '../../utils/paths';
 import fs from 'fs-extra';
 import { Plugin, build } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
+import { genUmdConfig } from './umd.config';
+import { resolvePath, componentSrc } from '../../utils/paths';
 
 const EXPORT_HELPER_ID = 'plugin-vue:export-helper';
 const helperCode = `
@@ -35,7 +36,7 @@ function virtualPlugin(): Plugin {
   };
 }
 
-const buildComponent = async () => {
+const buildComponent = async (umd = false) => {
   await fs.emptyDir(resolvePath('es'));
   await fs.emptyDir(resolvePath('lib'));
   const entry = [
@@ -96,10 +97,14 @@ const buildComponent = async () => {
   });
 
   const s = resolvePath('src/components/svg-icon/icons.json');
-  console.log('s: ', s);
   const t = resolvePath('es/components/svg-icon/icons.json');
-  console.log('t: ', t);
   await fs.copy(s, t);
+
+  if (umd) {
+    await fs.emptyDir(resolvePath('dist'));
+    await build(genUmdConfig('component'));
+    await build(genUmdConfig('icon'));
+  }
 
   console.log('build success');
 };

@@ -1,0 +1,21 @@
+<template>
+  <yk-space size="xl">
+    <yk-image
+      src="https://w.wallhaven.cc/full/m9/wallhaven-m9xyg8.jpg"
+      width="320"
+      height="200"
+      fit="cover"
+      title="Yike-Design"
+      description="包容万物，从源头出发，一切从简。"
+    ></yk-image>
+    <yk-image
+      src="https://w.wallhaven.cc/full/m9/wallhaven-m9xyg8.jpg"
+      width="320"
+      height="200"
+      fit="cover"
+      footer-position="outer"
+      title="Yike-Design"
+      description="包容万物，从源头出发，一切从简。"
+    ></yk-image>
+  </yk-space>
+</template>

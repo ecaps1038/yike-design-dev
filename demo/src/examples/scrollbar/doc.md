@@ -26,25 +26,17 @@
 
 ### API
 
-#### Scrollbar Attributes
+| 参数                 | 描述                                     | 类型                 | 默认值 |
+| -------------------- | ---------------------------------------- | -------------------- | ------ |
+| `height`             | 容器高度                                 | `number｜string`     | 100%   |
+| `native`             | 是否显示原生滚动条                       | `boolean`            | false  |
+| `always`             | 是否总是显示滚动条                       | `boolean`            | false  |
+| `noresize`           | 容器高度不会变化可以开启此选项，优化性能 | `boolean`            | false  |
+| `on-scroll(@scroll)` | 滚动事件                                 | `(e: Event) => void` | -      |
 
-| 参数   | 描述               | 类型             | 默认值 |
-| ------ | ------------------ | ---------------- | ------ |
-| height | 容器高度           | number ｜ string | --     |
-| native | 是否显示原生滚动条 | boolean          | false  |
-| always | 滚动条总是显示     | boolean          | false  |
-| size   | 滚动条宽度         | number           | 5      |
-| space  | 与边间距           | number           | 2      |
-| show   | 是否显示滚动条     | boolean          | true   |
+### Methods
 
-#### Scrollbar Slots
-
-| 参数    | 描述       |
-| ------- | ---------- |
-| default | 自定义内容 |
-
-#### Scrollbar Events
-
-| 事件名 | 说明     | 类型     |
-| ------ | -------- | -------- |
-| scroll | 触发滚动 | Function |
+| 事件名     | 说明                                                                          | 类型                                  |
+| ---------- | ----------------------------------------------------------------------------- | ------------------------------------- |
+| `scrollTo` | [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollTo) | `(options?: ScrollToOptions) => void` |
+| `scrollBy` | [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollBy) | `(options?: ScrollToOptions) => void` |

@@ -29,6 +29,6 @@ function createLabel(level: number): string {
 const options = shallowRef(createData())
 const expandedKey = ref(['41', '403122'])
 const handleExpand = (exp) => {
-  console.log('exp: ', exp)
+  // console.log('exp: ', exp)
 }
 </script>

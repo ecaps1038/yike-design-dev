@@ -1,199 +1,152 @@
 <template>
-  <div
-    :class="{
-      'yk-scrollbar': true,
-      'yk-scrollbar--always': props.always,
-      'yk-scrollbar--native': props.native,
-    }"
-    :style="{ height: scrollHeight }"
-  >
-    <div ref="boxRef" class="yk-scrollbar__container" @scroll="scrollChange()">
-      <div
-        ref="wrapRef"
-        class="yk-scrollbar__content"
-        :style="{ width: xScrollable ? 'fit-content' : '100%' }"
-      >
-        <slot></slot>
+  <div ref="$scrollbar" :class="[bem()]">
+    <div
+      ref="$wrap"
+      :class="[bem('wrap', [!props.native && 'default-hide'])]"
+      :style="wrapStyle"
+      @scroll="handleScroll"
+    >
+      <div ref="$content" :class="[bem('content')]">
+        <slot />
       </div>
     </div>
-    <div
-      v-show="isx && show"
-      class="yk-scrollbar__x"
-      :style="{ bottom: space + 'px', height: size + 'px' }"
-    >
-      <div
-        class="thumb"
-        :style="{
-          width: scrollBodyWidth + 'px',
-          left: (boxScrollLeft * boxWidth) / wrapWidth + 'px',
-        }"
-        @mousedown="mousedownX"
-      ></div>
-    </div>
-    <div
-      v-show="isy && show"
-      class="yk-scrollbar__y"
-      :style="{ right: space + 'px', width: size + 'px' }"
-    >
-      <div
-        class="thumb"
-        :style="{
-          height: scrollBodyHeight + 'px',
-          top: (boxScrollTop * boxHeight) / ulHeight + 'px',
-        }"
-        @mousedown="mousedownY"
-      ></div>
-    </div>
+    <template v-if="!props.native">
+      <Thumb
+        vertical
+        :size="thumbHeight"
+        :move="moveY"
+        :always="always"
+        :ratio="ratioY"
+      />
+      <Thumb
+        :size="thumbWidth"
+        :move="moveX"
+        :always="always"
+        :ratio="ratioX"
+      />
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { ScrollbarProps } from './scrollbar'
+import {
+  computed,
+  CSSProperties,
+  shallowRef,
+  unref,
+  ref,
+  provide,
+  reactive,
+  watch,
+  onMounted,
+} from 'vue'
+import { createCssScope, toPx } from '../../utils'
+import { ScrollbarProps, scrollbarContextKey } from './scrollbar'
+import Thumb from './thumb.vue'
+import { useEventListener, useResizeObserver } from '@vueuse/core'
 
-import { useEventListener } from '@vueuse/core'
+const GAP = 4
 
 defineOptions({
   name: 'YkScrollbar',
 })
-const emits = defineEmits(['scroll'])
 const props = withDefaults(defineProps<ScrollbarProps>(), {
   size: 5,
   space: 2,
   show: true,
   always: false,
   xScrollable: false,
+  noresize: false,
+  minSize: 10,
+})
+const emits = defineEmits<{
+  scroll: [e: Event]
+}>()
+
+const bem = createCssScope('scrollbar')
+
+const wrapStyle = computed<CSSProperties>(() => {
+  return {
+    height: toPx(props.height),
+  }
 })
 
-//获取dome
-const boxRef = ref()
-const wrapRef = ref()
+const $scrollbar = shallowRef<HTMLDivElement>()
+const $wrap = shallowRef<HTMLDivElement>()
+const $content = shallowRef<HTMLDivElement>()
 
-//横向变量
-const scrollBodyWidth = ref(0)
-const boxScrollLeft = ref(0)
-const boxWidth = ref(0)
-const wrapWidth = ref(0)
+const moveY = ref(0)
+const moveX = ref(0)
 
-//当前鼠标x轴位置
-const mouseX = ref(0)
-//当前鼠标y轴位置
-const mouseY = ref(0)
-//横向是否出现滚动条
-const isx = ref(false)
+const handleScroll = (e: Event) => {
+  const wrap = unref($wrap)
+  const content = unref($content)
+  if (!wrap || !content) return
+  const offsetHeight = wrap.offsetHeight - GAP
+  const offsetWidth = wrap.offsetWidth - GAP
+  moveY.value = (wrap.scrollTop * offsetHeight) / content.scrollHeight
+  moveX.value = (wrap.scrollLeft * offsetWidth) / content.scrollWidth
+  emits('scroll', e)
+}
 
-//纵向变量
-const scrollBodyHeight = ref(0)
-const boxScrollTop = ref(0)
-const boxHeight = ref(0)
-const ulHeight = ref(0)
+const ratioY = ref(1)
+const ratioX = ref(1)
+const thumbHeight = ref('0')
+const thumbWidth = ref('0')
+const update = () => {
+  const wrap = unref($wrap)
+  if (!wrap) return
+  const offsetHeight = wrap.offsetHeight
+  const offsetWidth = wrap.offsetWidth
+  const ogH = offsetHeight ** 2 / wrap.scrollHeight // 计算出来实际的滚动条高度
+  const ogW = offsetWidth ** 2 / wrap.scrollWidth // 计算出来实际的滚动条宽度
+  thumbHeight.value = ogH + 'px'
+  // console.log('thumbHeight.value: ', thumbHeight.value)
+  thumbWidth.value = ogW + 'px'
 
-//纵向是否出现滚动条
-const isy = ref(false)
+  ratioY.value = ogH / offsetHeight
+  ratioX.value = ogW / offsetWidth
 
-//当前滚动位置
-let scrollPos = 0
+  moveY.value = (wrap.scrollTop * offsetHeight) / wrap.scrollHeight
+  moveX.value = (wrap.scrollLeft * offsetWidth) / wrap.scrollWidth
+}
 
-//是否触发滚动 -1不滚动、0横向滚动、1纵向滚动
-const scrolling = ref(-1)
-
-// 容器高度
-const scrollHeight = computed(() => {
-  if (props.height) {
-    if (typeof props.height == 'number') {
-      return props.height + 'px'
+let stopResizeObs: () => void
+let stopWindowResize: () => void
+watch(
+  () => props.noresize,
+  (noresize) => {
+    if (noresize || props.native) {
+      // 如果指定内容高度不会变化或者采用原生滚动条
+      stopResizeObs?.()
+      stopWindowResize?.()
     } else {
-      return props.height
+      ;({ stop: stopResizeObs } = useResizeObserver($content, update))
+      stopWindowResize = useEventListener('resize', update)
     }
-  } else {
-    return '100%'
-  }
+  },
+  { immediate: true },
+)
+onMounted(update)
+
+provide(
+  scrollbarContextKey,
+  reactive({
+    scrollbarEl: $scrollbar,
+    wrapEl: $wrap,
+  }),
+)
+
+const scrollBy: (options?: ScrollToOptions | undefined) => void = (options) => {
+  $wrap.value?.scrollBy(options)
+}
+
+const scrollTo: (options?: ScrollToOptions | undefined) => void = (options) => {
+  $wrap.value?.scrollTo(options)
+}
+
+defineExpose({
+  scrollBy: scrollBy,
+  scrollTo: scrollTo,
 })
-
-//移动事件
-const scrollChange = () => {
-  boxScrollLeft.value = boxRef.value.scrollLeft
-  boxScrollTop.value = boxRef.value.scrollTop
-  if (isy.value) {
-    emits('scroll', boxRef.value.scrollTop)
-  } else if (isx.value) {
-    emits('scroll', boxRef.value.scrollLeft)
-  }
-}
-
-// 鼠标移动事件
-const moverScroll = (e: MouseEvent) => {
-  if (scrolling.value == 0) {
-    // 计算横向滚动位置
-    const delta = e.screenX - mouseX.value
-    const newScrollLeft = scrollPos + (delta * wrapWidth.value) / boxWidth.value
-    boxRef.value.scrollLeft = newScrollLeft
-    emits('scroll', newScrollLeft)
-  } else if (scrolling.value == 1) {
-    // 计算纵向滚动位置
-    const delta = e.screenY - mouseY.value
-    const newScrollTop = scrollPos + (delta * ulHeight.value) / boxHeight.value
-    boxRef.value.scrollTop = newScrollTop
-    emits('scroll', newScrollTop)
-  }
-}
-
-//鼠标点击横向
-const mousedownX = (e: MouseEvent) => {
-  scrolling.value = 0
-  mouseX.value = e.screenX
-  scrollPos = boxRef.value.scrollLeft
-  window.addEventListener('mousemove', moverScroll)
-  window.addEventListener('mouseup', mouseup)
-}
-
-//鼠标点击纵向
-const mousedownY = (e: MouseEvent) => {
-  scrolling.value = 1
-  mouseY.value = e.screenY
-  scrollPos = boxRef.value.scrollTop
-  window.addEventListener('mousemove', moverScroll)
-  window.addEventListener('mouseup', mouseup)
-}
-
-//鼠标离开/抬起
-const mouseup = () => {
-  scrolling.value = -1
-  window.removeEventListener('mousemove', moverScroll)
-}
-
-let resizeTimer: number | null = null
-
-function onWindowResize() {
-  // 清除之前的计时器
-  if (resizeTimer) {
-    cancelAnimationFrame(resizeTimer)
-  }
-
-  // 创建一个新的计时器
-  resizeTimer = requestAnimationFrame(() => {
-    boxWidth.value = boxRef.value.clientWidth
-    console.log('boxWidth.value: ', boxWidth.value)
-    wrapWidth.value = wrapRef.value.clientWidth
-    console.log('wrapWidth.value: ', wrapWidth.value)
-    scrollBodyWidth.value = (boxWidth.value * boxWidth.value) / wrapWidth.value
-    isx.value = wrapWidth.value > boxWidth.value
-    console.log('isx.value: ', isx.value)
-
-    //纵向滚动
-    boxHeight.value = boxRef.value.clientHeight
-    ulHeight.value = wrapRef.value.clientHeight
-    scrollBodyHeight.value =
-      (boxHeight.value * boxHeight.value) / ulHeight.value
-    isy.value = ulHeight.value > boxHeight.value
-  })
-}
-
-onMounted(() => {
-  if (props.native) {
-    return
-  }
-  onWindowResize()
-})
-props.native ? null : useEventListener(window, 'resize', onWindowResize)
 </script>

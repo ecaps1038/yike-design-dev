@@ -47,6 +47,10 @@
         {
           "name": "Breadcrumb 面包屑",
           "src": "breadcrumb"
+        },
+        {
+          "name": "Dropdown 下拉菜单",
+          "src": "dropdown"
         }
       ]
     },
@@ -80,6 +84,10 @@
         {
           "name": "Slider 滑动输入条",
           "src": "slider"
+        },
+        {
+          "name": "InputNumber 数字输入框",
+          "src": "input-number"
         }
       ]
     },
@@ -101,6 +109,18 @@
         {
           "name": "Tree 树",
           "src": "tree"
+        },
+        {
+          "name": "TreeSelect 树形选择",
+          "src": "tree-select"
+        },
+        {
+          "name": "Image 图片",
+          "src": "image"
+        },
+        {
+          "name": "Timeline 时间线",
+          "src": "timeline"
         }
       ]
     },

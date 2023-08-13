@@ -1,6 +1,26 @@
 <template>
-  <div ref="$anchor" :class="cls">
-    <anchor-list :options="options" :active="active" :root="true" />
+  <YkScrollbar v-if="props.scrollbar" v-bind="props.scrollbar">
+    <div ref="$anchor" :class="cls">
+      <anchor-list
+        :active="active"
+        :options="options"
+        :root="true"
+        @update-active="active = $event"
+      />
+      <span
+        v-if="props.showMarker && markerY !== undefined"
+        class="yk-anchor-marker"
+        :style="markerStyle"
+      ></span>
+    </div>
+  </YkScrollbar>
+  <div v-else ref="$anchor" :class="cls">
+    <anchor-list
+      :options="options"
+      :active="active"
+      :root="true"
+      @update-active="active = $event"
+    />
     <span
       v-if="props.showMarker && markerY !== undefined"
       class="yk-anchor-marker"
@@ -9,15 +29,21 @@
   </div>
 </template>
 <script setup lang="ts">
-import { AnchorOption, AnchorProps } from './anchor'
-import { ref, shallowRef, nextTick, onMounted } from 'vue'
-import { computed } from 'vue'
-import { useDebounceFn, useEventListener } from '@vueuse/core'
+import { AnchorProps } from './anchor'
+import {
+  ref,
+  shallowRef,
+  nextTick,
+  onMounted,
+  computed,
+  onUnmounted,
+  watch,
+} from 'vue'
+import { useDebounceFn } from '@vueuse/core'
 
-import { onUnmounted } from 'vue'
-import { watch } from 'vue'
 /* eslint-disable-next-line */
 import AnchorList from './anchor-list.vue'
+import YkScrollbar from '../../scrollbar'
 
 defineOptions({
   name: 'YkAnchor',
@@ -27,7 +53,8 @@ const props = withDefaults(defineProps<AnchorProps>(), {
   showMarker: true,
   scrollEl: () => window,
   offset: 0,
-  ms: 100,
+  ms: 50,
+  scrollbar: false,
 })
 
 const cls = computed(() => {
@@ -37,7 +64,7 @@ const cls = computed(() => {
   }
 })
 
-const active = ref<string>(decodeURIComponent(location.hash))
+const active = ref<string>('')
 const $anchor = shallowRef<HTMLDivElement>()
 const markerY = ref<number>()
 const markerStyle = computed(() => {
@@ -61,9 +88,6 @@ const handleMarkerPos = async () => {
   }
   markerY.value = activeEl.offsetTop
 }
-useEventListener('hashchange', () => {
-  active.value = `${decodeURIComponent(location.hash)}`
-})
 
 watch(
   active,
@@ -102,6 +126,8 @@ const stop = watch(
 )
 
 const handleScroll = useDebounceFn(() => {
+  // console.log(123123)
+
   if (anchorEls.value.length === 0) {
     getEl()
   }

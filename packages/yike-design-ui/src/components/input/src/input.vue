@@ -1,5 +1,10 @@
 <template>
-  <div :class="bem()" :style="style">
+  <div
+    :class="bem()"
+    :style="style"
+    @mouseenter="mouseenter"
+    @mouseleave="mouseleave"
+  >
     <div v-if="$slots.prepend" :class="bem('prepend')">
       <slot name="prepend" />
     </div>
@@ -7,8 +12,8 @@
       :class="[
         bem('inner'),
         bem({
-          [`${status}`]: !disabled,
-          [`${status}--focus`]: isFocus && !disabled,
+          [`${status}`]: true,
+          [`${status}--focus`]: isFocus && true,
           loading: loading,
           disabled: disabled,
           readonly: readonly,
@@ -17,8 +22,6 @@
         }),
         bem([size]),
       ]"
-      @mouseenter="mouseenter"
-      @mouseleave="mouseleave"
     >
       <div v-if="$slots.prefix" :class="bem(['slot', 'before'])">
         <slot name="prefix" />
@@ -30,6 +33,7 @@
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
+        :required="required"
         :class="bem('widget')"
         :type="inputType"
         tabindex="0"
@@ -40,13 +44,13 @@
         @blur="blur"
         @compositionstart="compositionstart"
         @compositionend="compositionend"
-        @keydown.enter="submit"
+        @keydown="keydown"
       />
       <div :class="bem('buttons')">
         <button
           v-if="shouldShowVisiblePasswordButton"
+          id="yki_switch"
           aria-label="查看/隐藏密码"
-          class="yk-input__button"
           :class="YkInputButtonClass"
           @click="switchType"
         >
@@ -54,8 +58,8 @@
         </button>
         <button
           v-if="clearable && !disabled"
+          id="yki_clear"
           aria-label="清空内容"
-          class="yk-input__button"
           :class="YkInputButtonClass"
           @click="clear"
         >
@@ -83,28 +87,26 @@
 <script setup lang="ts">
 import { InputProps } from './input'
 import '../style'
-import { computed, ref, toRef } from 'vue'
+import { computed, ref, toRef, watch } from 'vue'
 import { createCssScope } from '../../utils/bem'
-import { useInputTooltip } from './utils'
+import { IconCloseEyeOutline, IconCloseOutline } from '../../svg-icon'
 
 defineOptions({
   name: 'YkInput',
 })
 const props = withDefaults(defineProps<InputProps>(), {
-  name: '',
   size: 'l',
   type: 'text',
-  placeholder: '',
   value: '',
   disabled: false,
   readonly: false,
+  required: false,
   visible: true,
   clearable: false,
   status: 'primary',
   loading: false,
   showCounter: false,
   limit: -1, // 不限制输入字数
-  tooltip: '',
 })
 const bem = createCssScope('input')
 const isTyping = ref(false)
@@ -114,30 +116,29 @@ const shouldShowVisiblePasswordButton =
   props.type === 'password' && !props.disabled && props.visible
 let realValue = toRef(props, 'value')
 let lastValue = realValue.value
-const valueCounter = ref<number>(lastValue.length)
+const valueCounter = ref<number>((lastValue as string).length)
 const emits = defineEmits([
   'focus',
   'blur',
   'clear',
   'change',
   'submit',
+  'keydown',
   'update:value',
+  'hoverin',
+  'hoverout',
 ])
 const inputRef = ref<HTMLInputElement>()
 
 const isFocus = ref(false)
 const isHovering = ref(false)
-const shouldShowButton = ref(lastValue.length > 0)
+const shouldShowButton = ref((lastValue as string).length > 0)
 const inputType = ref(props.type)
-let tooltip = useInputTooltip(inputRef)
 
 const focus = () => {
   // 禁用与只读状态不可被聚焦
   if (props.disabled || props.readonly) return
   isFocus.value = true
-  if (props.tooltip && props.tooltip !== '') {
-    tooltip!.set(props.tooltip)
-  }
   emits('focus', lastValue)
 }
 
@@ -157,16 +158,17 @@ const update = () => {
 
 const blur = () => {
   isFocus.value = false
-  tooltip.unset()
   emits('blur', lastValue)
 }
 
 const mouseenter = () => {
   isHovering.value = true
+  emits('hoverin')
 }
 
 const mouseleave = () => {
   isHovering.value = false
+  emits('hoverout')
 }
 
 const clear = () => {
@@ -186,8 +188,8 @@ const compositionend = () => {
   isTyping.value = false
 }
 
-const submit = () => {
-  emits('submit', lastValue)
+const keydown = (ev: KeyboardEvent) => {
+  emits('keydown', ev)
 }
 
 const switchType = () => {
@@ -196,10 +198,21 @@ const switchType = () => {
 
 const YkInputButtonClass = computed(() => {
   return {
+    'yk-input__button': true,
     'yk-input__button-show':
       shouldShowButton.value &&
       (props.clearable || props.visible) &&
       (isFocus.value || isHovering.value),
   }
+})
+
+watch(props, () => {
+  lastValue = props.value
+  ;(realValue as any) = lastValue
+  emits('update:value', lastValue)
+})
+
+defineExpose({
+  inputRef,
 })
 </script>

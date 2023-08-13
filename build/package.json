@@ -27,7 +27,8 @@
     "glob": "^10.3.3",
     "less": "^4.0.0",
     "typescript": "^5.1.6",
-    "vite-plugin-dts": "^3.3.1"
+    "vite-plugin-dts": "^3.3.1",
+    "svgo": "^3.0.2"
   },
   "dependencies": {
     "fast-glob": "^3.3.0",

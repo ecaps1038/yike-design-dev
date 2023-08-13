@@ -72,7 +72,7 @@ const changeTooltipType = (() => {
   // 修改tooltip 状态
   return function (openType: boolean, delay: number) {
     clearTimeout(timer)
-    if (showTooltip.value === openType) return
+    if (props.trigger === 'none' || showTooltip.value === openType) return
     timer = setTimeout(() => {
       showTooltip.value = openType
       emit('openChange', showTooltip.value)

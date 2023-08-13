@@ -15,13 +15,13 @@
   &__content {
     position: absolute;
     z-index: 999;
-    padding: @space-ss @space-s;
+    padding: @space-s @space-m;
     width: max-content;
     min-width: var(--tooltip-theme-min-width);
     max-width: var(--tooltip-theme-max-width);
     min-height: var(--tooltip-theme-min-height);
     max-height: var(--tooltip-theme-max-hegiht);
-    font-size: @size-s;
+    .font-s();
     border-radius: @brSize;
     text-align: start;
     color: var(--tooltip-theme-font-color);
@@ -129,11 +129,11 @@
   }
   &__content--leftTop &__arrow {
     .l();
-    top: @brSize;
+    top: @space-m;
   }
   &__content--leftBottom &__arrow {
     .l();
-    bottom: @brSize;
+    bottom: @space-m;
   }
   &__content--top &__arrow {
     .t();
@@ -142,11 +142,11 @@
   }
   &__content--topLeft &__arrow {
     .t();
-    left: @brSize;
+    left: @space-m;
   }
   &__content--topRight &__arrow {
     .t();
-    right: @brSize;
+    right: @space-m;
   }
 
   &__content--bottom &__arrow {
@@ -156,11 +156,11 @@
   }
   &__content--bottomLeft &__arrow {
     .b();
-    left: @brSize;
+    left: @space-m;
   }
   &__content--bottomRight &__arrow {
     .b();
-    right: @brSize;
+    right: @space-m;
   }
 
   &__content--right &__arrow {
@@ -170,11 +170,11 @@
   }
   &__content--rightTop &__arrow {
     .r();
-    top: @brSize;
+    top: @space-m;
   }
   &__content--rightBottom &__arrow {
     .r();
-    bottom: @brSize;
+    bottom: @space-m;
   }
 }
 

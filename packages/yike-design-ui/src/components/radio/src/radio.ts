@@ -3,7 +3,7 @@ import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from './constants';
 
 export type RadioBaseProps = {
   size?: Size;
-  label: number | string | boolean;
+  value: number | string | boolean;
   disabled?: boolean;
 };
 
@@ -11,6 +11,8 @@ export type RadioProps = RadioBaseProps & {
   modelValue?: number | string | boolean;
   name?: string;
   border?: boolean;
+  type?: 'radio' | 'button';
+  solid?: boolean;
 };
 
 export const radioEmits = {

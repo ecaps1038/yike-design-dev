@@ -1,13 +1,23 @@
 @import '../../styles/color/colors.less';
 .yk-notification-container {
   position: fixed;
-  top: @space-l;
-  right: @space-l;
   z-index: 2002;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
+  &-topRight {
+    top: 0;
+    right: 0;
+  }
+  &-topLeft {
+    top: 0;
+    left: 0;
+  }
+  &-bottomRight {
+    right: 0;
+    bottom: 0;
+  }
+  &-bottomLeft {
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .yk-notification {
@@ -17,8 +27,9 @@
   color: @font-color-l;
   .notification-container {
     display: flex;
-    padding: 27px 25px;
-    width: 420px;
+    padding: @space-xl;
+    min-width: 336px;
+    max-width: 420px;
     border-radius: @radius-m;
     color: @font-color-l;
     background: @bg-color-l;
@@ -28,30 +39,17 @@
   .notification-body {
     display: flex;
     flex-direction: row;
-    svg {
-      margin-top: 3px;
-      width: 18px;
-      height: 18px;
-    }
-    .iconDiv {
-      margin-right: 9px;
-      width: 18px;
-    }
     .title-text {
+      margin-bottom: @space-s;
       padding-right: 16px;
-      font-size: @size-m;
-      font-family: PingFangSC-Medium;
       font-weight: 500;
       vertical-align: middle;
-      line-height: 24px;
+      .font-m();
     }
     .content {
-      margin-top: 8px;
-      font-size: @size-s;
-      font-family: PingFangSC-Regular;
+      .font-s();
       font-weight: 400;
       text-align: justify;
-      line-height: 22px;
     }
     //icon颜色
     .icon-success {
@@ -70,13 +68,17 @@
       color: @pcolor;
     }
   }
+  .iconDiv {
+    margin-right: @space-s;
+    width: 20px;
+    svg {
+      margin-top: 2px;
+      width: 20px;
+      height: 20px;
+    }
+  }
   .notification-footer {
-    margin-top: 20px;
-    font-size: @size-s;
-    font-family: PingFangSC-Regular;
-    font-weight: 400;
-    text-align: justify;
-    line-height: 22px;
+    margin-top: @space-l;
     align-self: flex-end;
   }
   i {
@@ -88,22 +90,24 @@
     top: 0;
     right: 0;
     overflow: hidden;
-    padding: 0;
-    font-size: 15px;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
     border: none;
+    border-radius: @radius-s;
     color: @font-color-s;
     background-color: transparent;
     outline: none;
-    transition: color 0.3s;
-    line-height: 15px;
+    transition: all @animatb;
     cursor: pointer;
 
     &:hover {
       color: @font-color-l;
+      background-color: @bg-color-s;
     }
-
-    & svg {
-      vertical-align: -3px !important;
+    svg {
+      width: 16px;
+      height: 16px;
     }
   }
 }
