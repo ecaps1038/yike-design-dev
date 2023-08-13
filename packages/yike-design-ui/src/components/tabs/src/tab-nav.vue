@@ -1,6 +1,7 @@
 <template>
   <div v-if="navItems.length" :class="[ns()]">
     <IconLeftOutline
+      v-if="showChrols"
       :class="[ns('icon', { disabled: disabledMap.disablePre })]"
       @click="preSlide"
     />
@@ -9,8 +10,8 @@
         <div
           v-for="(item, index) in navItems"
           :key="item.name"
-          ref="tabRefs"
-          :class="[ns('item'), ns('item', { active: isActive(item) })]"
+          :ref="(el) => setTabRefs(el, item.id)"
+          :class="[ns('item', [isActive(item) && 'active', type])]"
           @click="onNavClick($event, item, index)"
         >
           <component
@@ -18,17 +19,29 @@
             v-if="item?.titleSlot?.()"
           ></component>
           <span v-else>{{ item.label }}</span>
+          <IconCloseOutline
+            v-if="rootProps?.closable || rootProps?.editable"
+            class="yk-close"
+            @click.stop="deleteTab(item)"
+          />
         </div>
       </div>
       <yk-tab-bar
+        v-if="isLine"
         :offset="barOptions.offset"
         :width="barOptions.width"
         direction="horizontal"
       ></yk-tab-bar>
     </div>
     <IconRightOutline
+      v-if="showChrols"
       :class="[ns('icon', { disabled: disabledMap.disableNext })]"
       @click="nextSlide"
+    />
+    <div></div>
+    <IconPlusOutline
+      v-if="rootProps?.addable || rootProps?.editable"
+      @click="onAdd"
     />
   </div>
 </template>
@@ -38,11 +51,11 @@ import {
   ref,
   inject,
   computed,
-  nextTick,
   watch,
   h,
   shallowRef,
   CSSProperties,
+  onMounted,
 } from 'vue'
 import { createCssScope } from '../../utils/bem'
 import { TabBar } from './tabBar'
@@ -51,38 +64,61 @@ import { YkTabsProvideKey } from './tabs'
 import YkTabBar from './tab-bar.vue'
 import IconLeftOutline from '../../svg-icon/icon-left-outline'
 import IconRightOutline from '../../svg-icon/icon-right-outline'
+import IconPlusOutline from '../../svg-icon/icon-plus-outline'
+import IconCloseOutline from '../../svg-icon/icon-close-outline'
+import { NavProp } from './tabNav'
 const ns = createCssScope('tabs-nav')
-const emits = defineEmits<{ change: [PaneOptionsProp] }>()
+const props = withDefaults(defineProps<NavProp>(), {
+  type: 'line',
+})
+const emits = defineEmits<{
+  change: [PaneOptionsProp]
+  add: [void]
+  delete: [PaneOptionsProp]
+}>()
 const optionsCtx = inject(YkTabsProvideKey, {
   paneOptions: [],
   id: 1,
   activedId: 1,
 })
-
+const rootProps = optionsCtx.rootProps
 const navItems = computed(() => optionsCtx.paneOptions)
 const barOptions = ref<Omit<TabBar, 'direction'>>({ width: 0, offset: 0 })
 
-const tabRefs = ref<HTMLElement[]>()
-
-const activeVal = ref()
+// 存储tabRef
+// const tabRefs = ref<HTMLElement[]>()
+const genTabRef = (id: number) => `tabRef-${id}`
+const tabRefsMap: Record<string, Element> = {}
+const setTabRefs = (el: any, uid: number) => {
+  if (!el) {
+    return
+  }
+  tabRefsMap[genTabRef(uid)] = el as HTMLElement
+}
+const getTabRef = (id: number) => tabRefsMap[genTabRef(id)]
+// const activeVal = ref()
 const isActive = (item: PaneOptionsProp) => {
-  return activeVal.value === item.name
+  return optionsCtx.activedId === item.id
 }
 const onNavClick = (v: MouseEvent, item: PaneOptionsProp, index: number) => {
-  activeVal.value = item.name
-  const target = tabRefs.value![index]
-  emits('change', item)
+  const target = getTabRef(item.id) as HTMLElement
   changePos(target)
+  emits('change', item)
 }
 
 // bar宽度占比选项卡一半
 const changePos = (target: HTMLElement) => {
   // 更新超出滚动位置
   activeTab.value = target
+  console.log(999, target)
+
   updateScroll()
   updateBarOptions()
 }
 const updateBarOptions = () => {
+  if (!isLine.value) {
+    return
+  }
   const target = activeTab.value!
   const w = target.offsetWidth / 2
   const dis = (target.offsetWidth - w) / 2
@@ -103,30 +139,50 @@ const scrollStyle = computed<CSSProperties>(() => {
   }
 })
 const updateScroll = () => {
-  if (scrollRef.value!.offsetWidth <= wrapRef.value!.offsetWidth) {
+  const activeReact = activeTab.value!.getBoundingClientRect()
+  const wrapRefReact = wrapRef.value!.getBoundingClientRect()
+  const scrollReact = scrollRef.value!.getBoundingClientRect()
+
+  if (
+    scrollReact.left >= wrapRefReact.left &&
+    scrollReact.right <= wrapRefReact.right
+  ) {
     return
   }
 
-  const activeReact = activeTab.value!.getBoundingClientRect()
-  const wrapRefReact = wrapRef.value!.getBoundingClientRect()
+  console.log(666, activeReact.left, wrapRefReact.left)
 
+  const disR = wrapRefReact.right - scrollReact.right
+  const disL = wrapRefReact.left - scrollReact.left
+  if (disR > 0 && disR < wrapRefReact.width && disL > 0) {
+    scrollOffset.value += Math.min(disR, disL)
+    return
+  }
   if (activeReact.left < wrapRefReact.left) {
     scrollOffset.value += wrapRefReact.left - activeReact.left
+    console.log(77)
   }
   if (activeReact.right > wrapRefReact.right) {
+    console.log(88)
+
     scrollOffset.value -= activeReact.right - wrapRefReact.right
   }
 }
 // 禁用
-
+const scrollW = ref(0)
+const wrapW = ref(0)
 const getScrollAndWrapW = () => {
-  const scrollW = scrollRef.value?.offsetWidth
-  const wrapW = wrapRef.value?.offsetWidth
+  scrollW.value = scrollRef.value?.offsetWidth ?? 0
+  wrapW.value = wrapRef.value?.offsetWidth ?? 0
   return {
-    scrollW: scrollW ?? 0,
-    wrapW: wrapW ?? 0,
+    scrollW: scrollW.value,
+    wrapW: wrapW.value,
   }
 }
+const showChrols = computed(() => {
+  const { scrollW, wrapW } = getScrollAndWrapW()
+  return scrollW > wrapW
+})
 const disabledMap = computed(() => {
   const { scrollW, wrapW } = getScrollAndWrapW()
   return {
@@ -160,27 +216,73 @@ const nextSlide = () => {
   }
   updateBarOptions()
 }
-const isInit = ref(true)
+
 watch(
   () => navItems.value,
-  async (n) => {
-    await nextTick()
-    if (isInit.value && tabRefs.value) {
-      activeVal.value = n[0].name
-      const target = tabRefs.value![0]
-      changePos(target)
-      isInit.value = false
+  async (n, o) => {
+    const len = Object.keys(tabRefsMap).length
+    if (!len) {
+      return
     }
+    // if (isInit.value && len) {
+    //   target = getTabRef(n[0].id!) as HTMLElement
+
+    //   isInit.value = false
+    // } else {
+    //   target = getTabRef(n[n.length - 1].id!) as HTMLElement
+    //   emits('change', n[n.length - 1])
+    // }
+    console.log('watchPanes')
+    const id = optionsCtx.activedId!
+    const target = getTabRef(id) as HTMLElement
+    // changePos(target)
+    getScrollAndWrapW()
+
+    target && changePos(target)
   },
   {
-    immediate: true,
     deep: true,
+    flush: 'post',
   },
 )
+
+// watch(
+//   () => optionsCtx.activedId,
+//   async (nId, oId) => {
+//     await nextTick()
+//     if (typeof nId === 'number' && nId !== oId) {
+//       const target = getTabRef(nId) as HTMLElement
+//       console.log('watchActive', nId)
+
+//       // changePos(target)
+//     }
+//   },
+//   {
+//     immediate: true,
+//     deep: true,
+//   },
+// )
+onMounted(() => {
+  setTimeout(() => {
+    const id = optionsCtx.activedId!
+    const target = getTabRef(id) as HTMLElement
+    changePos(target)
+  })
+})
 const getPaneTitleSlot = (slot: any) => {
   const vnode = h('div', slot)
-
   return vnode
+}
+
+// 判断是否线型风格
+const isLine = computed(() => props.type === 'line')
+
+// 动态增减
+const onAdd = () => {
+  emits('add')
+}
+const deleteTab = (item: PaneOptionsProp) => {
+  emits('delete', item)
 }
 </script>
 

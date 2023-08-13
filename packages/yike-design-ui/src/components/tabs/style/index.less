@@ -30,6 +30,9 @@
       flex-wrap: nowrap;
       flex-shrink: 0;
       transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+      .yk-close {
+        margin-left: 10px;
+      }
     }
     &__item {
       flex-shrink: 0;
@@ -44,9 +47,18 @@
       color: rgba(@gray, 0.5);
       cursor: pointer;
       transition: all 0.2s ease;
+      &:hover {
+        color: @font-color-l;
+      }
     }
     &__item--active {
       color: @font-color-l;
+    }
+    &__item--card {
+      margin: 0;
+      padding: 4px 12px;
+      min-width: 60px;
+      border: 1px solid @line-color-s;
     }
   }
 

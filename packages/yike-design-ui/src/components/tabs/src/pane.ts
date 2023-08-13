@@ -1,7 +1,10 @@
-export type PaneOptionsProp = {
+export type ExposePaneProp = {
   name?: string | number;
   label?: string;
-  id?: number;
-  titleSlot?: any;
 };
+export type PaneOptionsProp = {
+  id: number;
+  titleSlot?: any;
+} & ExposePaneProp;
+
 export type PaneProp = PaneOptionsProp;
