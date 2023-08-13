@@ -8,10 +8,9 @@ export type NotificationProps = {
   type?: NotificationType;
   duration?: number;
   space?: number;
-  offsetY?: number;
-  offsetX?: number;
   zIndex?: number;
   dangerouslyUseHTMLString?: boolean;
+  position?: NotificationPosition;
 
   onClose?: () => void;
   onDestroy?: () => void;
@@ -26,4 +25,14 @@ export interface NotificationOptions extends NotificationProps {
 
 export type NotificationGroupProps = {
   notifications: NotificationOptions[];
+  position: NotificationPosition;
 };
+
+export const NOTIFICATION_POSITION = [
+  'topLeft',
+  'topRight',
+  'bottomLeft',
+  'bottomRight',
+] as const;
+
+export type NotificationPosition = (typeof NOTIFICATION_POSITION)[number];

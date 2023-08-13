@@ -1,5 +1,8 @@
 <template>
-  <div class="yk-rate" :class="rateClass" @mouseleave="handleLeave()">
+  <div
+    :class="bem([size], { disabled: disabled, readonly: readonly })"
+    @mouseleave="handleLeave()"
+  >
     <div
       v-for="n in numberCount"
       :key="n"
@@ -35,6 +38,7 @@
 <script setup lang="ts">
 import { RateProps } from './rate'
 import { computed, onMounted, ref } from 'vue'
+import { createCssScope } from '../../utils/bem'
 
 defineOptions({
   name: 'YkRate',
@@ -56,6 +60,7 @@ const props = withDefaults(defineProps<RateProps>(), {
   size: 'l',
 })
 
+const bem = createCssScope('rate')
 const emits = defineEmits(['update:modelValue', 'change', 'hover-change'])
 
 onMounted(() => {

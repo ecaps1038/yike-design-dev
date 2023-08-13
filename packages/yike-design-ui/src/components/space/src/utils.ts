@@ -40,6 +40,6 @@ export const getAlign = (align: Align): string => {
     case 'baseline':
       return 'baseline';
     default:
-      return 'center';
+      return 'flex-start';
   }
 };

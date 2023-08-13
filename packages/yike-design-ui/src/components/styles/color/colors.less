@@ -5,14 +5,14 @@
 @pcolor-light: #2b5aed; // 全局主色
 @lcolor-light: #1890ff; // 链接色
 @scolor-light: #1fb4a2; // 成功色
-@wcolor-light: #f5ac08; // 警告色
+@wcolor-light: #ffaa1a; // 警告色
 @ecolor-light: #fa5247; // 错误色
 
 // -------- Functional color dark -----------
 @pcolor-dark: #3575f6; // 全局主色
 @lcolor-dark: #308ce1; // 链接色
-@scolor-dark: #3dc799; // 成功色
-@wcolor-dark: #fbad3b; // 警告色
+@scolor-dark: #19ad78; // 成功色
+@wcolor-dark: #f6a224; // 警告色
 @ecolor-dark: #df4d43; // 错误色
 
 //----中性色----
@@ -25,7 +25,7 @@
 @pcolor-3: rgba(var(--pcolor), 0.16);
 @pcolor-4: rgba(var(--pcolor), 0.24);
 @pcolor-5: rgba(var(--pcolor), 0.32);
-@pcolor-6: rgba(var(--pcolor), 0.88);
+@pcolor-6: color-mix(in srgb, @pcolor, #fff 12%);
 @pcolor-7: @pcolor;
 @pcolor-8: color-mix(in srgb, @pcolor, #000 8%);
 @pcolor-9: color-mix(in srgb, @pcolor, #000 16%);
@@ -37,7 +37,7 @@
 @scolor-3: rgba(var(--scolor), 0.16);
 @scolor-4: rgba(var(--scolor), 0.24);
 @scolor-5: rgba(var(--scolor), 0.32);
-@scolor-6: rgba(var(--scolor), 0.88);
+@scolor-6: color-mix(in srgb, @scolor, #fff 12%);
 @scolor-7: @scolor;
 @scolor-8: color-mix(in srgb, @scolor, #000 8%);
 @scolor-9: color-mix(in srgb, @scolor, #000 16%);
@@ -49,7 +49,7 @@
 @wcolor-3: rgba(var(--wcolor), 0.16);
 @wcolor-4: rgba(var(--wcolor), 0.24);
 @wcolor-5: rgba(var(--wcolor), 0.32);
-@wcolor-6: rgba(var(--wcolor), 0.88);
+@wcolor-6: color-mix(in srgb, @wcolor, #fff 12%);
 @wcolor-7: @wcolor;
 @wcolor-8: color-mix(in srgb, @wcolor, #000 8%);
 @wcolor-9: color-mix(in srgb, @wcolor, #000 16%);
@@ -61,7 +61,7 @@
 @ecolor-3: rgba(var(--ecolor), 0.16);
 @ecolor-4: rgba(var(--ecolor), 0.24);
 @ecolor-5: rgba(var(--ecolor), 0.32);
-@ecolor-6: rgba(var(--ecolor), 0.88);
+@ecolor-6: color-mix(in srgb, @ecolor, #fff 12%);
 @ecolor-7: @ecolor;
 @ecolor-8: color-mix(in srgb, @ecolor, #000 8%);
 @ecolor-9: color-mix(in srgb, @ecolor, #000 16%);
@@ -112,13 +112,6 @@
 @animatb: 0.2s;
 @animatf: 0.1s; // Tooltip
 
-//font-size
-@size-ss: 12px; // 小号
-@size-s: 14px; // 主字号
-@size-m: 16px; // 大一号
-@size-l: 20px; // 大二号
-@size-xl: 32px; // 特大号
-
 //radius
 @radius-xl: 16px;
 @radius-l: 12px;
@@ -137,3 +130,39 @@
 @space-m: 12px;
 @space-l: 16px;
 @space-xl: 24px;
+
+//font-size
+@size-ss: 12px; // 小号
+@size-s: 14px; // 主字号
+@size-m: 16px; // 大一号
+@size-l: 18px; // 大二号
+@size-xl: 24px; // 特大号
+
+.font-ss() {
+  font-size: @size-ss;
+  line-height: 1.66;
+}
+.font-s() {
+  font-size: @size-s;
+  line-height: 1.57;
+}
+.font-m() {
+  font-size: @size-m;
+  line-height: 1.5;
+}
+.font-l() {
+  font-size: @size-l;
+  line-height: 1.4;
+}
+.font-xl() {
+  font-size: @size-xl;
+  line-height: 1.34;
+}
+.font-32() {
+  font-size: 32px;
+  line-height: 1.28;
+}
+.font-40() {
+  font-size: 40px;
+  line-height: 1.24;
+}

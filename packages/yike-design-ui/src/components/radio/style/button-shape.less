@@ -13,28 +13,28 @@
     flex-direction: row;
     &--s {
       margin-left: 2px;
-      width: 48px;
+      padding: 0 @space-m;
       height: 20px;
       font-size: @size-ss;
       border-radius: 2px;
     }
     &--m {
       margin-left: 3px;
-      width: 52px;
+      padding: 0 @space-m;
       height: 26px;
       font-size: @size-s;
       border-radius: 3px;
     }
     &--l {
       margin-left: 3px;
-      width: 60px;
+      padding: 0 @space-l;
       height: 30px;
       font-size: @size-s;
       border-radius: 6px;
     }
     &--xl {
       margin-left: 4px;
-      width: 64px;
+      padding: 0 @space-xl;
       height: 40px;
       font-size: @size-m;
       border-radius: 6px;
@@ -44,23 +44,32 @@
       background-color: @bg-color-l !important;
     }
     &--disabled {
-      opacity: 0.4;
+      opacity: 0.56;
     }
   }
 }
 
 .yk-radio--solid {
   .yk-radio__label--checked {
-    color: #fff !important;
+    color: @white !important;
     background-color: @pcolor !important;
   }
 }
-.yk-radio--button:hover {
-  .yk-radio__label {
-    background-color: @bg-color-l;
+.yk-radio--button {
+  &:hover {
+    .yk-radio__label {
+      color: @font-color-l;
+      background-color: @bg-color-l;
+    }
   }
 }
 
 .yk-radio--disabled {
   cursor: not-allowed;
+  &:hover {
+    .yk-radio__label {
+      color: @font-color-m;
+      background-color: transparent;
+    }
+  }
 }

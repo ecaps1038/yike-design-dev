@@ -22,6 +22,8 @@ export interface ImagePreviewProps {
 export interface ImagePreviewGroupProps {
   /** 显示或隐藏 */
   visible?: boolean;
+  /** 当前展示图像的下标 */
+  current?: number;
   /** 图像路径集 */
   srcList?: string[];
   /** 图像的统一宽度 */
@@ -41,5 +43,3 @@ export interface ImagePreviewGroupProps {
   /** 取消按钮点击事件 */
   onCancel?: () => void;
 }
-
-export type ZoomType = 'zoomIn' | 'zoomOut';

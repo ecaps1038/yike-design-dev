@@ -39,19 +39,39 @@
   position: absolute;
 }
 
-.right-move,
-.right-enter-active,
-.right-leave-active {
+// Notification组件动画
+.topRightNotification-move,
+.topRightNotification-enter-active,
+.topLeftNotification-move,
+.topLeftNotification-enter-active,
+.bottomRightNotification-move,
+.bottomRightNotification-enter-active,
+.bottomLeftNotification-move,
+.bottomLeftNotification-enter-active {
   transition: all 0.24s;
-  transform: translateX(0px);
 }
 
-.right-enter-from,
-.right-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.right-leave-active {
+.topRightNotification-leave-active,
+.topLeftNotification-leave-active,
+.bottomRightNotification-leave-active,
+.bottomLeftNotification-leave-active {
   position: absolute;
+  transition: all 0.24s;
+}
+
+.topRightNotification-leave-to,
+.topLeftNotification-leave-to,
+.bottomRightNotification-leave-to,
+.bottomLeftNotification-leave-to {
+  opacity: 0;
+}
+
+.topRightNotification-enter-from,
+.bottomRightNotification-enter-from {
+  transform: translateX(100%);
+}
+
+.topLeftNotification-enter-from,
+.bottomLeftNotification-enter-from {
+  transform: translateX(-100%);
 }

@@ -1,4 +1,6 @@
-@import './variables.less';
+// @import './variables.less';
+@import './slider-marks.less';
+
 .yk-slider {
   padding: 10px 6px;
   user-select: none;
@@ -20,10 +22,12 @@
       border-radius: 50%;
       background: @bg-color-l;
       cursor: pointer;
+      transition: all @animats;
     }
     .yk-slider__tooltipSpan {
-      width: 8px;
-      height: 8px;
+      width: 12px;
+      height: 12px;
+      // background-color: rgba(0, 0, 0, 0.3);
     }
   }
 }

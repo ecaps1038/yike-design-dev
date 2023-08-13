@@ -4,9 +4,6 @@ export type Type = (typeof TYPES)[number];
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type Size = (typeof SIZES)[number];
 
-export const LAYOUT = ['horizontal', 'vertical', 'inline'] as const;
-export type Layout = (typeof LAYOUT)[number];
-
 export const SHAPES = ['default', 'round', 'circle', 'square'] as const;
 export type Shape = (typeof SHAPES)[number];
 
@@ -48,3 +45,15 @@ export type TextType = (typeof TEXTTYPE)[number];
 export const DIRECTION = ['vertical', 'horizontal'] as const;
 export type Direction = (typeof DIRECTION)[number];
 export type AnimationType = 'upward' | 'fade';
+
+export const TIMELINE_PLACEMENT = [
+  'left',
+  'right',
+  'top',
+  'bottom',
+  'alternate',
+] as const;
+export type TimelinePlacement = (typeof TIMELINE_PLACEMENT)[number];
+
+export const TIMELINE_TYPE = ['solid', 'dashed', 'dotted'] as const;
+export type TimelineType = (typeof TIMELINE_TYPE)[number];

@@ -1,5 +1,5 @@
 <template>
-  <yk-radio-group v-model="radio" direction="vertical">
+  <yk-radio-group v-model="radio" direction="vertical" size="xl">
     {{ radio }}
     <yk-radio value="love">Love</yk-radio>
     <yk-radio value="and">And</yk-radio>

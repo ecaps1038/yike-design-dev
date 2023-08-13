@@ -1,27 +1,14 @@
-.yk-input-number {
-}
-
-.yk-input-number__buttons-r {
+.yk-input-number__buttons {
   display: flex;
   flex-direction: column;
   margin-right: 3px;
 
   .yk-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: unset;
-    width: 24px;
     min-width: unset;
-    height: 12px;
-    border: none;
-    background-color: @bg-color-ss;
-    aspect-ratio: 3 / 2;
 
     svg {
       margin: unset !important;
-      width: 12px !important;
-      height: 12px !important;
       fill: @font-color-s !important;
     }
 
@@ -34,3 +21,30 @@
     }
   }
 }
+
+.number-size(@size, @bw, @bh, @svw, @svh) {
+  .button() {
+    width: @bw;
+    height: @bh;
+  }
+
+  .icon() {
+    width: @svw !important;
+    height: @svh !important;
+  }
+
+  &.yk-input-number--@{size} {
+    .yk-button {
+      .button();
+    }
+
+    svg {
+      .icon();
+    }
+  }
+}
+
+.number-size(s, 16px, 10px, 12px, 12px);
+.number-size(m, 20px, 12px, 12px, 12px);
+.number-size(l, 24px, 14px, 12px, 12px);
+.number-size(xl, 28px, 20px, 12px, 12px);

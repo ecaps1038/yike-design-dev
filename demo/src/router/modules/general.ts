@@ -99,6 +99,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/tree/doc.md'),
   },
   {
+    path: 'tree-select',
+    component: () => import('@/examples/treeSelect/doc.md'),
+  },
+  {
     path: 'slider',
     component: () => import('@/examples/slider/doc.md'),
   },
@@ -127,8 +131,8 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/image/doc.md'),
   },
   {
-    path: 'form',
-    component: () => import('@/examples/form/doc.md'),
+    path: 'timeline',
+    component: () => import('@/examples/timeline/doc.md'),
   },
 ];
 

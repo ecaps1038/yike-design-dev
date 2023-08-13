@@ -5,14 +5,14 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 8px 16px;
+  padding: @space-s @space-l;
   width: 100%;
   border-radius: @radius-m;
   gap: @space-s;
 
   &-with-title {
     align-items: flex-start;
-    padding: 24px;
+    padding: @space-xl;
   }
 
   &-with-title &-close-icon {
@@ -34,12 +34,16 @@
   }
 
   &-with-title &-icon svg {
-    font-size: @size-l;
-    vertical-align: -5px;
+    width: 20px;
+    height: 20px;
+    vertical-align: -4px;
   }
 
   &-icon svg {
-    font-size: @size-m;
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+    // font-size: @size-m;
   }
 
   &-content {
@@ -50,7 +54,7 @@
   }
 
   &-title {
-    margin-bottom: 8px;
+    margin-bottom: @space-s;
     font-size: @size-m;
     font-weight: 500;
   }
