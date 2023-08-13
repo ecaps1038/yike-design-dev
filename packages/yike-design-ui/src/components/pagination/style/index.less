@@ -1,19 +1,19 @@
-@pagination-color-bg: @bg-color-s;
-@pagination-color-bg__hover: @bg-color-ss;
-@pagination-color-bg__active: @pcolor;
-@pagination-color-bg__disabled: @bg-color-s;
-@pagination-color-font: @font-color-l;
-@pagination-color-font__active: #fff;
+@import './variables.less';
 
-.is-disabled() {
+.pagination-disabled() {
+  cursor: not-allowed;
   opacity: 0.56;
-  cursor: not-allowed !important;
-  &:hover {
-    color: @pagination-color-font !important;
-  }
+}
 
-  &--active:hover {
-    background-color: @pagination-color-bg__active;
+.pagination-size(@size: l) {
+  &--@{size} {
+    .yk-pagination-pager__item {
+      min-width: ~'@{pagination-pager-size__@{size}}';
+      height: ~'@{pagination-pager-size__@{size}}';
+      font-size: @size-ss;
+      line-height: ~'@{pagination-pager-size__@{size}}';
+      border-radius: ~'@{pagination-border-radius__@{size}}';
+    }
   }
 }
 
@@ -22,156 +22,75 @@
   align-items: center;
   user-select: none;
 
-  &--disabled {
-    .is-disabled();
-
-    .yk-pagination-prev,
-    .yk-pagination-next,
-    .yk-pagination-pager {
-      pointer-events: none;
-    }
-  }
-
-  &-prev {
-    margin-right: 4px;
-  }
-
-  &-next {
-    margin-left: 4px;
-  }
-}
-
-.yk-pagination-prev,
-.yk-pagination-next,
-.yk-pagination-pager__item {
-  border: none;
-  color: @font-color-l;
-  background-color: @pagination-color-bg;
-  outline: none;
-  cursor: pointer;
-
-  &--disabled {
-    .is-disabled();
-  }
-
-  &--s {
-    min-width: 24px;
-    height: 24px;
-    font-size: @size-ss;
-    line-height: 24px;
-    border-radius: @radius-s;
-  }
-  &--m {
-    min-width: 32px;
-    height: 32px;
-    line-height: 32px;
-    border-radius: @radius-s;
-  }
-  &--l {
-    min-width: 36px;
-    height: 36px;
-    line-height: 36px;
-    border-radius: @radius-m;
-  }
-  &--xl {
-    min-width: 48px;
-    height: 48px;
-    line-height: 48px;
-    font-size: @size-m;
-    border-radius: @radius-m;
-  }
+  .pagination-size(s);
+  .pagination-size(m);
+  .pagination-size(l);
+  .pagination-size(xl);
 }
 
 .yk-pagination-pager {
+  display: flex;
+  justify-content: center;
   margin: 0;
   padding: 0;
   white-space: nowrap;
-  list-style: none;
 
   &__item {
-    display: inline-block;
-    margin: 0 4px;
+    cursor: pointer;
+    margin: 0 @pagination-margin-size;
     text-align: center;
-    color: @font-color-l;
-    background-color: @pagination-color-bg;
     vertical-align: middle;
-  }
+    color: @font-color-l;
+    background-color: @pagination-pager-bg-color;
 
-  &__item--active {
-    color: #fff !important;
-    background-color: @pagination-color-bg__active;
-  }
+    &-ellipsis {
+      background-color: transparent;
+    }
 
-  &.prev-more,
-  &.next-more {
-    background-color: transparent;
+    &--active {
+      color: #fff !important;
+      background-color: @pagination-pager-bg-color__active;
+    }
+
+    &--disabled {
+      .pagination-disabled();
+    }
+
+    &:not(&-ellipsis):hover {
+      color: @pagination-font-color__hover;
+    }
   }
+}
+
+.yk-pagination-page-size {
+  margin-left: @pagination-margin-size;
 }
 
 .yk-pagination-jumper {
   display: flex;
   align-items: center;
-  margin: 0 8px;
+  margin: 0 @pagination-margin-size * 2;
 
-  &__prepend {
-    margin-right: 8px;
+  .yk-input__inner {
+    overflow: hidden;
+  }
+
+  .yk-input__widget {
+    width: 64px !important;
+  }
+
+  &__label {
+    margin-right: @pagination-margin-size * 2;
     white-space: nowrap;
     color: @font-color-l;
   }
 
-  &__input-wrapper {
-    padding: 0 8px;
-    border-radius: @radius-m;
-    background-color: @pagination-color-bg;
-
-    &--s {
-      width: 36px;
-      height: 24px;
-      font-size: @size-ss;
-      border-radius: @radius-s;
-    }
-    &--m {
-      width: 44px;
-      height: 32px;
-      border-radius: @radius-s;
-    }
-    &--l {
-      width: 48px;
-      height: 36px;
-      border-radius: @radius-m;
-    }
-    &--xl {
-      width: 60px;
-      height: 48px;
-      font-size: @size-m;
-      border-radius: @radius-m;
-    }
+  &__separator {
+    margin: 0 @pagination-margin-size * 2;
   }
+}
 
-  &__input-wrapper input[type='number'] {
-    width: 100%;
-    height: 100%;
-    border: none;
-    text-align: center;
-    color: @font-color-l;
-    background-color: transparent;
-    outline: none;
-    vertical-align: middle;
-
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      appearance: none;
-      margin: 0;
-    }
-  }
-
-  &__tips {
-    margin-left: 8px;
-
-    .slash {
-      display: inline-block;
-      margin-right: 8px;
-    }
-  }
+.yk-pagination-total {
+  margin-right: @pagination-margin-size * 2;
+  white-space: nowrap;
 }

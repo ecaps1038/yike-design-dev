@@ -1,1 +1,1 @@
-export * from './useProps';
+export * from './useCssScope';

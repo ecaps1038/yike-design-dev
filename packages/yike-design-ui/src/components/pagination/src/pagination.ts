@@ -1,59 +1,28 @@
 import type { Size } from '../../utils/constant';
-import type { PropType } from 'vue';
-import { JumperProps, PrevProps, NextProps, PagerProps } from './components';
+import type { InjectionKey } from 'vue';
 
-const PaginationProps = {
-  current: {
-    type: Number,
-    default: 1,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  fixWidth: {
-    type: Boolean,
-    default: false,
-  },
-  jumperLabel: {
-    type: String,
-    default: '前往',
-  },
-  pagerCount: {
-    type: Number,
-    default: 7,
-  },
-  simple: {
-    type: Boolean,
-    default: false,
-  },
-  showJumper: {
-    type: Boolean,
-    default: false,
-  },
-  showTotal: {
-    type: Boolean,
-    default: false,
-  },
-  size: {
-    type: String as PropType<Size>,
-    default: 'l',
-  },
-  total: {
-    type: Number,
-    default: 0,
-  },
-};
+const PAGINATION_CSS_NAMESPACE: InjectionKey<'pagination'> =
+  Symbol('pagination');
+
+interface PaginationProps {
+  total: number;
+  defaultCurrent?: number;
+  defaultPageSize?: number;
+  disabled?: boolean;
+  pagerCount?: number;
+  size?: Size;
+  simple?: boolean;
+  showTotal?: boolean;
+  showJumper?: boolean;
+  showPageSize?: boolean;
+  current?: number;
+  fixWidth?: boolean;
+  pageSize?: number;
+}
 
 type PaginationEmits = {
   (e: 'update:current', value: number): void;
 };
 
-type SubComponentProps =
-  | typeof JumperProps
-  | typeof PrevProps
-  | typeof NextProps
-  | typeof PagerProps;
-
-export type { PaginationEmits, SubComponentProps };
-export { PaginationProps };
+export type { PaginationEmits, PaginationProps };
+export { PAGINATION_CSS_NAMESPACE };

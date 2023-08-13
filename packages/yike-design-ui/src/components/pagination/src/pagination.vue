@@ -1,106 +1,95 @@
 <template>
   <div
-    :class="[
-      nsPagination({
-        disabled: disabled,
-      }),
-    ]"
+    :class="
+      cssScope({
+        disabled,
+        s: size === 's',
+        m: size === 'm',
+        l: size === 'l',
+        xl: size === 'xl',
+      })
+    "
   >
-    <span v-if="showTotal" :class="nsPagination('total-text')">
-      {{ total }}
-    </span>
-    <prev
-      :disabled="disabled || !canPrev"
-      v-bind="extractProps(PrevProps, 'disabled')"
-      @prev="handlePrev"
-    ></prev>
-    <pager
-      v-if="!simple"
-      v-bind="extractProps(PagerProps, 'current')"
-      v-model:current="internalCurrent"
-    ></pager>
-    <jumper
-      v-else
-      v-bind="extractProps(JumperProps, 'current')"
+    <pagination-total
+      v-if="showTotal && !simple"
+      :total="total"
+    ></pagination-total>
+
+    <pagination-pager
+      :total="total"
+      :simple="simple"
       :current="internalCurrent"
-      @jump="handleJump"
-    ></jumper>
-    <next
-      :disabled="disabled || !canNext"
-      v-bind="extractProps(NextProps, 'disabled')"
-      @next="handleNext"
-    ></next>
-    <jumper
+      :fix-width="fixWidth"
+      :pager-count="pagerCount"
+      @change="(page) => (internalCurrent = page)"
+    ></pagination-pager>
+
+    <pagination-page-size v-if="showPageSize && !simple"></pagination-page-size>
+    <pagination-jumper
       v-if="showJumper && !simple"
-      v-bind="extractProps(JumperProps)"
-      @jump="handleJump"
-    ></jumper>
+      :total="total"
+      :size="size"
+    ></pagination-jumper>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, toRefs, ref, watch, onMounted } from 'vue'
+import { ref, watch, provide } from 'vue'
 import {
+  PAGINATION_CSS_NAMESPACE,
   PaginationProps,
   PaginationEmits,
-  SubComponentProps,
 } from './pagination'
-import { createCssScope } from '../../utils/bem'
-
-import Prev from './components/prev.vue'
-import Pager from './components/pager.vue'
-import Next from './components/next.vue'
-import Jumper from './components/jumper.vue'
-import { PagerProps, JumperProps, PrevProps, NextProps } from './components'
+import { useCssScope } from './utils'
 import '../style'
 
-const nsPagination = createCssScope('pagination')
+import PaginationTotal from './components/pagination-total/pagination-total.vue'
+import PaginationPager from './components/pagination-pager/pagination-pager.vue'
+import PaginationPageSize from './components/pagination-page-size/pagination-page-size.vue'
+import PaginationJumper from './components/pagination-jumper/pagination-jumper.vue'
 
 defineOptions({
   name: 'YkPagination',
 })
 
-const props = defineProps(PaginationProps)
+provide(PAGINATION_CSS_NAMESPACE, 'pagination')
+const props = withDefaults(defineProps<PaginationProps>(), {
+  defaultCurrent: 1,
+  defaultPageSize: 10,
+  disabled: false,
+  pagerCount: 7,
+  size: 'l',
+  simple: false,
+  showTotal: false,
+  showJumper: false,
+  showPageSize: false,
+})
 const emits = defineEmits<PaginationEmits>()
 
+const cssScope = useCssScope()
 const internalCurrent = ref<number>(1)
-const { total, disabled, current } = toRefs(props)
 
-const canPrev = computed(() => internalCurrent.value > 1)
-const canNext = computed(() => internalCurrent.value < total.value)
-
-const extractProps = <T extends SubComponentProps>(
-  comProps: T,
-  ...excludes: (keyof T)[]
-) => {
-  const newProps = reactive<any>({})
-  Object.keys(comProps).forEach((key: any) => {
-    if (!excludes.includes(key)) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      newProps[key] = props[key]
-    }
-  })
-  return newProps
-}
-
-const handlePrev = () => !disabled.value && internalCurrent.value--
-const handleNext = () => !disabled.value && internalCurrent.value++
 const handleJump = (page: number) => {
-  if (!disabled.value) {
+  if (!props.disabled) {
     internalCurrent.value =
-      page < 1 ? 1 : page > total.value ? total.value : page
+      page < 1 ? 1 : page > props.total ? props.total : page
   }
 }
 
-onMounted(() => {
-  if (!disabled.value) {
-    internalCurrent.value = current.value
-  }
-})
+watch(
+  () => [props.current, props.defaultCurrent],
+  ([current, defaultCurrent]) => {
+    internalCurrent.value = current
+      ? current
+      : defaultCurrent
+      ? defaultCurrent
+      : 1
+  },
+  { immediate: true },
+)
 
 watch(internalCurrent, (newVal) => {
-  if (!disabled.value) {
+  if (!props.disabled) {
     emits('update:current', newVal)
   }
 })

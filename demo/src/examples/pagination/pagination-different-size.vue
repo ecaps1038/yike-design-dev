@@ -1,20 +1,23 @@
 <template>
+  <div style="margin-bottom: 20px">
+    <yk-radio-group v-model="size" type="button">
+      <yk-radio value="s">s</yk-radio>
+      <yk-radio value="m">m</yk-radio>
+      <yk-radio value="l">l</yk-radio>
+      <yk-radio value="xl">xl</yk-radio>
+    </yk-radio-group>
+  </div>
   <div>
-    <div style="margin-bottom: 20px">
-      <h3>size: s</h3>
-      <yk-pagination :total="10" size="s" show-jumper></yk-pagination>
-    </div>
-    <div style="margin-bottom: 20px">
-      <h3>size: m</h3>
-      <yk-pagination :total="10" size="m" show-jumper></yk-pagination>
-    </div>
-    <div style="margin-bottom: 20px">
-      <h3>size: l</h3>
-      <yk-pagination :total="10" size="l" show-jumper></yk-pagination>
-    </div>
-    <div style="margin-bottom: 20px">
-      <h3>size: xl</h3>
-      <yk-pagination :total="10" size="xl" show-jumper></yk-pagination>
-    </div>
+    <yk-pagination
+      :total="10"
+      :size="size"
+      show-jumper
+      show-page-size
+      show-total
+    ></yk-pagination>
   </div>
 </template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+const size = ref<'s' | 'm' | 'l' | 'xl'>('l')
+</script>
