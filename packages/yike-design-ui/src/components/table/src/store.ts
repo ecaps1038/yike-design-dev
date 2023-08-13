@@ -7,11 +7,13 @@ export const useStore = function <T>(dataList = []) {
   const data: Ref<T[]> = ref(dataList);
   const columns: Ref<TableColumn<T>[]> = ref([]);
   const selection: Ref<T[]> = ref([]);
+  const isAllSelected = ref(false);
 
   const state = {
     data,
     columns,
     selection,
+    isAllSelected,
   };
 
   type State = typeof state;
@@ -21,13 +23,8 @@ export const useStore = function <T>(dataList = []) {
       array.push(column);
       sortColumn(array);
       state.columns.value = array;
-
-      if (instance.$ready) {
-        instance.store.updateColumns();
-        instance.store.scheduleLayout();
-      }
     },
-    removeColumn(states: State, column: TableColumn<T>) {
+    removeColumn(state: State, column: TableColumn<T>) {
       const array = unref(state.columns);
       const index = array.findIndex((e) => e === column);
       if (index > -1) {
@@ -36,31 +33,56 @@ export const useStore = function <T>(dataList = []) {
       sortColumn(array);
       state.columns.value = array;
     },
+    toggleRowSelection(state: State, row: T, selected: boolean) {
+      const selection = unref(state.selection);
+      const index = selection.indexOf(row);
+      const included = index !== -1;
+
+      if (selected && !included) {
+        selection.push(row);
+      } else if (!selected && included) {
+        selection.splice(index, 1);
+      }
+
+      state.selection.value = selection;
+
+      if (state.data.value.length === selection.length) {
+        state.isAllSelected.value = true;
+      } else {
+        state.isAllSelected.value = false;
+      }
+
+      const newSelection = (state.selection.value || []).slice();
+      instance.emit('select', newSelection, row);
+      instance.emit('selection-change', newSelection);
+    },
+    toggleAllSelection(state: State, selected: boolean) {
+      state.data.value.forEach((row) => {
+        this.toggleRowSelection(state, row, selected);
+      });
+
+      instance.emit('select-all', selection.value);
+    },
   };
 
-  const dispatch = function (name: keyof typeof action, ...args) {
-    const actions = instance.store.action;
+  const dispatch = function (name: keyof typeof action, ...args: any[]) {
+    const actions = instance.store.action as any;
     if (actions[name]) {
-      actions[name].apply(instance, [instance.store.state, ...(args as [any])]);
+      actions[name](instance.store.state, ...args);
     } else {
       throw new Error(`Action not found: ${name}`);
     }
   };
 
-  const updateColumns = function () {
-    console.log(1);
-  };
-
-  const scheduleLayout = function () {
-    console.log(1);
+  const isSelected = function (row: T) {
+    return selection.value.includes(row);
   };
 
   return {
     state,
     action,
-    updateColumns,
-    scheduleLayout,
     dispatch,
+    isSelected,
   };
 };
 

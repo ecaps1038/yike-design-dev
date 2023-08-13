@@ -1,13 +1,12 @@
-import { defineComponent, getCurrentInstance, h, inject } from 'vue';
+import { defineComponent, h, inject } from 'vue';
 import { TABLE_INJECTION_KEY } from './table';
-// import {Ykcheck} from '../../../index';
+import { YkCheckbox } from '../../../index';
 
 export default defineComponent({
   components: {
-    // YkCheckbox,
+    YkCheckbox,
   },
-  setup(props, { emit }) {
-    const instance = getCurrentInstance();
+  setup() {
     const parent = inject(TABLE_INJECTION_KEY);
 
     const store = parent?.store;
@@ -34,7 +33,7 @@ export default defineComponent({
             {
               class: [bem('cell')],
             },
-            [h('div', { class: ['cell'] }, column.label)],
+            column.renderHeader({ column, index }),
           );
         }),
       ),

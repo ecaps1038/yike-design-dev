@@ -25,6 +25,7 @@ export default defineComponent({
   name: 'YkTable',
   components: { TableHeader, TableBody },
   props: defaultTableProps,
+  emits: ['select', 'selection-change', 'select-all'],
   setup(props) {
     type Row = (typeof props.data)[number]
     const bem = createCssScope('table')
@@ -37,12 +38,7 @@ export default defineComponent({
     const tableId = `yk-table_${tableIdSeed++}`
     table.tableId = tableId
     const isEmpty = computed(() => (store.state.data.value || []).length === 0)
-
     provide(TABLE_INJECTION_KEY, table)
-
-    // onMounted(() => {
-    //   console.log(store)
-    // })
     return {
       bem,
       tableId,

@@ -7,7 +7,7 @@ import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
-import YkTable, { YkTableColumn } from './components/table';
+import { YkTable, YkTableColumn } from './components/table';
 import { YkBreadcrumb, YkBreadcrumbItem } from './components/breadcrumb';
 import YkBadge from './components/badge';
 import YkScrollbar from './components/scrollbar';

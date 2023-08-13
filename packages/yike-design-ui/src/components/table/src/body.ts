@@ -1,4 +1,4 @@
-import { defineComponent, getCurrentInstance, h, inject } from 'vue';
+import { defineComponent, h, inject } from 'vue';
 import { TABLE_INJECTION_KEY } from './table';
 // import {Ykcheck} from '../../../index';
 
@@ -6,8 +6,7 @@ export default defineComponent({
   components: {
     // YkCheckbox,
   },
-  setup(props, { emit }) {
-    const instance = getCurrentInstance();
+  setup() {
     const parent = inject(TABLE_INJECTION_KEY);
     const store = parent!.store;
     const columnList = store?.state.columns;
@@ -27,7 +26,7 @@ export default defineComponent({
       {
         class: [bem('body')],
       },
-      data.map((row, index) => {
+      data.map((row) => {
         return h(
           'tr',
           {

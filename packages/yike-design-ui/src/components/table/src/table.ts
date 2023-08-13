@@ -42,6 +42,7 @@ export interface TableColumn<T> {
   getColumnIndex: () => number;
   index: number;
   renderCell: (data: any) => any;
+  renderHeader: (data: any) => VNode;
   formatter: (
     row: T,
     column: TableColumn<T>,

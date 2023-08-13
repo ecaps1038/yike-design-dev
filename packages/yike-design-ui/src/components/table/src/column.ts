@@ -12,9 +12,14 @@ import {
   ref,
 } from 'vue';
 import { TableColumn, Align } from './table';
+import { YkCheckbox } from '../../../index';
 
 let columnIdSeed = 1;
 export default defineComponent({
+  name: 'YkTableColumn',
+  components: {
+    YkCheckbox,
+  },
   props: {
     type: String,
     align: {
@@ -37,9 +42,18 @@ export default defineComponent({
       return parent;
     });
 
+    const store = owner.value.store;
     const defaultRenderCell = ({ row, column, index }) => {
       const property = column.property;
       const value = property && row[property];
+      if (column && column.type == 'checkbox') {
+        return h(YkCheckbox, {
+          checked: store.isSelected(row),
+          onChange(val) {
+            store.dispatch('toggleRowSelection', row, val);
+          },
+        });
+      }
       if (column && column.formatter) {
         return column.formatter(row, column, value, index);
       }
@@ -53,7 +67,7 @@ export default defineComponent({
         align: props.align,
         property: props.property,
         label: props.label,
-        // formatter: props.formatter,
+        // formatter: props.formatter, // TODO add formatter
         renderCell: (data) => {
           let children: VNode | null = null;
           if (slots.default) {
@@ -65,6 +79,25 @@ export default defineComponent({
             children = defaultRenderCell(data);
           }
           return h('div', { class: ['cell'] }, [children]);
+        },
+        renderHeader: ({ column }) => {
+          // TODO add header slot
+          // const renderHeader = slots.header;
+          let children: VNode | null = null;
+          if (column.type === 'checkbox') {
+            children = h(YkCheckbox, {
+              checked: store.state.isAllSelected.value,
+              indeterminate:
+                store.state.selection.value.length > 0 &&
+                !store.state.isAllSelected.value,
+              onChange: (val) => {
+                store.dispatch('toggleAllSelection', val);
+              },
+            });
+          } else {
+            children = column.label;
+          }
+          return h('div', { class: 'cell' }, [children]);
         },
       };
     });

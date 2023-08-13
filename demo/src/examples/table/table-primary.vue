@@ -1,5 +1,6 @@
 <template>
   <yk-table :data="dataList">
+    <yk-table-column type="checkbox"></yk-table-column>
     <yk-table-column property="name" label="Name">
       <yk-button>点击</yk-button>
     </yk-table-column>
