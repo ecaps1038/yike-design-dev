@@ -57,6 +57,10 @@
         {
           "name": "Empty  空状态",
           "src": "empty"
+        },
+        {
+          "name": "Table 表格",
+          "src": "table"
         }
       ]
     },

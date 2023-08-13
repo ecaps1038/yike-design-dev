@@ -2,6 +2,7 @@ import type { Component, App } from 'vue';
 
 import { YkRadio, YkRadioGroup } from './components/radio';
 import { YkDrawer } from './components/drawer';
+import YkTable, { YkTableColumn } from './components/table';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -9,7 +10,6 @@ import YkIcon from './components/icon';
 import { YkAvatar, YkAvatarGroup } from './components/avatar';
 import YkSpace from './components/space';
 import { YkContainer } from './components/container';
-import YkTable from './components/table/Table.vue';
 import YkMessage from './components/message';
 import YkNotification from './components/notification';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
@@ -26,6 +26,8 @@ const components: {
   YkRadioGroup,
   YkRadio,
   YkDrawer,
+  YkTable,
+  YkTableColumn,
   YkAlert,
   YkButton,
   YkTheme,
@@ -34,7 +36,6 @@ const components: {
   YkAvatarGroup,
   YkSpace,
   YkContainer,
-  YkTable,
   YkParagraph,
   YkTitle,
   YkText,
@@ -59,6 +60,7 @@ export {
   YkSpace,
   YkContainer,
   YkTable,
+  YkTableColumn,
   YkTitle,
   YkText,
   YkMessage,
