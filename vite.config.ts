@@ -1,24 +1,20 @@
-/// <reference types="vitest" />
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import Jsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue({
+      script: {
+        defineModel: true,
+      },
+    }),
+    Jsx(),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
-  css: {
-    // css预处理器
-    preprocessorOptions: {
-      less: {
-        charset: false,
-        // additionalData: '@import "./src/assets/base.less";',
-        additionalData:
-          '@import "./src/yike-design/assets/style/yk-index.less";',
-      },
     },
   },
   build: {
@@ -31,11 +27,4 @@ export default defineConfig({
       },
     },
   },
-  test: {
-    // enable jest-like global test APIs
-    globals: true,
-    // simulate DOM with happy-dom
-    // (requires installing happy-dom as a peer dependency)
-    environment: 'happy-dom',
-  },
-})
+});

@@ -1,0 +1,95 @@
+@import '../../styles/color/colors.less';
+.yk-radio--radio {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  height: 22px;
+  .font-s();
+  cursor: pointer;
+  flex-direction: row;
+  input {
+    display: none;
+  }
+  &--disabled {
+    cursor: not-allowed;
+  }
+  .yk-radio__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: @space-s;
+    min-width: @size-m;
+    min-height: @size-m;
+    border: 1px solid @line-color-m;
+    border-radius: 50%;
+    flex-direction: row;
+    box-sizing: border-box;
+    transition: border 0.3s ease-in-out;
+    &:hover {
+      border-color: @pcolor;
+    }
+    &--checked {
+      border-color: @pcolor;
+      background-color: @pcolor;
+    }
+    &--disabled {
+      border-color: @line-color-s;
+      background-color: @bg-color-s;
+    }
+  }
+  .yk-radio__inner {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: @bg-color-l;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    &--checked {
+      opacity: 1;
+    }
+    &--disabled {
+      background-color: @gray-5;
+    }
+  }
+  .yk-radio__label {
+    color: @font-color-l;
+    &--disabled {
+      color: @font-color-ss;
+    }
+  }
+  .yk-radio__box--disabled {
+    &:hover {
+      border-color: @line-color-m;
+    }
+  }
+  .yk-radio__box::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    opacity: 0;
+    box-shadow: 0 0 0 calc(17px / 2.5) @pcolor;
+    transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+    content: '';
+  }
+  .yk-radio__box--shadow::after {
+    opacity: 1;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+  .yk-radio--radio:hover {
+    .yk-radio__box {
+      border-color: @pcolor;
+    }
+    .yk-radio__box--disabled {
+      border-color: @line-color-m;
+    }
+  }
+}

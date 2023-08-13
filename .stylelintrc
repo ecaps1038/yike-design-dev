@@ -1,18 +1,29 @@
 {
-  "extends": ["stylelint-config-recommended-vue", "stylelint-config-standard-vue"],
-  "plugins": ["stylelint-order"],
+  "extends": [
+    "stylelint-config-recommended-vue",
+    "stylelint-config-standard-vue"
+  ],
+  "plugins": ["stylelint-order", "stylelint-less"],
   "overrides": [
     {
-      "files": ["**/*.(less|css|vue)"],
+      "files": ["**/*.(less|vue)"],
       "customSyntax": "postcss-less"
     },
     {
       "files": ["**/*.(html|vue)"],
       "customSyntax": "postcss-html"
+    },
+    {
+      "files": ["./demo/src/examples/**/*.vue"],
+      "rules": {
+        "max-empty-lines": 0,
+        "declaration-empty-line-before": "never",
+        "rule-empty-line-before": "never"
+      }
     }
   ],
   "rules": {
-    "max-nesting-depth": 2,
+    "max-nesting-depth": 4,
     "selector-max-compound-selectors": 3,
     "function-url-quotes": null,
     "property-no-unknown": null,
@@ -22,7 +33,7 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["deep"]
+        "ignorePseudoClasses": ["deep", "v-deep", "global"]
       }
     ],
     "order/properties-order": [

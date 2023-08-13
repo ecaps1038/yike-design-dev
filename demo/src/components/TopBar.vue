@@ -5,26 +5,17 @@
       <span class="name">Yike Design 开发版</span>
     </div>
     <yk-space class="net" :size="30" align="center">
+      <a :href="uiUrl" target="_blank">UI设计稿</a>
       <a :href="taskUrl" target="_blank">任务文档</a>
       <router-link to="/developStandard">开发规范</router-link>
       <router-link to="/design">设计</router-link>
       <router-link to="/develop">开发</router-link>
       <router-link to="/module">组件</router-link>
       <a href="http://www.huohuo90.com" target="_blank">主站</a>
-      <div class="zz">
-        <span>赞助</span>
-        <div class="support">
-          <p>感谢您的赞助，您的支持是我最大的动力～</p>
-          <img class="zz-tp" src="@/assets/images/wx.png" />
-          <img class="zz-tp" src="@/assets/images/zfb.png" />
-        </div>
-      </div>
       <a href="https://github.com/ecaps1038/yike-design-dev" target="_blank">
-        <yk-icon name="yike-github" class="github" />
+        <icon-github-fill />
       </a>
-      <a>
-        <yk-theme></yk-theme>
-      </a>
+      <a><yk-theme></yk-theme></a>
       <yk-avatar size="m" :img-url="avatarImgUrl"></yk-avatar>
     </yk-space>
   </div>
@@ -38,6 +29,8 @@ import { useRouter } from 'vue-router'
 const taskUrl = ref(
   'https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK',
 )
+// 任务文档url
+const uiUrl = ref('https://codesign.qq.com/s/6W3G0m4m8q9lOwL')
 // 头像图片地址
 const avatarImgUrl = ref(
   'https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png',
@@ -93,21 +86,11 @@ provide('shape', 'circle')
   }
 }
 
-.top-bar a,
-.zz {
+.top-bar a {
   padding: 5px 8px;
   text-decoration: none;
   color: @font-color-l;
   cursor: pointer;
-
-  &:hover {
-    border-radius: @radius-s;
-    background-color: @bg-color-s;
-
-    > .support {
-      display: block;
-    }
-  }
 }
 
 .top-bar .support {
@@ -137,8 +120,9 @@ provide('shape', 'circle')
 .top-bar .net {
   display: flex;
 
-  .github {
-    font-size: 16px;
+  .yk-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .router-link-active {

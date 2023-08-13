@@ -2,12 +2,20 @@
   <yk-space>
     <yk-button>
       加入
-      <yk-icon name="yk-jiahao" style="marginleft: 4px" />
+      <template #icon>
+        <icon-plus-circle-outline />
+      </template>
     </yk-button>
     <yk-button>
-      <yk-icon name="yk-shanchu" style="marginright: 4px" />
+      <template #icon>
+        <icon-delete-outline />
+      </template>
       删除
     </yk-button>
-    <yk-button shape="circle"><yk-icon name="yk-jiahao" /></yk-button>
+    <yk-button shape="circle">
+      <template #icon>
+        <icon-bookmark-outline />
+      </template>
+    </yk-button>
   </yk-space>
 </template>

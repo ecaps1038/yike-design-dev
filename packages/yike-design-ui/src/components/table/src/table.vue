@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defaultTableProps, Table, TABLE_INJECTION_KEY } from './table'
-import { createCssScope } from '../../../utils/bem'
+import { createCssScope } from '../../utils/bem'
 import { defineComponent, computed, getCurrentInstance, provide } from 'vue'
 import { useStore } from './store'
 import '../style/index.less'

@@ -1,7 +1,7 @@
+@import '../../styles/color/colors.less';
 .yk-message-container {
   position: fixed;
   top: @space-xl;
-  z-index: 2002;
   z-index: 2002;
   display: flex;
   justify-content: flex-start;
@@ -18,15 +18,15 @@
   border: 1px solid @bg-color-ss;
   border-radius: @radius-m;
   color: @font-color-l;
-  background: @white;
+  background: @light;
   box-shadow: @shadow-l;
+  svg {
+    width: @size-m;
+    height: @size-m;
+  }
   .text {
     vertical-align: middle;
     margin-left: @space-s;
-  }
-  .message-icon {
-    width: @size-m;
-    height: @size-m;
   }
   .icon-primary,
   .icon-loading {

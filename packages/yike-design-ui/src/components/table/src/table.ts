@@ -18,7 +18,7 @@ export interface Table<T> extends ComponentInternalInstance {
   bem: (
     elementOrModifier?: string | undefined,
     modifier?: BEMModifier | undefined,
-  ) => string;
+  ) => string | string[];
 }
 
 export interface TableProps {

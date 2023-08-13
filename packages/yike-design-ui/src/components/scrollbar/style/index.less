@@ -1,0 +1,52 @@
+@import '../../styles/color/colors.less';
+.yk-scrollbar {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+  &__wrap {
+    overflow: auto;
+    height: 100%;
+    &&--default-hide {
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  &__bar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: 4px;
+    &&--vertical {
+      top: 0;
+      width: 5px;
+      > div {
+        width: 100%;
+      }
+    }
+
+    &&--horizontal {
+      left: 0;
+      height: 5px;
+      > div {
+        height: 100%;
+      }
+    }
+  }
+  &__thumb {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-radius: inherit;
+    background-color: @bg-color-s;
+    cursor: pointer;
+    &:hover,
+    &:active {
+      background-color: @bg-color-ss;
+    }
+  }
+}

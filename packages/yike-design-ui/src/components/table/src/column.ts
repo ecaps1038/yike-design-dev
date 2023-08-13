@@ -53,7 +53,7 @@ export default defineComponent({
         align: props.align,
         property: props.property,
         label: props.label,
-        formatter: props.formatter,
+        // formatter: props.formatter,
         renderCell: (data) => {
           let children: VNode | null = null;
           if (slots.default) {
