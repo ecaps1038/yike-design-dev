@@ -50,7 +50,7 @@
 
 :::snippet
 文字提示
-可以添加当输入框聚焦时显示的文字提示，它可以用于指导用户填写严格的数据。
+可以添加文字提示，它可以用于指导用户填写严格的数据。
 <InputMessage/>
 :::
 
@@ -66,9 +66,9 @@
 <InputEvent/>
 :::
 
-### Input
+### API
 
-#### Input API
+#### Input 属性
 
 | 参数          | 描述                               | 类型                                      | 默认值    |
 | ------------- | ---------------------------------- | ----------------------------------------- | --------- |
@@ -88,8 +88,19 @@
 | loading       | 输入框是否为加载中状态             | boolean                                   | false     |
 | show-counter  | 输入框是否显示字数统计             | boolean                                   | false     |
 | limit         | 输入框最大输入字符数               | number                                    | -1        |
-| message       | 输入框聚焦时显示的文字提示         | string                                    | ''        |
+| message       | 显示的文字提示                     | string                                    | ''        |
 | style         | 组件的样式                         | CSSProperties                             | undefined |
+
+#### InputSearch 属性
+
+| 参数        | 描述                   | 类型                | 默认值 |
+| ----------- | ---------------------- | ------------------- | ------ |
+| id          | 搜索框的 id 属性       | string              | ''     |
+| name        | 搜索框的 name 属性     | string              | ''     |
+| size        | 搜索框的大小           | 's'｜'m'｜'l'｜'xl' | 'l'    |
+| placeholder | 搜索框的占位文字       | string              | ''     |
+| clearable   | 搜索框是否显示清空按钮 | false ｜ true       | true   |
+| loading     | 搜索框是否为加载中状态 | false ｜ true       | false  |
 
 #### Input 事件
 
@@ -101,6 +112,12 @@
 | change | 输入框输入字符、退格、粘贴时触发 |
 | submit | 输入框聚焦时按 Enter 触发        |
 
+#### InputSearch 事件
+
+| 事件   | 描述                                      |
+| ------ | ----------------------------------------- |
+| search | 搜索框聚焦时按 Enter 或按默认搜索按钮触发 |
+
 #### Input 插槽
 
 | 插槽    | 描述           |
@@ -109,25 +126,6 @@
 | suffix  | 输入框后置标签 |
 | prepend | 输入框前置元素 |
 | append  | 输入框后置元素 |
-
-### InputSearch
-
-#### InputSearch API
-
-| 参数        | 描述                   | 类型                | 默认值 |
-| ----------- | ---------------------- | ------------------- | ------ |
-| id          | 搜索框的 id 属性       | string              | ''     |
-| name        | 搜索框的 name 属性     | string              | ''     |
-| size        | 搜索框的大小           | 's'｜'m'｜'l'｜'xl' | 'l'    |
-| placeholder | 搜索框的占位文字       | string              | ''     |
-| clearable   | 搜索框是否显示清空按钮 | false ｜ true       | true   |
-| loading     | 搜索框是否为加载中状态 | false ｜ true       | false  |
-
-#### InputSearch 事件
-
-| 事件   | 描述                                      |
-| ------ | ----------------------------------------- |
-| search | 搜索框聚焦时按 Enter 或按默认搜索按钮触发 |
 
 #### InputSearch 插槽
 

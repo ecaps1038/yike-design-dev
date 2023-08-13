@@ -28,30 +28,50 @@
   }
 }
 .yk-slider--horizontal {
-  .yk-slider__bar {
-    .yk-slider__button {
-      top: 50%;
-      transform: translateY(-50%);
+  .yk-slider__button {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .yk-slider__button--start {
+    left: -6px;
+    &:hover {
+      left: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
     }
-    .yk-slider__button--start {
-      left: -6px;
-    }
-    .yk-slider__button--end {
-      right: -6px;
+  }
+  .yk-slider__button--end {
+    right: -6px;
+    &:hover {
+      right: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
     }
   }
 }
 .yk-slider--vertical {
-  .yk-slider__bar {
-    .yk-slider__button {
-      left: 50%;
-      transform: translateX(-50%);
+  .yk-slider__button {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .yk-slider__button--start {
+    bottom: -6px;
+    &:hover {
+      bottom: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
     }
-    .yk-slider__button--start {
-      bottom: -6px;
-    }
-    .yk-slider__button--end {
-      top: -6px;
+  }
+  .yk-slider__button--end {
+    top: -6px;
+    &:hover {
+      top: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
     }
   }
 }

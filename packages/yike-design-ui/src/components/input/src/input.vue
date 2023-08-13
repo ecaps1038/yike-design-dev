@@ -156,7 +156,6 @@ const focus = () => {
   // 禁用与只读状态不可被聚焦
   if (mergedDisabled.value || props.readonly) return
   isFocus.value = true
-
   emits('focus', lastValue)
 }
 
