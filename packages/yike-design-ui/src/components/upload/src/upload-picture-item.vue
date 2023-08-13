@@ -30,16 +30,20 @@
       <IconModifyOutline @click="handleEdit" />
       <IconDeleteOutline @click="handleRemove" />
     </div>
-
     <yk-modal
-      v-if="editModalVisible"
       v-model="editModalVisible"
       :scrollable="false"
       title="图片裁剪"
       size="small"
       @on-submit="handleSubmit"
     >
-      <cropPicture ref="cropRef" :url="url" :blob-raw="blobRaw" :uid="uid" />
+      <cropPicture
+        v-if="editModalVisible"
+        ref="cropRef"
+        :url="url"
+        :blob-raw="blobRaw"
+        :uid="uid"
+      />
     </yk-modal>
   </div>
 </template>

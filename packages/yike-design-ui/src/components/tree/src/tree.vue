@@ -14,8 +14,6 @@ import { createCssScope } from '../../utils/bem'
 import Node from './node.vue'
 import { Key } from '../../utils'
 import { tree2list } from './internal'
-import '../style/index'
-  
 import {
   watch,
   ref,

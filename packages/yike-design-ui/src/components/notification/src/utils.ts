@@ -1,5 +1,5 @@
 import { createVNode, render, reactive, ref } from 'vue';
-import { NotificationOptions, NotificationPosition } from './notification';
+import { NotificationOptions } from './notification';
 import { NOTIFICATIONTYPE } from '../../utils/constant';
 import NotificationGroup from './notification-group.vue';
 
@@ -8,19 +8,16 @@ class NotificationManager {
   private container: HTMLElement | null;
   private seed: number;
   private zIndex: number;
-  private position: NotificationPosition;
-  constructor(options: NotificationOptions) {
-    const { position = 'topRight' } = options;
+  public created: boolean;
+  constructor() {
     this.container = document.createElement('div');
-    this.container.className = `yk-notification-container yk-notification-container-${position}`;
+    this.container.className = `yk-notification-container`;
     this.notifications = ref([]);
     this.seed = 0;
     this.zIndex = 2001;
-    this.position = position;
-
+    this.created = true;
     const vm = createVNode(NotificationGroup, {
       notifications: this.notifications.value,
-      position,
       onClose: this.remove,
       onDestroy: this.destory,
     });
@@ -36,11 +33,7 @@ class NotificationManager {
       ...options,
     });
 
-    if (this.position.indexOf('bottom') !== -1) {
-      this.notifications.value.unshift(notification);
-    } else {
-      this.notifications.value.push(notification);
-    }
+    this.notifications.value.push(notification);
 
     return {
       close: () => {
@@ -61,25 +54,18 @@ class NotificationManager {
       render(null, this.container);
       document.body.removeChild(this.container);
       this.container = null;
+      this.created = false;
       this.zIndex = 2001;
-      notificaitionInstance[this.position] = undefined;
     }
   };
 }
 
-const notificaitionInstance: {
-  topLeft?: NotificationManager;
-  topRight?: NotificationManager;
-  bottomLeft?: NotificationManager;
-  bottomRight?: NotificationManager;
-} = {};
-
+let Instance = <NotificationManager>{};
 export const notification: any = (options: NotificationOptions) => {
-  const { position = 'topRight' } = options;
-  if (!notificaitionInstance[position]) {
-    notificaitionInstance[position] = new NotificationManager(options);
+  if (!Instance.created) {
+    Instance = new NotificationManager();
   }
-  return notificaitionInstance[position].add(options);
+  return Instance.add(options);
 };
 
 NOTIFICATIONTYPE.forEach((item) => {

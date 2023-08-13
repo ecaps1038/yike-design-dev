@@ -15,11 +15,11 @@ import YkAffix from './components/affix';
 import { YkInput } from './components/input';
 import { YkInputSearch } from './components/input-search';
 import YkTree from './components/tree';
-import YkTreeSelect from './components/tree-select';
 import YkSlider from './components/slider';
 import { YkCollapse, YkCollapseGroup } from './components/collapse';
 import YkPopconfirm from './components/popconfirm';
 import YkInputNumber from './components/input-number';
+import { YkForm, YkFormItem } from './components/form';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -27,7 +27,6 @@ import YkIcon from './components/icon';
 import { YkAvatar, YkAvatarGroup } from './components/avatar';
 import YkSpace from './components/space';
 import YkTable from './components/table';
-import { YkTimeline, YkTimelineItem } from './components/timeline';
 import YkMessage from './components/message';
 import YkNotification from './components/notification';
 import { YkParagraph, YkTitle, YkText } from './components/typography';
@@ -65,12 +64,13 @@ const components: {
   YkInput,
   YkInputSearch,
   YkTree,
-  YkTreeSelect,
   YkSlider,
   YkCollapse,
   YkCollapseGroup,
   YkPopconfirm,
   YkInputNumber,
+  YkForm,
+  YkFormItem,
   YkAlert,
   YkButton,
   YkTheme,
@@ -79,8 +79,6 @@ const components: {
   YkAvatarGroup,
   YkSpace,
   YkTable,
-  YkTimeline,
-  YkTimelineItem,
   YkParagraph,
   YkTitle,
   YkText,
@@ -115,12 +113,13 @@ export {
   YkInput,
   YkInputSearch,
   YkTree,
-  YkTreeSelect,
   YkSlider,
   YkCollapse,
   YkCollapseGroup,
   YkPopconfirm,
   YkInputNumber,
+  YkForm,
+  YkFormItem,
   YkAlert,
   YkButton,
   YkTheme,
@@ -130,8 +129,6 @@ export {
   YkAvatarGroup,
   YkSpace,
   YkTable,
-  YkTimeline,
-  YkTimelineItem,
   YkTitle,
   YkText,
   YkMessage,

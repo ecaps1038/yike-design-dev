@@ -41,7 +41,7 @@
           <IconCloseOutline />
         </button>
       </div>
-      <yk-space v-if="props.showFooterBtn" class="notification-footer" size="m">
+      <yk-space v-if="props.showFooterBtn" class="notification-footer">
         <yk-button type="secondary" @click="clickCancel">取消</yk-button>
         <yk-button @click="clickOK">确定</yk-button>
       </yk-space>
@@ -74,9 +74,10 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   showFooterBtn: false,
   showIcon: true,
   space: 24,
+  offsetY: 24,
+  offsetX: 24,
   zIndex: 2001,
   dangaurslyUseHtmlString: false,
-  position: 'topRight',
   handleCancel: () => ({}),
   handleSubmit: () => ({}),
   onClose: () => ({}),
@@ -88,7 +89,9 @@ let timer: any = ref()
 let remainTime = ref(0)
 
 const Style = computed(() => ({
-  margin: `${props.space}px`,
+  marginBottom: `${props.space}px`,
+  top: `${props.offsetY}px`,
+  right: `${props.offsetX}px`,
   zIndex: props.zIndex,
 }))
 
@@ -118,7 +121,6 @@ function handleClose() {
 
 function clickCancel() {
   props.handleCancel && props.handleCancel()
-  close()
 }
 
 function clickOK() {

@@ -88,6 +88,10 @@
         {
           "name": "InputNumber 数字输入框",
           "src": "input-number"
+        },
+        {
+          "name": "Form 表单",
+          "src": "form"
         }
       ]
     },
@@ -111,16 +115,8 @@
           "src": "tree"
         },
         {
-          "name": "TreeSelect 树形选择",
-          "src": "tree-select"
-        },
-        {
           "name": "Image 图片",
           "src": "image"
-        },
-        {
-          "name": "Timeline 时间线",
-          "src": "timeline"
         }
       ]
     },

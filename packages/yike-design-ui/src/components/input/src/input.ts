@@ -7,7 +7,7 @@ export type InputProps = {
   size?: Size;
   type?: 'text' | 'password';
   placeholder?: string;
-  value?: string | number;
+  modelValue?: string;
   disabled?: boolean;
   readonly?: boolean;
   required?: boolean;
@@ -17,6 +17,6 @@ export type InputProps = {
   loading?: boolean;
   showCounter?: boolean;
   limit?: number;
-  tooltip?: string;
   style?: CSSProperties;
+  message?: string;
 };

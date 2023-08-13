@@ -13,7 +13,7 @@ export const isUndefined = (v: any) => {
   return typeof v === 'undefined';
 };
 
-export const getMargin = (size: CheckboxGroupProps['size']) => {
+export const getMargin = (size: CheckboxGroupProps['gap']) => {
   if (typeof size === 'number') {
     return size;
   }

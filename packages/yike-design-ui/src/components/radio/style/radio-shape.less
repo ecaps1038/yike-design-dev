@@ -6,8 +6,10 @@
   align-items: center;
   width: auto;
   height: 22px;
-  .font-s();
+  height: 22px;
+  font-size: @size-s;
   cursor: pointer;
+  line-height: 22px;
   flex-direction: row;
   input {
     display: none;
@@ -15,53 +17,41 @@
   &--disabled {
     cursor: not-allowed;
   }
-  .yk-radio__box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: @space-s;
-    min-width: @size-m;
-    min-height: @size-m;
-    border: 1px solid @line-color-m;
-    border-radius: 50%;
-    flex-direction: row;
-    box-sizing: border-box;
-    transition: border 0.3s ease-in-out;
-    &:hover {
-      border-color: @pcolor;
+  .yk-radio {
+    &__box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: @space-s;
+      min-width: @size-m;
+      min-height: @size-m;
+      border: 1px solid @line-color-m;
+      border-radius: 50%;
+      flex-direction: row;
+      box-sizing: border-box;
+      transition: border 0.3s ease-in-out;
+      &--checked {
+        border-color: @pcolor;
+        background-color: @pcolor;
+      }
+      &--disabled {
+        border-color: @line-color-m;
+        background-color: @bg-color-m;
+      }
     }
-    &--checked {
-      border-color: @pcolor;
-      background-color: @pcolor;
-    }
-    &--disabled {
-      border-color: @line-color-s;
-      background-color: @bg-color-s;
-    }
-  }
-  .yk-radio__inner {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: @bg-color-l;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    &--checked {
-      opacity: 1;
-    }
-    &--disabled {
-      background-color: @gray-5;
-    }
-  }
-  .yk-radio__label {
-    color: @font-color-l;
-    &--disabled {
-      color: @font-color-ss;
-    }
-  }
-  .yk-radio__box--disabled {
-    &:hover {
-      border-color: @line-color-m;
+    &__inner {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: @bg-color-l;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      &--checked {
+        opacity: 1;
+      }
+      &--disabled {
+        background-color: @gray-5;
+      }
     }
   }
   .yk-radio__box::after {
@@ -87,9 +77,9 @@
   .yk-radio--radio:hover {
     .yk-radio__box {
       border-color: @pcolor;
-    }
-    .yk-radio__box--disabled {
-      border-color: @line-color-m;
+      &--disabled {
+        border-color: @line-color-m;
+      }
     }
   }
 }

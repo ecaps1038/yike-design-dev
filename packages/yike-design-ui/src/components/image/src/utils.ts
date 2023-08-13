@@ -1,3 +1,5 @@
+import type { ZoomType } from './preview';
+
 /** 并集，返回新的对象 */
 export const omit = <T extends Record<any, any>, K extends keyof any>(
   object: T,
@@ -39,8 +41,25 @@ export const normalizeImageSizeProp = (size?: string | number) => {
   return typeof num === 'number' ? `${num}px` : undefined;
 };
 
+/** 放大缩小的倍率 */
+export const scaleAttr = [
+  0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4,
+  5,
+] as const;
+
+export const getScale = (
+  cur: (typeof scaleAttr)[number] = 1,
+  type: ZoomType = 'zoomIn',
+) => {
+  const index = scaleAttr.indexOf(cur);
+  if (type === 'zoomIn') {
+    return index === scaleAttr.length - 1 ? cur : scaleAttr[index + 1];
+  }
+  return index === 0 ? cur : scaleAttr[index - 1];
+};
+
 /** 避免浮点数计算误差问题 */
-export const formatePercentage = (scale: number) => {
+export const formatePercentage = (scale: (typeof scaleAttr)[number]) => {
   return (scale * 100).toFixed(0) + '%';
 };
 

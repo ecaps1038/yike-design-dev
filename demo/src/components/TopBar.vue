@@ -91,6 +91,11 @@ provide('shape', 'circle')
   text-decoration: none;
   color: @font-color-l;
   cursor: pointer;
+
+  &:hover {
+    border-radius: @radius-s;
+    background-color: @bg-color-s;
+  }
 }
 
 .top-bar .support {

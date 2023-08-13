@@ -5,7 +5,7 @@
     allow-clear
     allow-half
     color="#f56c6c"
-    icon="IconHeartFill"
+    icon="yk-biaoqing"
     @hover-change="handleHoverChange"
     @change="change"
   >

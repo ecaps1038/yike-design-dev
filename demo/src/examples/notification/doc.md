@@ -13,9 +13,9 @@
 :::
 
 :::snippet
-消息弹出的不同位置
-通过传入 `position` 指定Notification弹出的位置。支持四个选项：`topRight`、`topLeft`、`bottomRight` 和 `bottomLeft`， 默认为 `topRight`
-<NotificationPosition/>
+有位置偏移的通知栏
+通过传入 `offsetY` 或 `offsetX` 设置偏移量来使 Notification 偏移默认位置
+<NotificationOffset/>
 :::
 
 :::snippet
@@ -40,7 +40,7 @@
 
 | 参数          | 描述                                         | 类型                                                 | 默认值      |
 | ------------- | -------------------------------------------- | ---------------------------------------------------- | ----------- |
-| type          | 消息的类型                                   | 'primary' \| 'success' \| 'warning' \| 'error'\| 'loading' | success     |
+| type          | 消息的类型                                   | 'primary'\|'success'\|'warning'\|'error'\| 'loading' | success     |
 | message       | 消息的内容                                   | string \| VNode \| JSX                                        | ''          |
 | dangerouslyUseHTMLString | 是否将 message 属性作为 HTML 片段处理 | boolean                                               | false       |
 | title         | 标题                                         | string                                               | 'Title'     |
@@ -49,7 +49,8 @@
 | showIcon      | 控制图标显隐                                 | boolean                                              | true(显示)  |
 | duration      | 显示时间, 单位为毫秒。 值为 0 则不会自动关闭 | number                                               | 4500        |
 | space         | 提醒框间距, 单位是 px                        | number                                               | 24          |
-| position          | 自定义弹出位置                                   | 'topRight' \| 'topLeft' \| 'bottomRight' \| 'bottomLeft' | 'topRight'     |
+| offsetY       | 相对屏幕顶部的偏移量 偏移的距离, 单位是 px   | number                                               | 24          |
+| offsetX       | 相对屏幕右部的偏移量 偏移的距离, 单位是 px   | number                                               | 24          |
 | onClose       | 关闭时的回调函数                             | Function                                             | ()=>{}      |
 | handleCancel  | 底部操作按钮展示时, 点击取消按钮的回调函数   | Function                                             | ()=>{}      |
 | handleSubmit  | 底部操作按钮展示时, 点击确定按钮的回调函数   | Function                                             | ()=>{}      |

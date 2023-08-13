@@ -24,35 +24,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ImagePreviewGroupProps } from './preview'
-import { useState } from './hooks/use-state'
 
 const props = withDefaults(defineProps<ImagePreviewGroupProps>(), {
   closable: true,
   maskClosable: true,
   isRender: true,
-  current: 0,
   defaultCurrent: 0,
 })
 
 const emit = defineEmits<{
   (e: 'update:visible', value: boolean): void
-  (e: 'update:current', value: number): void
 }>()
 
-const [currentIndex, setCurrentIndex] = useState<number>(
-  props.defaultCurrent,
-  props.current,
-  (v: number) => emit('update:current', v),
-)
-
-const [previewVisible, setPreviewVisible] = useState<boolean>(
-  props.visible,
-  false,
-  (v: boolean) => emit('update:visible', v),
-)
-
+const currentIndex = ref(props.defaultCurrent)
+console.log('🚀 ~ file: preview-group.vue:42 ~ currentIndex:', currentIndex)
+const previewVisible = ref(!!props.visible)
 const imageCount = computed(() => props.srcList?.length)
 
 const currentSrc = computed(() => {
@@ -63,21 +51,21 @@ const currentSrc = computed(() => {
 
 watch(
   () => props.visible,
-  (v) => setPreviewVisible(v),
+  (v) => (previewVisible.value = v),
 )
 
-watch(
-  () => props.current,
-  (v) => setCurrentIndex(v),
-)
+const setVisible = (visible: boolean) => {
+  previewVisible.value = visible
+  emit('update:visible', visible)
+}
 
 const onImageClick = (index: number) => {
-  setCurrentIndex(index)
-  setPreviewVisible(true)
+  currentIndex.value = index
+  setVisible(true)
 }
 
 const onCancel = () => {
-  setPreviewVisible(false)
+  setVisible(false)
   props.onCancel?.()
 }
 

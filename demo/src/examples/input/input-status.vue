@@ -1,7 +1,7 @@
 <template>
   <yk-space direction="vertical">
-    <yk-input disabled placeholder="不可用" :value="disabled" />
-    <yk-input readonly placeholder="只读" :value="readonly" />
+    <yk-input v-model="disabled" disabled placeholder="不可用" />
+    <yk-input v-model="readonly" readonly placeholder="只读" />
     <yk-input status="danger" placeholder="危险色" />
     <yk-input status="success" placeholder="成功色" />
     <yk-input status="warning" placeholder="警告色" />
