@@ -1,11 +1,11 @@
 import { glob } from 'fast-glob';
-import { componentSrc, resolvePath } from '../../utils/paths';
 import fs from 'fs-extra';
 import { Plugin, build } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
 import { genUmdConfig } from './umd.config';
+import { resolvePath, componentSrc } from '../../utils/paths';
 
 const EXPORT_HELPER_ID = 'plugin-vue:export-helper';
 const helperCode = `

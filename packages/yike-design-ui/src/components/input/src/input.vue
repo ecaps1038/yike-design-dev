@@ -89,7 +89,6 @@ import { InputProps } from './input'
 import '../style'
 import { computed, ref, toRef, watch } from 'vue'
 import { createCssScope } from '../../utils/bem'
-import { useInputTooltip } from './utils'
 import { IconCloseEyeOutline, IconCloseOutline } from '../../svg-icon'
 
 defineOptions({
@@ -108,7 +107,6 @@ const props = withDefaults(defineProps<InputProps>(), {
   loading: false,
   showCounter: false,
   limit: -1, // 不限制输入字数
-  tooltip: '',
 })
 const bem = createCssScope('input')
 const isTyping = ref(false)
@@ -136,15 +134,11 @@ const isFocus = ref(false)
 const isHovering = ref(false)
 const shouldShowButton = ref((lastValue as string).length > 0)
 const inputType = ref(props.type)
-let tooltip = useInputTooltip(inputRef)
 
 const focus = () => {
   // 禁用与只读状态不可被聚焦
   if (props.disabled || props.readonly) return
   isFocus.value = true
-  if (props.tooltip.length > 0) {
-    tooltip!.set(props.tooltip)
-  }
   emits('focus', lastValue)
 }
 
@@ -164,7 +158,6 @@ const update = () => {
 
 const blur = () => {
   isFocus.value = false
-  tooltip.unset()
   emits('blur', lastValue)
 }
 
