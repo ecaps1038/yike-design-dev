@@ -1,5 +1,5 @@
 <template>
-  <YkInput v-model:value="realValue" :class="bem()" v-bind="{ ...$attrs }">
+  <YkInput v-model="realValue" :class="bem()" v-bind="{ ...$attrs }">
     <template v-if="buttons === 'right'" #suffix>
       <div :class="bem('buttons-r')">
         <YkButton type="secondary"><IconUpOutline /></YkButton>

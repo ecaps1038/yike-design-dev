@@ -25,7 +25,7 @@ export const useFormItem = ({
 
   const mergedSize = computed(() => formItemCtx?.size || size?.value);
 
-  const isError = computed(() => validateInstance.value.isError);
+  const isError = computed(() => validateInstance.value?.isError ?? false);
   const mergedMessage = computed(
     () => validateInstance.value?.message ?? message?.value,
   );
