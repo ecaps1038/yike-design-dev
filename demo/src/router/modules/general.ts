@@ -134,6 +134,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'timeline',
     component: () => import('@/examples/timeline/doc.md'),
   },
+  {
+    path: 'form',
+    component: () => import('@/examples/form/doc.md'),
+  },
 ];
 
 export default generalRoutes;

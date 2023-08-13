@@ -46,7 +46,7 @@
       }
     ], // 不允许超过1个空行
     // "no-unexpected-multiline": "error", // 禁止空余的多行
-    // "no-useless-escape": "off", // 禁止不必要的转义字符,
+    "no-useless-escape": "off", // 禁止不必要的转义字符,
     // "no-redeclare": "off",
     // "no-self-assign": "off",
     // "prefer-const": "off",
