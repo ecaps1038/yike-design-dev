@@ -4,7 +4,7 @@
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
     <yk-form-item label="昵称" field="nickname">
-      <yk-input v-model="form.nickname"></yk-input>
+      <yk-input v-model="form.nickname" placeholder="请输入"></yk-input>
     </yk-form-item>
     <yk-form-item label="性别" field="sex" :rules="rulesMap.sex">
       <yk-radio-group v-model="form.sex">

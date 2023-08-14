@@ -20,6 +20,7 @@
             readonly: readonly,
             rightbr0: !!$slots.append,
             leftbr0: !!$slots.prepend,
+            danger: isError,
           }),
           bem([mergedSize]),
         ]"
