@@ -12,6 +12,9 @@
         <yk-radio value="woman">女</yk-radio>
       </yk-radio-group>
     </yk-form-item>
+    <yk-form-item label="年龄" field="sex" :rules="rulesMap.sex">
+      <yk-input-number v-model="form.age"></yk-input-number>
+    </yk-form-item>
     <yk-form-item label="日期" field="date" :required="true">
       <yk-checkbox-group v-model="form.date">
         <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">
@@ -35,6 +38,7 @@ const form = reactive({
   sex: 'man',
   date: ['2'],
   nickname: '',
+  age: 20,
 })
 const rulesMap = {
   name: [

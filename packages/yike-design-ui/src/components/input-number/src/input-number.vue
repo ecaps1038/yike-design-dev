@@ -70,7 +70,7 @@ const ComboSpeed = 150
 const inputRef = ref<InstanceType<typeof YkInput>>()
 const valueRefs = toRefs(props)
 const lastValue = ref<number>(0)
-const displayValue = ref<string | number>('')
+const displayValue = ref<string>('')
 
 // 计算精度
 const precision = computed(() => {
@@ -183,6 +183,6 @@ const change = (value: string) => {
 const update = () => {
   checkLimit()
   displayValue.value = getDisplayValue()
-  emits('update:modelValue', displayValue.value)
+  emits('update:modelValue', precision.value)
 }
 </script>
