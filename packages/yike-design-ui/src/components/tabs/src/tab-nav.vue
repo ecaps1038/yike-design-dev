@@ -56,6 +56,7 @@ import {
   shallowRef,
   CSSProperties,
   onMounted,
+  nextTick,
 } from 'vue'
 import { createCssScope } from '../../utils/bem'
 import { TabBar } from './tabBar'
@@ -86,7 +87,7 @@ const navItems = computed(() => optionsCtx.paneOptions)
 const barOptions = ref<Omit<TabBar, 'direction'>>({ width: 0, offset: 0 })
 
 // 存储tabRef
-// const tabRefs = ref<HTMLElement[]>()
+
 const genTabRef = (id: number) => `tabRef-${id}`
 const tabRefsMap: Record<string, Element> = {}
 const setTabRefs = (el: any, uid: number) => {
@@ -96,13 +97,11 @@ const setTabRefs = (el: any, uid: number) => {
   tabRefsMap[genTabRef(uid)] = el as HTMLElement
 }
 const getTabRef = (id: number) => tabRefsMap[genTabRef(id)]
-// const activeVal = ref()
+
 const isActive = (item: PaneOptionsProp) => {
   return optionsCtx.activedId === item.id
 }
 const onNavClick = (v: MouseEvent, item: PaneOptionsProp, index: number) => {
-  const target = getTabRef(item.id) as HTMLElement
-  changePos(target)
   emits('change', item)
 }
 
@@ -110,9 +109,7 @@ const onNavClick = (v: MouseEvent, item: PaneOptionsProp, index: number) => {
 const changePos = (target: HTMLElement) => {
   // 更新超出滚动位置
   activeTab.value = target
-  console.log(999, target)
-
-  updateScroll()
+  updateScrollFitActive()
   updateBarOptions()
 }
 const updateBarOptions = () => {
@@ -138,7 +135,7 @@ const scrollStyle = computed<CSSProperties>(() => {
     transform: `translateX(${scrollOffset.value}px)`,
   }
 })
-const updateScroll = () => {
+const updateScrollFitActive = async () => {
   const activeReact = activeTab.value!.getBoundingClientRect()
   const wrapRefReact = wrapRef.value!.getBoundingClientRect()
   const scrollReact = scrollRef.value!.getBoundingClientRect()
@@ -150,8 +147,6 @@ const updateScroll = () => {
     return
   }
 
-  console.log(666, activeReact.left, wrapRefReact.left)
-
   const disR = wrapRefReact.right - scrollReact.right
   const disL = wrapRefReact.left - scrollReact.left
   if (disR > 0 && disR < wrapRefReact.width && disL > 0) {
@@ -160,18 +155,30 @@ const updateScroll = () => {
   }
   if (activeReact.left < wrapRefReact.left) {
     scrollOffset.value += wrapRefReact.left - activeReact.left
-    console.log(77)
   }
   if (activeReact.right > wrapRefReact.right) {
-    console.log(88)
-
     scrollOffset.value -= activeReact.right - wrapRefReact.right
   }
 }
+
+const updateScroll = () => {
+  if (wrapW.value < scrollW.value) {
+    if (scrollW.value + scrollOffset.value < wrapW.value) {
+      scrollOffset.value = wrapW.value - scrollW.value
+      console.log('updateScroll')
+    }
+  } else {
+    if (scrollOffset.value < 0) {
+      scrollOffset.value = 0
+      console.log('updateScroll2')
+    }
+  }
+}
+
 // 禁用
 const scrollW = ref(0)
 const wrapW = ref(0)
-const getScrollAndWrapW = () => {
+const updateScrollAndWrapW = () => {
   scrollW.value = scrollRef.value?.offsetWidth ?? 0
   wrapW.value = wrapRef.value?.offsetWidth ?? 0
   return {
@@ -180,11 +187,11 @@ const getScrollAndWrapW = () => {
   }
 }
 const showChrols = computed(() => {
-  const { scrollW, wrapW } = getScrollAndWrapW()
+  const { scrollW, wrapW } = updateScrollAndWrapW()
   return scrollW > wrapW
 })
 const disabledMap = computed(() => {
-  const { scrollW, wrapW } = getScrollAndWrapW()
+  const { scrollW, wrapW } = updateScrollAndWrapW()
   return {
     disablePre: scrollOffset.value >= 0,
     disableNext: scrollW + scrollOffset.value - wrapW <= 0,
@@ -195,7 +202,7 @@ const preSlide = () => {
   if (scrollOffset.value >= 0) {
     return
   }
-  const { wrapW } = getScrollAndWrapW()
+  const { wrapW } = updateScrollAndWrapW()
 
   if (Math.abs(scrollOffset.value) > wrapW) {
     scrollOffset.value += wrapW
@@ -205,7 +212,7 @@ const preSlide = () => {
   updateBarOptions()
 }
 const nextSlide = () => {
-  const { scrollW, wrapW } = getScrollAndWrapW()
+  const { scrollW, wrapW } = updateScrollAndWrapW()
   if (scrollW + scrollOffset.value - wrapW <= 0) {
     return
   }
@@ -219,26 +226,14 @@ const nextSlide = () => {
 
 watch(
   () => navItems.value,
-  async (n, o) => {
-    const len = Object.keys(tabRefsMap).length
-    if (!len) {
-      return
-    }
-    // if (isInit.value && len) {
-    //   target = getTabRef(n[0].id!) as HTMLElement
-
-    //   isInit.value = false
-    // } else {
-    //   target = getTabRef(n[n.length - 1].id!) as HTMLElement
-    //   emits('change', n[n.length - 1])
-    // }
-    console.log('watchPanes')
-    const id = optionsCtx.activedId!
-    const target = getTabRef(id) as HTMLElement
-    // changePos(target)
-    getScrollAndWrapW()
-
-    target && changePos(target)
+  async () => {
+    await nextTick()
+    updateScrollAndWrapW()
+    // 解决同时触发active和items增减冲突
+    setTimeout(() => {
+      updateScroll()
+      updateBarOptions()
+    })
   },
   {
     deep: true,
@@ -246,22 +241,20 @@ watch(
   },
 )
 
-// watch(
-//   () => optionsCtx.activedId,
-//   async (nId, oId) => {
-//     await nextTick()
-//     if (typeof nId === 'number' && nId !== oId) {
-//       const target = getTabRef(nId) as HTMLElement
-//       console.log('watchActive', nId)
-
-//       // changePos(target)
-//     }
-//   },
-//   {
-//     immediate: true,
-//     deep: true,
-//   },
-// )
+watch(
+  () => optionsCtx.activedId,
+  async (nId, oId) => {
+    await nextTick()
+    if (typeof nId === 'number' && nId !== oId) {
+      const target = getTabRef(nId) as HTMLElement
+      changePos(target)
+    }
+  },
+  {
+    immediate: true,
+    deep: true,
+  },
+)
 onMounted(() => {
   setTimeout(() => {
     const id = optionsCtx.activedId!
