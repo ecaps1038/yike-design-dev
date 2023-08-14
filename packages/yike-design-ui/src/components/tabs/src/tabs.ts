@@ -4,11 +4,11 @@ import { PaneOptionsProp } from './pane';
 export type TabsProps = {
   id?: string;
   modelValue?: number | string;
-  type?: 'line' | 'card';
+  type?: 'line' | 'card' | string;
   closable?: boolean;
   addable?: boolean;
   editable?: boolean;
-  tabPosition?: 'top' | 'bottom' | 'left' | 'right';
+  tabPosition?: 'top' | 'bottom' | 'left' | 'right' | string;
 };
 
 export type TabInjectOption = {

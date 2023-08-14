@@ -1,24 +1,24 @@
 <template>
   <div :class="ns()">
-    <component
-      :is="pannes"
-      v-if="props.tabPosition === 'bottom'"
-      key="1"
-      class="top"
-    ></component>
-    <yk-tab-nav
-      :type="type"
-      @change="onNavChange"
-      @add="$emit('add')"
-      @delete="$emit('delete', $event)"
-    ></yk-tab-nav>
+    <keep-alive>
+      <component
+        :is="props.tabPosition === 'bottom' ? pannes : ''"
+        key="1"
+        class="top"
+      ></component>
+      <yk-tab-nav
+        :type="type"
+        @change="onNavChange"
+        @add="$emit('add')"
+        @delete="$emit('delete', $event)"
+      ></yk-tab-nav>
 
-    <component
-      :is="pannes"
-      v-if="props.tabPosition === 'top'"
-      key="1"
-      class="bottom"
-    ></component>
+      <component
+        :is="props.tabPosition === 'top' ? pannes : ''"
+        key="1"
+        class="bottom"
+      ></component>
+    </keep-alive>
   </div>
 </template>
 <script setup lang="ts">
