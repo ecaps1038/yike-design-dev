@@ -1,4 +1,5 @@
 .yk-tabs {
+  @base-height: 40px;
   &-bar {
     position: absolute;
     bottom: 0;
@@ -19,11 +20,13 @@
     .yk-icon {
       cursor: pointer;
     }
+
     &__wrap {
       display: flex;
       flex-wrap: nowrap;
       flex: 1;
       overflow: hidden;
+      min-height: @base-height;
     }
     &__scroll {
       display: flex;
@@ -42,7 +45,7 @@
       margin: 0px 12px;
       padding: 4px 0px;
       min-width: 10px;
-      height: 40px;
+      height: @base-height;
       font-size: @size-m;
       color: rgba(@gray, 0.5);
       cursor: pointer;

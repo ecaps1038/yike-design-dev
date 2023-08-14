@@ -1,11 +1,12 @@
 <template>
-  <yk-tabs
-    v-model="acitve"
-    :editable="true"
-    type="card"
-    @add="onAddTab"
-    @delete="onDeleteTab"
+  <div
+    :style="{
+      marginBottom: '10px',
+    }"
   >
+    <yk-button @click="onAddTab">add tab</yk-button>
+  </div>
+  <yk-tabs v-model="acitve" closable @delete="onDeleteTab">
     <yk-tab-pane
       v-for="item in tabs"
       :key="item.name"
@@ -52,6 +53,7 @@ const onAddTab = () => {
   acitve.value = indexL
 }
 const onDeleteTab = (v: any) => {
+  console.log('del', v)
   if (v.name === acitve.value) {
     const index = tabs.value.findIndex((i) => i.name === v.name)
     const next = tabs.value[index + 1] || tabs.value[index - 1]

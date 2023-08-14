@@ -1,12 +1,17 @@
 <template>
-  <div v-if="navItems.length" :class="[ns()]">
+  <div ref="navRef" :class="[ns()]">
     <IconLeftOutline
       v-if="showChrols"
       :class="[ns('icon', { disabled: disabledMap.disablePre })]"
       @click="preSlide"
     />
     <div ref="wrapRef" :class="ns('wrap')">
-      <div ref="scrollRef" :class="ns('scroll')" :style="scrollStyle">
+      <div
+        v-if="navItems.length"
+        ref="scrollRef"
+        :class="ns('scroll')"
+        :style="scrollStyle"
+      >
         <div
           v-for="(item, index) in navItems"
           :key="item.name"
@@ -34,7 +39,7 @@
       ></yk-tab-bar>
     </div>
     <IconRightOutline
-      v-if="showChrols"
+      v-if="navItems.length && showChrols"
       :class="[ns('icon', { disabled: disabledMap.disableNext })]"
       @click="nextSlide"
     />
@@ -68,6 +73,7 @@ import IconRightOutline from '../../svg-icon/icon-right-outline'
 import IconPlusOutline from '../../svg-icon/icon-plus-outline'
 import IconCloseOutline from '../../svg-icon/icon-close-outline'
 import { NavProp } from './tabNav'
+import { useResizeObserver } from '@vueuse/core'
 const ns = createCssScope('tabs-nav')
 const props = withDefaults(defineProps<NavProp>(), {
   type: 'line',
@@ -112,6 +118,7 @@ const changePos = (target: HTMLElement) => {
   updateScrollFitActive()
   updateBarOptions()
 }
+// 更新指示条位置
 const updateBarOptions = () => {
   if (!isLine.value) {
     return
@@ -160,17 +167,15 @@ const updateScrollFitActive = async () => {
     scrollOffset.value -= activeReact.right - wrapRefReact.right
   }
 }
-
+// 更新容器偏移位置
 const updateScroll = () => {
   if (wrapW.value < scrollW.value) {
     if (scrollW.value + scrollOffset.value < wrapW.value) {
       scrollOffset.value = wrapW.value - scrollW.value
-      console.log('updateScroll')
     }
   } else {
     if (scrollOffset.value < 0) {
       scrollOffset.value = 0
-      console.log('updateScroll2')
     }
   }
 }
@@ -230,6 +235,7 @@ watch(
     await nextTick()
     updateScrollAndWrapW()
     // 解决同时触发active和items增减冲突
+
     setTimeout(() => {
       updateScroll()
       updateBarOptions()
@@ -277,6 +283,16 @@ const onAdd = () => {
 const deleteTab = (item: PaneOptionsProp) => {
   emits('delete', item)
 }
+
+const navRef = ref<HTMLElement>()
+useResizeObserver(navRef, async () => {
+  await nextTick()
+  updateScrollAndWrapW()
+  setTimeout(() => {
+    updateScroll()
+    updateBarOptions()
+  })
+})
 </script>
 
 <style scoped></style>
