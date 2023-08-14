@@ -39,7 +39,7 @@
 
 .yk-input__inner {
   display: flex;
-  overflow-x: scroll;
+  // overflow-x: scroll;
   width: inherit;
   transition: all @animatb ease-in-out;
 
@@ -159,6 +159,10 @@
       stroke-dashoffset: -125px;
     }
   }
+}
+
+.yk-input--error {
+  .input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-l);
 }
 
 .input-size(s, 22px, @space-s, @size-ss, @radius-s);
