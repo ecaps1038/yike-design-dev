@@ -28,10 +28,17 @@
   }
 }
 .yk-slider--horizontal {
-  .yk-slider__bar {
-    .yk-slider__button {
-      top: 50%;
-      transform: translateY(-50%);
+  .yk-slider__button {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .yk-slider__button--start {
+    left: -6px;
+    &:hover {
+      left: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
     }
     .yk-slider__button--start {
       left: -6px;

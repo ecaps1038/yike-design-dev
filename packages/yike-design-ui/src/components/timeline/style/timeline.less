@@ -1,0 +1,149 @@
+// 竖直默认样式
+.yk-timeline {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  // 最后一个子节点没有尾巴
+  &__item {
+    &:last-child {
+      .yk-timeline__item__timeline__tail {
+        display: none;
+      }
+
+      .yk-timeline__item__timeline__tail--horizontal {
+        display: none;
+      }
+    }
+  }
+
+  // 不同状态
+  // 水平默认样式
+  &--horizontal {
+    flex-direction: row;
+
+    .yk-timeline__item {
+      flex-direction: column;
+
+      .yk-timeline__item__timeline__dot-item {
+        // 由外到内 设置margin -> padding -> width -> height
+        width: 22px;
+        height: 7px;
+      }
+    }
+
+    .yk-timeline__item__desc {
+      // 由外到内 设置margin -> padding -> width -> height
+      margin: @space-xl 48px 0px -6px;
+    }
+  }
+
+  //文字在左
+  &--left {
+    flex-direction: column;
+    align-items: flex-end;
+
+    .yk-timeline__item {
+      flex-direction: row-reverse;
+    }
+
+    .yk-timeline__item__desc {
+      margin: 0px @space-l @space-xl 0px;
+      text-align: right;
+    }
+  }
+
+  // 文字在上
+  &--top {
+    .yk-timeline__item {
+      flex-direction: column-reverse;
+    }
+
+    .yk-timeline__item__desc {
+      margin: 0px 48px 16px -6px;
+    }
+  }
+
+  // 文字在两侧
+  &__alternate {
+    justify-content: center;
+    .yk-timeline__item__timeline {
+      left: 50%;
+    }
+
+    .yk-timeline__item__desc {
+      left: 50%;
+    }
+
+    :nth-child(2n) {
+      .yk-timeline__item__desc {
+        left: 0;
+        margin-right: 0;
+        margin-left: -16px;
+        // padding-right: 16px;
+        width: 50%;
+        text-align: right;
+      }
+    }
+  }
+
+  // 水平时文字在两侧
+  &__alternate--horizontal {
+    align-content: center;
+
+    .yk-timeline__item__timeline {
+      top: 50%;
+    }
+
+    .yk-timeline__item__desc {
+      top: 50%;
+      margin: 30px 40px 0px 0px;
+    }
+
+    :nth-child(2n) {
+      .yk-timeline__item__desc {
+        top: 0;
+        right: 0;
+        left: 0;
+        margin-top: -36px;
+        margin-bottom: 0;
+        padding-bottom: 16px;
+        width: 100%;
+        height: 50%;
+        text-align: left;
+      }
+    }
+  }
+
+  // 倒转状态
+  &--reverse {
+    flex-direction: column-reverse;
+
+    // 第一个节点没有尾巴，最后一个节点有尾巴
+    .yk-timeline__item {
+      &:first-child {
+        .yk-timeline__item__timeline__tail {
+          display: none;
+        }
+
+        .yk-timeline__item__timeline__tail--horizontal {
+          display: none;
+        }
+      }
+
+      &:last-child {
+        .yk-timeline__item__timeline__tail {
+          display: block;
+        }
+
+        .yk-timeline__item__timeline__tail--horizontal {
+          display: bolck;
+        }
+      }
+    }
+    // 水平时倒转
+    &--horizontal {
+      flex-direction: row-reverse;
+    }
+  }
+}
