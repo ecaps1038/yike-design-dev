@@ -11,10 +11,8 @@ type BEMModifier = string[] | Record<string, boolean | string | undefined>;
 export type Align = 'left' | 'center' | 'right';
 
 export interface Table<T> extends ComponentInternalInstance {
-  $ready: boolean;
   store: Store<T>;
   tableId: string;
-  state: any;
   bem: (
     elementOrModifier?: string | undefined,
     modifier?: BEMModifier | undefined,
