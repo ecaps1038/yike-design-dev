@@ -3,7 +3,11 @@ import { SetupContext, computed, inject } from 'vue';
 import { RadioProps } from './radio';
 import type { RadioEmits } from './radio';
 export const useRadio = (
-  props: RadioProps,
+  props: {
+    label: RadioProps['label'];
+    modelValue?: RadioProps['modelValue'];
+    disabled: RadioProps['disabled'];
+  },
   emits?: SetupContext<RadioEmits>['emit'],
 ) => {
   const radioProps = inject(provideKey, undefined);
@@ -14,8 +18,10 @@ export const useRadio = (
     },
     set(val) {
       if (isGroup.value) {
+        // console.log('group');
         radioProps!.changeEvent(val);
       } else {
+        // console.log('lonely');
         emits && emits(UPDATE_MODEL_EVENT, val);
       }
     },
@@ -24,11 +30,9 @@ export const useRadio = (
   const disabled = computed<RadioProps['disabled']>(
     () => radioProps?.disabled || props.disabled!,
   );
+
   return {
     modelValue,
-    disabled: disabled.value,
-    type: radioProps?.type ?? props.type,
-    size: radioProps?.size ?? props.size,
-    solid: radioProps?.solid ?? props.solid,
+    disabled,
   };
 };

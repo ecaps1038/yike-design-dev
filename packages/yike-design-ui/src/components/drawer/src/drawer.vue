@@ -50,11 +50,9 @@
             <div :class="bem('header')" :aria-label="title">
               <slot name="header">{{ props.title }}</slot>
             </div>
-            <YkScrollbar>
-              <div :class="bem('content')">
-                <slot></slot>
-              </div>
-            </YkScrollbar>
+            <div :class="bem('content')">
+              <slot></slot>
+            </div>
             <div :class="bem('footer')">
               <slot name="footer"></slot>
             </div>
@@ -71,7 +69,6 @@ import { computed, ref, nextTick, watch, onMounted } from 'vue'
 import { getElement, getDrawerOrder, drawerStats } from './utils'
 import { onClickOutside } from '@vueuse/core'
 import { createCssScope } from '../../utils/bem'
-import { YkScrollbar } from '../../scrollbar'
 defineOptions({
   name: 'YkDrawer',
 })

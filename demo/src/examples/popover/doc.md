@@ -7,7 +7,7 @@
 :::
 
 :::snippet
-卡片打开状态
+卡片打开方式
 `open` 属性指定卡片打开方式
 <PopoverOpen/>
 :::

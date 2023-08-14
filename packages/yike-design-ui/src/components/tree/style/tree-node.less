@@ -3,18 +3,17 @@
 .yk-tree-node {
   display: flex;
   align-items: center;
-  margin: 2px 0;
   height: 32px;
 
   &__content {
     display: inline-flex;
     align-items: center;
-    padding: 0 @space-ss;
+    padding: 0 4px;
     height: 100%;
     cursor: pointer;
     &:hover {
-      border-radius: @radius-s;
-      background-color: @bg-color-s;
+      border-radius: 4px;
+      background-color: @bg-color-ss;
     }
     &&--block {
       display: flex;
@@ -27,10 +26,5 @@
   }
   &__file {
     margin-right: 4px;
-  }
-  &__checkbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

@@ -26,8 +26,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import { CropImageProps } from './upload'
+import { onMounted } from 'vue'
 import { YkSlider } from '../../../index'
 import { createCssScope } from '../../utils'
 import { useDebounceFn } from '@vueuse/core'

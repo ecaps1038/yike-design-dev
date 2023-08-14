@@ -35,8 +35,6 @@ defineProps({
   top: 60px;
   left: 0;
   z-index: 1;
-  padding-top: 2px;
-  padding-right: 4px;
   width: 268px;
   height: calc(100% - 60px);
   border-right: 1px solid @line-color-s;

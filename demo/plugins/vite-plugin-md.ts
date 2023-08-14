@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import fs from 'fs';
 import path from 'path';
-import { mdCustomH3, mdCustomLinkCls } from './md-plugin';
+import { mdCustomH3 } from './md-plugin';
 export function camelToDashCase(str) {
   return str.replace(/([a-zA-Z])([A-Z])/g, '$1-$2').toLowerCase();
 }
@@ -34,7 +34,6 @@ export default () => ({
       });
 
       markdownIt.use(mdCustomH3);
-      markdownIt.use(mdCustomLinkCls);
 
       // parse primary markdown docs
       if (!id.includes('demo/src')) {

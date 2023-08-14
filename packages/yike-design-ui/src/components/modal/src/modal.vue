@@ -65,7 +65,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { watch, onUnmounted, ref, onMounted } from 'vue'
+import { watch, onUnmounted, ref } from 'vue'
 import { createCssScope } from '../../utils/bem'
 import { modalBaseProps } from './modal'
 import '../style'
@@ -91,8 +91,7 @@ const closeModal = () => {
 onUnmounted(() => {
   document.body.removeEventListener('keydown', escapeClose)
 })
-
-const initScroll = () => {
+watch(props, () => {
   if (props.modelValue) {
     if (props.escapable) {
       document.body.addEventListener('keydown', escapeClose)
@@ -104,16 +103,7 @@ const initScroll = () => {
   if (props.to) {
     target.value = getElement(props.to || 'body')
   }
-}
-
-watch(props, () => {
-  initScroll()
 })
-
-onMounted(() => {
-  initScroll()
-})
-
 const escapeClose = (ev: KeyboardEvent) => {
   if (ev.key === 'Escape') closeModal()
 }

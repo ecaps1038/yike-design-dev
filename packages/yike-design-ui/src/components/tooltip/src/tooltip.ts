@@ -16,7 +16,7 @@ const PLACEMENT = [
 ] as const;
 export type Placement = (typeof PLACEMENT)[number];
 
-const TRIGGER = ['hover', 'focus', 'click', 'contextMenu', 'none'] as const;
+const TRIGGER = ['hover', 'focus', 'click', 'contextMenu'] as const;
 export type Trigger = (typeof TRIGGER)[number];
 
 export type TooltipProps = {

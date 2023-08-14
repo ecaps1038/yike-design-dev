@@ -55,7 +55,7 @@ class MessageManager {
     }
   };
   close = () => {
-    // console.log('closeAll');
+    console.log('closeAll');
   };
 }
 let Instance = <MessageManager>{};

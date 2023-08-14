@@ -1,6 +1,6 @@
 import type { Status } from './progress';
 import type { Size } from '../../utils/constant';
-export type PSize = Exclude<Size, 'xl'>;
+
 export const statusColor = {
   success: '#1fb4a2',
   error: '#fa5247',
@@ -21,7 +21,6 @@ export const getIconName: (status: Status, isLinear?: boolean) => string = (
   isLinear?: boolean,
 ) =>
   ({
-    normal: '',
     success: isLinear ? 'IconTickOutline' : 'IconTickFill',
     error: isLinear ? 'IconCloseOutline' : 'IconCrossFill',
   }[status]);
@@ -29,7 +28,7 @@ export const getIconName: (status: Status, isLinear?: boolean) => string = (
 /**
  * 根据size获取对应的 svg大小
  */
-export const getSvgSize: (size: PSize) => string = (size: PSize) =>
+export const getSvgSize: (size: Size) => string = (size: Size) =>
   ({
     s: '48',
     m: '64',

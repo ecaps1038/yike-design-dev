@@ -61,6 +61,13 @@ export const copyText = (copyStr: string) => {
   document.body.removeChild(textarea);
 };
 
+export const upperColor = (color: any) => {
+  if (!color) {
+    return '';
+  }
+  return color.toUpperCase();
+};
+
 //自定义$emit和$on函数
 const map: any = {};
 export const $emit = (name: any, params: any) => {
