@@ -34,7 +34,7 @@ onMounted(() => {
   <div class="yk-demo-doc">
     <slot />
     <div class="anchor-wrap">
-      <YkAnchor :options="anchors" :scrollbar="true" />
+      <YkAnchor :options="anchors" />
     </div>
   </div>
 </template>
@@ -46,9 +46,9 @@ onMounted(() => {
   .anchor-wrap {
     position: fixed;
     top: 88px;
-    right: 3px;
-    bottom: 20px;
+    right: 0;
     width: 168px;
+    height: 100%;
   }
 }
 </style>

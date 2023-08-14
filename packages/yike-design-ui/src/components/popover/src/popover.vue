@@ -3,7 +3,7 @@
     <template #content>
       <slot name="popover">
         <slot name="title">
-          <div :class="bem('title')">{{ title }}</div>
+          <h3 :class="bem('title')">{{ title }}</h3>
         </slot>
         <slot name="content">
           <div :class="bem('content')">{{ content }}</div>

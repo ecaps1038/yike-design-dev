@@ -1,6 +1,4 @@
-// @import './variables.less';
-@import './slider-marks.less';
-
+@import './variables.less';
 .yk-slider {
   padding: 10px 6px;
   user-select: none;
@@ -22,12 +20,10 @@
       border-radius: 50%;
       background: @bg-color-l;
       cursor: pointer;
-      transition: all @animats;
     }
     .yk-slider__tooltipSpan {
-      width: 12px;
-      height: 12px;
-      // background-color: rgba(0, 0, 0, 0.3);
+      width: 8px;
+      height: 8px;
     }
   }
 }
@@ -44,38 +40,25 @@
       height: 14px;
       box-shadow: @shadow-m;
     }
-  }
-  .yk-slider__button--end {
-    right: -6px;
-    &:hover {
-      right: -7px;
-      width: 14px;
-      height: 14px;
-      box-shadow: @shadow-m;
+    .yk-slider__button--start {
+      left: -6px;
+    }
+    .yk-slider__button--end {
+      right: -6px;
     }
   }
 }
 .yk-slider--vertical {
-  .yk-slider__button {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .yk-slider__button--start {
-    bottom: -6px;
-    &:hover {
-      bottom: -7px;
-      width: 14px;
-      height: 14px;
-      box-shadow: @shadow-m;
+  .yk-slider__bar {
+    .yk-slider__button {
+      left: 50%;
+      transform: translateX(-50%);
     }
-  }
-  .yk-slider__button--end {
-    top: -6px;
-    &:hover {
-      top: -7px;
-      width: 14px;
-      height: 14px;
-      box-shadow: @shadow-m;
+    .yk-slider__button--start {
+      bottom: -6px;
+    }
+    .yk-slider__button--end {
+      top: -6px;
     }
   }
 }

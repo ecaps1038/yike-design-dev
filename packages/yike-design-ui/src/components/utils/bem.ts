@@ -12,7 +12,7 @@ const isString = (val: unknown): val is string => {
 
 type BEMElement = string;
 type BEMModifier =
-  | (string | undefined | false)[]
+  | (string | undefined)[]
   | Record<string, boolean | string | undefined>;
 
 const createModifier = (prefixClass: string, modifierObject?: BEMModifier) => {

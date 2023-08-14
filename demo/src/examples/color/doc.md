@@ -13,3 +13,7 @@
 :::pure
 <ColorNeutral/>
 :::
+
+:::pure
+<ColorOther/>
+:::

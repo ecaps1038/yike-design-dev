@@ -7,16 +7,15 @@ export type InputProps = {
   size?: Size;
   type?: 'text' | 'password';
   placeholder?: string;
-  modelValue?: string | number;
+  value?: string;
   disabled?: boolean;
   readonly?: boolean;
-  required?: boolean;
   clearable?: boolean;
   visible?: boolean;
   status?: Status;
   loading?: boolean;
   showCounter?: boolean;
   limit?: number;
+  tooltip?: string;
   style?: CSSProperties;
-  message?: string;
 };

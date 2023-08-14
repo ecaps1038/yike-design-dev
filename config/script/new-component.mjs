@@ -88,11 +88,12 @@ function createComponentMainFiles() {
   const propsName = `${upperComponentName}Props`
 
   const vueContent = `<template>
-  <div :class="bem()">${upperComponentName}</div>
+  <div class="${tagName}">${upperComponentName}</div>
 </template>
 <script setup lang="ts">
 import { ${upperComponentName}Props } from './${componentLowDashName}'
 import { createCssScope } from '../../utils/bem'
+
 
 const bem = createCssScope('${componentLowDashName}')
 

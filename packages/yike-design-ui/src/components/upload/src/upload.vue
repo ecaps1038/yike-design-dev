@@ -60,7 +60,6 @@
           @handle-re-upload="handleReUpload"
           @handle-abort="handleAbort"
           @handle-edit="handleEdit"
-          @handle-review="handleReview"
         ></upload-picture-item>
       </span>
       <div
@@ -77,15 +76,6 @@
       </div>
     </div>
   </div>
-  <yk-image-preview-group
-    v-model:visible="reviewVisible"
-    v-model:current="defaultReviewIndex"
-    :src-list="imagesUrlList"
-    :is-render="false"
-    width="300"
-    height="200"
-    fit="cover"
-  ></yk-image-preview-group>
 </template>
 <script setup lang="ts">
 import { ref, computed, getCurrentInstance } from 'vue'
@@ -103,7 +93,7 @@ import { createCssScope } from '../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
 import uploadDraggle from './upload-draggle.vue'
 import UploadPictureItem from './upload-picture-item.vue'
-import { YkImagePreviewGroup } from '../../../index'
+
 defineOptions({
   name: 'YkUpload',
 })
@@ -129,31 +119,12 @@ const emits = defineEmits([
   'handleBeforeUpload',
 ])
 const isPicture = ref(false)
-
-const reviewVisible = ref(false)
-
-// 预览时的默认下标
-
-const defaultReviewIndex = ref(0)
-
 const currentList = ref<UploadFile[]>(generateListUid(props.fileList))
 const inputRef = ref<HTMLElement>()
 const uploadInstances = new Map<number, RequestInstance>()
 const currentLength = computed(() => {
   return currentList.value.length
 })
-
-const imagesUrlList = computed(() => {
-  const urlArray = currentList.value.map((ele) => {
-    if (ele.raw) {
-      const blobRaw = URL.createObjectURL(ele.raw)
-      return blobRaw
-    }
-    return ele.url
-  }) as string[]
-  return urlArray
-})
-
 const uploadDisabled = computed(() => {
   return !!props.limit && currentLength.value >= props.limit
 })
@@ -270,12 +241,6 @@ const handleEdit = (blob: Blob, uid: number) => {
   currentList.value.splice(findFileByUid(uid, currentList.value), 1)
   const newFile = blobToFile(blob, fileName)
   onUploadRequest(newFile)
-}
-
-const handleReview = (uid: number) => {
-  const idx = findFileByUid(uid, currentList.value)
-  defaultReviewIndex.value = idx
-  reviewVisible.value = true
 }
 
 // dragger methods

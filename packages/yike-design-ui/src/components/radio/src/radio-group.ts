@@ -1,12 +1,11 @@
 import { Size, Direction } from '../../utils/constant';
 import { radioEmits } from './radio';
-export type GapSize = Size | number | [number, number];
 
 export type RadioGroupProps = {
   modelValue?: number | string | boolean;
-  size?: GapSize;
+  size?: Size;
+  theme?: 'primary' | 'secondary';
   type?: 'radio' | 'button';
-  solid?: boolean;
   disabled?: boolean;
   direction?: Direction;
 };

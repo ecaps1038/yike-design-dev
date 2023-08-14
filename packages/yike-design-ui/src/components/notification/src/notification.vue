@@ -2,8 +2,8 @@
   <div
     class="yk-notification"
     :style="Style"
-    @mouseenter="mouseEnter"
-    @mouseleave="mouseLeave"
+    @mouseenter="clearTimer"
+    @mouseleave="startTimer"
   >
     <div class="notification-container">
       <div class="notification-body">
@@ -41,7 +41,7 @@
           <IconCloseOutline />
         </button>
       </div>
-      <yk-space v-if="props.showFooterBtn" class="notification-footer" size="m">
+      <yk-space v-if="props.showFooterBtn" class="notification-footer">
         <yk-button type="secondary" @click="clickCancel">取消</yk-button>
         <yk-button @click="clickOK">确定</yk-button>
       </yk-space>
@@ -50,8 +50,7 @@
 </template>
 <script setup lang="ts">
 import { NotificationProps } from './notification'
-import { pauseSetTimeout } from './utils'
-import { onMounted, computed, ref } from 'vue'
+import { onMounted, computed } from 'vue'
 import { render } from '../../utils'
 import '../style'
 import { YkButton, YkSpace } from '../../../index'
@@ -69,43 +68,44 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   title: 'Title',
   message: '',
   type: 'primary',
-  duration: 4000,
+  duration: 4500,
   closable: true,
   showFooterBtn: false,
   showIcon: true,
   space: 24,
+  offsetY: 24,
+  offsetX: 24,
   zIndex: 2001,
   dangaurslyUseHtmlString: false,
-  position: 'topRight',
   handleCancel: () => ({}),
   handleSubmit: () => ({}),
   onClose: () => ({}),
 })
 
-const emits = defineEmits(['close', 'lockNotifications', 'unlockNotifications'])
+const emits = defineEmits(['close'])
 
-let timer: any = ref()
-let remainTime = ref(0)
+let timer = 0
 
 const Style = computed(() => ({
-  margin: `${props.space}px`,
+  marginBottom: `${props.space}px`,
+  top: `${props.offsetY}px`,
+  right: `${props.offsetX}px`,
   zIndex: props.zIndex,
 }))
-
-function mouseLeave() {
-  emits('unlockNotifications')
+function startTimer() {
+  if (props.duration <= 0) return
+  timer = Number(
+    setTimeout(() => {
+      close()
+    }, props.duration),
+  )
 }
 
-function mouseEnter() {
-  emits('lockNotifications')
-}
-
-function pause() {
-  timer.value.pause()
-}
-
-function play(firstReaminTime: number) {
-  timer.value.play(firstReaminTime)
+function clearTimer() {
+  if (timer) {
+    clearTimeout(timer)
+    timer = 0
+  }
 }
 
 function close() {
@@ -118,7 +118,6 @@ function handleClose() {
 
 function clickCancel() {
   props.handleCancel && props.handleCancel()
-  close()
 }
 
 function clickOK() {
@@ -126,19 +125,6 @@ function clickOK() {
 }
 
 onMounted(() => {
-  timer.value = new pauseSetTimeout(() => {
-    close()
-  }, props.duration)
-
-  if (props.duration > 0) {
-    timer.value.play(0, true)
-  }
-})
-
-defineExpose({
-  pause,
-  play,
-  timer,
-  remainTime,
+  startTimer()
 })
 </script>

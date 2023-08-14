@@ -1,6 +1,6 @@
 <template>
   <yk-input
-    v-model="inputValue"
+    value="你好，Yike Design"
     clearable
     placeholder="请输入..."
     @focus="onFocus"
@@ -16,8 +16,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-const inputValue = '你好，Yike Design'
+import { ref } from 'vue'
+import { onMounted } from 'vue'
 onMounted(() => {
   messege.value.push('输入框创建')
 })
