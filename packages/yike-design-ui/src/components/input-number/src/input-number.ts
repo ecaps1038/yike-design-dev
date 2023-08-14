@@ -1,7 +1,7 @@
 import { Size } from '../../utils';
 
 export type InputNumberProps = {
-  value?: number;
+  modelValue?: number;
   max?: number;
   min?: number;
   step?: number;

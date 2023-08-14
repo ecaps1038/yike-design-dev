@@ -1,3 +1,6 @@
 <template>
-  <yk-input value="你好，Yike Design" clearable placeholder="请输入..." />
+  <yk-input v-model="inputValue" clearable placeholder="请输入..." />
 </template>
+<script lang="ts" setup>
+const inputValue = '你好，Yike Design'
+</script>

@@ -88,6 +88,10 @@
         {
           "name": "InputNumber 数字输入框",
           "src": "input-number"
+        },
+        {
+          "name": "Form 表单",
+          "src": "form"
         }
       ]
     },

@@ -1,5 +1,9 @@
 <template>
-  <component :is="tag" :class="[ns, ...calcCls]" :style="calcGapStyle">
+  <component
+    :is="tag"
+    :class="bem([direction, mergedSize])"
+    :style="calcGapStyle"
+  >
     <template v-if="curOptions.length">
       <yk-checkbox
         v-for="c in curOptions"
@@ -25,22 +29,39 @@ import type {
   CheckboxOption,
   CheckboxGroupValue,
 } from './checkbox-group'
-import { provide, ref, reactive, computed, useSlots, CSSProperties } from 'vue'
+import {
+  provide,
+  ref,
+  reactive,
+  computed,
+  useSlots,
+  CSSProperties,
+  toRefs,
+} from 'vue'
 import { checkboxGroupContextKey } from './constants'
 import { flexDirection, getMargin, isArray } from './utils'
+import { useFormItem, createCssScope } from '../../utils'
 import { YkCheckbox } from '..'
 
 defineOptions({
   name: 'YkCheckboxGroup',
 })
+const bem = createCssScope('checkbox-group')
 
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   defaultValue: () => [],
-  disabled: undefined,
+  disabled: false,
   tag: 'div',
   direction: 'horizontal',
   options: () => [],
   size: 'l',
+  gap: 'l',
+})
+const { size, disabled } = toRefs(props)
+
+const { mergedSize, mergedDisabled } = useFormItem({
+  size,
+  disabled,
 })
 
 const emits = defineEmits<{
@@ -49,7 +70,6 @@ const emits = defineEmits<{
 }>()
 
 const slots = useSlots()
-const ns = 'yk-checkbox-group'
 
 const curVal = ref(props.defaultValue)
 const calcVal = computed(() =>
@@ -61,11 +81,6 @@ const handleChange = (val: Array<string | number>) => {
   emits('change', val)
   // todo:form trigger
 }
-const calcDisabled = computed(() => props.disabled)
-
-const calcCls = computed(() => {
-  return [`${ns}-direction-${props.direction}`]
-})
 
 const curOptions = computed<CheckboxOption[]>(() => {
   return props.options.map((i) => {
@@ -86,14 +101,14 @@ const isMax = computed(() => {
 })
 
 const resolveGap = computed((): CSSProperties => {
-  if (Array.isArray(props.size)) {
+  if (Array.isArray(props.gap)) {
     return {
-      rowGap: `${props.size[1]}px`,
-      columnGap: `${props.size[0]}px`,
+      rowGap: `${props.gap[1]}px`,
+      columnGap: `${props.gap[0]}px`,
     }
   } else {
     return {
-      gap: `${getMargin(props.size)}px`,
+      gap: `${getMargin(props.gap)}px`,
     }
   }
 })
@@ -108,7 +123,7 @@ provide(
   reactive({
     name: 'YKCheckboxGroup',
     calcVal: calcVal,
-    disabled: calcDisabled,
+    disabled: mergedDisabled,
     handleChange,
     isMax,
   }),

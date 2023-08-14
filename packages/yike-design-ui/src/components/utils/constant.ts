@@ -4,6 +4,9 @@ export type Type = (typeof TYPES)[number];
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type Size = (typeof SIZES)[number];
 
+export const LAYOUT = ['horizontal', 'vertical', 'inline'] as const;
+export type Layout = (typeof LAYOUT)[number];
+
 export const SHAPES = ['default', 'round', 'circle', 'square'] as const;
 export type Shape = (typeof SHAPES)[number];
 
