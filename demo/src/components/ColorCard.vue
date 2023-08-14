@@ -41,7 +41,7 @@ const getHex = () => {
     //   .getPropertyValue(result[2])
     //   .trim())
     // color = color.replace(/var\(.+?\)/, hex)
-    // if (ccRef.value) {
+    // if (ccRef.value) {-m
     //   color = getComputedStyle(ccRef.value).getPropertyValue('background-color')
     // }
 
