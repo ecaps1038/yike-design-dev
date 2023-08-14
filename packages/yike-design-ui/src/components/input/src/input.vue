@@ -14,13 +14,14 @@
           bem('inner'),
           bem({
             [`${status}`]: !mergedDisabled,
-            [`${status}--focus`]: isFocus && !mergedDisabled,
+            [`${status}--focus`]: isFocus && !mergedDisabled && !isError,
             loading: loading,
             disabled: mergedDisabled,
             readonly: readonly,
             rightbr0: !!$slots.append,
             leftbr0: !!$slots.prepend,
-            danger: isError,
+            error: isError,
+            'error-focus': isError,
           }),
           bem([mergedSize]),
         ]"
