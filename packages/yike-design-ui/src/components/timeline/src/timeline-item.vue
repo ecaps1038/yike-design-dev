@@ -33,7 +33,7 @@
       <slot name="title">
         <span :class="bem('desc__title')">{{ title || '--' }}</span>
       </slot>
-      <slot name="content">
+      <slot v-if="$slots.content || content" name="content">
         <span :class="bem('desc__content')">{{ content }}</span>
       </slot>
       <slot name="time">

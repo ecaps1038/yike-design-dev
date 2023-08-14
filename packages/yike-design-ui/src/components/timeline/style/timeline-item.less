@@ -8,27 +8,26 @@
     display: flex;
     justify-content: left;
     flex-direction: column;
-    margin: 0px 0px 30px 30px;
+    margin: 0px 0px @space-xl @space-xl;
 
     &__title {
-      font-size: @size-m;
-      line-height: 22px;
-      word-break: break-all;
+      .font-s();
+      padding-bottom: @space-ss;
       color: @font-color-l;
+      word-break: break-all;
     }
 
     &__content {
-      font-size: @size-ss;
-      line-height: 22px;
+      .font-s();
+      padding-bottom: @space-ss;
       word-break: break-all;
       color: @font-color-m;
     }
 
     &__time {
-      font-size: @size-s;
-      line-height: 18px;
+      .font-ss();
       word-break: break-all;
-      color: @font-color-m;
+      color: @font-color-s;
     }
   }
 
@@ -43,7 +42,7 @@
     // 水平状态尾巴
     &--horizontal {
       top: 3px;
-      left: 11px;
+      left: 9px;
       width: calc(100% - 22px);
       height: 1px;
     }
