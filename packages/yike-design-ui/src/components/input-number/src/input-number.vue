@@ -1,7 +1,7 @@
 <template>
   <YkInput
     ref="inputRef"
-    v-model:value="displayValue"
+    v-model="displayValue"
     :disabled="disabled"
     :size="size"
     :class="bem()"
@@ -57,7 +57,7 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
 })
 
 const bem = createCssScope('input-number')
-const emits = defineEmits(['update:value', 'increase', 'decrease'])
+const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
 const isHovering = ref<boolean>(false)
 const limit = reactive({
   isMax: false,
@@ -70,7 +70,7 @@ const ComboSpeed = 150
 const inputRef = ref<InstanceType<typeof YkInput>>()
 const valueRefs = toRefs(props)
 const lastValue = ref<number>(0)
-const displayValue = ref<string | number>('')
+const displayValue = ref<string>('')
 
 // 计算精度
 const precision = computed(() => {
@@ -126,10 +126,10 @@ const checkLimit = () => {
 }
 
 onMounted(() => {
-  lastValue.value = valueRefs.value?.value ?? getInitialValue()
+  lastValue.value = valueRefs.modelValue?.value ?? getInitialValue()
   checkLimit()
 
-  if (props.value) {
+  if (props.modelValue) {
     displayValue.value = getDisplayValue()
   }
 })
@@ -183,6 +183,6 @@ const change = (value: string) => {
 const update = () => {
   checkLimit()
   displayValue.value = getDisplayValue()
-  emits('update:value', displayValue.value)
+  emits('update:modelValue', precision.value)
 }
 </script>

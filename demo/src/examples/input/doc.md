@@ -49,6 +49,12 @@
 :::
 
 :::snippet
+文字提示
+可以添加当输入框聚焦时显示的文字提示，它可以用于指导用户填写严格的数据。
+<InputMessage/>
+:::
+
+:::snippet
 搜索框
 搜索框 = 输入框 + 按钮
 <InputSearch/>
@@ -82,6 +88,7 @@
 | loading       | 输入框是否为加载中状态             | boolean                                   | false     |
 | show-counter  | 输入框是否显示字数统计             | boolean                                   | false     |
 | limit         | 输入框最大输入字符数               | number                                    | -1        |
+| message       | 输入框聚焦时显示的文字提示         | string                                    | ''        |
 | style         | 组件的样式                         | CSSProperties                             | undefined |
 
 #### InputSearch 属性
