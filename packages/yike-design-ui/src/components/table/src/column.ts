@@ -1,6 +1,5 @@
 import {
   ComponentInternalInstance,
-  PropType,
   VNode,
   computed,
   defineComponent,
@@ -11,7 +10,7 @@ import {
   onMounted,
   ref,
 } from 'vue';
-import { TableColumn, Align } from './table';
+import { TableColumn, defaultTableColumnProps } from './table';
 import { YkCheckbox } from '../../../index';
 
 let columnIdSeed = 1;
@@ -20,15 +19,7 @@ export default defineComponent({
   components: {
     YkCheckbox,
   },
-  props: {
-    type: String,
-    align: {
-      type: String as PropType<Align>,
-    },
-    property: String,
-    label: String,
-    formatter: Function,
-  },
+  props: defaultTableColumnProps,
   setup(props, { slots }) {
     const instance = getCurrentInstance() as ComponentInternalInstance;
     const columnConfig = ref<Partial<TableColumn<any>>>({});
@@ -43,7 +34,16 @@ export default defineComponent({
     });
 
     const store = owner.value.store;
-    const defaultRenderCell = ({ row, column, index }) => {
+    type Row = (typeof store.state.data)[number];
+    const defaultRenderCell = ({
+      row,
+      column,
+      index,
+    }: {
+      row: Row;
+      column: TableColumn<Row>;
+      index: number;
+    }) => {
       const property = column.property;
       const value = property && row[property];
       if (column && column.type == 'checkbox') {
@@ -67,7 +67,7 @@ export default defineComponent({
         align: props.align,
         property: props.property,
         label: props.label,
-        // formatter: props.formatter, // TODO add formatter
+        formatter: props.formatter,
         renderCell: (data) => {
           let children: VNode | null = null;
           if (slots.default) {
@@ -80,9 +80,8 @@ export default defineComponent({
           }
           return h('div', { class: ['cell'] }, [children]);
         },
-        renderHeader: ({ column }) => {
-          // TODO add header slot
-          // const renderHeader = slots.header;
+        renderHeader: ({ column, index }) => {
+          const renderHeader = slots.header;
           let children: VNode | null = null;
           if (column.type === 'checkbox') {
             children = h(YkCheckbox, {
@@ -97,7 +96,9 @@ export default defineComponent({
           } else {
             children = column.label;
           }
-          return h('div', { class: 'cell' }, [children]);
+          return h('div', { class: 'cell' }, [
+            renderHeader ? renderHeader({ column, index }) : children,
+          ]);
         },
       };
     });

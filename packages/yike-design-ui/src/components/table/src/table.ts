@@ -46,7 +46,7 @@ export interface TableColumn<T> {
   formatter: (
     row: T,
     column: TableColumn<T>,
-    cellValue,
+    cellValue: string,
     index: number,
   ) => VNode | string;
 }
@@ -57,5 +57,19 @@ export const defaultTableProps = {
     default: () => [],
   },
 };
+
+export const defaultTableColumnProps = {
+  type: {
+    type: String,
+    default: 'default',
+  },
+  align: {
+    type: String as PropType<Align>,
+    default: 'left',
+  },
+  property: String,
+  label: String,
+  formatter: Function as PropType<TableColumn<any>['formatter']>,
+} as const;
 
 export const TABLE_INJECTION_KEY: InjectionKey<Table<any>> = Symbol('YkTable');
