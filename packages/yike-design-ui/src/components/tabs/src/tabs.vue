@@ -1,12 +1,24 @@
 <template>
   <div :class="ns()">
+    <component
+      :is="pannes"
+      v-if="props.tabPosition === 'bottom'"
+      key="1"
+      class="top"
+    ></component>
     <yk-tab-nav
       :type="type"
       @change="onNavChange"
       @add="$emit('add')"
       @delete="$emit('delete', $event)"
     ></yk-tab-nav>
-    <slot />
+
+    <component
+      :is="pannes"
+      v-if="props.tabPosition === 'top'"
+      key="1"
+      class="bottom"
+    ></component>
   </div>
 </template>
 <script setup lang="ts">
@@ -21,7 +33,10 @@ import {
   computed,
   readonly,
   getCurrentInstance,
+  useSlots,
+  h,
 } from 'vue'
+
 const ns = createCssScope('tabs')
 defineOptions({
   name: 'YkTabs',
@@ -32,6 +47,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   closable: false,
   addable: false,
   editable: false,
+  tabPosition: 'top',
 })
 
 const emits = defineEmits<{
@@ -41,6 +57,13 @@ const emits = defineEmits<{
 }>()
 
 const { uid } = getCurrentInstance()!
+const slots = useSlots()
+const renderPanes = () => {
+  console.log()
+
+  return h('div', slots?.default?.())
+}
+const pannes = computed(() => renderPanes())
 const paneOptions = ref<PaneOptionsProp[]>([])
 
 const activedId = computed(() => {
@@ -51,6 +74,29 @@ const activedId = computed(() => {
 
   return active?.id
 })
+
+// const activedId = ref(props.modelValue)
+// watch(
+//   () => [props.modelValue, paneOptions.value],
+//   async ([n1, n2], [o1, o2]) => {
+//     await nextTick()
+//     if (!paneOptions.value.length) {
+//       return
+//     }
+//     if (props.modelValue === undefined) {
+//       activedId.value = paneOptions.value[0]?.id
+//       return
+//     }
+//     const active = paneOptions.value.find((i) => i.name === props.modelValue)
+
+//     activedId.value = active?.id
+//     console.log(666, activedId.value, paneOptions.value)
+//   },
+//   {
+//     immediate: true,
+//     deep: true,
+//   },
+// )
 
 const onNavChange = (v: PaneOptionsProp) => {
   emits('update:modelValue', v.name)

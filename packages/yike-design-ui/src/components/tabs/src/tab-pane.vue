@@ -43,6 +43,7 @@ const nPane = computed<PaneOptionsProp>(() => {
 })
 const updateCtx = () => {
   optionsCtx.paneOptions.push(nPane.value)
+  console.log('addyy', uid)
 }
 const calcPaneStyle = computed<CSSProperties>(() => ({
   display: optionsCtx.activedId === uid ? 'block' : 'none',

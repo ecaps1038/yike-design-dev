@@ -8,6 +8,7 @@ export type TabsProps = {
   closable?: boolean;
   addable?: boolean;
   editable?: boolean;
+  tabPosition?: 'top' | 'bottom' | 'left' | 'right';
 };
 
 export type TabInjectOption = {

@@ -29,3 +29,9 @@
 自定义增加标签页触发器
 <TabsAddTrigger/>
 :::
+
+:::snippet
+标签位置的设置
+标签一共有四个方向的设置 `tabPosition="left|right|top|bottom"`
+<TabsPosition/>
+:::
