@@ -14,6 +14,7 @@
 .yk-input__spinner {
   display: flex;
   align-items: center;
+  margin-right: 6px;
 }
 
 .yk-input--slot {
@@ -85,6 +86,7 @@
   height: 20px;
   border-radius: 50%;
   transition: all @animatb;
+  fill: @font-color-l !important;
 
   &:hover {
     fill: @font-color-l !important;
@@ -116,48 +118,6 @@
   button {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-  }
-}
-
-// copy from YkButton
-.yk-input--loading {
-  #spinner {
-    margin-right: 6px;
-    width: 16px;
-    transform-origin: center;
-    animation: rotate4 2s linear infinite;
-  }
-
-  circle {
-    fill: none;
-    stroke: @pcolor;
-    stroke-width: 3;
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-    stroke-linecap: round;
-    animation: dash4 1.5s ease-in-out infinite;
-  }
-
-  @keyframes rotate4 {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes dash4 {
-    0% {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-    }
-
-    50% {
-      stroke-dasharray: 90, 200;
-      stroke-dashoffset: -35px;
-    }
-
-    100% {
-      stroke-dashoffset: -125px;
-    }
   }
 }
 

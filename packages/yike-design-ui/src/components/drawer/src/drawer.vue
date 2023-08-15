@@ -66,11 +66,11 @@
 </template>
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
-import '../style'
 import { computed, ref, nextTick, watch, onMounted } from 'vue'
 import { getElement, getDrawerOrder, drawerStats } from './utils'
 import { createCssScope } from '../../utils/bem'
 import { YkScrollbar } from '../../scrollbar'
+
 defineOptions({
   name: 'YkDrawer',
 })

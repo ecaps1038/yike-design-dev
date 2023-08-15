@@ -9,6 +9,7 @@
 import { SpinnerProps, resolveSize, resolveColor } from './spinner'
 import { createCssScope } from '../../utils/bem'
 import { computed } from 'vue'
+import '../style'
 
 const bem = createCssScope('spinner')
 
