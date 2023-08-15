@@ -41,7 +41,7 @@ export default defineComponent({
       default: 'top',
     },
   },
-  emits: ['update:modelValue', 'add', 'delete'],
+  emits: ['update:modelValue', 'add', 'delete', 'change'],
   setup(props, { emit, slots }) {
     const ns = createCssScope('tabs')
     const { uid } = getCurrentInstance()!
@@ -58,11 +58,15 @@ export default defineComponent({
     })
 
     const onNavChange = (v: PaneOptionsProp) => {
+      emit('change', v.name)
       emit('update:modelValue', v.name)
     }
 
     const destroyPane = (id: number) => {
       paneOptions.value = paneOptions.value.filter((i) => i.id !== id)
+    }
+    const onDel = (v: PaneOptionsProp) => {
+      emit('delete', { name: v.name, label: v.label, disabled: v.disabled })
     }
     provide(
       YkTabsProvideKey,
@@ -81,7 +85,7 @@ export default defineComponent({
           type={props.type}
           onChange={onNavChange}
           onAdd={() => emit('add')}
-          onDelete={(event: MouseEvent) => emit('delete', event)}
+          onDelete={onDel}
         ></YkTabNav>
       )
       const pannes = (

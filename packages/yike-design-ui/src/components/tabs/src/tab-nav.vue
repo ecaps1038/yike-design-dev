@@ -16,7 +16,13 @@
           v-for="(item, index) in navItems"
           :key="item.name"
           :ref="(el) => setTabRefs(el, item.id)"
-          :class="[ns('item', [isActive(item) && 'active', type])]"
+          :class="[
+            ns('item', [
+              isActive(item) && 'active',
+              type,
+              item.disabled && 'disabled',
+            ]),
+          ]"
           @click="onNavClick($event, item, index)"
         >
           <component
@@ -35,7 +41,7 @@
         v-if="isLine"
         :offset="barOptions.offset"
         :width="barOptions.width"
-        direction="horizontal"
+        :direction="barDirection"
       ></yk-tab-bar>
     </div>
     <IconRightOutline
@@ -46,6 +52,7 @@
     <div></div>
     <IconPlusOutline
       v-if="rootProps?.addable || rootProps?.editable"
+      class="yk-tab-plus"
       @click="onAdd"
     />
   </div>
@@ -108,6 +115,9 @@ const isActive = (item: PaneOptionsProp) => {
   return optionsCtx.activedId === item.id
 }
 const onNavClick = (v: MouseEvent, item: PaneOptionsProp, index: number) => {
+  if (item.disabled) {
+    return
+  }
   emits('change', item)
 }
 
@@ -124,11 +134,13 @@ const updateBarOptions = () => {
     return
   }
   const target = activeTab.value!
-  const w = target.offsetWidth / 2
-  const dis = (target.offsetWidth - w) / 2
+  const targetWH = isX.value ? target.offsetWidth : target.offsetHeight
+  const targetLT = isX.value ? target.offsetLeft : target.offsetTop
+  const w = targetWH / 2
+  const dis = (targetWH - w) / 2
   barOptions.value = {
     width: w,
-    offset: target.offsetLeft + dis + scrollOffset.value,
+    offset: targetLT + dis + scrollOffset.value,
   }
 }
 
@@ -281,9 +293,18 @@ const onAdd = () => {
   emits('add')
 }
 const deleteTab = (item: PaneOptionsProp) => {
+  if (item.disabled) {
+    return
+  }
   emits('delete', item)
 }
 
+const barDirection = computed(() => {
+  const pos = optionsCtx.rootProps?.tabPosition
+  const h = ['bottom', 'top']
+  return h.includes(pos || '') ? 'horizontal' : 'vertical'
+})
+const isX = computed(() => barDirection.value === 'horizontal')
 const navRef = ref<HTMLElement>()
 useResizeObserver(navRef, async () => {
   await nextTick()

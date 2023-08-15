@@ -2,7 +2,6 @@ import { InjectionKey } from 'vue';
 import { PaneOptionsProp } from './pane';
 
 export type TabsProps = {
-  id?: string;
   modelValue?: number | string;
   type?: 'line' | 'card';
   closable?: boolean;

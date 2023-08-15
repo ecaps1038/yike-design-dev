@@ -14,9 +14,11 @@ const props = withDefaults(defineProps<TabBar>(), {
 })
 
 const calcStyle = computed<CSSProperties>(() => {
+  const dir = props.direction === 'horizontal' ? 'X' : 'Y'
   return {
-    transform: `translateX(${props.offset}px)`,
-    width: `${props.width}px`,
+    transform: `translate${dir}(${props.offset}px)`,
+    width: dir === 'X' ? `${props.width}px` : '',
+    height: dir === 'Y' ? `${props.width}px` : '',
   }
 })
 </script>

@@ -20,10 +20,12 @@ import {
   getCurrentInstance,
 } from 'vue'
 import { createCssScope } from '../../utils/bem'
-import { PaneOptionsProp, ExposePaneProp } from './pane'
+import { PaneOptionsProp, PaneProp } from './pane'
 import { YkTabsProvideKey } from './tabs'
 
-const props = withDefaults(defineProps<ExposePaneProp>(), {})
+const props = withDefaults(defineProps<PaneProp>(), {
+  disabled: false,
+})
 const ns = createCssScope('tabs-pane')
 const { uid } = getCurrentInstance()!
 const slots = useSlots()
@@ -37,13 +39,13 @@ const nPane = computed<PaneOptionsProp>(() => {
   return {
     name: props.name,
     label: props.label,
+    disabled: props.disabled,
     id: uid,
     titleSlot: slots.title,
   }
 })
 const updateCtx = () => {
   optionsCtx.paneOptions.push(nPane.value)
-  console.log('addyy', uid)
 }
 const calcPaneStyle = computed<CSSProperties>(() => ({
   display: optionsCtx.activedId === uid ? 'block' : 'none',

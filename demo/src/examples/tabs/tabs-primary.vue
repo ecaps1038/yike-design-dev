@@ -11,6 +11,7 @@
       :key="item.name"
       :label="item.label"
       :name="item.name"
+      :disabled="item.disabled"
     >
       <template v-if="item.showSlot" #title>
         <IconTimeOutline />
@@ -35,6 +36,7 @@ const data = Array.from({ length: 5 }, (i, index) => {
     name: index,
     label: `Tab${index + 1}`,
     showSlot: index % 2 === 0,
+    disabled: indexL % 2 === 0,
   }
 })
 const acitve = ref(0)

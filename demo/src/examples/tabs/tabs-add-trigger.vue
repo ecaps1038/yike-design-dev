@@ -43,7 +43,8 @@ const tabs = ref()
 setTimeout(() => {
   tabs.value = data
 }, 0)
-const onAddTab = () => {
+const onAddTab = (v: any) => {
+  console.log('add', v)
   indexL++
   tabs.value.push({
     name: indexL,
