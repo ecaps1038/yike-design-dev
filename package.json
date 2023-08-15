@@ -22,7 +22,6 @@
     "test:coverage": "pnpm --filter @yike/test test:coverage"
   },
   "dependencies": {
-    "mitt": "^3.0.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {
