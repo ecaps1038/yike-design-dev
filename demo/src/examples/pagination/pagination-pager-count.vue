@@ -1,3 +1,3 @@
 <template>
-  <yk-pagination :total="20" :pager-count="10"></yk-pagination>
+  <yk-pagination :total="1000" :pager-count="10"></yk-pagination>
 </template>

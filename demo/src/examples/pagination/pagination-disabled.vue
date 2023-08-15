@@ -1,7 +1,21 @@
 <template>
-  <yk-pagination v-model:current="current" disabled :total="7"></yk-pagination>
+  <div>
+    <yk-pagination
+      disabled
+      :total="50"
+      show-jumper
+      show-page-size
+      show-total
+    ></yk-pagination>
+  </div>
+  <div style="margin-top: 10px">
+    <yk-pagination
+      disabled
+      :total="50"
+      simple
+      show-jumper
+      show-page-size
+      show-total
+    ></yk-pagination>
+  </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue'
-const current = ref<number>(5)
-</script>

@@ -10,6 +10,7 @@ interface PaginationProps {
   defaultPageSize?: number;
   disabled?: boolean;
   pagerCount?: number;
+  pageSizeOptions?: number[];
   size?: Size;
   simple?: boolean;
   showTotal?: boolean;
@@ -22,6 +23,8 @@ interface PaginationProps {
 
 type PaginationEmits = {
   (e: 'update:current', value: number): void;
+  (e: 'change', current: number): void;
+  (e: 'pageSizeChange', pageSize: number): void;
 };
 
 export type { PaginationEmits, PaginationProps };

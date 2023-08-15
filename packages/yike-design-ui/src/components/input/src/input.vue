@@ -74,9 +74,7 @@
           <span v-if="shouldShowLimit">&nbsp;/&nbsp;{{ limit }}</span>
         </div>
         <div v-if="loading" :class="bem('spinner')">
-          <svg id="spinner" viewBox="25 25 50 50">
-            <circle r="20" cy="50" cx="50"></circle>
-          </svg>
+          <YkSpinner />
         </div>
         <div v-if="$slots.suffix" :class="bem(['slot', 'after'])">
           <slot name="suffix" />
@@ -95,11 +93,10 @@
 </template>
 <script setup lang="ts">
 import { InputProps } from './input'
-import '../style'
 import { computed, ref, toRef, watch, toRefs } from 'vue'
-import { createCssScope } from '../../utils/bem'
 import { IconCloseEyeOutline, IconCloseOutline } from '../../svg-icon'
-import { useFormItem } from '../../utils'
+import { useFormItem, createCssScope } from '../../utils'
+import { YkSpinner } from '../../spinner'
 
 defineOptions({
   name: 'YkInput',

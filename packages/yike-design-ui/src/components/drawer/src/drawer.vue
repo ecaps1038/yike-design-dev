@@ -66,12 +66,11 @@
 </template>
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
-import '../style'
 import { computed, ref, nextTick, watch, onMounted } from 'vue'
 import { getElement, getDrawerOrder, drawerStats } from './utils'
-import { onClickOutside } from '@vueuse/core'
 import { createCssScope } from '../../utils/bem'
 import { YkScrollbar } from '../../scrollbar'
+
 defineOptions({
   name: 'YkDrawer',
 })
@@ -94,14 +93,16 @@ const emits = defineEmits(['close', 'open', 'before-close'])
 const focuser = ref<HTMLElement>()
 const drawerMain = ref<HTMLElement>()
 const shouldVisible = ref<boolean>()
-const isFullscreenDrawer = ref<boolean>(props.to === 'body')
+const isFullscreenDrawer = ref<boolean>()
 const bem = createCssScope('drawer')
 
 nextTick(() => {
   target.value = getElement(props.to)
+  isFullscreenDrawer.value = target.value === document.body
 })
 
 const onAfterOpen = () => {
+  target.value!.addEventListener('click', onClickOutside)
   focuser.value?.focus()
 }
 
@@ -115,6 +116,7 @@ const close = () => {
 }
 
 const onDestory = () => {
+  target.value!.removeEventListener('click', onClickOutside)
   document.body.removeEventListener('keydown', onEscape)
   if (isFullscreenDrawer.value) {
     drawerStats.close()
@@ -129,7 +131,11 @@ const onEscape = (ev: KeyboardEvent) => {
   if (ev.key === 'Escape') close()
 }
 
-onClickOutside(drawerMain, close)
+const onClickOutside = (ev: Event) => {
+  if (!drawerMain.value?.contains(ev.target as Node)) {
+    close()
+  }
+}
 
 onMounted(() => {
   if (props.show) {

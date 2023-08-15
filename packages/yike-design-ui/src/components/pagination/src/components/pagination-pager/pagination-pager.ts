@@ -2,9 +2,11 @@ import type { PaginationProps } from '../../pagination';
 
 type PagerProps = Pick<
   PaginationProps,
-  'total' | 'pagerCount' | 'fixWidth' | 'simple'
+  'pagerCount' | 'fixWidth' | 'simple' | 'disabled'
 > & {
+  totalPages: number;
   current: number;
+  pageSize: number;
 };
 
 type PagerEmits = {

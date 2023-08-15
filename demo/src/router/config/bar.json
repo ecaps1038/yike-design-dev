@@ -170,6 +170,10 @@
         {
           "name": "Popconfirm 气泡确认框",
           "src": "popconfirm"
+        },
+        {
+          "name": "Spinner 加载",
+          "src": "spinner"
         }
       ]
     },

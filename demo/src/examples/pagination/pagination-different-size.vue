@@ -9,7 +9,7 @@
   </div>
   <div>
     <yk-pagination
-      :total="10"
+      :total="2345"
       :size="size"
       show-jumper
       show-page-size

@@ -2,7 +2,13 @@ import type { PaginationProps } from '../../pagination';
 
 type JumperProps = Pick<
   PaginationProps,
-  'current' | 'total' | 'size' | 'simple'
->;
+  'current' | 'size' | 'simple' | 'disabled'
+> & {
+  totalPages: number;
+};
 
-export type { JumperProps };
+type JumperEmits = {
+  (e: 'jump', page: number): void;
+};
+
+export type { JumperProps, JumperEmits };

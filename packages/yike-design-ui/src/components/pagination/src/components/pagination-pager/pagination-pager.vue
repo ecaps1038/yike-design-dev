@@ -51,18 +51,20 @@
     <pagination-jumper
       v-if="simple"
       :current="current"
-      :total="total"
+      :total-pages="totalPages"
       :simple="simple"
+      :disabled="disabled"
+      @jump="(page) => emits('change', page)"
     ></pagination-jumper>
 
     <span
-      v-if="!simple"
+      v-if="!simple && totalPages >= 2"
       :class="[
-        ...cssScope('item', { active: current === total }),
+        ...cssScope('item', { active: current === totalPages }),
         cssScope('item-number'),
       ]"
     >
-      {{ total }}
+      {{ totalPages }}
     </span>
 
     <span
@@ -95,27 +97,45 @@ const emits = defineEmits<PagerEmits>()
 const cssScope = useCssScope('pager')
 
 const canPrev = computed(() => props.current > 1)
-const canNext = computed(() => props.current < props.total)
+const canNext = computed(() => props.current < props.totalPages)
 const pagerSize = computed(() =>
-  props.total > props.pagerCount ? props.pagerCount - 2 : props.total - 2,
+  props.totalPages > props.pagerCount
+    ? props.pagerCount - 2
+    : props.totalPages - 2,
 )
 const pagerMidIndex = computed(() => Math.floor(pagerSize.value / 2))
-const showPrevMoreThreshold = computed(() => 2 + pagerMidIndex.value)
-const showNextMoreThreshold = computed(
-  () => props.total - pagerMidIndex.value - 1,
+
+const showPrevEllispsisThreshold = computed(() => pagerMidIndex.value + 1)
+const showPrevEllispsis = computed(() =>
+  pagerSize.value < props.pagerCount - 2 ||
+  props.totalPages === props.pagerCount
+    ? false
+    : props.current > showPrevEllispsisThreshold.value,
 )
+
+const showNextEllispsisThreshold = computed(
+  () => props.totalPages - pagerMidIndex.value - 1,
+)
+const showNextEllispsis = computed(() =>
+  pagerSize.value < props.pagerCount - 2 ||
+  props.totalPages === props.pagerCount
+    ? false
+    : props.current < showNextEllispsisThreshold.value,
+)
+
 const pagers = computed(() => {
   const array: number[] = []
-  if (props.simple) {
+  if (props.simple || pagerSize.value < 2) {
     return array
   }
-  if (props.current <= showPrevMoreThreshold.value) {
+
+  if (props.current <= showPrevEllispsisThreshold.value) {
     for (let i = 0; i < pagerSize.value; i++) {
       array.push(i + 2)
     }
   } else if (
-    props.current > showPrevMoreThreshold.value &&
-    props.current < showNextMoreThreshold.value
+    props.current > showPrevEllispsisThreshold.value &&
+    props.current < showNextEllispsisThreshold.value
   ) {
     let start: number
     const size = pagerSize.value - (props.fixWidth ? 1 : 0)
@@ -130,23 +150,12 @@ const pagers = computed(() => {
     }
   } else {
     for (let i = 0; i < pagerSize.value; i++) {
-      array.push(props.total - (i + 1))
+      array.push(props.totalPages - (i + 1))
     }
     array.reverse()
   }
   return array
 })
-
-const showPrevEllispsis = computed(() =>
-  pagerSize.value < props.pagerCount - 2 || props.total === props.pagerCount
-    ? false
-    : props.current > showPrevMoreThreshold.value,
-)
-const showNextEllispsis = computed(() =>
-  pagerSize.value < props.pagerCount - 2 || props.total === props.pagerCount
-    ? false
-    : props.current < showNextMoreThreshold.value,
-)
 
 const prev = () => {
   if (props.current > 1) {
@@ -155,7 +164,7 @@ const prev = () => {
 }
 
 const next = () => {
-  if (props.current < props.total) {
+  if (props.current < props.totalPages) {
     emits('change', props.current + 1)
   }
 }
@@ -183,7 +192,10 @@ const handleEllispsisClick = (type: 'prev' | 'next') => {
   } else {
     page = props.current + 5
   }
-  emits('change', page < 1 ? 1 : page > props.total ? props.total : page)
+  emits(
+    'change',
+    page < 1 ? 1 : page > props.totalPages ? props.totalPages : page,
+  )
 }
 </script>
 
