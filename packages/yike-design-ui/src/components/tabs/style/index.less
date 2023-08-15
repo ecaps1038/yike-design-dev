@@ -14,20 +14,59 @@
   &-nav {
     position: relative;
     display: flex;
-    align-items: center;
+    // align-items: center;
     overflow: hidden;
     border-bottom: 1px solid @line-color-s;
     .yk-icon {
       cursor: pointer;
     }
-
-    &__wrap {
-      display: flex;
-      flex-wrap: nowrap;
-      flex: 1;
-      overflow: hidden;
-      min-height: @base-height;
+    &.is-top,
+    &.is-bottom {
+      align-items: center;
+      .yk-tabs-nav__wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1;
+        overflow: hidden;
+        min-height: @base-height;
+      }
     }
+
+    &.is-left {
+      justify-content: center;
+      float: left;
+      .yk-tabs-nav__wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1;
+        overflow: hidden;
+        min-width: @base-height;
+      }
+      .yk-tabs-nav__scroll {
+        flex-direction: column;
+      }
+    }
+    &.is-right {
+      justify-content: center;
+      float: right;
+      .yk-tabs-nav__wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1;
+        overflow: hidden;
+        min-width: @base-height;
+      }
+      .yk-tabs-nav__scroll {
+        flex-direction: column;
+      }
+    }
+    // &__wrap {
+    //   display: flex;
+    //   flex-wrap: nowrap;
+    //   flex: 1;
+    //   overflow: hidden;
+    //   min-height: @base-height;
+    // }
     &__scroll {
       display: flex;
       flex-wrap: nowrap;

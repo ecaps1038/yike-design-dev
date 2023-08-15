@@ -1,5 +1,5 @@
 <template>
-  <div ref="navRef" :class="[ns()]">
+  <div ref="navRef" :class="[ns(), calcPosCls]">
     <IconLeftOutline
       v-if="showChrols"
       :class="[ns('icon', { disabled: disabledMap.disablePre })]"
@@ -275,7 +275,7 @@ const getPaneTitleSlot = (slot: any) => {
 
 // 判断是否线型风格
 const isLine = computed(() => props.type === 'line')
-
+const calcPosCls = computed(() => `is-${rootProps?.tabPosition}`)
 // 动态增减
 const onAdd = () => {
   emits('add')

@@ -7,9 +7,10 @@ import {
   reactive,
   readonly,
   ref,
+  PropType,
 } from 'vue'
 import { PaneOptionsProp } from './pane'
-import { YkTabsProvideKey } from './tabs'
+import { TabsProps, YkTabsProvideKey } from './tabs'
 import { createCssScope } from '../../utils/bem'
 import YkTabNav from './tab-nav.vue'
 export default defineComponent({
@@ -20,7 +21,7 @@ export default defineComponent({
       default: '',
     },
     type: {
-      type: String,
+      type: String as PropType<TabsProps['type']>,
       default: 'line',
     },
     closable: {
@@ -36,12 +37,12 @@ export default defineComponent({
       default: false,
     },
     tabPosition: {
-      type: String,
+      type: String as PropType<TabsProps['tabPosition']>,
       default: 'top',
     },
   },
   emits: ['update:modelValue', 'add', 'delete'],
-  setup(props, { emit, slots, expose }) {
+  setup(props, { emit, slots }) {
     const ns = createCssScope('tabs')
     const { uid } = getCurrentInstance()!
 
@@ -83,7 +84,9 @@ export default defineComponent({
           onDelete={(event: MouseEvent) => emit('delete', event)}
         ></YkTabNav>
       )
-      const pannes = <div>{renderSlot(slots, 'default')}</div>
+      const pannes = (
+        <div class={ns('panes__container')}>{renderSlot(slots, 'default')}</div>
+      )
       return (
         <div class={ns()}>
           {props.tabPosition !== 'bottom' ? [header, pannes] : [pannes, header]}

@@ -2,6 +2,8 @@
   <div>
     <yk-button @click="change('top')">top</yk-button>
     <yk-button @click="change('bottom')">bottom</yk-button>
+    <yk-button @click="change('left')">left</yk-button>
+    <yk-button @click="change('right')">right</yk-button>
   </div>
   <yk-tabs v-model="acitve" :tab-position="position">
     <yk-tab-pane name="1" label="tab1">Content of Tab Panel 1</yk-tab-pane>
