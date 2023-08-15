@@ -14,7 +14,7 @@
 
 :::snippet
 事件
-监听 open 和 close 事件以实现回调或访问控制。
+监听 `open` 、 `close` 和 `before-close` 事件以实现回调或访问控制。
 <DrawerCallback/>
 :::
 

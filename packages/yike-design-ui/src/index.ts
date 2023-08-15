@@ -21,6 +21,8 @@ import { YkCollapse, YkCollapseGroup } from './components/collapse';
 import YkPopconfirm from './components/popconfirm';
 import YkInputNumber from './components/input-number';
 import { YkTabs, YkTabPane } from './components/tabs';
+import { YkForm, YkFormItem } from './components/form';
+import YkSpinner from './components/spinner';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -74,6 +76,9 @@ const components: {
   YkInputNumber,
   YkTabs,
   YkTabPane,
+  YkForm,
+  YkFormItem,
+  YkSpinner,
   YkAlert,
   YkButton,
   YkTheme,
@@ -126,6 +131,9 @@ export {
   YkInputNumber,
   YkTabs,
   YkTabPane,
+  YkForm,
+  YkFormItem,
+  YkSpinner,
   YkAlert,
   YkButton,
   YkTheme,

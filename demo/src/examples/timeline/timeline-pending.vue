@@ -11,6 +11,7 @@
           <IconTickOutline
             :style="{
               fontSize: '12px',
+              color: '#ffffff',
               padding: '2px',
               boxSizing: 'border-box',
               borderRadius: '50%',
@@ -24,6 +25,7 @@
           <IconTickOutline
             :style="{
               fontSize: '12px',
+              color: '#ffffff',
               padding: '2px',
               boxSizing: 'border-box',
               borderRadius: '50%',

@@ -65,18 +65,3 @@ img {
   margin: 0;
   padding: 0;
 }
-
-// 基于伪元素的文字提示（tooltip），在任何组件都可用。
-[data-tooltip]:before {
-  position: absolute;
-  bottom: 110%;
-  padding: 7px;
-  min-width: 300px;
-  font-size: @size-s;
-  border: 1px solid @wcolor;
-  border-radius: @radius-s;
-  background-color: @wcolor-4;
-  box-shadow: @shadow-m;
-  content: attr(data-tooltip);
-  line-height: 1.2;
-}
