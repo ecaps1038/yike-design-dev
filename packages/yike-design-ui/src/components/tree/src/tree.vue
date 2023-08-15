@@ -15,7 +15,7 @@ import Node from './node.vue'
 import { Key } from '../../utils'
 import { tree2list } from './internal'
 import '../style/index'
-  
+
 import {
   watch,
   ref,
@@ -29,6 +29,7 @@ import {
 import { IconRightFill } from '../../svg-icon'
 import { getOffspringKeys } from './util'
 import { YkScrollbar } from '../../scrollbar'
+import myBus from '../../utils/bus'
 
 const bem = createCssScope('tree')
 
@@ -135,6 +136,14 @@ const onSelect = (key: Key) => {
   }
   emits('select', selectedKeys.value)
 }
+//根据Key取消选择逻辑
+const onDeselect = (key: Key) => {
+  if (props.multiple) {
+    selectedKeys.value = selectedKeys.value.filter((k) => k !== key)
+  } else {
+    selectedKeys.value = []
+  }
+}
 
 // handle node check logic
 const checkedKeys = defineModel<Key[]>('checkedKeys', {
@@ -215,6 +224,18 @@ const onChecked = (keys: Key[], checked: boolean) => {
     _checkedKeys.value = _checkedKeys.value.filter((k) => !keys.includes(k))
   }
 }
+
+myBus.on('unSelectKeys', (data) => {
+  onDeselect(data as Key)
+  if (checkable.value) {
+    let unSelectKeys: Key[] = []
+    unSelectKeys.push(data as Key)
+    onChecked(unSelectKeys, false)
+  }
+})
+myBus.on('selectKeys', (data) => {
+  selectedKeys.value = data as Key[]
+})
 
 provide(
   TreeInjectionKey,

@@ -44,7 +44,7 @@
       "
       @click="multipleFocus"
     >
-      <div ref="scroll" class="scrollContent" @wheel="TagsWheel">
+      <div ref="scroll" class="scrollContent">
         <div
           v-for="(item, index) in props.currentItems"
           class="yk-select-view__tags"
@@ -52,7 +52,7 @@
           <div class="text">{{ item.label }}</div>
           <IconCloseOutline
             class="yk-select-view__icon--closed"
-            @click="closedItem(index)"
+            @click="closedItem(item, index)"
           />
         </div>
       </div>
@@ -61,11 +61,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, onMounted, watchEffect } from 'vue'
+import { ref, Ref, onMounted, watchEffect, watch, unref } from 'vue'
 import { TreeOption } from '../../tree/src/tree'
 import { IconCloseOutline } from '../../svg-icon'
+import myBus from '../../utils/bus'
+import { Key } from '../../utils'
 
 const props = defineProps<{
+  options: TreeOption[]
   currentItems: TreeOption[]
   isFocus: boolean
   bordered: boolean
@@ -74,6 +77,7 @@ const props = defineProps<{
   allowClear: boolean
   placeholder: string
   defaultValue: string
+  checkable: boolean
 }>()
 const focusShadow = ref<boolean>(false)
 const inputValue = ref<string>('')
@@ -111,13 +115,16 @@ const clearInputValue = () => {
   inputValue.value = ''
 }
 
-const closedItem = (index: number) => {
-  props.currentItems.splice(index, index + 1)
+const closedItem = (item: TreeOption, index: number) => {
+  props.currentItems.splice(index, 1)
+  myBus.emit('unSelectKeys', item.key)
 }
 
 const wheelShifting = ref<number>(0)
 const scrollWidth = ref<number>(0)
 const TagsWheel = (event: WheelEvent) => {
+  console.log(props.size * 200 - wheelShifting.value, scrollWidth.value)
+
   event.preventDefault()
   const delta = Math.sign(event.deltaY)
 
@@ -127,7 +134,10 @@ const TagsWheel = (event: WheelEvent) => {
       scroll.value.style.transform = `translateX(${wheelShifting.value}px)`
     }
   } else if (delta === 1) {
-    if (scroll.value) {
+    if (
+      scroll.value &&
+      props.size * 200 - wheelShifting.value < scrollWidth.value
+    ) {
       wheelShifting.value -= 30
       scroll.value.style.transform = `translateX(${wheelShifting.value}px)`
     }
@@ -136,18 +146,47 @@ const TagsWheel = (event: WheelEvent) => {
 
 onMounted(() => {
   inputValue.value = props.defaultValue
-  const scrollElement = scroll.value
-  if (scrollElement) {
-    // 获取属性信息
-    const width = scrollElement.offsetWidth
-    scrollWidth.value = width
-  }
 })
 watchEffect(() => {
   props.currentItems.length == 1
     ? (inputValue.value = props.currentItems[0].label)
     : (inputValue.value = props.defaultValue)
 
-  if (scroll.value) scroll.value.style.transform = `translateX(0px)`
+  if (scroll.value) {
+    scroll.value.style.transform = `translateX(0px)`
+    scroll.value.addEventListener('wheel', TagsWheel, { passive: false })
+    scrollWidth.value = scroll.value.scrollWidth
+  }
 })
+
+let unRefKey = unref(ref<Key>(''))
+watch(inputValue, () => {
+  if (findByLabel(props.options, inputValue.value).length > 0) {
+    console.log('修改了')
+
+    unRefKey = findByLabel(props.options, inputValue.value)[0].key
+  }
+  console.log(unRefKey)
+  if (unRefKey && findByLabel(props.options, inputValue.value).length === 0) {
+    myBus.emit('unSelectKeys', unRefKey)
+  } else {
+    myBus.emit('selectKeys', unRefKey)
+  }
+})
+
+const findByLabel = (options: TreeOption[], label: string): TreeOption[] => {
+  const list: TreeOption[] = []
+  const findItem = (items: TreeOption[]) => {
+    for (const item of items) {
+      if (item.label === label) {
+        list.push(item)
+      }
+      if (item.children) {
+        findItem(item.children)
+      }
+    }
+  }
+  findItem(options)
+  return list
+}
 </script>

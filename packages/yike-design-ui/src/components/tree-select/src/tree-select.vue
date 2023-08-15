@@ -10,6 +10,8 @@
         :size="props.size"
         :bordered="props.bordered"
         :disabled="props.disabled"
+        :options="props.options"
+        :checkable="props.checkable"
         @send-focus="sendFocus"
       ></SelectView>
     </div>
@@ -30,6 +32,8 @@
           :default-expanded-keys="props.defaultExpandedKeys"
           :checkable="props.checkable"
           :check-strictly="props.checkStrictly"
+          :file-tree="props.fileTree"
+          :file-icons="props.fileIcons"
           @select="select"
         ></yk-tree>
         <yk-empty v-if="!props.options.length" :description="props.emptyText" />
@@ -47,9 +51,6 @@ import { TreeSelectPropsType } from './tree-select'
 import YkTree from '../../tree'
 import { Key } from '../../utils'
 import { TreeOption } from '../../tree/src/tree'
-// import { TreeDataType } from './tree-select'
-// 将treeview变为异步组件加载
-// const AsyncTree = defineAsyncComponent(() => import('../../tree'))
 
 const props = withDefaults(defineProps<TreeSelectPropsType>(), {
   id: '',
@@ -59,14 +60,13 @@ const props = withDefaults(defineProps<TreeSelectPropsType>(), {
   defaultValue: '',
   disabled: false,
   placeholder: '',
-  size: 1,
+  size: 2,
   lazy: false,
   emptyText: '',
   checkable: false,
   deployment: false,
   multiple: false,
   checkStrictly: false,
-  defaultExpandedKeys: () => [],
 })
 
 const container = ref<HTMLElement | null>(null)
@@ -94,6 +94,9 @@ const handleClickOutside = (event: MouseEvent) => {
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
+  if (container.value) {
+    container.value.style.width = props.size * 200 + 'px'
+  }
 })
 
 const select = (keys: Key[]) => {
