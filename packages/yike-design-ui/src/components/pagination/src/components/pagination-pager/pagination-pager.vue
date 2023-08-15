@@ -53,6 +53,7 @@
       :current="current"
       :total-pages="totalPages"
       :simple="simple"
+      :size="size"
       :disabled="disabled"
       @jump="(page) => emits('change', page)"
     ></pagination-jumper>

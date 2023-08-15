@@ -23,6 +23,7 @@
       :fix-width="fixWidth"
       :pager-count="pagerCount"
       :disabled="disabled"
+      :size="size"
       @change="handlePageChange"
     ></pagination-pager>
 
@@ -46,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, provide , computed } from 'vue'
+import { ref, watch, provide, computed } from 'vue'
 import {
   PAGINATION_CSS_NAMESPACE,
   PaginationProps,
