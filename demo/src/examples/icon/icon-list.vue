@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { getCurrentInstance } from 'vue'
 import { useClipboard } from '@vueuse/core'
-import iconData from 'yike-design-ui/src/components/svg-icon/icons.json'
+import iconData from '@yike/components/svg-icon/icons.json'
+
 const proxy: any = getCurrentInstance()?.proxy
 const { copy } = useClipboard({
   legacy: true,
@@ -23,6 +24,7 @@ const handleCopy = (item: any) => {
   proxy.$message({ type: 'success', message: `复制成功：${compStr}` })
 }
 </script>
+
 <template>
   <div>
     <div v-for="list in iconData" :key="list.title">
@@ -34,10 +36,6 @@ const handleCopy = (item: any) => {
           class="icon-item"
           @click="handleCopy(item)"
         >
-          <!-- <div v-if="copied && text === `<${item.componentName}/>`" class="tip">
-            <IconTickOutline />
-            <span>copied!</span>
-          </div> -->
           <div class="icon"><component :is="item.componentName" /></div>
           <span class="name">
             {{ getRealName(list, item.name) }}
@@ -47,6 +45,7 @@ const handleCopy = (item: any) => {
     </div>
   </div>
 </template>
+
 <style lang="less" scoped>
 .list {
   display: flex;

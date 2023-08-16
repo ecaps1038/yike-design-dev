@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
 import Bar from '@/components/Bar.vue'
-import * as barData from '../router/config/bar.json'
+import barData from '../router/config/bar.json'
 //菜单
 </script>
 <template>
   <div class="module-b">
-    <Bar :bar="barData.bar" />
+    <Bar :bar="barData" />
     <div class="main">
       <RouterView />
     </div>

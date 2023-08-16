@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { repeat } from 'seemly'
 import { h, shallowRef, ref } from 'vue'
-import { IconRightOutline } from 'yike-design-ui/src/components/svg-icon'
+import { IconRightOutline } from '@yike/components/svg-icon'
 function createData(level = 4, baseKey = '') {
   if (!level) return undefined
   return repeat(6 - level, undefined).map((_, index) => {

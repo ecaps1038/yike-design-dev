@@ -1,0 +1,13 @@
+{
+  "name": "@yike/build-utils",
+  "version": "0.0.1",
+  "description": "All build utils",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}

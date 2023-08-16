@@ -7,7 +7,7 @@
 </template>
 <script setup lang="tsx">
 import { getCurrentInstance, createVNode } from 'vue'
-import { IconFireFireFill } from 'yike-design-ui/src/components/svg-icon'
+import { IconFireFireFill } from '@yike/components/svg-icon'
 const proxy: any = getCurrentInstance()?.proxy
 const open = () => {
   proxy.$notification({ type: 'primary', message: 'This is a message.' })

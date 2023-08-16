@@ -1,5 +1,6 @@
 # mini css
 *.min.css
+
 # other type files
 *.md
 *.js
@@ -16,6 +17,7 @@
 *.png
 *.ico
 *.yaml
+
 # directory
 /test/
 /dist/

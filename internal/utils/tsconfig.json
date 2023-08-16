@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "Node16",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "target": "ESNext",
+    "allowJs": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES2020"]
+  },
+  "include": ["./"]
+}

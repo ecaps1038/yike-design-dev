@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { ref, createVNode } from 'vue'
-import { SliderMark } from '../../../../packages/yike-design-ui/src/components/slider/src/slider-marks'
+import { SliderMark } from '../../../../packages/@yike/components/slider/src/slider-marks'
 const value = ref([10, 40])
 const marks = ref<SliderMark[]>([
   {

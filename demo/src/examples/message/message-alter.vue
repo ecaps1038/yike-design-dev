@@ -7,7 +7,7 @@
 </template>
 <script setup lang="tsx">
 import { h, getCurrentInstance } from 'vue'
-import { IconFireFireFill } from 'yike-design-ui/src/components/svg-icon'
+import { IconFireFireFill } from '@yike/components/svg-icon'
 const proxy: any = getCurrentInstance()?.proxy
 const handleSuccess = () => {
   proxy.$message({ type: 'success', message: '这里可以自定义提示信息' })

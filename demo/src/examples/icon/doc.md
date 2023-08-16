@@ -26,7 +26,7 @@ app.mount('#app')
 
 :::snippet
 基础使用
-
+hello world
 <IconPrimary/>
 :::
 

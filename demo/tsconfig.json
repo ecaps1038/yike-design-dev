@@ -10,10 +10,9 @@
     "baseUrl": ".",
     "sourceMap": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
+      "@/*": ["./src/*"]
     }
   },
-  "exclude": ["dist/**", "node_modules/**"],
-  "include": ["**/**/*.ts", "**/**/*.vue", "components.d.ts"]
+  "include": ["**/**/*.ts", "**/**/*.vue", "components.d.ts"],
+  "exclude": ["dist/**", "node_modules/**"]
 }

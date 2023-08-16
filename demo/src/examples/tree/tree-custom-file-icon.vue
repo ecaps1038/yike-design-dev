@@ -18,7 +18,7 @@ import {
   IconAppFill,
   IconSmileOutline,
   IconPptOutline,
-} from 'yike-design-ui/src/components/svg-icon'
+} from '@yike/components/svg-icon'
 function createData(level = 4, baseKey = '') {
   if (!level) return undefined
   return repeat(6 - level, undefined).map((_, index) => {

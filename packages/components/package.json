@@ -1,0 +1,9 @@
+{
+  "name": "@yike/components",
+  "version": "0.0.1",
+  "main": "./index.ts",
+  "description": "All components",
+  "peerDependencies": {
+    "vue": "3.3.4"
+  }
+}
