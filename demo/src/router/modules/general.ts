@@ -135,6 +135,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/timeline/doc.md'),
   },
   {
+    path: 'tabs',
+    component: () => import('@/examples/tabs/doc.md'),
+  },
+  {
     path: 'form',
     component: () => import('@/examples/form/doc.md'),
   },

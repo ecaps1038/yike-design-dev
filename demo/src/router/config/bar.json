@@ -125,6 +125,10 @@
         {
           "name": "Timeline 时间线",
           "src": "timeline"
+        },
+        {
+          "name": "Tabs 标签页",
+          "src": "tabs"
         }
       ]
     },
