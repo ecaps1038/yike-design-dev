@@ -51,6 +51,10 @@
         {
           "name": "Dropdown 下拉菜单",
           "src": "dropdown"
+        },
+        {
+          "name": "Pagination 分页",
+          "src": "pagination"
         }
       ]
     },
