@@ -44,11 +44,13 @@
           :style="ykDrawerMainStyle"
         >
           <div :class="bem('wrapper')">
-            <button v-if="closable" :class="bem('close')" @click="close">
-              <IconCrossOutline />
-            </button>
             <div :class="bem('header')" :aria-label="title">
-              <slot name="header">{{ props.title }}</slot>
+              <div :class="bem('title')">
+                <slot name="header">{{ props.title }}</slot>
+              </div>
+              <button v-if="closable" :class="bem('close')" @click="close">
+                <IconCrossOutline />
+              </button>
             </div>
             <YkScrollbar>
               <div :class="bem('content')">

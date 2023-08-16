@@ -22,3 +22,25 @@
     transform: rotate(360deg);
   }
 }
+
+.close-icon() {
+  overflow: hidden;
+  padding: 2px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: @radius-s;
+  color: @font-color-s;
+  background: none;
+  transition: all @animatb;
+  cursor: pointer;
+
+  &:hover {
+    color: @font-color-l;
+    background-color: @bg-color-s;
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
