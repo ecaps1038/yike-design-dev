@@ -22,6 +22,7 @@ import YkPopconfirm from './components/popconfirm';
 import YkInputNumber from './components/input-number';
 import { YkForm, YkFormItem } from './components/form';
 import YkSpinner from './components/spinner';
+import YkTextArea from './components/text-area';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -76,6 +77,7 @@ const components: {
   YkForm,
   YkFormItem,
   YkSpinner,
+  YkTextArea,
   YkAlert,
   YkButton,
   YkTheme,
@@ -129,6 +131,7 @@ export {
   YkForm,
   YkFormItem,
   YkSpinner,
+  YkTextArea,
   YkAlert,
   YkButton,
   YkTheme,
