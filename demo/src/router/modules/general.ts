@@ -146,6 +146,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'spinner',
     component: () => import('@/examples/spinner/doc.md'),
   },
+  {
+    path: 'pagination',
+    component: () => import('@/examples/pagination/doc.md'),
+  },
 ];
 
 export default generalRoutes;
