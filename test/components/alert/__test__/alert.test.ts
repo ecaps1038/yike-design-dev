@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import YkAlert from '@yike/components/alert/src/alert.vue';
+import YkAlert from '@yike/components/alert';
 
 describe('YkAlert', () => {
   // 测试 Alert 组件能否正确地渲染出不同的样式、内容和功能

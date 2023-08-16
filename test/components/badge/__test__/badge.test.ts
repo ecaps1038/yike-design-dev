@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import YkBadge from '@yike/components/badge/src/badge.vue';
+import YkBadge from '@yike/components/badge';
 
 describe('YkBadge', () => {
   it('is-dot is true and not hidden', () => {

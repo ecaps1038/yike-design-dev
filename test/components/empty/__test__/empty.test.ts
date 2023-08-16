@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import YkEmpty from '@yike/components/empty/src/empty.vue';
+import YkEmpty from '@yike/components/empty';
 
 describe('YkEmpty', () => {
   it('renders default description when no slot content is provided', () => {

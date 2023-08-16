@@ -1,6 +1,6 @@
 // 引入 mount 方法和组件
 import { mount } from '@vue/test-utils';
-import YkRate from '@yike/components/rate/src/rate.vue';
+import YkRate from '@yike/components/rate';
 
 // 测试用例
 describe('YkRate', () => {

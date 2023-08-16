@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import input from '@yike/components/input/src/input.vue';
+import input from '@yike/components/input';
 
 const text = 'oh my world';
 

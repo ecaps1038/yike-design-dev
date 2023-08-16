@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Switch from '@yike/components/switch/src/switch.vue';
+import Switch from '@yike/components/switch';
 describe('Switch', () => {
   it('render', () => {
     const wrapper = mount(Switch);

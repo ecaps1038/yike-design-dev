@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils';
-import YkBreadcrumb from '@yike/components/breadcrumb/src/breadcrumb.vue';
-import YkBreadcrumbItem from '@yike/components/breadcrumb/src/breadcrumb-item.vue';
+import { YkBreadcrumb, YkBreadcrumbItem } from '@yike/components/breadcrumb';
 
 describe('YkBreadcrumb', () => {
   // 测试是否能正确渲染子组件

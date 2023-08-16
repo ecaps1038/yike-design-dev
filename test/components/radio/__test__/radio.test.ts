@@ -1,6 +1,6 @@
 // 引入 mount 方法和组件
 import { mount } from '@vue/test-utils';
-import YkRadio from '@yike/components/radio/src/radio.vue';
+import YkRadio from '@yike/components/radio';
 
 describe('YkRadio', () => {
   it('render', () => {

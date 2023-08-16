@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import YkCheckbox from '@yike/components/checkbox/src/checkbox.vue';
+import YkCheckbox from '@yike/components/checkbox';
 
 describe('YkCheckbox', () => {
   // 根据 checked 属性确定选中状态

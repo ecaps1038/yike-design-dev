@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import YkProgress from '@yike/components/progress/src/progress.vue';
+import YkProgress from '@yike/components/progress';
 
 describe('YkProgress', () => {
   // 线形进度条
