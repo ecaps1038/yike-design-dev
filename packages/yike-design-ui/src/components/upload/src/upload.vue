@@ -265,8 +265,8 @@ const handleInputChange = (event: any) => {
     return
   }
   if (props.avatar) {
-    handleUploadAvatar(uploadFiles[0])
     handleBeforeUpload(uploadFiles[0])
+    handleUploadAvatar(uploadFiles[0])
     return
   }
   uploadFiles.forEach((upload: File) => {
