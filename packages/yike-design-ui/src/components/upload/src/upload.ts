@@ -75,8 +75,6 @@ export type DraggleProps = {
   accept?: string;
 };
 
-export type CropImageProps = {
-  uid: number;
-  url?: string;
-  blobRaw?: string;
-};
+export interface CropImageProps {
+  fileContent: UploadFile;
+}

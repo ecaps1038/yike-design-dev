@@ -39,12 +39,12 @@
       size="small"
       @on-submit="handleSubmit"
     >
-      <cropPicture ref="cropRef" :url="url" :blob-raw="blobRaw" :uid="uid" />
+      <cropPicture ref="cropRef" :file-content="fileContent" />
     </yk-modal>
   </div>
 </template>
 <script setup lang="ts">
-import { computed, toRefs, getCurrentInstance, ref } from 'vue'
+import { computed, toRefs, ref } from 'vue'
 import { getArcPath } from './utils'
 import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
@@ -52,7 +52,6 @@ import { FileItemProps } from './upload'
 import cropPicture from './crop-picture.vue'
 import { YkModal } from '../../../index'
 
-const proxy: any = getCurrentInstance()?.proxy
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
   fileContent: () => ({
