@@ -108,6 +108,21 @@ const onAfterOpen = () => {
   focuser.value?.focus()
 }
 
+const onOpen = () => {
+  // 非附加在 body 的抽屉不记录
+  if (isFullscreenDrawer.value) {
+    drawerStats.open(drawerId.value)
+  }
+  shouldVisible.value = true
+  if (!props.scrollable) {
+    document.body.style.overflow = 'hidden'
+  }
+  if (props.escapable) {
+    document.body.addEventListener('keydown', onEscape)
+  }
+  emits('open')
+}
+
 const close = () => {
   // 当前抽屉不是最后一个抽屉 直接 return 不关闭
   if (!drawerStats.isLast(drawerId.value)) {
@@ -142,24 +157,14 @@ const onClickOutside = (ev: Event) => {
 onMounted(() => {
   if (props.show) {
     drawerStats.open(drawerId.value)
+    onOpen()
   }
   shouldVisible.value = props.show
 })
 
 watch(props, (oldValue, newValue) => {
   if (newValue.show) {
-    // 非附加在 body 的抽屉不记录
-    if (isFullscreenDrawer.value) {
-      drawerStats.open(drawerId.value)
-    }
-    shouldVisible.value = true
-    if (!props.scrollable) {
-      document.body.style.overflow = 'hidden'
-    }
-    if (props.escapable) {
-      document.body.addEventListener('keydown', onEscape)
-    }
-    emits('open')
+    onOpen()
   }
 })
 
