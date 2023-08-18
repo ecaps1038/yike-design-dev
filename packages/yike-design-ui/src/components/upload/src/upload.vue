@@ -86,9 +86,20 @@
     height="200"
     fit="cover"
   ></yk-image-preview-group>
+
+  <yk-modal
+    v-if="editModalVisible"
+    v-model="editModalVisible"
+    :scrollable="false"
+    title="图片裁剪"
+    size="small"
+    @on-submit="handleSubmit"
+  >
+    <cropPicture ref="cropRef" :file-content="currentUploadAvatar" />
+  </yk-modal>
 </template>
 <script setup lang="ts">
-import { ref, computed, getCurrentInstance } from 'vue'
+import { ref, computed, getCurrentInstance, reactive } from 'vue'
 import {
   UploadProps,
   ImageTypes,
@@ -101,6 +112,7 @@ import { generateListUid, findFileByUid, blobToFile } from './utils'
 import { generateUid } from '../../utils/tools'
 import { createCssScope } from '../../utils/bem'
 import UploadFileItem from './upload-file-item.vue'
+import cropPicture from './crop-picture.vue'
 import uploadDraggle from './upload-draggle.vue'
 import UploadPictureItem from './upload-picture-item.vue'
 import { YkImagePreviewGroup } from '../../../index'
@@ -133,6 +145,14 @@ const isPicture = ref(false)
 const reviewVisible = ref(false)
 
 // 预览时的默认下标
+const cropRef = ref()
+const editModalVisible = ref(false)
+const currentUploadAvatar = reactive<UploadFile>({
+  name: '',
+  url: '',
+  uid: generateUid(),
+  status: 'uploading',
+})
 
 const defaultReviewIndex = ref(0)
 
@@ -187,6 +207,20 @@ const onUploadRequest = async (uploadFile: File) => {
   uploadInstances.set(uid, UploadRequest(requestOptions))
 }
 
+const handleUploadAvatar = (avatarFile: File) => {
+  currentList.value = []
+  const fileName = avatarFile?.name
+  if (!fileName) {
+    proxy.$message.error('文件上传失败，请重新选择文件')
+    return
+  }
+  const uid = generateUid()
+  currentUploadAvatar.name = fileName
+  currentUploadAvatar.raw = avatarFile
+  currentUploadAvatar.uid = uid
+  editModalVisible.value = true
+}
+
 const handleSuccess = (uid: number, res: string) => {
   proxy.$message.success('上传成功')
   const idx = findFileByUid(uid, currentList.value)
@@ -231,7 +265,9 @@ const handleInputChange = (event: any) => {
     return
   }
   if (props.avatar) {
-    currentList.value = []
+    handleBeforeUpload(uploadFiles[0])
+    handleUploadAvatar(uploadFiles[0])
+    return
   }
   uploadFiles.forEach((upload: File) => {
     const validate = handleBeforeUpload(upload)
@@ -283,5 +319,12 @@ const handleDraggleFiles = (files: File[]) => {
   files.forEach((file) => {
     onUploadRequest(file)
   })
+}
+
+const handleSubmit = async () => {
+  const { blobRaw } = await cropRef.value.handleCrop()
+  const newFile = blobToFile(blobRaw, currentUploadAvatar.name)
+  onUploadRequest(newFile)
+  editModalVisible.value = false
 }
 </script>
