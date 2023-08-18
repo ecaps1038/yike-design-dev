@@ -95,7 +95,7 @@ const emits = defineEmits(['close', 'open', 'before-close'])
 const focuser = ref<HTMLElement>()
 const drawerMain = ref<HTMLElement>()
 const shouldVisible = ref<boolean>()
-const isFullscreenDrawer = ref<boolean>()
+const isFullscreenDrawer = ref<boolean>(props.to === 'body')
 const bem = createCssScope('drawer')
 
 nextTick(() => {
@@ -156,10 +156,8 @@ const onClickOutside = (ev: Event) => {
 
 onMounted(() => {
   if (props.show) {
-    drawerStats.open(drawerId.value)
     onOpen()
   }
-  shouldVisible.value = props.show
 })
 
 watch(props, (oldValue, newValue) => {
