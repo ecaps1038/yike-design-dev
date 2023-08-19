@@ -211,6 +211,9 @@ const compositionend = () => {
 }
 
 const keydown = (ev: KeyboardEvent) => {
+  if (ev.key === 'Enter') {
+    emits('submit')
+  }
   emits('keydown', ev)
 }
 
