@@ -5,16 +5,18 @@
   opacity: 0.56;
   &:hover {
     color: @pagination-font-color !important;
+    background-color: @pagination-bg-color__disabled !important;
   }
 }
 
 .pagination-size(@size: l) {
   &--@{size} {
     .yk-pagination-pager__item {
+      padding: 0 @space-s;
       min-width: ~'@{pagination-pager-size__@{size}}';
       height: ~'@{pagination-pager-size__@{size}}';
-      line-height: ~'@{pagination-pager-size__@{size}}';
       border-radius: ~'@{pagination-border-radius__@{size}}';
+      line-height: ~'@{pagination-pager-size__@{size}}';
     }
 
     .yk-pagination-total,
@@ -60,6 +62,7 @@
     vertical-align: middle;
     color: @font-color-l;
     background-color: @pagination-pager-bg-color;
+    transition: all @animatb;
 
     &-ellipsis {
       background-color: transparent;
@@ -67,7 +70,7 @@
 
     &--active {
       color: #fff !important;
-      background-color: @pagination-pager-bg-color__active;
+      background-color: @pagination-pager-bg-color__active !important;
     }
 
     &--disabled {
@@ -75,7 +78,7 @@
     }
 
     &:not(&-ellipsis):hover {
-      color: @pagination-font-color__hover;
+      background-color: @pagination-pager-bg-color__hover;
     }
   }
 }
