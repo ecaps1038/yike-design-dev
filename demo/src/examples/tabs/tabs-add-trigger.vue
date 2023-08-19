@@ -17,7 +17,7 @@
         <IconTimeOutline />
         <span
           :style="{
-            marginLeft: '10px',
+            marginLeft: '8px',
           }"
         >
           {{ item.label }}

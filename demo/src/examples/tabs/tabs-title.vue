@@ -27,6 +27,6 @@ const acitve = ref('1')
 </script>
 <style>
 .custom-label {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 </style>
