@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <table :class="bem()">
+  <div :class="bem()">
+    <table>
       <TableHeader />
       <TableBody />
     </table>
@@ -15,7 +15,7 @@ import { defaultTableProps, Table, TABLE_INJECTION_KEY } from './table'
 import { createCssScope } from '../../utils/bem'
 import { defineComponent, computed, getCurrentInstance, provide } from 'vue'
 import { useStore } from './store'
-import '../style/index.less'
+import '../style/index.ts'
 
 import TableHeader from './header'
 import TableBody from './body'

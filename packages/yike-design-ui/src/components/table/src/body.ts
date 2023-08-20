@@ -39,7 +39,9 @@ export default defineComponent({
               column,
             };
             const tdChildren = column.renderCell(data);
-            return h('td', { class: [bem('cell')] }, [tdChildren]);
+            return h('td', { class: [bem('cell'), `text-${column.align}`] }, [
+              tdChildren,
+            ]);
           }),
         );
       }),

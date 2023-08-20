@@ -1,11 +1,13 @@
 .yk-table {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 100%;
-  height: fit-content;
-  box-sizing: border-box;
-  border-spacing: 0;
+  > table {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    border-spacing: 0;
+  }
 
   th {
     background-color: @bg-color-s;
@@ -41,5 +43,12 @@
     &:hover {
       background-color: @bg-color-s;
     }
+  }
+
+  .text-center {
+    text-align: center;
+  }
+  .text-right {
+    text-align: right;
   }
 }
