@@ -1,6 +1,14 @@
 import type { UploadFile, UserFile } from './upload';
 import { generateUid } from '../../utils/tools';
 export const imageTypes = ['image', 'jpeg', 'png', 'gif'];
+
+/**
+ * 获取弧线路径
+ * @param cx 中心点的 x 坐标
+ * @param cy 中心点的 y 坐标
+ * @param r 半径
+ * @param progress 进度（0-1）
+ */
 export function getArcPath(
   cx: number,
   cy: number,
@@ -16,6 +24,10 @@ export function getArcPath(
   },1 ${x},${y} Z`;
 }
 
+/**
+ * 初始化文件列表
+ * @param {UserFile} list 用户文件列表
+ */
 export function generateListUid(list: UserFile[]) {
   const uploadList = list.map((item: any) => {
     return { uid: generateUid(), status: 'success', ...item }; // 在每个元素上添加 uid 属性并将其赋值为生成的 uid
@@ -23,12 +35,23 @@ export function generateListUid(list: UserFile[]) {
   return uploadList;
 }
 
+/**
+ * 列表中定位下标
+ * @param file 当前文件
+ * @param fileList 当前文件列表
+ */
 export function findFile(
   file: UploadFile,
   fileList: Array<UploadFile>,
 ): number {
   return fileList.findIndex((fileIt) => file.uid === fileIt.uid);
 }
+
+/**
+ * 列表中根据uid定位下标
+ * @param uid 当前文件uid
+ * @param fileList 当前文件列表
+ */
 export function findFileByUid(
   uid: number,
   fileList: Array<UploadFile>,
@@ -36,6 +59,10 @@ export function findFileByUid(
   return fileList.findIndex((fileIt) => uid === fileIt.uid);
 }
 
+/**
+ * 根据文件名返回文件对应类型的图标
+ * @param fileName 当前文件名
+ */
 export function getFileTypeIconName(fileName: string): string | undefined {
   const fileExtension = fileName.split('.').pop()?.toLowerCase();
   const fileTypeIcons = {

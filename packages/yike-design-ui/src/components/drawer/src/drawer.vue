@@ -44,11 +44,13 @@
           :style="ykDrawerMainStyle"
         >
           <div :class="bem('wrapper')">
-            <button v-if="closable" :class="bem('close')" @click="close">
-              <IconCrossOutline />
-            </button>
             <div :class="bem('header')" :aria-label="title">
-              <slot name="header">{{ props.title }}</slot>
+              <div :class="bem('title')">
+                <slot name="header">{{ props.title }}</slot>
+              </div>
+              <button v-if="closable" :class="bem('close')" @click="close">
+                <IconCrossOutline />
+              </button>
             </div>
             <YkScrollbar>
               <div :class="bem('content')">
@@ -66,12 +68,11 @@
 </template>
 <script setup lang="ts">
 import { DrawerProps } from './drawer'
-import '../style'
 import { computed, ref, nextTick, watch, onMounted } from 'vue'
 import { getElement, getDrawerOrder, drawerStats } from './utils'
-import { onClickOutside } from '@vueuse/core'
 import { createCssScope } from '../../utils/bem'
 import { YkScrollbar } from '../../scrollbar'
+
 defineOptions({
   name: 'YkDrawer',
 })
@@ -99,10 +100,27 @@ const bem = createCssScope('drawer')
 
 nextTick(() => {
   target.value = getElement(props.to)
+  isFullscreenDrawer.value = target.value === document.body
 })
 
 const onAfterOpen = () => {
+  target.value!.addEventListener('click', onClickOutside)
   focuser.value?.focus()
+}
+
+const onOpen = () => {
+  // 非附加在 body 的抽屉不记录
+  if (isFullscreenDrawer.value) {
+    drawerStats.open(drawerId.value)
+  }
+  shouldVisible.value = true
+  if (!props.scrollable) {
+    document.body.style.overflow = 'hidden'
+  }
+  if (props.escapable) {
+    document.body.addEventListener('keydown', onEscape)
+  }
+  emits('open')
 }
 
 const close = () => {
@@ -115,6 +133,7 @@ const close = () => {
 }
 
 const onDestory = () => {
+  target.value!.removeEventListener('click', onClickOutside)
   document.body.removeEventListener('keydown', onEscape)
   if (isFullscreenDrawer.value) {
     drawerStats.close()
@@ -129,29 +148,21 @@ const onEscape = (ev: KeyboardEvent) => {
   if (ev.key === 'Escape') close()
 }
 
-onClickOutside(drawerMain, close)
+const onClickOutside = (ev: Event) => {
+  if (!drawerMain.value?.contains(ev.target as Node)) {
+    close()
+  }
+}
 
 onMounted(() => {
   if (props.show) {
-    drawerStats.open(drawerId.value)
+    onOpen()
   }
-  shouldVisible.value = props.show
 })
 
 watch(props, (oldValue, newValue) => {
   if (newValue.show) {
-    // 非附加在 body 的抽屉不记录
-    if (isFullscreenDrawer.value) {
-      drawerStats.open(drawerId.value)
-    }
-    shouldVisible.value = true
-    if (!props.scrollable) {
-      document.body.style.overflow = 'hidden'
-    }
-    if (props.escapable) {
-      document.body.addEventListener('keydown', onEscape)
-    }
-    emits('open')
+    onOpen()
   }
 })
 
