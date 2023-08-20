@@ -61,23 +61,7 @@
 
   &-close-icon {
     overflow: hidden;
-    padding: 0;
-    font-size: @size-s;
-    border: none;
-    color: @font-color-s;
-    background-color: transparent;
-    outline: none;
-    transition: color 0.3s;
-    line-height: @size-s;
-    cursor: pointer;
-
-    &:hover {
-      color: @font-color-l;
-    }
-
-    & svg {
-      vertical-align: -3px !important;
-    }
+    .close-icon();
   }
 
   .alert-type(info);

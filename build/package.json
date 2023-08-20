@@ -4,7 +4,7 @@
   "description": "build packages",
   "main": "dist/index.js",
   "bin": {
-    "yike-build": "dist/index.js"
+    "yike-build": "bin/index.js"
   },
   "files": [
     "dist"

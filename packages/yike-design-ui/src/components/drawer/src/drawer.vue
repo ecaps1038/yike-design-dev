@@ -95,7 +95,7 @@ const emits = defineEmits(['close', 'open', 'before-close'])
 const focuser = ref<HTMLElement>()
 const drawerMain = ref<HTMLElement>()
 const shouldVisible = ref<boolean>()
-const isFullscreenDrawer = ref<boolean>()
+const isFullscreenDrawer = ref<boolean>(props.to === 'body')
 const bem = createCssScope('drawer')
 
 nextTick(() => {
@@ -106,6 +106,21 @@ nextTick(() => {
 const onAfterOpen = () => {
   target.value!.addEventListener('click', onClickOutside)
   focuser.value?.focus()
+}
+
+const onOpen = () => {
+  // 非附加在 body 的抽屉不记录
+  if (isFullscreenDrawer.value) {
+    drawerStats.open(drawerId.value)
+  }
+  shouldVisible.value = true
+  if (!props.scrollable) {
+    document.body.style.overflow = 'hidden'
+  }
+  if (props.escapable) {
+    document.body.addEventListener('keydown', onEscape)
+  }
+  emits('open')
 }
 
 const close = () => {
@@ -141,25 +156,13 @@ const onClickOutside = (ev: Event) => {
 
 onMounted(() => {
   if (props.show) {
-    drawerStats.open(drawerId.value)
+    onOpen()
   }
-  shouldVisible.value = props.show
 })
 
 watch(props, (oldValue, newValue) => {
   if (newValue.show) {
-    // 非附加在 body 的抽屉不记录
-    if (isFullscreenDrawer.value) {
-      drawerStats.open(drawerId.value)
-    }
-    shouldVisible.value = true
-    if (!props.scrollable) {
-      document.body.style.overflow = 'hidden'
-    }
-    if (props.escapable) {
-      document.body.addEventListener('keydown', onEscape)
-    }
-    emits('open')
+    onOpen()
   }
 })
 

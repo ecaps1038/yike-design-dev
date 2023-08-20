@@ -91,6 +91,7 @@ const closeModal = () => {
 }
 onUnmounted(() => {
   document.body.removeEventListener('keydown', escapeClose)
+  document.body.style.overflow = ''
 })
 
 const initScroll = () => {
