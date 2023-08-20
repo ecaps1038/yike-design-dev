@@ -39,24 +39,28 @@
   margin: auto;
   max-width: 1200px;
   border-radius: @radius-m;
-  color: @font-color-m;
   background-color: @bg-color-l;
   .yk-modal__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: @space-xl;
-    height: 45px;
-    border-bottom: 1px solid @bg-color-ss;
+    padding: @space-m @space-xl;
+    height: 48px;
+    border-bottom: 1px solid @line-color-s;
     .yk-modal__title {
-      font-weight: bold;
+      .font-m();
+      font-weight: 500;
+      color: @font-color-l;
     }
     .yk-modal__close {
-      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      .close-icon();
     }
   }
   .yk-modal__content {
-    padding: @space-xl @space-xl;
+    padding: @space-xl;
   }
   .yk-modal__footer {
     display: flex;
@@ -66,11 +70,14 @@
     border-top: 1px solid @bg-color-s;
   }
 }
+.yk-modal--shadow {
+  box-shadow: @shadow-l;
+}
 
 .zoom-in-top-leave-active,
 .zoom-in-top-enter-active {
   // transform-origin: 0 0;
-  transition: all 0.5s cubic-bezier(0.3, 1.3, 0.3, 1);
+  transition: all @animats cubic-bezier(0.3, 1.3, 0.3, 1);
 }
 
 .zoom-in-top-enter-from,
@@ -81,7 +88,7 @@
 
 .fade-leave-active,
 .fade-enter-active {
-  transition: all 0.5s cubic-bezier(0.3, 1.3, 0.3, 1);
+  transition: all @animats cubic-bezier(0.3, 1.3, 0.3, 1);
 }
 
 .fade-enter-from,

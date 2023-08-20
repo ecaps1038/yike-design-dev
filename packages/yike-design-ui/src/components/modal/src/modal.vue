@@ -22,6 +22,7 @@
             :class="[
               bem('main'),
               bem({
+                shadow: !props.showMask,
                 size: size === 'small',
               }),
             ]"
@@ -42,7 +43,7 @@
             <div v-if="showFooter" :class="bem('footer')">
               <div class="yk-modal-footer-option">
                 <slot name="footer">
-                  <yk-space>
+                  <yk-space size="m">
                     <yk-button type="secondary" @click="closeModal">
                       取消
                     </yk-button>
@@ -90,6 +91,7 @@ const closeModal = () => {
 }
 onUnmounted(() => {
   document.body.removeEventListener('keydown', escapeClose)
+  document.body.style.overflow = ''
 })
 
 const initScroll = () => {
