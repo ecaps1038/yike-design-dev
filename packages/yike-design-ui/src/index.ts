@@ -7,6 +7,7 @@ import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
+import { YkTable, YkTableColumn } from './components/table';
 import { YkBreadcrumb, YkBreadcrumbItem } from './components/breadcrumb';
 import YkBadge from './components/badge';
 import YkScrollbar from './components/scrollbar';
@@ -29,7 +30,6 @@ import YkTheme from './components/theme';
 import YkIcon from './components/icon';
 import { YkAvatar, YkAvatarGroup } from './components/avatar';
 import YkSpace from './components/space';
-import YkTable from './components/table';
 import { YkTimeline, YkTimelineItem } from './components/timeline';
 import YkMessage from './components/message';
 import YkNotification from './components/notification';
@@ -58,6 +58,8 @@ const components: {
   YkAnchor,
   YkPopover,
   YkDrawer,
+  YkTable,
+  YkTableColumn,
   YkProgress,
   YkBadge,
   YkScrollbar,
@@ -86,7 +88,6 @@ const components: {
   YkAvatar,
   YkAvatarGroup,
   YkSpace,
-  YkTable,
   YkTimeline,
   YkTimelineItem,
   YkParagraph,
@@ -143,6 +144,7 @@ export {
   YkAvatarGroup,
   YkSpace,
   YkTable,
+  YkTableColumn,
   YkTimeline,
   YkTimelineItem,
   YkTitle,

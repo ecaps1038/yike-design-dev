@@ -111,6 +111,10 @@
           "src": "empty"
         },
         {
+          "name": "Table 表格",
+          "src": "table"
+        },
+        {
           "name": "Badge 徽标",
           "src": "badge"
         },
