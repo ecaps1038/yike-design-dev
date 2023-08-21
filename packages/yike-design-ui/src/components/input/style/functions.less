@@ -50,17 +50,17 @@
 
 .input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
   .bow() {
+    border: 1px solid @bcolor;
     background-color: @bgcolor !important;
-    outline: 1px solid @bcolor;
 
     &:hover {
+      border: 1px solid @hvbcolor;
       background-color: @hvbgcolor !important;
-      outline: 1px solid @hvbcolor;
     }
 
     &--focus {
+      border: 1px solid @fsbcolor !important;
       background-color: @fsbgcolor !important;
-      outline: 1px solid @fsbcolor !important;
     }
   }
   &.yk-input--@{status} {
