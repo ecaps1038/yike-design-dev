@@ -96,6 +96,10 @@
         {
           "name": "Form 表单",
           "src": "form"
+        },
+        {
+          "name": "TextArea 文本域",
+          "src": "text-area"
         }
       ]
     },

@@ -24,6 +24,7 @@ import YkInputNumber from './components/input-number';
 import { YkTabs, YkTabPane } from './components/tabs';
 import { YkForm, YkFormItem } from './components/form';
 import YkPagination from './components/pagination';
+import YkTextArea from './components/text-area';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -81,6 +82,7 @@ const components: {
   YkPagination,
   YkForm,
   YkFormItem,
+  YkTextArea,
   YkAlert,
   YkButton,
   YkTheme,
@@ -135,6 +137,7 @@ export {
   YkPagination,
   YkForm,
   YkFormItem,
+  YkTextArea,
   YkAlert,
   YkButton,
   YkTheme,
