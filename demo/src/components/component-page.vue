@@ -13,6 +13,7 @@ onMounted(() => {
   const els = Array.from(h3es)
   els.push(...Array.from(docH3es))
 
+  //排序升序
   els.sort((a, b) => {
     const rect1 = a.getBoundingClientRect().top
 

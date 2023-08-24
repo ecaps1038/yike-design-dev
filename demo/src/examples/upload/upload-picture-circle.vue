@@ -12,11 +12,12 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const uploadUrl = 'http://chat.foder.cn:3976/upload'
+// const uploadUrl = 'http://chat.foder.cn:3976/upload'
+const uploadUrl = 'https://www.huohuo90.com:3005/upload'
 const fileUrl = ref([
   {
     name: '默认图片',
-    url: '	https://www.huohuo90.com:3005/assets/logo-11aefb4c.svg',
+    url: 'https://www.huohuo90.com:3005/logo/yike.png',
   },
 ])
 </script>
