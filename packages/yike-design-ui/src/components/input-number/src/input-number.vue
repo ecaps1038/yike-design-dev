@@ -7,6 +7,7 @@
     :class="bem()"
     v-bind="$attrs"
     @change="change"
+    @blur="blur"
     @hoverin="isHovering = true"
     @hoverout="isHovering = false"
     @keydown="keydown"
@@ -178,6 +179,16 @@ const change = (value: string) => {
     lastValue.value = Math.trunc(lastValue.value)
   }
   checkLimit()
+}
+
+const blur = () => {
+  if (limit.isMax) {
+    lastValue.value = valueRefs.max.value
+  }
+  if (limit.isMin) {
+    lastValue.value = valueRefs.min.value
+  }
+  update()
 }
 
 const update = () => {
