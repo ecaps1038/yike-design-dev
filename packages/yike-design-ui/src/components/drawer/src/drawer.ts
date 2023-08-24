@@ -9,5 +9,5 @@ export type DrawerProps = {
   escapable?: boolean;
   showMask?: boolean;
   placement?: DrawerPlacements;
-  to?: string;
+  to?: string | HTMLElement;
 };
