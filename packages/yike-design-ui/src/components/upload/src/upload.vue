@@ -275,6 +275,7 @@ const handleInputChange = (event: any) => {
       onUploadRequest(upload)
     }
   })
+  event.target.value = ''
 }
 
 const handleAbort = (uid: number) => {
