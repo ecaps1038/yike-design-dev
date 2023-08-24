@@ -31,6 +31,12 @@
 :::
 
 :::snippet
+无背景遮罩
+不使用背景遮罩时将显示阴影。
+<DrawerNomask/>
+:::
+
+:::snippet
 附加到任何容器
 谁说在附加到 body 的才算抽屉。
 <DrawerAnywhere/>
