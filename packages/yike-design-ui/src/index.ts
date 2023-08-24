@@ -46,6 +46,7 @@ import {
   YkImagePreview,
   YkImagePreviewGroup,
 } from './components/image';
+import YkSpinner from './components/spinner';
 
 const components: {
   [propName: string]: Component;
@@ -104,6 +105,7 @@ const components: {
   YkImage,
   YkImagePreview,
   YkImagePreviewGroup,
+  YkSpinner,
 };
 
 export {
@@ -163,6 +165,7 @@ export {
   YkImage,
   YkImagePreview,
   YkImagePreviewGroup,
+  YkSpinner,
 };
 
 // 全局注册
