@@ -23,14 +23,14 @@
 import { ref } from 'vue'
 const active = ref(false)
 </script>
-<style scoped>
+<style scoped lang="less">
 #drawer-hub {
   position: relative;
   overflow: hidden;
   margin-top: 10px;
   width: 100%;
   height: 500px;
-  border: 1px solid #e6e6e6;
+  border: 1px solid @gray-1;
   border-radius: 8px;
 }
 </style>
