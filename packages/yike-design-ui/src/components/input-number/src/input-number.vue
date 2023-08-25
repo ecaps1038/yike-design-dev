@@ -3,7 +3,7 @@
     ref="inputRef"
     v-model="displayValue"
     :disabled="disabled"
-    :size="size"
+    :size="mergedSize"
     :class="bem()"
     v-bind="$attrs"
     @change="change"
@@ -15,10 +15,11 @@
     <template #suffix>
       <div
         v-show="!disabled && isHovering"
-        :class="[bem('buttons'), bem([size])]"
+        :class="[bem('buttons'), bem([mergedSize])]"
       >
         <YkButton
           :disabled="limit.isMax"
+          :size="mergedSize"
           type="secondary"
           @click="increase"
           @mousedown="startCombo(1)"
@@ -27,6 +28,7 @@
         </YkButton>
         <YkButton
           :disabled="limit.isMin"
+          :size="mergedSize"
           type="secondary"
           @click="decrease"
           @mousedown="startCombo(0)"
@@ -38,7 +40,7 @@
   </YkInput>
 </template>
 <script setup lang="ts">
-import { createCssScope } from '../../utils/bem'
+import { createCssScope, useFormItem } from '../../utils'
 import { YkInput, YkButton } from '../../../index'
 import { InputNumberProps } from './input-number'
 import { toRefs, ref, onMounted, reactive, computed } from 'vue'
@@ -58,6 +60,13 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
 })
 
 const bem = createCssScope('input-number')
+
+const { size } = toRefs(props)
+
+const { mergedSize } = useFormItem({
+  size,
+})
+
 const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
 const isHovering = ref<boolean>(false)
 const limit = reactive({
