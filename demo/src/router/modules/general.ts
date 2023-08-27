@@ -138,6 +138,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'form',
     component: () => import('@/examples/form/doc.md'),
   },
+  {
+    path: 'input-tag',
+    component: () => import('@/examples/input-tag/doc.md'),
+  },
 ];
 
 export default generalRoutes;

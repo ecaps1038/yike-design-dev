@@ -92,6 +92,10 @@
         {
           "name": "Form 表单",
           "src": "form"
+        },
+        {
+          "name": "InputTag 标签输入框",
+          "src": "input-tag"
         }
       ]
     },

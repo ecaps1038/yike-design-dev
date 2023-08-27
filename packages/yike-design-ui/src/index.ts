@@ -21,6 +21,7 @@ import { YkCollapse, YkCollapseGroup } from './components/collapse';
 import YkPopconfirm from './components/popconfirm';
 import YkInputNumber from './components/input-number';
 import { YkForm, YkFormItem } from './components/form';
+import YkInputTag from './components/input-tag';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -74,6 +75,7 @@ const components: {
   YkInputNumber,
   YkForm,
   YkFormItem,
+  YkInputTag,
   YkAlert,
   YkButton,
   YkTheme,
@@ -126,6 +128,7 @@ export {
   YkInputNumber,
   YkForm,
   YkFormItem,
+  YkInputTag,
   YkAlert,
   YkButton,
   YkTheme,
