@@ -25,7 +25,6 @@
       empty-text="当前没有任何数据！"
       placeholder="这是默认的placeholer输入提示"
       :disabled="state.disabled"
-      default-value="这是一个默认值"
       :bordered="state.bordered"
       :allow-clear="state.allowClear"
       :multiple="state.isMultiple"
@@ -35,7 +34,7 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import { YkSpace } from 'yike-design-ui/src'
+import { YkSpace } from 'yike-design-ui/src/components/space'
 // 定义参数
 const state = reactive<any>({
   isMultiple: false,
@@ -94,5 +93,4 @@ const state = reactive<any>({
     },
   ],
 })
-// const treeData = []
 </script>

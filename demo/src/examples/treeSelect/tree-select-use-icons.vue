@@ -1,28 +1,26 @@
 <template>
   <div>
-    <YkSpace style="margin-bottom: 20px">
-      <span>是否开启checkbox选择:</span>
-      <YkSwitch v-model="state.checkable"></YkSwitch>
-    </YkSpace>
-    <br />
-    <YkSpace style="margin-bottom: 20px">
-      <span>是否关闭checkbox父子关联:</span>
-      <YkSwitch v-model="state.checkStrictly"></YkSwitch>
-    </YkSpace>
     <YkTreeSelect
       :options="state.treeData"
-      placeholder="这是默认的placeholer输入提示"
-      :checkable="state.checkable"
-      :check-strictly="state.checkStrictly"
+      file-tree
+      :file-icons="{
+        fold: () => h(IconAppFill),
+        unfold: () => h(IconAppOutline),
+        file: () => h(IconSmileOutline),
+      }"
+      :scrollbar="{ height: 200 }"
     ></YkTreeSelect>
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, h } from 'vue'
+import {
+  IconAppOutline,
+  IconAppFill,
+  IconSmileOutline,
+} from 'yike-design-ui/src/components/svg-icon'
 // 定义参数
 const state = reactive<any>({
-  checkable: true,
-  checkStrictly: false,
   treeData: [
     {
       key: '1',
