@@ -1,5 +1,5 @@
 {
-  "name": "yike-design-ui",
+  "name": "@yike-design/ui",
   "type": "module",
   "private": false,
   "description": "yike-design-ui",
@@ -50,6 +50,6 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@yike/build": "workspace:*"
+    "@yike-design/build": "workspace:*"
   }
 }
