@@ -7,6 +7,7 @@ import YkAnchor from './components/anchor';
 import YkPopover from './components/popover';
 import YkSwitch from './components/switch';
 import { YkDrawer } from './components/drawer';
+import { YkTable, YkTableColumn } from './components/table';
 import { YkBreadcrumb, YkBreadcrumbItem } from './components/breadcrumb';
 import YkBadge from './components/badge';
 import YkScrollbar from './components/scrollbar';
@@ -20,15 +21,17 @@ import YkSlider from './components/slider';
 import { YkCollapse, YkCollapseGroup } from './components/collapse';
 import YkPopconfirm from './components/popconfirm';
 import YkInputNumber from './components/input-number';
+import { YkTabs, YkTabPane } from './components/tabs';
 import { YkForm, YkFormItem } from './components/form';
 import YkInputTag from './components/input-tag';
+import YkPagination from './components/pagination';
+import YkTextArea from './components/text-area';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
 import YkIcon from './components/icon';
 import { YkAvatar, YkAvatarGroup } from './components/avatar';
 import YkSpace from './components/space';
-import YkTable from './components/table';
 import { YkTimeline, YkTimelineItem } from './components/timeline';
 import YkMessage from './components/message';
 import YkNotification from './components/notification';
@@ -44,6 +47,7 @@ import {
   YkImagePreview,
   YkImagePreviewGroup,
 } from './components/image';
+import YkSpinner from './components/spinner';
 
 const components: {
   [propName: string]: Component;
@@ -57,6 +61,8 @@ const components: {
   YkAnchor,
   YkPopover,
   YkDrawer,
+  YkTable,
+  YkTableColumn,
   YkProgress,
   YkBadge,
   YkScrollbar,
@@ -73,9 +79,13 @@ const components: {
   YkCollapseGroup,
   YkPopconfirm,
   YkInputNumber,
+  YkTabs,
+  YkTabPane,
+  YkPagination,
   YkForm,
   YkFormItem,
   YkInputTag,
+  YkTextArea,
   YkAlert,
   YkButton,
   YkTheme,
@@ -83,7 +93,6 @@ const components: {
   YkAvatar,
   YkAvatarGroup,
   YkSpace,
-  YkTable,
   YkTimeline,
   YkTimelineItem,
   YkParagraph,
@@ -98,6 +107,7 @@ const components: {
   YkImage,
   YkImagePreview,
   YkImagePreviewGroup,
+  YkSpinner,
 };
 
 export {
@@ -126,9 +136,13 @@ export {
   YkCollapseGroup,
   YkPopconfirm,
   YkInputNumber,
+  YkTabs,
+  YkTabPane,
+  YkPagination,
   YkForm,
   YkFormItem,
   YkInputTag,
+  YkTextArea,
   YkAlert,
   YkButton,
   YkTheme,
@@ -138,6 +152,7 @@ export {
   YkAvatarGroup,
   YkSpace,
   YkTable,
+  YkTableColumn,
   YkTimeline,
   YkTimelineItem,
   YkTitle,
@@ -153,6 +168,7 @@ export {
   YkImage,
   YkImagePreview,
   YkImagePreviewGroup,
+  YkSpinner,
 };
 
 // 全局注册

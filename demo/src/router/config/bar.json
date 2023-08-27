@@ -51,6 +51,10 @@
         {
           "name": "Dropdown 下拉菜单",
           "src": "dropdown"
+        },
+        {
+          "name": "Pagination 分页",
+          "src": "pagination"
         }
       ]
     },
@@ -96,6 +100,10 @@
         {
           "name": "InputTag 标签输入框",
           "src": "input-tag"
+        },
+        {
+          "name": "TextArea 文本域",
+          "src": "text-area"
         }
       ]
     },
@@ -109,6 +117,10 @@
         {
           "name": "Empty  空状态",
           "src": "empty"
+        },
+        {
+          "name": "Table 表格",
+          "src": "table"
         },
         {
           "name": "Badge 徽标",
@@ -129,6 +141,10 @@
         {
           "name": "Timeline 时间线",
           "src": "timeline"
+        },
+        {
+          "name": "Tabs 标签页",
+          "src": "tabs"
         }
       ]
     },
@@ -170,6 +186,10 @@
         {
           "name": "Popconfirm 气泡确认框",
           "src": "popconfirm"
+        },
+        {
+          "name": "Spinner 加载",
+          "src": "spinner"
         }
       ]
     },

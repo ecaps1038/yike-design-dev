@@ -135,12 +135,32 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/timeline/doc.md'),
   },
   {
+    path: 'table',
+    component: () => import('@/examples/table/doc.md'),
+  },
+  {
+    path: 'tabs',
+    component: () => import('@/examples/tabs/doc.md'),
+  },
+  {
     path: 'form',
     component: () => import('@/examples/form/doc.md'),
   },
   {
     path: 'input-tag',
     component: () => import('@/examples/input-tag/doc.md'),
+  },
+  {
+    path: 'spinner',
+    component: () => import('@/examples/spinner/doc.md'),
+  },
+  {
+    path: 'text-area',
+    component: () => import('@/examples/text-area/doc.md'),
+  },
+  {
+    path: 'pagination',
+    component: () => import('@/examples/pagination/doc.md'),
   },
 ];
 

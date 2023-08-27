@@ -38,16 +38,16 @@
 
 ### API
 
-| 参数         | 描述                          | 类型             | 默认值  |
-| ------------ | ----------------------------- | ---------------- | ------- |
-| `size`       | 尺寸                          | `small \| large` | `large` |
-| `footer`     | 底部区域展示                  | `boolean`        | `true`  |
-| `title`      | modal 标题                    | `string`         | `''`    |
-| `to`         | modal 默认展开的 dom 选择器   | `string`         | `body`  |
-| `scrollable` | 页面可否滚动                  | `boolean`        | `false` |
-| `closeable`  | 点击遮罩层是否关闭 modal      | `boolean`        | `false` |
-| `showMask`   | 是否展示遮罩层                | `boolean`        | `true`  |
-| `escapable`  | 是否可以点击 esc 键关闭 modal | `boolean`        | `true`  |
+| 参数          | 描述                          | 类型             | 默认值  |
+| ------------- | ----------------------------- | ---------------- | ------- |
+| `size`        | 尺寸                          | `small \| large` | `large` |
+| `show-footer` | 底部区域展示                  | `boolean`        | `true`  |
+| `title`       | modal 标题                    | `string`         | `''`    |
+| `to`          | modal 默认展开的 dom 选择器   | `string`         | `body`  |
+| `scrollable`  | 页面可否滚动                  | `boolean`        | `false` |
+| `closeable`   | 点击遮罩层是否关闭 modal      | `boolean`        | `false` |
+| `showMask`    | 是否展示遮罩层                | `boolean`        | `true`  |
+| `escapable`   | 是否可以点击 esc 键关闭 modal | `boolean`        | `true`  |
 
 ### Methods
 

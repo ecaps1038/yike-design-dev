@@ -4,13 +4,16 @@
       <yk-input v-model="form.name"></yk-input>
     </yk-form-item>
     <yk-form-item label="昵称" field="nickname">
-      <yk-input v-model="form.nickname"></yk-input>
+      <yk-input v-model="form.nickname" placeholder="请输入"></yk-input>
     </yk-form-item>
     <yk-form-item label="性别" field="sex" :rules="rulesMap.sex">
       <yk-radio-group v-model="form.sex">
         <yk-radio value="man">男</yk-radio>
         <yk-radio value="woman">女</yk-radio>
       </yk-radio-group>
+    </yk-form-item>
+    <yk-form-item label="年龄" field="sex" :rules="rulesMap.sex">
+      <yk-input-number v-model="form.age"></yk-input-number>
     </yk-form-item>
     <yk-form-item label="日期" field="date" :required="true">
       <yk-checkbox-group v-model="form.date">
@@ -35,6 +38,7 @@ const form = reactive({
   sex: 'man',
   date: ['2'],
   nickname: '',
+  age: 20,
 })
 const rulesMap = {
   name: [

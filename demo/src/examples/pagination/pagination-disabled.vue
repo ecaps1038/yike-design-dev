@@ -1,0 +1,21 @@
+<template>
+  <div>
+    <yk-pagination
+      disabled
+      :total="50"
+      show-jumper
+      show-page-size
+      show-total
+    ></yk-pagination>
+  </div>
+  <div style="margin-top: 10px">
+    <yk-pagination
+      disabled
+      :total="50"
+      simple
+      show-jumper
+      show-page-size
+      show-total
+    ></yk-pagination>
+  </div>
+</template>

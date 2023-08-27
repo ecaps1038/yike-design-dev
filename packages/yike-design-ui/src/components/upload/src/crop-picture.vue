@@ -26,7 +26,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, toRefs, computed } from 'vue'
 import { CropImageProps } from './upload'
 import { YkSlider } from '../../../index'
 import { createCssScope } from '../../utils'
@@ -48,6 +48,8 @@ const dragData = {
 const bem = createCssScope('image-crop')
 const props = defineProps<CropImageProps>()
 
+const { fileContent } = toRefs(props)
+
 const canvasRef = ref()
 const canvasContainer = ref()
 
@@ -63,6 +65,15 @@ const image = new Image()
 image.crossOrigin = 'Anonymous'
 const canvasWidth = ref(0)
 const canvasHeight = ref(0)
+
+const blobRaw = computed(() => {
+  const rawValue = fileContent.value?.raw
+  if (rawValue) {
+    const blobUrl = URL.createObjectURL(rawValue)
+    return blobUrl
+  }
+  return ''
+})
 
 watch(
   () => scalePercent.value,
@@ -84,7 +95,7 @@ watch(
 const initDrawer = () => {
   const canvas = canvasRef.value
   const context = canvas.getContext('2d')
-  image.src = (props.url || props.blobRaw) ?? '' // 替换为你的图片URL
+  image.src = (fileContent.value?.url || blobRaw.value) ?? '' // 替换为你的图片URL
 
   image.onload = () => {
     // image aspect ratio
@@ -94,7 +105,7 @@ const initDrawer = () => {
     canvasWidth.value = Math.min(canvasHeight.value * aspectRatio, 700)
     canvas.width = canvasWidth.value
     canvas.height = canvasHeight.value
-    scaleFactor.value = canvasHeight.value / image.height
+    scaleFactor.value = Math.min(canvasHeight.value / image.height, 1)
     scale.value = scaleFactor.value
     scalePercent.value = scale.value * 100
     context.drawImage(
@@ -263,12 +274,12 @@ const handleCrop = async () => {
     rectSize,
     rectSize,
   )
-  let blobRaw
+  let blobRawValue
   await getBlobAsync(newCanvas).then(function (blob) {
-    blobRaw = blob
+    blobRawValue = blob
   })
   // 在这里使用blobRaw
-  return { blobRaw, uid: props.uid }
+  return { blobRaw: blobRawValue, uid: fileContent.value.uid }
 }
 
 const getBlobAsync = (newCanvas: HTMLCanvasElement) => {

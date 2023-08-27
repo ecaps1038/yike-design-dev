@@ -2,7 +2,7 @@
 
 :::snippet
 基本用法
-你知道吗，抽屉有四种开法...
+通过 `placement` 属性控制抽屉展开的方向，默认为 `'right'`。
 <DrawerPrimary/>
 :::
 
@@ -14,7 +14,7 @@
 
 :::snippet
 事件
-监听 open 和 close 事件以实现回调或访问控制。
+监听 `open` 、 `close` 和 `before-close` 事件以实现回调或访问控制。
 <DrawerCallback/>
 :::
 
@@ -31,8 +31,14 @@
 :::
 
 :::snippet
+无背景遮罩
+通过 `show-mask` 属性控制抽屉是否显示背景的暗色半透明遮罩，默认为 `true`。不使用背景遮罩时将显示阴影。
+<DrawerNomask/>
+:::
+
+:::snippet
 附加到任何容器
-谁说在附加到 body 的才算抽屉。
+通过 `to` 属性控制抽屉显示时挂载的元素节点，其值可以是 CSS 选择器字符串，或者是一个 HTMLElement 类型的变量。默认为 `body`。
 <DrawerAnywhere/>
 :::
 
@@ -47,6 +53,7 @@
 | closable   | 抽屉是否显示关闭按钮       | boolean                          | true    |
 | escapable  | 抽屉是否能使用 ESC 键关闭  | boolean                          | true    |
 | show-mask  | 抽屉是否显示背景遮罩       | boolean                          | true    |
+| to         | 抽屉展开是挂载的元素       | string ｜ HTMLElement            | 'body'  |
 
 ### 事件
 
@@ -55,8 +62,6 @@
 | open         | 抽屉打开时触发   |
 | close        | 抽屉关闭时触发   |
 | before-close | 抽屉关闭前时触发 |
-
-更多事件正在开发...
 
 ### 插槽
 

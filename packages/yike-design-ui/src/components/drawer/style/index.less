@@ -39,7 +39,7 @@
 }
 
 .yk-drawer--shadow {
-  box-shadow: 0px 0px 10px 0px #61676d;
+  box-shadow: @shadow-m;
 }
 
 .yk-drawer--main {
@@ -59,48 +59,33 @@
   }
 
   .yk-drawer__close {
-    position: absolute;
-    top: 18px;
-    right: 12px;
-    z-index: 1025;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
-    border: none;
-    border-radius: @radius-s;
-    background: none;
-    transition: all @animats;
-    cursor: pointer;
-
-    &:hover {
-      background-color: @bg-color-ss;
-    }
-
-    svg {
-      width: 16px;
-      height: 16px;
-      fill: @font-color-l !important;
-    }
+    .close-icon();
   }
 
   .yk-drawer__header {
-    padding: 12px;
-    font-size: @size-m;
-    font-weight: 500;
-    border-bottom: 1px solid @bg-color-ss;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: @space-m @space-l;
+    border-bottom: 1px solid @line-color-s;
 
     &:empty {
       padding: unset;
       border-bottom: unset;
     }
   }
+  .yk-drawer__title {
+    .font-m();
+    font-weight: 500;
+  }
 
   .yk-drawer__content {
     overflow: auto;
-    padding: 12px;
-    font-size: @size-s;
+    padding: @space-l;
+    .font-s();
     flex-grow: 1;
   }
 

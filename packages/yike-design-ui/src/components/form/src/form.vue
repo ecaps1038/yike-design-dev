@@ -74,7 +74,7 @@ const resetFields = () => {
 }
 
 const handleSubmit = (e: Event) => {
-  console.log('🚀 ~ file: form.vue:22 ~ handleSubmit ~ e:', e)
+  return
 }
 
 // ToDo

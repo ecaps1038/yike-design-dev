@@ -3,10 +3,11 @@
     ref="inputRef"
     v-model="displayValue"
     :disabled="disabled"
-    :size="size"
+    :size="mergedSize"
     :class="bem()"
     v-bind="$attrs"
     @change="change"
+    @blur="blur"
     @hoverin="isHovering = true"
     @hoverout="isHovering = false"
     @keydown="keydown"
@@ -14,10 +15,11 @@
     <template #suffix>
       <div
         v-show="!disabled && isHovering"
-        :class="[bem('buttons'), bem([size])]"
+        :class="[bem('buttons'), bem([mergedSize])]"
       >
         <YkButton
           :disabled="limit.isMax"
+          :size="mergedSize"
           type="secondary"
           @click="increase"
           @mousedown="startCombo(1)"
@@ -26,6 +28,7 @@
         </YkButton>
         <YkButton
           :disabled="limit.isMin"
+          :size="mergedSize"
           type="secondary"
           @click="decrease"
           @mousedown="startCombo(0)"
@@ -37,7 +40,7 @@
   </YkInput>
 </template>
 <script setup lang="ts">
-import { createCssScope } from '../../utils/bem'
+import { createCssScope, useFormItem } from '../../utils'
 import { YkInput, YkButton } from '../../../index'
 import { InputNumberProps } from './input-number'
 import { toRefs, ref, onMounted, reactive, computed } from 'vue'
@@ -57,6 +60,13 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
 })
 
 const bem = createCssScope('input-number')
+
+const { size } = toRefs(props)
+
+const { mergedSize } = useFormItem({
+  size,
+})
+
 const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
 const isHovering = ref<boolean>(false)
 const limit = reactive({
@@ -70,7 +80,7 @@ const ComboSpeed = 150
 const inputRef = ref<InstanceType<typeof YkInput>>()
 const valueRefs = toRefs(props)
 const lastValue = ref<number>(0)
-const displayValue = ref<string | number>('')
+const displayValue = ref<string>('')
 
 // 计算精度
 const precision = computed(() => {
@@ -180,9 +190,19 @@ const change = (value: string) => {
   checkLimit()
 }
 
+const blur = () => {
+  if (limit.isMax) {
+    lastValue.value = valueRefs.max.value
+  }
+  if (limit.isMin) {
+    lastValue.value = valueRefs.min.value
+  }
+  update()
+}
+
 const update = () => {
   checkLimit()
   displayValue.value = getDisplayValue()
-  emits('update:modelValue', displayValue.value)
+  emits('update:modelValue', precision.value)
 }
 </script>
