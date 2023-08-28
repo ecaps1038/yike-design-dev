@@ -44,15 +44,11 @@ const props = withDefaults(defineProps<SkeletonProps>(), {
   width: '100%',
   height: '15px',
   animated: true,
-  avatar: true,
-  avatarStyle: () => ({
-    shape: 'circle',
-    size: 'l',
-    imgUrl: '',
-  }),
+  avatar: false,
+  avatarStyle: () => ({}),
   round: true,
   row: 1,
-  title: true,
+  title: false,
 })
 
 const { avatarStyle, round } = toRefs(props)
