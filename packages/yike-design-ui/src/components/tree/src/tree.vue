@@ -69,6 +69,7 @@ const {
   fileTree,
   blockNode,
   expandIcon,
+  unSelectKey,
 } = toRefs(props)
 
 // 获取节点的 map 结构
@@ -135,6 +136,16 @@ const onSelect = (key: Key) => {
   }
   emits('select', selectedKeys.value)
 }
+
+watch(
+  () => unSelectKey?.value,
+  (newVal) => {
+    selectedKeys.value = selectedKeys.value.filter((target) => target != newVal)
+    if (checkable.value) {
+      onChecked([newVal as Key], false)
+    }
+  },
+)
 
 // handle node check logic
 const checkedKeys = defineModel<Key[]>('checkedKeys', {
@@ -207,7 +218,7 @@ const getOuterWantKeys = () => {
 watch(_checkedKeys, getOuterWantKeys, { deep: true, immediate: true })
 
 watch(checkStrategy, getOuterWantKeys)
-
+//此方法可以用于tree-select组件的取消选中，复选框的响应式逻辑
 const onChecked = (keys: Key[], checked: boolean) => {
   if (checked) {
     _checkedKeys.value.push(...keys)
