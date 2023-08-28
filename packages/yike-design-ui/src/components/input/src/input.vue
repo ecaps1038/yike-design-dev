@@ -172,7 +172,6 @@ const update = () => {
   valueCounter.value = lastValue.length
   validate('change')
   emits('update:modelValue', lastValue)
-  console.log(props.modelValue, '6', lastValue)
   emits('change', lastValue)
 }
 
