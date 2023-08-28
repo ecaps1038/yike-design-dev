@@ -30,7 +30,9 @@ const taskUrl = ref(
   'https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK',
 )
 // 任务文档url
-const uiUrl = ref('https://codesign.qq.com/s/6W3G0m4m8q9lOwL')
+const uiUrl = ref(
+  'https://www.figma.com/file/EMPOindzRJTKt1Gx6Egojq/Yike-design?type=design&node-id=0%3A278&mode=design&t=buLeC3MzFSkXagtR-1',
+)
 // 头像图片地址
 const avatarImgUrl = ref(
   'https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png',
