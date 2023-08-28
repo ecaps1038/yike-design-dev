@@ -21,7 +21,7 @@
     "yike"
   ],
   "main": "lib/index.js",
-  "module": "es/index.js",
+  "module": "es/index.mjs",
   "types": "es/index.d.ts",
   "files": [
     "es",
