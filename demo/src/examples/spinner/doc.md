@@ -14,7 +14,7 @@
 
 :::snippet
 颜色 Color
-使用颜色枚举值来调整颜色：`primary`、`success`、`error`以及`warning`；或者传入一个 CSS 颜色字符串作为颜色：`color="red"` 或 `color="#007bff"`。
+使用颜色枚举值来调整颜色：`primary`、`success`、`error`以及`warning`；或者传入一个 CSS 颜色 / 变量字符串作为颜色：`color="red"`、`color="#007bff"` 或 `color="var(--keyword)"`。
 <SpinnerColor/>
 :::
 
