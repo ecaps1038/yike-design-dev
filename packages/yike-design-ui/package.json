@@ -38,6 +38,7 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint . --fix",
+    "release": "pnpm run gen:icon && pnpm run gen:less && standard-version",
     "gen:icon": "yike-build icongen",
     "gen:less": "yike-build lessgen",
     "build:less": "yike-build buildStyle",
