@@ -36,13 +36,25 @@
     margin-left: 8px;
   }
   &--s {
-    height: 4px;
+    .yk-progress-inner {
+      height: 4px;
+    }
+    .yk-progress-text {
+      .font-ss();
+    }
   }
   &--m {
-    height: 6px;
+    .yk-progress-inner {
+      height: 6px;
+    }
   }
   &--l {
-    height: 8px;
+    .yk-progress-inner {
+      height: 8px;
+    }
+    .yk-progress-text {
+      .font-m();
+    }
   }
 
   &-svg {
@@ -66,18 +78,27 @@
     color: #1e2025cc;
     transform: translate(-50%, -50%);
   }
-  &-circle {
-    &--s {
-      width: 48px;
-      height: 48px;
+}
+.yk-progress-circle {
+  &--s {
+    width: 64px;
+    height: 64px;
+    .yk-progress-circle-text {
+      .font-s();
     }
-    &--m {
-      width: 64px;
-      height: 64px;
+  }
+  &--m {
+    width: 80px;
+    height: 80px;
+    .yk-progress-circle-text {
+      .font-m();
     }
-    &--l {
-      width: 80px;
-      height: 80px;
+  }
+  &--l {
+    width: 108px;
+    height: 108px;
+    .yk-progress-circle-text {
+      .font-l();
     }
   }
 }
