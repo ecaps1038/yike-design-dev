@@ -97,7 +97,7 @@ const curOptions = computed<CheckboxOption[]>(() => {
 
 // 计算限制可勾选
 const isMax = computed(() => {
-  return props.max === undefined ? false : calcVal.value.length > props.max
+  return props.max === undefined ? false : calcVal.value.length >= props.max
 })
 
 const resolveGap = computed((): CSSProperties => {
