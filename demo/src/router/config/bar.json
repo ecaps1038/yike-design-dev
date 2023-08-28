@@ -30,6 +30,10 @@
         {
           "name": "Collapse 折叠面板",
           "src": "collapse"
+        },
+        {
+          "name": "Skeleton 骨架屏",
+          "src": "skeleton"
         }
       ]
     },
