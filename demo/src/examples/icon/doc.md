@@ -13,7 +13,7 @@ Yike 图标是一个独立的库，需要额外引入并注册使用。
 ```js
 import { createApp } from 'vue'
 // 全局注入 icon
-import Icon from 'yike-design-ui/es/components/svg-icon'
+import Icon from '@yike-design/ui/es/components/svg-icon'
 import App from './App.vue'
 
 const app = createApp(App)

@@ -1,8 +1,9 @@
 {
-  "name": "@yike/build",
+  "name": "@yike-design/build",
   "version": "0.0.1",
   "description": "build packages",
   "main": "dist/index.js",
+  "type": "commonjs",
   "bin": {
     "yike-build": "bin/index.js"
   },

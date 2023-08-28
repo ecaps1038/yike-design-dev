@@ -11,7 +11,6 @@
     "sourceMap": true,
     "paths": {
       "@/*": ["./src/*"],
-      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
     }
   },
   "exclude": ["dist/**", "node_modules/**"],

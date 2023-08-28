@@ -28,7 +28,7 @@
 </template>
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { Size } from 'yike-design-ui/src/components/utils'
+import { Size } from '@yike-design/ui/src/components/utils'
 const form = reactive({
   name: '大飞',
   sex: 'man',
