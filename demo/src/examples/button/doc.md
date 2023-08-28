@@ -26,7 +26,7 @@
 
 :::snippet
 按钮状态 status
-按钮的状态分为 默认、`primary` 主要、`success` 成功、`warning` 警告、`danger` 危险五种，可以与按钮类型同时使用。
+按钮的状态分为 `默认`、`primary` 主要、`success` 成功、`warning` 警告、`danger` 危险五种，可以与按钮类型同时使用。
 <ButtonStatus/>
 :::
 
