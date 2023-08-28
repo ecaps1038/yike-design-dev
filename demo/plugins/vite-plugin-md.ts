@@ -53,7 +53,7 @@ export default () => ({
       for (const match of matches) {
         // parse three lines in snippet block
         const [title, desc, demoName] = match[1]
-          .replace(/(\r\n)+/g, '\n')
+          .replace(/(\n)+/g, '\n')
           .split('\n');
 
         // match demo Vue components
