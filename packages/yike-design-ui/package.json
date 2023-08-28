@@ -52,5 +52,5 @@
   },
   "devDependencies": {
     "@yike-design/build": "workspace:*"
-  },
+  }
 }
