@@ -1,6 +1,11 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.stylelint": true
+  },
   "[less]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -17,6 +22,25 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "references.preferredLocation": "peek",
+  "stylelint.validate": ["vue", "less", "css"],
+  "vue.codeActions.enabled": false,
+  "cSpell.words": [
+    "animatb",
+    "animatf",
+    "animats",
+    "ecolor",
+    "lcolor",
+    "pcolor",
+    "scolor",
+    "wcolor"
+  ]
 }

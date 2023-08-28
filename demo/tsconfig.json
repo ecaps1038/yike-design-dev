@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "composite": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "sourceMap": true,
+    "paths": {
+      "@/*": ["./src/*"],
+    }
+  },
+  "exclude": ["dist/**", "node_modules/**"],
+  "include": ["**/**/*.ts", "**/**/*.vue", "components.d.ts"]
+}

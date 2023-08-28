@@ -1,0 +1,95 @@
+@import '../../styles/color/colors.less';
+@import '../../styles/icon.less';
+.yk-notification-container {
+  position: fixed;
+  z-index: 2002;
+  &-topRight {
+    top: 0;
+    right: 0;
+  }
+  &-topLeft {
+    top: 0;
+    left: 0;
+  }
+  &-bottomRight {
+    right: 0;
+    bottom: 0;
+  }
+  &-bottomLeft {
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.yk-notification {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  color: @font-color-l;
+  .notification-container {
+    display: flex;
+    padding: @space-xl;
+    min-width: 336px;
+    max-width: 420px;
+    border-radius: @radius-m;
+    color: @font-color-l;
+    background: @bg-color-l;
+    box-shadow: @shadow-m;
+    flex-direction: column;
+  }
+  .notification-body {
+    display: flex;
+    flex-direction: row;
+    .title-text {
+      margin-bottom: @space-s;
+      padding-right: 16px;
+      font-weight: 500;
+      vertical-align: middle;
+      .font-m();
+    }
+    .content {
+      .font-s();
+      font-weight: 400;
+      text-align: justify;
+    }
+    //icon颜色
+    .icon-success {
+      color: @scolor;
+    }
+
+    .icon-warning {
+      color: @wcolor;
+    }
+
+    .icon-error {
+      color: @ecolor;
+    }
+
+    .icon-primary {
+      color: @pcolor;
+    }
+  }
+  .iconDiv {
+    margin-right: @space-s;
+    width: 20px;
+    svg {
+      margin-top: 2px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .notification-footer {
+    margin-top: @space-l;
+    align-self: flex-end;
+  }
+  i {
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  &-close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .close-icon();
+  }
+}

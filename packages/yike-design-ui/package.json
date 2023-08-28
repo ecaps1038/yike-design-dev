@@ -1,0 +1,55 @@
+{
+  "name": "@yike-design/ui",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "yike-design-ui",
+  "author": "ecaps1038 https://github.com/ecaps1038",
+  "homepage": "https://github.com/ecaps1038/yike-design-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecaps1038/yike-design-dev",
+    "directory": "yike-design-ui"
+  },
+  "bugs": {
+    "url": "https://github.com/ecaps1038/yike-design-dev/issues"
+  },
+  "keywords": [
+    "yike-design-ui",
+    "yike design ui",
+    "yike-design",
+    "yike design",
+    "yike"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist",
+    "json"
+  ],
+  "sideEffects": [
+    "dist/*",
+    "es/**/style/*",
+    "lib/**/style/*",
+    "*.less"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint . --fix",
+    "gen:icon": "yike-build icongen",
+    "gen:less": "yike-build lessgen",
+    "build:less": "yike-build buildStyle",
+    "build:comp": "yike-build buildComp",
+    "test": "vitest --watch=false",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.2.1",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@yike-design/build": "workspace:*"
+  }
+}

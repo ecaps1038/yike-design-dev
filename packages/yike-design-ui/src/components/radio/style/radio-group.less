@@ -1,0 +1,34 @@
+@import '../../styles/color/colors.less';
+.yk-radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center !important;
+  &--vertical {
+    align-items: flex-start !important;
+  }
+  &--xl {
+    .define-radio-group(48px,4px,@radius-m);
+  }
+  &--l {
+    .define-radio-group(36px,4px,@radius-m);
+  }
+  &--m {
+    .define-radio-group(32px,3px,@radius-s);
+  }
+  &--s {
+    .define-radio-group(24px,2px,@radius-s);
+  }
+  &__container {
+    display: flex;
+    background: @bg-color-s;
+  }
+}
+.define-radio-group(@height,@padding,@radius) {
+  min-height: @height;
+  .yk-radio-group__container {
+    padding: @padding 0px;
+    padding-right: @padding;
+    border-radius: @radius;
+  }
+}

@@ -1,0 +1,100 @@
+//混合出背景色
+
+//默认
+:root {
+  --comment: #9ea3ab;
+  --keyword: #b22ada;
+  --deletion: #da4853;
+  --literal: #0eafc3;
+  --addition: #5bb41a;
+  --attr: #eb882a;
+  --bullet: #258de3;
+  --built_in: #e2a019;
+}
+
+// 暗色主题
+[data-theme='dark'] {
+  --comment: #5c6370;
+  --keyword: #c678dd;
+  --deletion: #e06c75;
+  --literal: #56b6c2;
+  --addition: #98c379;
+  --attr: #d19a66;
+  --bullet: #61aeee;
+  --built_in: #e6c07b;
+}
+pre {
+  margin: @space-m 0;
+  padding: @space-l @space-xl;
+  background-color: @bg-color-m;
+}
+
+pre code {
+  color: @font-color-m;
+  .hljs-comment,
+  .hljs-quote {
+    color: var(--comment);
+    font-style: italic;
+  }
+
+  .hljs-doctag,
+  .hljs-formula,
+  .hljs-keyword {
+    color: var(--keyword);
+  }
+
+  .hljs-deletion,
+  .hljs-name,
+  .hljs-section,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: var(--deletion);
+  }
+
+  .hljs-literal {
+    color: var(--literal);
+  }
+
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-regexp,
+  .hljs-string {
+    color: var(--addition);
+  }
+
+  .hljs-attr,
+  .hljs-number,
+  .hljs-selector-attr,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-variable {
+    color: var(--attr);
+  }
+
+  .hljs-bullet,
+  .hljs-link,
+  .hljs-selector-id,
+  .hljs-symbol,
+  .hljs-title {
+    color: var(--bullet);
+  }
+
+  .hljs-built_in,
+  .hljs-title.class_ {
+    color: var(--built_in);
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: 700;
+  }
+
+  .hljs-link {
+    text-decoration: underline;
+  }
+}

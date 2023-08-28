@@ -1,0 +1,118 @@
+@import '../../styles/color/colors.less';
+// 默认状态TimelineItem样式
+.yk-timeline__item {
+  // 设置排布相关
+  display: flex;
+  // 默认文字样式
+  &__desc {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    margin: 0px 0px @space-xl @space-xl;
+
+    &__title {
+      .font-s();
+      padding-bottom: @space-ss;
+      color: @font-color-l;
+      word-break: break-all;
+    }
+
+    &__content {
+      .font-s();
+      padding-bottom: @space-ss;
+      word-break: break-all;
+      color: @font-color-m;
+    }
+
+    &__time {
+      .font-ss();
+      word-break: break-all;
+      color: @font-color-s;
+    }
+  }
+
+  // 竖直状态尾巴
+  &__timeline__tail {
+    position: absolute;
+    top: 22px;
+    left: 5px;
+    width: 1px;
+    height: calc(100% - 22px);
+    border-color: @line-color-m;
+    // 水平状态尾巴
+    &--horizontal {
+      top: 3px;
+      left: 9px;
+      width: calc(100% - 22px);
+      height: 1px;
+    }
+  }
+
+  // 点样式
+  &__timeline__dot-item {
+    position: absolute;
+    left: 6px;
+    display: flex;
+    align-items: center;
+    height: 22px;
+    transform: translateX(-50%);
+
+    // 水平状态点
+    &--horizontal {
+      width: 22px;
+      height: 7px;
+    }
+
+    &__dot {
+      position: relative;
+      width: 7px;
+      height: 7px;
+      border-width: 0px;
+      border-style: solid;
+      border-radius: 50%;
+      background: @pcolor;
+    }
+
+    // pending动画
+    &--pending {
+      opacity: 0.7 !important;
+      svg {
+        width: 14px;
+        transform-origin: center;
+        animation: rotate4 2s linear infinite;
+      }
+
+      circle {
+        fill: none;
+        stroke: @pcolor;
+        stroke-width: 3;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+        animation: dash4 1.5s ease-in-out infinite;
+      }
+
+      @keyframes rotate4 {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes dash4 {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+
+        50% {
+          stroke-dasharray: 90, 200;
+          stroke-dashoffset: -35px;
+        }
+
+        100% {
+          stroke-dashoffset: -125px;
+        }
+      }
+    }
+  }
+}

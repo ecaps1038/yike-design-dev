@@ -1,0 +1,158 @@
+@import '../../styles/color/colors.less';
+@import '../../styles/icon.less';
+
+.yk-drawer {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1024;
+  transition: all @animats;
+
+  .yk-drawer__mask {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: #00000066;
+    transition: opacity @animats;
+  }
+}
+
+.yk-drawer--other-el {
+  position: absolute;
+  z-index: unset;
+  overflow: hidden;
+
+  .yk-drawer--main {
+    z-index: unset;
+  }
+}
+
+.yk-drawer__focus {
+  width: 0px;
+  height: 0px;
+
+  &:focus-within {
+    outline: none;
+  }
+}
+
+.yk-drawer--shadow {
+  box-shadow: @shadow-m;
+}
+
+.yk-drawer--main {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: @bg-color-l;
+  transition: transform @animats;
+  word-break: break-all;
+
+  .yk-drawer__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .yk-drawer__close {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    .close-icon();
+  }
+
+  .yk-drawer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: @space-m @space-l;
+    border-bottom: 1px solid @line-color-s;
+
+    &:empty {
+      padding: unset;
+      border-bottom: unset;
+    }
+  }
+  .yk-drawer__title {
+    .font-m();
+    font-weight: 500;
+  }
+
+  .yk-drawer__content {
+    overflow: auto;
+    padding: @space-l;
+    .font-s();
+    flex-grow: 1;
+  }
+
+  .yk-drawer__footer {
+    display: flex;
+    justify-content: end;
+    padding: 12px;
+    border-top: 1px solid @bg-color-ss;
+
+    &:empty {
+      padding: unset;
+      border-top: unset;
+    }
+  }
+}
+
+.drawer-anim(@placement, @from, @to) {
+  .fft() {
+    transform: @from;
+  }
+  .ttf() {
+    transform: @to;
+  }
+
+  &.@{placement}-drawer-enter-from,
+  .@{placement}-drawer-appear-from,
+  .@{placement}-drawer-leave-to {
+    .fft();
+  }
+  &.@{placement}-drawer-enter-to,
+  .@{placement}-drawer-appear-to,
+  .@{placement}-drawer-leave-from {
+    .ttf();
+  }
+}
+
+.yk-drawer--right {
+  left: unset;
+}
+
+.yk-drawer--left {
+  right: unset;
+}
+
+.yk-drawer--top {
+  bottom: unset;
+}
+
+.yk-drawer--bottom {
+  top: unset;
+}
+
+.mask-enter-from,
+.mask-appear-from,
+.mask-leave-to {
+  opacity: 0;
+}
+
+.mask-enter-to,
+.mask-appear-to,
+.mask-leave-from {
+  opacity: 1;
+}
+
+.drawer-anim(right, translateX(100%), translateX(0));
+.drawer-anim(left, translateX(-100%), translateX(0));
+.drawer-anim(top, translateY(-100%), translateY(0));
+.drawer-anim(bottom, translateY(100%), translateY(0));

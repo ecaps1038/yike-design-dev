@@ -1,0 +1,51 @@
+.yk-input-number__buttons {
+  position: absolute;
+  right: 3px;
+  display: flex;
+  flex-direction: column;
+
+  .yk-button {
+    padding: unset;
+    min-width: unset;
+
+    svg {
+      margin: unset !important;
+      fill: @font-color-s !important;
+    }
+
+    &:first-child {
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    &:last-child {
+      border-radius: 0px 0px 4px 4px;
+    }
+  }
+}
+
+.number-size(@size, @bw, @bh, @svw, @svh) {
+  .button() {
+    width: @bw;
+    height: @bh;
+  }
+
+  .icon() {
+    width: @svw !important;
+    height: @svh !important;
+  }
+
+  &.yk-input-number--@{size} {
+    .yk-button {
+      .button();
+    }
+
+    svg {
+      .icon();
+    }
+  }
+}
+
+.number-size(s, 16px, 8px, 12px, 12px);
+.number-size(m, 20px, 12px, 12px, 12px);
+.number-size(l, 24px, 14px, 12px, 12px);
+.number-size(xl, 28px, 20px, 12px, 12px);
