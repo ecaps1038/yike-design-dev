@@ -1,52 +1,60 @@
+import { ComponentResolver } from 'unplugin-vue-components/types';
 import fs from 'fs';
-
 // 需要分析的文件路径
-const from = 'yike-design-ui/component.ts';
-const compentPath = '@yike/components';
-const fileContent = fs.readFileSync(`../packages/${from}`, 'utf-8');
-const compPaths = {};
+const from = `../packages/yike-design-ui/src/index.ts`;
 
-parseImportStatements(fileContent);
+// 解析文件内容
+const fileContent = fs.readFileSync(from, 'utf-8');
 
-export default function YikeDevResolver(compName: string) {
-  if (compName.startsWith('Yk')) {
-    return {
-      name: compName,
-      from: `${compentPath}/index.ts`,
-      sideEffects: sideEffects(`${compentPath}/${compPaths[compName]}`),
-    };
-  }
-  if (compName.startsWith('Icon')) {
-    return {
-      name: compName,
-      from: `${compentPath}/svg-icon/index.ts`,
-    };
-  }
-}
+// 存储导入路径和组件名称的映射关系
+const importPaths = {};
 
 // 提取导入路径和组件名称
-function parseImportStatements(content: string) {
-  /** @see https://regex101.com/r/jJfLJO/1 */
+const extractImports = (content) => {
   const importRegex = /import\s+({[^}]+}|[^{}\n]+)\s+from\s+['"](.+)['"]/g;
-  let match: RegExpExecArray;
 
+  let match;
   while ((match = importRegex.exec(content))) {
-    const [, compNames, _compPath] = match;
-    const compPath = _compPath.split('/').pop();
-
-    if (compNames.at(0) === '{') {
-      compNames
-        .replace(/[{\s}]/g, '')
+    const [, imports, importPath] = match;
+    if (imports.includes('{')) {
+      // 处理解构语法导入方式：{ YkCheckbox, YkCheckboxGroup }
+      imports
+        .replace(/[{}]/g, '')
         .split(',')
-        .forEach((item) => {
-          if (item) compPaths[item] = compPath;
+        .map((importName) => importName.trim())
+        .forEach((componentName) => {
+          // 截取末段路径 ./components/upload -> upload
+          importPaths[componentName] = importPath.split('/').pop();
         });
     } else {
-      compPaths[compNames.trim()] = compPath;
+      // 处理默认导入方式：YkCheckbox
+      const componentName = imports.trim();
+      // 截取末段路径 ./components/upload -> upload
+      importPaths[componentName] = importPath.split('/').pop();
     }
   }
+};
+
+extractImports(fileContent);
+
+function sideEffects(from: string) {
+  return `${from}/style/index`;
 }
 
-function sideEffects(name: string) {
-  return `${name}/style/index`;
-}
+export const YikeDevResolver: ComponentResolver = (componentName) => {
+  if (componentName.startsWith('Yk')) {
+    return {
+      name: componentName,
+      from,
+      sideEffects: sideEffects(
+        `../packages/yike-design-ui/src/components/${importPaths[componentName]}`,
+      ),
+    };
+  }
+  if (componentName.startsWith('Icon')) {
+    return {
+      name: componentName,
+      from: '../packages/yike-design-ui/src/components/svg-icon/index.ts',
+    };
+  }
+};
