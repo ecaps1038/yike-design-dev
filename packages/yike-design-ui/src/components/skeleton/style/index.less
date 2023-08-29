@@ -1,0 +1,68 @@
+.yk-skeleton {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 100%;
+  &__animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        hsla(0, 0%, 100%, 0),
+        hsla(0, 0%, 100%, 0.5) 50%,
+        hsla(0, 0%, 100%, 0) 80%
+      ),
+      linear-gradient(
+        90deg,
+        hsla(0, 0%, 100%, 0),
+        hsla(0, 0%, 100%, 0.5) 50%,
+        hsla(0, 0%, 100%, 0) 80%
+      );
+
+    background-repeat: no-repeat;
+    animation: backpos 2s ease-in-out 0s infinite;
+  }
+  @keyframes backpos {
+    0% {
+      background-position-x: -500px;
+    }
+    to {
+      background-position-x: calc(500px + 100%);
+    }
+  }
+  &__content {
+    display: flex;
+    &__avatarClass {
+      margin-right: 20px;
+      background-color: @gray-2;
+    }
+    &__line {
+      display: flex;
+      flex-direction: column;
+      &__blockTitle,
+      &__blockLine {
+        margin-bottom: 10px;
+        width: 100%;
+        background-color: @gray-2;
+      }
+      &__blockTitle {
+        width: 30%;
+      }
+
+      &__blockTitle:last-of-type,
+      &__blockLine:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &__blockTitle__round,
+      &__blockLine__round {
+        border-radius: 10px;
+      }
+    }
+  }
+}
