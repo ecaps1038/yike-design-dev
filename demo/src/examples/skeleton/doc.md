@@ -32,17 +32,17 @@
 
 ### API
 
-| 参数        | 描述             | 类型    | 默认值                                                                        |
-| ----------- | ---------------- | ------- | ----------------------------------------------------------------------------- |
-| loading     | 是否显示骨架屏   | boolean | true                                                                          |
-| width       | 标题段落宽度     | string  | "100%"                                                                        |
-| height      | 标题段落高度     | string  | "15px"                                                                        |
-| animated    | 是否有动画       | boolean | true                                                                          |
-| avatar      | 是否有头像       | boolean | false                                                                         |
-| avatarStyle | 头像样式         | object  | { shape: 'circle' \|\| 'square' \|\|number,size: number,Size,imgUrl: string } |
-| round       | 标题段落是否圆角 | boolean | true，圆角值为 15px                                                           |
-| row         | 有多山行段落     | boolean | 1                                                                             |
-| title       | 是否有标题       | boolean | false                                                                         |
+| 参数        | 描述             | 类型    | 默认值                                                                                                                                                          |
+| ----------- | ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| loading     | 是否显示骨架屏   | boolean | true                                                                                                                                                            |
+| width       | 标题段落宽度     | string  | "100%"                                                                                                                                                          |
+| height      | 标题段落高度     | string  | "15px"                                                                                                                                                          |
+| animated    | 是否有动画       | boolean | true                                                                                                                                                            |
+| avatar      | 是否有头像       | boolean | false                                                                                                                                                           |
+| avatarStyle | 头像样式         | object  | { <br/>&emsp;&emsp;shape: 'circle' \|\| 'square' \|\|number,<br/>&emsp;&emsp;size: number\|\|'s'\|\| 'm'\|\| 'l'\|\|'xl',<br/>&emsp;&emsp;imgUrl: string <br/>} |
+| round       | 标题段落是否圆角 | boolean | true，圆角值为 15px                                                                                                                                             |
+| row         | 有多少行段落     | boolean | 1                                                                                                                                                               |
+| title       | 是否有标题       | boolean | false                                                                                                                                                           |
 
 ### slot
 
