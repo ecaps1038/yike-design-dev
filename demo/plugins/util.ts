@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+import { join } from 'path';
 
 /**
  * Replaces variables in a given template string with corresponding values.
@@ -25,7 +26,7 @@ export const replaceVariables = (
 };
 
 export function getTemplates(path: string) {
-  const templates = fs.readFileSync(path, 'utf-8');
+  const templates = fs.readFileSync(join(__dirname, path), 'utf-8');
   /** @see https://regex101.com/r/A0eVOr/1 */
   const mdReg =
     /(?<start>(?:`|~){3})\w+:\s*(?<name>.+)(?:\r?\n)(?<content>[\s\S]*?)\k<start>/g;
