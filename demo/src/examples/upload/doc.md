@@ -55,6 +55,7 @@
 | accept    | 接受文件类型         | accept                           | \*                |
 | maxSize   | 文件大小限制         | number                           | 3\*1024\*1024(3M) |
 | multiple  | 是否允许多文件上传   | boolean                          | true              |
+| limit     | 控制文件上传数量      | number                           | 0                  |
 | shape     | 图片列表形状         | 'default' \| 'circle'            | 'default'         |
 | uploadUrl | 文件上传路径         | string                           | ''                |
 | fileList  | 当前文件列表         | `{name:'file-name',url:'url'}[]` | []                |

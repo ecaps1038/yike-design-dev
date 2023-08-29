@@ -38,13 +38,13 @@
 
 :::snippet
 单独使用预览组件
-`a-image-preview` 可单独使用，需要手动控制 `visible`。
+`yk-image-preview` 可单独使用，需要手动控制 `visible`。
 <ImagePreviewSeparately/>
 :::
 
 :::snippet
 单独使用多图预览组件
-`a-image-preview-group` 可单独使用，需要将 `isRender="false"` ，同时手动控制 `visible`。
+`yk-image-preview-group` 可单独使用，需要将 `isRender="false"` ，同时手动控制 `visible`。
 <ImagePreviewGroupSeparately/>
 :::
 
