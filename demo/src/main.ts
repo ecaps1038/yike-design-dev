@@ -13,6 +13,7 @@ import '@/style/color-card.less';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
+
 // 全局注入 icon
 import Icon from '@yike-design/ui/src/components/svg-icon';
 import { YkTitle, YkMessage, YkNotification } from '@yike-design/ui/src';
