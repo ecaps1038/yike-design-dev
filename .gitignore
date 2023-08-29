@@ -22,6 +22,12 @@ pnpm-debug.log*
 
 # Editor directories and files
 package-lock.json
-pnpm-lock.yaml
+# pnpm-lock.yaml
 !.vscode/extensions.json
 .idea/*
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
