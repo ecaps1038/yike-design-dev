@@ -26,15 +26,15 @@
 
 ### API
 
-| 参数          | 描述               | 类型                | 默认值    |
-| ------------- | ------------------ | ------------------- | --------- |
-| v-model:value | 绑定模型           | Ref                 | ''        |
-| max           | 最大值             | number              | Infinity  |
-| min           | 最小值             | number              | -Infinity |
-| step          | 步进值             | number              | 1         |
-| precision     | 显示精度           | number              | 0         |
-| size          | 数字输入框的尺寸   | 's'｜'m'｜'l'｜'xl' | 'l'       |
-| disabled      | 是否禁用数字输入框 | boolean             | false     |
+| 参数                 | 描述               | 类型                | 默认值    |
+| -------------------- | ------------------ | ------------------- | --------- |
+| v-model(model-value) | 绑定模型           | Ref                 | ''        |
+| max                  | 最大值             | number              | Infinity  |
+| min                  | 最小值             | number              | -Infinity |
+| step                 | 步进值             | number              | 1         |
+| precision            | 显示精度           | number              | 0         |
+| size                 | 数字输入框的尺寸   | 's'｜'m'｜'l'｜'xl' | 'l'       |
+| disabled             | 是否禁用数字输入框 | boolean             | false     |
 
 其余属性继承自 [Input](/module/input#Input)
 
