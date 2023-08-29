@@ -4,7 +4,6 @@ import router from './router';
 import Snippet from './components/Snippet.vue';
 import ColorCard from './components/ColorCard.vue';
 import componentPageVue from './components/component-page.vue';
-
 // 加载项目全局样式
 import '@yike-design/ui/src/components/styles/index.less';
 import '@/style/main.less';

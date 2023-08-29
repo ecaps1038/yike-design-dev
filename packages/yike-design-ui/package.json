@@ -20,7 +20,7 @@
     "yike design",
     "yike"
   ],
-  "main": "lib/index.js",
+  "main": "lib/index.ts",
   "module": "es/index.mjs",
   "types": "es/index.d.ts",
   "files": [
