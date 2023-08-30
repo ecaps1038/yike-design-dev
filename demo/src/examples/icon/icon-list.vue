@@ -38,7 +38,12 @@ const handleCopy = (item: any) => {
             <IconTickOutline />
             <span>copied!</span>
           </div> -->
-          <div class="icon"><component :is="item.componentName" /></div>
+          <div v-if="list.title != '多彩图标'" class="icon">
+            <component :is="item.componentName" />
+          </div>
+          <div v-else class="icon">
+            <component :is="item.componentName" :size="42" />
+          </div>
           <span class="name">
             {{ getRealName(list, item.name) }}
           </span>
