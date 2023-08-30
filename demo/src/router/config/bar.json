@@ -141,6 +141,10 @@
         {
           "name": "Tabs 标签页",
           "src": "tabs"
+        },
+        {
+          "name": "Tag 标签",
+          "src": "tag"
         }
       ]
     },
