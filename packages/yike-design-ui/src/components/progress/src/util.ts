@@ -29,9 +29,9 @@ export const getIconName: (status: Status, isLinear?: boolean) => string = (
 /**
  * 根据size获取对应的 svg大小
  */
-export const getSvgSize: (size: PSize) => string = (size: PSize) =>
+export const getSvgSize: (size: PSize) => string[] = (size: PSize) =>
   ({
-    s: '48',
-    m: '64',
-    l: '80',
+    s: ['4', '64'],
+    m: ['6', '80'],
+    l: ['8', '108'],
   }[size]);

@@ -1,5 +1,7 @@
 ## YkButton 按钮
 
+点击开启一个即时操作。
+
 :::snippet
 按钮类型 type
 按钮有三种类型：`主按钮` 、`次按钮` 、`线框按钮` 。主按钮在同一个操作区域建议最多出现一次。
@@ -26,7 +28,7 @@
 
 :::snippet
 按钮状态 status
-按钮的状态分为 默认、`primary` 主要、`success` 成功、`warning` 警告、`danger` 危险五种，可以与按钮类型同时使用。
+按钮的状态分为 `默认`、`primary` 主要、`success` 成功、`warning` 警告、`danger` 危险五种，可以与按钮类型同时使用。
 <ButtonStatus/>
 :::
 

@@ -40,7 +40,7 @@
           :class="bem('widget')"
           :type="inputType"
           tabindex="0"
-          :value="realValue"
+          :value="lastValue"
           :aria-disabled="mergedDisabled"
           @focus="focus"
           @input="update"
@@ -93,7 +93,7 @@
 </template>
 <script setup lang="ts">
 import { InputProps } from './input'
-import { computed, ref, toRef, watch, toRefs } from 'vue'
+import { computed, ref, watch, toRefs, unref } from 'vue'
 import { IconCloseEyeOutline, IconCloseOutline } from '../../svg-icon'
 import { useFormItem, createCssScope } from '../../utils'
 import { YkSpinner } from '../../spinner'
@@ -133,8 +133,7 @@ const shouldLimitInput = props.limit > 0
 const shouldShowLimit = props.showCounter && shouldLimitInput
 const shouldShowVisiblePasswordButton =
   props.type === 'password' && !props.disabled && props.visible
-let realValue = toRef(props, 'modelValue')
-let lastValue = realValue.value
+let lastValue = unref(props.modelValue)
 const valueCounter = ref<number>((lastValue as string).length)
 const emits = defineEmits([
   'focus',
@@ -169,7 +168,6 @@ const update = () => {
     lastValue = lastValue.slice(0, props.limit)
     inputRef.value!.value = lastValue
   }
-  ;(realValue as any) = lastValue
   shouldShowButton.value = lastValue.length > 0 ? true : false
   valueCounter.value = lastValue.length
   validate('change')
@@ -233,7 +231,6 @@ const YkInputButtonClass = computed(() => {
 
 watch(props, () => {
   lastValue = props.modelValue
-  ;(realValue as any) = lastValue
   emits('update:modelValue', lastValue)
 })
 

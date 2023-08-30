@@ -162,6 +162,18 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'tag',
     component: () => import('@/examples/tag/doc.md'),
   },
+  {
+    path: 'calendar',
+    component: () => import('@/examples/calendar/doc.md'),
+  },
+  {
+    path: 'skeleton',
+    component: () => import('@/examples/skeleton/doc.md'),
+  },
+  {
+    path: 'divider',
+    component: () => import('@/examples/divider/doc.md'),
+  },
 ];
 
 export default generalRoutes;

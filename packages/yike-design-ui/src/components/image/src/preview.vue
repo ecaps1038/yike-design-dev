@@ -8,7 +8,7 @@
         :class="bem()"
         :style="wrapperStyles"
       >
-        <div :class="bem('mask')"></div>
+        <div :class="bem('mask')" @click="maskClick"></div>
 
         <div
           :class="bem('body')"

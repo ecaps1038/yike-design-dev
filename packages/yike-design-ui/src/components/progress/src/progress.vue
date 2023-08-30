@@ -1,9 +1,9 @@
 <template>
   <div class="yk-progress">
     <template v-if="props.type === 'line'">
-      <div class="yk-progress-line-wrapper">
+      <div :class="['yk-progress-line-wrapper', ykProgressSizeCls[props.type]]">
         <div
-          :class="['yk-progress-inner', ykProgressSizeCls[props.type]]"
+          class="yk-progress-inner"
           :style="{
             '--progress-inner-w': progressPercent,
             '--progress-inner-color': setProgressState,
@@ -34,8 +34,7 @@
             :cy="ykProgressCircleStyle.cy"
             :stroke-width="ykProgressCircleStyle.strokeWidth"
             fill="transparent"
-            class="yk-progress-circle"
-            stroke="#e8e8e8"
+            class="yk-progress-circle-bg"
           ></circle>
           <circle
             :r="ykProgressCircleStyle.r"
@@ -95,12 +94,12 @@ const setProgressState = computed(
 // 环形进度条
 const ykProgressCircleStyle = computed(() => {
   const sizeVal = getSvgSize(props.size)
-  const strokeWidth = Number(sizeVal.charAt(0)) - 1
-  const val = Number(sizeVal) / 2
+  const strokeWidth = Number(sizeVal[0])
+  const val = Number(sizeVal[1]) / 2
   return {
     svgWh: `width:${val * 2}px;height:${val * 2}px`,
     strokeWidth,
-    r: (Number(sizeVal) - strokeWidth) / 2,
+    r: (Number(sizeVal[1]) - strokeWidth) / 2,
     cx: val,
     cy: val,
   }

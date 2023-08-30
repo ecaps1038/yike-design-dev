@@ -74,5 +74,4 @@ const state = reactive<any>({
     },
   ],
 })
-// const treeData = []
 </script>
