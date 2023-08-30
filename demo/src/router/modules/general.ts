@@ -162,6 +162,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'skeleton',
     component: () => import('@/examples/skeleton/doc.md'),
   },
+  {
+    path: 'divider',
+    component: () => import('@/examples/divider/doc.md'),
+  },
 ];
 
 export default generalRoutes;
