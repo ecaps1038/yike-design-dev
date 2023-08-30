@@ -121,7 +121,7 @@ const calcGapStyle = computed<CSSProperties>(() => {
 provide(
   checkboxGroupContextKey,
   reactive({
-    name: 'YKCheckboxGroup',
+    name: 'YkCheckboxGroup',
     calcVal: calcVal,
     disabled: mergedDisabled,
     handleChange,

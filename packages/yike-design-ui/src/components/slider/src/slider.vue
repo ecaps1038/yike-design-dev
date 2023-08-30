@@ -48,7 +48,7 @@ import { SliderProps, SliderEmits, SliderEmitEvents } from './slider'
 import { DIRECTION, createCssScope } from '../../utils'
 import { useSlider } from './useSlider'
 defineOptions({
-  name: 'YKSlider',
+  name: 'YkSlider',
 })
 
 const bem = createCssScope('slider')
