@@ -27,6 +27,10 @@
         {
           "name": "Space 间距",
           "src": "space"
+        },
+        {
+          "name": "Divider 分割线",
+          "src": "divider"
         }
       ]
     },
@@ -78,7 +82,6 @@
           "name": "Radio 单选框",
           "src": "radio"
         },
-
         {
           "name": "Rate 评分",
           "src": "rate"
