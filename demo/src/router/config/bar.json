@@ -116,6 +116,10 @@
           "src": "badge"
         },
         {
+          "name": "Calendar 日历",
+          "src": "calendar"
+        },
+        {
           "name": "Collapse 折叠面板",
           "src": "collapse"
         },
@@ -140,12 +144,8 @@
           "src": "tabs"
         },
         {
-          "name": "Calendar 日历",
-          "src": "calendar"
-        },
-        {
-           "name": "Timeline 时间线",
-           "src": "timeline"
+          "name": "Timeline 时间线",
+          "src": "timeline"
         },
         {
           "name": "Tree 树",
@@ -154,7 +154,6 @@
         {
           "name": "TreeSelect 树形选择",
           "src": "tree-select"
-
         }
       ]
     },

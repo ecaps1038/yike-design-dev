@@ -11,7 +11,7 @@
     width: 100%;
     height: 6px;
     border-radius: @radius-s;
-    background: #e8e8e8;
+    background: @bg-color-s;
     &::before {
       position: absolute;
       top: 0;
@@ -30,7 +30,7 @@
     margin-left: 16px;
     min-width: 60px;
     font-family: PingFangSC-Regular;
-    color: #1e2025cc;
+    color: @font-color-m;
   }
   &-icon {
     margin-left: 8px;
@@ -75,11 +75,12 @@
     width: 100%;
     font-family: PingFangSC-Regular;
     text-align: center;
-    color: #1e2025cc;
+    color: @font-color-m;
     transform: translate(-50%, -50%);
   }
 }
-.yk-progress-circle {
+.yk-progress-circle,
+.yk-progress-circle-bg {
   &--s {
     width: 64px;
     height: 64px;
@@ -101,4 +102,7 @@
       .font-l();
     }
   }
+}
+.yk-progress-circle-bg {
+  stroke: @bg-color-s;
 }

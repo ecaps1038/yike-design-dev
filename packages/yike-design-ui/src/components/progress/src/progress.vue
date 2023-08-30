@@ -34,8 +34,7 @@
             :cy="ykProgressCircleStyle.cy"
             :stroke-width="ykProgressCircleStyle.strokeWidth"
             fill="transparent"
-            class="yk-progress-circle"
-            stroke="#e8e8e8"
+            class="yk-progress-circle-bg"
           ></circle>
           <circle
             :r="ykProgressCircleStyle.r"
