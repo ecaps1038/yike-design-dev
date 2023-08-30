@@ -28,10 +28,7 @@
 | 参数            | 描述           | 类型   | 可选值                       | 默认值       |
 | --------------- | -------------- | ------ | ---------------------------- | ------------ |
 | contentPosition | 自定义文本位置 | string | `left`、`middle`、`right`    | `left`       |
-| fontSize        | 文本大小       | number |                              | `14`         |
 | width           | 分割线宽度     | number |                              | `1`          |
 | height          | 分割线高度     | number |                              | `1em`        |
 | borderStyle     | 分割线类型     | number | `soild`、`dotted` 、`double` | `soild`      |
-| color           | 分割线颜色     | string |                              | `#dcdfe6`    |
-| fontColor       | 文本颜色       | string |                              | `black`      |
 | direction       | 分割线方向     | string | `horizontal` 、`vertical`    | `horizontal` |

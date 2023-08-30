@@ -5,17 +5,10 @@
       :class="bem('horizontal')"
       :style="{
         borderWidth: `${width}px`,
-        borderColor: color,
         borderStyle: borderStyle,
       }"
     >
-      <div
-        :class="bem(['title', contentPosition])"
-        :style="{
-          fontSize: `${fontSize}px`,
-          color: fontColor,
-        }"
-      >
+      <div :class="bem(['title', contentPosition])">
         <slot />
       </div>
     </div>
@@ -24,7 +17,6 @@
       :class="bem('vertical')"
       :style="{
         borderWidth: `${width}px`,
-        borderColor: color,
         borderStyle: borderStyle,
       }"
     ></div>
@@ -40,12 +32,10 @@ defineOptions({
 const props = withDefaults(defineProps<DividerProps>(), {
   id: '',
   contentPosition: 'left',
-  fontSize: 14,
   width: '1',
   height: '1',
   borderStyle: 'soild',
-  color: '#dcdfe6',
-  fontColor: 'black',
+  color: '#00aaee',
   direction: 'horizontal',
 })
 </script>

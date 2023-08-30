@@ -1,7 +1,7 @@
 .yk-divider {
-  --border-color: #dcdfe6;
+  --border-color: @line-color-m;
   --border-style: solid;
-  --el-bg-color: #ffff;
+  --el-bg-color: @bg-color-l;
   display: inherit;
 }
 .yk-divider__horizontal {
@@ -9,6 +9,7 @@
   display: block;
   margin: 24px 0;
   border-top: 1px solid;
+  border-color: var(--border-color);
   border-width: 1px;
   .yk-divider--title {
     position: absolute;
