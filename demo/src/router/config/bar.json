@@ -140,8 +140,12 @@
           "src": "tabs"
         },
         {
-          "name": "Timeline 时间线",
-          "src": "timeline"
+          "name": "Calendar 日历",
+          "src": "calendar"
+        },
+        {
+           "name": "Timeline 时间线",
+           "src": "timeline"
         },
         {
           "name": "Tree 树",
@@ -150,6 +154,7 @@
         {
           "name": "TreeSelect 树形选择",
           "src": "tree-select"
+
         }
       ]
     },

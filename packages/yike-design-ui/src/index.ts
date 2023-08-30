@@ -25,6 +25,7 @@ import { YkTabs, YkTabPane } from './components/tabs';
 import { YkForm, YkFormItem } from './components/form';
 import YkPagination from './components/pagination';
 import YkTextArea from './components/text-area';
+import YkCalendar from './components/calendar';
 import YkSkeleton from './components/skeleton';
 import YkDivider from './components/divider';
 import YkAlert from './components/alert';
@@ -86,6 +87,7 @@ const components: {
   YkForm,
   YkFormItem,
   YkTextArea,
+  YkCalendar,
   YkSkeleton,
   YkDivider,
   YkAlert,
@@ -144,6 +146,7 @@ export {
   YkForm,
   YkFormItem,
   YkTextArea,
+  YkCalendar,
   YkSkeleton,
   YkDivider,
   YkAlert,
