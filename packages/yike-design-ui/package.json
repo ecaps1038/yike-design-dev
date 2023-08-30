@@ -1,6 +1,6 @@
 {
   "name": "@yike-design/ui",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "type": "module",
   "description": "yike-design-ui",
   "author": "ecaps1038 https://github.com/ecaps1038",
@@ -38,6 +38,7 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint . --fix",
+    "release": "pnpm run gen:icon && pnpm run gen:less && release-it -i patch --ci",
     "gen:icon": "yike-build icongen",
     "gen:less": "yike-build lessgen",
     "build:less": "yike-build buildStyle",
