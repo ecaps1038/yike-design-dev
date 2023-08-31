@@ -2,7 +2,10 @@
 <template>
   <div class="case-card">
     <!-- id 用于锚点定位 -->
-    <yk-title :id="title.replace(/\s/g, '')" :level="3">{{ title }}</yk-title>
+    <yk-title :id="normalizeTitle" :level="3">
+      {{ title }}
+      <span><a :href="`#${normalizeTitle}`">#</a></span>
+    </yk-title>
     <slot name="desc"></slot>
     <div class="container">
       <slot name="demo"></slot>
@@ -36,6 +39,7 @@ const props = defineProps({
   },
 })
 
+const normalizeTitle = props.title.replace(/\s/g, '')
 const html = hljs.highlightAuto(decodeURIComponent(props.code)).value
 
 //复制模块
@@ -111,6 +115,16 @@ const clickShow = (): void => {
       .yk-icon {
         color: @bg-color-l;
       }
+    }
+  }
+
+  .yk-title {
+    span {
+      visibility: hidden;
+    }
+
+    &:hover span {
+      visibility: visible;
     }
   }
 }
