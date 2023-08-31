@@ -159,8 +159,12 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/pagination/doc.md'),
   },
   {
-     path: 'calendar',
-     component: () => import('@/examples/calendar/doc.md'),
+    path: 'tag',
+    component: () => import('@/examples/tag/doc.md'),
+  },
+  {
+    path: 'calendar',
+    component: () => import('@/examples/calendar/doc.md'),
   },
   {
     path: 'skeleton',

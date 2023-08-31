@@ -144,6 +144,10 @@
           "src": "tabs"
         },
         {
+          "name": "Tag 标签",
+          "src": "tag"
+        },
+        {
           "name": "Timeline 时间线",
           "src": "timeline"
         },
