@@ -6,12 +6,6 @@ export enum TagShape {
   mark = 'mark',
 }
 
-export enum TagShapes {
-  square = 'square',
-  round = 'round',
-  mark = 'mark',
-}
-
 export type TagSizes = Exclude<Size, 'xl'>;
 
 export type TagProps = {
