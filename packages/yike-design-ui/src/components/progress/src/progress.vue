@@ -90,7 +90,8 @@ const ykProgressSizeCls = computed(() => ({
 
 // 设置进度条颜色
 const setProgressState = computed(
-  () => getIconColor(props.status) || props.strokeColor,
+  // () => getIconColor(props.status) || props.strokeColor,
+  () => getIconColor(props.strokeColor  ||  props.status),
 )
 // 环形进度条
 const ykProgressCircleStyle = computed(() => {
