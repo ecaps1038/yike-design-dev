@@ -4,7 +4,7 @@
     <!-- id 用于锚点定位 -->
     <yk-title :id="normalizeTitle" :level="3">
       {{ title }}
-      <span><a :href="`#${normalizeTitle}`">#</a></span>
+      <a :href="`#${normalizeTitle}`" @click="scrollToDemo">#</a>
     </yk-title>
     <slot name="desc"></slot>
     <div class="container">
@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
-import { tryCopy } from '@/utils/tools'
+import { tryCopy, scrollToElement } from '@/utils/tools'
 import hljs from 'highlight.js'
 const proxy: any = getCurrentInstance()?.proxy
 const props = defineProps({
@@ -56,6 +56,12 @@ const onCopy = (): void => {
 const showCode = ref(false)
 const clickShow = (): void => {
   showCode.value = !showCode.value
+}
+
+const scrollToDemo = (ev: MouseEvent) => {
+  ev.preventDefault()
+  window.history.pushState('', '', (ev.target as HTMLAnchorElement).href)
+  scrollToElement(ev.target as HTMLElement)
 }
 </script>
 
@@ -119,11 +125,11 @@ const clickShow = (): void => {
   }
 
   .yk-title {
-    span {
+    a {
       visibility: hidden;
     }
 
-    &:hover span {
+    &:hover a {
       visibility: visible;
     }
   }
