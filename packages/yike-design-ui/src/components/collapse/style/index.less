@@ -34,6 +34,11 @@
   font-size: @size-s;
   border-bottom: 1px solid @bg-color-ss;
   background-color: @bg-color-l;
+
+  &:focus-within {
+    border-color: @pcolor;
+    outline: none;
+  }
 }
 
 .yk-collapse__title {
@@ -65,8 +70,11 @@
   .yk-collapse-group {
     margin: 8px 0px 8px 20px;
     border-right: unset;
-    border-top-right-radius: unset;
-    border-bottom-right-radius: unset;
+  }
+
+  .yk-collapse__header {
+    border-top-right-radius: unset !important;
+    border-bottom-right-radius: unset !important;
   }
 }
 
