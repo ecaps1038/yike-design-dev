@@ -54,10 +54,10 @@ const props = withDefaults(defineProps<CollapseProps>(), {
   disabled: false,
 })
 
-const isActive = ref<boolean>()
+const isActive = ref<boolean>(props.active)
 
 onMounted(() => {
-  isActive.value = props.active
+  // isActive.value = props.active
 })
 
 const toggle = () => {

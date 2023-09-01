@@ -19,6 +19,7 @@ const bem = createCssScope('collapse-group')
 defineOptions({
   name: 'YkCollapseGroup',
 })
+
 const props = withDefaults(defineProps<CollapseGroupProps>(), {
   border: true,
 })
