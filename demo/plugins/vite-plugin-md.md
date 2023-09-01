@@ -1,3 +1,11 @@
+## /yike-design-dev/CONTRIBUTING.md
+
+```vue: CONTRIBUTING
+<template>
+  <div class='yk-demo-doc'>#{content}#</div>
+</template>
+```
+
 ## demo/src/packages/\*
 
 ```vue: default

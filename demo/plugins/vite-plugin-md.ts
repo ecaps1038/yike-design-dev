@@ -22,7 +22,16 @@ export default function (): Plugin {
     name: 'vitePluginMarkdown',
     transform(code: string, id: string) {
       if (!id.endsWith('.md')) return;
+      if (!id.includes('demo/src')) {
+        // /yike-design-dev/CONTRIBUTING.md
+        return {
+          code: getTemplate('CONTRIBUTING', {
+            content: markdownIt.render(code),
+          }),
+        };
+      }
 
+      // demo/src/examples/*
       const importBucket = new Set<string>();
       const result = transformSnippetOrPure(id, code, importBucket);
       const importContent = Array.from(importBucket).join('\n');
@@ -54,7 +63,6 @@ function transformSnippetOrPure(
     const { flag, content } = match.groups;
     const { title, desc, demoName } = handleMatch(content);
     const demoTagName = demoName.match(tagReg)[1];
-
     const demoCompName = toKebabCase(demoTagName);
     const demoCode = fetchDemoCode(id, demoCompName);
     const importItem = `import ${demoTagName} from './${demoCompName}.vue';`;
