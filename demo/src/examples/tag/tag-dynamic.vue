@@ -14,7 +14,7 @@
     v-model="inputValue"
     class="input-new-tag"
     size="s"
-    @keyup.enter="handleInputConfirm"
+    @submit="handleInputConfirm"
     @blur="handleInputConfirm"
   />
   <yk-button v-else class="button-new-tag" size="s" @click="showInput">
@@ -23,11 +23,10 @@
 </template>
 <script lang="ts" setup>
 import { ref, shallowRef } from 'vue'
-import { YkInput } from 'yike-design-ui/src/components/input'
 const inputValue = ref('')
 const dynamicTags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
 const inputVisible = ref(false)
-const InputRef = shallowRef<InstanceType<typeof YkInput>>()
+const InputRef = shallowRef()
 const handleClose = (tag: string) => {
   dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
 }

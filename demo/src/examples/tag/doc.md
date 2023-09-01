@@ -30,9 +30,26 @@
 :::
 
 :::snippet
+带图标的tag
+<TagIcon/>
+:::
+
+:::snippet
+超出最大宽度自动省略
+当标签内容超出最大宽度时，将会自动省略多余的内容。
+<TagOmit/>
+:::
+
+:::snippet
 可选中的标签
 当我们需要可选中和取消勾选的时候，我们可以通过传递 `checked` 来将tag标签变成可选和反选。当改变状态的时候，将会触发 `change` 事件。
 <TagChecked/>
+:::
+
+:::snippet
+标签禁用
+通过设置 `disabled` 属性来控制tag标签是否禁用，类型为布尔值，默认不可禁用。
+<TagDisabled/>
 :::
 
 ### API
