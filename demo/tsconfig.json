@@ -7,6 +7,7 @@
     "esModuleInterop": true,
     "composite": true,
     "jsx": "preserve",
+    "allowJs": true,
     "sourceMap": true,
     "skipLibCheck": true,
     "paths": {

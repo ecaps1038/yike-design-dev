@@ -4,5 +4,5 @@ import { withInstall } from '../utils/index';
 
 export const YkDropdown = withInstall(Dropdown);
 export const YkDropdownItem = withInstall(DropdownItem);
-export default { YkDropdown, YkDropdownItem };
+export default YkDropdown;
 export * from './src/dropdown';
