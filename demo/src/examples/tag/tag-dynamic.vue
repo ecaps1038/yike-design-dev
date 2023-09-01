@@ -14,7 +14,7 @@
     v-model="inputValue"
     class="input-new-tag"
     size="s"
-    @keyup.enter="handleInputConfirm"
+    @submit="handleInputConfirm"
     @blur="handleInputConfirm"
   />
   <yk-button v-else class="button-new-tag" size="s" @click="showInput">
