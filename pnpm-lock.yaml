@@ -36,17 +36,12 @@ importers:
       vue: ^3.3.4
       vue-tsc: ^1.6.4
     dependencies:
-<<<<<<< Updated upstream
       dayjs:
         specifier: ^1.11.9
         version: 1.11.9
       vue:
         specifier: ^3.3.4
         version: 3.3.4
-=======
-      dayjs: 1.11.9
-      vue: 3.3.4
->>>>>>> Stashed changes
     devDependencies:
       '@testing-library/vue': 7.0.0_vue@3.3.4
       '@types/node': 18.17.1
