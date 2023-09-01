@@ -1,7 +1,7 @@
 <template>
   <yk-input
     :id="id"
-    v-model:value="value"
+    v-model="value"
     :name="name"
     :clearable="clearable"
     :size="size"
