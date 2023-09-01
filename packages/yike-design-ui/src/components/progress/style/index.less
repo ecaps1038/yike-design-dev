@@ -19,9 +19,28 @@
       width: var(--progress-inner-w);
       height: 100%;
       border-radius: @radius-s;
-      background-color: var(--progress-inner-color);
       transition: width 0.3s linear;
       content: '';
+    }
+    &--custom {
+      &::before {
+        background-color: var(--progress-inner--custom);
+      }
+    }
+    &--success {
+      &::before {
+        background-color: @scolor;
+      }
+    }
+    &--error {
+      &::before {
+        background-color: @ecolor;
+      }
+    }
+    &--normal {
+      &::before {
+        background-color: @pcolor;
+      }
     }
   }
   &-text {
@@ -35,6 +54,7 @@
   &-icon {
     margin-left: 8px;
   }
+
   &--s {
     .yk-progress-inner {
       height: 4px;
@@ -64,6 +84,18 @@
   &-circle {
     stroke-linecap: round;
     transition: all 0.3s linear;
+    &--custom {
+      stroke: var(--progress-circle--custom);
+    }
+    &--success {
+      stroke: @scolor;
+    }
+    &--error {
+      stroke: @ecolor;
+    }
+    &--normal {
+      stroke: @pcolor;
+    }
   }
   &-circle-wrappe {
     position: relative;
@@ -79,6 +111,7 @@
     transform: translate(-50%, -50%);
   }
 }
+
 .yk-progress-circle,
 .yk-progress-circle-bg {
   &--s {
@@ -105,4 +138,18 @@
 }
 .yk-progress-circle-bg {
   stroke: @bg-color-s;
+}
+
+// icon状态颜色clsss
+.yk-progress-icon,
+.yk-progress-circle-icon {
+  &--success {
+    color: @scolor;
+  }
+  &--error {
+    color: @ecolor;
+  }
+  &--normal {
+    color: @pcolor;
+  }
 }
