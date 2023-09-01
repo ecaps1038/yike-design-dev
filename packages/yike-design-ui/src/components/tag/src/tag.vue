@@ -74,6 +74,7 @@ const closeTagHander = (e: MouseEvent) => {
 }
 
 const checkTagHander = (e: MouseEvent) => {
+  if (disabled.value) return
   setCheckState(!isChecked.value)
   emit('change', isChecked.value, e)
 }
