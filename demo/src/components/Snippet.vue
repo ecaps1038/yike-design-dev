@@ -60,7 +60,11 @@ const clickShow = (): void => {
 
 const scrollToDemo = (ev: MouseEvent) => {
   ev.preventDefault()
-  window.history.pushState('', '', (ev.target as HTMLAnchorElement).href)
+  window.history.pushState(
+    window.history.state,
+    '',
+    (ev.target as HTMLAnchorElement).href,
+  )
   scrollToElement(ev.target as HTMLElement)
 }
 </script>
