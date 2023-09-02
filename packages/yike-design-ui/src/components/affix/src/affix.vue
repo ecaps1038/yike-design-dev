@@ -5,10 +5,10 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { AffixProps } from './affix'
-import { createCssScope } from '../../utils/bem'
-import '../style'
+import { createCssScope } from '../../utils'
 import {
   CSSProperties,
   computed,
@@ -25,9 +25,11 @@ import {
   useEventListener,
 } from '@vueuse/core'
 import { getTargetRect, isWindow } from './utils'
+
 defineOptions({
   name: 'YkAffix',
 })
+
 const props = withDefaults(defineProps<AffixProps>(), {
   offset: 0,
   position: 'top',

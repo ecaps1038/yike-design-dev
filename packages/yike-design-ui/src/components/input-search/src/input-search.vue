@@ -19,13 +19,18 @@
     </template>
   </yk-input>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { InputSearchProps } from './input-search'
+import YkInput from '../../input'
+import YkButton from '../../button'
+
 defineOptions({
   name: 'YkInputSearch',
 })
-const props = withDefaults(defineProps<InputSearchProps>(), {
+
+withDefaults(defineProps<InputSearchProps>(), {
   name: '',
   size: 'l',
   placeholder: '',

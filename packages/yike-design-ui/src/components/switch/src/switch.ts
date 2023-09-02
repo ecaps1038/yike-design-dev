@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 export type SwitchProps = {
   modelValue: boolean | string | number;
   size?: 's' | 'm';

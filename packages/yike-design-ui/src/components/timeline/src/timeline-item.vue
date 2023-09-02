@@ -45,15 +45,18 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import type { TimelineItemProps } from './timeline'
-import '../style'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { timelineContextKey } from './internal'
-const bem = createCssScope('timeline__item')
+
+defineOptions({
+  name: 'YkTimelineItem',
+})
 
 withDefaults(defineProps<TimelineItemProps>(), {
   lineType: 'solid',
   pending: false,
 })
 
+const bem = createCssScope('timeline__item')
 const context = inject(timelineContextKey)
 </script>

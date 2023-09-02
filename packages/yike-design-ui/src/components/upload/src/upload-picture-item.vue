@@ -44,13 +44,12 @@
   </div>
 </template>
 <script setup lang="ts">
+import cropPicture from './crop-picture.vue'
+import { YkModal } from '../../modal'
 import { computed, toRefs, ref } from 'vue'
 import { getArcPath } from './utils'
-import { generateUid } from '../../utils/tools'
-import { createCssScope } from '../../utils/bem'
-import { FileItemProps } from './upload'
-import cropPicture from './crop-picture.vue'
-import { YkModal } from '../../../index'
+import { generateUid, createCssScope } from '../../utils'
+import type { FileItemProps } from './upload'
 
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,

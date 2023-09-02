@@ -22,13 +22,16 @@
     ></div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { DividerProps } from './divider'
-import { createCssScope } from '../../utils/bem'
-const bem = createCssScope('divider')
+import { createCssScope } from '../../utils'
+
 defineOptions({
   name: 'YkDivider',
 })
+
+const bem = createCssScope('divider')
 const props = withDefaults(defineProps<DividerProps>(), {
   id: '',
   contentPosition: 'left',

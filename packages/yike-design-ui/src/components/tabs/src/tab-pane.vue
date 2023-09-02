@@ -19,13 +19,18 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from 'vue'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { PaneOptionsProp, PaneProp } from './pane'
 import { YkTabsProvideKey } from './tabs'
+
+defineOptions({
+  name: 'YkTabPane',
+})
 
 const props = withDefaults(defineProps<PaneProp>(), {
   disabled: false,
 })
+
 const ns = createCssScope('tabs-pane')
 const { uid } = getCurrentInstance()!
 const slots = useSlots()

@@ -14,6 +14,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref, provide, onMounted } from 'vue'
 import { getSize, getShape } from './util'

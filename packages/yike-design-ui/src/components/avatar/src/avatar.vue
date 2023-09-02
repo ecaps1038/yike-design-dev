@@ -6,10 +6,12 @@
     </span>
   </div>
 </template>
+
 <script setup lang="ts">
 import { inject, computed, CSSProperties, onMounted, shallowRef } from 'vue'
 import { AvatarProps } from './avatar'
 import { getShape, getSize } from './util'
+import '../style'
 
 defineOptions({
   name: 'YkAvatar',

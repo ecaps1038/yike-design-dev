@@ -29,11 +29,13 @@
 </template>
 
 <script setup lang="ts">
+import YkButton from '../../button'
 import Tooltip from '../../tooltip'
 import { IconDownOutline } from '../../svg-icon'
 import { createCssScope } from '../../utils'
 import { ref, toRefs, provide, watch } from 'vue'
 import type { DropdownProps } from './dropdown'
+import '../style'
 
 defineOptions({
   name: 'YkDropdown',

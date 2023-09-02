@@ -18,24 +18,19 @@
   </button>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'YKButton',
-}
-</script>
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ButtonProps } from './button'
 import { getSize } from './utils'
-import { YkSpinner } from '../../../index'
-
-import { createCssScope } from '../../utils/bem'
-
-const bem = createCssScope('button')
+import { createCssScope } from '../../utils'
+import YkSpinner from '../../spinner'
+import { ButtonProps } from './button'
+import '../style'
 
 defineOptions({
-  name: 'YKButton',
+  name: 'YkButton',
 })
+
+const bem = createCssScope('button')
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'primary',
   size: 'l',

@@ -17,16 +17,18 @@
     </div>
   </label>
 </template>
+
 <script setup lang="ts">
 import { CheckboxProps } from './checkbox'
-// import { YkIcon } from '../../../index'
-
 import { computed, inject, ref, watch } from 'vue'
 import { checkboxGroupContextKey } from './constants'
 import { isArray, isUndefined, toBoolean } from './utils'
+import '../style'
+
 defineOptions({
   name: 'YkCheckbox',
 })
+
 const ns = 'yk-checkbox'
 const props = withDefaults(defineProps<CheckboxProps>(), {
   defaultChecked: false,

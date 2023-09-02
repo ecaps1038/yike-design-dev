@@ -39,11 +39,12 @@
   </YkInput>
 </template>
 <script setup lang="ts">
+import { calculate, numberMatchReg } from './utils'
 import { createCssScope, useFormItem } from '../../utils'
-import { YkInput, YkButton } from '../../../index'
 import { InputNumberProps } from './input-number'
 import { toRefs, ref, onMounted, reactive, computed } from 'vue'
-import { calculate, numberMatchReg } from './utils'
+import { IconUpOutline, IconDownOutline } from '../../svg-icon'
+import { YkInput, YkButton } from '../../../index'
 
 defineOptions({
   name: 'YkInputNumber',

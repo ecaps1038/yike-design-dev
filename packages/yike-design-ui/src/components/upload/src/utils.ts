@@ -1,5 +1,5 @@
 import type { UploadFile, UserFile } from './upload';
-import { generateUid } from '../../utils/tools';
+import { generateUid } from '../../utils';
 export const imageTypes = ['image', 'jpeg', 'png', 'gif'];
 
 /**

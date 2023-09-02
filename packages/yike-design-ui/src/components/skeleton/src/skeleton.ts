@@ -1,4 +1,4 @@
-import { AvatarProps } from '../../avatar/src/avatar';
+import { AvatarProps } from '../../avatar';
 
 export interface SkeletonProps {
   loading?: boolean;

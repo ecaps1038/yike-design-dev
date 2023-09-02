@@ -2,7 +2,7 @@
   <span
     :class="className"
     :style="styleList"
-    @click.stop="isCheckMode && checkTagHander(event)"
+    @click.stop="isCheckMode && checkTagHander($event)"
   >
     <span v-if="$slots.default" :class="bem('content')">
       <slot :is-checked="isChecked"></slot>
@@ -14,18 +14,18 @@
     />
   </span>
 </template>
+
 <script setup lang="ts">
 import { toRefs, computed, ref, watch } from 'vue'
 import { TagProps, TagShape, TagEmits } from './tag'
-import { createCssScope } from '../../utils/bem'
-import IconCloseOutline from '../../svg-icon/icon-close-outline'
-
-const bem = createCssScope('tag')
+import { createCssScope } from '../../utils'
+import { IconCloseOutline } from '../../svg-icon'
 
 defineOptions({
   name: 'YkTag',
 })
 
+const bem = createCssScope('tag')
 const emit = defineEmits<TagEmits>()
 const props = withDefaults(defineProps<TagProps>(), {
   type: 'defualt',
@@ -44,10 +44,10 @@ let { type, closeable, bgColor, color, size, shape, disabled, checked } =
 
 let isChecked = ref(checked.value)
 
-const setCheckState = (v) => {
+const setCheckState = (v: any) => {
   isChecked.value = !!v
 }
-const isBoolean = (v) => typeof v === 'boolean'
+const isBoolean = (v: any) => typeof v === 'boolean'
 
 const isCheckMode = computed(() => {
   return isBoolean(checked.value)

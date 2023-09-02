@@ -3,9 +3,14 @@
     <slot></slot>
   </component>
 </template>
+
 <script setup lang="ts">
 import { computed, toRefs, useSlots } from 'vue'
 import { textProps } from './typography'
+
+defineOptions({
+  name: 'YkText',
+})
 
 const props = withDefaults(defineProps<textProps>(), {
   strong: false,
