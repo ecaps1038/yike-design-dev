@@ -1,9 +1,9 @@
 <template>
   <div class="top-bar">
-    <a class="logo" href="/">
+    <router-link class="logo" to="/">
       <img src="@/assets/icon/logo.svg" />
       <span class="name">Yike Design 开发版</span>
-    </a>
+    </router-link>
     <yk-space class="navs" :size="24" align="center">
       <a class="nav-item" :href="Links.design" target="_blank">UI设计稿</a>
       <a class="nav-item" :href="Links.task" target="_blank">任务文档</a>
