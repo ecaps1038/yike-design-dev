@@ -26,7 +26,7 @@ const goPage = (e: string): void => {
         </yk-button>
       </yk-space>
       <IconYike1Outline class="sign" @click="goPage('hh')" />
-      <!-- <img src="../assets/images/bg.png" class="bg-img" /> -->
+      <img src="../assets/images/bg.png" class="bg-img" />
     </div>
   </main>
 </template>
@@ -57,7 +57,7 @@ const goPage = (e: string): void => {
       bottom: 0;
       z-index: -1;
       width: 100%;
-      height: 200px;
+      // height: 160px;
     }
   }
 }
