@@ -1,4 +1,5 @@
-import { Size } from '../../utils/constant';
+import { Size } from '../../utils';
+
 export const getSize = (size: Size): number => {
   switch (size) {
     case 's':

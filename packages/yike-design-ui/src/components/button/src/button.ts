@@ -1,4 +1,4 @@
-import { Shape, Size, Status, Type } from '../../utils/constant';
+import { Shape, Size, Status, Type } from '../../utils';
 
 export type ButtonProps = {
   type?: Type;

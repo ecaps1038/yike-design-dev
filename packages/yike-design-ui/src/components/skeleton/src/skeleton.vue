@@ -29,16 +29,18 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { SkeletonProps } from './skeleton'
-import { createCssScope } from '../../utils/bem'
-import { toRefs } from 'vue'
 
-const bem = createCssScope('skeleton')
+<script setup lang="ts">
+import YkAvatar from '../../avatar'
+import { SkeletonProps } from './skeleton'
+import { createCssScope } from '../../utils'
+import { toRefs } from 'vue'
 
 defineOptions({
   name: 'YkSkeleton',
 })
+
+const bem = createCssScope('skeleton')
 const props = withDefaults(defineProps<SkeletonProps>(), {
   loading: true,
   width: '100%',

@@ -25,10 +25,12 @@
 import { CSSProperties, computed } from 'vue'
 import { IconEmpty1Color, IconEmpty2Color } from '../../svg-icon'
 import { EmptyProps } from './empty'
+import '../style'
 
 defineOptions({
   name: 'YkEmpty',
 })
+
 const props = withDefaults(defineProps<EmptyProps>(), {
   description: 'No Data',
   image: '',

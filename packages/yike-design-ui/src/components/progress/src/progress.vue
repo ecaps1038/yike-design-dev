@@ -73,13 +73,16 @@
     </template>
   </div>
 </template>
+
 <script setup lang="ts">
 import { computed } from 'vue'
 import { getIconName, getSvgSize } from './util'
 import { ProgressProps } from './progress'
+
 defineOptions({
   name: 'YkProgress',
 })
+
 const props = withDefaults(defineProps<ProgressProps>(), {
   type: 'line',
   percent: 20,

@@ -91,6 +91,7 @@
     </Transition>
   </div>
 </template>
+
 <script setup lang="ts">
 import { InputProps } from './input'
 import { computed, ref, watch, toRefs, unref } from 'vue'
@@ -101,6 +102,7 @@ import { YkSpinner } from '../../spinner'
 defineOptions({
   name: 'YkInput',
 })
+
 const props = withDefaults(defineProps<InputProps>(), {
   size: 'l',
   type: 'text',

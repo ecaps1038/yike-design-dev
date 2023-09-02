@@ -1,6 +1,6 @@
 import { defineComponent, h, inject } from 'vue';
 import { TABLE_INJECTION_KEY } from './table';
-import { YkCheckbox } from '../../../index';
+import { YkCheckbox } from '../../checkbox';
 
 export default defineComponent({
   components: {

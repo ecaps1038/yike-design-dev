@@ -1,4 +1,4 @@
-import { Status, Size } from '../../utils/constant';
+import { Status, Size } from '../../utils';
 
 export enum TagShape {
   square = 'square',

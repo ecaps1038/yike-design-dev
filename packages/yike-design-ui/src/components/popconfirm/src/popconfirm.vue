@@ -41,18 +41,18 @@
 
 <script setup lang="ts">
 import { PopconfirmProps, PopconfirmEmit } from './popconfirm'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { useDefaultSlots } from '../../tooltip'
 import YkPopover from '../../popover'
 import YkButton from '../../button'
 import { ref, watch, toRaw } from 'vue'
 import type { Ref } from 'vue'
 
-const bem = createCssScope('popconfirm')
-
 defineOptions({
   name: 'YkPopconfirm',
 })
+
+const bem = createCssScope('popconfirm')
 const DefaultProps = useDefaultSlots()
 
 const props = withDefaults(defineProps<PopconfirmProps>(), {

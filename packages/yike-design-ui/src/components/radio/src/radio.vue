@@ -24,6 +24,7 @@
     </span>
   </label>
 </template>
+
 <script setup lang="ts">
 import { RadioProps, radioEmits } from './radio'
 import { computed, nextTick } from 'vue'

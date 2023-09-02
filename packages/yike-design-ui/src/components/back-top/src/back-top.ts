@@ -1,4 +1,4 @@
-import { AnimationType } from '../../utils/constant';
+import { AnimationType } from '../../utils';
 
 export type BackTopProps = {
   animation?: AnimationType;

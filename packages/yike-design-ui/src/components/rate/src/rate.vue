@@ -35,14 +35,16 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { RateProps } from './rate'
 import { computed, onMounted, ref } from 'vue'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 
 defineOptions({
   name: 'YkRate',
 })
+
 const showValue = ref(0) // 显示的星星数
 const value = ref(0) // 实际的星星数
 const animation = ref(false) // 动画开关
@@ -74,6 +76,7 @@ onMounted(() => {
   }
 })
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const rateClass = computed(() => {
   return {
     'yk-rate-disabled': props.disabled,

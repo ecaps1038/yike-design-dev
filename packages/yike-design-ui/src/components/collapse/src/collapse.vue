@@ -37,17 +37,17 @@
     </Transition>
   </div>
 </template>
+
 <script setup lang="ts">
 import { CollapseProps } from './collapse'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { onMounted, ref } from 'vue'
-
-const bem = createCssScope('collapse')
 
 defineOptions({
   name: 'YkCollapse',
 })
 
+const bem = createCssScope('collapse')
 const props = withDefaults(defineProps<CollapseProps>(), {
   title: '',
   active: false,

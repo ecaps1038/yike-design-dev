@@ -40,7 +40,7 @@
 </template>
 <script setup lang="ts">
 import { TextAreaProps } from './text-area'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import {
   ref,
   computed,
@@ -53,11 +53,12 @@ import {
 import { IconCloseOutline } from '../../svg-icon'
 import { splitUnit, getSizeStyles, getOutProp } from './utils'
 import { useResizeObserver } from '@vueuse/core'
-const bem = createCssScope('text-area')
 
 defineOptions({
   name: 'YkTextArea',
 })
+
+const bem = createCssScope('text-area')
 const props = withDefaults(defineProps<TextAreaProps>(), {
   id: '',
   maxLength: 0,

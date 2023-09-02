@@ -1,5 +1,5 @@
 import Alert from './src/alert.vue';
-import { withInstall } from '../utils/index';
+import { withInstall } from '../utils';
 
 export const YkAlert = withInstall(Alert);
 export default YkAlert;

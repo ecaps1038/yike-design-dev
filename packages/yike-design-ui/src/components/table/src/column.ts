@@ -11,7 +11,7 @@ import {
   ref,
 } from 'vue';
 import { TableColumn, defaultTableColumnProps } from './table';
-import { YkCheckbox } from '../../../index';
+import { YkCheckbox } from '../../checkbox';
 
 let columnIdSeed = 1;
 export default defineComponent({
