@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
 import TopBar from './components/TopBar.vue'
 </script>
 
@@ -7,7 +6,6 @@ import TopBar from './components/TopBar.vue'
   <div class="app">
     <TopBar />
     <RouterView />
-    <!-- <RouterLink to="hh">hh</RouterLink> -->
     <yk-back-top />
   </div>
 </template>

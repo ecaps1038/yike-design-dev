@@ -1,5 +1,6 @@
-import { PopoverProps } from '../../popover/src/popover';
-import { ButtonProps } from '../../button/src/button';
+import { PopoverProps } from '../../popover';
+import { ButtonProps } from '../../button';
+
 export interface PopconfirmProps extends PopoverProps {
   cancelText?: string;
   okText?: string;

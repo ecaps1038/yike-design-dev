@@ -14,8 +14,14 @@
 
 :::snippet
 颜色 Color
-使用颜色枚举值来调整颜色：`primary`、`success`、`error`以及`warning`；或者传入一个 CSS 颜色字符串作为颜色：`color="red"` 或 `color="#007bff"`。
+使用颜色枚举值来调整颜色：`primary`、`success`、`error`以及`warning`；或者传入一个 CSS 颜色 / 变量字符串作为颜色：`color="red"`、`color="#007bff"` 或 `color="var(--keyword)"`。
 <SpinnerColor/>
+:::
+
+:::snippet
+附加到任何容器
+使用 `v-loading` 指令将加载动画附加在任何容器，并显示背景遮罩。加载过程中用户不可操作。为容器设置 `data-loading-text` 属性可以自定义加载动画下方的文字。
+<SpinnerContainer/>
 :::
 
 ### API

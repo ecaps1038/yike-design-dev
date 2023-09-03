@@ -1,4 +1,4 @@
-import type { Size } from '../../utils/constant';
+import type { Size } from '../../utils';
 import type { InjectionKey } from 'vue';
 
 const PAGINATION_CSS_NAMESPACE: InjectionKey<'pagination'> =

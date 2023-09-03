@@ -7,13 +7,14 @@
     "esModuleInterop": true,
     "composite": true,
     "jsx": "preserve",
-    "baseUrl": ".",
+    "allowJs": true,
     "sourceMap": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"],
-      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
+      "@yike-design/ui": ["../packages/yike-design-ui"]
     }
   },
-  "exclude": ["dist/**", "node_modules/**"],
-  "include": ["**/**/*.ts", "**/**/*.vue", "components.d.ts"]
+  "include": ["**/*", "**/*.json", "./components.d.ts"],
+  "exclude": ["dist", "node_modules"]
 }

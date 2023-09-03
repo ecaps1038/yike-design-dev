@@ -1,5 +1,5 @@
 import { CSSProperties } from 'vue';
-import { Size, Status } from '../../utils/constant';
+import { Size, Status } from '../../utils';
 
 export type InputProps = {
   id?: string;

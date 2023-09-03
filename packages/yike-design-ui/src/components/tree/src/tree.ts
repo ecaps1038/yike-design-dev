@@ -22,6 +22,7 @@ export type TreeProps = {
   /** 是否取消父子节点关联 */
   checkStrictly?: boolean;
   scrollbar?: boolean | ScrollbarProps;
+  unSelectKey?: Key;
 };
 
 export type Icons = {

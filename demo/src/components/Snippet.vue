@@ -2,7 +2,10 @@
 <template>
   <div class="case-card">
     <!-- id 用于锚点定位 -->
-    <yk-title :id="title.replace(/\s/g, '')" :level="3">{{ title }}</yk-title>
+    <yk-title :id="normalizeTitle" :level="3">
+      {{ title }}
+      <a :href="`#${normalizeTitle}`" @click="scrollToDemo">#</a>
+    </yk-title>
     <slot name="desc"></slot>
     <div class="container">
       <slot name="demo"></slot>
@@ -22,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
-import { tryCopy } from '@/utils/tools'
+import { tryCopy, scrollToElement } from '@/utils/tools'
 import hljs from 'highlight.js'
 const proxy: any = getCurrentInstance()?.proxy
 const props = defineProps({
@@ -36,6 +39,7 @@ const props = defineProps({
   },
 })
 
+const normalizeTitle = props.title.replace(/\s/g, '')
 const html = hljs.highlightAuto(decodeURIComponent(props.code)).value
 
 //复制模块
@@ -52,6 +56,16 @@ const onCopy = (): void => {
 const showCode = ref(false)
 const clickShow = (): void => {
   showCode.value = !showCode.value
+}
+
+const scrollToDemo = (ev: MouseEvent) => {
+  ev.preventDefault()
+  window.history.pushState(
+    window.history.state,
+    '',
+    (ev.target as HTMLAnchorElement).href,
+  )
+  scrollToElement(ev.target as HTMLElement)
 }
 </script>
 
@@ -111,6 +125,21 @@ const clickShow = (): void => {
       .yk-icon {
         color: @bg-color-l;
       }
+    }
+  }
+
+  .yk-title {
+    a {
+      opacity: 0;
+      transition: none;
+    }
+
+    &:hover a {
+      opacity: 1;
+    }
+
+    &:focus-within a {
+      opacity: 1;
     }
   }
 }

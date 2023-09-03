@@ -58,7 +58,7 @@ export default defineConfig({
       less: {
         charset: false,
         additionalData:
-          '@import (reference) "yike-design-ui/src/components/styles/index.less";',
+          '@import (reference) "@yike-design/ui/src/components/styles/index.less";',
       },
     },
   },

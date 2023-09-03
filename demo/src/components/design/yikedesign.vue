@@ -11,9 +11,19 @@
     <yk-title :level="3">设计资源</yk-title>
     <yk-title :level="5">Sketch源文件</yk-title>
     <yk-text type="secondary">
-      本人只制作了相对应的Sketch组件源文件，有需要的可点击
+      Sketch组件源文件，有需要的可点击
       <a href="http://www.huohuo90.com/resource">Yike Design 设计稿</a>
       下载。
+    </yk-text>
+    <yk-title :level="5">Figma源文件</yk-title>
+    <yk-text type="secondary">
+      Figma组件源文件，有需要的可点击
+      <a
+        href="https://www.figma.com/file/EMPOindzRJTKt1Gx6Egojq/Yike-design?type=design&node-id=0%3A278&mode=design&t=i37wpFDTiUm26TWx-1"
+      >
+        Yike Design 设计稿
+      </a>
+      查阅使用。
     </yk-text>
     <yk-title :level="5">图标库</yk-title>
     <yk-text type="secondary">

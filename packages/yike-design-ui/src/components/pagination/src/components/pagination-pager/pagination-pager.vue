@@ -86,10 +86,12 @@ import { computed } from 'vue'
 import { useCssScope } from '../../utils'
 import type { PagerProps, PagerEmits } from './pagination-pager'
 import PaginationJumper from '../pagination-jumper/pagination-jumper.vue'
+import { IconLeftOutline, IconRightOutline } from '../../../../svg-icon'
 
 defineOptions({
   name: 'YkPaginationPager',
 })
+
 const props = withDefaults(defineProps<PagerProps>(), {
   pagerCount: 7,
 })

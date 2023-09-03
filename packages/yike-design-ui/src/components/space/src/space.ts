@@ -1,4 +1,4 @@
-import { Size } from '../../utils/constant';
+import { Size } from '../../utils';
 
 export const DIRECTION = ['vertical', 'horizontal'] as const;
 

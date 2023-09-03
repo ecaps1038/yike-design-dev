@@ -10,7 +10,10 @@
         :size="props.size"
         :bordered="props.bordered"
         :disabled="props.disabled"
+        :tree-options="options"
         @send-focus="sendFocus"
+        @send-un-select-key="sendUnSelectKey"
+        @send-select-key="sendSelectKey"
       ></SelectView>
     </div>
     <transition
@@ -30,6 +33,11 @@
           :default-expanded-keys="props.defaultExpandedKeys"
           :checkable="props.checkable"
           :check-strictly="props.checkStrictly"
+          :file-tree="props.fileTree"
+          :file-icons="props.fileIcons"
+          :un-select-key="refUnSelectKey"
+          :select-key="refSelectKey"
+          :scrollbar="scrollbar"
           @select="select"
         ></yk-tree>
         <yk-empty v-if="!props.options.length" :description="props.emptyText" />
@@ -39,17 +47,16 @@
 </template>
 
 <script setup lang="ts">
-import '../style/index'
-import { ref, Ref, onMounted, watch } from 'vue'
 import SelectView from './select-view.vue'
-import YkEmpty from '../../empty/index'
-import { TreeSelectPropsType } from './tree-select'
-import YkTree from '../../tree'
+import { ref, Ref, onMounted, watch } from 'vue'
+import YkEmpty from '../../empty'
 import { Key } from '../../utils'
-import { TreeOption } from '../../tree/src/tree'
-// import { TreeDataType } from './tree-select'
-// 将treeview变为异步组件加载
-// const AsyncTree = defineAsyncComponent(() => import('../../tree'))
+import { YkTree, TreeOption } from '../../tree'
+import type { TreeSelectPropsType } from './tree-select'
+
+defineOptions({
+  name: 'YkTreeSelect',
+})
 
 const props = withDefaults(defineProps<TreeSelectPropsType>(), {
   id: '',
@@ -59,7 +66,7 @@ const props = withDefaults(defineProps<TreeSelectPropsType>(), {
   defaultValue: '',
   disabled: false,
   placeholder: '',
-  size: 1,
+  size: 2,
   lazy: false,
   emptyText: '',
   checkable: false,
@@ -81,6 +88,19 @@ const sendFocus = (focusShadow: Ref<boolean>) => {
     isTreeViewVisible.value = focusShadow.value
   }
 }
+// 用作checkbox
+const refUnSelectKey = ref<Key>('')
+const refSelectKey = ref<Key>('')
+
+// 改变selectKeys
+const checkedKeys = ref<Key[]>([])
+
+const sendUnSelectKey = (unSelectKey: Ref<Key>) => {
+  refUnSelectKey.value = unSelectKey.value
+}
+const sendSelectKey = (selectKey: Ref<Key>) => {
+  refSelectKey.value = selectKey.value
+}
 
 const handleClickOutside = (event: MouseEvent) => {
   if (
@@ -94,13 +114,15 @@ const handleClickOutside = (event: MouseEvent) => {
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
+  if (container.value) {
+    container.value.style.width = props.size * 200 + 'px'
+  }
 })
 
 const select = (keys: Key[]) => {
   const list = findByKeys(props.options, keys)
   currentItems.value = list ? list : []
 }
-const checkedKeys = ref([])
 
 watch(checkedKeys, (newVal) => {
   const list = findByKeys(props.options, newVal)

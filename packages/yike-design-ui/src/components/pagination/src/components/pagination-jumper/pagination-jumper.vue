@@ -17,11 +17,12 @@
 import { ref, watch } from 'vue'
 import type { JumperProps, JumperEmits } from './pagination-jumper'
 import { useCssScope } from '../../utils'
-import { YkInput } from '../../../../input'
+import YkInput from '../../../../input'
 
 defineOptions({
   name: 'YkPaginationJumper',
 })
+
 const props = defineProps<JumperProps>()
 const emits = defineEmits<JumperEmits>()
 const cssScope = useCssScope('jumper')

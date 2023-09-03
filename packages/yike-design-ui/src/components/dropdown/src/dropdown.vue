@@ -1,6 +1,7 @@
 <template>
-  <div :class="[bem(), getDisabled]">
+  <div :class="[bem(), _disabled]">
     <Tooltip
+      v-model:open="isOpen"
       :arrow="arrow"
       :trigger="trigger"
       :z-index="zIndex"
@@ -9,7 +10,6 @@
       :open-delay="openDelay"
       :overlay-style="overlayStyle"
       :overlay-class-name="overlayClassName"
-      @open-change="handleOpenChange"
     >
       <div :class="bem('title')">
         <YkButton v-if="title" :size="size || 'l'" :type="type || 'secondary'">
@@ -29,11 +29,13 @@
 </template>
 
 <script setup lang="ts">
+import YkButton from '../../button'
+import Tooltip from '../../tooltip'
 import { IconDownOutline } from '../../svg-icon'
-import Tooltip from '../../tooltip/src/tooltip.vue'
-import type { DropdownProps } from './dropdown'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { ref, toRefs, provide, watch } from 'vue'
+import type { DropdownProps } from './dropdown'
+import '../style'
 
 defineOptions({
   name: 'YkDropdown',
@@ -63,11 +65,10 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 
 // refs
 const { size, trigger, disabled } = toRefs(props)
-// open key is readonly, so：
-const isOpen = ref(props.open)
 const selectedValue = ref<any>(null)
+const isOpen = ref(props.open)
 const iconRef = ref<HTMLElement>()
-const getDisabled = disabled.value ? 'disabled' : false
+const _disabled = disabled.value ? 'disabled' : false
 
 provide('selectedValue', selectedValue)
 provide('isOpen', isOpen)
@@ -76,24 +77,21 @@ provide('size', size)
 watch(
   () => selectedValue.value,
   (newSelected, oldSelected) => {
-    if (getDisabled) return
-
+    if (_disabled) return
     if (newSelected !== oldSelected) {
       emit('selected', newSelected)
     }
   },
 )
 
-function handleOpenChange(value: boolean) {
-  const iconNode = iconRef.value
+watch(
+  () => isOpen.value,
+  (newVal) => {
+    const deg = newVal ? '180deg' : '0deg'
+    const iconNode = iconRef.value
 
-  if (iconNode) {
-    if (value) {
-      iconNode.style.transform = 'rotate(180deg)'
-    } else {
-      iconNode.style.transform = 'rotate(0deg)'
-    }
-  }
-  emit('visibleChange', value)
-}
+    iconNode && (iconNode.style.transform = `rotate(${deg})`)
+    emit('visibleChange', newVal)
+  },
+)
 </script>

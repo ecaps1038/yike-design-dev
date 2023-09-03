@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { InnerValidateOptions } from './../interface';
 import Base from './base';
 

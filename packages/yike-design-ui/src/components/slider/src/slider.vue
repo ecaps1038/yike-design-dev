@@ -47,12 +47,13 @@ import { computed, ref, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { SliderProps, SliderEmits, SliderEmitEvents } from './slider'
 import { DIRECTION, createCssScope } from '../../utils'
 import { useSlider } from './useSlider'
+import YkTooltip from '../../tooltip'
+
 defineOptions({
-  name: 'YKSlider',
+  name: 'YkSlider',
 })
 
 const bem = createCssScope('slider')
-
 const props = withDefaults(defineProps<SliderProps>(), {
   modelValue: 0,
   disabled: false,

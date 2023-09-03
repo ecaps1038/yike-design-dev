@@ -16,18 +16,18 @@
     </yk-text>
     <yk-title :level="5">微信</yk-title>
     <yk-paragraph>
-      微信群不好分享，可加本人微信：
+      可加本人微信：
       <yk-text type="primary">yikeyikech</yk-text>
-      加我请注明 “yike Design” 之后将邀请进入相关群内，谢谢。
+      加我请注明 “yike Design” 谢谢。
     </yk-paragraph>
-    <yk-title :level="3">您的打赏赞助是我最大的动力</yk-title>
+    <!-- <yk-title :level="3">您的打赏赞助是我最大的动力</yk-title>
     <yk-text>
       本组件库倾尽我多半的业余生活，也经历了一个个深夜的探索。若能得到您的肯定，这一切都是值得的！
     </yk-text>
     <div class="support">
       <img src="@/assets/images/wx.png" />
       <img src="@/assets/images/zfb.png" />
-    </div>
+    </div> -->
   </main>
 </template>
 

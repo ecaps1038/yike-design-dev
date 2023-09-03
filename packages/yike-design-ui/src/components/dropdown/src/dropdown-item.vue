@@ -1,15 +1,12 @@
 <template>
-  <div
-    :class="[bem(), getDisabled, `size-${size}`]"
-    @click="handleDropdownItemClick"
-  >
+  <div :class="[bem(), _disabled, `size-${size}`]" @click="handleClick">
     <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { DropdownItemProps } from './dropdown'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { inject, toRefs } from 'vue'
 import type { Ref } from 'vue'
 
@@ -18,10 +15,14 @@ defineOptions({
 })
 
 const bem = createCssScope('dropdown-item')
-const props = withDefaults(defineProps<DropdownItemProps>(), {
-  value: '',
-  disabled: false,
-})
+// prettier-ignore
+const props = withDefaults(
+  defineProps<DropdownItemProps>(), 
+  {
+    value: '',
+    disabled: false,
+  }
+)
 
 // Injects
 const selectedValue = inject('selectedValue') as Ref<string | number | object>
@@ -29,12 +30,12 @@ const isOpen = inject('isOpen') as Ref<boolean>
 const size = inject('size')
 
 const { value, disabled } = toRefs(props)
-const getDisabled = disabled.value ? 'disabled' : false
+const _disabled = disabled.value ? 'disabled' : false
 
-function handleDropdownItemClick() {
-  if (getDisabled) return
+function handleClick() {
+  if (_disabled) return
 
-  selectedValue.value = value.value
   isOpen.value = false
+  selectedValue.value = value.value
 }
 </script>

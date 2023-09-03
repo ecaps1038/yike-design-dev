@@ -58,7 +58,7 @@
     <yk-title :level="3">源码原理</yk-title>
     <yk-paragraph type="secondary">
       源码中可以看到针对各模式下设置一套颜色变量。在此您可以根据设计需求进行自己调整或增减颜色变量。代码在
-      <yk-text type="primary">yike-design-ui</yk-text>
+      <yk-text type="primary">@yike-design/ui</yk-text>
       ->
       <yk-text type="primary">src</yk-text>
       ->

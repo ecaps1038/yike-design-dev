@@ -1,4 +1,4 @@
-import { Skin } from '../../utils/constant';
+import { Skin } from '../../utils';
 
 export type ThemeProps = {
   skin?: Skin;

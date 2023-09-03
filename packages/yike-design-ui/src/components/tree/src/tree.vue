@@ -8,14 +8,13 @@
     </template>
   </div>
 </template>
-<script setup lang="ts">
-import { TreeInjectionKey, TreeProps } from './tree'
-import { createCssScope } from '../../utils/bem'
-import Node from './node.vue'
-import { Key } from '../../utils'
-import { tree2list } from './internal'
-import '../style/index'
 
+<script setup lang="ts">
+import Node from './node.vue'
+import { TreeInjectionKey, TreeProps } from './tree'
+import { createCssScope, Key } from '../../utils'
+import { getOffspringKeys } from './util'
+import { tree2list } from './internal'
 import {
   watch,
   ref,
@@ -27,15 +26,14 @@ import {
   reactive,
 } from 'vue'
 import { IconRightFill } from '../../svg-icon'
-import { getOffspringKeys } from './util'
 import { YkScrollbar } from '../../scrollbar'
-
-const bem = createCssScope('tree')
+import '../style'
 
 defineOptions({
   name: 'YkTree',
 })
 
+const bem = createCssScope('tree')
 const props = withDefaults(defineProps<TreeProps>(), {
   blockNode: false,
   multiple: false,
@@ -69,6 +67,7 @@ const {
   fileTree,
   blockNode,
   expandIcon,
+  unSelectKey,
 } = toRefs(props)
 
 // 获取节点的 map 结构
@@ -135,6 +134,16 @@ const onSelect = (key: Key) => {
   }
   emits('select', selectedKeys.value)
 }
+
+watch(
+  () => unSelectKey?.value,
+  (newVal) => {
+    selectedKeys.value = selectedKeys.value.filter((target) => target != newVal)
+    if (checkable.value) {
+      onChecked([newVal as Key], false)
+    }
+  },
+)
 
 // handle node check logic
 const checkedKeys = defineModel<Key[]>('checkedKeys', {
@@ -207,7 +216,7 @@ const getOuterWantKeys = () => {
 watch(_checkedKeys, getOuterWantKeys, { deep: true, immediate: true })
 
 watch(checkStrategy, getOuterWantKeys)
-
+//此方法可以用于tree-select组件的取消选中，复选框的响应式逻辑
 const onChecked = (keys: Key[], checked: boolean) => {
   if (checked) {
     _checkedKeys.value.push(...keys)
