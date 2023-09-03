@@ -29,6 +29,7 @@ import YkTag from './components/tag';
 import YkCalendar from './components/calendar';
 import YkSkeleton from './components/skeleton';
 import YkDivider from './components/divider';
+import YkLink from './components/link';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -92,6 +93,7 @@ const components: {
   YkCalendar,
   YkSkeleton,
   YkDivider,
+  YkLink,
   YkAlert,
   YkButton,
   YkTheme,
@@ -152,6 +154,7 @@ export {
   YkCalendar,
   YkSkeleton,
   YkDivider,
+  YkLink,
   YkAlert,
   YkButton,
   YkTheme,
