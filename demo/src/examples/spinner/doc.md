@@ -18,6 +18,12 @@
 <SpinnerColor/>
 :::
 
+:::snippet
+附加到任何容器
+使用 `v-loading` 指令将加载动画附加在任何容器，并显示背景遮罩。加载过程中用户不可操作。为容器设置 `data-loading-text` 属性可以自定义加载动画下方的文字。
+<SpinnerContainer/>
+:::
+
 ### API
 
 | 参数         | 描述     | 类型                                               | 默认值    |

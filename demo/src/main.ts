@@ -17,6 +17,7 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 // 全局注入 icon
 import Icon from '@yike-design/ui/src/components/svg-icon';
 import { YkTitle, YkMessage, YkNotification } from '@yike-design/ui/src';
+import { vLoading } from '@yike-design/ui/src/components/spinner/src/directive';
 
 hljs.registerLanguage('javascript', javascript);
 
@@ -30,6 +31,8 @@ app
   .use(hljsVuePlugin)
   .use(router)
   .mount('#app');
+
+app.directive('loading', vLoading);
 
 app.config.globalProperties.$notification = YkNotification;
 app.config.globalProperties.$message = YkMessage;
