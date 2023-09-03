@@ -130,11 +130,16 @@ const scrollToDemo = (ev: MouseEvent) => {
 
   .yk-title {
     a {
-      visibility: hidden;
+      opacity: 0;
+      transition: none;
     }
 
     &:hover a {
-      visibility: visible;
+      opacity: 1;
+    }
+
+    &:focus-within a {
+      opacity: 1;
     }
   }
 }
