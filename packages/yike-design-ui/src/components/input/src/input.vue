@@ -98,6 +98,7 @@ import { computed, ref, watch, toRefs, unref } from 'vue'
 import { IconCloseEyeOutline, IconCloseOutline } from '../../svg-icon'
 import { useFormItem, createCssScope } from '../../utils'
 import { YkSpinner } from '../../spinner'
+import '../style'
 
 defineOptions({
   name: 'YkInput',
