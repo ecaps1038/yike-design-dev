@@ -30,7 +30,7 @@ class NotificationManager {
   add = (options: NotificationOptions) => {
     this.seed++;
     const id = `yk-notification__${this.seed}`;
-    const notification: NotificationOptions = reactive({
+    const notification = reactive<NotificationOptions>({
       id,
       zIndex: this.zIndex,
       ...options,

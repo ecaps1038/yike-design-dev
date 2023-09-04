@@ -37,7 +37,6 @@
           :file-icons="props.fileIcons"
           :un-select-key="refUnSelectKey"
           :select-key="refSelectKey"
-          :scrollbar="scrollbar"
           @select="select"
         ></yk-tree>
         <yk-empty v-if="!props.options.length" :description="props.emptyText" />

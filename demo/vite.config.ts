@@ -62,4 +62,9 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['env.d.ts'],
+    },
+  },
 });
