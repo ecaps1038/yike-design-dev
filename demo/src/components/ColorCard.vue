@@ -1,5 +1,23 @@
+<script setup lang="ts">
+defineOptions({ name: 'Snippet' })
+
+defineProps({
+  type: {
+    type: Number,
+    default: 0,
+  },
+  label: {
+    type: String,
+    default: '',
+  },
+  color: {
+    type: String,
+    default: '',
+  },
+})
+</script>
+
 <template>
-  <!-- :style="{ background: `rgba(${getColor},0.5)` }" -->
   <div
     :class="['ykcolor-card', `ykcolor-card-${type}`]"
     :style="{ background: color }"
@@ -18,27 +36,6 @@
     </template>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps({
-  type: {
-    type: Number,
-    default: 0,
-  },
-  label: {
-    type: String,
-    default: '',
-  },
-  color: {
-    type: String,
-    default: '',
-  },
-})
-
-// const getColor = computed(() => {
-//   return getComputedStyle(document.documentElement).getPropertyValue('--pcolor')
-// })
-</script>
 
 <style lang="less" scoped>
 .ykcolor-card {

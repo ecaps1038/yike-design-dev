@@ -91,10 +91,6 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/scrollbar/doc.md'),
   },
   {
-    path: 'alert',
-    component: () => import('@/examples/alert/doc.md'),
-  },
-  {
     path: 'tree',
     component: () => import('@/examples/tree/doc.md'),
   },
