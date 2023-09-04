@@ -1,10 +1,36 @@
 .yk-input-tag {
+  margin: 0;
+  padding: 0;
   width: 100%;
+  list-style: none;
+  box-sizing: border-box;
 
   &__tag_input_placeholder {
     position: absolute;
     z-index: -1000;
     display: inline;
     color: transparent;
+  }
+
+  .yk-input {
+    display: inline;
+    text-align: left;
+    &__inner {
+      display: block;
+    }
+  }
+
+  .yk-tag {
+    margin: 3px 0;
+    max-width: 90%;
+
+    &__content {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  }
+
+  .yk-tag__content {
+    margin-left: 0px !important;
   }
 }

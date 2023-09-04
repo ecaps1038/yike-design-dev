@@ -1,6 +1,6 @@
 <template>
-  <div :class="[bem(), bem(isFocus ? 'focus' : 'blur')]" @click.stop="onClick">
-    <yk-input
+  <div :class="[bem(), bem(isFocus ? 'focus' : 'blur')]">
+    <YkInput
       ref="ykTagInput"
       v-bind="inputProps"
       v-model="inputVal"
@@ -10,19 +10,24 @@
       @fucus="onInputFocus"
       @keydown="onKeydown"
       @blur="onBlur"
+      @click.stop="onClick"
     >
       <template #prefix>
         <div :class="bem('tag-list')">
-          <span
+          <YkTag
             v-for="(tag, index) in tagList"
             :key="index"
             :class="bem('tag-list-item')"
+            closeable
+            size="s"
+            @close="onCloseTag(index)"
+            @click.stop="onClick"
           >
             {{ tag }}
-          </span>
+          </YkTag>
         </div>
       </template>
-    </yk-input>
+    </YkInput>
     <div ref="tagInputPlaceholder" :class="bem('tag_input_placeholder')">
       {{ inputVal || placeholder }}
     </div>
@@ -35,6 +40,8 @@ import { createCssScope } from '../../utils/bem'
 import useVModel from '../../utils/hooks/use-v-model'
 import { useFormItem } from '../../utils'
 import { STATUS_MAP, SIZES_MAP } from '../../utils/constant'
+import { calculateElementStyle } from './utils'
+
 const bem = createCssScope('input-tag')
 
 defineOptions({
@@ -52,7 +59,7 @@ const props = withDefaults(defineProps<InputTagProps>(), {
   inputProps: undefined,
 })
 
-const emits = defineEmits(['focus', 'blur', 'keydown'])
+const emits = defineEmits(['focus', 'blur', 'keydown', 'click'])
 
 const {
   modelValue,
@@ -87,8 +94,10 @@ const onInputFocus = () => {
 }
 
 const onKeydownEnter = () => {
+  const inputValue = inputVal.value.trim()
+  if (!inputValue) return
   // 新增一个tag
-  setTagList(tagList.value.concat(inputVal.value.trim()))
+  setTagList(tagList.value.concat(inputValue))
   inputVal.value = ''
   emits('keydown', 'enter')
 }
@@ -114,17 +123,20 @@ const onKeydown = (ev: KeyboardEvent) => {
 }
 
 // 获取ykTagInput的$refs
-const ykTagInput = ref<HTMLInputElement | null>(null)
+const ykTagInput = ref(null)
 
 const onClick = () => {
-  console.log('ykTagInput.valueL:', ykTagInput.value)
-  ykTagInput.value?.focus()
+  ykTagInput.value?.inputRef.focus()
+}
+
+const onCloseTag = (tag) => {
+  console.log(tag)
 }
 
 const tagInputPlaceholder = ref<HTMLInputElement | null>(null)
-const getTagInputPlaceholderWidth = () => {
+const getTagInputPlaceholderWidth = (): number => {
   const { width } = tagInputPlaceholder.value?.getBoundingClientRect() || {}
-  return width || 20
+  return width || 0
 }
 // tagInputWidth默认值为tagInputPlaceholder的宽度
 const tagInputWidth = ref(0)
@@ -135,6 +147,7 @@ watch(
     return width
   },
   (newVal) => {
+    console.log('1111', newVal)
     tagInputWidth.value = newVal!
   },
   {
@@ -144,8 +157,12 @@ watch(
 
 // 获取ykTagInput元素的padding值
 const getYkTagInputPadding = () => {
-  const { paddingLeft, paddingRight } = getComputedStyle(ykTagInput.value!)
-  return parseInt(paddingLeft) + parseInt(paddingRight)
+  if (!ykTagInput.value?.inputRef) return 0
+  const { paddingLeft, paddingRight } = calculateElementStyle(
+    ykTagInput.value?.inputRef,
+  )
+  console.log('宽度：', ykTagInput.value?.inputRef, paddingLeft + paddingRight)
+  return paddingLeft + paddingRight
 }
 
 const inputStyle = computed(() => {
