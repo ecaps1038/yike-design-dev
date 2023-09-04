@@ -8,8 +8,8 @@
 <style lang="less" scoped>
 .colors(@name) {
   .line-color-@{name} {
+    border: ~'@{line-color-@{name}}' 1px solid;
     color: @font-color-l;
-    background-color: ~'@{line-color-@{name}}';
   }
 }
 .colors(s);
