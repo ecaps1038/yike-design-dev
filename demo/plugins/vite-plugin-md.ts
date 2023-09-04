@@ -5,13 +5,13 @@ import { mdCustomH3, mdCustomLinkCls } from './md-plugin';
 import { getTemplates, replaceVariables } from './util';
 import { Plugin } from 'vite';
 
-const markdownIt = MarkdownIt({
+const md = MarkdownIt({
   html: true,
   xhtmlOut: false,
 });
 
-markdownIt.use(mdCustomH3);
-markdownIt.use(mdCustomLinkCls);
+md.use(mdCustomH3);
+md.use(mdCustomLinkCls);
 
 const templates = getTemplates('./vite-plugin-md.md');
 const getTemplate = (flag: string, variables: unknown) =>
@@ -26,12 +26,12 @@ export default function (): Plugin {
         // /yike-design-dev/CONTRIBUTING.md
         return {
           code: getTemplate('CONTRIBUTING', {
-            content: markdownIt.render(code),
+            content: md.render(code),
           }),
         };
       }
 
-      // demo/src/examples/*
+      // demo/src/*
       const importBucket = new Set<string>();
       const result = transformSnippetOrPure(id, code, importBucket);
       const importContent = Array.from(importBucket).join('\n');
@@ -40,7 +40,12 @@ export default function (): Plugin {
         map: null,
         code: getTemplate('default', {
           importContent,
-          content: markdownIt.render(result),
+          content: md
+            .render(result)
+            .replace(
+              /(<table>[\s\S]*?<\/table>)/g,
+              '<div class="table-container">$1</div>',
+            ),
         }),
       };
     },
@@ -77,7 +82,7 @@ function transformSnippetOrPure(
         title,
         demoName,
         demoCode: encodeURIComponent(demoCode),
-        content: markdownIt.render(desc),
+        content: md.render(desc),
       }),
     );
   }

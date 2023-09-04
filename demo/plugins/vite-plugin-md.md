@@ -2,11 +2,11 @@
 
 ```vue: CONTRIBUTING
 <template>
-  <div class='yk-demo-doc'>#{content}#</div>
+  <DocPage>#{content}#</DocPage>
 </template>
 ```
 
-## demo/src/packages/\*
+## demo/src/\*
 
 ```vue: default
 <script setup>
@@ -14,7 +14,7 @@
 </script>
 
 <template>
-  <component-page>#{content}#</component-page>
+  <DocPage>#{content}#</DocPage>
 </template>
 ```
 

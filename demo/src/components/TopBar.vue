@@ -1,12 +1,33 @@
+<script lang="ts" setup>
+const Links = {
+  home: 'http://www.huohuo90.com',
+  github: 'https://github.com/ecaps1038/yike-design-dev',
+  devStandard: 'https://dwawvfgxvzk.feishu.cn/wiki/GraewTYxJidb6dkeV5ycjGG4nHb',
+  task: 'https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK',
+  design:
+    'https://www.figma.com/file/EMPOindzRJTKt1Gx6Egojq/Yike-design?type=design&node-id=0%3A278&mode=design&t=buLeC3MzFSkXagtR-1',
+}
+
+const navLinks = {
+  '/develop': '开发',
+  '/design': '设计',
+  '/module': '组件',
+}
+</script>
+
 <template>
   <div class="top-bar">
     <router-link class="logo" to="/">
       <img src="@/assets/icon/logo.svg" />
-      <span class="name">Yike Design 开发版</span>
+      <h1 class="name">
+        Yike Design
+        <yk-tag type="success">DEV</yk-tag>
+      </h1>
     </router-link>
-    <yk-space class="navs" :size="24" align="center">
-      <a class="nav-item" :href="Links.design" target="_blank">UI设计稿</a>
-      <a class="nav-item" :href="Links.task" target="_blank">任务文档</a>
+    <yk-space class="navs-pc" :size="24" align="center">
+      <a class="nav-item" :href="Links.design">UI 设计稿</a>
+      <a class="nav-item" :href="Links.task">任务文档</a>
+      <a class="nav-item" :href="Links.devStandard">开发规范</a>
       <router-link
         v-for="(link, path) in navLinks"
         :key="path"
@@ -15,6 +36,7 @@
       >
         {{ link }}
       </router-link>
+
       <a class="nav-item" :href="Links.home" target="_blank">主站</a>
       <a class="nav-item" :href="Links.github" target="_blank">
         <icon-github-fill />
@@ -23,28 +45,6 @@
     </yk-space>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { provide } from 'vue'
-
-const Links = {
-  home: 'http://www.huohuo90.com',
-  github: 'https://github.com/ecaps1038/yike-design-dev',
-  task: 'https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK',
-  design:
-    'https://www.figma.com/file/EMPOindzRJTKt1Gx6Egojq/Yike-design?type=design&node-id=0%3A278&mode=design&t=buLeC3MzFSkXagtR-1',
-}
-
-const navLinks = {
-  '/developStandard': '开发规范',
-  '/design': '设计',
-  '/develop': '开发',
-  '/module': '组件',
-}
-
-provide('size', 'm')
-provide('shape', 'circle')
-</script>
 
 <style lang="less" scoped>
 .top-bar {
@@ -56,14 +56,18 @@ provide('shape', 'circle')
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 24px;
 
   width: 100%;
-  height: 60px;
+  height: var(--top-bar-height);
   border-bottom: 1px solid @line-color-s;
   background-color: @bg-color-l;
   transition: all @animats;
   box-sizing: border-box;
+
+  a {
+    color: inherit;
+  }
 }
 
 .logo {
@@ -78,33 +82,25 @@ provide('shape', 'circle')
   .name {
     padding-left: 12px;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: bold;
     white-space: nowrap;
-    color: @font-color-l;
     transition: color @animats;
-    vertical-align: top;
+
+    ::v-deep(.yk-tag) {
+      vertical-align: text-top;
+    }
   }
 }
 
-.navs {
-  display: flex;
+.nav-item {
+  padding: 5px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: @font-color-l;
+  cursor: pointer;
+}
 
-  .nav-item {
-    padding: 5px 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: @font-color-l;
-    cursor: pointer;
-  }
-
-  .router-link-active {
-    font-weight: 600;
-    color: @pcolor;
-  }
-
-  .nav-item:hover {
-    font-weight: 500;
-    // background-color: @bg-color-s;
-  }
+.nav-item:hover {
+  font-weight: 500;
 }
 </style>
