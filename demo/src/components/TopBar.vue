@@ -97,8 +97,14 @@ provide('shape', 'circle')
     cursor: pointer;
   }
 
+  .router-link-active {
+    font-weight: 600;
+    color: @pcolor;
+  }
+
   .nav-item:hover {
-    background-color: @bg-color-ss;
+    font-weight: 500;
+    // background-color: @bg-color-s;
   }
 }
 </style>
