@@ -16,7 +16,6 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 // 全局注入 icon
 import Icon from '@yike-design/ui/src/components/svg-icon';
 import { YkTitle, YkMessage, YkNotification } from '@yike-design/ui/src';
-import 'env.d.ts';
 
 hljs.registerLanguage('javascript', javascript);
 
