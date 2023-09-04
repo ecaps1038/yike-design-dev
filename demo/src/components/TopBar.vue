@@ -68,6 +68,11 @@ const navLinks = {
   a {
     color: inherit;
   }
+
+  .router-link-active {
+    font-weight: 600;
+    color: @pcolor;
+  }
 }
 
 .logo {
@@ -98,9 +103,9 @@ const navLinks = {
   text-decoration: none;
   color: @font-color-l;
   cursor: pointer;
-}
 
-.nav-item:hover {
-  font-weight: 500;
+  .nav-item:hover {
+    font-weight: 500;
+  }
 }
 </style>
