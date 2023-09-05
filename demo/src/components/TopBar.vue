@@ -13,16 +13,15 @@ const navLinks = {
   '/design': '设计',
   '/module': '组件',
 }
+const isDev = import.meta.env.DEV
 </script>
 
 <template>
   <div class="top-bar">
     <router-link class="logo" to="/">
       <img src="@/assets/icon/logo.svg" />
-      <h1 class="name">
-        Yike Design
-        <yk-tag type="success">DEV</yk-tag>
-      </h1>
+      <p class="name">Yike Design</p>
+      <yk-tag v-if="isDev" type="primary">DEV</yk-tag>
     </router-link>
     <yk-space class="nav-links" :size="24" align="center">
       <a class="nav-item responsive-hidden" :href="Links.design">UI 设计稿</a>
@@ -85,19 +84,21 @@ const navLinks = {
   cursor: pointer;
 
   img {
-    width: 32px;
+    width: 36px;
+    height: 28px;
   }
 
   .name {
-    padding-left: 12px;
+    padding: 0 10px;
     font-size: 18px;
+    line-height: 28px;
     font-weight: bold;
     white-space: nowrap;
-    transition: color @animats;
+    color: @font-color-l !important;
+  }
 
-    ::v-deep(.yk-tag) {
-      vertical-align: text-top;
-    }
+  .yk-tag {
+    vertical-align: text-top;
   }
 }
 
