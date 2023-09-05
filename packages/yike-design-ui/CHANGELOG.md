@@ -1,6 +1,22 @@
 # 更新日志 
 
 
+### [0.0.6](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.5...v0.0.6) (2023-09-05)
+
+
+### ✨ Features | 新功能
+
+* **docs:** 首页响应式 ([b51049e](https://github.com/ecaps1038/yike-design-dev/commit/b51049ec89de8bcf25b5a7827c1eab168f497ded))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **build:** build comp ([493898a](https://github.com/ecaps1038/yike-design-dev/commit/493898af0519e31c547662169bc40772691c7e39))
+* **build:** remove svg-import ([b070ee1](https://github.com/ecaps1038/yike-design-dev/commit/b070ee105b436bd71cb6e6f3a69ebe46976d85f4))
+* **ci:** fix comp command ([641f54e](https://github.com/ecaps1038/yike-design-dev/commit/641f54e45de3adc37db10362bb693cfb0c86e94c))
+* **ci:** fix publish commond ([5e7ebbd](https://github.com/ecaps1038/yike-design-dev/commit/5e7ebbd34febda3d2052779787f4485289a5a18a))
+* **style:** add mixin less ([7b136fb](https://github.com/ecaps1038/yike-design-dev/commit/7b136fbc23e2314d7f5be2ba129ae03df1f24893))
+
 ### 0.0.5 (2023-09-05)
 
 
