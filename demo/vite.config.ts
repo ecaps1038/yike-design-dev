@@ -67,4 +67,5 @@ export default defineConfig({
       external: ['env.d.ts'],
     },
   },
+  base: './',
 });
