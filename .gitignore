@@ -1,6 +1,16 @@
 node_modules/
 .DS_Store
-dist/
+.history
+components.d.ts
+
+# gen icon
+svg-icon
+es 
+lib
+dist
+
+# test
+coverage
 
 # Logs
 logs
@@ -11,10 +21,13 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Editor directories and files
+package-lock.json
+# pnpm-lock.yaml
 !.vscode/extensions.json
 .idea/*
-package-lock.json
-pnpm-lock.yaml
-
-# 生成的图标文件
-svg-icon
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

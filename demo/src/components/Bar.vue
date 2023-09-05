@@ -2,6 +2,7 @@
 import { RouterLink } from 'vue-router'
 defineProps({
   bar: {
+    // default: {},
     type: Array,
     required: true,
   },
@@ -11,7 +12,7 @@ defineProps({
 </script>
 <template>
   <div class="component-bar">
-    <yk-container class="container">
+    <yk-scrollbar class="container">
       <div v-for="(e, i) in bar" :key="i" class="bar-card">
         <div class="bar-title">
           <yk-text strong>{{ (e as any).title }}</yk-text>
@@ -25,54 +26,67 @@ defineProps({
           {{ n.name }}
         </RouterLink>
       </div>
-    </yk-container>
+    </yk-scrollbar>
   </div>
 </template>
 <style lang="less" scoped>
 .component-bar {
-  height: 100%;
-  width: 268px;
-  border-right: 1px solid @line-color-s;
   position: fixed;
   top: 60px;
   left: 0;
   z-index: 1;
+  padding-top: 2px;
+  padding-right: 4px;
+  width: 268px;
+  height: calc(100% - 60px);
+  border-right: 1px solid @line-color-s;
   background-color: @bg-color-l;
   transition: background-color @animats, border-right @animats;
 
   .container {
-    // fix height error
-    height: calc(100% - 60px);
-    padding: @space-s @space-m;
-    // overflow: auto;
+    box-sizing: border-box;
+    padding: 0 @space-l @space-l;
   }
 
   .bar-title {
-    margin-top: @space-m;
+    overflow: hidden;
+    margin-top: @space-xl;
+    padding-left: @space-ss;
     height: 40px;
+    color: @font-color-l;
     line-height: 40px;
   }
 
   .bar-list {
+    display: block;
+    overflow: hidden;
+    margin-bottom: @space-ss;
+    padding: 0 @space-l;
     height: 40px;
     border-radius: @radius-m;
-    line-height: 40px;
-    padding: 0 @space-m;
-    display: block;
     color: @font-color-m;
-    transition: color @animats;
+    transition: background-color @animatb;
+    line-height: 40px;
+
+    &:hover {
+      background-color: @pcolor-1;
+    }
+
+    &:last-child {
+      margin-bottom: unset;
+    }
   }
 
   .router-link-active {
     font-weight: 600;
     color: @pcolor;
-    background-color: rgba(21, 114, 255, 0.1);
+    background-color: @pcolor-1;
   }
 
   .select {
     font-weight: 600;
     color: @pcolor;
-    background-color: rgba(21, 114, 255, 0.1);
+    background-color: @pcolor-1;
   }
 }
 </style>

@@ -1,5 +1,5 @@
-import Space from './src/Space.vue';
-import { withInstall } from '@yike/utils';
+import Space from './src/space.vue';
+import { withInstall } from '../utils/index';
 
 export const YkSpace = withInstall(Space);
 export default YkSpace;

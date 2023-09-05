@@ -12,7 +12,7 @@
           class="yk-backtop-container"
           :class="{ secondary: theme === 'secondary' }"
         >
-          <yk-icon :name="icon" class="yk-backtop__icon" />
+          <IconTopOutline size="20" />
         </div>
       </slot>
     </div>
@@ -22,9 +22,9 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import '../style'
+import { IconTopOutline } from '../../svg-icon'
 import { BackTopProps } from './back-top'
-import { transformPxToNumber } from '../../../utils/tools'
+import { transformPxToNumber } from '../../utils/tools'
 
 defineOptions({
   name: 'YkBackTop',

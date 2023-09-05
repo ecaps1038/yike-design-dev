@@ -1,0 +1,96 @@
+// @import './variables.less';
+@import './slider-marks.less';
+
+.yk-slider {
+  padding: 10px 6px;
+  user-select: none;
+  .yk-slider__runway {
+    position: relative;
+    border-radius: 2px;
+    background-color: @bg-color-ss;
+    cursor: pointer;
+  }
+  .yk-slider__bar {
+    position: absolute;
+    background-color: @pcolor;
+    .yk-slider__button {
+      position: absolute;
+      z-index: 1;
+      width: 12px;
+      height: 12px;
+      border: 2px solid @pcolor;
+      border-radius: 50%;
+      background: @bg-color-l;
+      cursor: pointer;
+      transition: all @animats;
+    }
+    .yk-slider__tooltipSpan {
+      width: 12px;
+      height: 12px;
+      // background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+.yk-slider--horizontal {
+  .yk-slider__button {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .yk-slider__button--start {
+    left: -6px;
+    &:hover {
+      left: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
+    }
+  }
+  .yk-slider__button--end {
+    right: -6px;
+    &:hover {
+      right: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
+    }
+  }
+}
+.yk-slider--vertical {
+  .yk-slider__button {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .yk-slider__button--start {
+    bottom: -6px;
+    &:hover {
+      bottom: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
+    }
+  }
+  .yk-slider__button--end {
+    top: -6px;
+    &:hover {
+      top: -7px;
+      width: 14px;
+      height: 14px;
+      box-shadow: @shadow-m;
+    }
+  }
+}
+.yk-slider--withMarks {
+  padding-bottom: 35px;
+}
+.yk-slider--disabled {
+  .yk-slider__runway {
+    cursor: auto;
+  }
+  .yk-slider__bar {
+    background-color: @bg-color-ss;
+    .yk-slider__button {
+      cursor: not-allowed;
+      border-color: @bg-color-ss;
+    }
+  }
+}

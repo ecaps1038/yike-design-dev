@@ -1,0 +1,56 @@
+@import '../../styles/color/colors.less';
+
+.yk-table {
+  > table {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    border-spacing: 0;
+  }
+
+  th {
+    background-color: @bg-color-s;
+  }
+
+  &__cell {
+    position: relative;
+    z-index: 1;
+    padding: 18px 0px;
+    min-width: 0;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    vertical-align: middle;
+    .cell {
+      overflow: hidden;
+      padding: 0 20px;
+      text-overflow: ellipsis;
+      white-space: normal;
+      box-sizing: border-box;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+  }
+
+  &__cell {
+    border-bottom: 1px solid #1e202514;
+  }
+
+  &__row {
+    background-color: @bg-color-l;
+    &:hover {
+      background-color: @bg-color-s;
+    }
+  }
+
+  .text-center {
+    text-align: center;
+  }
+  .text-right {
+    text-align: right;
+  }
+}

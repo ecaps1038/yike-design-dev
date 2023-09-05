@@ -1,0 +1,22 @@
+@import '../../styles/color/colors.less';
+@import '../../tooltip/style/index.less';
+
+.yk-popover {
+  &.yk-tooltip {
+    --tooltip-theme-bg-color: @bg-color-l;
+    --tooltip-theme-font-color: @font-color-l;
+    --tooltip-theme-min-width: 150px;
+  }
+  &__title {
+    padding: @space-s @space-ss 0;
+    // font-size: @size-m !important;
+    .font-m();
+    font-weight: 500;
+  }
+  &__content {
+    padding: @space-s @space-ss;
+    text-align: justify;
+    .font-s();
+    color: @font-color-m !important;
+  }
+}

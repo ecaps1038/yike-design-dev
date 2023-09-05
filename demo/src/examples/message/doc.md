@@ -8,7 +8,7 @@
 
 :::snippet
 提示文案
-通过传入 `message` 指定不同的提示文案
+通过传入 `message` 指定不同的提示文案，支持 `jsx` 和 `VNode` 写法。
 <MessageAlter/>
 :::
 
@@ -32,7 +32,7 @@
 
 :::snippet
 关闭实例
-通过 proxy.$message 创建的消息将返回一个实例，其中提供了 close 方法，能够提前关闭消息
+通过 `proxy.$message` 创建的消息将返回一个实例，其中提供了 close 方法，能够提前关闭消息
 <MessageClose/>
 :::
 

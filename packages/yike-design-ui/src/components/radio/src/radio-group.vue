@@ -1,28 +1,42 @@
 <template>
-  <div :class="ykRadioGroupCls">
+  <yk-space
+    v-if="type === 'radio'"
+    :direction="direction"
+    :size="mergedSize"
+    :type="type"
+    :class="bem([type, mergedSize, direction])"
+  >
     <slot />
+  </yk-space>
+  <div v-else :class="bem([type, mergedSize], { solid })">
+    <div :class="bem('container', [mergedSize])"><slot /></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, provide, reactive, toRefs } from 'vue'
+import { nextTick, provide, reactive, toRefs } from 'vue'
 import { RadioGroupProps, radioGroupEmits } from './radio-group'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT, provideKey } from './constants'
-import '../style'
+import { YkSpace } from '../../space'
+import { createCssScope, useFormItem } from '../../utils'
 
 const emits = defineEmits(radioGroupEmits)
+
+const bem = createCssScope('radio-group')
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   direction: 'horizontal',
+  type: 'radio',
+  size: 'l',
+  solid: false,
 })
 
-const ykRadioGroupCls = computed(() => {
-  return {
-    'yk-radio-group': true,
-    'yk-radio-vertical': props.direction === 'vertical',
-    [`yk-radio--${props.size}`]: props.size,
-    [`yk-radio--${props.theme}`]: props.theme,
-  }
+const { size, disabled } = toRefs(props)
+
+const { mergedSize, mergedDisabled } = useFormItem({
+  size,
+  disabled,
 })
+
 const changeEvent = (value: RadioGroupProps['modelValue']): void => {
   emits(UPDATE_MODEL_EVENT, value)
   nextTick(() => emits(CHANGE_EVENT, value))
@@ -32,6 +46,7 @@ provide(
   provideKey,
   reactive({
     ...toRefs(props),
+    disabled: mergedDisabled,
     changeEvent,
   }),
 )

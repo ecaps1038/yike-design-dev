@@ -34,7 +34,7 @@
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
       ></yk-avatar>
     </yk-avatar-group>
-    <yk-avatar-group shape="square" :max="5">
+    <yk-avatar-group :shape="16" :max="5">
       <yk-avatar
         img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
       ></yk-avatar>

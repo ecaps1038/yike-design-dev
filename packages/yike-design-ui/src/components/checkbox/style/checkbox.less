@@ -1,0 +1,115 @@
+@import '../../styles/color/colors.less';
+.yk-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  .font-s();
+  cursor: pointer;
+  &&--disabled {
+    cursor: not-allowed;
+    color: @font-color-s;
+  }
+  input[type='checkbox'],
+  &-target {
+    width: 0;
+    height: 0;
+    visibility: collapse;
+    user-select: none;
+  }
+
+  &-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: @space-s;
+    width: @size-m;
+    height: @size-m;
+    border: 1px solid @line-color-l;
+    border-radius: @radius-s;
+    background: @bg-color-l;
+    transition: border-color 0.1s cubic-bezier(0, 0, 1, 1),
+      background-color 0.1s cubic-bezier(0, 0, 1, 1);
+    user-select: none;
+    flex-shrink: 0;
+    &.yk-disabled {
+      background: @bg-color-s;
+      border-color: @line-color-s;
+      opacity: 1;
+    }
+  }
+
+  &--indeterminate::before {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 1.5px;
+    background: #fff;
+    opacity: 0;
+    transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
+    content: '';
+    transform: translate(-50%, -50%) scale(0);
+  }
+  &--indeterminate::before {
+    opacity: 1;
+  }
+  .indeterminate--checked::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+    transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+  }
+  .yk-show-shadow::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    opacity: 0;
+    box-shadow: 0 0 0 calc(16px / 2.5) @pcolor-light;
+    transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+    content: '';
+  }
+  &--active,
+  &--indeterminate {
+    background-color: @pcolor-light;
+    border-color: @pcolor-light;
+    &.yk-disabled::before {
+      border-color: @font-color-s;
+    }
+  }
+
+  &--common {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg) scale(0);
+      width: 4px;
+      height: 7px;
+      border-right: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      opacity: 0;
+      transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
+    }
+  }
+  &--active::before {
+    opacity: 1;
+    transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+  }
+
+  &--normal {
+    &:hover {
+      border-color: @pcolor-light;
+    }
+    &::after {
+      box-shadow: none;
+      transition: none;
+      content: '';
+    }
+  }
+}

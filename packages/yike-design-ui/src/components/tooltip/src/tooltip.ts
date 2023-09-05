@@ -16,7 +16,7 @@ const PLACEMENT = [
 ] as const;
 export type Placement = (typeof PLACEMENT)[number];
 
-const TRIGGER = ['hover', 'focus', 'click', 'contextMenu'] as const;
+const TRIGGER = ['hover', 'focus', 'click', 'contextMenu', 'none'] as const;
 export type Trigger = (typeof TRIGGER)[number];
 
 export type TooltipProps = {
@@ -31,6 +31,7 @@ export type TooltipProps = {
   overlayClassName?: string;
   zIndex?: number;
   destroyTooltipOnHide?: boolean;
+  arrow?: boolean;
 };
 
 export type TooltipEmit = {

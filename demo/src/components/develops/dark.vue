@@ -24,45 +24,23 @@
 
     <div class="colorss">
       <div class="light">
-        <yk-space size="l">
-          <yk-space size="m">
-            <div class="color p"></div>
-            <div class="color l"></div>
-            <div class="color s"></div>
-            <div class="color w"></div>
-            <div class="color e"></div>
-          </yk-space>
-          <yk-space size="m">
-            <div class="color d1"></div>
-            <div class="color d2"></div>
-            <div class="color d3"></div>
-            <div class="color d4"></div>
-            <div class="color d5"></div>
-            <div class="color d6"></div>
-            <div class="color d7"></div>
-            <div class="color d8"></div>
-          </yk-space>
+        <yk-space size="m">
+          <div class="color p"></div>
+          <div class="color l"></div>
+          <div class="color s"></div>
+          <div class="color w"></div>
+          <div class="color e"></div>
+          <div class="color d1"></div>
         </yk-space>
       </div>
       <div class="dark">
-        <yk-space size="l">
-          <yk-space size="m">
-            <div class="color p"></div>
-            <div class="color l"></div>
-            <div class="color s"></div>
-            <div class="color w"></div>
-            <div class="color e"></div>
-          </yk-space>
-          <yk-space size="m">
-            <div class="color d1"></div>
-            <div class="color d2"></div>
-            <div class="color d3"></div>
-            <div class="color d4"></div>
-            <div class="color d5"></div>
-            <div class="color d6"></div>
-            <div class="color d7"></div>
-            <div class="color d8"></div>
-          </yk-space>
+        <yk-space size="m">
+          <div class="color p"></div>
+          <div class="color l"></div>
+          <div class="color s"></div>
+          <div class="color w"></div>
+          <div class="color e"></div>
+          <div class="color d1"></div>
         </yk-space>
       </div>
     </div>
@@ -80,7 +58,7 @@
     <yk-title :level="3">源码原理</yk-title>
     <yk-paragraph type="secondary">
       源码中可以看到针对各模式下设置一套颜色变量。在此您可以根据设计需求进行自己调整或增减颜色变量。代码在
-      <yk-text type="primary">yike-design-ui</yk-text>
+      <yk-text type="primary">@yike-design/ui</yk-text>
       ->
       <yk-text type="primary">src</yk-text>
       ->
@@ -92,13 +70,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import codesVue from '@/components/Codes.vue'
+import codesVue from '../Codes.vue'
 const datas = [
   `<yk-theme/> //默认跟随系统颜色，并显示控制主题的“太阳”和“月亮”控件
 <yk-theme :control='false'/> //默认跟随系统颜色，不显示控制主题的“太阳”和“月亮”控件
 <yk-theme skin='light'/> //默认浅色颜色模式，并显示控制主题的“太阳”和“月亮”控件
-<yk-theme skin='light' :control='false'/> //保持默认浅色模式，不显示控制主题的“太阳”和“月亮”控件
- `,
+<yk-theme skin='light' :control='false'/> //保持默认浅色模式，不显示控制主题的“太阳”和“月亮”控件`,
   `//默认
 :root {
   // -------- Functional color light -----------
@@ -107,18 +84,7 @@ const datas = [
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
-
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  --gray: palette(@gray); //中性色
 }
 
 // 亮色主题
@@ -129,18 +95,7 @@ const datas = [
   --scolor: palette(@scolor-light); // 成功色
   --wcolor: palette(@wcolor-light); // 警告色
   --ecolor: palette(@ecolor-light); // 错误色
-
-  //----中性色----
-  --gray1: palette(@gray1);
-  --gray2: palette(@gray2);
-  --gray3: palette(@gray3);
-  --gray4: palette(@gray4);
-  --gray7: palette(@gray7);
-  --gray8: palette(@gray8);
-  --gray9: palette(@gray9);
-  --gray10: palette(@gray10);
-  --gray5: palette(@gray1);
-  --gray6: palette(@gray10);
+  --gray: palette(@gray); //中性色
 }
 // 暗色主题
 [data-theme='dark'] {
@@ -150,117 +105,77 @@ const datas = [
   --scolor: palette(@scolor-dark); // 成功色
   --wcolor: palette(@wcolor-dark); // 警告色
   --ecolor: palette(@ecolor-dark); // 错误色
-
-  //----中性色----
-  --gray1: palette(@gray10);
-  --gray2: palette(@gray9);
-  --gray3: palette(@gray8);
-  --gray4: palette(@gray7);
-  --gray7: palette(@gray4);
-  --gray8: palette(@gray3);
-  --gray9: palette(@gray2);
-  --gray10: palette(@gray1);
-  --gray5: palette(@gray3);
-  --gray6: palette(@gray2);
-}
+  --gray: palette(@white); //中性色
 `,
 ]
 </script>
 <style scoped lang="less">
 .colorss {
-  background-color: #fff;
-  border-radius: @radius-m;
-  border: 1px solid @line-color-s;
-  max-width: 1000px;
   overflow: hidden;
+  max-width: 1200px;
+  border: 1px solid @line-color-s;
+  border-radius: @radius-m;
+  background-color: #fff;
+
   .light,
   .dark {
     padding: 20px;
   }
+
   .light {
     .p {
       background-color: @pcolor-light;
     }
+
     .l {
       background-color: @lcolor-light;
     }
+
     .s {
       background-color: @scolor-light;
     }
+
     .w {
       background-color: @wcolor-light;
     }
+
     .e {
       background-color: @ecolor-light;
     }
+
     .d1 {
-      background-color: @gray10;
-      border: 1px solid @gray7;
-    }
-    .d2 {
-      background-color: @gray9;
-    }
-    .d3 {
-      background-color: @gray8;
-    }
-    .d4 {
-      background-color: @gray7;
-    }
-    .d5 {
-      background-color: rgba(@gray1, 0.24);
-    }
-    .d6 {
-      background-color: rgba(@gray1, 0.32);
-    }
-    .d7 {
-      background-color: rgba(@gray1, 0.56);
-    }
-    .d8 {
-      background-color: rgba(@gray1, 0.8);
+      background-color: @gray;
     }
   }
+
   .dark {
     background-color: #000;
+
     .p {
       background-color: @pcolor-dark;
     }
+
     .l {
       background-color: @lcolor-dark;
     }
+
     .s {
       background-color: @scolor-dark;
     }
+
     .w {
       background-color: @wcolor-dark;
     }
+
     .e {
       background-color: @ecolor-dark;
     }
+
     .d1 {
-      background-color: @gray1;
-    }
-    .d2 {
-      background-color: @gray2;
-    }
-    .d3 {
-      background-color: @gray3;
-    }
-    .d4 {
-      background-color: @gray4;
-    }
-    .d5 {
-      background-color: rgba(@gray10, 0.24);
-    }
-    .d6 {
-      background-color: rgba(@gray10, 0.32);
-    }
-    .d7 {
-      background-color: rgba(@gray10, 0.56);
-    }
-    .d8 {
-      background-color: rgba(@gray10, 0.8);
+      background-color: @white;
     }
   }
+
   .color {
     width: 40px;
     height: 40px;

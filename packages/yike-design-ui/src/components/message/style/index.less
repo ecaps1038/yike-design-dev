@@ -1,41 +1,32 @@
+@import '../../styles/color/colors.less';
 .yk-message-container {
+  position: fixed;
+  top: @space-xl;
+  z-index: 2002;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   pointer-events: none;
-  position: fixed;
-  z-index: 2002;
-  top: @space-xl;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
 }
 .yk-message {
   display: flex;
-  padding: @space-s @space-m;
-  color: @font-color-l;
-  background: @white;
-  border: 1px solid @bg-color-ss;
-  box-shadow: @shadow-l;
-  border-radius: @radius-m;
-  display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  // i {
-  //   // margin-right: 6px;
-  //   vertical-align: middle;
-  //   font-size: 40px;
-  // }
-
+  padding: @space-s @space-m;
+  border: 1px solid @bg-color-ss;
+  border-radius: @radius-m;
+  color: @font-color-l;
+  background: @light;
+  box-shadow: @shadow-l;
+  svg {
+    width: @size-m;
+    height: @size-m;
+  }
   .text {
     vertical-align: middle;
     margin-left: @space-s;
-  }
-  .message-icon {
-    width: @size-m;
-    height: @size-m;
   }
   .icon-primary,
   .icon-loading {

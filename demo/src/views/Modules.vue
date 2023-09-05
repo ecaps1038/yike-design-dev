@@ -2,7 +2,6 @@
 import { RouterView } from 'vue-router'
 import Bar from '@/components/Bar.vue'
 import * as barData from '../router/config/bar.json'
-
 //菜单
 </script>
 <template>
@@ -15,7 +14,7 @@ import * as barData from '../router/config/bar.json'
 </template>
 <style scoped lang="less">
 .main {
-  padding: 24px 56px 56px 324px;
+  padding: 24px 224px 56px 324px;
 
   .module {
     max-width: 1200px;

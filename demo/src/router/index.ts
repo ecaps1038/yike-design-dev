@@ -1,12 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+// 首页
+import HomeView from '@/views/HomeView.vue';
 // 通用组件路由
-import generalRoutes from './modules/general'
+import generalRoutes from './modules/general';
 // 反馈
-import feedbackRoutes from './modules/feedback'
-
-import developRoutes from './modules/develop'
-import desingRoutes from './modules/design'
+import feedbackRoutes from './modules/feedback';
+// 开发
+import developRoutes from './modules/develop';
+// 设计
+import designRoutes from './modules/design';
+// 开发规范
+import developStandardRoutes from './modules/developStandard';
 
 // 组件文档路由
 const componentModelRouter = {
@@ -15,7 +19,7 @@ const componentModelRouter = {
   name: 'module',
   component: () => import('@/views/Modules.vue'),
   children: [...generalRoutes, ...feedbackRoutes],
-}
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,10 +30,14 @@ const router = createRouter({
       component: HomeView,
     },
     componentModelRouter,
-
     ...developRoutes,
-    ...desingRoutes,
+    ...designRoutes,
+    ...developStandardRoutes,
   ],
-})
+});
 
-export default router
+router.afterEach(() => {
+  window.scrollTo({ top: 0, behavior: 'instant' });
+});
+
+export default router;

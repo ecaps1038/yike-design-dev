@@ -12,15 +12,17 @@ defineProps({
 })
 </script>
 <style scoped lang="less">
+@import url('@/style/code-color.less');
+
 .codes {
   padding-bottom: @space-m;
 }
 
 pre {
-  border-radius: @radius-m;
   overflow: hidden;
+  max-width: 1200px;
+  border-radius: @radius-m;
   text-align: left;
-  max-width: 1000px;
 
   code.hljs {
     padding: 20px 30px;

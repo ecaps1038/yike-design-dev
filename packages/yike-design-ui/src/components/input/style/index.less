@@ -1,0 +1,139 @@
+@import '../../styles/color/colors.less';
+@import './functions.less';
+
+.yk-input {
+  display: inline-flex;
+  align-items: center;
+  transition: all @animatb ease-in-out;
+
+  svg {
+    fill: @font-color-l;
+  }
+}
+
+.yk-input__spinner {
+  display: flex;
+  align-items: center;
+  margin-right: 6px;
+}
+
+.yk-input--slot {
+  word-break: keep-all;
+}
+
+.yk-input--disabled input {
+  cursor: not-allowed;
+  color: @font-color-s !important;
+}
+
+.yk-input--leftbr0,
+.yk-input--leftbr0 input {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.yk-input--rightbr0,
+.yk-input--rightbr0 input {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.yk-input__inner {
+  display: flex;
+  // overflow-x: scroll;
+  width: inherit;
+  transition: all @animatb ease-in-out;
+
+  .yk-input__widget {
+    border: none;
+    color: @font-color-l;
+    background: inherit;
+    outline: none;
+    flex-grow: 1;
+  }
+}
+
+.yk-input__buttons {
+  display: flex;
+}
+
+.yk-input__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  width: 24px;
+  border: none;
+  background: transparent;
+  // 为了能在输入框非激活被聚焦，调整透明度而不是 display: none
+  opacity: 0;
+  cursor: text;
+
+  &:focus-within {
+    // 功能按钮被聚焦，取消隐藏
+    opacity: 1;
+  }
+
+  &-show {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.yk-input__button svg {
+  padding: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: all @animatb;
+  fill: @font-color-l !important;
+
+  &:hover {
+    fill: @font-color-l !important;
+    background-color: @bg-color-ss;
+  }
+}
+
+.yk-input__counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: @space-s;
+  font-size: 12px;
+  color: @font-color-s;
+}
+
+.yk-input__prepend {
+  display: flex;
+
+  button {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
+
+.yk-input__append {
+  display: flex;
+
+  button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
+.yk-input--error {
+  .input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-l);
+}
+
+.input-size(s, 22px, @space-s, @size-ss, @radius-s);
+.input-size(m, 30px, @space-m, @size-s, @radius-s);
+.input-size(l, 34px, @space-m, @size-s, @radius-m);
+.input-size(xl, 46px, @space-l, @size-m, @radius-m);
+
+.input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-l);
+.input-status(danger, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-l);
+.input-status(success, transparent, @scolor-2, @scolor, @scolor-1, @scolor, @bg-color-l);
+.input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-l);
+.input-status(error, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-l);
+.input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);
+.input-status(readonly,  @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s);

@@ -4,41 +4,37 @@
       <img src="@/assets/icon/logo.svg" />
       <span class="name">Yike Design 开发版</span>
     </div>
-    <yk-space class="net" :size="40" align="center">
-      <a href="https://dwawvfgxvzk.feishu.cn/wiki/PDRLwW2BdiUh07kBs86cLYfjnic">
-        开发规范
-      </a>
-      <a href="https://docs.qq.com/sheet/DZEd4ZFlTeGx2UkJa?tab=BB08J2">
-        任务文档
-      </a>
+    <yk-space class="net" :size="30" align="center">
+      <a :href="uiUrl" target="_blank">UI设计稿</a>
+      <a :href="taskUrl" target="_blank">任务文档</a>
+      <router-link to="/developStandard">开发规范</router-link>
       <router-link to="/design">设计</router-link>
       <router-link to="/develop">开发</router-link>
       <router-link to="/module">组件</router-link>
-      <a href="http://www.huohuo90.com">主站</a>
-      <div class="zz">
-        赞助
-        <div class="support">
-          <p>感谢您的赞助，您的支持是我最大的动力～</p>
-          <img class="zz-tp" src="@/assets/images/wx.png" />
-          <img class="zz-tp" src="@/assets/images/zfb.png" />
-        </div>
-      </div>
-      <a href="https://github.com/ecaps1038/yike-design-dev">
-        <yk-icon name="yike-github" class="github" />
+      <a href="http://www.huohuo90.com" target="_blank">主站</a>
+      <a href="https://github.com/ecaps1038/yike-design-dev" target="_blank">
+        <icon-github-fill />
       </a>
-      <yk-theme class="nav"></yk-theme>
-      <yk-avatar
-        size="m"
-        class="nav"
-        img-url="https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png"
-      ></yk-avatar>
+      <a><yk-theme></yk-theme></a>
+      <yk-avatar size="m" :img-url="avatarImgUrl"></yk-avatar>
     </yk-space>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { provide } from 'vue'
+import { provide, ref } from 'vue'
 import { useRouter } from 'vue-router'
+
+// 任务文档url
+const taskUrl = ref(
+  'https://dwawvfgxvzk.feishu.cn/wiki/T8D3w5VqbinQr5kLNoVcrDQKnbg?table=tblT9WqhCE0EWKfP&view=vewXxBNTOK',
+)
+// 任务文档url
+const uiUrl = ref('https://codesign.qq.com/s/6W3G0m4m8q9lOwL')
+// 头像图片地址
+const avatarImgUrl = ref(
+  'https://www.huohuo90.com:3003/user/6353b034dd4b583975e77fbe.png',
+)
 
 //页面跳转
 const router = useRouter()
@@ -51,92 +47,87 @@ provide('shape', 'circle')
 
 <style lang="less" scoped>
 .top-bar {
-  height: 60px;
-  width: 100%;
-  background-color: @bg-color-l;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-  padding: 0 30px;
+  z-index: 99;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  padding: 0 30px;
+
+  width: 100%;
+  height: 60px;
   border-bottom: 1px solid @line-color-s;
+  background-color: @bg-color-l;
+
+  box-sizing: border-box;
   transition: all @animats;
+}
 
-  .logo {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
+.top-bar .logo {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 
-    img {
-      width: 32px;
-    }
-
-    .name {
-      padding-left: 12px;
-      font-size: 18px;
-      font-weight: 700;
-      vertical-align: top;
-      color: @font-color-l;
-      transition: color @animats;
-    }
+  img {
+    width: 32px;
   }
 
-  .net {
-    display: flex;
-    align-items: center;
+  .name {
+    padding-left: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    vertical-align: top;
+    color: @font-color-l;
+    transition: color @animats;
+  }
+}
 
-    a,
-    .zz {
-      color: @font-color-l;
-      text-decoration: none;
-      min-width: 24px;
-      line-height: 60px;
-    }
+.top-bar a {
+  padding: 5px 8px;
+  text-decoration: none;
+  color: @font-color-l;
+  cursor: pointer;
+}
 
-    .zz {
-      cursor: pointer;
+.top-bar .support {
+  position: fixed;
+  top: 50px;
+  right: 30px;
+  display: none;
+  width: 490px;
+  height: 340px;
+  border-radius: @radius-m;
+  text-align: center;
+  background-color: @bg-color-l;
+  box-shadow: 0 4px 48px rgb(0 0 0 / 12%);
 
-      .support {
-        position: fixed;
-        right: 30px;
-        top: 50px;
-        width: 490px;
-        height: 340px;
-        background-color: @bg-color-l;
-        box-shadow: 0 4px 48px rgba(0, 0, 0, 0.12);
-        border-radius: @radius-m;
-        text-align: center;
-        display: none;
-        .zz-tp {
-          width: 200px;
-          margin: 15px;
-        }
-        p {
-          font-size: 16px;
-          padding-top: 20px;
-          line-height: 40px;
-        }
-      }
+  .zz-tp {
+    margin: 15px;
+    width: 200px;
+  }
 
-      &:hover {
-        .support {
-          display: block;
-        }
-      }
-    }
+  p {
+    padding-top: 20px;
+    font-size: 16px;
+    line-height: 40px;
+  }
+}
 
-    .github {
-      font-size: 16px;
-    }
+.top-bar .net {
+  display: flex;
 
-    .router-link-active {
-      font-weight: 600;
-      color: @pcolor;
-    }
+  .yk-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .router-link-active {
+    font-weight: 600;
+    color: @pcolor;
   }
 }
 </style>
