@@ -2,6 +2,7 @@
 
 .yk-collapse-group {
   border: 1px solid @bg-color-ss;
+  border-bottom: unset;
   border-radius: @radius-m;
 }
 
@@ -33,6 +34,11 @@
   font-size: @size-s;
   border-bottom: 1px solid @bg-color-ss;
   background-color: @bg-color-l;
+
+  &:focus-within {
+    border-color: @pcolor;
+    outline: none;
+  }
 }
 
 .yk-collapse__title {
@@ -45,7 +51,7 @@
     width: 17px;
     height: 17px;
     border-radius: @radius-r;
-    transition: all @animats;
+    transition: background-color @animats;
   }
 
   svg:hover {
@@ -59,11 +65,16 @@
   font-size: @size-s;
   border-bottom: 1px solid @bg-color-ss;
   background-color: @bg-color-m;
-  transition: all @animats;
+  transition: height @animats;
 
   .yk-collapse-group {
     margin: 8px 0px 8px 20px;
     border-right: unset;
+  }
+
+  .yk-collapse__header {
+    border-top-right-radius: unset !important;
+    border-bottom-right-radius: unset !important;
   }
 }
 
@@ -74,11 +85,9 @@
 }
 
 .yk-collapse--disabled {
-  span {
-    color: @font-color-s;
-  }
+  .disabled();
 
-  cursor: not-allowed;
+  display: flex;
 }
 
 .collapse-enter-from,

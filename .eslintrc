@@ -1,72 +1,102 @@
-// @see https://eslint.bootcss.com/docs/rules/
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true,
-    "jest": true
-  },
+  // 根配置，此文件为根配置文件
   "root": true,
-  /* 指定如何解析语法 */
-  "parser": "vue-eslint-parser",
-  /** 优先级低于 parse 的语法解析配置 */
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "parser": "@typescript-eslint/parser",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+
+  // 指定代码环境
+  "env": {
+    "es6": true,
+    "jest": true,
+    "node": true,
+    "browser": true
   },
+
+  // 全局变量定义
   "globals": {
+    // 定义一个全局变量 defineModel
     "defineModel": true
   },
-  /* 继承已有的规则 */
+
+  // 指定代码解析器和选项
+  // 使用 vue-eslint-parser 解析 Vue 文件
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    // 使用 @typescript-eslint/parser 解析 TypeScript 文件
+    "parser": "@typescript-eslint/parser",
+
+    // 使用最新的 ECMAScript 版本
+    "ecmaVersion": "latest",
+
+    // 使用模块类型的代码
+    "sourceType": "module",
+
+    "ecmaFeatures": {
+      "jsx": true // 支持JSX语法
+    }
+  },
+
+  // 继承的规则配置
   "extends": [
+    // 使用 eslint 推荐的规则
     "eslint:recommended",
+
+    // 使用 vue3-recommended 插件的 Vue 规则
     "plugin:vue/vue3-recommended",
+
+    // 使用 @typescript-eslint/recommended 插件的 TypeScript 规则
     "plugin:@typescript-eslint/recommended",
+
+    // 使用 prettier 规则，保持代码风格一致
     "prettier",
+
+    // 使用 import/recommended 插件的规则，帮助检查 import 语句
     "plugin:import/recommended",
+
+    // 使用 import/typescript 插件的 TypeScript 规则
     "plugin:import/typescript"
   ],
+
+  // 使用的插件
   "plugins": ["@typescript-eslint", "unused-imports"],
-  /*
-   * "off" 或 0    ==>  关闭规则
-   * "warn" 或 1   ==>  打开的规则作为警告（不影响代码执行）
-   * "error" 或 2  ==>  规则作为一个错误（代码不能执行，界面报错）
-   */
+
+  // 自定义规则配置
   "rules": {
-    // eslint（https://eslint.bootcss.com/docs/rules/）
-    // "no-var": "off", // 要求使用 let 或 const 而不是 var
     "no-multiple-empty-lines": [
       "warn",
       {
+        // 最多允许 1 个空行
         "max": 1
       }
-    ], // 不允许超过1个空行
-    // "no-unexpected-multiline": "error", // 禁止空余的多行
-    "no-useless-escape": "off", // 禁止不必要的转义字符,
-    // "no-redeclare": "off",
-    // "no-self-assign": "off",
-    // "prefer-const": "off",
-    "vue/require-v-for-key": 0,
-    "semi": [0, "never"],
+    ],
+
+    // 禁用在单行元素中将HTML内容与元素标签必须放在同一行。
+    "vue/singleline-html-element-content-newline": "off",
+
+    // 禁用 vue/require-v-for-key 规则
+    "vue/require-v-for-key": "off",
+
+    // 禁用语句末尾的分号
+    "semi": ["off", "never"],
+
+    // 关闭对非空断言的检查
     "@typescript-eslint/no-non-null-assertion": "off",
-    // // typeScript (https://typescript-eslint.io/rules)
-    "@typescript-eslint/no-unused-vars": "off", // 禁止定义未使用的变量
-    // "@typescript-eslint/prefer-ts-expect-error": "error", // 禁止使用 @ts-ignore
-    "@typescript-eslint/no-explicit-any": "off", // 禁止使用 any 类型
-    // "@typescript-eslint/no-non-null-assertion": "off",
-    // "@typescript-eslint/no-namespace": "off", // 禁止使用自定义 TypeScript 模块和命名空间。
-    // "@typescript-eslint/semi": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+
+    // 关闭 any 类型的检查
+    "@typescript-eslint/no-explicit-any": "off",
+
+    // 关闭对 emit 的显式定义要求
     "vue/require-explicit-emits": "off",
-    // // eslint-plugin-vue (https://eslint.vuejs.org/rules/)
-    "vue/multi-word-component-names": "off", // 要求组件名称始终为 “-” 链接的单词
-    // "vue/script-setup-uses-vars": "error", // 防止<script setup>使用的变量<template>被标记为未使用
-    // "vue/attribute-hyphenation": "off", // 对模板中的自定义组件强制执行属性命名样式
-    "vue/no-mutating-props": "off", // 不允许组件 prop的改变
-    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+
+    // 关闭多单词组件名称的要求
+    "vue/multi-word-component-names": "off",
+
+    // 关闭修改 props 的警告
+    "vue/no-mutating-props": "off",
+
+    // 关闭未使用变量的检查
+    "no-unused-vars": "off",
+
+    // 未使用的导入会报错
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
@@ -74,25 +104,19 @@
         "vars": "all",
         "varsIgnorePattern": "^_",
         "args": "after-used",
+
+        // 忽略下划线开头的变量
         "argsIgnorePattern": "^_"
       }
     ],
+
+    // 关闭对 setup 中解构 props 的检查
     "vue/no-setup-props-destructure": "off",
+
+    // 关闭未解析的导入警告
     "import/no-unresolved": "off",
+
+    // 关闭将导出标记为默认导出的警告
     "import/no-named-as-default": "off"
-  },
-  "overrides": [
-    {
-      "files": "demo/src/examples/**/*.vue", // demo vue文件不允许空行
-      "rules": {
-        "no-multiple-empty-lines": ["error", { "max": 0 }] // 设置规则
-      }
-    },
-    {
-      "files": ["*.ts", "*.vue"],
-      "rules": {
-        "no-undef": "off"
-      }
-    }
-  ]
+  }
 }

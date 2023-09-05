@@ -1,12 +1,10 @@
 import Image from './src/image.vue';
 import ImagePreview from './src/preview.vue';
 import ImagePreviewGroup from './src/preview-group.vue';
-import { withInstall } from '../utils/index';
+import { withInstall } from '../utils';
 
-const YkImage = withInstall(Image);
-const YkImagePreview = withInstall(ImagePreview);
-const YkImagePreviewGroup = withInstall(ImagePreviewGroup);
-
-export { YkImage, YkImagePreview, YkImagePreviewGroup };
-
+export const YkImage = withInstall(Image);
+export const YkImagePreview = withInstall(ImagePreview);
+export const YkImagePreviewGroup = withInstall(ImagePreviewGroup);
+export default YkImage;
 export * from './src/image';

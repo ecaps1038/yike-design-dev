@@ -53,18 +53,22 @@ import { NotificationProps } from './notification'
 import { pauseSetTimeout } from './utils'
 import { onMounted, computed, ref } from 'vue'
 import { render } from '../../utils'
+import YkButton from '../../button'
+import YkSpace from '../../space'
+import {
+  IconReminderFill,
+  IconWarningFill,
+  IconCrossFill,
+  IconTickFill,
+  IconLoadingOutline,
+  IconCloseOutline,
+} from '../../svg-icon'
 import '../style'
-import { YkButton, YkSpace } from '../../../index'
-import IconReminderFill from '../../svg-icon/icon-reminder-fill'
-import IconWarningFill from '../../svg-icon/icon-warning-fill'
-import IconCrossFill from '../../svg-icon/icon-cross-fill'
-import IconTickFill from '../../svg-icon/icon-tick-fill'
-import IconLoadingOutline from '../../svg-icon/icon-loading-outline'
-import IconCloseOutline from '../../svg-icon/icon-close-outline'
 
 defineOptions({
   name: 'YkNotification',
 })
+
 const props = withDefaults(defineProps<NotificationProps>(), {
   title: 'Title',
   message: '',

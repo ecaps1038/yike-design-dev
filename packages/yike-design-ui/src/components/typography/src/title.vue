@@ -3,9 +3,14 @@
     <slot></slot>
   </component>
 </template>
+
 <script setup lang="ts">
 import { useSlots, computed } from 'vue'
 import { titleProps } from './typography'
+
+defineOptions({
+  name: 'YkTitle',
+})
 
 const props = withDefaults(defineProps<titleProps>(), {
   level: 1,

@@ -21,7 +21,7 @@ app.use(Icon)
 app.mount('#app')
 ```
 
-注册后可以通过 `<icon-xx />` 的形式即可使用 Icon。
+注册后通过 `<icon-xx />` 的形式即可使用 Icon。
 图标使用 `<svg/>` 方式渲染，可以直接设置 style, class 以及 `<svg/>` 属性。
 
 :::snippet
@@ -32,11 +32,8 @@ app.mount('#app')
 
 ### API
 
-| 参数           | 描述     | 类型                                                    | 默认值  |
-| -------------- | -------- | ------------------------------------------------------- | ------- |
-| strokeWidth    | 线宽     | number                                                  | 0       |
-| strokeLinecap  | 端点类型 | 'butt' \| 'round' \| 'square'                           | 'butt'  |
-| strokeLinejoin | 拐角类型 | 'arcs' \| 'bevel' \| 'miter' \| 'miter-clip' \| 'round' | 'miter' |
-| rotate         | 旋转角度 | number                                                  | -       |
-| spin           | 是否旋转 | false \| true                                           | false   |
-| size           | 尺寸     | number \| string                                        | -       |
+| 参数        | 描述     | 类型             | 默认值 |
+| ----------- | -------- | ---------------- | ------ |
+| strokeWidth | 线宽     | number           | 0      |
+| rotate      | 旋转角度 | number           | -      |
+| size        | 尺寸     | number \| string | -      |

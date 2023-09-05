@@ -30,11 +30,13 @@
 import type { TooltipProps, TooltipEmit } from './tooltip'
 import { computed, ref, watch } from 'vue'
 import { useEventListener, usePlacement, useDefaultSlots } from './hooks'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
+import '../style'
 
 defineOptions({
   name: 'YkTooltip',
 })
+
 const bem = createCssScope('tooltip')
 
 // props 属性定义

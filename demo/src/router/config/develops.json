@@ -1,0 +1,23 @@
+[
+  {
+    "title": "开发指南",
+    "list": [
+      {
+        "name": "Yike Design",
+        "src": "yike-dev"
+      },
+      {
+        "name": "快速上手",
+        "src": "grasp"
+      },
+      {
+        "name": "暗黑模式",
+        "src": "dark"
+      },
+      {
+        "name": "定制主题",
+        "src": "theme"
+      }
+    ]
+  }
+]

@@ -1,11 +1,7 @@
 import { defineComponent, h, inject } from 'vue';
 import { TABLE_INJECTION_KEY } from './table';
-// import {Ykcheck} from '../../../index';
 
 export default defineComponent({
-  components: {
-    // YkCheckbox,
-  },
   setup() {
     const parent = inject(TABLE_INJECTION_KEY);
     const store = parent!.store;

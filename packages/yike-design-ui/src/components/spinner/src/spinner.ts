@@ -24,6 +24,9 @@ export const resolveSize = (value: SpinnerSize): number => {
 };
 
 export const resolveColor = (val: string): string => {
+  if (val.startsWith('var(')) {
+    return val;
+  }
   if (SNIPPER_COLOR.includes(val as Status)) {
     return `rgb(var(--${val.slice(0, 1)}color))`;
   }

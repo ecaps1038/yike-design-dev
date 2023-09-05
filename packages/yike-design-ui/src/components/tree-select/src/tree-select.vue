@@ -37,7 +37,6 @@
           :file-icons="props.fileIcons"
           :un-select-key="refUnSelectKey"
           :select-key="refSelectKey"
-          :scrollbar="scrollbar"
           @select="select"
         ></yk-tree>
         <yk-empty v-if="!props.options.length" :description="props.emptyText" />
@@ -47,14 +46,16 @@
 </template>
 
 <script setup lang="ts">
-import '../style/index'
-import { ref, Ref, onMounted, watch } from 'vue'
 import SelectView from './select-view.vue'
-import YkEmpty from '../../empty/index'
-import { TreeSelectPropsType } from './tree-select'
-import YkTree from '../../tree'
+import { ref, Ref, onMounted, watch } from 'vue'
+import YkEmpty from '../../empty'
 import { Key } from '../../utils'
-import { TreeOption } from '../../tree/src/tree'
+import { YkTree, TreeOption } from '../../tree'
+import type { TreeSelectPropsType } from './tree-select'
+
+defineOptions({
+  name: 'YkTreeSelect',
+})
 
 const props = withDefaults(defineProps<TreeSelectPropsType>(), {
   id: '',

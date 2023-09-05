@@ -1,4 +1,4 @@
-import { TimelinePlacement, TimelineType } from '../../utils/constant';
+import { TimelinePlacement, TimelineType } from '../../utils';
 export type TimelineProps = {
   horizontal?: boolean;
   placement?: TimelinePlacement;

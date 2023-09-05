@@ -59,17 +59,17 @@
   </Teleport>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'YKModal',
-}
-</script>
-
 <script setup lang="ts">
 import { watch, onUnmounted, ref, onMounted } from 'vue'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { modalBaseProps } from './modal'
+import { IconCloseOutline } from '../../svg-icon'
+import YkButton from '../../button'
 import '../style'
+
+defineOptions({
+  name: 'YkModal',
+})
 
 const props = withDefaults(defineProps<modalBaseProps>(), {
   modelValue: false,

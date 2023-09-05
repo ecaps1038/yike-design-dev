@@ -19,13 +19,15 @@
 <script lang="ts" setup>
 import { getCurrentInstance, inject, reactive } from 'vue'
 import { BreadcrumbItemProps, breadcrumbName } from './breadcrumb'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import type { Router } from 'vue-router'
+import YkIcon from '../../icon'
 
-const bem = createCssScope('breadcrumb')
 defineOptions({
   name: `YkBreadcrumbItem`,
 })
+
+const bem = createCssScope('breadcrumb')
 const props = defineProps<BreadcrumbItemProps>()
 const instance = getCurrentInstance()!
 
@@ -44,5 +46,3 @@ const onClick = () => {
   router.push(props.to)
 }
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,118 +1,133 @@
-import MarkdownIt from 'markdown-it';
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs-extra';
+import MarkdownIt from 'markdown-it';
 import { mdCustomH3, mdCustomLinkCls } from './md-plugin';
-export function camelToDashCase(str) {
-  return str.replace(/([a-zA-Z])([A-Z])/g, '$1-$2').toLowerCase();
-}
+import { getTemplates, replaceVariables } from './util';
+import { Plugin } from 'vite';
 
-// fetch demo source code by relative path
-export function fetchDemoCode(componentName, id) {
-  const targetFile = `${componentName}.vue`;
-  const absolutePath = path.resolve(path.dirname(id), targetFile);
-  try {
-    const content = fs.readFileSync(absolutePath, 'utf-8');
-    return content;
-  } catch (error) {
-    return '';
-  }
-}
+const md = MarkdownIt({
+  html: true,
+  xhtmlOut: false,
+});
 
-export default () => ({
-  name: 'vitePluginMarkdown',
-  transform(src, id) {
-    if (id.endsWith('.md')) {
-      // 导入demo组件依赖
-      let importContent = '';
-      // 依赖桶，防止重复引入
-      const importBucket = new Set();
-      // 初始还MarkdownIt用于转换md文件为html
+md.use(mdCustomH3);
+md.use(mdCustomLinkCls);
 
-      const markdownIt = MarkdownIt({
-        html: true,
-        xhtmlOut: false,
-      });
+const templates = getTemplates('./vite-plugin-md.md');
+const getTemplate = (flag: string, variables: unknown) =>
+  replaceVariables(templates[flag], variables);
 
-      markdownIt.use(mdCustomH3);
-      markdownIt.use(mdCustomLinkCls);
-
-      // parse primary markdown docs
+export default function (): Plugin {
+  return {
+    name: 'vitePluginMarkdown',
+    transform(code: string, id: string) {
+      if (!id.endsWith('.md')) return;
       if (!id.includes('demo/src')) {
+        // /yike-design-dev/CONTRIBUTING.md
         return {
-          code: `<template>
-          <div class='yk-demo-doc'>
-          ${markdownIt.render(src)}
-        </div>
-        </template>`,
+          code: getTemplate('CONTRIBUTING', {
+            content: md.render(code),
+          }),
         };
       }
 
-      // match ::snippet::: blocks
-      const snippetPattern = /:::snippet\s+(.*?)\s+:::/gs;
-      const matches = src.matchAll(snippetPattern);
-      for (const match of matches) {
-        // parse three lines in snippet block
-        const [title, desc, demoName] = match[1]
-          .replace(/(\n)+/g, '\n')
-          .split('\n');
+      // demo/src/*
+      const importBucket = new Set<string>();
+      const result = transformSnippetOrPure(id, code, importBucket);
+      const importContent = Array.from(importBucket).join('\n');
 
-        // match demo Vue components
-        const tagPattern = /<(\w+)\/>/;
-        const demoTagName = demoName.match(tagPattern)[1]; // <ButtonPrimary/> -> ButtonPrimary
-        const demoComponentName = camelToDashCase(demoTagName).replace(
-          /([a-zA-Z])([A-Z])/g,
-          '$1-$2',
-        ); // ButtonPrimary -> button-primary
-
-        const demoCode = fetchDemoCode(demoComponentName, id);
-        const importLine = `import ${demoTagName} from './${demoComponentName}.vue';\n`;
-        if (!importBucket.has(importLine)) {
-          importContent += importLine;
-          importBucket.add(importLine);
-        }
-        //import vue dependence
-        const caseCardContent = `<yk-snippet title="${title}" code="${encodeURIComponent(
-          demoCode,
-        )}" >
-          <template v-slot:demo>${demoName}</template>
-          <template v-slot:desc>${markdownIt.render(desc)}</template>
-        </yk-snippet>
-        `;
-        src = src.replace(match[0], caseCardContent); // html render
-      }
-
-      // match ::pure::: blocks
-      const purePattern = /:::pure\s+(.*?)\s+:::/gs;
-      const pureMatches = src.matchAll(purePattern);
-      for (const match of pureMatches) {
-        const demoName = match[1];
-        const tagPattern = /<(\w+)\/>/;
-        const demoTagName = demoName.match(tagPattern)[1];
-        const demoComponentName = camelToDashCase(demoTagName);
-
-        const importLine = `import ${demoTagName} from './${demoComponentName}.vue';\n`;
-        if (!importBucket.has(importLine)) {
-          importContent += importLine;
-          importBucket.add(importLine);
-        }
-
-        src = src.replace(
-          match[0],
-          `\n<div class='yk-pure-doc'>${demoName}</div>`,
-        );
-      }
       return {
-        code: `
-        <script setup>
-          ${importContent}
-        </script>
-        <template>
-          <component-page>
-            ${markdownIt.render(src)}
-          </component-page>
-        </template>`,
         map: null,
+        code: getTemplate('default', {
+          importContent,
+          content: md
+            .render(result)
+            .replace(
+              /(<table>[\s\S]*?<\/table>)/g,
+              '<div class="table-container">$1</div>',
+            ),
+        }),
       };
+    },
+  };
+}
+
+function transformSnippetOrPure(
+  id: string,
+  code: string,
+  importBucket: Set<string>,
+) {
+  const tagReg = /<(\w+)\s?\/>/;
+  /** @see https://regex101.com/r/ySFiGU/3 */
+  const snippetReg =
+    /(?<q>:{3})(?<flag>snippet|pure)\s+(?<content>[\s\S]+?)\s+\k<q>/g;
+  const matches = code.matchAll(snippetReg);
+  let result = code;
+
+  for (const match of matches) {
+    const { flag, content } = match.groups;
+    const { title, desc, demoName } = handleMatch(content);
+    const demoTagName = demoName.match(tagReg)[1];
+    const demoCompName = toKebabCase(demoTagName);
+    const demoCode = fetchDemoCode(id, demoCompName);
+    const importItem = `import ${demoTagName} from './${demoCompName}.vue';`;
+
+    if (!importBucket.has(importItem)) {
+      importBucket.add(importItem);
     }
-  },
-});
+
+    result = result.replace(
+      match[0],
+      getTemplate(flag, {
+        title,
+        demoName,
+        demoCode: encodeURIComponent(demoCode),
+        content: md.render(desc),
+      }),
+    );
+  }
+
+  return result;
+}
+
+function handleMatch(content: string) {
+  const lines = content.split(/\r?\n/);
+  const len = lines.length;
+
+  if (len === 1) {
+    return {
+      title: '',
+      desc: '',
+      demoName: lines[0],
+    };
+  } else if (len === 2) {
+    return {
+      title: lines[0],
+      desc: '<p></p>',
+      demoName: lines[1],
+    };
+  } else {
+    return {
+      title: lines[0],
+      desc: lines[1] || '<p></p>',
+      demoName: lines[2],
+    };
+  }
+}
+
+// fetch demo source code by relative path
+export function fetchDemoCode(id: string, componentName: string) {
+  const targetFile = `${componentName}.vue`;
+  const absolutePath = path.resolve(path.dirname(id), targetFile);
+
+  try {
+    return fs.readFileSync(absolutePath, 'utf-8');
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/** @example ButtonPrimary -> button-primary */
+export function toKebabCase(str: string) {
+  return str.replace(/([a-zA-Z])([A-Z])/g, '$1-$2').toLowerCase();
+}

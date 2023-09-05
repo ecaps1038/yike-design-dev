@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+
 const feedbackRoutes: Array<RouteRecordRaw> = [
   {
     path: 'alert',

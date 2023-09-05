@@ -1,14 +1,13 @@
-import { TooltipProps } from '../../tooltip/src/tooltip';
-import { Size, Type } from '../../utils/constant';
+import { TooltipProps, Trigger } from '../../tooltip';
+import { Size, Type } from '../../utils';
 
-const TRIGGER = ['hover', 'click', 'contextMenu'] as const;
-export type Trigger = (typeof TRIGGER)[number];
+export type dropdownTrigger = Exclude<Trigger, 'focus'>;
 
 export interface DropdownProps extends TooltipProps {
   type?: Type;
   size?: Size;
   disabled?: boolean;
-  trigger?: Trigger | Trigger[];
+  trigger?: dropdownTrigger | dropdownTrigger[];
 }
 
 export interface DropdownItemProps {

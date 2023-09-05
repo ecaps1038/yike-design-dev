@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "pnpm --filter @yike-design/build build && pnpm gen:icon",
     "dev:demo": "pnpm --filter demo dev",
+    "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
     "stylelint": "npx stylelint --aei .vue,.less,.css,.html . --fix",
@@ -14,7 +15,7 @@
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
-    "release": "standard-version",
+    "version:release": "pnpm --filter @yike-design/ui release",
     "build:comp": "pnpm --filter @yike-design/ui build:comp",
     "build:less": "pnpm --filter @yike-design/ui build:less",
     "gen:icon": "pnpm --filter @yike-design/ui gen:icon",
@@ -22,6 +23,7 @@
     "test:coverage": "pnpm --filter @yike-design/test test:coverage"
   },
   "dependencies": {
+    "dayjs": "^1.11.9",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -31,10 +33,10 @@
     "@typescript-eslint/parser": "^6.2.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "eslint-import-resolver-typescript": "^3.5.5",
-    "eslint-plugin-import": "^2.28.0",
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^8.9.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.16.1",
     "husky": "^8.0.0",
@@ -52,7 +54,8 @@
     "stylelint-order": "^6.0.3",
     "typescript": "5.1.6",
     "vite": "^4.0.0",
-    "vue-tsc": "^1.6.4"
+    "vue-tsc": "^1.6.4",
+    "release-it": "^15.10.0"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,vue}": [

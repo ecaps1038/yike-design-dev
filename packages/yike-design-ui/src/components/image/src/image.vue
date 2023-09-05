@@ -49,7 +49,9 @@ import { ImageProps } from './image'
 import { pick, normalizeImageSizeProp } from './utils'
 import { createCssScope } from '../../utils'
 import useImageLoadState from './hooks/use-image-load-status'
+import { IconImageBackupOutline } from '../../svg-icon'
 import Preview from './preview.vue'
+import '../style'
 
 defineOptions({
   name: 'YkImage',

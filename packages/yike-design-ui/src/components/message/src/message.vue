@@ -16,21 +16,20 @@
 import { MessageProps } from './message'
 import { ref, onMounted, computed } from 'vue'
 import { createCssScope, render } from '../../utils'
-
-import IconReminderFill from '../../svg-icon/icon-reminder-fill'
-import IconWarningFill from '../../svg-icon/icon-warning-fill'
-import IconCrossFill from '../../svg-icon/icon-cross-fill'
-import IconTickFill from '../../svg-icon/icon-tick-fill'
-import IconLoadingOutline from '../../svg-icon/icon-loading-outline'
-
+import {
+  IconReminderFill,
+  IconWarningFill,
+  IconCrossFill,
+  IconTickFill,
+  IconLoadingOutline,
+} from '../../svg-icon'
 import '../style'
-
-const bem = createCssScope('message')
 
 defineOptions({
   name: 'YkMessage',
 })
 
+const bem = createCssScope('message')
 const props = withDefaults(defineProps<MessageProps>(), {
   message: '',
   type: 'success',

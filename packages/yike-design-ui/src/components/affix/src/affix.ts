@@ -1,6 +1,11 @@
 export type AffixProps = {
-  offset?: number;
-  target?: string | HTMLElement | Window;
   position?: 'top' | 'bottom';
+  target?: string | HTMLElement | Window;
+  offset?: number;
   zIndex?: number;
+};
+
+export type TargetRect = {
+  top: number;
+  bottom: number;
 };

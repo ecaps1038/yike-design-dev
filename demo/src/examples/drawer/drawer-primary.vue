@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const active = ref(false)
-let placement = ref<string>('right')
+let placement = ref<any>('right')
 const activate = (placement_to: string) => {
   placement.value = placement_to
   active.value = true

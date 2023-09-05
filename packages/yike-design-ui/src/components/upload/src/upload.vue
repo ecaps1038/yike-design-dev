@@ -98,6 +98,7 @@
     <cropPicture ref="cropRef" :file-content="currentUploadAvatar" />
   </yk-modal>
 </template>
+
 <script setup lang="ts">
 import { ref, computed, getCurrentInstance, reactive } from 'vue'
 import {
@@ -109,13 +110,15 @@ import {
 } from './upload'
 import { UploadRequest } from './ajax'
 import { generateListUid, findFileByUid, blobToFile } from './utils'
-import { generateUid } from '../../utils/tools'
-import { createCssScope } from '../../utils/bem'
-import UploadFileItem from './upload-file-item.vue'
+import { generateUid, createCssScope } from '../../utils'
 import cropPicture from './crop-picture.vue'
 import uploadDraggle from './upload-draggle.vue'
+import UploadFileItem from './upload-file-item.vue'
 import UploadPictureItem from './upload-picture-item.vue'
-import { YkImagePreviewGroup } from '../../../index'
+import { YkImagePreviewGroup } from '../../image'
+import { IconUpload2Outline, IconPlusOutline } from '../../svg-icon'
+import YkModal from '../../modal'
+
 defineOptions({
   name: 'YkUpload',
 })
