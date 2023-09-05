@@ -30,4 +30,4 @@ jobs:
         with:
           clean: true
           branch: gh-pages
-          folder: ./docs/dist
+          folder: ./demo/dist
