@@ -22,7 +22,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build @yike-design/ui
-        run: pnpm run gen:icon && pnpm run gen:less
+        run: pnpm run build:icon && pnpm run build:less
 
       - name: Pubilsh package to npm
         run: pnpm publish --filter @yike-design/ui --access public --no-git-checks
