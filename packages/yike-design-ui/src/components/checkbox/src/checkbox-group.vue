@@ -46,8 +46,8 @@ import { YkCheckbox } from '..'
 defineOptions({
   name: 'YkCheckboxGroup',
 })
-const bem = createCssScope('checkbox-group')
 
+const bem = createCssScope('checkbox-group')
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   defaultValue: () => [],
   disabled: false,
@@ -97,7 +97,7 @@ const curOptions = computed<CheckboxOption[]>(() => {
 
 // 计算限制可勾选
 const isMax = computed(() => {
-  return props.max === undefined ? false : calcVal.value.length > props.max
+  return props.max === undefined ? false : calcVal.value.length >= props.max
 })
 
 const resolveGap = computed((): CSSProperties => {
@@ -121,7 +121,7 @@ const calcGapStyle = computed<CSSProperties>(() => {
 provide(
   checkboxGroupContextKey,
   reactive({
-    name: 'YKCheckboxGroup',
+    name: 'YkCheckboxGroup',
     calcVal: calcVal,
     disabled: mergedDisabled,
     handleChange,
@@ -129,5 +129,3 @@ provide(
   }),
 )
 </script>
-
-<style scoped></style>

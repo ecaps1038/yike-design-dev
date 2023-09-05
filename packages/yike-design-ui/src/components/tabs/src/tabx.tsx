@@ -11,8 +11,9 @@ import {
 } from 'vue'
 import { PaneOptionsProp } from './pane'
 import { TabsProps, YkTabsProvideKey } from './tabs'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import YkTabNav from './tab-nav.vue'
+
 export default defineComponent({
   name: 'YkTabs',
   props: {

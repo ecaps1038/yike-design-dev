@@ -1,4 +1,4 @@
-import { Status } from '../../utils/constant';
+import { Status } from '../../utils';
 
 export type BadgeProps = {
   color?: string;

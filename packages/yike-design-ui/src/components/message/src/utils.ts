@@ -1,8 +1,8 @@
 import { createVNode, render, ref, reactive } from 'vue';
 import { MessageOptions } from './message';
-import { MESSAGETYPE } from '../../utils/constant';
+import { MESSAGETYPE, RenderContent } from '../../utils';
 import MessageGroup from './message-group.vue';
-import { RenderContent } from '../../utils';
+
 class MessageManager {
   private messages = ref<MessageOptions[]>([]);
   private container: HTMLElement | null;

@@ -79,3 +79,9 @@ export const $on = (name: any, work: any) => {
     work(map[name].detail);
   });
 };
+
+export const scrollToElement = (el: HTMLElement) => {
+  el.scrollIntoView({
+    behavior: 'smooth',
+  });
+};

@@ -1,11 +1,8 @@
 @import './code-color.less';
-*,
-*::before,
-*::after {
-  position: relative;
-  margin: 0;
-  box-sizing: border-box;
-  border-spacing: 0;
+
+:root {
+  --nav-bar-width: 268px;
+  --top-bar-height: 60px;
 }
 
 // 平滑滚动
@@ -13,27 +10,7 @@ html,
 body {
   scroll-behavior: smooth;
   scroll-padding-top: 60px;
-}
-
-body {
-  min-height: 100vh;
-  font-size: 14px;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  color: @font-color-l;
-  background: @bg-color-l;
-  transition: color @animats, background-color @animats;
-  line-height: 1.8;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#app {
-  margin: 0 auto;
-
-  font-weight: normal;
+  margin: 0;
 }
 
 a {
@@ -41,6 +18,7 @@ a {
   color: @lcolor;
   transition: 0.3s;
 }
+
 .top-title {
   padding-bottom: 20px;
 }
@@ -51,63 +29,18 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 3px solid @bg-color-m;
+  border: 3px solid @bg-color-s;
   border-radius: 8px;
-  background-color: @line-color-l;
-  transition: all @animats;
+  background-color: @line-color-m;
+  transition: background-color @animats, border @animats;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: @bg-color-m;
+  background-color: @bg-color-s;
   transition: all @animats;
 }
 
-body,
-div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-code,
-form,
-fieldset,
-legend,
-input,
-textarea,
-p,
-blockquote,
-th,
-td,
-hr,
-button,
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section,
-img {
-  margin: 0;
-  padding: 0;
-}
-
 .yk-demo-doc {
-  margin-top: 1em;
-  margin-bottom: 0.5em;
   strong {
     font-weight: 500;
     color: @pcolor;
@@ -116,31 +49,7 @@ img {
     margin-top: 1em;
     margin-bottom: 0.5em;
   }
-  h1 {
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 1.24;
-  }
-  h2 {
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.28;
-  }
-  h3 {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.34;
-  }
-  h4 {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-  h5 {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.5;
-  }
+
   .hljs {
     margin: @space-m 0;
     padding: @space-l @space-xl;
@@ -170,13 +79,16 @@ img {
     color: @font-color-l;
     background: @gray-1;
   }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
   table {
     overflow: hidden;
-    margin-top: @space-m;
-    margin-bottom: 40px;
+    margin: @space-m 0 40px 0;
     width: 100%;
     min-width: 800px;
-    max-width: 1200px;
     border: 1px solid @line-color-s;
     border-radius: @radius-m;
     transition: border @animats;
@@ -218,6 +130,7 @@ img {
       color: @lcolor;
     }
   }
+
   .yk-pure-doc {
     margin: 12px 0px 8px;
   }

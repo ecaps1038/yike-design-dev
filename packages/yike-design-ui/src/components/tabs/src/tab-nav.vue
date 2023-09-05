@@ -70,21 +70,29 @@ import {
   onMounted,
   nextTick,
 } from 'vue'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { TabBar } from './tabBar'
 import { PaneOptionsProp } from './pane'
 import { YkTabsProvideKey } from './tabs'
 import YkTabBar from './tab-bar.vue'
-import IconLeftOutline from '../../svg-icon/icon-left-outline'
-import IconRightOutline from '../../svg-icon/icon-right-outline'
-import IconPlusOutline from '../../svg-icon/icon-plus-outline'
-import IconCloseOutline from '../../svg-icon/icon-close-outline'
+import {
+  IconLeftOutline,
+  IconRightOutline,
+  IconPlusOutline,
+  IconCloseOutline,
+} from '../../svg-icon'
 import { NavProp } from './tabNav'
 import { useResizeObserver } from '@vueuse/core'
+
+defineOptions({
+  name: 'YkTabNav',
+})
+
 const ns = createCssScope('tabs-nav')
 const props = withDefaults(defineProps<NavProp>(), {
   type: 'line',
 })
+
 const emits = defineEmits<{
   change: [PaneOptionsProp]
   add: [void]
@@ -315,5 +323,3 @@ useResizeObserver(navRef, async () => {
   })
 })
 </script>
-
-<style scoped></style>

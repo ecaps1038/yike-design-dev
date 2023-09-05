@@ -1,4 +1,4 @@
-import { Size } from '../../utils/constant';
+import { Size } from '../../utils';
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from './constants';
 
 export type RadioBaseProps = {

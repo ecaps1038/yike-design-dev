@@ -1,17 +1,6 @@
 import type { Status } from './progress';
-import type { Size } from '../../utils/constant';
+import type { Size } from '../../utils';
 export type PSize = Exclude<Size, 'xl'>;
-export const statusColor = {
-  success: '#1fb4a2',
-  error: '#fa5247',
-  normal: '#2B5AED',
-};
-
-/**
- * 根据状态获取对应的 Icon 颜色
- */
-export const getIconColor = (status: Status) =>
-  statusColor[status] || statusColor['normal'];
 
 /**
  * 根据状态获取对应的 Icon Name

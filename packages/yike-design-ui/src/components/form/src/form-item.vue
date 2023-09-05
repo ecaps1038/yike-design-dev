@@ -13,6 +13,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import {
   FormItemProps,
@@ -22,15 +23,14 @@ import {
   formItemContextKey,
   FormItemStatus,
 } from './form'
-import { createCssScope, isArray } from '../../utils'
+import { createCssScope, isArray, Schema } from '../../utils'
 import { inject, computed, onMounted, reactive, provide } from 'vue'
-import { Schema } from '../../utils/validate'
-
-const bem = createCssScope('form-item')
 
 defineOptions({
-  name: 'YkForm',
+  name: 'YkFormItem',
 })
+
+const bem = createCssScope('form-item')
 const formContext = inject<Partial<FormContext>>(formContextKey, {})
 const props = withDefaults(defineProps<FormItemProps>(), {
   labelWidth: 116,

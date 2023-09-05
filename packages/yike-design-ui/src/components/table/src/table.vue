@@ -12,15 +12,14 @@
 
 <script lang="ts">
 import { defaultTableProps, Table, TABLE_INJECTION_KEY } from './table'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { defineComponent, computed, getCurrentInstance, provide } from 'vue'
 import { useStore } from './store'
-import '../style/index.ts'
-
 import TableHeader from './header'
 import TableBody from './body'
 
 let tableIdSeed = 1
+
 export default defineComponent({
   name: 'YkTable',
   components: { TableHeader, TableBody },

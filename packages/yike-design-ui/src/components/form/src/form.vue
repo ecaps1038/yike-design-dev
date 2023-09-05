@@ -3,24 +3,23 @@
     <slot />
   </form>
 </template>
+
 <script setup lang="ts">
 import { provide, reactive, toRefs } from 'vue'
+import { createCssScope, isFunction } from '../../utils'
 import {
   FormProps,
   formContextKey,
   FormItemInstance,
   ValidateStatusMap,
 } from './form'
-import { createCssScope } from '../../utils/bem'
-import { isFunction } from '../../utils'
-const bem = createCssScope('form')
 
 defineOptions({
   name: 'YkForm',
 })
 
+const bem = createCssScope('form')
 const validateMap: ValidateStatusMap = {}
-
 const props = withDefaults(defineProps<FormProps>(), {
   labelWidth: 116,
   disabled: false,
@@ -76,9 +75,6 @@ const resetFields = () => {
 const handleSubmit = (e: Event) => {
   return
 }
-
-// ToDo
-// add function addField removeField validatePartFields
 
 provide(
   formContextKey,

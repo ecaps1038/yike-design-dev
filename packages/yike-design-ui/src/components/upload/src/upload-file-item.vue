@@ -43,9 +43,8 @@
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
 import { getArcPath, getFileTypeIconName } from './utils'
-import { generateUid } from '../../utils/tools'
-import { FileItemProps } from './upload'
-import { createCssScope } from '../../utils/bem'
+import { generateUid, createCssScope } from '../../utils'
+import type { FileItemProps } from './upload'
 
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,

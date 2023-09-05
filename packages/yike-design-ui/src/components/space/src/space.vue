@@ -5,10 +5,9 @@
 </template>
 <script setup lang="ts">
 import { getMargin, getAlign, flexDirection } from './utils'
-import { SpaceProps } from './space'
 import { CSSProperties, computed, toRefs } from 'vue'
-
-// FIXME 之后不需要在这边引样式
+import type { SpaceProps } from './space'
+import '../style'
 
 defineOptions({
   name: 'YkSpace',

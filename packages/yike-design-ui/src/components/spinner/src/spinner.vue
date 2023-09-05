@@ -5,18 +5,18 @@
     </svg>
   </span>
 </template>
+
 <script setup lang="ts">
 import { SpinnerProps, resolveSize, resolveColor } from './spinner'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { computed } from 'vue'
 import '../style'
-
-const bem = createCssScope('spinner')
 
 defineOptions({
   name: 'YkSpinner',
 })
 
+const bem = createCssScope('spinner')
 const props = withDefaults(defineProps<SpinnerProps>(), {
   size: 16,
   color: 'primary',

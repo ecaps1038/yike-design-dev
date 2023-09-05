@@ -21,10 +21,13 @@
 <script setup lang="ts">
 import { provide, reactive } from 'vue'
 import { TimelineProps } from './timeline'
-import '../style'
-
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { timelineContextKey } from './internal'
+
+defineOptions({
+  name: 'YkTimeline',
+})
+
 const bem = createCssScope('timeline')
 
 const props = withDefaults(defineProps<TimelineProps>(), {

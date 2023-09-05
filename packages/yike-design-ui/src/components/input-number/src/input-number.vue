@@ -1,7 +1,6 @@
 <template>
   <YkInput
-    ref="inputRef"
-    v-model="displayValue"
+    :model-value="modelValue"
     :disabled="disabled"
     :size="mergedSize"
     :class="bem()"
@@ -40,11 +39,12 @@
   </YkInput>
 </template>
 <script setup lang="ts">
+import { calculate, numberMatchReg } from './utils'
 import { createCssScope, useFormItem } from '../../utils'
-import { YkInput, YkButton } from '../../../index'
 import { InputNumberProps } from './input-number'
 import { toRefs, ref, onMounted, reactive, computed } from 'vue'
-import { calculate, numberMatchReg } from './utils'
+import { IconUpOutline, IconDownOutline } from '../../svg-icon'
+import { YkInput, YkButton } from '../../../index'
 
 defineOptions({
   name: 'YkInputNumber',
@@ -77,7 +77,6 @@ const limit = reactive({
 const TimeBeforeCombo = 250
 // “连击”的速度
 const ComboSpeed = 150
-const inputRef = ref<InstanceType<typeof YkInput>>()
 const valueRefs = toRefs(props)
 const lastValue = ref<number>(0)
 const displayValue = ref<string>('')
@@ -202,7 +201,8 @@ const blur = () => {
 
 const update = () => {
   checkLimit()
-  displayValue.value = getDisplayValue()
-  emits('update:modelValue', precision.value)
+  // displayValue.value = getDisplayValue()
+  // 先这样
+  emits('update:modelValue', lastValue.value)
 }
 </script>

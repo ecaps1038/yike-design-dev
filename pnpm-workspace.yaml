@@ -1,5 +1,4 @@
 packages:
-  - 'packages/*'
-  - 'build'
-  - 'demo'
+  - packages/*
+  - demo
   - '!**/test/**'

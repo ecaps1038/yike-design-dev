@@ -4,8 +4,13 @@
 
 <script setup lang="ts">
 import { computed, CSSProperties } from 'vue'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import { TabBar } from './tabBar'
+
+defineOptions({
+  name: 'YkTabBar',
+})
+
 const ns = createCssScope('tabs-bar')
 const props = withDefaults(defineProps<TabBar>(), {
   offset: 0,
@@ -22,5 +27,3 @@ const calcStyle = computed<CSSProperties>(() => {
   }
 })
 </script>
-
-<style scoped></style>
