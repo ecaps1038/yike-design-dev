@@ -25,7 +25,7 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const tags = ref([
+const tags: any = ref([
   { name: 'Tag 1', size: 'l' },
   { name: 'Tag 1', size: 'm' },
   { name: 'Tag 1', size: 's' },
