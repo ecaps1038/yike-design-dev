@@ -9,7 +9,6 @@ import '@yike-design/ui/src/components/styles/index.less';
 import '@/style/main.less';
 import '@/style/color-card.less';
 
-//highlight 的样式，依赖包，组件
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
