@@ -13,6 +13,7 @@ const navLinks = {
   '/design': '设计',
   '/module': '组件',
 }
+const isDev = import.meta.env.DEV
 </script>
 
 <template>
@@ -20,7 +21,7 @@ const navLinks = {
     <router-link class="logo" to="/">
       <img src="@/assets/icon/logo.svg" />
       <p class="name">Yike Design</p>
-      <yk-tag type="primary">DEV</yk-tag>
+      <yk-tag v-if="isDev" type="primary">DEV</yk-tag>
     </router-link>
     <yk-space class="nav-links" :size="24" align="center">
       <a class="nav-item responsive-hidden" :href="Links.design">UI 设计稿</a>
