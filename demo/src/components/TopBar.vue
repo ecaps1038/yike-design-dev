@@ -24,10 +24,12 @@ const navLinks = {
         <yk-tag type="success">DEV</yk-tag>
       </h1>
     </router-link>
-    <yk-space class="navs-pc" :size="24" align="center">
-      <a class="nav-item" :href="Links.design">UI 设计稿</a>
-      <a class="nav-item" :href="Links.task">任务文档</a>
-      <a class="nav-item" :href="Links.devStandard">开发规范</a>
+    <yk-space class="nav-links" :size="24" align="center">
+      <a class="nav-item responsive-hidden" :href="Links.design">UI 设计稿</a>
+      <a class="nav-item responsive-hidden" :href="Links.task">任务文档</a>
+      <a class="nav-item responsive-hidden" :href="Links.devStandard">
+        开发规范
+      </a>
       <router-link
         v-for="(link, path) in navLinks"
         :key="path"
@@ -37,7 +39,9 @@ const navLinks = {
         {{ link }}
       </router-link>
 
-      <a class="nav-item" :href="Links.home" target="_blank">主站</a>
+      <a class="nav-item responsive-hidden" :href="Links.home" target="_blank">
+        主站
+      </a>
       <a class="nav-item" :href="Links.github" target="_blank">
         <icon-github-fill />
       </a>
@@ -58,7 +62,7 @@ const navLinks = {
   align-items: center;
   padding: 0 24px;
 
-  width: 100%;
+  width: 100vw;
   height: var(--top-bar-height);
   border-bottom: 1px solid @line-color-s;
   background-color: @bg-color-l;
@@ -106,6 +110,19 @@ const navLinks = {
 
   .nav-item:hover {
     font-weight: 500;
+  }
+}
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 810px) {
+  .responsive-hidden {
+    display: none;
+  }
+
+  .logo {
+    .name {
+      display: none;
+    }
   }
 }
 </style>
