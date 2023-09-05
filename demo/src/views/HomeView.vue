@@ -12,7 +12,11 @@ function goPage(path: string) {
   <div class="main">
     <div class="logo">
       <IconLogoBackup5Fill class="bg-logo" />
-      <p class="title">YIKE DESIGN</p>
+      <p class="title pc-title">YIKE DESIGN</p>
+      <div class="mobile-title">
+        <p class="title">YIKE</p>
+        <p class="title">DESIGN</p>
+      </div>
       <p class="slogan">包容万物，从源头出发，一切从简</p>
     </div>
     <yk-space class="start-btns">
@@ -28,12 +32,12 @@ function goPage(path: string) {
 
 <style lang="less" scoped>
 .main {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  overflow-y: hidden;
   height: 100vh;
+  flex-direction: column;
 
   .sign {
     position: absolute;
@@ -57,13 +61,13 @@ function goPage(path: string) {
 .logo {
   position: relative;
   margin-top: -200px;
-  width: 940px;
   height: 220px;
 
   .bg-logo {
     position: absolute;
     top: 0;
-    left: 280px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: -1;
     width: 380px;
     height: 220px;
@@ -85,6 +89,35 @@ function goPage(path: string) {
     text-align: center;
     line-height: 90px;
     letter-spacing: 36px;
+  }
+}
+
+.mobile-title {
+  display: none;
+}
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 810px) {
+  .slogan {
+    text-align: left !important;
+  }
+
+  .pc-title {
+    display: none;
+  }
+
+  .mobile-title {
+    display: block;
+
+    .title {
+      padding: unset;
+      text-align: left;
+      letter-spacing: 8px;
+    }
+  }
+
+  .start-btns {
+    width: 288px;
   }
 }
 </style>
