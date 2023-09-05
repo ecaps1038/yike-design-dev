@@ -1,0 +1,97 @@
+@import '../../styles/color/colors.less';
+.yk-title,
+.yk-text {
+  &--default {
+    color: @font-color-l;
+  }
+  &--primary {
+    color: @pcolor;
+  }
+  &--secondary {
+    color: @font-color-m;
+  }
+  &--success {
+    color: @scolor;
+  }
+  &--warning {
+    color: @wcolor;
+  }
+  &--danger {
+    color: @ecolor;
+  }
+  &--secondary {
+    color: @font-color-m;
+  }
+  &--third {
+    color: @font-color-s;
+  }
+  &--disabled {
+    color: @font-color-ss;
+  }
+}
+strong.yk-text {
+  font-weight: 700;
+}
+mark.yk-text {
+  background-color: rgba(255, 214, 28, 0.48);
+}
+underline.yk-text {
+  text-decoration: underline;
+}
+del.yk-text {
+  text-decoration: line-through;
+}
+.yk-typography {
+  .yk-paragraph {
+    position: relative;
+    margin-bottom: 1em;
+    .icon {
+      fill: @pcolor;
+      cursor: pointer;
+    }
+    .more-par {
+      position: absolute;
+      right: 0;
+      bottom: 0px;
+      padding-left: 20px;
+      background-color: #fff;
+    }
+    .ellipsis {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .more {
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      color: @pcolor;
+    }
+  }
+}
+.yk-title {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+h1.yk-title {
+  .font-40();
+}
+h2.yk-title {
+  .font-32();
+}
+h3.yk-title {
+  .font-xl();
+}
+h4.yk-title {
+  .font-l();
+}
+h5.yk-title {
+  .font-m();
+}
+.yk-text {
+  .font-s();
+}

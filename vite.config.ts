@@ -1,22 +1,20 @@
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import Jsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue({
+      script: {
+        defineModel: true,
+      },
+    }),
+    Jsx(),
+  ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
-  css: {
-    // css预处理器
-    preprocessorOptions: {
-      less: {
-        charset: false,
-        // additionalData: '@import "./src/assets/base.less";',
-        additionalData: '@import "./src/yike-design/assets/style/yk-index.less";',
-      },
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   build: {
@@ -25,8 +23,8 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true
-      }
+        drop_debugger: true,
+      },
     },
-  }
-})
+  },
+});

@@ -1,0 +1,69 @@
+.input-size(@size, @height, @padding, @fs, @br) {
+  .inner() {
+    border-radius: @br;
+  }
+
+  .widget() {
+    padding: 0px @padding;
+    height: @height;
+    font-size: @fs;
+    border-radius: @br;
+  }
+
+  .before {
+    span {
+      margin-left: @padding;
+      font-size: @fs;
+    }
+    svg {
+      margin-left: @padding;
+      width: @fs+2px;
+      height: @fs+2px;
+    }
+  }
+
+  .after {
+    span {
+      margin-right: @padding;
+      font-size: @fs;
+    }
+    svg {
+      margin-right: @padding;
+      width: @fs+2px;
+      height: @fs+2px;
+    }
+  }
+
+  &.yk-input--@{size} {
+    .inner();
+  }
+  &.yk-input--@{size} input {
+    .widget();
+  }
+  &.yk-input--@{size} .yk-input--before {
+    .before();
+  }
+  &.yk-input--@{size} .yk-input--after {
+    .after();
+  }
+}
+
+.input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
+  .bow() {
+    border: 1px solid @bcolor;
+    background-color: @bgcolor !important;
+
+    &:hover {
+      border: 1px solid @hvbcolor;
+      background-color: @hvbgcolor !important;
+    }
+
+    &--focus {
+      border: 1px solid @fsbcolor !important;
+      background-color: @fsbgcolor !important;
+    }
+  }
+  &.yk-input--@{status} {
+    .bow();
+  }
+}

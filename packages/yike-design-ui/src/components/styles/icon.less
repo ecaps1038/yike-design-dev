@@ -1,0 +1,46 @@
+.yk-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  color: inherit;
+  font-style: normal;
+  vertical-align: -2px;
+  outline: none;
+  stroke: currentColor;
+  &&--loading,
+  &&--spin {
+    animation: yk-loading-circle 1s infinite linear;
+  }
+}
+
+@keyframes yk-loading-circle {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.close-icon() {
+  overflow: hidden;
+  padding: 2px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: @radius-s;
+  color: @font-color-s;
+  background: none;
+  transition: all @animatb;
+  cursor: pointer;
+
+  &:hover {
+    color: @font-color-l;
+    background-color: @gray-1;
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}

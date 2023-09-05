@@ -1,0 +1,40 @@
+{
+  "name": "@yike-design/build",
+  "version": "0.0.1",
+  "description": "build packages",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "bin": {
+    "yike-build": "bin/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/clean-css": "^4.2.6",
+    "@types/fs-extra": "^11.0.1",
+    "@types/jsdom": "^21.1.1",
+    "@types/less": "^3.0.3",
+    "chalk": "^4.1.2",
+    "clean-css": "^5.3.2",
+    "commander": "^11.0.0",
+    "glob": "^10.3.3",
+    "less": "^4.0.0",
+    "typescript": "^5.1.6",
+    "vite-plugin-dts": "^3.3.1",
+    "svgo": "^3.0.2"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.0",
+    "fs-extra": "^11.1.1",
+    "jsdom": "^22.1.0",
+    "svgo": "^3.0.2"
+  }
+}

@@ -1,2 +1,7 @@
 dist
+public
 node_modules
+assets
+svg-icon
+es
+lib

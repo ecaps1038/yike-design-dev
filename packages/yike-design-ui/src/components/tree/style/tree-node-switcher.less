@@ -1,0 +1,37 @@
+.yk-tree-node-switcher {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  border-radius: 2px;
+  color: @font-color-m;
+
+  svg {
+    opacity: 1;
+    transition: all 0.2s linear;
+    fill: @font-color-m;
+    transform-origin: center;
+  }
+  &:hover {
+    background-color: @bg-color-s;
+    cursor: pointer;
+  }
+  &&--rotate {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+  &&--leaf {
+    &:hover {
+      background-color: transparent;
+      cursor: default;
+    }
+    svg {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-npm run commitlint
+# npx commitlint --edit
+node ./.husky/script/verifyCommitMsg.js

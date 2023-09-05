@@ -1,0 +1,46 @@
+@import '../../styles/color/colors.less';
+@import '../../slider/style/index.less';
+.yk-image-crop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  &__canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    cursor: pointer;
+  }
+  &__operate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 24px 36px;
+    width: 100%;
+    height: 20px;
+    .yk-icon {
+      cursor: pointer;
+    }
+    &-left {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    &-right {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+  &__scale-bar {
+    margin: 0 @space-s;
+    width: 160px;
+  }
+}

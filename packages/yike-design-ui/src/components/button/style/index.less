@@ -1,0 +1,179 @@
+@import '../../styles/mixin.less';
+@import './variables.less';
+/* stylelint-disable */
+.yk-button--loading {
+  opacity: 0.7 !important;
+  svg {
+    margin-right: 4px;
+    width: 14px;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+  }
+
+  circle {
+    fill: none;
+    stroke: hsl(227, 16%, 89%);
+    stroke-width: 3;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+}
+
+.yk-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+  white-space: nowrap;
+  // 默认按钮状态
+  color: @btn-primary-color-text;
+  background-color: @btn-primary-color-bg;
+  outline: none;
+  transition: all @animatb;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  user-select: none;
+  color: @btn-primary-color-text;
+  circle {
+    stroke: @btn-primary-color-text;
+  }
+
+  &__icon {
+    margin-right: @space-ss;
+  }
+
+  .btn-type(@type) {
+    .normal() {
+      color: ~'@{btn-@{type}-color-text}';
+      circle {
+        stroke: ~'@{btn-@{type}-color-text}';
+      }
+      background-color: ~'@{btn-@{type}-color-bg}';
+      border-color: ~'@{btn-@{type}-color-border}';
+      &:not(:disabled):hover {
+        background-color: ~'@{btn-@{type}-color-hover}';
+      }
+      &:not(:disabled):active {
+        background-color: ~'@{btn-@{type}-color-active}';
+      }
+    }
+    &--@{type} {
+      .normal();
+    }
+  }
+
+  .btn-status(@type: primary, @status: primary) {
+    .normal() {
+      color: ~'@{btn-@{type}-color-text_@{status}}';
+      circle {
+        stroke: ~'@{btn-@{type}-color-text_@{status}}';
+      }
+      background-color: ~'@{btn-@{type}-color-bg_@{status}}';
+      border-color: ~'@{btn-@{type}-color-border_@{status}}';
+      &:not(:disabled):hover {
+        background-color: ~'@{btn-@{type}-color-hover_@{status}}';
+      }
+      &:not(:disabled):active {
+        background-color: ~'@{btn-@{type}-color-active_@{status}}';
+      }
+    }
+    &.yk-button--@{type}.yk-button--@{status} {
+      .normal();
+    }
+  }
+
+  .btn-type(primary);
+  .btn-type(secondary);
+  .btn-type(outline);
+
+  .btn-status(primary);
+  .btn-status(primary, success);
+  .btn-status(primary, warning);
+  .btn-status(primary, danger);
+
+  .btn-status(secondary);
+  .btn-status(secondary, success);
+  .btn-status(secondary, warning);
+  .btn-status(secondary, danger);
+
+  .btn-status(outline);
+  .btn-status(outline, success);
+  .btn-status(outline, warning);
+  .btn-status(outline, danger);
+
+  // 尺寸 size
+  &--s {
+    padding: 0px @space-s;
+    min-width: 24px;
+    height: 24px;
+    font-size: @size-ss;
+    border-radius: @radius-s;
+  }
+  &--m {
+    padding: 0px @space-l;
+    min-width: 32px;
+    height: 32px;
+    border-radius: @radius-s;
+  }
+  &--l {
+    padding: 0px @space-l;
+    min-width: 36px;
+    height: 36px;
+    border-radius: @radius-m;
+  }
+  &--xl {
+    padding: 0px @space-xl;
+    min-width: 48px;
+    height: 48px;
+    font-size: @size-m;
+    border-radius: @radius-m;
+  }
+  &--long {
+    display: block;
+    width: 100%;
+  }
+
+  // 圆角样式
+  &--round {
+    border-radius: @radius-r;
+  }
+  &--circle {
+    padding: 0;
+    border-radius: @radius-r;
+  }
+
+  &--square {
+    padding: 0;
+  }
+
+  // 禁用
+  &--disabled {
+    .disabled();
+  }
+}
