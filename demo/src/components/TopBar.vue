@@ -124,5 +124,9 @@ const navLinks = {
       display: none;
     }
   }
+
+  .nav-links {
+    gap: 8px !important;
+  }
 }
 </style>

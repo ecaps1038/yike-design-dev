@@ -65,4 +65,20 @@ onMounted(() => {
   padding: 0 64px 0 32px;
   width: var(--anchor-width);
 }
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 810px) {
+  .yk-demo-doc {
+    padding: unset;
+
+    .wrapper {
+      padding: 0 8px;
+      width: 100vw;
+    }
+
+    .anchor-wrap {
+      display: none;
+    }
+  }
+}
 </style>
