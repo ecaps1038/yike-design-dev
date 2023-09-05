@@ -64,6 +64,7 @@ export default function useVModel<T>(
     onChange && onChange(newVal, ...arg);
   };
 
+  // 返回值兼容两种场景，一种是返回一个方法，通过方法设置，另一种场景是不使用方法，而是直接赋值去更新，比如splice一个数组，会直接更新。
   return [
     computed<T>({
       get() {

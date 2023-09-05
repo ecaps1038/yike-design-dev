@@ -23,10 +23,17 @@
   .yk-tag {
     margin: 3px 0;
     max-width: 90%;
+    transition: background-color 0.2s ease-in-out;
 
     &__content {
       white-space: pre-wrap;
       word-break: break-word;
+    }
+  }
+
+  &__blur {
+    .yk-tag {
+      background-color: #ffffff;
     }
   }
 

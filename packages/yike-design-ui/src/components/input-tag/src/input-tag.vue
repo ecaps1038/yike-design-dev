@@ -1,5 +1,5 @@
 <template>
-  <div :class="[bem(), bem(isFocus ? 'focus' : 'blur')]">
+  <div :class="className" @mousedown="onMousedown">
     <YkInput
       ref="ykTagInput"
       v-bind="inputProps"
@@ -7,10 +7,13 @@
       :placeholder="placeholder"
       :size="mergedSize"
       :input-style="inputStyle"
-      @fucus="onInputFocus"
+      :disabled="mergedDisabled"
+      @focus="onInputFocus"
       @keydown="onKeydown"
       @blur="onBlur"
       @click.stop="onClick"
+      @mouseenter="onMouseenter"
+      @mouseleave="onMouseleave"
     >
       <template #prefix>
         <div :class="bem('tag-list')">
@@ -20,6 +23,7 @@
             :class="bem('tag-list-item')"
             closeable
             size="s"
+            :disabled="mergedDisabled"
             @close="onCloseTag(index)"
             @click.stop="onClick"
           >
@@ -59,7 +63,14 @@ const props = withDefaults(defineProps<InputTagProps>(), {
   inputProps: undefined,
 })
 
-const emits = defineEmits(['focus', 'blur', 'keydown', 'click'])
+const emits = defineEmits([
+  'focus',
+  'blur',
+  'keydown',
+  'click',
+  'hoverin',
+  'hoverout',
+])
 
 const {
   modelValue,
@@ -71,13 +82,16 @@ const {
   message,
   inputProps,
   placeholder,
+  max,
 } = toRefs(props)
+
 const [tagList, setTagList] = useVModel(
   value,
   modelValue,
   defaultValue,
   props.onChange,
 )
+
 const { mergedDisabled, isError, mergedStatus, mergedSize, validate } =
   useFormItem({
     disabled,
@@ -87,6 +101,19 @@ const { mergedDisabled, isError, mergedStatus, mergedSize, validate } =
   })
 const inputVal = ref('')
 const isFocus = ref(false)
+const isHovering = ref(false)
+
+const className = computed(() => {
+  return [
+    bem(),
+    bem(isFocus.value ? 'focus' : 'blur'),
+    bem(isHovering.value ? 'hover' : ''),
+  ]
+})
+
+const setInputVal = (val: string) => {
+  inputVal.value = val
+}
 
 const onInputFocus = () => {
   isFocus.value = true
@@ -96,10 +123,14 @@ const onInputFocus = () => {
 const onKeydownEnter = () => {
   const inputValue = inputVal.value.trim()
   if (!inputValue) return
+  if (tagList.value.length >= max.value) {
+    emits('keydown', 'enter', inputValue)
+    return setInputVal('')
+  }
   // 新增一个tag
   setTagList(tagList.value.concat(inputValue))
-  inputVal.value = ''
-  emits('keydown', 'enter')
+  emits('keydown', 'enter', inputValue)
+  setInputVal('')
 }
 
 const onKeydownBackspace = () => {
@@ -124,13 +155,36 @@ const onKeydown = (ev: KeyboardEvent) => {
 
 // 获取ykTagInput的$refs
 const ykTagInput = ref(null)
-
-const onClick = () => {
+const inputFocus = () => {
   ykTagInput.value?.inputRef.focus()
 }
 
-const onCloseTag = (tag) => {
-  console.log(tag)
+const onMousedown = (e: MouseEvent) => {
+  if (ykTagInput.value?.inputRef && e.target !== ykTagInput.value?.inputRef) {
+    e.preventDefault()
+    inputFocus()
+  }
+}
+
+const onClick = () => {
+  inputFocus()
+  emits('click')
+}
+
+const onCloseTag = (index: number) => {
+  tagList.value.splice(index, 1)
+  // 防止失焦
+  inputFocus()
+}
+
+const onMouseenter = () => {
+  isHovering.value = true
+  emits('hoverin')
+}
+
+const onMouseleave = () => {
+  isHovering.value = false
+  emits('hoverout')
 }
 
 const tagInputPlaceholder = ref<HTMLInputElement | null>(null)
@@ -161,7 +215,6 @@ const getYkTagInputPadding = () => {
   const { paddingLeft, paddingRight } = calculateElementStyle(
     ykTagInput.value?.inputRef,
   )
-  console.log('宽度：', ykTagInput.value?.inputRef, paddingLeft + paddingRight)
   return paddingLeft + paddingRight
 }
 
@@ -174,7 +227,7 @@ const inputStyle = computed(() => {
 
 const onBlur = () => {
   isFocus.value = false
-  inputVal.value = ''
+  setInputVal('')
   tagInputWidth.value = getTagInputPlaceholderWidth()
   emits('blur')
 }
