@@ -1,20 +1,25 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "composite": true,
-    "jsx": "preserve",
-    "allowJs": true,
-    "sourceMap": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020"],
     "skipLibCheck": true,
+    "baseUrl": "./",
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noUncheckedIndexedAccess": true,
+    "strictNullChecks": false,
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "preserve",
     "paths": {
-      "@/*": ["./src/*"],
-      "@yike-design/ui": ["../packages/yike-design-ui"]
+      "@/*": ["src/*"],
     }
   },
-  "include": ["**/*", "**/*.json", "./components.d.ts"],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist/**", "node_modules/**"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","components.d.ts","plugins/*.ts","env.d.ts"],
 }
