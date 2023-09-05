@@ -60,3 +60,4 @@ export type TimelinePlacement = (typeof TIMELINE_PLACEMENT)[number];
 
 export const TIMELINE_TYPE = ['solid', 'dashed', 'dotted'] as const;
 export type TimelineType = (typeof TIMELINE_TYPE)[number];
+export type GapSize = Size | number | [number, number];

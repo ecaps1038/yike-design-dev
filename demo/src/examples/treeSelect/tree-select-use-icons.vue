@@ -18,7 +18,7 @@ import {
   IconAppOutline,
   IconAppFill,
   IconSmileOutline,
-} from 'yike-design-ui/src/components/svg-icon'
+} from '@yike-design/ui/src/components/svg-icon'
 // 定义参数
 const state = reactive<any>({
   treeData: [
