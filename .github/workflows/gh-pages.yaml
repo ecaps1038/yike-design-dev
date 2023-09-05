@@ -31,3 +31,4 @@ jobs:
           clean: true
           branch: gh-pages
           folder: ./demo/dist
+          token: ${{secrets.ACCESS_TOKEN}}
