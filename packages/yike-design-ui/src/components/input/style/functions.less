@@ -2,49 +2,28 @@
   .inner() {
     border-radius: @br;
 
-    .yk-text:first-of-type,
-    .yk-text:last-of-type {
-      margin: 0px @padding - 4;
+    .yk-text:first-child,
+    .yk-icon:first-child {
+      margin-left: @padding;
     }
 
-    .yk-icon:first-of-type,
-    .yk-icon:last-of-type {
-      margin: 0px @padding - 4;
-      width: @fs + 2px;
-      height: @fs + 2px;
+    .yk-text:last-child,
+    .yk-icon:last-child {
+      margin-right: @padding;
+    }
+
+    .yk-icon {
+      width: @fs+2px;
+      height: @fs+2px;
     }
   }
 
   .widget() {
-    padding: 0px calc(@padding / 2);
+    padding: 0px @padding;
     height: @height;
     font-size: @fs;
     border-radius: @br;
   }
-
-  // .before {
-  //   .yk-text {
-  //     margin-left: @padding;
-  //     font-size: @fs;
-  //   }
-  //   .yk-icon {
-  //     margin-left: @padding;
-  //     width: @fs+2px;
-  //     height: @fs+2px;
-  //   }
-  // }
-
-  // .after {
-  //   .yk-text {
-  //     margin-right: @padding;
-  //     font-size: @fs;
-  //   }
-  //   .yk-icon {
-  //     margin-right: @padding;
-  //     width: @fs+2px;
-  //     height: @fs+2px;
-  //   }
-  // }
 
   &.yk-input--@{size} {
     .inner();
@@ -52,12 +31,6 @@
   &.yk-input--@{size} input {
     .widget();
   }
-  // &.yk-input--@{size} .yk-input--before {
-  //   .before();
-  // }
-  // &.yk-input--@{size} .yk-input--after {
-  //   .after();
-  // }
 }
 
 .input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
