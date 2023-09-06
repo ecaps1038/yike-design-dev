@@ -113,10 +113,11 @@
       }
     }
     &__item--active {
-      span {
-        font-weight: 500;
-      }
+      // span {
+      //   font-weight: 500;
+      // }
       color: @font-color-l;
+      background-color: @bg-color-s;
     }
     &__item--disabled {
       color: @font-color-s;
@@ -138,6 +139,9 @@
       border-left: 1px solid @line-color-s;
       border-radius: @space-s @space-s 0 0;
       // background-color: @bg-color-s;
+    }
+    &__item--line {
+      background-color: @bg-color-l !important;
     }
   }
 
