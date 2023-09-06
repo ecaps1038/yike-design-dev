@@ -17,7 +17,7 @@
       rows="5"
       cols=""
       :placeholder="props.placeholder"
-      :class="[bem('inner', { autoSize: !!props.autoSize })]"
+      :class="[bem('inner', { autoSize: !!props?.autoSize })]"
       :disabled="props.disabled"
       :style="areaStyle"
       @focus="onFocus"
@@ -29,7 +29,7 @@
     ></textarea>
     <span v-if="props.showWordLimit" class="word-limit">{{ limitNum }}</span>
     <button
-      v-if="clearable && !props.disabled"
+      v-if="clearable && !disabled"
       aria-label="清空内容"
       :class="[bem('button')]"
       @click="clear"
@@ -40,7 +40,7 @@
 </template>
 <script setup lang="ts">
 import { TextAreaProps } from './text-area'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import {
   ref,
   computed,
@@ -53,11 +53,12 @@ import {
 import { IconCloseOutline } from '../../svg-icon'
 import { splitUnit, getSizeStyles, getOutProp } from './utils'
 import { useResizeObserver } from '@vueuse/core'
-const bem = createCssScope('text-area')
+const bem: any = createCssScope('text-area')
 
 defineOptions({
   name: 'YkTextArea',
 })
+
 const props = withDefaults(defineProps<TextAreaProps>(), {
   id: '',
   maxLength: 0,
@@ -88,8 +89,8 @@ const onBlur = (e: FocusEvent) => {
   emits('blur', e)
 }
 
-const clearable = computed(() => props.clearable && textVal.value)
-const clear = () => {
+const clearable: any = computed(() => props.clearable && textVal.value)
+const clear: any = () => {
   emits('clear', '')
   onChange('')
   emits('update:modelValue', '')
@@ -99,7 +100,7 @@ const onChange = (value: string) => {
   const isChange = props.modelValue !== value
   isChange && !isFocus.value && emits('change', value)
 }
-const limitNum = computed(() => {
+const limitNum: any = computed(() => {
   if (!props.showWordLimit) {
     return ''
   }

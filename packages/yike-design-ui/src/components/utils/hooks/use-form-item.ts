@@ -1,6 +1,5 @@
 import { computed, inject, Ref } from 'vue';
 import { FormItemContext, formItemContextKey } from '../../form/index';
-import { Size } from '../constant';
 export const useFormItem = ({
   disabled,
   status,
@@ -10,7 +9,7 @@ export const useFormItem = ({
   disabled?: Ref<boolean>;
   message?: Ref<string>;
   status?: Ref<string>;
-  size?: Ref<Size>;
+  size?: Ref<any>;
 } = {}) => {
   const formItemCtx = inject(formItemContextKey, {} as FormItemContext);
 

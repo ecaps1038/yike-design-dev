@@ -1,106 +1,108 @@
 <template>
-  <div :class="bem('container')">
+  <div
+    :class="bem()"
+    :style="style"
+    v-bind="$attrs"
+    @mouseenter="mouseenter"
+    @mouseleave="mouseleave"
+  >
+    <span v-if="$slots.prepend" :class="bem('prepend')">
+      <slot name="prepend" />
+    </span>
     <div
-      :class="bem()"
-      :style="style"
-      @mouseenter="mouseenter"
-      @mouseleave="mouseleave"
+      :class="[
+        bem('inner'),
+        bem({
+          [`${status}`]: !mergedDisabled,
+          [`${status}--focus`]: isFocus && !mergedDisabled && !isError,
+          loading: loading,
+          disabled: mergedDisabled,
+          readonly: readonly,
+          rightbr0: !!$slots.append,
+          leftbr0: !!$slots.prepend,
+          error: isError,
+          'error-focus': isError,
+        }),
+        bem([mergedSize]),
+      ]"
     >
-      <div v-if="$slots.prepend" :class="bem('prepend')">
-        <slot name="prepend" />
+      <span v-if="$slots.prefix" :class="bem(['slot', 'before'])">
+        <slot name="prefix" />
+      </span>
+      <input
+        :id="id"
+        ref="inputRef"
+        :name="name"
+        :placeholder="placeholder"
+        :disabled="mergedDisabled"
+        :readonly="readonly"
+        :required="required"
+        :class="bem('widget')"
+        :type="inputType"
+        tabindex="0"
+        :value="lastValue"
+        :aria-disabled="mergedDisabled"
+        @focus="focus"
+        @input="update"
+        @blur="blur"
+        @compositionstart="compositionstart"
+        @compositionend="compositionend"
+        @keydown="keydown"
+      />
+      <div :class="bem('buttons')">
+        <button
+          v-if="shouldShowVisiblePasswordButton"
+          aria-label="查看/隐藏密码"
+          class="yk-input__button"
+          :class="YkInputButtonClass"
+          @click="switchType"
+        >
+          <IconCloseEyeOutline />
+        </button>
+        <button
+          v-if="clearable && !disabled"
+          aria-label="清空内容"
+          class="yk-input__button"
+          :class="YkInputButtonClass"
+          @click="clear"
+        >
+          <IconCloseOutline />
+        </button>
       </div>
-      <div
-        :class="[
-          bem('inner'),
-          bem({
-            [`${status}`]: !mergedDisabled,
-            [`${status}--focus`]: isFocus && !mergedDisabled && !isError,
-            loading: loading,
-            disabled: mergedDisabled,
-            readonly: readonly,
-            rightbr0: !!$slots.append,
-            leftbr0: !!$slots.prepend,
-            error: isError,
-            'error-focus': isError,
-          }),
-          bem([mergedSize]),
-        ]"
-      >
-        <div v-if="$slots.prefix" :class="bem(['slot', 'before'])">
-          <slot name="prefix" />
-        </div>
-        <input
-          :id="id"
-          ref="inputRef"
-          :name="name"
-          :placeholder="placeholder"
-          :disabled="mergedDisabled"
-          :readonly="readonly"
-          :required="required"
-          :class="bem('widget')"
-          :type="inputType"
-          tabindex="0"
-          :value="lastValue"
-          :aria-disabled="mergedDisabled"
-          @focus="focus"
-          @input="update"
-          @blur="blur"
-          @compositionstart="compositionstart"
-          @compositionend="compositionend"
-          @keydown="keydown"
-        />
-        <div :class="bem('buttons')">
-          <button
-            v-if="shouldShowVisiblePasswordButton"
-            aria-label="查看/隐藏密码"
-            class="yk-input__button"
-            :class="YkInputButtonClass"
-            @click="switchType"
-          >
-            <IconCloseEyeOutline />
-          </button>
-          <button
-            v-if="clearable && !disabled"
-            aria-label="清空内容"
-            class="yk-input__button"
-            :class="YkInputButtonClass"
-            @click="clear"
-          >
-            <IconCloseOutline />
-          </button>
-        </div>
-        <div v-if="showCounter" :class="bem('counter')">
-          <span>{{ valueCounter }}</span>
-          <span v-if="shouldShowLimit">&nbsp;/&nbsp;{{ limit }}</span>
-        </div>
-        <div v-if="loading" :class="bem('spinner')">
-          <YkSpinner />
-        </div>
-        <div v-if="$slots.suffix" :class="bem(['slot', 'after'])">
-          <slot name="suffix" />
-        </div>
+      <div v-if="showCounter" :class="bem('counter')">
+        <span>{{ valueCounter }}</span>
+        <span v-if="shouldShowLimit">&nbsp;/&nbsp;{{ limit }}</span>
       </div>
-      <div v-if="$slots.append" :class="bem('append')">
-        <slot name="append" />
+      <div v-if="loading" :class="bem('spinner')">
+        <YkSpinner />
       </div>
+      <span v-if="$slots.suffix" :class="bem(['slot', 'after'])">
+        <slot name="suffix" />
+      </span>
     </div>
-    <Transition name="fade">
-      <div v-if="!isError && message" :class="bem('hint', [mergedStatus])">
-        {{ message }}
-      </div>
-    </Transition>
+    <span v-if="$slots.append" :class="bem('append')">
+      <slot name="append" />
+    </span>
   </div>
+  <Transition name="fade">
+    <div v-if="!isError && message" :class="bem('hint', [mergedStatus])">
+      {{ message }}
+    </div>
+  </Transition>
 </template>
+
 <script setup lang="ts">
 import { InputProps } from './input'
 import { computed, ref, watch, toRefs, unref } from 'vue'
 import { IconCloseEyeOutline, IconCloseOutline } from '../../svg-icon'
 import { useFormItem, createCssScope } from '../../utils'
 import { YkSpinner } from '../../spinner'
+import '../style'
 
 defineOptions({
   name: 'YkInput',
 })
+
 const props = withDefaults(defineProps<InputProps>(), {
   size: 'l',
   type: 'text',

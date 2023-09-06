@@ -1,6 +1,6 @@
 <template>
   <yk-space>
-    <yk-progress type="circle" size="s"></yk-progress>
+    <yk-progress type="circle" status="success" size="s"></yk-progress>
     <yk-progress type="circle" :percent="50" size="m"></yk-progress>
     <yk-progress type="circle" :percent="99" size="l">
       <template #format="{ percent }">

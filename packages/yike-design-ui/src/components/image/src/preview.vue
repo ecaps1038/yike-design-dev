@@ -99,6 +99,15 @@ import { useImageDrag } from './hooks/use-image-drag'
 import { useImageScale } from './hooks/use-image-scale'
 import { createCssScope, popupManager } from '../../utils'
 import { formatePercentage, getPopupContainer } from './utils'
+import {
+  IconCloseOutline,
+  IconLeftOutline,
+  IconRightOutline,
+  IconRotateLeftOutline,
+  IconRotateRightOutline,
+  IconZoomInOutline,
+  IconZoomOutOutline,
+} from '../../svg-icon'
 
 defineOptions({
   name: 'YkImagePreview',

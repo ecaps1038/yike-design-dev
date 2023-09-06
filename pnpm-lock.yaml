@@ -10,6 +10,7 @@ importers:
       '@typescript-eslint/parser': ^6.2.1
       '@vitejs/plugin-vue': ^4.2.3
       '@vitejs/plugin-vue-jsx': ^3.0.1
+      dayjs: ^1.11.9
       eslint: ^8.46.0
       eslint-config-prettier: ^8.9.0
       eslint-import-resolver-typescript: ^3.5.5
@@ -35,6 +36,7 @@ importers:
       vue: ^3.3.4
       vue-tsc: ^1.6.4
     dependencies:
+      dayjs: 1.11.9
       vue: registry.npmmirror.com/vue/3.3.4
     devDependencies:
       '@testing-library/vue': registry.npmmirror.com/@testing-library/vue/7.0.0_vue@3.3.4
@@ -968,6 +970,10 @@ packages:
     resolution: {integrity: sha512-a9l6T1qqDogvvnw0nKlfZzqsyikEBZBClF39V3TFoKhDtGBqHu2HkuomJc02j5zft8zrUaXEuoicLeW54RkzPg==}
     engines: {node: '>= 14'}
     dev: true
+
+  /dayjs/1.11.9:
+    resolution: {integrity: sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==}
+    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}

@@ -31,6 +31,7 @@
 import { createCssScope } from '../../utils'
 import { computed, createVNode } from 'vue'
 import { SliderMarksProps, SliderMarkRenderItem } from './slider-marks'
+
 const bem = createCssScope('slider')
 defineOptions({
   inheritAttrs: false,

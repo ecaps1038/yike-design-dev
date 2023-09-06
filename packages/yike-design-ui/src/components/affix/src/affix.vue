@@ -5,14 +5,15 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-import { AffixProps } from './affix'
-import { createCssScope } from '../../utils/bem'
-import '../style'
+import { AffixProps, TargetRect } from './affix'
+import { createCssScope } from '../../utils'
+import { getTargetRect, isWindow } from './utils'
+
 import {
   CSSProperties,
   computed,
-  shallowRef,
   ref,
   watchEffect,
   onMounted,
@@ -24,26 +25,30 @@ import {
   useWindowSize,
   useEventListener,
 } from '@vueuse/core'
-import { getTargetRect, isWindow } from './utils'
+
 defineOptions({
   name: 'YkAffix',
 })
-const props = withDefaults(defineProps<AffixProps>(), {
-  offset: 0,
-  position: 'top',
-  zIndex: 100,
-})
+
+const ns = createCssScope('affix')
+// prettier-ignore
+const props = withDefaults(
+  defineProps<AffixProps>(), {
+    position: 'top',
+    offset: 0,
+    zIndex: 100,
+  }
+)
 
 const emits = defineEmits<{ change: [boolean] }>()
-// 在root内层再套一层容器：解决一旦fixed后，滚动不会对元素更新无法触发watchEffect
-const ns = createCssScope('affix')
 
-const rootRef = shallowRef<HTMLElement>()
+// Ref
+const rootRef = ref<HTMLElement>()
+const scrollContainer = ref<HTMLElement | Window>()
+const targetRect = ref<TargetRect>({ top: 0, bottom: 0 })
+const isFixed = ref(false)
 
-const scrollContainer = shallowRef<HTMLElement | Window>()
-
-const targetRect = ref<{ top: number; bottom: number }>({ top: 0, bottom: 0 })
-
+const { height: winHeight } = useWindowSize()
 const {
   top,
   bottom,
@@ -54,17 +59,7 @@ const {
   windowScroll: false,
 })
 
-const { height: winHeight } = useWindowSize()
-
-const isFixed = ref(false)
-
-const updateFixed = () => {
-  if (props.position === 'bottom') {
-    isFixed.value = targetRect.value!.bottom - props.offset <= bottom.value
-  } else {
-    isFixed.value = top.value - targetRect.value!.top <= props.offset
-  }
-}
+watchEffect(updateFixed)
 
 // 窗口变化更新
 watch(
@@ -77,24 +72,45 @@ watch(
   },
 )
 
+watch(
+  () => isFixed.value,
+  () => emits('change', isFixed.value),
+)
+
+// 传入target时重新初始化容器
+watch(
+  () => props.target,
+  () => initTarget(),
+)
+
+useEventListener(scrollContainer, 'scroll', handleUpdate)
+
+defineExpose({
+  /**
+   * 主动更新位置函数
+   */
+  updatePosition: handleUpdate,
+})
+
+onMounted(() => {
+  initTarget()
+})
+
 const calcFixedStyle = computed<CSSProperties>(() => {
-  if (!isFixed.value) {
-    return {}
-  }
+  if (!isFixed.value) return {}
+  const isBottom = props.position === 'bottom'
+  const isTop = props.position === 'top'
+
   return {
-    bottom:
-      props.position === 'bottom'
-        ? `${winHeight.value - targetRect.value.bottom + props.offset}px`
-        : '',
-    top:
-      props.position === 'top'
-        ? `${targetRect.value.top + props.offset}px`
-        : '',
+    bottom: isBottom
+      ? `${winHeight.value - targetRect.value.bottom + props.offset}px`
+      : '',
+    top: isTop ? `${targetRect.value.top + props.offset}px` : '',
     zIndex: props.zIndex,
   }
 })
 
-// 当触发fixed时，root会坍缩，导致反复计算offset距离，出现闪动bug
+// 当触发 fixed 时，root 会坍缩，导致反复计算 offset 距离，出现闪动 bug
 const calcRootStyle = computed<CSSProperties>(() => {
   return {
     height: isFixed.value ? `${rootHeight.value}px` : '',
@@ -102,17 +118,12 @@ const calcRootStyle = computed<CSSProperties>(() => {
   }
 })
 
-watch(
-  () => isFixed.value,
-  () => emits('change', isFixed.value),
-)
-
-const handleUpdate = () => {
+function handleUpdate() {
   targetRect.value = getTargetRect(scrollContainer.value!)
   update()
 }
 
-const initTarget = async () => {
+async function initTarget() {
   if (props.target) {
     if (typeof props.target === 'string') {
       scrollContainer.value =
@@ -123,28 +134,23 @@ const initTarget = async () => {
   } else {
     scrollContainer.value = window || document.documentElement
   }
+
   await nextTick()
   targetRect.value = getTargetRect(scrollContainer.value)
   update()
 }
 
-// 传入target时重新初始化容器
-watch(
-  () => props.target,
-  () => initTarget(),
-)
-onMounted(() => {
-  initTarget()
-})
+function updateFixed() {
+  const { position, offset } = props
+  const isBottom = position === 'bottom'
+  // prettier-ignore
+  const { 
+    top: targetTop, 
+    bottom: targetBottom 
+  } = targetRect.value
 
-useEventListener(scrollContainer, 'scroll', handleUpdate)
-
-watchEffect(updateFixed)
-
-defineExpose({
-  /**
-   * 主动更新位置函数
-   */
-  updatePosition: handleUpdate,
-})
+  isFixed.value = isBottom
+    ? targetBottom - offset <= bottom.value
+    : top.value - targetTop <= offset
+}
 </script>

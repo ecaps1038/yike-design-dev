@@ -17,11 +17,14 @@
 import { nextTick, provide, reactive, toRefs } from 'vue'
 import { RadioGroupProps, radioGroupEmits } from './radio-group'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT, provideKey } from './constants'
-import { YkSpace } from '../../space'
 import { createCssScope, useFormItem } from '../../utils'
+import { YkSpace } from '../../space'
+
+defineOptions({
+  name: 'YkRadioGroup',
+})
 
 const emits = defineEmits(radioGroupEmits)
-
 const bem = createCssScope('radio-group')
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   direction: 'horizontal',

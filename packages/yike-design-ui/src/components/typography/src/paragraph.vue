@@ -9,10 +9,16 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { IconCopyOutline } from '../../svg-icon'
 import { paragraphProps, ellipsisType } from './typography'
-import { tryCopy } from '../../utils/tools'
+import { tryCopy } from '../../utils'
+
+defineOptions({
+  name: 'YkParagraph',
+})
 
 const props = withDefaults(defineProps<paragraphProps>(), {
   strong: false,
@@ -83,5 +89,3 @@ onMounted(() => {
   moreLine(props.ellipsis.rows)
 })
 </script>
-<style lang="less" scoped></style>
-../../utils/tools

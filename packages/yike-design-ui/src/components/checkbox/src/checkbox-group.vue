@@ -46,8 +46,8 @@ import { YkCheckbox } from '..'
 defineOptions({
   name: 'YkCheckboxGroup',
 })
-const bem = createCssScope('checkbox-group')
 
+const bem = createCssScope('checkbox-group')
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   defaultValue: () => [],
   disabled: false,
@@ -121,7 +121,7 @@ const calcGapStyle = computed<CSSProperties>(() => {
 provide(
   checkboxGroupContextKey,
   reactive({
-    name: 'YKCheckboxGroup',
+    name: 'YkCheckboxGroup',
     calcVal: calcVal,
     disabled: mergedDisabled,
     handleChange,
@@ -129,5 +129,3 @@ provide(
   }),
 )
 </script>
-
-<style scoped></style>

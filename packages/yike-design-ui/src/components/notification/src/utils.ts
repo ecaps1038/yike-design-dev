@@ -1,6 +1,6 @@
 import { createVNode, render, reactive, ref } from 'vue';
 import { NotificationOptions, NotificationPosition } from './notification';
-import { NOTIFICATIONTYPE } from '../../utils/constant';
+import { NOTIFICATIONTYPE } from '../../utils';
 import NotificationGroup from './notification-group.vue';
 
 class NotificationManager {
@@ -30,7 +30,7 @@ class NotificationManager {
   add = (options: NotificationOptions) => {
     this.seed++;
     const id = `yk-notification__${this.seed}`;
-    const notification: NotificationOptions = reactive({
+    const notification = reactive<NotificationOptions>({
       id,
       zIndex: this.zIndex,
       ...options,
