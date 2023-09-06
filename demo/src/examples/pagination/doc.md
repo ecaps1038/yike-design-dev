@@ -2,31 +2,31 @@
 
 :::snippet
 基本用法
-这里展示基本用法
+分页的基本用法
 <PaginationPrimary/>
 :::
 
 :::snippet
-简单翻页
-简单显示
+简洁模式
+通过设置 `simple` 属性开启简洁模式。
 <PaginationSimple/>
 :::
 
 :::snippet
 禁用组件
-设置 `disabled` 属性以禁用组件
+通过设置 `disabled` 属性禁用组件
 <PaginationDisabled/>
 :::
 
 :::snippet
 固定组件宽度
-设置 `fix-width` 属性以固定组件宽度
+通过设置 `fix-width` 属性固定组件宽度
 <PaginationFixWidth/>
 :::
 
 :::snippet
-设置最大页码按钮数
-默认情况下，当总页数超过 7 页时，Pagination 会折叠多余的页码按钮。 通过 pager-count 属性可以设置最大页码按钮数。
+最大页码按钮数
+默认情况下，当总页数超过 7 页时，Pagination 会折叠多余的页码按钮。 通过 `pager-count` 属性可以设置最大页码按钮数。
 <PaginationPagerCount/>
 :::
 
@@ -43,13 +43,13 @@
 :::
 
 :::snippet
-设置每页条数选择器的选项列表
+每页条数选择器的选项列表
 通过设置 `page-size-options`，可以重新指定选择器的选项列表。设置为 `-1` 时表示显示全部。
 <PaginationPageSizeOptions/>
 :::
 
 :::snippet
-不同尺寸
+分页尺寸
 通过设置 `size` 属性获得不同尺寸的分页组件。该属性默认值为 `l`
 <PaginationDifferentSize/>
 :::
