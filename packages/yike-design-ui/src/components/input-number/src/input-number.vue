@@ -1,6 +1,6 @@
 <template>
   <YkInput
-    v-model="displayValue"
+    :model-value="modelValue"
     :disabled="disabled"
     :size="mergedSize"
     :class="bem()"
@@ -201,7 +201,8 @@ const blur = () => {
 
 const update = () => {
   checkLimit()
-  displayValue.value = getDisplayValue()
-  emits('update:modelValue', precision.value)
+  // displayValue.value = getDisplayValue()
+  // 先这样
+  emits('update:modelValue', lastValue.value)
 }
 </script>

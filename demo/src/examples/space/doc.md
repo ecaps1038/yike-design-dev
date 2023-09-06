@@ -7,13 +7,13 @@
 :::
 
 :::snippet
-间距尺寸 size
+间距尺寸
 内置 4 个尺寸，分别是 `s - 4px`，`m - 8px`，`l - 16px`，`xl -24px`，默认为 `l`，为数字或枚举值时，是水平和垂直间距；为数组时，是 `[水平间距, 垂直间距]`。
 <SpaceSize/>
 :::
 
 :::snippet
-对齐 align
+对齐
 内置 4 种对齐方式，分别为 `'start'｜'center'｜'end'｜'baseline' `，在水平模式下默认为 start。
 <SpaceAlign/>
 :::
@@ -25,7 +25,7 @@
 :::
 
 :::snippet
-换行 wrap
+换行
 当一行放不下时自动换行
 <SpaceWrap/>
 :::

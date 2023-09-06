@@ -149,7 +149,7 @@ const handleScroll = useDebounceFn(() => {
     let closedEL: { dis: number; el: HTMLElement } | undefined
     for (const iterator of distances.value) {
       if (iterator.dis >= 0 && (!closedEL || iterator.dis < closedEL.dis)) {
-        closedEL = iterator
+        closedEL = iterator as { dis: number; el: HTMLElement } | undefined
       }
     }
     if (closedEL?.el) {

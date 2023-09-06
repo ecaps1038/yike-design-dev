@@ -1,4 +1,5 @@
-type DrawerPlacements = 'right' | 'left' | 'top' | 'bottom';
+export const Drawer_Placements = ['left', 'right', 'top', 'bottom'] as const;
+export type DrawerPlacements = (typeof Drawer_Placements)[number];
 
 export type DrawerProps = {
   show?: boolean;

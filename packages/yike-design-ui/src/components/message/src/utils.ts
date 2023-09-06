@@ -27,7 +27,7 @@ class MessageManager {
   add = (config: MessageOptions) => {
     this.seed++;
     const id = `yk-message__${this.seed}`;
-    const message: MessageOptions = reactive({
+    const message = reactive<MessageOptions>({
       id,
       ...config,
       zIndex: this.zIndex,

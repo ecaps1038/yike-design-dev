@@ -3,107 +3,91 @@
     <div class="ykcolor-group">
       <ColorCard
         label="pcolor-1"
-        color="#ebedfe"
         :type="1"
-        class="radius_first black"
+        class="radius_first black pcolor-1"
       />
-      <ColorCard label="pcolor-2" color="#dee4fb" :type="1" class="black" />
-      <ColorCard label="pcolor-3" color="#d4ddf9" :type="1" class="black" />
-      <ColorCard label="pcolor-4" color="#c1cefa" :type="1" class="black" />
-      <ColorCard label="pcolor-5" color="#aebef6" :type="1" class="black" />
-      <ColorCard label="pcolor-6" color="#3653ec" :type="1" />
-      <ColorCard label="pcolor" color="#2B5AED" :type="1" />
-      <ColorCard label="pcolor-8" color="#2753DA" :type="1" />
-      <ColorCard label="pcolor-9" color="#244CC7" :type="1" />
-      <ColorCard
-        label="pcolor-10"
-        color="#1D3DA1"
-        :type="1"
-        class="radius_last"
-      />
+      <ColorCard label="pcolor-2" :type="1" class="black pcolor-2" />
+      <ColorCard label="pcolor-3" :type="1" class="black pcolor-3" />
+      <ColorCard label="pcolor-4" :type="1" class="black pcolor-4" />
+      <ColorCard label="pcolor-5" :type="1" class="black pcolor-5" />
+      <ColorCard label="pcolor-6" :type="1" class="pcolor-6" />
+      <ColorCard label="pcolor" :type="1" class="pcolor-7" />
+      <ColorCard label="pcolor-8" :type="1" class="pcolor-8" />
+      <ColorCard label="pcolor-9" :type="1" class="pcolor-9" />
+      <ColorCard label="pcolor-10" :type="1" class="radius_last pcolor-10" />
     </div>
     <div class="ykcolor-group">
       <ColorCard
         label="scolor-1"
-        color="#eaf8f6"
         :type="1"
-        class="radius_first black"
+        class="radius_first black scolor-1"
       />
-      <ColorCard label="scolor-2" color="#ddf4f1" :type="1" class="black" />
-      <ColorCard label="scolor-3" color="#d3f1eb" :type="1" class="black" />
-      <ColorCard label="scolor-4" color="#c0e9e5" :type="1" class="black" />
-      <ColorCard label="scolor-5" color="#ace2dc" :type="1" class="black" />
-      <ColorCard label="scolor-6" color="#33b29c" :type="1" />
-      <ColorCard label="scolor" color="#1FB4A2" :type="1" />
-      <ColorCard label="scolor-8" color="#1FA595" :type="1" />
-      <ColorCard label="scolor-9" color="#199788" :type="1" />
-      <ColorCard
-        label="scolor-10"
-        color="#147B6E"
-        :type="1"
-        class="radius_last"
-      />
+      <ColorCard label="scolor-2" :type="1" class="black scolor-2" />
+      <ColorCard label="scolor-3" :type="1" class="black scolor-3" />
+      <ColorCard label="scolor-4" :type="1" class="black scolor-4" />
+      <ColorCard label="scolor-5" :type="1" class="black scolor-5" />
+      <ColorCard label="scolor-6" :type="1" class="scolor-6" />
+      <ColorCard label="scolor" :type="1" class="scolor-7" />
+      <ColorCard label="scolor-8" :type="1" class="scolor-8" />
+      <ColorCard label="scolor-9" :type="1" class="scolor-9" />
+      <ColorCard label="scolor-10" :type="1" class="radius_last scolor-10" />
     </div>
     <div class="ykcolor-group">
       <ColorCard
         label="wcolor-1"
-        color="#fef5e5"
         :type="1"
-        class="radius_first black"
+        class="radius_first black wcolor-1"
       />
-      <ColorCard label="wcolor-2" color="#fcf2d9" :type="1" class="black" />
-      <ColorCard label="wcolor-3" color="#fcefcf" :type="1" class="black" />
-      <ColorCard label="wcolor-4" color="#fde7b8" :type="1" class="black" />
-      <ColorCard label="wcolor-5" color="#fce0a3" :type="1" class="black" />
-      <ColorCard label="wcolor-6" color="#f2aa1e" :type="1" />
-      <ColorCard label="wcolor" color="#F5AC08" :type="1" />
-      <ColorCard label="wcolor-8" color="#E19E07" :type="1" />
-      <ColorCard label="wcolor-9" color="#CE9008" :type="1" />
-      <ColorCard
-        label="wcolor-10"
-        color="#A67507"
-        :type="1"
-        class="radius_last"
-      />
+      <ColorCard label="wcolor-2" :type="1" class="black wcolor-2" />
+      <ColorCard label="wcolor-3" :type="1" class="black wcolor-3" />
+      <ColorCard label="wcolor-4" :type="1" class="black wcolor-4" />
+      <ColorCard label="wcolor-5" :type="1" class="black wcolor-5" />
+      <ColorCard label="wcolor-6" :type="1" class="wcolor-6" />
+      <ColorCard label="wcolor" :type="1" class="wcolor-7" />
+      <ColorCard label="wcolor-8" :type="1" class="wcolor-8" />
+      <ColorCard label="wcolor-9" :type="1" class="wcolor-9" />
+      <ColorCard label="wcolor-10" :type="1" class="radius_last wcolor-10" />
     </div>
     <div class="ykcolor-group">
       <ColorCard
         label="ecolor-1"
-        color="#ffeeec"
         :type="1"
-        class="radius_first black"
+        class="radius_first black ecolor-1"
       />
-      <ColorCard label="ecolor-2" color="#fde4e2" :type="1" class="black" />
-      <ColorCard label="ecolor-3" color="#fddcda" :type="1" class="black" />
-      <ColorCard label="ecolor-4" color="#feccca" :type="1" class="black" />
-      <ColorCard label="ecolor-5" color="#fcb9b9" :type="1" class="black" />
-      <ColorCard label="ecolor-6" color="#f84e4c" :type="1" />
-      <ColorCard label="ecolor" color="#FA5247" :type="1" />
-      <ColorCard label="ecolor-8" color="#E64B41" :type="1" />
-      <ColorCard label="ecolor-9" color="#D2453C" :type="1" />
-      <ColorCard
-        label="ecolor-10"
-        color="#AA3830"
-        :type="1"
-        class="radius_last"
-      />
+      <ColorCard label="ecolor-2" :type="1" class="black ecolor-2" />
+      <ColorCard label="ecolor-3" :type="1" class="black ecolor-3" />
+      <ColorCard label="ecolor-4" :type="1" class="black ecolor-4" />
+      <ColorCard label="ecolor-5" :type="1" class="black ecolor-5" />
+      <ColorCard label="ecolor-6" :type="1" class="ecolor-6" />
+      <ColorCard label="ecolor" :type="1" class="ecolor-7" />
+      <ColorCard label="ecolor-8" :type="1" class="ecolor-8" />
+      <ColorCard label="ecolor-9" :type="1" class="ecolor-9" />
+      <ColorCard label="ecolor-10" :type="1" class="radius_last ecolor-10" />
     </div>
     <div class="ykcolor-group">
-      <ColorCard
-        label="grap-1"
-        color="#eaeaea"
-        :type="1"
-        class="radius_first black"
-      />
-      <ColorCard label="grap-2" color="#dcdcdc" :type="1" class="black" />
-      <ColorCard label="grap-3" color="#d3d3d3" :type="1" class="black" />
-      <ColorCard label="grap-4" color="#bcbec0" :type="1" class="black" />
-      <ColorCard label="grap-5" color="#aaa9ac" :type="1" class="black" />
-      <ColorCard label="grap-6" color="#808284" :type="1" />
-      <ColorCard label="grap-7" color="#5b5d61" :type="1" />
-      <ColorCard label="grap-8" color="#4b4b4f" :type="1" />
-      <ColorCard label="grap-9" color="#2c2d30" :type="1" />
-      <ColorCard label="grap" color="#1E2025" :type="1" class="radius_last" />
+      <ColorCard label="gray-1" :type="1" class="radius_first black gray-1" />
+      <ColorCard label="gray-2" :type="1" class="black gray-2" />
+      <ColorCard label="gray-3" :type="1" class="black gray-3" />
+      <ColorCard label="gray-4" :type="1" class="black gray-4" />
+      <ColorCard label="gray-5" :type="1" class="black gray-5" />
+      <ColorCard label="gray-6" :type="1" class="gray gray-6" />
+      <ColorCard label="gray-7" :type="1" class="gray gray-7" />
+      <ColorCard label="gray-8" :type="1" class="gray gray-8" />
+      <ColorCard label="gray-9" :type="1" class="gray gray-9" />
+      <ColorCard label="gray-10" :type="1" class="radius_last gray gray-10" />
     </div>
   </div>
 </template>
+<style lang="less" scoped>
+.colors(@i,@name) when(@i<=10) {
+  .@{name}-@{i} {
+    background-color: ~'@{@{name}-@{i}}';
+  }
+  .colors(@i+1,@name);
+}
+.colors(1,pcolor);
+.colors(1,scolor);
+.colors(1,wcolor);
+.colors(1,ecolor);
+.colors(1,gray);
+</style>

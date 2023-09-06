@@ -1,5 +1,6 @@
 import type { Component, App } from 'vue';
 
+// export * from './components/svg-icon';
 import YkUpload from './components/upload';
 import { YkRadio, YkRadioGroup } from './components/radio';
 import { YkCheckbox, YkCheckboxGroup } from './components/checkbox';

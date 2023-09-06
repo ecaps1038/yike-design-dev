@@ -1,6 +1,6 @@
 <template>
   <YkPopover
-    v-bind="{ ...$props, ...$attrs, open, trigger }"
+    v-bind="{ ...props, ...$attrs, open, trigger }"
     :class="bem()"
     @update:open="changeOpen"
   >
@@ -18,7 +18,7 @@
           v-if="showCancel"
           size="s"
           type="secondary"
-          v-bind="{ ...$props.cancelButtonProps }"
+          v-bind="{ ...props.cancelButtonProps }"
           :loading="cancelLoading"
           @click="cancel"
         >
@@ -26,7 +26,7 @@
         </YkButton>
         <YkButton
           size="s"
-          v-bind="{ ...$props.okButtonProps }"
+          v-bind="{ ...props.okButtonProps }"
           :loading="okLoading"
           @click="confirm"
         >

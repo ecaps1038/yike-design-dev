@@ -8,7 +8,11 @@
         <ColorCard label="scolor-light" color="#1FB4A2" />
         <ColorCard label="wcolor-light" color="#F5AC08" />
         <ColorCard label="ecolor-light" color="#FA5247" />
-        <ColorCard label="gray" color="#1E2025" />
+        <ColorCard
+          label="gray"
+          color="#1E2025"
+          style="border: 1px solid #444"
+        />
       </div>
     </div>
     <div class="ykcolor-primary-right">
