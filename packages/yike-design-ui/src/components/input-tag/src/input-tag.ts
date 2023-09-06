@@ -2,22 +2,20 @@ import { Size, Status } from '../../utils/constant';
 import { InputProps } from '../../input';
 
 export type TagType = Array<string | number>;
-export type DisplayModeType = 'scroll' | 'break-line';
 
 export type InputTagProps = {
   modelValue: TagType;
   value: TagType;
   defaultValue: TagType;
-  onChange: (val: TagType) => void;
   status: Status;
-  tips: string;
   size: Size;
-  allowClear: boolean;
+  clearable: boolean;
   placeholder: string;
   readonly: boolean;
   disabled: boolean;
+  limit: number;
   max: number;
-  displayMode: DisplayModeType;
-  message: string;
+  mincollapsedNum: number;
   inputProps: InputProps;
+  onChange: (val: TagType) => void;
 };

@@ -70,6 +70,7 @@ const styleList = computed(() => {
 })
 
 const closeTagHander = (e: MouseEvent) => {
+  if (disabled.value) return
   emit('close', e)
 }
 

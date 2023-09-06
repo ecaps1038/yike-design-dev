@@ -1,9 +1,11 @@
+@import '../../styles/color/colors.less';
+
 .yk-input-tag {
+  position: relative;
   margin: 0;
   padding: 0;
   width: 100%;
   list-style: none;
-  box-sizing: border-box;
 
   &__tag_input_placeholder {
     position: absolute;
@@ -18,11 +20,22 @@
     &__inner {
       display: block;
     }
+
+    &__widget {
+      max-width: 100%;
+    }
+
+    .yk-icon:last-child {
+      margin-right: 0px !important;
+    }
+  }
+
+  &__tag-list {
+    display: inline;
   }
 
   .yk-tag {
-    margin: 3px 0;
-    max-width: 90%;
+    margin: 2px 2px 0 0;
     transition: background-color 0.2s ease-in-out;
 
     &__content {
@@ -33,11 +46,80 @@
 
   &__blur {
     .yk-tag {
-      background-color: #ffffff;
+      background-color: @gray-2;
     }
   }
 
-  .yk-tag__content {
-    margin-left: 0px !important;
+  &__hover {
+    .yk-input-tag__close-icon {
+      display: block;
+    }
+  }
+
+  &__disabled {
+    cursor: not-allowed;
+
+    .yk-input-tag__close-icon {
+      cursor: not-allowed !important;
+      opacity: 0.8;
+
+      &:hover {
+        color: @font-color-s;
+        background: transparent;
+      }
+    }
+  }
+
+  &__has-tag {
+    .yk-input__inner {
+      padding: 0 @space-ss;
+    }
+
+    .yk-input__widget {
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+  }
+
+  &__show-suffix {
+    .yk-input__inner {
+      padding-right: 35px;
+    }
+  }
+
+  &__close-icon {
+    display: none;
+    overflow: hidden;
+    margin-right: @space-ss;
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    color: @font-color-s;
+    background: none;
+    transition: all @animatb;
+    cursor: pointer;
+
+    &:hover {
+      color: @font-color-l;
+      background-color: @gray-1;
+    }
+    .icon-cross-outline {
+      margin: 0 !important;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__suffix {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    transform: translateY(-50%);
+    flex-direction: row;
   }
 }

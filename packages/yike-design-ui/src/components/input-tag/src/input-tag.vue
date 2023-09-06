@@ -8,27 +8,61 @@
       :size="mergedSize"
       :input-style="inputStyle"
       :disabled="mergedDisabled"
+      :status="mergedStatus"
+      :readonly="readonly"
+      :limit="limit"
+      @change="onChange"
       @focus="onInputFocus"
       @keydown="onKeydown"
       @blur="onBlur"
-      @click.stop="onClick"
       @mouseenter="onMouseenter"
       @mouseleave="onMouseleave"
     >
       <template #prefix>
         <div :class="bem('tag-list')">
-          <YkTag
-            v-for="(tag, index) in tagList"
+          <yk-tag
+            v-for="(tag, index) in renderTagList"
             :key="index"
             :class="bem('tag-list-item')"
-            closeable
-            size="s"
+            :size="tagSize"
             :disabled="mergedDisabled"
+            :type="mergedStatus"
+            :closeable="clearable"
             @close="onCloseTag(index)"
-            @click.stop="onClick"
           >
             {{ tag }}
-          </YkTag>
+          </yk-tag>
+          <template v-if="showCollapsedNum">
+            <yk-tag
+              v-if="!$slots.collapsedItems"
+              :class="bem('tag-list-item')"
+              :size="tagSize"
+              :disabled="mergedDisabled"
+              :type="mergedStatus"
+            >
+              +{{ tagList.length - +showCollapsedNum }}
+            </yk-tag>
+            <slot
+              v-else
+              name="collapsedItems"
+              :collapsed-tags="tagList.slice(mincollapsedNum, tagList.length)"
+            ></slot>
+          </template>
+        </div>
+      </template>
+      <template #suffix>
+        <div v-if="showSuffix" :class="bem('suffix')">
+          <button
+            v-if="clearable"
+            type="button"
+            :class="bem('close-icon')"
+            @click.stop="onCloseAll"
+          >
+            <slot name="closeElement">
+              <IconCrossOutline />
+            </slot>
+          </button>
+          <slot v-if="$slots.suffix" name="suffix"></slot>
         </div>
       </template>
     </YkInput>
@@ -38,15 +72,24 @@
   </div>
 </template>
 <script setup lang="ts">
-import { toRefs, ref, computed, watch } from 'vue'
+import {
+  toRefs,
+  ref,
+  computed,
+  watch,
+  onMounted,
+  nextTick,
+  getCurrentInstance,
+} from 'vue'
 import { InputTagProps } from './input-tag'
 import { createCssScope } from '../../utils/bem'
 import useVModel from '../../utils/hooks/use-v-model'
 import { useFormItem } from '../../utils'
-import { STATUS_MAP, SIZES_MAP } from '../../utils/constant'
+import { SIZES_MAP } from '../../utils/constant'
 import { calculateElementStyle } from './utils'
 
 const bem = createCssScope('input-tag')
+const ctx = getCurrentInstance()
 
 defineOptions({
   name: 'YkInputTag',
@@ -57,10 +100,13 @@ const props = withDefaults(defineProps<InputTagProps>(), {
   value: undefined,
   defaultValue: undefined,
   disabled: false,
-  status: STATUS_MAP.primary,
+  status: undefined,
+  clearable: true,
   size: SIZES_MAP.m,
-  message: '',
   inputProps: undefined,
+  limit: undefined,
+  max: undefined,
+  mincollapsedNum: 0,
 })
 
 const emits = defineEmits([
@@ -79,10 +125,13 @@ const {
   disabled,
   status,
   size,
-  message,
   inputProps,
   placeholder,
   max,
+  readonly,
+  clearable,
+  mincollapsedNum,
+  limit,
 } = toRefs(props)
 
 const [tagList, setTagList] = useVModel(
@@ -92,47 +141,188 @@ const [tagList, setTagList] = useVModel(
   props.onChange,
 )
 
-const { mergedDisabled, isError, mergedStatus, mergedSize, validate } =
-  useFormItem({
-    disabled,
-    status,
-    message,
-    size,
-  })
+const { mergedDisabled, mergedStatus, mergedSize, validate } = useFormItem({
+  disabled,
+  status,
+  size,
+})
 const inputVal = ref('')
 const isFocus = ref(false)
 const isHovering = ref(false)
+
+const showSuffix = computed(() => {
+  const suffixSlot = ctx?.proxy?.$slots?.suffix
+  return !!suffixSlot || clearable.value
+})
+
+const showCollapsedNum = computed(() => {
+  return !!mincollapsedNum.value && tagList.value.length > mincollapsedNum.value
+})
+
+const renderTagList = computed(() => {
+  return (
+    tagList.value?.slice(
+      0,
+      showCollapsedNum.value ? mincollapsedNum.value : tagList.value.length,
+    ) || []
+  )
+})
 
 const className = computed(() => {
   return [
     bem(),
     bem(isFocus.value ? 'focus' : 'blur'),
     bem(isHovering.value ? 'hover' : ''),
+    bem(tagList.value.length ? 'has-tag' : ''),
+    bem(showSuffix.value ? 'show-suffix' : ''),
+    bem(mergedDisabled.value ? 'disabled' : ''),
   ]
+})
+
+const tagSize = computed(() => {
+  // 比input的大小要小一个规格
+  const sizeList = Object.keys(SIZES_MAP)
+  const scaleIndex = sizeList.findIndex((size) => size === mergedSize.value)
+  const tagSizeIndex = scaleIndex - 1
+  // 最小大小为sizeList的第一个，防止越界
+  return tagSizeIndex >= 0 ? sizeList[tagSizeIndex] : sizeList[0]
 })
 
 const setInputVal = (val: string) => {
   inputVal.value = val
 }
 
+// 获取ykTagInput的$refs
+const ykTagInput = ref(null)
+
+// 输入框聚焦方法
+const inputFocus = () => {
+  ykTagInput.value?.inputRef.focus()
+}
+
+// tagInput占位元素
+const tagInputPlaceholder = ref<HTMLInputElement | null>(null)
+
+// 计算需要占位多少宽度
+const calculateTagInputPlaceholderWidth = (): number => {
+  const { width } = tagInputPlaceholder.value?.getBoundingClientRect() || {}
+  return parseFloat(width) || 0
+}
+
+// tagInputWidth默认值为tagInputPlaceholder的宽度
+const tagInputWidth = ref<number>(0)
+// 更新tagInputWidth方法
+const updateTagInputWidth = (v?: number) => {
+  nextTick(() => {
+    tagInputWidth.value = v || calculateTagInputPlaceholderWidth()
+  })
+}
+
+// 获取ykTagInput元素的padding值
+const calculateYkTagInputPadding = () => {
+  if (!ykTagInput.value?.inputRef) return 0
+  const { paddingLeft, paddingRight } = calculateElementStyle(
+    ykTagInput.value?.inputRef,
+  )
+  return paddingLeft + paddingRight
+}
+
+// 动态给输入框样式
+const inputStyle = computed(() => {
+  // 计算padding的总宽度
+  const paddingW = calculateYkTagInputPadding()
+  // 追加2px，防止为空的时候无宽度
+  return {
+    width: `${Math.ceil(tagInputWidth.value + paddingW + 2)}px`,
+  }
+})
+
+// 鼠标按下事件
+const onMousedown = (e: MouseEvent) => {
+  // 按下即聚焦
+  if (ykTagInput.value?.inputRef && e.target !== ykTagInput.value?.inputRef) {
+    e.preventDefault()
+    inputFocus()
+  }
+
+  // 触发点击事件
+  emits('click')
+}
+
+// 监听失焦事件
+const onBlur = () => {
+  // 1、置为失焦状态
+  isFocus.value = false
+  // 2、清空已输入的值
+  setInputVal('')
+  // 3、重新计算input宽度
+  updateTagInputWidth()
+  // 4、通知外部
+  validate('blur')
+  emits('blur')
+}
+
+// 监听输入change事件
+const onChange = () => {
+  validate('change')
+}
+
+// 监听关闭标签事件
+const onCloseTag = (index: number) => {
+  // 删除指定位置标签
+  tagList.value.splice(index, 1)
+}
+
+// 监听清除全部事件
+const onCloseAll = () => {
+  if (mergedDisabled.value) return
+  setInputVal('')
+  setTagList([])
+}
+
+// 监听鼠标移入事件
+const onMouseenter = () => {
+  // 将状态置为hover状态
+  isHovering.value = true
+  // 触发hover外部事件
+  emits('hoverin')
+}
+
+// 监听鼠标移出事件
+const onMouseleave = () => {
+  // 将状态置为非hover状态
+  isHovering.value = false
+  // 触发hover外部事件
+  emits('hoverout')
+}
+
+// 监听输入聚焦事件
 const onInputFocus = () => {
+  // 将状态置为focus状态
   isFocus.value = true
+  // 触发focus外部事件
+  validate('focus')
   emits('focus')
 }
 
+// 监听键盘回车事件
 const onKeydownEnter = () => {
+  // 1、将输入框输入的值空白去掉
   const inputValue = inputVal.value.trim()
+  // 2、空白不响应
   if (!inputValue) return
-  if (tagList.value.length >= max.value) {
+  // 判断是否有传tag最大数量，有则仅响应触发外部enter事件
+  if (max.value && tagList.value.length >= max.value) {
     emits('keydown', 'enter', inputValue)
     return setInputVal('')
   }
-  // 新增一个tag
+  // 3、否则新增一个tag，以及触发事件
   setTagList(tagList.value.concat(inputValue))
   emits('keydown', 'enter', inputValue)
   setInputVal('')
 }
 
+// 监听键盘回退事件
 const onKeydownBackspace = () => {
   // 当无输入内容时，删除最后一个tag
   if (inputVal.value.trim() !== '') return
@@ -146,6 +336,7 @@ const onKeydownMap: { [key: string]: (ev: KeyboardEvent) => void } = {
   Backspace: onKeydownBackspace,
 }
 
+// 监听键盘相关事件
 const onKeydown = (ev: KeyboardEvent) => {
   // 获取到事件名称，根据键盘事件映射执行对应的方法
   const { key } = ev || {}
@@ -153,82 +344,25 @@ const onKeydown = (ev: KeyboardEvent) => {
   keydownHandler && keydownHandler(ev)
 }
 
-// 获取ykTagInput的$refs
-const ykTagInput = ref(null)
-const inputFocus = () => {
-  ykTagInput.value?.inputRef.focus()
-}
-
-const onMousedown = (e: MouseEvent) => {
-  if (ykTagInput.value?.inputRef && e.target !== ykTagInput.value?.inputRef) {
-    e.preventDefault()
-    inputFocus()
-  }
-}
-
-const onClick = () => {
-  inputFocus()
-  emits('click')
-}
-
-const onCloseTag = (index: number) => {
-  tagList.value.splice(index, 1)
-  // 防止失焦
-  inputFocus()
-}
-
-const onMouseenter = () => {
-  isHovering.value = true
-  emits('hoverin')
-}
-
-const onMouseleave = () => {
-  isHovering.value = false
-  emits('hoverout')
-}
-
-const tagInputPlaceholder = ref<HTMLInputElement | null>(null)
-const getTagInputPlaceholderWidth = (): number => {
-  const { width } = tagInputPlaceholder.value?.getBoundingClientRect() || {}
-  return width || 0
-}
-// tagInputWidth默认值为tagInputPlaceholder的宽度
-const tagInputWidth = ref(0)
-
+// 监听input的输入，动态给input赋予宽度
 watch(
-  () => {
-    const { width } = tagInputPlaceholder.value?.getBoundingClientRect() || {}
-    return width
-  },
+  () => inputVal.value,
   (newVal) => {
-    console.log('1111', newVal)
-    tagInputWidth.value = newVal!
+    if (!newVal) {
+      tagInputWidth.value = 0
+    }
+    nextTick(() => {
+      const newWidth = calculateTagInputPlaceholderWidth()
+      if (newWidth >= tagInputWidth.value) updateTagInputWidth()
+    })
   },
   {
     immediate: true,
   },
 )
 
-// 获取ykTagInput元素的padding值
-const getYkTagInputPadding = () => {
-  if (!ykTagInput.value?.inputRef) return 0
-  const { paddingLeft, paddingRight } = calculateElementStyle(
-    ykTagInput.value?.inputRef,
-  )
-  return paddingLeft + paddingRight
-}
-
-const inputStyle = computed(() => {
-  const paddingW = getYkTagInputPadding()
-  return {
-    width: `${tagInputWidth.value + paddingW}px`,
-  }
+onMounted(() => {
+  // 初始化更新tagInput的宽度
+  updateTagInputWidth()
 })
-
-const onBlur = () => {
-  isFocus.value = false
-  setInputVal('')
-  tagInputWidth.value = getTagInputPlaceholderWidth()
-  emits('blur')
-}
 </script>
