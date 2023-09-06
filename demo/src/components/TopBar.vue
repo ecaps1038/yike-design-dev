@@ -21,7 +21,7 @@ const isDev = import.meta.env.DEV
     <router-link class="logo" to="/">
       <img src="@/assets/icon/logo.svg" />
       <IconYkdesignFill class="name" />
-      <yk-tag v-if="isDev" type="primary">DEV</yk-tag>
+      <!-- <yk-tag v-if="isDev" type="primary">DEV</yk-tag> -->
     </router-link>
     <yk-space class="nav-links" :size="24" align="center">
       <a class="nav-item responsive-hidden" :href="Links.design">UI 设计稿</a>
@@ -91,9 +91,9 @@ const isDev = import.meta.env.DEV
   }
 
   .name {
-    padding: 0 10px;
+    margin: 2px 10px 0;
     width: auto;
-    height: 20px;
+    height: 18px;
     color: @font-color-l !important;
   }
 
