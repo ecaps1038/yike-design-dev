@@ -40,7 +40,6 @@
 
 .yk-input__inner {
   display: flex;
-  // overflow-x: scroll;
   width: inherit;
   transition: all @animatb ease-in-out;
 
@@ -80,16 +79,15 @@
   }
 }
 
-.yk-input__button svg {
+.yk-input__button .yk-icon {
+  margin: unset !important;
   padding: 3px;
-  width: 20px;
-  height: 20px;
+  width: 20px !important;
+  height: 20px !important;
   border-radius: 50%;
   transition: all @animatb;
-  fill: @font-color-l !important;
 
   &:hover {
-    fill: @font-color-l !important;
     background-color: @bg-color-ss;
   }
 }
