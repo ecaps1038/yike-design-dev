@@ -117,7 +117,7 @@ const isDev = import.meta.env.DEV
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (max-width: 810px) {
   .responsive-hidden {
-    display: none;
+    display: none !important;
   }
 
   .logo {

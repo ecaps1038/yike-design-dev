@@ -72,7 +72,7 @@ onMounted(() => {
     padding: unset;
 
     .wrapper {
-      padding: 0 8px;
+      padding: 0 16px;
       width: 100vw;
     }
 
