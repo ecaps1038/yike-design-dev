@@ -26,9 +26,7 @@
         bem([mergedSize]),
       ]"
     >
-      <span v-if="$slots.prefix" :class="bem(['slot', 'before'])">
-        <slot name="prefix" />
-      </span>
+      <slot name="prefix" />
       <input
         :id="id"
         ref="inputRef"
@@ -76,9 +74,7 @@
       <div v-if="loading" :class="bem('spinner')">
         <YkSpinner />
       </div>
-      <span v-if="$slots.suffix" :class="bem(['slot', 'after'])">
-        <slot name="suffix" />
-      </span>
+      <slot name="suffix" />
     </div>
     <span v-if="$slots.append" :class="bem('append')">
       <slot name="append" />
