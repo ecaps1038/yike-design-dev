@@ -60,9 +60,9 @@ onMounted(() => {
 
 .anchor-wrap {
   position: sticky;
-  top: 138px;
+  top: 88px;
   float: left;
-  padding: 0 64px 0 32px;
+  padding: 0 16px 0 56px;
   width: var(--anchor-width);
 }
 
