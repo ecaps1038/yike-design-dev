@@ -12,7 +12,7 @@
       <yk-dropdown-item value="33">Action 3</yk-dropdown-item>
       <yk-dropdown-item value="44">Action 4</yk-dropdown-item>
     </yk-dropdown>
-    <yk-dropdown title="contextmenu" trigger="contextMenu">
+    <yk-dropdown title="contextmenu" trigger="contextmenu">
       <yk-dropdown-item value="111">Action 1</yk-dropdown-item>
       <yk-dropdown-item value="222">Action 2</yk-dropdown-item>
       <yk-dropdown-item value="333">Action 3</yk-dropdown-item>
@@ -20,7 +20,7 @@
     </yk-dropdown>
     <yk-dropdown
       title="click & contextmenu"
-      :trigger="['click', 'contextMenu']"
+      :trigger="['click', 'contextmenu']"
     >
       <yk-dropdown-item value="111">Action 1</yk-dropdown-item>
       <yk-dropdown-item value="222">Action 2</yk-dropdown-item>
