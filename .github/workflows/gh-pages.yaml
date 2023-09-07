@@ -24,7 +24,6 @@ jobs:
         run: |
           pnpm run build:demo
           touch ./demo/dist/index.html
-          cp ./demo/dist/index.html ./demo/dist/404.html
 
       - name: Deploy site
         uses: JamesIves/github-pages-deploy-action@v4
