@@ -62,8 +62,9 @@ onMounted(() => {
   position: sticky;
   top: 88px;
   float: left;
+  padding-right: 4px;
   padding-left: 56px;
-  width: 208px;
+  width: 212px;
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */
