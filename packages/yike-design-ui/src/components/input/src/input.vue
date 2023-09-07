@@ -208,7 +208,7 @@ const compositionend = () => {
 }
 
 const keydown = (ev: KeyboardEvent) => {
-  if (ev.key === 'Enter') {
+  if (ev.key === 'Enter' && !isTyping.value) {
     emits('submit')
   }
   emits('keydown', ev)
