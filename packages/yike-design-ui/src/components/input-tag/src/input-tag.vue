@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" @mousedown="onMousedown">
+  <div :class="className" @mousedown.stop="onMousedown">
     <YkInput
       ref="ykTagInput"
       v-bind="inputProps"
@@ -26,8 +26,8 @@
             :class="bem('tag-list-item')"
             :size="tagSize"
             :disabled="mergedDisabled"
-            :type="mergedStatus"
             :closeable="clearable"
+            v-bind="tagProps"
             @close="onCloseTag(index)"
           >
             {{ tag }}
@@ -38,7 +38,6 @@
               :class="bem('tag-list-item')"
               :size="tagSize"
               :disabled="mergedDisabled"
-              :type="mergedStatus"
             >
               +{{ tagList.length - +showCollapsedNum }}
             </yk-tag>
@@ -132,7 +131,10 @@ const {
   clearable,
   mincollapsedNum,
   limit,
+  tagProps,
 } = toRefs(props)
+
+console.log('tagProps:', tagProps)
 
 const [tagList, setTagList] = useVModel(
   value,
@@ -311,14 +313,16 @@ const onKeydownEnter = () => {
   const inputValue = inputVal.value.trim()
   // 2、空白不响应
   if (!inputValue) return
+  // 将长度先+1，给外部判断超过限制的场景值
+  const curLength = tagList.value.length + 1
   // 判断是否有传tag最大数量，有则仅响应触发外部enter事件
   if (max.value && tagList.value.length >= max.value) {
-    emits('keydown', 'enter', inputValue)
+    emits('keydown', 'enter', { inputValue, curLength })
     return setInputVal('')
   }
   // 3、否则新增一个tag，以及触发事件
   setTagList(tagList.value.concat(inputValue))
-  emits('keydown', 'enter', inputValue)
+  emits('keydown', 'enter', { inputValue, curLength })
   setInputVal('')
 }
 

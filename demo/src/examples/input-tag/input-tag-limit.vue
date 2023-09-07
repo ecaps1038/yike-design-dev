@@ -2,19 +2,14 @@
   <div style="width: 360px">
     <yk-input-tag
       v-model="tag"
-      placeholder="请输入"
-      :on-change="onChange"
+      placeholder="最大5个字符"
+      :limit="limit"
     ></yk-input-tag>
   </div>
 </template>
 <script setup>
 import { ref } from 'vue'
-const tag = ref([])
-const onChange = (v) => {
-  console.log('tag-list:', v)
-}
-</script>
 
-<!-- <template #suffix>
-  <icon-bookmark-outline />
-</template> -->
+const limit = 5
+const tag = ref([])
+</script>

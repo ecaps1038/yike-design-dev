@@ -3,18 +3,14 @@
     <yk-input-tag
       v-model="tag"
       placeholder="请输入"
-      :on-change="onChange"
+      :tag-props="tagProps"
     ></yk-input-tag>
   </div>
 </template>
 <script setup>
 import { ref } from 'vue'
-const tag = ref([])
-const onChange = (v) => {
-  console.log('tag-list:', v)
-}
+const tag = ref(['测试'])
+const tagProps = ref({
+  type: 'primary',
+})
 </script>
-
-<!-- <template #suffix>
-  <icon-bookmark-outline />
-</template> -->
