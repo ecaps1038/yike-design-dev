@@ -71,15 +71,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import {
-  toRefs,
-  ref,
-  computed,
-  watch,
-  onMounted,
-  nextTick,
-  getCurrentInstance,
-} from 'vue'
+import { toRefs, ref, computed, watch, nextTick, getCurrentInstance } from 'vue'
 import { InputTagProps } from './input-tag'
 import { createCssScope } from '../../utils/bem'
 import useVModel from '../../utils/hooks/use-v-model'
@@ -134,8 +126,6 @@ const {
   tagProps,
 } = toRefs(props)
 
-console.log('tagProps:', tagProps)
-
 const [tagList, setTagList] = useVModel(
   value,
   modelValue,
@@ -161,6 +151,7 @@ const showCollapsedNum = computed(() => {
   return !!mincollapsedNum.value && tagList.value.length > mincollapsedNum.value
 })
 
+// 需要渲染到tag列表
 const renderTagList = computed(() => {
   return (
     tagList.value?.slice(
@@ -205,10 +196,22 @@ const inputFocus = () => {
 // tagInput占位元素
 const tagInputPlaceholder = ref<HTMLInputElement | null>(null)
 
+// 获取ykTagInput元素的padding值
+// // 计算padding的总宽度
+const calculateYkTagInputPadding = () => {
+  if (!ykTagInput.value?.inputRef) return 0
+  const { paddingLeft, paddingRight } = calculateElementStyle(
+    ykTagInput.value?.inputRef,
+  )
+  return paddingLeft + paddingRight
+}
+
 // 计算需要占位多少宽度
 const calculateTagInputPlaceholderWidth = (): number => {
   const { width } = tagInputPlaceholder.value?.getBoundingClientRect() || {}
-  return parseFloat(width) || 0
+  const paddingWidth = calculateYkTagInputPadding()
+  console.log('重新算到:', paddingWidth)
+  return (width || 0) + paddingWidth
 }
 
 // tagInputWidth默认值为tagInputPlaceholder的宽度
@@ -220,22 +223,11 @@ const updateTagInputWidth = (v?: number) => {
   })
 }
 
-// 获取ykTagInput元素的padding值
-const calculateYkTagInputPadding = () => {
-  if (!ykTagInput.value?.inputRef) return 0
-  const { paddingLeft, paddingRight } = calculateElementStyle(
-    ykTagInput.value?.inputRef,
-  )
-  return paddingLeft + paddingRight
-}
-
 // 动态给输入框样式
 const inputStyle = computed(() => {
-  // 计算padding的总宽度
-  const paddingW = calculateYkTagInputPadding()
-  // 追加2px，防止为空的时候无宽度
+  // 给多2px，防止内容为空的时候，宽度为0
   return {
-    width: `${Math.ceil(tagInputWidth.value + paddingW + 2)}px`,
+    width: `${Math.ceil(tagInputWidth.value + 2)}px`,
   }
 })
 
@@ -257,9 +249,7 @@ const onBlur = () => {
   isFocus.value = false
   // 2、清空已输入的值
   setInputVal('')
-  // 3、重新计算input宽度
-  updateTagInputWidth()
-  // 4、通知外部
+  // 3、通知外部
   validate('blur')
   emits('blur')
 }
@@ -278,8 +268,8 @@ const onCloseTag = (index: number) => {
 // 监听清除全部事件
 const onCloseAll = () => {
   if (mergedDisabled.value) return
-  setInputVal('')
   setTagList([])
+  setInputVal('')
 }
 
 // 监听鼠标移入事件
@@ -365,8 +355,14 @@ watch(
   },
 )
 
-onMounted(() => {
-  // 初始化更新tagInput的宽度
-  updateTagInputWidth()
-})
+// 监听tag列表的长度，长度改变的时候，更新输入框宽度
+watch(
+  () => tagList.value.length,
+  () => {
+    updateTagInputWidth()
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
