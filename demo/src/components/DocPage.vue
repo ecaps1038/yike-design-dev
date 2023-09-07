@@ -57,7 +57,7 @@ onMounted(() => {
   float: left;
   padding-right: 14px;
   padding-left: 56px;
-  width: 212px;
+  width: var(--anchor-width);
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */
