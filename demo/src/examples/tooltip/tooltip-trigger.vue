@@ -21,13 +21,13 @@
     <yk-tooltip trigger="click">
       <yk-button type="outline">click</yk-button>
     </yk-tooltip>
-    <yk-tooltip trigger="contextMenu">
+    <yk-tooltip trigger="contextmenu">
       <yk-button type="outline">contextmenu</yk-button>
     </yk-tooltip>
     <yk-tooltip trigger="focus">
       <yk-input />
     </yk-tooltip>
-    <yk-tooltip :trigger="['contextMenu', 'click']">
+    <yk-tooltip :trigger="['contextmenu', 'click']">
       <yk-button type="outline">click/contextMenu</yk-button>
     </yk-tooltip>
   </yk-space>
