@@ -210,7 +210,6 @@ const calculateYkTagInputPadding = () => {
 const calculateTagInputPlaceholderWidth = (): number => {
   const { width } = tagInputPlaceholder.value?.getBoundingClientRect() || {}
   const paddingWidth = calculateYkTagInputPadding()
-  console.log('重新算到:', paddingWidth)
   return (width || 0) + paddingWidth
 }
 

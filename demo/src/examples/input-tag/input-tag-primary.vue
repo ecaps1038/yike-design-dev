@@ -14,7 +14,3 @@ const onChange = (v) => {
   console.log('tag-list:', v)
 }
 </script>
-
-<!-- <template #suffix>
-  <icon-bookmark-outline />
-</template> -->
