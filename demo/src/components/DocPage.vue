@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, nextTick, inject } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import type { Ref } from 'vue'
 
 defineOptions({
@@ -13,7 +13,6 @@ const hasNavBar = inject<Ref>('hasNavBar')
 onMounted(() => {
   const docNode = docRef.value
   const wrapperNode = docNode.children[0] as HTMLElement
-  const anchorNode = docNode.childNodes[1] as HTMLElement
   const docH3es = wrapperNode.querySelectorAll('h3.yk-title[id]')
 
   Array.from(docH3es).forEach((el: HTMLElement) => {
@@ -21,13 +20,6 @@ onMounted(() => {
       href: `#${el.id}`,
       title: el.id,
     })
-  })
-
-  nextTick(() => {
-    docNode.style.setProperty(
-      '--anchor-width',
-      `${anchorNode.offsetWidth + 10}px`,
-    )
   })
 })
 </script>
@@ -45,6 +37,7 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .yk-demo-doc {
+  --anchor-width: 212px;
   flex: 1;
   padding: 0 0 64px 64px;
 
@@ -62,9 +55,9 @@ onMounted(() => {
   position: sticky;
   top: 88px;
   float: left;
-  padding-right: 4px;
+  padding-right: 14px;
   padding-left: 56px;
-  width: 212px;
+  width: var(--anchor-width);
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */
