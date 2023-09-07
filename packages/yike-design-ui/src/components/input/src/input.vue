@@ -133,7 +133,7 @@ const shouldShowLimit = props.showCounter && shouldLimitInput
 const shouldShowVisiblePasswordButton =
   props.type === 'password' && !props.disabled && props.visible
 let lastValue = unref(props.modelValue)
-const valueCounter = ref<number>((lastValue as string).length)
+const valueCounter = ref<number>(lastValue.length)
 const emits = defineEmits([
   'focus',
   'blur',
@@ -149,7 +149,7 @@ const inputRef = ref<HTMLInputElement>()
 
 const isFocus = ref(false)
 const isHovering = ref(false)
-const shouldShowButton = ref((lastValue as string).length > 0)
+const shouldShowButton = ref(lastValue.length > 0)
 const inputType = ref(props.type)
 
 const focus = () => {
@@ -205,10 +205,11 @@ const compositionstart = () => {
 // 结束使用中文输入法
 const compositionend = () => {
   isTyping.value = false
+  update()
 }
 
 const keydown = (ev: KeyboardEvent) => {
-  if (ev.key === 'Enter') {
+  if (ev.key === 'Enter' && !isTyping.value) {
     emits('submit')
   }
   emits('keydown', ev)
