@@ -25,7 +25,13 @@ function goPage(path: string) {
       </yk-button>
     </yk-space>
     <IconYike1Outline class="sign" @click="goPage('hh')" />
-    <!-- <img src="@/assets/images/bg.png" class="bg-img" /> -->
+    <div class="bg-img">
+      <p class="round size-1000"></p>
+      <p class="round size-800"></p>
+      <p class="round size-1600"></p>
+      <p class="round size-600"></p>
+      <p class="round size-760"></p>
+    </div>
   </div>
 </template>
 
@@ -44,12 +50,43 @@ function goPage(path: string) {
     width: 56px;
     height: 56px;
   }
+}
 
-  .bg-img {
+.size(@name,@top,@left,@right) {
+  .size-@{name} {
+    top: ~'@{top}px';
+    right: @right;
+    left: @left;
+    width: ~'@{name}px';
+    height: ~'@{name}px';
+  }
+}
+
+.bg-img {
+  position: absolute;
+  bottom: 200px;
+  z-index: -1;
+  width: 100%;
+  // height: 200px;
+  background: #eee;
+
+  .round {
     position: absolute;
-    bottom: 0;
-    z-index: -1;
-    width: 100%;
+    border-radius: 50%;
+    background-image: linear-gradient(
+      144deg,
+      rgb(99 133 237 / 0%) 0%,
+      rgb(61 104 235 / 30%) 100%
+    );
+  }
+  .size(1000,44,-400px,0);
+  .size(800,75,-40px,0);
+  .size(1600,0,0,0);
+  .size(600,110,auto,260px);
+  .size(760,42,auto,-200px);
+
+  .size-1600 {
+    margin: 0 auto;
   }
 }
 

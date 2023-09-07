@@ -2,36 +2,48 @@ import { StyleValue } from 'vue';
 
 const PLACEMENT = [
   'top',
-  'left',
-  'right',
-  'bottom',
   'topLeft',
   'topRight',
+
+  'bottom',
   'bottomLeft',
   'bottomRight',
+
+  'left',
   'leftTop',
   'leftBottom',
+
+  'right',
   'rightTop',
   'rightBottom',
 ] as const;
-export type Placement = (typeof PLACEMENT)[number];
 
-const TRIGGER = ['hover', 'focus', 'click', 'contextMenu', 'none'] as const;
+// prettier-ignore
+const TRIGGER = [
+  'none',
+  'hover',
+  'click', 
+  'focus', 
+  'contextmenu', 
+] as const;
+
+export type Placement = (typeof PLACEMENT)[number];
 export type Trigger = (typeof TRIGGER)[number];
 
 export type TooltipProps = {
   title?: string;
+  open?: boolean;
+  arrow?: boolean;
   placement?: Placement;
   trigger?: Trigger | Trigger[];
-  open?: boolean;
-  closeDelay?: number;
+  animation?: string;
   openDelay?: number;
-  autoAdjustOverflow?: boolean;
+  closeDelay?: number;
+  overlayClass?: string;
   overlayStyle?: StyleValue;
-  overlayClassName?: string;
-  zIndex?: number;
+  autoAdjustOverflow?: boolean;
   destroyTooltipOnHide?: boolean;
-  arrow?: boolean;
+  zIndex?: number;
 };
 
 export type TooltipEmit = {

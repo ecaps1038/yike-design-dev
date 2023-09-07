@@ -1,10 +1,8 @@
-@import '../../tooltip/style/index.less';
-@import '../../styles/mixin.less';
 .yk-dropdown {
   position: relative;
 
   .yk-tooltip {
-    --tooltip-theme-bg-color: @bg-color-l;
+    --tooltip-theme-bg-color: @light;
     --tooltip-theme-font-color: @font-color-l;
   }
 
@@ -33,6 +31,9 @@
   line-height: 32px;
   border-radius: @radius-s;
   cursor: pointer;
+
+  & .left {
+  }
 
   &.disabled {
     .disabled();
