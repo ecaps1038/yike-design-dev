@@ -40,6 +40,7 @@
         tabindex="0"
         :value="lastValue"
         :aria-disabled="mergedDisabled"
+        :style="inputStyle"
         @focus="focus"
         @input="update"
         @blur="blur"
@@ -116,7 +117,7 @@ const props = withDefaults(defineProps<InputProps>(), {
 })
 const bem = createCssScope('input')
 
-const { disabled, status, message, size } = toRefs(props)
+const { disabled, status, message, size, inputStyle } = toRefs(props)
 
 const { mergedDisabled, isError, mergedStatus, mergedSize, validate } =
   useFormItem({

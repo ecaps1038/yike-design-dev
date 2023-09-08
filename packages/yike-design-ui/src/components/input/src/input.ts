@@ -19,4 +19,5 @@ export type InputProps = {
   limit?: number;
   style?: CSSProperties;
   message?: string;
+  inputStyle?: CSSProperties; // input原生style
 };

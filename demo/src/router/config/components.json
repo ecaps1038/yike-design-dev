@@ -82,6 +82,10 @@
         "src": "input-number"
       },
       {
+        "name": "InputTag 标签输入框",
+        "src": "input-tag"
+      },
+      {
         "name": "Radio 单选框",
         "src": "radio"
       },
