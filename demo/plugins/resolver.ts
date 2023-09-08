@@ -18,7 +18,7 @@ export default function YikeDevResolver(compName: string) {
   if (compName.startsWith('Icon')) {
     return {
       name: compName,
-      from: yikeSrcPath,
+      from: `${yikeSrcPath}/components/svg-icon`,
     };
   }
 }

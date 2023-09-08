@@ -53,6 +53,7 @@
 | openDelay            | 延时打开时长。单位：毫秒                                                                                                                                                                                                  | number                  | 0               |
 | destroyTooltipOnHide | 关闭后是否移除标签元素                                                                                                                                                                                                    | boolean                 | false           |
 | openChange           | 显示隐藏的回调                                                                                                                                                                                                            | (open: boolean) => void | -               |
+| animation            | 自定义 popper 展开动画                                                                                                                                                                                                    | string                  | -               |
 
 ### Slot
 

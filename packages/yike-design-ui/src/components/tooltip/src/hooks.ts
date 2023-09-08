@@ -10,36 +10,18 @@ import {
 } from 'vue';
 import type { Ref } from 'vue';
 import type { TooltipProps } from './tooltip';
-import { splitCameCase, getView } from './utils';
-
-type EventType = keyof WindowEventMap;
-
-type ListenCallback = {
-  (this: Window, ev: WindowEventMap[EventType]): any;
-};
-
-type ObCallback = {
-  (ev: IntersectionObserverEntry): void;
-};
+import { splitCamelCase, getView } from './utils';
 
 const POSITION = [
   ['left', 'top'],
   ['right', 'bottom'],
   ['', ''],
 ] as const;
-type Position = (typeof POSITION)[number];
 
-/**
- * @function useEventListener  window事件监听hook函数
- */
-export function useEventListener(
-  type: EventType,
-  callback: ListenCallback,
-  option?: boolean | AddEventListenerOptions,
-): void {
-  onMounted(() => window.addEventListener(type, callback, option));
-  onBeforeUnmount(() => window.removeEventListener(type, callback, option));
-}
+type Position = (typeof POSITION)[number];
+type ObCallback = {
+  (evt: IntersectionObserverEntry): void;
+};
 
 /**
  * @function useObserver 侦听器
@@ -83,6 +65,7 @@ export function useObserver(
 export function usePosition(tooltip: Ref<HTMLElement | null | undefined>) {
   const position = ref<[Position[0], Position[1]]>(['', '']);
   let time = 0;
+
   useObserver(
     tooltip,
     (e) => {
@@ -129,8 +112,9 @@ export function usePlacement(
   placement: TooltipProps['placement'],
 ) {
   const position = usePosition(tooltip);
-  const result = splitCameCase(placement!);
+  const result = splitCamelCase(placement!);
   const p = reactive([...result]);
+
   watch(
     position,
     () => {
@@ -182,14 +166,16 @@ export function useDefaultSlots() {
         const VNodes = slots.default
           ? slots.default()
           : [h('span', {}, 'tooltip')];
-        if (VNodes.length > 1)
+
+        if (VNodes.length > 1) {
           console.error(
             new Error(
               'Component can only have one root element, but you have used multiple root elements',
             ),
           );
-        VNodes[0] = h(VNodes[0], { ...componentProps, ...context.attrs });
+        }
 
+        VNodes[0] = h(VNodes[0], { ...componentProps, ...context.attrs });
         return VNodes;
       };
     },

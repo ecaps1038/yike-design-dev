@@ -1,6 +1,21 @@
 .input-size(@size, @height, @padding, @fs, @br) {
   .inner() {
     border-radius: @br;
+
+    .yk-text:first-child,
+    .yk-icon:first-child {
+      margin-left: @padding;
+    }
+
+    .yk-text:last-child,
+    .yk-icon:last-child {
+      margin-right: @padding;
+    }
+
+    .yk-icon {
+      width: @fs+2px;
+      height: @fs+2px;
+    }
   }
 
   .widget() {
@@ -10,41 +25,11 @@
     border-radius: @br;
   }
 
-  .before {
-    .yk-text {
-      margin-left: @padding;
-      font-size: @fs;
-    }
-    .yk-icon {
-      margin-left: @padding;
-      width: @fs+2px;
-      height: @fs+2px;
-    }
-  }
-
-  .after {
-    .yk-text {
-      margin-right: @padding;
-      font-size: @fs;
-    }
-    .yk-icon {
-      margin-right: @padding;
-      width: @fs+2px;
-      height: @fs+2px;
-    }
-  }
-
   &.yk-input--@{size} {
     .inner();
   }
   &.yk-input--@{size} input {
     .widget();
-  }
-  &.yk-input--@{size} .yk-input--before {
-    .before();
-  }
-  &.yk-input--@{size} .yk-input--after {
-    .after();
   }
 }
 
@@ -66,4 +51,14 @@
   &.yk-input--@{status} {
     .bow();
   }
+}
+
+.left-no-border-radius() {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.right-no-border-radius() {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }

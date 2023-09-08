@@ -3,31 +3,31 @@
 用户展示段落、标题、文本内容
 
 :::snippet
-Title 标题级别
+标题
 通过 `level` 展示不同级别的标题,一共五个级别
 <TitleLevel/>
 :::
 
 :::snippet
-类型 type
+类型
 所有文本内容都有该属性，这里以标题为例。不同类型分别有：`default`,`primary`,`secondary`,`success`,`warning`,`danger` 六种类型，默认为`default`
 <TitleType/>
 :::
 
 :::snippet
-Text 文本
+文本
 展示不同样式的文本
 <TextType/>
 :::
 
 :::snippet
-Paragraph 段落
+段落
 文本段落
 <ParagraphPrimary/>
 :::
 
 :::snippet
-段落省略 ellipsis
+段落省略
 使用 `ellipsis` 可以对或行文本内容可以自定义较少行省略显示，且可以对省略内容进行展开。
 <ParagraphEllipsis/>
 :::
