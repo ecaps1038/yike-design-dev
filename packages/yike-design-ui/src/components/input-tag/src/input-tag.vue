@@ -73,10 +73,7 @@
 <script setup lang="ts">
 import { toRefs, ref, computed, watch, nextTick, getCurrentInstance } from 'vue'
 import { InputTagProps } from './input-tag'
-import { createCssScope } from '../../utils/bem'
-import useVModel from '../../utils/hooks/use-v-model'
-import { useFormItem } from '../../utils'
-import { SIZES_MAP } from '../../utils/constant'
+import { useFormItem, SIZES_MAP, createCssScope, useVModel } from '../../utils'
 import { calculateElementStyle } from './utils'
 
 const bem = createCssScope('input-tag')
