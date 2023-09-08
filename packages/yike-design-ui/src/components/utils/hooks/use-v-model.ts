@@ -2,13 +2,13 @@ import { Ref, ref, getCurrentInstance, computed } from 'vue';
 
 export type ChangeFn<T> = (val: T, ...args: any) => void;
 
-export default function useVModel<T>(
+export const useVModel = <T>(
   value: Ref<T>,
   modelValue: Ref<T>,
   defaultValue: Ref<T>,
   onChange?: ChangeFn<T>,
   customName = 'value',
-): [Ref<T>, ChangeFn<T>] {
+): [Ref<T>, ChangeFn<T>] => {
   const { vnode, emit } = getCurrentInstance() || {};
   let { props } = vnode || {};
 
@@ -76,4 +76,4 @@ export default function useVModel<T>(
     }),
     triggerEmit,
   ];
-}
+};
