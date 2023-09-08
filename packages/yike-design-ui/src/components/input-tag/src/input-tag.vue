@@ -75,6 +75,7 @@ import { toRefs, ref, computed, watch, nextTick, getCurrentInstance } from 'vue'
 import { InputTagProps } from './input-tag'
 import { useFormItem, SIZES_MAP, createCssScope, useVModel } from '../../utils'
 import { calculateElementStyle } from './utils'
+import YkInput from '../../input'
 
 const bem = createCssScope('input-tag')
 const ctx = getCurrentInstance()
@@ -88,7 +89,7 @@ const props = withDefaults(defineProps<InputTagProps>(), {
   value: undefined,
   defaultValue: undefined,
   disabled: false,
-  status: undefined,
+  status: 'primary',
   clearable: true,
   size: SIZES_MAP.m,
   inputProps: undefined,
@@ -183,11 +184,11 @@ const setInputVal = (val: string) => {
 }
 
 // 获取ykTagInput的$refs
-const ykTagInput = ref(null)
+const ykTagInput = ref<InstanceType<typeof YkInput>>()
 
 // 输入框聚焦方法
 const inputFocus = () => {
-  ykTagInput.value?.inputRef.focus()
+  ykTagInput.value?.inputRef!.focus()
 }
 
 // tagInput占位元素
