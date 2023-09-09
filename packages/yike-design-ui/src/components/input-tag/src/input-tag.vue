@@ -27,6 +27,7 @@
             :size="tagSize"
             :disabled="mergedDisabled"
             :closeable="clearable"
+            :type="mergedStatus == 'primary' ? '' : mergedStatus"
             v-bind="tagProps"
             @close="onCloseTag(index)"
           >

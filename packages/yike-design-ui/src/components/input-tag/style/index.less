@@ -35,18 +35,24 @@
   }
 
   .yk-tag {
-    margin: 2px 2px 0 0;
+    margin: 0 2px;
+    // border: 1px solid @line-color-s;
     transition: background-color 0.2s ease-in-out;
+    box-sizing: border-box;
 
     &__content {
       white-space: pre-wrap;
       word-break: break-word;
     }
+    &__close {
+      margin-left: 4px;
+      padding: 1px;
+    }
   }
 
   &__blur {
     .yk-tag {
-      background-color: @gray-2;
+      background-color: @bg-color-l;
     }
   }
 
