@@ -82,7 +82,10 @@
     </span>
   </div>
   <Transition name="fade">
-    <div v-if="!isError && message" :class="bem('hint', [mergedStatus])">
+    <div
+      v-if="status === 'danger' && message"
+      :class="bem('hint', [mergedStatus])"
+    >
       {{ message }}
     </div>
   </Transition>
@@ -229,10 +232,13 @@ const YkInputButtonClass = computed(() => {
   }
 })
 
-watch(props, () => {
-  lastValue = props.modelValue
-  emits('update:modelValue', lastValue)
-})
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    lastValue = newValue
+    emits('update:modelValue', lastValue)
+  },
+)
 
 defineExpose({
   inputRef,

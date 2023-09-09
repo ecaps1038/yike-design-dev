@@ -12,7 +12,7 @@
         <yk-radio value="woman">女</yk-radio>
       </yk-radio-group>
     </yk-form-item>
-    <yk-form-item label="年龄" field="sex" :rules="rulesMap.sex">
+    <yk-form-item label="年龄" field="age" :rules="rulesMap.age">
       <yk-input-number v-model="form.age"></yk-input-number>
     </yk-form-item>
     <yk-form-item label="日期" field="date" :required="true">
@@ -65,6 +65,13 @@ const rulesMap = {
       message: 'Please select Activity count',
     },
   ],
+  age: [
+    {
+      max: 10,
+      required: true,
+      message: 'dfdf',
+    },
+  ],
 }
 const nameExtraRule = [
   {
@@ -90,7 +97,7 @@ const submitForm = (formEl) => {
     return
   }
   formEl.validate((errors: any) => {
-    console.log(errors)
+    console.log(errors, form.age)
   })
 }
 </script>

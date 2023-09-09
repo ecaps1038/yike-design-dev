@@ -1,10 +1,11 @@
 <template>
   <YkInput
     :model-value="modelValue"
-    :disabled="disabled"
+    :disabled="mergedDisabled"
     :size="mergedSize"
     :class="bem()"
     v-bind="$attrs"
+    @focus="focus"
     @change="change"
     @blur="blur"
     @hoverin="isHovering = true"
@@ -13,7 +14,7 @@
   >
     <template #suffix>
       <div
-        v-show="!disabled && isHovering"
+        v-show="!mergedDisabled && isHovering"
         :class="[bem('buttons'), bem([mergedSize])]"
       >
         <YkButton
@@ -57,14 +58,17 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
   precision: 0,
   size: 'l',
   disabled: false,
+  message: '',
 })
 
 const bem = createCssScope('input-number')
 
-const { size } = toRefs(props)
+const { size, disabled, message } = toRefs(props)
 
-const { mergedSize } = useFormItem({
+const { mergedSize, mergedDisabled, validate } = useFormItem({
+  disabled,
   size,
+  message,
 })
 
 const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
@@ -153,6 +157,7 @@ const increase = () => {
     precision.value,
   )
   update()
+  validate('change')
   emits('increase')
 }
 
@@ -166,6 +171,7 @@ const decrease = () => {
     precision.value,
   )
   update()
+  validate('change')
   emits('decrease')
 }
 
@@ -189,6 +195,10 @@ const change = (value: string) => {
   checkLimit()
 }
 
+const focus = () => {
+  validate('focus')
+}
+
 const blur = () => {
   if (limit.isMax) {
     lastValue.value = valueRefs.max.value
@@ -197,12 +207,12 @@ const blur = () => {
     lastValue.value = valueRefs.min.value
   }
   update()
+  validate('blur')
 }
 
 const update = () => {
   checkLimit()
   // displayValue.value = getDisplayValue()
-  // 先这样
   emits('update:modelValue', lastValue.value)
 }
 </script>
