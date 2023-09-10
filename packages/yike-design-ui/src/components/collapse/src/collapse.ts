@@ -11,4 +11,4 @@ export type CollapseGroupProps = {
   border?: boolean;
 };
 
-export const collapseInjectKey = Symbol('thisisacollapse');
+export const collapseInjectKey = Symbol('CollapseInjectKey');
