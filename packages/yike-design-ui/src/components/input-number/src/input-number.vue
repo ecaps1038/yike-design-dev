@@ -1,6 +1,6 @@
 <template>
   <YkInput
-    :model-value="modelValue"
+    :model-value="displayValue"
     :disabled="mergedDisabled"
     :size="mergedSize"
     :class="bem()"
@@ -43,7 +43,7 @@
 import { calculate, numberMatchReg } from './utils'
 import { createCssScope, useFormItem } from '../../utils'
 import { InputNumberProps } from './input-number'
-import { toRefs, ref, onMounted, reactive, computed } from 'vue'
+import { toRefs, ref, onMounted, reactive, computed, watch } from 'vue'
 import { IconUpOutline, IconDownOutline } from '../../svg-icon'
 import { YkInput, YkButton } from '../../../index'
 
@@ -58,18 +58,9 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
   precision: 0,
   size: 'l',
   disabled: false,
-  message: '',
 })
 
 const bem = createCssScope('input-number')
-
-const { size, disabled, message } = toRefs(props)
-
-const { mergedSize, mergedDisabled, validate } = useFormItem({
-  disabled,
-  size,
-  message,
-})
 
 const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
 const isHovering = ref<boolean>(false)
@@ -80,10 +71,17 @@ const limit = reactive({
 // 触发“连击”的所需时间
 const TimeBeforeCombo = 250
 // “连击”的速度
-const ComboSpeed = 150
+const ComboSpeed = 60
 const valueRefs = toRefs(props)
 const lastValue = ref<number>(0)
 const displayValue = ref<string>('')
+
+const { disabled, size } = valueRefs
+
+const { mergedSize, mergedDisabled } = useFormItem({
+  disabled,
+  size,
+})
 
 // 计算精度
 const precision = computed(() => {
@@ -103,7 +101,7 @@ const getInitialValue = () => {
 }
 
 const getDisplayValue = () => {
-  return lastValue.value!.toFixed(precision.value)
+  return lastValue.value.toFixed(precision.value)
 }
 
 // mode: 0 = 减模式, 1 = 加模式
@@ -157,7 +155,6 @@ const increase = () => {
     precision.value,
   )
   update()
-  validate('change')
   emits('increase')
 }
 
@@ -171,7 +168,6 @@ const decrease = () => {
     precision.value,
   )
   update()
-  validate('change')
   emits('decrease')
 }
 
@@ -196,7 +192,7 @@ const change = (value: string) => {
 }
 
 const focus = () => {
-  validate('focus')
+  return
 }
 
 const blur = () => {
@@ -207,12 +203,19 @@ const blur = () => {
     lastValue.value = valueRefs.min.value
   }
   update()
-  validate('blur')
 }
 
 const update = () => {
   checkLimit()
-  // displayValue.value = getDisplayValue()
+  displayValue.value = getDisplayValue()
   emits('update:modelValue', lastValue.value)
 }
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    lastValue.value = newValue ?? getInitialValue()
+    displayValue.value = getDisplayValue()
+  },
+)
 </script>
