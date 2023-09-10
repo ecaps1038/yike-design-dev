@@ -38,7 +38,7 @@
 
 :::snippet
 附加到任何容器
-通过 `to` 属性控制抽屉显示时挂载的元素节点，其值可以是 CSS 选择器字符串，或者是一个 HTMLElement 类型的变量。默认为 `body`。
+通过 `to` 属性控制抽屉显示时挂载的元素节点，其值可以是 CSS 选择器字符串，或者是一个 HTMLElement 类型的变量。默认为 `'body'`。
 <DrawerAnywhere/>
 :::
 

@@ -14,7 +14,7 @@
 
 :::snippet
 无边框
-组件与人一样，没有条条框框会更完美。
+通过 `border` 控制折叠面板组是否显示边框线。默认为 `true`。
 <CollapseNoborder/>
 :::
 

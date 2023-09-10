@@ -82,10 +82,7 @@
     </span>
   </div>
   <Transition name="fade">
-    <div
-      v-if="status === 'danger' && message"
-      :class="bem('hint', [mergedStatus])"
-    >
+    <div v-if="message" :class="bem('hint', [mergedStatus])">
       {{ message }}
     </div>
   </Transition>
