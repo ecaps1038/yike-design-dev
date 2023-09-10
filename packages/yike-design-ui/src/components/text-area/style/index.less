@@ -1,0 +1,94 @@
+.yk-text-area {
+  position: relative;
+  width: 100%;
+  font-size: @size-s;
+  border: 1px solid transparent;
+  border-radius: @radius-m;
+  color: @font-color-l;
+  background-color: @bg-color-s;
+  transition: background-color @animatb ease-in-out;
+  &__content {
+    position: absolute;
+    padding: @space-ss @space-m;
+    visibility: hidden;
+  }
+  &:hover {
+    border: 1px solid @pcolor;
+    background-color: @bg-color-m;
+    .yk-text-area__button {
+      opacity: 1;
+    }
+  }
+  &--focus {
+    &:hover {
+      background-color: @bg-color-l;
+    }
+    border: 1px solid @pcolor;
+    background-color: @bg-color-l;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    &:hover {
+      border: 1px solid transparent;
+    }
+    textarea {
+      cursor: not-allowed;
+    }
+  }
+  textarea {
+    padding: @space-ss @space-m;
+    width: 100%;
+    min-height: @space-l*2;
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    border-radius: @radius-m;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    resize: vertical;
+    line-height: 20px;
+
+    &::placeholder {
+      font-size: @size-s;
+    }
+  }
+  &__inner {
+    &--autoSize {
+      transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+    }
+  }
+  &__button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-right: 8px;
+    width: 24px;
+    border: none;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: transparent;
+    opacity: 0;
+    &:hover {
+      svg {
+        background-color: @bg-color-ss;
+      }
+    }
+    svg {
+      padding: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      transition: all 0.2s;
+      fill: @font-color-l;
+    }
+  }
+
+  .word-limit {
+    position: absolute;
+    right: 10px;
+    bottom: 6px;
+    color: @font-color-l;
+  }
+}

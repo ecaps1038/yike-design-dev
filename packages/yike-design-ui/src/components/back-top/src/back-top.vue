@@ -23,8 +23,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { IconTopOutline } from '../../svg-icon'
+import { transformPxToNumber } from '../../utils'
 import { BackTopProps } from './back-top'
-import { transformPxToNumber } from '../../utils/tools'
 
 defineOptions({
   name: 'YkBackTop',

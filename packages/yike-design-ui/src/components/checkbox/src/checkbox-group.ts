@@ -1,4 +1,5 @@
-import { Size } from '../../utils/constant';
+import { Size } from '../../utils';
+
 export type CheckboxGroupProps = {
   modelValue?: Array<CheckboxGroupValue>;
   defaultValue?: Array<CheckboxGroupValue>;
@@ -7,7 +8,8 @@ export type CheckboxGroupProps = {
   tag?: string;
   direction?: 'horizontal' | 'vertical';
   options?: Array<CheckboxOption | CheckboxGroupValue>;
-  size?: Size | number | number[];
+  gap?: Size | number | number[];
+  size?: Size;
 };
 
 export type CheckboxOption = {

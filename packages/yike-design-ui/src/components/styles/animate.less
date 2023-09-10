@@ -1,57 +1,146 @@
+// use by input, form-item, modal, tree-select…
 .fade-move,
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.24s;
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
 
+// use by back-top
 .upward-move,
 .upward-enter-active,
 .upward-leave-active {
   transition: all 0.24s;
   transform: translateY(0px);
 }
-
 .upward-enter-from,
 .upward-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
 
+// use by modal
 .down-move,
 .down-enter-active,
 .down-leave-active {
   transition: all 0.24s;
   transform: translateY(0px);
 }
-
 .down-enter-from,
 .down-leave-to {
   opacity: 0;
   transform: translateY(-30px);
 }
-
 .down-leave-active {
   position: absolute;
 }
 
-.right-move,
-.right-enter-active,
-.right-leave-active {
+// use by dropdown
+.downBottom-move,
+.downBottom-enter-active,
+.downBottom-leave-active {
+  transition: all 0.24s;
+  transform: translateY(0px);
+}
+.downBottom-enter-from,
+.downBottom-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.downRight-move,
+.downRight-enter-active,
+.downRight-leave-active {
   transition: all 0.24s;
   transform: translateX(0px);
 }
-
-.right-enter-from,
-.right-leave-to {
+.downRight-enter-from,
+.downRight-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(-10px);
 }
 
-.right-leave-active {
+.downLeft-move,
+.downLeft-enter-active,
+.downLeft-leave-active {
+  transition: all 0.24s;
+  transform: translateX(0px);
+}
+.downLeft-enter-from,
+.downLeft-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+// use by tooltip
+.show {
+  &-enter {
+    &-from {
+      opacity: 0;
+      scale: 0.5;
+    }
+
+    &-active {
+      transition: all @animatf;
+    }
+
+    &-to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+  &-leave {
+    &-from {
+      opacity: 1;
+      scale: 1;
+    }
+
+    &-active {
+      transition: all @animatf;
+    }
+    &-to {
+      opacity: 0;
+      scale: 0.5;
+    }
+  }
+}
+
+// use by Notification
+.topRightNotification-move,
+.topRightNotification-enter-active,
+.topLeftNotification-move,
+.topLeftNotification-enter-active,
+.bottomRightNotification-move,
+.bottomRightNotification-enter-active,
+.bottomLeftNotification-move,
+.bottomLeftNotification-enter-active {
+  transition: all 0.24s;
+}
+
+.topRightNotification-leave-active,
+.topLeftNotification-leave-active,
+.bottomRightNotification-leave-active,
+.bottomLeftNotification-leave-active {
   position: absolute;
+  transition: all 0.24s;
+}
+
+.topRightNotification-leave-to,
+.topLeftNotification-leave-to,
+.bottomRightNotification-leave-to,
+.bottomLeftNotification-leave-to {
+  opacity: 0;
+}
+
+.topRightNotification-enter-from,
+.bottomRightNotification-enter-from {
+  transform: translateX(100%);
+}
+
+.topLeftNotification-enter-from,
+.bottomLeftNotification-enter-from {
+  transform: translateX(-100%);
 }

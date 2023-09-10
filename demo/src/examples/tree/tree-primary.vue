@@ -7,8 +7,7 @@
 </template>
 <script setup lang="ts">
 import { repeat } from 'seemly'
-import { shallowRef } from 'vue'
-import { ref } from 'vue'
+import { shallowRef, ref } from 'vue'
 function createData(level = 4, baseKey = '') {
   if (!level) return undefined
   return repeat(6 - level, undefined).map((_, index) => {
@@ -30,6 +29,6 @@ function createLabel(level: number): string {
 const options = shallowRef(createData())
 const expandedKey = ref(['41', '403122'])
 const handleExpand = (exp) => {
-  console.log('exp: ', exp)
+  // console.log('exp: ', exp)
 }
 </script>

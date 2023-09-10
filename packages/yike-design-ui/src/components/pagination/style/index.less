@@ -1,0 +1,113 @@
+@import './variables.less';
+@import '../../styles/color/colors.less';
+
+.pagination-disabled() {
+  cursor: not-allowed;
+  opacity: 0.56;
+  &:hover {
+    color: @pagination-font-color !important;
+    background-color: @pagination-bg-color__disabled !important;
+  }
+}
+
+.pagination-size(@size: l) {
+  &--@{size} {
+    .yk-pagination-pager__item {
+      padding: 0 @space-s;
+      min-width: ~'@{pagination-pager-size__@{size}}';
+      height: ~'@{pagination-pager-size__@{size}}';
+      border-radius: ~'@{pagination-border-radius__@{size}}';
+      line-height: ~'@{pagination-pager-size__@{size}}';
+    }
+
+    .yk-pagination-total,
+    .yk-pagination-pager__item,
+    .yk-pagination-jumper__label {
+      font-size: ~'@{pagination-font-size__@{size}}';
+    }
+  }
+}
+
+.yk-pagination {
+  display: flex;
+  align-items: center;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .yk-pagination-total,
+    .yk-pagination-pager__item {
+      .pagination-disabled();
+    }
+  }
+
+  .pagination-size(s);
+  .pagination-size(m);
+  .pagination-size(l);
+  .pagination-size(xl);
+}
+
+.yk-pagination-pager {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+
+  &__item {
+    cursor: pointer;
+    margin: 0 @pagination-margin-size;
+    text-align: center;
+    vertical-align: middle;
+    color: @font-color-l;
+    background-color: @pagination-pager-bg-color;
+    transition: all @animatb;
+
+    &-ellipsis {
+      background-color: transparent;
+    }
+
+    &--active {
+      color: #fff !important;
+      background-color: @pagination-pager-bg-color__active !important;
+    }
+
+    &--disabled {
+      .pagination-disabled();
+    }
+
+    &:not(&-ellipsis):hover {
+      background-color: @pagination-pager-bg-color__hover;
+    }
+  }
+}
+
+.yk-pagination-page-size {
+  margin-left: @pagination-margin-size;
+}
+
+.yk-pagination-jumper {
+  display: flex;
+  align-items: center;
+  margin: 0 @pagination-margin-size * 2;
+
+  .yk-input__widget {
+    width: 64px !important;
+  }
+
+  &__label {
+    margin-right: @pagination-margin-size * 2;
+    white-space: nowrap;
+    color: @font-color-l;
+  }
+
+  &__separator {
+    margin: 0 @pagination-margin-size * 2;
+  }
+}
+
+.yk-pagination-total {
+  margin-right: @pagination-margin-size * 2;
+  white-space: nowrap;
+}

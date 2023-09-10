@@ -1,6 +1,6 @@
 import { createVNode, render, ref, reactive } from 'vue';
 import { MessageOptions } from './message';
-import { MESSAGETYPE } from '../../utils/constant';
+import { MESSAGETYPE, RenderContent } from '../../utils';
 import MessageGroup from './message-group.vue';
 
 class MessageManager {
@@ -27,7 +27,7 @@ class MessageManager {
   add = (config: MessageOptions) => {
     this.seed++;
     const id = `yk-message__${this.seed}`;
-    const message: MessageOptions = reactive({
+    const message = reactive<MessageOptions>({
       id,
       ...config,
       zIndex: this.zIndex,
@@ -55,7 +55,7 @@ class MessageManager {
     }
   };
   close = () => {
-    console.log('closeAll');
+    // console.log('closeAll');
   };
 }
 let Instance = <MessageManager>{};
@@ -66,7 +66,7 @@ const message: any = (options: MessageOptions) => {
   return Instance.add(options);
 };
 MESSAGETYPE.forEach((item) => {
-  message[item] = (msg: string, duration: number, onClose: any) => {
+  message[item] = (msg: RenderContent, duration: number, onClose: any) => {
     const messageOptions: MessageOptions = {
       type: item,
       message: msg,

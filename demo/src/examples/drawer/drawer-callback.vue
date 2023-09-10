@@ -5,15 +5,14 @@
   <yk-drawer
     title="你好，世界。"
     :show="active"
-    @close="onClose"
+    @before-close="onClose"
     @open="onOpen"
   >
     你看到了什么？
   </yk-drawer>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getCurrentInstance } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 const proxy: any = getCurrentInstance()?.proxy
 const active = ref(false)
 const onClose = () => {

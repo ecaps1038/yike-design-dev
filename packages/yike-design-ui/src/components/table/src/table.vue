@@ -1,30 +1,49 @@
-<script setup lang="ts">
-import { TableProps } from './table'
-defineOptions({
-  name: 'YkTable',
-})
-const props = withDefaults(defineProps<TableProps>(), {
-  columns: [] as any,
-  data: [] as any,
-})
-</script>
 <template>
-  <div class="yk-table">
-    <table cellspacing="0">
-      <tr>
-        <th v-for="(e, index) in props.columns" :key="index">
-          {{ (e as any).title }}
-        </th>
-      </tr>
-      <tr v-for="(n, i) in props.data" :key="i">
-        <td
-          v-for="(e, j) in props.columns"
-          :key="j"
-          :class="{ light: (e as any).light }"
-        >
-          {{ (n as any)[(e as any).dataIndex] }}
-        </td>
-      </tr>
+  <div :class="bem()">
+    <table>
+      <TableHeader />
+      <TableBody />
     </table>
+    <div v-show="false" ref="hiddenColumns">
+      <slot />
+    </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defaultTableProps, Table, TABLE_INJECTION_KEY } from './table'
+import { createCssScope } from '../../utils'
+import { defineComponent, computed, getCurrentInstance, provide } from 'vue'
+import { useStore } from './store'
+import TableHeader from './header'
+import TableBody from './body'
+
+let tableIdSeed = 1
+
+export default defineComponent({
+  name: 'YkTable',
+  components: { TableHeader, TableBody },
+  props: defaultTableProps,
+  emits: ['select', 'selection-change', 'select-all'],
+  setup(props) {
+    type Row = (typeof props.data)[number]
+    const bem = createCssScope('table')
+    const table = getCurrentInstance() as Table<Row>
+    table.bem = bem
+
+    const store = useStore<Row>()
+    store.state.data.value = props.data!
+    table.store = store
+    const tableId = `yk-table_${tableIdSeed++}`
+    table.tableId = tableId
+    const isEmpty = computed(() => (store.state.data.value || []).length === 0)
+    provide(TABLE_INJECTION_KEY, table)
+    return {
+      bem,
+      tableId,
+      store,
+      isEmpty,
+    }
+  },
+})
+</script>

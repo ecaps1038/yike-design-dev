@@ -91,12 +91,92 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/scrollbar/doc.md'),
   },
   {
-    path: 'alert',
-    component: () => import('@/examples/alert/doc.md'),
-  },
-  {
     path: 'tree',
     component: () => import('@/examples/tree/doc.md'),
+  },
+  {
+    path: 'tree-select',
+    component: () => import('@/examples/treeSelect/doc.md'),
+  },
+  {
+    path: 'slider',
+    component: () => import('@/examples/slider/doc.md'),
+  },
+  {
+    path: 'collapse',
+    component: () => import('@/examples/collapse/doc.md'),
+  },
+  {
+    path: 'dropdown',
+    component: () => import('@/examples/dropdown/doc.md'),
+  },
+  {
+    path: 'popconfirm',
+    component: () => import('@/examples/popconfirm/doc.md'),
+  },
+  {
+    path: 'collapse',
+    component: () => import('@/examples/collapse/doc.md'),
+  },
+  {
+    path: 'input-number',
+    component: () => import('@/examples/input-number/doc.md'),
+  },
+  {
+    path: 'image',
+    component: () => import('@/examples/image/doc.md'),
+  },
+  {
+    path: 'timeline',
+    component: () => import('@/examples/timeline/doc.md'),
+  },
+  {
+    path: 'table',
+    component: () => import('@/examples/table/doc.md'),
+  },
+  {
+    path: 'tabs',
+    component: () => import('@/examples/tabs/doc.md'),
+  },
+  {
+    path: 'form',
+    component: () => import('@/examples/form/doc.md'),
+  },
+  {
+    path: 'input-tag',
+    component: () => import('@/examples/input-tag/doc.md'),
+  },
+  {
+    path: 'spinner',
+    component: () => import('@/examples/spinner/doc.md'),
+  },
+  {
+    path: 'text-area',
+    component: () => import('@/examples/text-area/doc.md'),
+  },
+  {
+    path: 'pagination',
+    component: () => import('@/examples/pagination/doc.md'),
+  },
+  {
+    path: 'tag',
+    component: () => import('@/examples/tag/doc.md'),
+  },
+  {
+    path: 'calendar',
+    component: () => import('@/examples/calendar/doc.md'),
+  },
+  {
+    path: 'skeleton',
+    component: () => import('@/examples/skeleton/doc.md'),
+  },
+  {
+    path: 'divider',
+    component: () => import('@/examples/divider/doc.md'),
+  },
+  {
+    path: 'link',
+    component: () => import('@/examples/link/doc.md'),
   },
 ];
 

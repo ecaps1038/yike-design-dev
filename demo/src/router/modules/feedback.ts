@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+
 const feedbackRoutes: Array<RouteRecordRaw> = [
   {
     path: 'alert',
@@ -19,6 +20,10 @@ const feedbackRoutes: Array<RouteRecordRaw> = [
   {
     path: 'popover',
     component: () => import('@/examples/popover/doc.md'),
+  },
+  {
+    path: 'modal',
+    component: () => import('@/examples/modal/doc.md'),
   },
 ];
 

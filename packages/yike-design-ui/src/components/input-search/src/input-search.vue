@@ -1,13 +1,13 @@
 <template>
   <yk-input
     :id="id"
-    v-model:value="value"
+    v-model="value"
     :name="name"
     :clearable="clearable"
     :size="size"
     :placeholder="placeholder"
     :loading="loading"
-    @submit="search"
+    @keydown.enter="search"
   >
     <template #prefix>
       <slot name="prefix" />
@@ -19,13 +19,18 @@
     </template>
   </yk-input>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { InputSearchProps } from './input-search'
+import YkInput from '../../input'
+import YkButton from '../../button'
+
 defineOptions({
   name: 'YkInputSearch',
 })
-const props = withDefaults(defineProps<InputSearchProps>(), {
+
+withDefaults(defineProps<InputSearchProps>(), {
   name: '',
   size: 'l',
   placeholder: '',
@@ -35,6 +40,6 @@ const props = withDefaults(defineProps<InputSearchProps>(), {
 const value = ref<string>()
 const emits = defineEmits(['search', 'change'])
 const search = () => {
-  emits('search', value.value ?? '')
+  emits('search', value.value)
 }
 </script>

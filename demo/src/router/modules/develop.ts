@@ -1,30 +1,32 @@
 import { RouteRecordRaw } from 'vue-router';
+import navs from '@/router/config/develops.json';
 
-const developRoutes: Array<RouteRecordRaw> = [
-  {
-    path: '/develop',
-    redirect: '/develop/yikedev',
-    name: 'develop',
-    component: () => import('@/views/Develops.vue'),
-    children: [
-      {
-        path: 'grasp',
-        component: () => import('../../../../CONTRIBUTING.md'),
-      },
-      {
-        path: 'yikedev',
-        component: () => import('@/components/develops/yikedev.vue'),
-      },
-      {
-        path: 'dark',
-        component: () => import('@/components/develops/dark.vue'),
-      },
-      {
-        path: 'theme',
-        component: () => import('@/components/develops/theme.vue'),
-      },
-    ],
+const developRoutes: RouteRecordRaw = {
+  path: '/develop',
+  name: 'develop',
+  redirect: '/develop/yike-dev',
+  component: () => import('@/views/Modules.vue'),
+  children: [
+    {
+      path: 'yike-dev',
+      component: () => import('@/views/develop/yike-dev.md'),
+    },
+    {
+      path: 'grasp',
+      component: () => import('@/../../CONTRIBUTING.md'),
+    },
+    {
+      path: 'dark',
+      component: () => import('@/views/develop/dark-model.md'),
+    },
+    {
+      path: 'theme',
+      component: () => import('@/views/develop/theme.md'),
+    },
+  ],
+  meta: {
+    navs,
   },
-];
+};
 
 export default developRoutes;

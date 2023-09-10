@@ -74,3 +74,7 @@ export type DraggleProps = {
   disabled?: boolean;
   accept?: string;
 };
+
+export interface CropImageProps {
+  fileContent: UploadFile;
+}

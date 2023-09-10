@@ -1,212 +1,184 @@
 @import '../../styles/color/colors.less';
+
 .yk-tooltip {
   --tooltip-theme-bg-color: @dark;
-  --tooltip-theme-font-color: @light;
+  --tooltip-theme-font-color: @white;
   --tooltip-theme-min-width: 2em;
   --tooltip-theme-min-height: 2em;
   --tooltip-theme-max-width: 250px;
   --tooltip-theme-max-hegiht: fit-contnet;
   @arrowSize: 1em; // 箭头大小
-  @brSize: @space-ss; // 圆角值大小
 
   position: relative;
   width: fit-content;
-  &-content {
+
+  &__content {
     position: absolute;
-    z-index: 999;
-    padding: @space-ss @space-s;
+    z-index: 1;
+    padding: @space-s @space-m;
     width: max-content;
     min-width: var(--tooltip-theme-min-width);
-    max-width: 250px;
+    max-width: var(--tooltip-theme-max-width);
     min-height: var(--tooltip-theme-min-height);
     max-height: var(--tooltip-theme-max-hegiht);
-    font-size: @size-s;
-    border-radius: @brSize;
+    .font-s();
+    border-radius: @space-ss;
     text-align: start;
-    color: @white;
-    background-color: @dark;
+    color: var(--tooltip-theme-font-color);
+    background-color: var(--tooltip-theme-bg-color);
     box-shadow: @shadow-m;
     word-wrap: break-word;
   }
-  &-content::after {
-    position: absolute;
-    width: @arrowSize;
-    height: @arrowSize;
-    background-color: inherit;
-    content: '';
-    clip-path: polygon(50% 50%, 0 0, 100% 0);
-  }
 
-  &-left {
-    top: 50%;
-    left: 0;
-    translate: calc(-100% - @arrowSize) -50%;
-  }
-  &-leftTop {
-    top: 0;
-    left: 0;
-    translate: calc(-100% - @arrowSize) 0;
-  }
-  &-leftBottom {
-    bottom: 0;
-    left: 0;
-    translate: calc(-100% - @arrowSize) 0;
-  }
-  &-top {
+  & .top {
     top: 0;
     left: 50%;
     translate: -50% calc(-100% - @arrowSize);
   }
-  &-topLeft {
+  & .topLeft {
     top: 0;
     left: 0;
     translate: 0 calc(-100% - @arrowSize);
   }
-  &-topRight {
+  & .topRight {
     top: 0;
     right: 0;
     translate: 0 calc(-100% - @arrowSize);
   }
 
-  &-bottom {
+  & .bottom {
     bottom: 0;
     left: 50%;
     translate: -50% calc(100% + @arrowSize);
   }
-
-  &-bottomLeft {
+  & .bottomLeft {
     bottom: 0;
     left: 0;
     translate: 0 calc(100% + @arrowSize);
   }
-
-  &-bottomRight {
+  & .bottomRight {
     right: 0;
     bottom: 0;
     translate: 0 calc(100% + @arrowSize);
   }
 
-  &-right {
+  & .left {
+    top: 50%;
+    left: 0;
+    translate: calc(-100% - @arrowSize) -50%;
+  }
+  & .leftTop {
+    top: 0;
+    left: 0;
+    translate: calc(-100% - @arrowSize) 0;
+  }
+  & .leftBottom {
+    bottom: 0;
+    left: 0;
+    translate: calc(-100% - @arrowSize) 0;
+  }
+
+  & .right {
     top: 50%;
     right: 0;
     translate: calc(100% + @arrowSize) -50%;
   }
-
-  &-rightTop {
+  & .rightTop {
     top: 0;
     right: 0;
     translate: calc(100% + @arrowSize) 0;
   }
-  &-rightBottom {
+  & .rightBottom {
     right: 0;
     bottom: 0;
     translate: calc(100% + @arrowSize) 0;
   }
-  .l() {
-    right: 1px;
-    clip-path: polygon(50% 50%, 0 100%, 0% 0);
-    transform: translateX(100%);
+
+  &__arrow {
+    position: absolute;
+    width: @arrowSize;
+    height: @arrowSize;
+    background-color: inherit;
+    clip-path: polygon(50% 50%, 0 0, 100% 0);
   }
+
+  & .top &__arrow {
+    .t();
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+  }
+  & .topLeft &__arrow {
+    .t();
+    left: @space-m;
+  }
+  & .topRight &__arrow {
+    .t();
+    right: @space-m;
+  }
+
+  & .bottom &__arrow {
+    .b();
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+  }
+  & .bottomLeft &__arrow {
+    .b();
+    left: @space-m;
+  }
+  & .bottomRight &__arrow {
+    .b();
+    right: @space-m;
+  }
+
+  & .left &__arrow {
+    .l();
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+  }
+  & .leftTop &__arrow {
+    .l();
+    top: @space-m;
+  }
+  & .leftBottom &__arrow {
+    .l();
+    bottom: @space-m;
+  }
+
+  & .right &__arrow {
+    .r();
+    top: 50%;
+    transform: translateX(-100%) translateY(-50%);
+  }
+  & .rightTop &__arrow {
+    .r();
+    top: @space-m;
+  }
+  & .rightBottom &__arrow {
+    .r();
+    bottom: @space-m;
+  }
+
   .t() {
     bottom: 1px;
     clip-path: polygon(50% 50%, 0 0%, 100% 0);
     transform: translateY(100%);
   }
+
   .b() {
     top: 1px;
     clip-path: polygon(50% 50%, 0 100%, 100% 100%);
     transform: translateY(-100%);
   }
+
+  .l() {
+    right: 1px;
+    clip-path: polygon(50% 50%, 0 100%, 0% 0);
+    transform: translateX(100%);
+  }
+
   .r() {
     left: 1px;
     clip-path: polygon(50% 50%, 100% 100%, 100% 0);
     transform: translateX(-100%);
-  }
-  &-left::after {
-    .l();
-    top: 50%;
-    transform: translateX(100%) translateY(-50%);
-  }
-  &-leftTop::after {
-    .l();
-    top: @brSize;
-  }
-  &-leftBottom::after {
-    .l();
-    bottom: @brSize;
-  }
-  &-top::after {
-    .t();
-    left: 50%;
-    transform: translateX(-50%) translateY(100%);
-  }
-  &-topLeft::after {
-    .t();
-    left: @brSize;
-  }
-  &-topRight::after {
-    .t();
-    right: @brSize;
-  }
-
-  &-bottom::after {
-    .b();
-    left: 50%;
-    transform: translateX(-50%) translateY(-100%);
-  }
-  &-bottomLeft::after {
-    .b();
-    left: @brSize;
-  }
-  &-bottomRight::after {
-    .b();
-    right: @brSize;
-  }
-
-  &-right::after {
-    .r();
-    top: 50%;
-    transform: translateX(-100%) translateY(-50%);
-  }
-  &-rightTop::after {
-    .r();
-    top: @brSize;
-  }
-  &-rightBottom::after {
-    .r();
-    bottom: @brSize;
-  }
-}
-
-// 气泡展示隐藏动画
-.show {
-  &-enter {
-    &-from {
-      opacity: 0;
-      scale: 0.5;
-    }
-
-    &-active {
-      transition: all @animatf;
-    }
-
-    &-to {
-      opacity: 1;
-      scale: 1;
-    }
-  }
-  &-leave {
-    &-from {
-      opacity: 1;
-      scale: 1;
-    }
-
-    &-active {
-      transition: all @animatf;
-    }
-    &-to {
-      opacity: 0;
-      scale: 0.5;
-    }
   }
 }

@@ -1,29 +1,21 @@
 {
   "compilerOptions": {
-    "outDir": "./es",
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "strict": true,
+    "jsx": "preserve",
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
     "lib": ["DOM", "ESNext"],
-    "resolveJsonModule": true,
-    "useDefineForClassFields": true,
-    "jsx": "preserve",
+    "declaration": true,
+    "skipLibCheck": true,
     "noImplicitThis": true,
-    "strict": true,
     "isolatedModules": true,
-    "target": "ESNext",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "resolveJsonModule": true,
+    "emitDeclarationOnly": true,
+    "useDefineForClassFields": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "exclude": [
-    "dist",
-    "es",
-    "lib",
-    "**/__tests__/**",
-    "**/__demos__/**",
-    "**/*.md",
-    "script/**/*.ts"
-  ]
+  "exclude": ["dist", "es", "lib"]
 }

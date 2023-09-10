@@ -1,0 +1,116 @@
+@import '../../styles/color/colors.less';
+
+.yk-tag {
+  @padding-h-small: 1px;
+  @padding-h-default: 3px;
+  @padding-h-large: 5px;
+  @padding-w-large: 10px;
+  @border-radius-round: 999px;
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 400;
+
+  &__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+
+  &--s {
+    .font-ss();
+    padding: @padding-h-small @space-ss;
+  }
+
+  &--m {
+    .font-ss();
+    padding: @padding-h-default @space-s;
+  }
+
+  &--l {
+    .font-s();
+    padding: @padding-h-large @padding-w-large;
+  }
+
+  &--square {
+    border-radius: @radius-s;
+  }
+
+  &--round {
+    border-radius: @border-radius-round;
+  }
+
+  &--mark {
+    border-radius: 0 @border-radius-round @border-radius-round 0;
+  }
+
+  &--defualt {
+    color: @gray-9;
+    background-color: @gray-1;
+  }
+
+  &--primary {
+    color: @pcolor;
+    background-color: @pcolor-1;
+  }
+
+  &--warning {
+    color: @wcolor;
+    background-color: @wcolor-1;
+  }
+
+  &--danger {
+    color: @ecolor;
+    background-color: @ecolor-1;
+  }
+
+  &--success {
+    color: @scolor;
+    background-color: @scolor-1;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    .yk-tag__close {
+      cursor: not-allowed;
+      opacity: 1;
+    }
+  }
+
+  &__close {
+    display: inline-block;
+    margin-left: 8px;
+    min-width: 14px;
+    min-height: 14px;
+    color: currentColor;
+    opacity: 0.6;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &--check {
+    color: @gray-9;
+    background-color: @gray-1;
+    cursor: pointer;
+
+    &:hover {
+      background-color: @gray-2;
+    }
+  }
+
+  &--checked {
+    color: @pcolor;
+    background-color: @pcolor-1;
+
+    &:hover {
+      background-color: @pcolor-2;
+    }
+  }
+}

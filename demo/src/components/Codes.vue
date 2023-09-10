@@ -1,8 +1,3 @@
-<template>
-  <div class="codes">
-    <highlightjs autodetect :code="code" />
-  </div>
-</template>
 <script setup lang="ts">
 defineProps({
   code: {
@@ -11,6 +6,13 @@ defineProps({
   },
 })
 </script>
+
+<template>
+  <div class="codes">
+    <highlightjs :autodetect="false" :code="decodeURIComponent(code)" />
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url('@/style/code-color.less');
 

@@ -1,3 +1,4 @@
+@import '../../styles/color/colors.less';
 .yk-progress {
   &-line-wrapper {
     display: flex;
@@ -10,7 +11,37 @@
     width: 100%;
     height: 6px;
     border-radius: @radius-s;
-    background: #e8e8e8;
+    background: @bg-color-s;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--progress-inner-w);
+      height: 100%;
+      border-radius: @radius-s;
+      transition: width 0.3s linear;
+      content: '';
+    }
+    &--custom {
+      &::before {
+        background-color: var(--progress-inner--custom);
+      }
+    }
+    &--success {
+      &::before {
+        background-color: @scolor;
+      }
+    }
+    &--error {
+      &::before {
+        background-color: @ecolor;
+      }
+    }
+    &--normal {
+      &::before {
+        background-color: @pcolor;
+      }
+    }
   }
   &-text {
     display: flex;
@@ -18,23 +49,33 @@
     margin-left: 16px;
     min-width: 60px;
     font-family: PingFangSC-Regular;
-    color: #1e2025cc;
+    color: @font-color-m;
   }
   &-icon {
     margin-left: 8px;
   }
 
-  @sizes: {
-    s: 4px;
-    m: 6px;
-    l: 8px;
-  };
-
-  each(@sizes,{
-    .yk-progress--@{key}{
-      height: @value;
+  &--s {
+    .yk-progress-inner {
+      height: 4px;
     }
-  });
+    .yk-progress-text {
+      .font-ss();
+    }
+  }
+  &--m {
+    .yk-progress-inner {
+      height: 6px;
+    }
+  }
+  &--l {
+    .yk-progress-inner {
+      height: 8px;
+    }
+    .yk-progress-text {
+      .font-m();
+    }
+  }
 
   &-svg {
     position: relative;
@@ -43,6 +84,18 @@
   &-circle {
     stroke-linecap: round;
     transition: all 0.3s linear;
+    &--custom {
+      stroke: var(--progress-circle--custom);
+    }
+    &--success {
+      stroke: @scolor;
+    }
+    &--error {
+      stroke: @ecolor;
+    }
+    &--normal {
+      stroke: @pcolor;
+    }
   }
   &-circle-wrappe {
     position: relative;
@@ -54,18 +107,49 @@
     width: 100%;
     font-family: PingFangSC-Regular;
     text-align: center;
-    color: #1e2025cc;
+    color: @font-color-m;
     transform: translate(-50%, -50%);
   }
-  @circleSizes: {
-    s: 48px;
-    m: 64px;
-    l: 80px;
-  };
-  each(@circleSizes,{
-    .yk-progress-circle--@{key}{
-      width: @value;
-      height: @value;
+}
+
+.yk-progress-circle,
+.yk-progress-circle-bg {
+  &--s {
+    width: 64px;
+    height: 64px;
+    .yk-progress-circle-text {
+      .font-s();
     }
-  });
+  }
+  &--m {
+    width: 80px;
+    height: 80px;
+    .yk-progress-circle-text {
+      .font-m();
+    }
+  }
+  &--l {
+    width: 108px;
+    height: 108px;
+    .yk-progress-circle-text {
+      .font-l();
+    }
+  }
+}
+.yk-progress-circle-bg {
+  stroke: @bg-color-s;
+}
+
+// icon状态颜色clsss
+.yk-progress-icon,
+.yk-progress-circle-icon {
+  &--success {
+    color: @scolor;
+  }
+  &--error {
+    color: @ecolor;
+  }
+  &--normal {
+    color: @pcolor;
+  }
 }

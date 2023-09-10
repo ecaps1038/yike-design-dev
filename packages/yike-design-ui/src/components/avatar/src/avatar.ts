@@ -1,9 +1,8 @@
-import { Size } from '../../utils/constant';
+import { Size } from '../../utils';
 
 export type AvatarProps = {
   shape?: 'circle' | 'square' | number;
   size?: number | Size;
-  icon?: string;
   imgUrl?: string;
 };
 

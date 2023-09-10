@@ -1,0 +1,64 @@
+.input-size(@size, @height, @padding, @fs, @br) {
+  .inner() {
+    padding: 0px @padding;
+    border-radius: @br;
+
+    .yk-text:first-child,
+    .yk-icon:first-child {
+      margin-right: @padding;
+    }
+
+    .yk-text:last-child,
+    .yk-icon:last-child {
+      margin-left: @padding;
+    }
+
+    .yk-icon {
+      width: @fs+2px;
+      height: @fs+2px;
+    }
+  }
+
+  .widget() {
+    height: @height;
+    font-size: @fs;
+    border-radius: @br;
+  }
+
+  &.yk-input--@{size} {
+    .inner();
+  }
+  &.yk-input--@{size} input {
+    .widget();
+  }
+}
+
+.input-status(@status, @bcolor, @bgcolor, @hvbcolor, @hvbgcolor, @fsbcolor, @fsbgcolor) {
+  .bow() {
+    border: 1px solid @bcolor;
+    background-color: @bgcolor !important;
+
+    &:hover {
+      border: 1px solid @hvbcolor;
+      background-color: @hvbgcolor !important;
+    }
+
+    &--focus {
+      border: 1px solid @fsbcolor !important;
+      background-color: @fsbgcolor !important;
+    }
+  }
+  &.yk-input--@{status} {
+    .bow();
+  }
+}
+
+.left-no-border-radius() {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.right-no-border-radius() {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}

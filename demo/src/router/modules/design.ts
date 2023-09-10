@@ -1,21 +1,24 @@
-import { RouteRecordRaw } from 'vue-router'
-const designRoutes: Array<RouteRecordRaw> = [
-  {
-    path: '/design',
-    redirect: '/design/yikedesign',
-    name: 'design',
-    component: () => import('@/views/Designs.vue'),
-    children: [
-      {
-        path: 'yikedesign',
-        component: () => import('@/components/design/yikedesign.vue'),
-      },
-      {
-        path: 'principle',
-        component: () => import('@/components/design/principle.vue'),
-      },
-    ],
-  },
-]
+import { RouteRecordRaw } from 'vue-router';
+import navs from '@/router/config/designs.json';
 
-export default designRoutes
+const designRoutes: RouteRecordRaw = {
+  path: '/design',
+  name: 'design',
+  redirect: '/design/yike-design',
+  component: () => import('@/views/Modules.vue'),
+  children: [
+    {
+      path: 'yike-design',
+      component: () => import('@/views/design/yike-design.md'),
+    },
+    {
+      path: 'principle',
+      component: () => import('@/views/design/principle.md'),
+    },
+  ],
+  meta: {
+    navs,
+  },
+};
+
+export default designRoutes;

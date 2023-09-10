@@ -1,8 +1,11 @@
 import { ref } from 'vue';
 import { createGlobalState } from '@vueuse/core';
 
-export const getElement = (selector: string): HTMLElement => {
-  return document.querySelector(selector) ?? document.body;
+export const getElement = (value: string | HTMLElement): HTMLElement => {
+  if (value instanceof HTMLElement) {
+    return value;
+  }
+  return document.querySelector(value) ?? document.body;
 };
 
 let count = 0;

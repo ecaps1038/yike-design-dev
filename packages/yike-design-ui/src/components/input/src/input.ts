@@ -1,4 +1,5 @@
-import { Size, Status } from '../../utils/constant';
+import { CSSProperties } from 'vue';
+import { Size, Status } from '../../utils';
 
 export type InputProps = {
   id?: string;
@@ -6,14 +7,17 @@ export type InputProps = {
   size?: Size;
   type?: 'text' | 'password';
   placeholder?: string;
-  value?: string;
+  modelValue?: string;
   disabled?: boolean;
   readonly?: boolean;
+  required?: boolean;
   clearable?: boolean;
   visible?: boolean;
   status?: Status;
   loading?: boolean;
   showCounter?: boolean;
   limit?: number;
-  tooltip?: string;
+  style?: CSSProperties;
+  message?: string;
+  inputStyle?: CSSProperties; // input原生style
 };

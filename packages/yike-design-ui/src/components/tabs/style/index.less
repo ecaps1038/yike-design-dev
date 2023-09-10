@@ -1,0 +1,158 @@
+.yk-tabs {
+  @base-height: 40px;
+  overflow: hidden;
+  &-bar {
+    position: absolute;
+    bottom: @space-ss;
+    height: 3px;
+    border-radius: @radius-s*.5;
+    background-color: @pcolor;
+    transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+  }
+  &-nav__icon--disabled {
+    color: @font-color-s;
+  }
+  &__panes__container {
+    overflow: hidden;
+  }
+  &-nav {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    .yk-icon {
+      cursor: pointer;
+    }
+    .yk-tab-plus {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+    &.is-top,
+    &.is-bottom {
+      align-items: center;
+      border-bottom: 1px solid @line-color-s;
+      .yk-tabs-nav__wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1;
+        overflow: hidden;
+        min-height: @base-height;
+      }
+    }
+
+    &.is-left {
+      justify-content: center;
+      float: left;
+      border-right: 1px solid @line-color-s;
+      flex-direction: column-reverse;
+      .yk-tab-plus {
+        margin: auto;
+      }
+      .yk-tabs-nav__wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1;
+        overflow: hidden;
+        min-width: @base-height;
+      }
+      .yk-tabs-nav__scroll {
+        flex-direction: column;
+      }
+      .yk-tabs-bar {
+        top: 0;
+        right: 0;
+        width: 3px;
+        border-radius: 2px 0 0 2px;
+      }
+    }
+    &.is-right {
+      justify-content: center;
+      float: right;
+      border-left: 1px solid @line-color-s;
+      .yk-tabs-nav__wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1;
+        overflow: hidden;
+        min-width: @base-height;
+      }
+      .yk-tabs-nav__scroll {
+        flex-direction: column;
+      }
+      .yk-tabs-bar {
+        top: 0;
+        left: 0;
+        width: 3px;
+        border-radius: 0 2px 2px 0;
+      }
+    }
+
+    &__scroll {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-shrink: 0;
+      transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+      .yk-close {
+        margin-left: @space-s;
+      }
+    }
+    &__item {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0px @space-m;
+      padding: @space-ss 0px;
+      min-width: 10px;
+      height: @base-height;
+      font-size: @size-m;
+      color: @font-color-m;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      cursor: pointer;
+      &:hover {
+        color: @font-color-l;
+      }
+    }
+    &__item--active {
+      // span {
+      //   font-weight: 500;
+      // }
+      color: @font-color-l;
+      background-color: @bg-color-s;
+    }
+    &__item--disabled {
+      color: @font-color-s;
+      cursor: not-allowed;
+      .yk-close {
+        cursor: not-allowed;
+      }
+      &:hover {
+        color: @font-color-s;
+      }
+    }
+    &__item--card {
+      margin: 0;
+      margin-right: @space-ss;
+      padding: 0 @space-m;
+      min-width: 60px;
+      border-top: 1px solid @line-color-s;
+      border-right: 1px solid @line-color-s;
+      border-left: 1px solid @line-color-s;
+      border-radius: @space-s @space-s 0 0;
+      // background-color: @bg-color-s;
+    }
+    &__item--line {
+      background-color: @bg-color-l !important;
+    }
+  }
+
+  &-pane {
+    display: none;
+    overflow: hidden;
+    &__content {
+      overflow: hidden;
+      padding: @space-l*2;
+      width: 100%;
+      font-size: @size-m*2;
+    }
+  }
+}

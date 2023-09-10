@@ -8,11 +8,24 @@
 
 each(@sizes,{ 
   .yk-rate-icon-@{key}{
-  font-size: @value; 
+  width: @value; 
+  height: @value;
  } 
-}) .yk-rate {
+})
+  .yk-rate {
   display: inline-flex;
-  column-gap: @space-s;
+  &--s {
+    column-gap: @space-ss;
+  }
+  &--m {
+    column-gap: 6px;
+  }
+  &--l {
+    column-gap: @space-s;
+  }
+  &--xl {
+    column-gap: 10px;
+  }
 }
 
 .yk-rate-item {
@@ -55,8 +68,8 @@ each(@sizes,{
   }
 }
 
-.yk-rate.yk-rate-disabled,
-.yk-rate.yk-rate-readonly {
+.yk-rate.yk-rate--disabled,
+.yk-rate.yk-rate--readonly {
   .yk-rate-item {
     transform: none;
   }
@@ -68,13 +81,13 @@ each(@sizes,{
   }
 }
 
-.yk-rate.yk-rate-readonly {
+.yk-rate.yk-rate--readonly {
   .yk-rate-icon {
     cursor: default;
   }
 }
 
-.yk-rate.yk-rate-disabled {
+.yk-rate.yk-rate--disabled {
   .yk-rate-icon {
     cursor: not-allowed;
   }

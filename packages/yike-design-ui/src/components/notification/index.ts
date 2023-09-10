@@ -1,2 +1,3 @@
-import YkNotification from './src/utils';
+import { notification as YkNotification } from './src/utils';
+
 export default YkNotification;

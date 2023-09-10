@@ -1,3 +1,6 @@
+export const Drawer_Placements = ['left', 'right', 'top', 'bottom'] as const;
+export type DrawerPlacements = (typeof Drawer_Placements)[number];
+
 export type DrawerProps = {
   show?: boolean;
   size?: string;
@@ -6,6 +9,6 @@ export type DrawerProps = {
   closable?: boolean;
   escapable?: boolean;
   showMask?: boolean;
-  placement?: 'right' | 'left' | 'top' | 'bottom';
-  to?: string;
+  placement?: DrawerPlacements;
+  to?: string | HTMLElement;
 };

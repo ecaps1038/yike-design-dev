@@ -1,38 +1,56 @@
 @import '../../styles/color/colors.less';
+
 .yk-table {
-  table {
+  > table {
+    position: relative;
     overflow: hidden;
-    margin-top: @space-s;
     width: 100%;
-    min-width: 800px;
-    border: 1px solid @line-color-s;
-    border-radius: @radius-m;
-    transition: border @animats;
+    max-width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    border-spacing: 0;
+  }
 
-    tr:hover {
-      background-color: @bg-color-m;
-    }
+  th {
+    background-color: @bg-color-s;
+  }
 
-    th {
-      padding-left: @space-m;
-      font-size: @size-s;
-      font-weight: 600;
-      text-align: left;
-      background-color: @bg-color-m;
-      transition: background-color @animats;
-      line-height: 44px;
+  &__cell {
+    position: relative;
+    z-index: 1;
+    padding: 18px 0px;
+    min-width: 0;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    vertical-align: middle;
+    .cell {
+      overflow: hidden;
+      padding: 0 20px;
+      text-overflow: ellipsis;
+      white-space: normal;
+      box-sizing: border-box;
+      word-break: break-all;
+      line-height: 1.4;
     }
+  }
 
-    td {
-      padding: 10px @space-m;
-      max-width: 240px;
-      border-top: 1px solid @line-color-s;
-      text-align: left;
-      transition: border @animats;
-    }
+  &__cell {
+    border-bottom: 1px solid #1e202514;
+  }
 
-    .light {
-      color: @scolor;
+  &__row {
+    background-color: @bg-color-l;
+    &:hover {
+      background-color: @bg-color-s;
     }
+  }
+
+  .text-center {
+    text-align: center;
+  }
+  .text-right {
+    text-align: right;
   }
 }

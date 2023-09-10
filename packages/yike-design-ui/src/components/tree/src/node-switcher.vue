@@ -2,7 +2,6 @@
 import { inject } from 'vue'
 import { createCssScope } from '../../utils'
 import { TreeInjectionKey, TreeNodeInjectionKey } from './tree'
-import { IconRightFill } from '../../svg-icon'
 
 const bem = createCssScope('tree-node-switcher')
 

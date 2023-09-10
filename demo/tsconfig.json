@@ -1,19 +1,25 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020"],
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "composite": true,
+    "isolatedModules": false,
+    "noUncheckedIndexedAccess": true,
+    "strictNullChecks": false,
+    "allowJs": true,
+    "noEmit": true,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "sourceMap": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "yk-design-ui": ["./packages/yk-design-ui/src/index.ts"]
+      "@/*": ["src/*"],
     }
   },
   "exclude": ["dist/**", "node_modules/**"],
-  "include": ["**/**/*.ts", "**/**/*.vue", "components.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","components.d.ts","plugins/*.ts","env.d.ts"],
 }

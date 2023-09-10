@@ -60,6 +60,7 @@
           @handle-re-upload="handleReUpload"
           @handle-abort="handleAbort"
           @handle-edit="handleEdit"
+          @handle-review="handleReview"
         ></upload-picture-item>
       </span>
       <div
@@ -76,9 +77,30 @@
       </div>
     </div>
   </div>
+  <yk-image-preview-group
+    v-model:visible="reviewVisible"
+    v-model:current="defaultReviewIndex"
+    :src-list="imagesUrlList"
+    :is-render="false"
+    width="300"
+    height="200"
+    fit="cover"
+  ></yk-image-preview-group>
+
+  <yk-modal
+    v-if="editModalVisible"
+    v-model="editModalVisible"
+    :scrollable="false"
+    title="图片裁剪"
+    size="small"
+    @on-submit="handleSubmit"
+  >
+    <cropPicture ref="cropRef" :file-content="currentUploadAvatar" />
+  </yk-modal>
 </template>
+
 <script setup lang="ts">
-import { ref, computed, getCurrentInstance } from 'vue'
+import { ref, computed, getCurrentInstance, reactive } from 'vue'
 import {
   UploadProps,
   ImageTypes,
@@ -87,12 +109,15 @@ import {
   RequestInstance,
 } from './upload'
 import { UploadRequest } from './ajax'
-import { generateListUid, findFileByUid } from './utils'
-import { generateUid } from '../../utils/tools'
-import { createCssScope } from '../../utils/bem'
-import UploadFileItem from './upload-file-item.vue'
+import { generateListUid, findFileByUid, blobToFile } from './utils'
+import { generateUid, createCssScope } from '../../utils'
+import cropPicture from './crop-picture.vue'
 import uploadDraggle from './upload-draggle.vue'
+import UploadFileItem from './upload-file-item.vue'
 import UploadPictureItem from './upload-picture-item.vue'
+import { YkImagePreviewGroup } from '../../image'
+import { IconUpload2Outline, IconPlusOutline } from '../../svg-icon'
+import YkModal from '../../modal'
 
 defineOptions({
   name: 'YkUpload',
@@ -119,12 +144,39 @@ const emits = defineEmits([
   'handleBeforeUpload',
 ])
 const isPicture = ref(false)
+
+const reviewVisible = ref(false)
+
+// 预览时的默认下标
+const cropRef = ref()
+const editModalVisible = ref(false)
+const currentUploadAvatar = reactive<UploadFile>({
+  name: '',
+  url: '',
+  uid: generateUid(),
+  status: 'uploading',
+})
+
+const defaultReviewIndex = ref(0)
+
 const currentList = ref<UploadFile[]>(generateListUid(props.fileList))
 const inputRef = ref<HTMLElement>()
 const uploadInstances = new Map<number, RequestInstance>()
 const currentLength = computed(() => {
   return currentList.value.length
 })
+
+const imagesUrlList = computed(() => {
+  const urlArray = currentList.value.map((ele) => {
+    if (ele.raw) {
+      const blobRaw = URL.createObjectURL(ele.raw)
+      return blobRaw
+    }
+    return ele.url
+  }) as string[]
+  return urlArray
+})
+
 const uploadDisabled = computed(() => {
   return !!props.limit && currentLength.value >= props.limit
 })
@@ -156,6 +208,20 @@ const onUploadRequest = async (uploadFile: File) => {
     onProgress: handleProgress,
   }
   uploadInstances.set(uid, UploadRequest(requestOptions))
+}
+
+const handleUploadAvatar = (avatarFile: File) => {
+  currentList.value = []
+  const fileName = avatarFile?.name
+  if (!fileName) {
+    proxy.$message.error('文件上传失败，请重新选择文件')
+    return
+  }
+  const uid = generateUid()
+  currentUploadAvatar.name = fileName
+  currentUploadAvatar.raw = avatarFile
+  currentUploadAvatar.uid = uid
+  editModalVisible.value = true
 }
 
 const handleSuccess = (uid: number, res: string) => {
@@ -196,13 +262,15 @@ const handleBeforeUpload = (uploadFile: File) => {
   return true
 }
 
-const handleInputChange = (event) => {
+const handleInputChange = (event: any) => {
   const uploadFiles = Array.from(event.target.files) as File[]
   if (!uploadFiles.length) {
     return
   }
   if (props.avatar) {
-    currentList.value = []
+    handleBeforeUpload(uploadFiles[0])
+    handleUploadAvatar(uploadFiles[0])
+    return
   }
   uploadFiles.forEach((upload: File) => {
     const validate = handleBeforeUpload(upload)
@@ -210,6 +278,7 @@ const handleInputChange = (event) => {
       onUploadRequest(upload)
     }
   })
+  event.target.value = ''
 }
 
 const handleAbort = (uid: number) => {
@@ -235,10 +304,18 @@ const handleReUpload = (uid: number) => {
   onUploadRequest(raw)
 }
 
-const handleEdit = (uid: number) => {
-  findFileByUid(uid, currentList.value)
-  // ToDo use idx filter file to edit
-  handleUpload()
+const handleEdit = (blob: Blob, uid: number) => {
+  const idx = findFileByUid(uid, currentList.value)
+  const fileName = currentList.value[idx].name
+  currentList.value.splice(findFileByUid(uid, currentList.value), 1)
+  const newFile = blobToFile(blob, fileName)
+  onUploadRequest(newFile)
+}
+
+const handleReview = (uid: number) => {
+  const idx = findFileByUid(uid, currentList.value)
+  defaultReviewIndex.value = idx
+  reviewVisible.value = true
 }
 
 // dragger methods
@@ -246,5 +323,12 @@ const handleDraggleFiles = (files: File[]) => {
   files.forEach((file) => {
     onUploadRequest(file)
   })
+}
+
+const handleSubmit = async () => {
+  const { blobRaw } = await cropRef.value.handleCrop()
+  const newFile = blobToFile(blobRaw, currentUploadAvatar.name)
+  onUploadRequest(newFile)
+  editModalVisible.value = false
 }
 </script>

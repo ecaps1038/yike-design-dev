@@ -4,8 +4,7 @@
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
-  font-size: @size-s;
-  line-height: 22px;
+  .font-s();
   cursor: pointer;
   &&--disabled {
     cursor: not-allowed;
@@ -15,6 +14,7 @@
   &-target {
     width: 0;
     height: 0;
+    visibility: collapse;
     user-select: none;
   }
 

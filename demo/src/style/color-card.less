@@ -1,27 +1,63 @@
-.ykcolor-dark,
-.ykcolor-light,
-.ykcolor-neutral {
+.ykcolor-primary {
+  display: flex;
   margin-top: 40px;
+  &-left,
+  &-right {
+    margin-right: 40px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   h3,
   h4 {
-    margin: 20px 0;
-  }
-
-  p {
-    margin: 10px 0;
-  }
-
-  .ykcolor-quote {
-    margin-bottom: 30px;
-    padding: 5px 0 5px 10px;
-    border-left: 2px solid #2b5aed;
+    margin-bottom: 20px;
   }
 
   .ykcolor-group {
-    display: grid;
-    grid-template-columns: repeat(3, 218px);
-    gap: 24px;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    > div {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.white {
+  border: 1px solid #e8e8e8;
+  color: #1e2025 !important;
+}
+.radius_first {
+  border-radius: 8px 8px 0 0 !important;
+}
+.radius_last {
+  border-radius: 0 0 8px 8px !important;
+}
+.black {
+  color: @font-color-l !important;
+}
+.gray {
+  color: @light !important;
+}
+
+.ykcolor-mixed {
+  display: grid;
+  margin-top: 40px;
+  max-width: 800px;
+  grid-template-columns: repeat(3, 1fr);
+  flex-wrap: wrap;
+
+  .ykcolor-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.ykcolor-background {
+  display: flex;
+  > div {
+    margin-right: 20px;
   }
 }

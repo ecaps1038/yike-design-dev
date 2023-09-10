@@ -1,0 +1,88 @@
+@import '../../styles/color/colors.less';
+
+.yk-form {
+  display: flex;
+  flex-direction: column;
+  &--inline {
+    flex-direction: row;
+  }
+}
+
+.yk-form--horizontal,
+.yk-form--inline {
+  .yk-form-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    &__label {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-direction: row;
+    }
+    &__field {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    &--l {
+      .define-form-item(60px,36px, @space-l, @size-m, @space-ss, @size-ss);
+    }
+    &--s {
+      .define-form-item(48px,24px, @space-s, @size-s, @space-s, @size-s);
+    }
+    &--xl {
+      .define-form-item(72px,48px, @space-xl, @size-m, @space-xl, @size-xl);
+    }
+    &--m {
+      .define-form-item(56px,32px, @space-l, @size-m, @space-ss, @size-ss);
+    }
+  }
+}
+.yk-form--vertical {
+  .yk-form-item {
+    &__label {
+      height: 28px;
+    }
+    &__field {
+      min-height: 60px;
+    }
+  }
+}
+.yk-form--inline {
+  flex-wrap: wrap;
+  .yk-form-item {
+    display: flex;
+    flex-direction: row;
+    &__label {
+      height: 28px;
+    }
+    &__field {
+      margin-right: @space-xl;
+    }
+  }
+}
+
+.define-form-item(@height,@labelHeight, @padding, @fontSize, @margin, @fontSizeExtra) {
+  min-height: @height;
+  .yk-form-item {
+    &__label {
+      padding-right: @padding;
+      height: @labelHeight;
+      font-size: @fontSize;
+    }
+    &__field {
+      padding-right: @padding;
+      min-height: @labelHeight;
+      font-size: @fontSize;
+    }
+    &__extra {
+      margin-left: @margin;
+      font-size: @fontSizeExtra;
+      color: @ecolor;
+      line-height: 16px;
+    }
+  }
+}

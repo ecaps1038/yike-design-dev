@@ -8,7 +8,7 @@
 
 :::snippet
 环形进度条
-设置 type="circle" 将会展示环形进度条。
+设置 `type="circle"` 将会展示环形进度条。
 <ProgressCircle/>
 :::
 
@@ -20,19 +20,19 @@
 
 :::snippet
 进度条状态
-通过 status 指定进度条状态
+通过 `status` 指定进度条状态
 <ProgressStatus/>
 :::
 
 :::snippet
 环形进度条状态
-设置 status 将会展示不同状态的环形进度条。
+设置 `status` 将会展示不同状态的环形进度条。
 <ProgressCircleStatus/>
 :::
 
 :::snippet
 自定义内容
-通过插槽添加自定义内容。
+通过`slot`添加自定义内容。
 <ProgressSlot/>
 :::
 

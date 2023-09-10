@@ -12,8 +12,9 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { DraggleProps } from './upload'
-import { createCssScope } from '../../utils/bem'
+import type { DraggleProps } from './upload'
+import { createCssScope } from '../../utils'
+
 const props = withDefaults(defineProps<DraggleProps>(), {
   desc: '',
   disabled: false,

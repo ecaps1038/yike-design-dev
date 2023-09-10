@@ -30,7 +30,6 @@ onMounted(() => {
   height: 400px;
   border: 1px solid #f0f0f0;
 }
-
 .scroll-view {
   display: flex;
   justify-content: center;

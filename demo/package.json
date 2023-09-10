@@ -16,10 +16,11 @@
     "seemly": "^0.3.6",
     "vue": "^3.3.4",
     "vue-router": "^4.1.6",
-    "yike-design-ui": "workspace:*"
+    "@yike-design/ui": "workspace:*"
   },
   "devDependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
+    "@types/markdown-it": "^12.2.3",
     "@vitejs/plugin-vue": "^4.2.3",
     "highlight.js": "^11.7.0",
     "unplugin-vue-components": "^0.25.1"

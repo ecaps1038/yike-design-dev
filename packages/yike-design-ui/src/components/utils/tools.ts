@@ -101,7 +101,7 @@ export const transformPxToNumber = (measurement: number | string) => {
 };
 
 /** 数字 => px 字符串 */
-export const toPx = (px: string | number) => {
+export const toPx = (px?: string | number) => {
   if (typeof px === 'number') {
     return `${px}px`;
   }
