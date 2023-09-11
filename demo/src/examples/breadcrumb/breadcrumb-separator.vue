@@ -11,7 +11,7 @@
   </yk-breadcrumb> -->
   <yk-breadcrumb>
     <template #separator>
-      <yk-icon name="yk-xiangyou"></yk-icon>
+      <IconRightOutline />
     </template>
     <yk-breadcrumb-item>Home</yk-breadcrumb-item>
     <yk-breadcrumb-item>Button</yk-breadcrumb-item>
