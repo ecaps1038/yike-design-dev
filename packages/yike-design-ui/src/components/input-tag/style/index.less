@@ -28,6 +28,42 @@
     .yk-icon:last-child {
       margin-right: 0px !important;
     }
+    &--xl {
+      .yk-tag {
+        margin: 4px 4px 0px 0;
+        height: 38px;
+      }
+      .yk-tag__content {
+        font-size: @size-m;
+      }
+    }
+    &--l {
+      .yk-tag {
+        margin: 3px 4px 1px 0;
+        height: 28px;
+      }
+      .yk-tag__content {
+        font-size: @size-s;
+      }
+    }
+    &--m {
+      .yk-tag {
+        margin: 3px 4px 1px 0;
+        height: 24px;
+      }
+      .yk-tag__content {
+        font-size: @size-s;
+      }
+    }
+    &--s {
+      .yk-tag {
+        margin: 2px 4px 1px 0;
+        height: 18px;
+      }
+      .yk-tag__content {
+        font-size: @size-ss;
+      }
+    }
   }
 
   &__tag-list {
@@ -35,19 +71,19 @@
   }
 
   .yk-tag {
-    margin: 0 2px;
-    // border: 1px solid @line-color-s;
     transition: background-color 0.2s ease-in-out;
-    box-sizing: border-box;
 
     &__content {
       white-space: pre-wrap;
       word-break: break-word;
     }
     &__close {
-      margin-left: 4px;
+      margin-left: 4px !important;
       padding: 1px;
     }
+  }
+  .yk-tag--m {
+    padding: 0 8px;
   }
 
   &__blur {

@@ -24,10 +24,9 @@
             v-for="(tag, index) in renderTagList"
             :key="index"
             :class="bem('tag-list-item')"
-            :size="tagSize"
             :disabled="mergedDisabled"
             :closeable="clearable"
-            :type="mergedStatus == 'primary' ? '' : mergedStatus"
+            :type="mergedStatus == 'primary' ? 'defualt' : mergedStatus"
             v-bind="tagProps"
             @close="onCloseTag(index)"
           >
@@ -37,7 +36,6 @@
             <yk-tag
               v-if="!$slots.collapsedItems"
               :class="bem('tag-list-item')"
-              :size="tagSize"
               :disabled="mergedDisabled"
             >
               +{{ tagList.length - +showCollapsedNum }}
@@ -171,15 +169,6 @@ const className = computed(() => {
   ]
 })
 
-const tagSize = computed(() => {
-  // 比input的大小要小一个规格
-  const sizeList = Object.keys(SIZES_MAP)
-  const scaleIndex = sizeList.findIndex((size) => size === mergedSize.value)
-  const tagSizeIndex = scaleIndex - 1
-  // 最小大小为sizeList的第一个，防止越界
-  return tagSizeIndex >= 0 ? sizeList[tagSizeIndex] : sizeList[0]
-})
-
 const setInputVal = (val: string) => {
   inputVal.value = val
 }
@@ -225,7 +214,7 @@ const updateTagInputWidth = (v?: number) => {
 const inputStyle = computed(() => {
   // 给多2px，防止内容为空的时候，宽度为0
   return {
-    width: `${Math.ceil(tagInputWidth.value + 2)}px`,
+    width: `${Math.ceil(tagInputWidth.value + 8)}px`,
   }
 })
 
