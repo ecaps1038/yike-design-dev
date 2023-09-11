@@ -2,25 +2,25 @@
 
 :::snippet
 基本用法
-这里展示基本用法
+滚动条基本用法。
 <ScrollbarPrimary/>
 :::
 
 :::snippet
 横向滚动
-当内容宽度大于容器宽度时
+当内容宽度大于容器宽度时。
 <ScrollbarHorizontal/>
 :::
 
 :::snippet
 总是显示
-总是显示滚动条
+总是显示滚动条。
 <ScrollbarAlways/>
 :::
 
 :::snippet
 原生滚动条
-原生滚动条可以获得更好的性能
+原生滚动条可以获得更好的性能。
 <ScrollbarNative/>
 :::
 

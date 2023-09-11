@@ -24,6 +24,7 @@ import YkPopconfirm from './components/popconfirm';
 import YkInputNumber from './components/input-number';
 import { YkTabs, YkTabPane } from './components/tabs';
 import { YkForm, YkFormItem } from './components/form';
+import YkInputTag from './components/input-tag';
 import YkPagination from './components/pagination';
 import YkTextArea from './components/text-area';
 import YkTag from './components/tag';
@@ -90,6 +91,7 @@ const components: {
   YkPagination,
   YkForm,
   YkFormItem,
+  YkInputTag,
   YkTextArea,
   YkTag,
   YkCalendar,
@@ -151,6 +153,7 @@ export {
   YkPagination,
   YkForm,
   YkFormItem,
+  YkInputTag,
   YkTextArea,
   YkTag,
   YkCalendar,

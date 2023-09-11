@@ -1,21 +1,25 @@
 type ParentComputedStyle = CSSStyleDeclaration | { [key: string]: string };
+type ParentNodeType = HTMLElement | ShadowRoot | ParentNode | null;
 
 /**
- * @function splitCameCase  驼峰单词拆分
- * @param str  需要拆分处理的字符串
- * @returns  返回拆分后的结果 是一个数组
+ * 将驼峰命名字符串拆分为单词或数字的数组。
+ *
+ * @param {string} str - 要拆分的驼峰命名字符串。
+ * @returns {string[]} - 包含拆分结果的数组。
+ * @example
+ * const inputStr = "TopLeft";
+ * const result = splitCamelCase(inputStr);
+ * // 输出：["Top", "Left"]
  */
-export function splitCameCase(str: string): string[] {
-  const matches = str.match(/[A-Z]?[a-z]+|[0-9]+/g);
-
-  return matches ? matches : [];
+export function splitCamelCase(str: string): string[] {
+  return str.match(/[A-Z]?[a-z]+|[0-9]+/g) || [];
 }
 
 /**
  * @function getParentNode 获取目标元素的父元素
  */
 export function getParentNode(node: Node) {
-  const parent: HTMLElement | ShadowRoot | ParentNode | null = node.parentNode;
+  const parent: ParentNodeType = node.parentNode;
 
   if (
     parent &&

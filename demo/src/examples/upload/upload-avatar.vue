@@ -15,7 +15,7 @@ const uploadUrl = 'https://www.huohuo90.com:3005/upload'
 const fileUrl = ref([
   {
     name: '默认图片',
-    url: 'http://chat.finecoder.cn:3976/upload/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230801002828.jpg',
+    url: 'https://www.huohuo90.com:3005/logo/dafei.jpg',
   },
 ])
 </script>

@@ -20,7 +20,7 @@ const isDev = import.meta.env.DEV
   <div class="top-bar">
     <router-link class="logo" to="/">
       <img src="@/assets/icon/logo.svg" />
-      <p class="name">Yike Design</p>
+      <IconYkdesignFill class="name" />
       <yk-tag v-if="isDev" type="primary">DEV</yk-tag>
     </router-link>
     <yk-space class="nav-links" :size="24" align="center">
@@ -69,6 +69,8 @@ const isDev = import.meta.env.DEV
   box-sizing: border-box;
 
   a {
+    display: flex;
+    align-items: center;
     color: inherit;
   }
 
@@ -89,11 +91,9 @@ const isDev = import.meta.env.DEV
   }
 
   .name {
-    padding: 0 10px;
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: bold;
-    white-space: nowrap;
+    margin: 2px 10px 0;
+    width: auto;
+    height: 18px;
     color: @font-color-l !important;
   }
 
@@ -117,7 +117,7 @@ const isDev = import.meta.env.DEV
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (max-width: 810px) {
   .responsive-hidden {
-    display: none;
+    display: none !important;
   }
 
   .logo {

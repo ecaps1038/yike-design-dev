@@ -17,8 +17,6 @@ export const calculate = (value: number, step: number, precision: number) => {
   }
   const power = 10 ** digits;
   const result = (value * power + step * power) / power;
-  // const r2 = parseFloat(result.toPrecision(precision + 1));
-  // console.error(valueDigits, stepDigits, power, ' = ', r2, result, precision);
   return result;
 };
 

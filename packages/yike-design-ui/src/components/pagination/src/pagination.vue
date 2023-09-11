@@ -100,7 +100,7 @@ const handlePageChange = (page: number) => {
 const handlePageSizeChange = (pageSize: number) => {
   if (!props.disabled) {
     internalPageSize.value = pageSize
-    emits('change', pageSize)
+    emits('pageSizeChange', pageSize)
   }
 }
 

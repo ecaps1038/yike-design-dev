@@ -45,6 +45,7 @@ a {
     font-weight: 500;
     color: @pcolor;
   }
+
   p {
     margin-top: 1em;
     margin-bottom: 0.5em;
@@ -54,6 +55,10 @@ a {
     margin: @space-m 0;
     padding: @space-l @space-xl;
     background-color: @bg-color-m;
+
+    code {
+      overflow-x: scroll !important;
+    }
   }
 
   li:not(.yk-anchor-item) {
@@ -65,6 +70,7 @@ a {
 
   pre {
     overflow: hidden;
+    overflow-x: auto;
     margin-bottom: @space-ss;
     padding: @space-m;
     max-width: 1200px;
