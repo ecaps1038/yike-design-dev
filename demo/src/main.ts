@@ -18,6 +18,8 @@ import Icon from '@yike-design/ui/src/components/svg-icon';
 import { YkTitle, YkMessage, YkNotification } from '@yike-design/ui/src';
 import { vLoading } from '@yike-design/ui/src/components/spinner/src/directive';
 import '@yike-design/ui/src/components/styles/index.less';
+import '@yike-design/ui/src/components/notification/style';
+import '@yike-design/ui/src/components/message/style';
 
 hljs.registerLanguage('javascript', javascript);
 
