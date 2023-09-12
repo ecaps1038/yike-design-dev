@@ -147,6 +147,7 @@ onMounted(() => {
 
 const increase = () => {
   if (lastValue.value >= valueRefs.max.value) {
+    stopCombo()
     return
   }
   lastValue.value = calculate(
@@ -160,6 +161,7 @@ const increase = () => {
 
 const decrease = () => {
   if (lastValue.value <= valueRefs.min.value) {
+    stopCombo()
     return
   }
   lastValue.value = calculate(
