@@ -1,6 +1,7 @@
 <template>
   <YkInput
-    :model-value="displayValue"
+    ref="inputRef"
+    :model-value="mergedValue"
     :disabled="mergedDisabled"
     :size="mergedSize"
     :class="bem()"
@@ -40,7 +41,7 @@
   </YkInput>
 </template>
 <script setup lang="ts">
-import { calculate, numberMatchReg } from './utils'
+import { calculate, numberMatchReg, normalizeNumber } from './utils'
 import { createCssScope, useFormItem } from '../../utils'
 import { InputNumberProps } from './input-number'
 import { toRefs, ref, onMounted, reactive, computed, watch } from 'vue'
@@ -75,7 +76,7 @@ const TimeBeforeCombo = 250
 const ComboSpeed = 60
 const valueRefs = toRefs(props)
 const lastValue = ref<number>(0)
-const displayValue = ref<string>('')
+const inputRef = ref<InstanceType<typeof YkInput>>()
 
 const { disabled, size } = valueRefs
 
@@ -99,10 +100,6 @@ const getInitialValue = () => {
     return 0
   }
   return props.min
-}
-
-const getDisplayValue = () => {
-  return (+lastValue.value).toFixed(precision.value)
 }
 
 // mode: 0 = 减模式, 1 = 加模式
@@ -140,10 +137,6 @@ const checkLimit = () => {
 onMounted(() => {
   lastValue.value = valueRefs.modelValue?.value ?? getInitialValue()
   checkLimit()
-
-  if (props.modelValue) {
-    displayValue.value = getDisplayValue()
-  }
 })
 
 const increase = () => {
@@ -190,6 +183,8 @@ const change = (value: string) => {
     : 0
   if (precision.value === 0) {
     lastValue.value = Math.trunc(lastValue.value)
+  } else {
+    lastValue.value = normalizeNumber(lastValue.value, precision.value)
   }
   checkLimit()
 }
@@ -205,20 +200,23 @@ const blur = () => {
   if (limit.isMin) {
     lastValue.value = valueRefs.min.value
   }
-  update()
+  inputRef.value?.setValue(mergedValue.value)
 }
 
 const update = () => {
   checkLimit()
-  displayValue.value = getDisplayValue()
   emits('update:modelValue', lastValue.value)
 }
 
+const mergedValue = computed(() => {
+  return lastValue.value.toString()
+})
+
+// 模型同步
 watch(
   () => props.modelValue,
   (newValue) => {
     lastValue.value = newValue ?? getInitialValue()
-    displayValue.value = getDisplayValue()
   },
 )
 </script>
