@@ -14,7 +14,7 @@
   >
     <template #suffix>
       <div
-        v-show="!mergedDisabled && isHovering"
+        v-show="controls && !mergedDisabled && isHovering"
         :class="[bem('buttons'), bem([mergedSize])]"
       >
         <YkButton
@@ -58,6 +58,7 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
   precision: 0,
   size: 'l',
   disabled: false,
+  controls: true,
 })
 
 const bem = createCssScope('input-number')
