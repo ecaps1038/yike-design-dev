@@ -143,6 +143,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/form/doc.md'),
   },
   {
+    path: 'input-tag',
+    component: () => import('@/examples/input-tag/doc.md'),
+  },
+  {
     path: 'spinner',
     component: () => import('@/examples/spinner/doc.md'),
   },

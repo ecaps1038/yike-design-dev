@@ -8,13 +8,13 @@
 
 :::snippet
 嵌套
-一棵折叠的树。
+折叠面板可以像俄罗斯套娃一般地嵌套。
 <CollapseMulti/>
 :::
 
 :::snippet
 无边框
-组件与人一样，没有条条框框会更完美。
+通过 `border` 控制折叠面板组是否显示边框线。默认为 `true`。
 <CollapseNoborder/>
 :::
 
@@ -23,18 +23,25 @@
 使用插槽来自定义内容。
 <CollapseSlots/>
 :::
+
 ### API
 
-| 参数       | 描述                       | 类型                             | 默认值  |
-| ---------- | -------------------------- | -------------------------------- | ------- |
-| title      | 标题              | string                           | ' '      |
-| active    | 是否激活            | boolean                          | false    |
-| disabled   | 是否禁用           | boolean                          | false    |
-| boder      | 是否有边框         | boolean                          | true    |
+#### CollapseGroup Props
 
+| 参数   | 描述         | 类型    | 默认值 |
+| ------ | ------------ | ------- | ------ |
+| border | 是否显示边框 | boolean | true   |
 
-### 插槽
+#### Collapse Props
 
-| 插槽名  | 描述           |
-| ------- | -------------- |
-| default | 自定义内容 |
+| 参数     | 描述     | 类型    | 默认值 |
+| -------- | -------- | ------- | ------ |
+| title    | 标题     | string  | ''     |
+| active   | 是否激活 | boolean | false  |
+| disabled | 是否禁用 | boolean | false  |
+
+#### Collapse Slots
+
+| 插槽名 | 描述             |
+| ------ | ---------------- |
+| right  | 标题栏右侧的内容 |

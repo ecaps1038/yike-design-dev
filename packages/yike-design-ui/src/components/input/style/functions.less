@@ -1,15 +1,16 @@
 .input-size(@size, @height, @padding, @fs, @br) {
   .inner() {
+    padding: 0px @padding;
     border-radius: @br;
 
     .yk-text:first-child,
     .yk-icon:first-child {
-      margin-left: @padding;
+      margin-right: @padding;
     }
 
     .yk-text:last-child,
     .yk-icon:last-child {
-      margin-right: @padding;
+      margin-left: @padding;
     }
 
     .yk-icon {
@@ -19,7 +20,6 @@
   }
 
   .widget() {
-    padding: 0px @padding;
     height: @height;
     font-size: @fs;
     border-radius: @br;

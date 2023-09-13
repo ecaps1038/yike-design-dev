@@ -3,7 +3,7 @@ import { InjectionKey, Slots } from 'vue';
 export type BreadcrumbProps = {
   // id?: string;
   separator?: string;
-  separatorIcon?: string;
+  // separatorIcon?: string;
 };
 
 export type BreadcrumbItemProps = {

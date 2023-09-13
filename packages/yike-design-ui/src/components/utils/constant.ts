@@ -3,6 +3,12 @@ export type Type = (typeof TYPES)[number];
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type Size = (typeof SIZES)[number];
+export enum SIZES_MAP {
+  s = 's',
+  m = 'm',
+  l = 'l',
+  xl = 'xl',
+}
 
 export const LAYOUT = ['horizontal', 'vertical', 'inline'] as const;
 export type Layout = (typeof LAYOUT)[number];
@@ -12,6 +18,12 @@ export type Shape = (typeof SHAPES)[number];
 
 export const STATUS = ['success', 'warning', 'danger', 'primary'] as const;
 export type Status = (typeof STATUS)[number];
+export enum STATUS_MAP {
+  success = 'success',
+  warning = 'warning',
+  danger = 'danger',
+  primary = 'primary',
+}
 
 export const MESSAGETYPE = [
   'success',

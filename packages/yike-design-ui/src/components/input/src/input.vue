@@ -40,6 +40,7 @@
         tabindex="0"
         :value="lastValue"
         :aria-disabled="mergedDisabled"
+        :style="inputStyle"
         @focus="focus"
         @input="update"
         @blur="blur"
@@ -81,7 +82,7 @@
     </span>
   </div>
   <Transition name="fade">
-    <div v-if="!isError && message" :class="bem('hint', [mergedStatus])">
+    <div v-if="message" :class="bem('hint', [mergedStatus])">
       {{ message }}
     </div>
   </Transition>
@@ -116,7 +117,7 @@ const props = withDefaults(defineProps<InputProps>(), {
 })
 const bem = createCssScope('input')
 
-const { disabled, status, message, size } = toRefs(props)
+const { disabled, status, message, size, inputStyle } = toRefs(props)
 
 const { mergedDisabled, isError, mergedStatus, mergedSize, validate } =
   useFormItem({
@@ -228,10 +229,13 @@ const YkInputButtonClass = computed(() => {
   }
 })
 
-watch(props, () => {
-  lastValue = props.modelValue
-  emits('update:modelValue', lastValue)
-})
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    lastValue = newValue
+    emits('update:modelValue', lastValue)
+  },
+)
 
 defineExpose({
   inputRef,

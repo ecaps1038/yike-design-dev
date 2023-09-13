@@ -20,6 +20,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: Generations of Components
+        run: pnpm run build:comp
+
+      - name: Generations of Less
+        run: pnpm run build:less
+
       - name: Build docs
         run: |
           pnpm run build:demo

@@ -192,14 +192,14 @@ function addDemoFile() {
 }
 
 function selectAddRouter() {
-  const barFile = 'demo/src/router/config/bar.json'
+  const barFile = 'demo/src/router/config/components.json'
   fs.readFile(barFile, 'utf8', (err, data) => {
     if (err) {
       warn('路由配置文件读取失败')
       warn(err)
       process.exit(233)
     }
-    const barData = JSON.parse(data).bar
+    const barData = JSON.parse(data)
     const titleList = barData.map(
       (item, index) => `${index + 1}: ${item.title}`,
     )
@@ -213,22 +213,17 @@ function selectAddRouter() {
         name: `${upperComponentName} ${componentDescName}`,
         src: componentLowDashName,
       })
-      fs.writeFile(
-        barFile,
-        JSON.stringify({ bar: barData }, null, 2),
-        'utf8',
-        (err) => {
-          if (err) {
-            warn(err)
-            return
-          }
-          log(
-            `${barFile} ${componentDescName}组件已添加至${
-              titleList[answer - 1]
-            }路由类目下`,
-          )
-        },
-      )
+      fs.writeFile(barFile, JSON.stringify(barData, null, 2), 'utf8', (err) => {
+        if (err) {
+          warn(err)
+          return
+        }
+        log(
+          `${barFile} ${componentDescName}组件已添加至${
+            titleList[answer - 1]
+          }路由类目下`,
+        )
+      })
       rl.close()
       log('已完成组件目录及初始化文件的创建')
     })
