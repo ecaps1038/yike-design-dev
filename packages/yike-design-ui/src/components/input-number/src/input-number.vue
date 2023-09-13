@@ -1,7 +1,7 @@
 <template>
   <YkInput
     ref="inputRef"
-    :model-value="mergedValue"
+    :model-value="displayValue"
     :disabled="mergedDisabled"
     :size="mergedSize"
     :class="bem()"
@@ -140,7 +140,7 @@ onMounted(() => {
 })
 
 const increase = () => {
-  if (lastValue.value >= valueRefs.max.value) {
+  if (limit.isMax) {
     stopCombo()
     return
   }
@@ -154,7 +154,7 @@ const increase = () => {
 }
 
 const decrease = () => {
-  if (lastValue.value <= valueRefs.min.value) {
+  if (limit.isMin) {
     stopCombo()
     return
   }
@@ -200,7 +200,7 @@ const blur = () => {
   if (limit.isMin) {
     lastValue.value = valueRefs.min.value
   }
-  inputRef.value?.setValue(mergedValue.value)
+  inputRef.value?.setValue(displayValue.value)
 }
 
 const update = () => {
@@ -208,7 +208,7 @@ const update = () => {
   emits('update:modelValue', lastValue.value)
 }
 
-const mergedValue = computed(() => {
+const displayValue = computed(() => {
   return lastValue.value.toString()
 })
 
@@ -217,6 +217,7 @@ watch(
   () => props.modelValue,
   (newValue) => {
     lastValue.value = newValue ?? getInitialValue()
+    checkLimit()
   },
 )
 </script>
