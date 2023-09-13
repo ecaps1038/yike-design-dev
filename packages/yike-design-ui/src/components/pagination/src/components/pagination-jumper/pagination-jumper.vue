@@ -1,13 +1,16 @@
 <template>
   <span :class="cssScope()">
     <span v-if="!simple" :class="cssScope('label')">前往</span>
-    <yk-input
+    <yk-input-number
       v-model="inputValue"
       :size="size"
       :disabled="disabled"
+      :min="1"
+      :max="totalPages"
+      :controls="false"
       @blur="changePage"
       @submit="changePage"
-    ></yk-input>
+    ></yk-input-number>
     <span v-if="simple" :class="cssScope('separator')">/</span>
     <span v-if="simple" :class="cssScope('total')">{{ totalPages }}</span>
   </span>
@@ -17,7 +20,6 @@
 import { ref, watch } from 'vue'
 import type { JumperProps, JumperEmits } from './pagination-jumper'
 import { useCssScope } from '../../utils'
-import YkInput from '../../../../input'
 
 defineOptions({
   name: 'YkPaginationJumper',
@@ -35,7 +37,6 @@ const isNumber = (val: string) => {
 const changePage = () => {
   if (isNumber(inputValue.value)) {
     let page = parseInt(inputValue.value)
-    page = page > props.totalPages ? props.totalPages : page < 1 ? 1 : page
     emits('jump', page)
   }
   if (!props.simple) {
