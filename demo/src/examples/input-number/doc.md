@@ -1,4 +1,5 @@
 ## YkInputNumber 数字输入框
+
 数字输入框用于准确地输入数字。
 
 :::snippet
@@ -36,6 +37,7 @@
 | precision            | 显示精度           | number              | 0         |
 | size                 | 数字输入框的尺寸   | 's'｜'m'｜'l'｜'xl' | 'l'       |
 | disabled             | 是否禁用数字输入框 | boolean             | false     |
+| controls             | 是否开启控制按钮   | boolean             | true      |
 
 其余属性继承自 [Input](/module/input#Input)
 

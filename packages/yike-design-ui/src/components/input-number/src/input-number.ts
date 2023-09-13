@@ -9,6 +9,7 @@ export type InputNumberProps = {
   size?: Size;
   disabled?: boolean;
   message?: string;
+  controls?: boolean;
 
   formatter?: (value: number) => string;
 };

@@ -14,7 +14,7 @@
   >
     <template #suffix>
       <div
-        v-show="!mergedDisabled && isHovering"
+        v-show="controls && !mergedDisabled && isHovering"
         :class="[bem('buttons'), bem([mergedSize])]"
       >
         <YkButton
@@ -58,6 +58,7 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
   precision: 0,
   size: 'l',
   disabled: false,
+  controls: true,
 })
 
 const bem = createCssScope('input-number')
@@ -101,7 +102,7 @@ const getInitialValue = () => {
 }
 
 const getDisplayValue = () => {
-  return lastValue.value.toFixed(precision.value)
+  return (+lastValue.value).toFixed(precision.value)
 }
 
 // mode: 0 = 减模式, 1 = 加模式
@@ -147,6 +148,7 @@ onMounted(() => {
 
 const increase = () => {
   if (lastValue.value >= valueRefs.max.value) {
+    stopCombo()
     return
   }
   lastValue.value = calculate(
@@ -160,6 +162,7 @@ const increase = () => {
 
 const decrease = () => {
   if (lastValue.value <= valueRefs.min.value) {
+    stopCombo()
     return
   }
   lastValue.value = calculate(
