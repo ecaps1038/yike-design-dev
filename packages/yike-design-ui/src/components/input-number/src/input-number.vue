@@ -102,7 +102,7 @@ const getInitialValue = () => {
 }
 
 const getDisplayValue = () => {
-  return lastValue.value.toFixed(precision.value)
+  return (+lastValue.value).toFixed(precision.value)
 }
 
 // mode: 0 = 减模式, 1 = 加模式
