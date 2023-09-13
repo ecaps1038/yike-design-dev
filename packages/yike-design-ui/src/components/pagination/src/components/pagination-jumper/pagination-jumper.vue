@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import type { JumperProps, JumperEmits } from './pagination-jumper'
 import { useCssScope } from '../../utils'
 
@@ -28,27 +28,27 @@ defineOptions({
 const props = defineProps<JumperProps>()
 const emits = defineEmits<JumperEmits>()
 const cssScope = useCssScope('jumper')
-const inputValue = ref<string>('')
+const inputValue = ref<number>(1)
 
-const isNumber = (val: string) => {
-  return /^[1-9][0-9]*$/.test(val)
-}
+// const isNumber = (val: string) => {
+//   return /^[1-9][0-9]*$/.test(val)
+// }
 
 const changePage = () => {
-  if (isNumber(inputValue.value)) {
-    let page = parseInt(inputValue.value)
+  nextTick(() => {
+    let page = inputValue.value
     emits('jump', page)
-  }
-  if (!props.simple) {
-    inputValue.value = ''
-  }
+    // if (!props.simple) {
+    //   inputValue.value = 1
+    // }
+  })
 }
 
 watch(
   () => props.current,
   (newVal) => {
     if (props.simple && newVal) {
-      inputValue.value = newVal.toString()
+      inputValue.value = newVal
     }
   },
   { immediate: true },
