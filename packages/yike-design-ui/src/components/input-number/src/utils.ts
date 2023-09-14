@@ -11,12 +11,10 @@ export const calculate = (value: number, step: number, precision: number) => {
   }
   const valueDigits = value.toString().split('.')[1] ?? '';
   const stepDigits = step.toString().split('.')[1] ?? '';
-  let digits = Math.max(valueDigits.length, stepDigits.length);
-  if (digits > precision) {
-    digits = precision;
-  }
+  const digits = Math.max(valueDigits.length ?? 0, stepDigits.length ?? 0);
   const power = 10 ** digits;
   const result = (value * power + step * power) / power;
+  // console.error(value, step, valueDigits, stepDigits, result, digits, power);
   return result;
 };
 
