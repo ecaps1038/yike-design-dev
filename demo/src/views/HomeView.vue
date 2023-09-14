@@ -40,6 +40,7 @@ function goPage(path: string) {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
   overflow-y: hidden;
   height: 100vh;
   flex-direction: column;
