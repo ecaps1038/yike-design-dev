@@ -230,7 +230,6 @@ const YkInputButtonClass = computed(() => {
 })
 
 const setValue = (value: string) => {
-  console.log(value)
   lastValue = value
 }
 
