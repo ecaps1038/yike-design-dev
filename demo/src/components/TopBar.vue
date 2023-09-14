@@ -24,9 +24,27 @@ const isDev = import.meta.env.DEV
       <yk-tag v-if="isDev" type="primary">DEV</yk-tag>
     </router-link>
     <yk-space class="nav-links" :size="24" align="center">
-      <a class="nav-item responsive-hidden" :href="Links.design">UI 设计稿</a>
-      <a class="nav-item responsive-hidden" :href="Links.task">任务文档</a>
-      <a class="nav-item responsive-hidden" :href="Links.devStandard">
+      <a
+        v-if="isDev"
+        class="nav-item responsive-hidden"
+        :href="Links.design"
+        target="_blank"
+      >
+        UI 设计稿
+      </a>
+      <a
+        v-if="isDev"
+        class="nav-item responsive-hidden"
+        :href="Links.task"
+        target="_blank"
+      >
+        任务文档
+      </a>
+      <a
+        class="nav-item responsive-hidden"
+        :href="Links.devStandard"
+        target="_blank"
+      >
         开发规范
       </a>
       <router-link
