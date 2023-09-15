@@ -95,7 +95,7 @@ const getPlacementClassName = computed(() => {
   ]
 
   if (autoAdjustOverflow.value) {
-    classNames.push(...placements)
+    classNames.push(placements.join(''))
   }
 
   return classNames
