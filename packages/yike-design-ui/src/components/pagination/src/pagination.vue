@@ -38,7 +38,7 @@
 
     <pagination-jumper
       v-if="showJumper && !simple"
-      :total-pages="total"
+      :total-pages="totalPages"
       :size="size"
       :disabled="disabled"
       @jump="handlePageChange"

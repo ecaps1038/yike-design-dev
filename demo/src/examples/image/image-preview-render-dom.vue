@@ -1,7 +1,7 @@
 <template>
   <div id="image-container" class="image-container">
     <yk-image
-      src="/src/assets/icon/yike.png"
+      src="https://www.huohuo90.com:3005/logo/yike.png"
       width="200"
       height="200"
       popup-container="#image-container"

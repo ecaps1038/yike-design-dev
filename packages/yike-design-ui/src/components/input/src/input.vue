@@ -230,8 +230,9 @@ const YkInputButtonClass = computed(() => {
 })
 
 const setValue = (value: string) => {
-  console.log(value)
   lastValue = value
+  emits('update:modelValue', lastValue)
+  emits('change', lastValue)
 }
 
 watch(

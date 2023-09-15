@@ -176,7 +176,15 @@ const keydown = (ev: KeyboardEvent) => {
   }
 }
 
-const change = (value: string) => {
+const change = () => {
+  update()
+}
+
+const focus = () => {
+  return
+}
+
+const blur = (value: string) => {
   // 使用正则匹配数字 不合法视为 ‘0’
   lastValue.value = value
     ? Number((value.match(numberMatchReg) ?? ['0'])[0])
@@ -186,14 +194,7 @@ const change = (value: string) => {
   } else {
     lastValue.value = normalizeNumber(lastValue.value, precision.value)
   }
-  checkLimit()
-}
-
-const focus = () => {
-  return
-}
-
-const blur = () => {
+  update()
   if (limit.isMax) {
     lastValue.value = valueRefs.max.value
   }
@@ -209,7 +210,7 @@ const update = () => {
 }
 
 const displayValue = computed(() => {
-  return lastValue.value.toString()
+  return lastValue.value.toFixed(precision.value)
 })
 
 // 模型同步
