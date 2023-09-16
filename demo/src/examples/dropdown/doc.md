@@ -43,7 +43,7 @@
 
 ### API
 
-**Dropdown API**：
+#### Dropdown API
 
 | 属性名         | 描述                                                                                                                                                               | 类型                                          | 默认值      |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- | ----------- |
@@ -61,14 +61,14 @@
 | visible-change | 下拉框出现/隐藏时触发。出现则为 true，隐藏则为 false。                                                                                                             | `(open: boolean) => void`                     | -           |
 | selected       | 点击菜单项触发的事件回调。`<yk-dropdown-item>` 的值（`value` 属性）                                                                                                | `(value: number \| string \| object) => void` | -           |
 
-**Dropdown Slots**：
+#### Dropdown Slots
 
 | 属性名 | 说明                               |
 | ------ | ---------------------------------- |
 | -      | 下拉列表项（`yk-dropdown-item`）。 |
 | title  | 下拉菜单的内容。                   |
 
-**DropdownItem API**：
+#### DropdownItem API
 
 | 属性名    | 说明                                      | 类型                 | 默认值                 |
 | --------- | ----------------------------------------- | -------------------- | ---------------------- |
@@ -76,9 +76,9 @@
 | disabled  | 禁用。                                    | boolean              | `false`                |
 | submenu   | 是否为多级菜单。                          | boolean              | `false`                |
 | dir       | 多级菜单展开方向。可选值：`left`、`right` | string               | `right`                |
-| animation | 多级菜单展开动画。                        |                      | `downRight`/`downLeft` |
+| animation | 多级菜单展开动画。                        | string               | `downRight`/`downLeft` |
 
-**DropdownItem Slots**：
+#### DropdownItem Slots
 
 | 插槽名 | 说明                                                |
 | ------ | --------------------------------------------------- |
