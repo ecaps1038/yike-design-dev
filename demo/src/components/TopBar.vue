@@ -79,12 +79,11 @@ const isDev = import.meta.env.DEV
   align-items: center;
   padding: 0 24px;
 
-  width: 100vw;
+  width: 100%;
   height: var(--top-bar-height);
   border-bottom: 1px solid @line-color-s;
   background-color: @bg-color-l;
   transition: all @animats;
-  box-sizing: border-box;
 
   a {
     display: flex;
