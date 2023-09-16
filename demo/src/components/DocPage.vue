@@ -40,6 +40,7 @@ onMounted(() => {
   --anchor-width: 212px;
   flex: 1;
   padding: 0 0 64px 64px;
+  width: calc(var(--nav-bar-width));
 
   .wrapper {
     float: left;
