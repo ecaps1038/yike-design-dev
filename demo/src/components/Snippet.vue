@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
-import { tryCopy, scrollToElement } from '@/utils/tools'
+import { tryCopy } from '@/utils/tools'
 import hljs from 'highlight.js'
 
 defineOptions({ name: 'YkSnippet' })
@@ -17,16 +17,15 @@ const props = defineProps({
   },
 })
 
-const normalizeTitle = props.title.replace(/\s/g, '')
-const html = hljs.highlightAuto(decodeURIComponent(props.code)).value
+const { title, code } = props
+const normalizeTitle = title.replace(/\s/g, '')
+const html = hljs.highlightAuto(decodeURIComponent(code)).value
+const codeRef = ref(null)
+const showCode = ref(false)
 
-//复制模块
-const codes = ref(null)
-//信息模块
+function onCopy() {
+  tryCopy(codeRef.value)
 
-//拷贝内容
-const onCopy = (): void => {
-  tryCopy(codes.value)
   proxy.$message({
     message: '复制成功',
     type: 'success',
@@ -34,54 +33,56 @@ const onCopy = (): void => {
   })
 }
 
-//关于代码的开关
-const showCode = ref(false)
-const clickShow = (): void => {
+function toggleShowCodeBlock() {
   showCode.value = !showCode.value
-}
-
-const scrollToDemo = (ev: MouseEvent) => {
-  ev.preventDefault()
-  window.history.pushState(
-    window.history.state,
-    '',
-    (ev.target as HTMLAnchorElement).href,
-  )
-  scrollToElement(ev.target as HTMLElement)
 }
 </script>
 
 <!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="case-card">
-    <!-- id 用于锚点定位 -->
-    <yk-title :id="normalizeTitle" :level="3">
-      {{ title }}
-      <a :href="`#${normalizeTitle}`" @click="scrollToDemo">#</a>
-    </yk-title>
+    <yk-title :id="normalizeTitle" :level="3">{{ title }}</yk-title>
+
     <slot name="desc"></slot>
+
     <div class="container">
       <slot name="demo"></slot>
     </div>
+
     <yk-space class="space" :size="8">
-      <div class="icons" @click="onCopy">
-        <icon-copy-outline />
-      </div>
-      <div class="icons" :class="{ select: showCode }" @click="clickShow">
+      <div class="icon" @click="onCopy"><icon-copy-outline /></div>
+      <div
+        class="icon"
+        :class="{ selected: showCode }"
+        @click="toggleShowCodeBlock"
+      >
         <icon-code-outline />
       </div>
     </yk-space>
-    <div v-show="showCode" ref="codes" class="codes">
-      <pre class="hljs"><code v-html="html"></code></pre>
-    </div>
+
+    <pre v-show="showCode" ref="codeRef"><code v-html="html"></code></pre>
   </div>
 </template>
 
 <style scoped lang="less">
-/* stylelint-disable */
 .case-card {
   margin-top: 28px;
   max-width: 1200px;
+
+  .yk-title {
+    &:hover::after {
+      opacity: 1;
+    }
+
+    &::after {
+      content: '#';
+      margin-left: 12px;
+      color: rgb(var(--lcolor));
+      opacity: 0;
+      vertical-align: bottom;
+      transition: opacity 0.2s;
+    }
+  }
 
   .container {
     margin: 12px 0 8px;
@@ -96,58 +97,38 @@ const scrollToDemo = (ev: MouseEvent) => {
     justify-content: flex-end;
   }
 
-  .icons {
+  .icon {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 28px;
     height: 28px;
     border-radius: @radius-m;
+    color: @font-color-m;
     background-color: @bg-color-m;
     transition: all @animats;
-    color: @font-color-m;
     cursor: pointer;
+
+    &:hover {
+      background-color: @bg-color-s;
+    }
 
     .yk-icon {
       font-size: @size-m;
       color: @font-color-m;
       transition: all @animats;
     }
-
-    &:hover {
-      background-color: @bg-color-s;
-
-      .yk-icon {
-        color: @font-color-l;
-      }
-    }
   }
 
-  .select {
+  .selected {
     background-color: @font-color-l;
-    .yk-icon {
-      color: @bg-color-l;
-    }
+
     &:hover {
       background-color: @font-color-l;
-      .yk-icon {
-        color: @bg-color-l;
-      }
-    }
-  }
-
-  .yk-title {
-    a {
-      opacity: 0;
-      transition: none;
     }
 
-    &:hover a {
-      opacity: 1;
-    }
-
-    &:focus-within a {
-      opacity: 1;
+    .yk-icon {
+      color: @bg-color-l;
     }
   }
 }
