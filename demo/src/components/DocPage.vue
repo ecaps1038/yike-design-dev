@@ -68,7 +68,7 @@ onMounted(() => {
 
     .wrapper {
       padding: 0 16px;
-      width: 100vw;
+      width: 100%;
     }
 
     .anchor-wrap {
