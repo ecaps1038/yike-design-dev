@@ -104,6 +104,7 @@ const emits = defineEmits([
   'click',
   'hoverin',
   'hoverout',
+  'update:modelValue',
 ])
 
 const {

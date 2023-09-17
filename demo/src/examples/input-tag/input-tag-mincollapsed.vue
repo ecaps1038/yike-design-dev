@@ -5,7 +5,6 @@
       class="input-tag-item"
       placeholder="超过三个将折叠"
       :mincollapsed-num="mincollapsedNum"
-      @keydown="onKeydown"
     ></yk-input-tag>
 
     <yk-input-tag
@@ -13,7 +12,6 @@
       class="input-tag-item"
       placeholder="超过三个将折叠"
       :mincollapsed-num="mincollapsedNum"
-      @keydown="onKeydown"
     >
       <template #collapsedItems="{ collapsedTags }">
         <yk-popover
