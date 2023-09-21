@@ -1,3 +1,40 @@
+/**
+ * 防抖函数
+ * @param func 需要防抖的函数
+ * @param delay 延迟时间
+ * @param immediate 是否立即执行
+ * @returns {execute: T; cancel: () => void}
+ */
+export function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  delay: number,
+  immediate: boolean = false,
+): { execute: T; cancel: () => void } {
+  let timer: NodeJS.Timeout | null;
+
+  const debounced: (...args: Parameters<T>) => void = (...args) => {
+    if (timer) clearTimeout(timer);
+    if (immediate && !timer) func(...args);
+
+    timer = setTimeout(() => {
+      if (!immediate) func(...args);
+      timer = null;
+    }, delay);
+  };
+
+  const cancel = () => {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+  };
+
+  return {
+    execute: debounced as T,
+    cancel,
+  };
+}
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * 随机生成字符串
