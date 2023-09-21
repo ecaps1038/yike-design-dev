@@ -20,14 +20,10 @@ const navbarClass = computed(() => {
 
 <template>
   <div :class="navbarClass">
-    <YkButton
-      class="nav-bar-toggle"
-      type="secondary"
-      @click="isCollapsed = !isCollapsed"
-    >
+    <div class="nav-bar-toggle" @click="isCollapsed = !isCollapsed">
       <IconCollapseOutline v-if="!isCollapsed" />
       <IconExpandOutline v-else />
-    </YkButton>
+    </div>
     <YkScrollbar v-if="data.length">
       <div v-for="navBar of data" :key="navBar.title" class="nav-bar-item">
         <div class="nav-bar-title">
@@ -104,7 +100,18 @@ const navbarClass = computed(() => {
 }
 
 .nav-bar-toggle {
+  position: absolute;
+  top: 80px;
+  left: calc(var(--nav-bar-width) - 1px);
+
   display: none;
+  padding: 6px 12px;
+  border: 1px solid @gray-1;
+  border-radius: 0 @radius-s @radius-s 0;
+  background: rgba(255 255 255 / 10%);
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */
@@ -112,18 +119,12 @@ const navbarClass = computed(() => {
   .nav-bar {
     position: fixed;
     z-index: 120;
-    transform: translateX(-268px);
+    transform: translateX(calc(0px - var(--nav-bar-width)));
     transition: transform @animats;
   }
 
   .nav-bar-toggle {
-    position: absolute;
-    top: 80px;
-    left: calc(var(--nav-bar-width) - 1px);
     display: block;
-    border: 1px solid @gray-1;
-    border-radius: 0 @radius-s @radius-s 0 !important;
-    background-color: @bg-color-l;
   }
 
   .nav-bar-show {
