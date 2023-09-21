@@ -107,7 +107,7 @@ function truncateMultilineText(
 }
 
 function handleCopy() {
-  copy(truncatedText.value)
+  copy(textRef.value!.innerText)
   proxy.$message({
     type: 'success',
     message: '复制成功',
