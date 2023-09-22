@@ -53,11 +53,15 @@
 
 #### Paragraph
 
-| 参数名     | 描述                                    | 类型                    | 默认值  |
-| ---------- | --------------------------------------- | ----------------------- | ------- |
-| rows       | 显示的行数（大于 0 且与 copyable 互斥） | number                  | -       |
-| moreable   | 显示展开按钮（与 copyable 互斥）        | boolean                 | `false` |
-| openText   | 自定义‘展开’文字                        | string                  | '展开'  |
-| closeText  | 自定义‘收起’文字                        | string                  | '收起'  |
-| copyable   | 拷贝文案按钮                            | boolean                 | `false` |
-| openChange | 展开更多时触发                          | (open: boolean) => void | -       |
+注意：`moreable` 属性与 `copyable` 互斥。
+
+| 参数名            | 描述                               | 类型                           | 默认值  |
+| ----------------- | ---------------------------------- | ------------------------------ | ------- |
+| rows              | 显示的行数（大于 0 ）              | number                         | -       |
+| moreable          | 是否具有展开收起功能               | boolean                        | `false` |
+| open/v-modal:open | 是否处于展开状态                   | boolean                        | `false` |
+| openText          | 自定义‘展开’文字                   | string                         | '展开'  |
+| closeText         | 自定义‘收起’文字                   | string                         | '收起'  |
+| copyable          | 拷贝文案按钮                       | boolean                        | `false` |
+| openChange        | 展开更多时触发                     | (open: boolean) => void        | -       |
+| copyBefore        | 复制前触发，用于处理需要复制的文字 | (value: Ref\<string\>) => void | -       |
