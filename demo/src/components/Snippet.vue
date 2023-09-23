@@ -40,7 +40,7 @@ function toggleShowCodeBlock() {
 
 <!-- eslint-disable vue/no-v-html -->
 <template>
-  <div class="case-card">
+  <div class="snippet">
     <yk-title :id="normalizeTitle" :level="3">{{ title }}</yk-title>
 
     <slot name="desc"></slot>
@@ -65,7 +65,7 @@ function toggleShowCodeBlock() {
 </template>
 
 <style scoped lang="less">
-.case-card {
+.snippet {
   margin-top: 28px;
   max-width: 1200px;
 
