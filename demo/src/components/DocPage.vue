@@ -39,7 +39,8 @@ onMounted(() => {
 .yk-demo-doc {
   --anchor-width: 212px;
   flex: 1;
-  padding: 0 0 64px 64px;
+  padding: 32px 64px;
+  padding-right: 0;
   width: calc(var(--nav-bar-width));
 
   .wrapper {
@@ -56,6 +57,7 @@ onMounted(() => {
   position: sticky;
   top: 88px;
   float: left;
+  margin-top: 88px;
   padding-right: 14px;
   padding-left: 56px;
   width: var(--anchor-width);

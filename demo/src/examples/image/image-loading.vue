@@ -4,7 +4,7 @@
   </div>
   <yk-space size="xl">
     <yk-image
-      :src="`/src/assets/icon/yike.png?timestamp=${timestamp}`"
+      :src="`/src/assets/images/yike.png?timestamp=${timestamp}`"
       width="300"
       height="200"
       fit="cover"

@@ -19,7 +19,7 @@ const isDev = import.meta.env.DEV
 <template>
   <div class="top-bar">
     <router-link class="logo" to="/">
-      <img src="@/assets/icon/logo.svg" />
+      <img src="@/assets/svgs/logo.svg" />
       <IconYkdesignFill class="name" />
       <yk-tag v-if="isDev" type="primary">DEV</yk-tag>
     </router-link>
