@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 import MarkdownIt from 'markdown-it';
+import Shikiji from 'markdown-it-shikiji';
 import { mdCustomH3, mdCustomLinkCls } from './md-plugin';
 import { getTemplates, replaceVariables } from './util';
 import { Plugin } from 'vite';
@@ -12,6 +13,14 @@ const md = MarkdownIt({
 
 md.use(mdCustomH3);
 md.use(mdCustomLinkCls);
+md.use(
+  await Shikiji({
+    themes: {
+      light: 'vitesse-light',
+      dark: 'vitesse-dark',
+    },
+  }),
+);
 
 const templates = getTemplates('./vite-plugin-md.md');
 const getTemplate = (flag: string, variables: unknown) =>
