@@ -52,20 +52,19 @@ module.exports = {
 
 其中，`yike-design/ui/src/components/styles/colors/color.less` 文件存放所有全局变量，在项目使用上，全局变量完全可以直接修改该文档内容。
 
-```ts
+```less
 // -------- Colors -----------
-@pcolor: #2B5AED; // 全局主色
+@pcolor: #2b5aed; // 全局主色
 @lcolor: #1890ff; // 链接色
-@scolor: #1FB4A2; // 成功色
-@wcolor: #F5AC08; // 警告色
-@ecolor: #FA5247; // 错误色
+@scolor: #1fb4a2; // 成功色
+@wcolor: #f5ac08; // 警告色
+@ecolor: #fa5247; // 错误色
 
 // Animation
 @animats: 0.3s; // Modal
 @animatb: 0.2s;
 @animatf: 0.1s; // Tooltip
 
-//font-size
+// font-size
 @size-ss: 12px; // 小号
-
 ```

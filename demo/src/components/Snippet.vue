@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
-import { tryCopy } from '@/utils/tools'
-import hljs from 'highlight.js'
+import { useClipboard } from '@vueuse/core'
+import { getHighlighter } from 'shikiji'
 
 defineOptions({ name: 'YkSnippet' })
 
+const { copy } = useClipboard()
 const proxy: any = getCurrentInstance()?.proxy
 const props = defineProps({
   title: {
@@ -19,22 +20,32 @@ const props = defineProps({
 
 const { title, code } = props
 const normalizeTitle = title.replace(/\s+/g, '-')
-const html = hljs.highlightAuto(decodeURIComponent(code)).value
-const codeRef = ref(null)
+const originCode = decodeURIComponent(code)
 const showCode = ref(false)
+const html = ref('')
+
+const shiki = getHighlighter({
+  themes: ['vitesse-light', 'vitesse-dark'],
+  langs: ['vue'],
+})
+
+shiki.then((highlighter) => {
+  html.value = highlighter.codeToHtml(originCode, {
+    lang: 'vue',
+    themes: {
+      dark: 'vitesse-dark',
+      light: 'vitesse-light',
+    },
+  })
+})
 
 function onCopy() {
-  tryCopy(codeRef.value)
-
+  copy(originCode)
   proxy.$message({
     message: '复制成功',
     type: 'success',
     duration: 1000,
   })
-}
-
-function toggleShowCodeBlock() {
-  showCode.value = !showCode.value
 }
 </script>
 
@@ -49,14 +60,14 @@ function toggleShowCodeBlock() {
     <div class="icon" @click="onCopy"><icon-copy-outline /></div>
     <div
       class="icon"
-      :class="{ selected: showCode }"
-      @click="toggleShowCodeBlock"
+      :class="{ active: showCode }"
+      @click="showCode = !showCode"
     >
       <icon-code-outline />
     </div>
   </yk-space>
 
-  <pre v-show="showCode" ref="codeRef"><code v-html="html"></code></pre>
+  <div v-show="showCode" v-html="html"></div>
 </template>
 
 <style scoped lang="less">
@@ -76,6 +87,7 @@ function toggleShowCodeBlock() {
 }
 
 .demo-block {
+  overflow-x: auto;
   margin: 12px 0 8px;
   padding: 20px;
   border: 1px solid @line-color-s;
@@ -86,40 +98,40 @@ function toggleShowCodeBlock() {
 .flex-end {
   display: flex;
   justify-content: flex-end;
-}
 
-.icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: @radius-m;
-  color: @font-color-m;
-  background-color: @bg-color-m;
-  transition: all @animats;
-  cursor: pointer;
-
-  &:hover {
-    background-color: @bg-color-s;
-  }
-
-  .yk-icon {
-    font-size: @size-m;
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: @radius-m;
     color: @font-color-m;
+    background-color: @bg-color-m;
     transition: all @animats;
+    cursor: pointer;
+
+    &:hover {
+      background-color: @bg-color-s;
+    }
+
+    .yk-icon {
+      font-size: @size-m;
+      color: @font-color-m;
+      transition: all @animats;
+    }
   }
-}
 
-.selected {
-  background-color: @font-color-l;
-
-  &:hover {
+  .active {
     background-color: @font-color-l;
-  }
 
-  .yk-icon {
-    color: @bg-color-l;
+    &:hover {
+      background-color: @font-color-l;
+    }
+
+    .yk-icon {
+      color: @bg-color-l;
+    }
   }
 }
 </style>

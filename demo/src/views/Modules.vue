@@ -14,8 +14,9 @@ provide('hasNavBar', hasNavBar)
   <!-- If there is no NavBar, the content is centered horizontally -->
   <div class="module" :class="{ center: !hasNavBar }">
     <nav-bar :data="navs" />
-    <RouterView />
+    <router-view />
   </div>
+  <yk-back-top></yk-back-top>
 </template>
 
 <style scoped>
