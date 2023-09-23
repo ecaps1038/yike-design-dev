@@ -11,7 +11,8 @@ provide('hasNavBar', hasNavBar)
 </script>
 
 <template>
-  <div class="module" :class="{ 'justify-center': !hasNavBar }">
+  <!-- If there is no NavBar, the content is centered horizontally -->
+  <div class="module" :class="{ center: !hasNavBar }">
     <nav-bar :data="navs" />
     <RouterView />
   </div>
@@ -24,7 +25,7 @@ provide('hasNavBar', hasNavBar)
   padding-top: var(--top-bar-height);
 }
 
-.justify-center {
+.center {
   justify-content: center;
 }
 </style>

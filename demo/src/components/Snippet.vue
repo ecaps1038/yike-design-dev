@@ -18,7 +18,7 @@ const props = defineProps({
 })
 
 const { title, code } = props
-const normalizeTitle = title.replace(/\s/g, '')
+const normalizeTitle = title.replace(/\s+/g, '-')
 const html = hljs.highlightAuto(decodeURIComponent(code)).value
 const codeRef = ref(null)
 const showCode = ref(false)
@@ -40,96 +40,86 @@ function toggleShowCodeBlock() {
 
 <!-- eslint-disable vue/no-v-html -->
 <template>
-  <div class="snippet">
-    <yk-title :id="normalizeTitle" :level="3">{{ title }}</yk-title>
-
-    <slot name="desc"></slot>
-
-    <div class="container">
-      <slot name="demo"></slot>
-    </div>
-
-    <yk-space class="space" :size="8">
-      <div class="icon" @click="onCopy"><icon-copy-outline /></div>
-      <div
-        class="icon"
-        :class="{ selected: showCode }"
-        @click="toggleShowCodeBlock"
-      >
-        <icon-code-outline />
-      </div>
-    </yk-space>
-
-    <pre v-show="showCode" ref="codeRef"><code v-html="html"></code></pre>
+  <yk-title :id="normalizeTitle" :level="3">{{ title }}</yk-title>
+  <slot name="desc"></slot>
+  <div class="demo-block">
+    <slot name="demo"></slot>
   </div>
+  <yk-space class="flex-end" :size="8">
+    <div class="icon" @click="onCopy"><icon-copy-outline /></div>
+    <div
+      class="icon"
+      :class="{ selected: showCode }"
+      @click="toggleShowCodeBlock"
+    >
+      <icon-code-outline />
+    </div>
+  </yk-space>
+
+  <pre v-show="showCode" ref="codeRef"><code v-html="html"></code></pre>
 </template>
 
 <style scoped lang="less">
-.snippet {
-  margin-top: 28px;
-  max-width: 1200px;
-
-  .yk-title {
-    &:hover::after {
-      opacity: 1;
-    }
-
-    &::after {
-      content: '#';
-      margin-left: 12px;
-      color: rgb(var(--lcolor));
-      opacity: 0;
-      vertical-align: bottom;
-      transition: opacity 0.2s;
-    }
+.yk-title {
+  &:hover::after {
+    opacity: 1;
   }
 
-  .container {
-    margin: 12px 0 8px;
-    padding: 20px;
-    border: 1px solid @line-color-s;
-    border-radius: @radius-m;
-    transition: all @animats;
+  &::after {
+    content: '#';
+    margin-left: 12px;
+    color: rgb(var(--lcolor));
+    opacity: 0;
+    vertical-align: bottom;
+    transition: opacity 0.2s;
+  }
+}
+
+.demo-block {
+  margin: 12px 0 8px;
+  padding: 20px;
+  border: 1px solid @line-color-s;
+  border-radius: @radius-m;
+  transition: all @animats;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: @radius-m;
+  color: @font-color-m;
+  background-color: @bg-color-m;
+  transition: all @animats;
+  cursor: pointer;
+
+  &:hover {
+    background-color: @bg-color-s;
   }
 
-  .space {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 28px;
-    height: 28px;
-    border-radius: @radius-m;
+  .yk-icon {
+    font-size: @size-m;
     color: @font-color-m;
-    background-color: @bg-color-m;
     transition: all @animats;
-    cursor: pointer;
+  }
+}
 
-    &:hover {
-      background-color: @bg-color-s;
-    }
+.selected {
+  background-color: @font-color-l;
 
-    .yk-icon {
-      font-size: @size-m;
-      color: @font-color-m;
-      transition: all @animats;
-    }
+  &:hover {
+    background-color: @font-color-l;
   }
 
-  .selected {
-    background-color: @font-color-l;
-
-    &:hover {
-      background-color: @font-color-l;
-    }
-
-    .yk-icon {
-      color: @bg-color-l;
-    }
+  .yk-icon {
+    color: @bg-color-l;
   }
 }
 </style>
