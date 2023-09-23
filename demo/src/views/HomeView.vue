@@ -61,6 +61,7 @@ const goPage = (path: string) => router.push({ path })
     justify-content: center;
     gap: 72px;
     padding: 32px 0;
+    transition: all 0.2s;
 
     .yike,
     .design {

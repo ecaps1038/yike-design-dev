@@ -116,7 +116,7 @@ function handleMatch(content: string) {
 }
 
 // fetch demo source code by relative path
-export function fetchDemoCode(id: string, componentName: string) {
+function fetchDemoCode(id: string, componentName: string) {
   const targetFile = `${componentName}.vue`;
   const absolutePath = path.resolve(path.dirname(id), targetFile);
 
@@ -128,6 +128,6 @@ export function fetchDemoCode(id: string, componentName: string) {
 }
 
 /** @example ButtonPrimary -> button-primary */
-export function toKebabCase(str: string) {
+function toKebabCase(str: string) {
   return str.replace(/([a-zA-Z])([A-Z])/g, '$1-$2').toLowerCase();
 }
