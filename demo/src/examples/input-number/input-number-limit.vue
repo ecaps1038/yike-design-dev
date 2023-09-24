@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <p>试试点击几次“增加”按钮</p>
     <yk-input-number
       v-model="number"

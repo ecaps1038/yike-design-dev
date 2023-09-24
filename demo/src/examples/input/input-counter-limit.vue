@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-input show-counter placeholder="请输入..." style="width: 360px" />
     <yk-input
       show-counter

@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-input placeholder="请输入..." style="width: 360px">
       <template #prepend>
         <yk-button>提交</yk-button>
@@ -12,4 +12,3 @@
     </yk-input>
   </yk-space>
 </template>
-<style scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-input-search loading placeholder="正在查找..." style="width: 360px" />
     <yk-input-search style="width: 360px">
       <template #prefix>

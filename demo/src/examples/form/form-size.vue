@@ -1,5 +1,5 @@
 <template>
-  <yk-space :direction="`vertical`">
+  <yk-space dir="vertical">
     <div v-for="size in sizeList">
       <yk-button status="success" size="s">{{ `尺寸: ${size}` }}</yk-button>
       <yk-form :model="form" :size="size">
