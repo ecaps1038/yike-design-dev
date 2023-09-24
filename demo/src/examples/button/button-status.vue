@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space>
       <yk-button>主要按钮</yk-button>
       <yk-button type="secondary">次要按钮</yk-button>

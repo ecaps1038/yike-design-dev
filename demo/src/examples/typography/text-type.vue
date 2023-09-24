@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-text>Yike Design</yk-text>
     <yk-text type="secondary">Secondary</yk-text>
     <yk-text type="third">third</yk-text>

@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-rate size="s" />
     <yk-rate size="m" />
     <yk-rate size="l" />

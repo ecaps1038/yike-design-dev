@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-radio v-model="radio" value="1">单选框</yk-radio>
     <yk-radio v-model="radio" value="1" :disabled="true">禁用</yk-radio>
   </yk-space>

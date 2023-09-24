@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space>
       <yk-badge :count="0" show-zero>
         <yk-avatar size="l" shape="square"></yk-avatar>
@@ -23,11 +23,7 @@
       <div class="btn-group">
         <yk-button
           type="outline"
-          style="
-            border-right: 1px solid #fff;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          "
+          class="btn-first-child"
           @click="MessageCount--"
         >
           -
@@ -46,7 +42,17 @@
     </yk-space>
   </yk-space>
 </template>
+
 <script lang="ts" setup>
 import { ref } from 'vue'
-const MessageCount = ref<number>(3)
+
+const MessageCount = ref(3)
 </script>
+
+<style>
+.btn-group .yk-button:first-child {
+  border-right: 1px solid #fff;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+</style>

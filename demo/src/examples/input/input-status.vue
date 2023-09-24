@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-input v-model="disabled" disabled placeholder="不可用" />
     <yk-input v-model="readonly" readonly placeholder="只读" />
     <yk-input status="danger" placeholder="危险色" />

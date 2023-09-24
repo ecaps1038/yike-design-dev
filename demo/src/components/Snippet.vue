@@ -87,7 +87,6 @@ function onCopy() {
 }
 
 .demo-block {
-  overflow-x: auto;
   margin: 12px 0 8px;
   padding: 20px;
   border: 1px solid @line-color-s;
