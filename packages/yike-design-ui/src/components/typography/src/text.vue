@@ -1,16 +1,18 @@
 <template>
-  <component :is="tag" :class="['yk-text', props.type, _tag, classList]">
+  <component :is="tag" :class="bem([type, _tag, ...classList])">
     <slot></slot>
   </component>
 </template>
 
 <script setup lang="ts">
 import { textProps } from './typography'
+import { createCssScope } from '../../utils'
 
 defineOptions({
   name: 'YkText',
 })
 
+const bem = createCssScope('text')
 // prettier-ignore
 const props = withDefaults(
   defineProps<textProps>(), 
