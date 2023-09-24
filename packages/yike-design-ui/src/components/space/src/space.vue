@@ -38,7 +38,6 @@ const {
 const isNumber = (num: any) => typeof num === 'number'
 const isString = (str: any) => typeof str === 'string'
 const isBoolean = (bool: any) => typeof bool === 'boolean'
-const isStart = (str: any) => str === 'start'
 
 const classList = computed(() => {
   const classes: string[] = []
@@ -49,14 +48,6 @@ const classList = computed(() => {
     wrap.value && classes.push(`wrap`)
   } else {
     classes.push(`wrap-${wrap.value}`)
-  }
-
-  if (!isStart(align.value)) {
-    classes.push(`align-${align.value}`)
-  }
-
-  if (!isStart(justify.value)) {
-    classes.push(`justify-${justify.value}`)
   }
 
   if (isString(size.value) && size.value !== 'l') {
@@ -70,6 +61,9 @@ const classList = computed(() => {
   if (overflow.value !== 'visible') {
     classes.push(`overflow-${overflow.value}`)
   }
+
+  classes.push(`align-${align.value}`)
+  classes.push(`justify-${justify.value}`)
 
   return classes
 })
