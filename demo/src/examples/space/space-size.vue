@@ -1,54 +1,43 @@
 <template>
-  <yk-title :level="5">size="s"</yk-title>
-  <yk-space size="s">
+  <p>内置尺寸：</p>
+  <yk-radio-group v-model="size" type="button">
+    <yk-radio value="ss">ss</yk-radio>
+    <yk-radio value="s">s</yk-radio>
+    <yk-radio value="m">m</yk-radio>
+    <yk-radio value="l">l</yk-radio>
+    <yk-radio value="xl">xl</yk-radio>
+  </yk-radio-group>
+  <yk-space :size="size" class="margin">
     <yk-button>按钮1</yk-button>
     <yk-button>按钮2</yk-button>
     <yk-button>按钮3</yk-button>
   </yk-space>
-  <yk-title :level="5">size="m"</yk-title>
-  <yk-space size="m">
+
+  <p>
+    自定义间距：
+    <yk-input v-model="inputSize" style="width: 80px" />
+  </p>
+  <yk-space :size="`${inputSize}px`" class="margin">
     <yk-button>按钮1</yk-button>
     <yk-button>按钮2</yk-button>
     <yk-button>按钮3</yk-button>
   </yk-space>
-  <yk-title :level="5">size="l"</yk-title>
-  <yk-space size="l">
-    <yk-button>按钮1</yk-button>
-    <yk-button>按钮2</yk-button>
-    <yk-button>按钮3</yk-button>
-  </yk-space>
-  <yk-title :level="5">size="xl"</yk-title>
-  <yk-space size="xl">
-    <yk-button>按钮1</yk-button>
-    <yk-button>按钮2</yk-button>
-    <yk-button>按钮3</yk-button>
-  </yk-space>
-  <yk-title :level="5">自定义 :size="40"</yk-title>
-  <yk-space :size="40">
-    <yk-button>按钮1</yk-button>
-    <yk-button>按钮2</yk-button>
-    <yk-button>按钮3</yk-button>
-  </yk-space>
-  <yk-title :level="5">自定义水平和竖直间距 :size="[10, 30]"</yk-title>
-  <yk-space wrap :size="[10, 30]">
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
-    <yk-button>按钮</yk-button>
+
+  <p>自定义水平和竖直间距：[10, 30]</p>
+  <yk-space wrap :size="[10, 20]" class="margin" style="width: 300px">
+    <yk-button v-for="item in 10" :key="item">按钮</yk-button>
   </yk-space>
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const size = ref('l') as any
+const inputSize = ref('10') as any
+</script>
+
+<style>
+.margin {
+  margin: 12px 0 24px;
+}
+</style>
