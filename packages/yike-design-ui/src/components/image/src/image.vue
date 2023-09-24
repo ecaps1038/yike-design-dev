@@ -1,8 +1,13 @@
 <template>
-  <div :class="cls" :style="sizeStyle">
+  <div
+    v-observe-visibility="handleVisibilityChange"
+    :class="cls"
+    :style="sizeStyle"
+  >
     <img
       :class="bem('img')"
       :style="fitStyle"
+      :src="imageSrc"
       v-bind="imgAttrs"
       @load="onImgLoaded"
       @error="onImgLoadError"
@@ -46,7 +51,7 @@
 import { computed, watch, ref } from 'vue'
 import type { CSSProperties } from 'vue'
 import { ImageProps } from './image'
-import { pick, normalizeImageSizeProp } from './utils'
+import { pick, normalizeImageSizeProp, vObserveVisibility } from './utils'
 import { createCssScope } from '../../utils'
 import useImageLoadState from './hooks/use-image-load-status'
 import { IconImageBackupOutline } from '../../svg-icon'
@@ -59,12 +64,15 @@ defineOptions({
 
 const props = withDefaults(defineProps<ImageProps>(), {
   preview: true,
+  isLazy: false,
   footerPosition: 'inner',
 })
 
 const bem = createCssScope('image')
 
 const previewVOpen = ref(false)
+
+const imageSrc = ref<string>()
 
 const { isLoaded, isError, isLoading, setLoadStatus } = useImageLoadState()
 
@@ -79,7 +87,7 @@ const cls = computed(() => [
 const footerCls = computed(() => [bem('footer', [props.footerPosition])])
 
 const imgAttrs = computed(() =>
-  pick(props, ['src', 'width', 'height', 'title', 'alt']),
+  pick(props, ['width', 'height', 'title', 'alt']),
 )
 
 const fitStyle = computed<CSSProperties>(() => {
@@ -98,6 +106,12 @@ watch(
   () => props.src,
   () => setLoadStatus('loading'),
 )
+
+const handleVisibilityChange = (visible: boolean) => {
+  if (props.isLazy) {
+    if (!imageSrc.value && visible) imageSrc.value = props.src
+  } else imageSrc.value = props.src
+}
 
 const onImgLoaded = () => setLoadStatus('loaded')
 

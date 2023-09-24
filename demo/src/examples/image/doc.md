@@ -70,6 +70,7 @@
 | footerPosition | 标题和介绍的位置                                        | 'inner' ｜ 'outer'                                       | 'inner'       |
 | preview        | 是否开启预览                                            | boolean                                                  | true          |
 | popupContainer | 设置弹出框的挂载点，同 teleport 的 to                   | string ｜ HTMLElement                                    | document.body |
+| isLazy | 是否启用懒加载，当元素出现在可视窗口后加载图片资源                   | boolean                                    | false |
 
 `<image-preview>` Props
 

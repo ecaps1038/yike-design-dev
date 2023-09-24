@@ -15,6 +15,8 @@ export type ImageProps = {
   description?: string;
   /** 标题和介绍的位置 */
   footerPosition?: 'inner' | 'outer';
+  /** 是否启用懒加载，当元素出现在可视窗口后加载资源 */
+  isLazy?: boolean;
   /** 内容应该如何适应到其使用高度和宽度确定的框 */
   fit?: FitType;
   /** 是否开启预览 */
@@ -23,4 +25,8 @@ export type ImageProps = {
   popupContainer?: string | HTMLElement;
   /** 取消按钮点击事件 */
   onCancel?: () => void;
+};
+
+export type DirectiveHTMLDivElement = HTMLDivElement & {
+  _observer?: IntersectionObserver;
 };
