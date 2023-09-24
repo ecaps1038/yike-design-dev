@@ -8,6 +8,7 @@
       width="300"
       height="200"
       fit="cover"
+      :is-lazy="true"
     ></yk-image>
   </yk-space>
 </template>
