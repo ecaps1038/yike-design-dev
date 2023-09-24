@@ -21,7 +21,7 @@ export const replaceVariables = (
    */
   return template.replace(/#{(.+?)}#/g, (match, exp) => {
     const getValueFunc = new Function('data', `return data.${exp}`);
-    return getValueFunc(variables) || match;
+    return getValueFunc(variables) || '';
   });
 };
 

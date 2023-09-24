@@ -1,37 +1,28 @@
 .input-size(@size, @height, @padding, @fs, @br) {
   .inner() {
+    padding: 0px @padding;
     border-radius: @br;
+
+    .yk-text:first-child,
+    .yk-icon:first-child {
+      margin-right: @padding;
+    }
+
+    .yk-text:last-child,
+    .yk-icon:last-child {
+      margin-left: @padding;
+    }
+
+    .yk-icon {
+      width: @fs+2px;
+      height: @fs+2px;
+    }
   }
 
   .widget() {
-    padding: 0px @padding;
     height: @height;
     font-size: @fs;
     border-radius: @br;
-  }
-
-  .before {
-    span {
-      margin-left: @padding;
-      font-size: @fs;
-    }
-    svg {
-      margin-left: @padding;
-      width: @fs+2px;
-      height: @fs+2px;
-    }
-  }
-
-  .after {
-    span {
-      margin-right: @padding;
-      font-size: @fs;
-    }
-    svg {
-      margin-right: @padding;
-      width: @fs+2px;
-      height: @fs+2px;
-    }
   }
 
   &.yk-input--@{size} {
@@ -39,12 +30,6 @@
   }
   &.yk-input--@{size} input {
     .widget();
-  }
-  &.yk-input--@{size} .yk-input--before {
-    .before();
-  }
-  &.yk-input--@{size} .yk-input--after {
-    .after();
   }
 }
 
@@ -66,4 +51,14 @@
   &.yk-input--@{status} {
     .bow();
   }
+}
+
+.left-no-border-radius() {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.right-no-border-radius() {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }

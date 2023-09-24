@@ -9,6 +9,9 @@
         <yk-radio value="woman">女</yk-radio>
       </yk-radio-group>
     </yk-form-item>
+    <yk-form-item label="年龄" field="sex">
+      <yk-input-number></yk-input-number>
+    </yk-form-item>
     <yk-form-item label="日期" field="date">
       <yk-checkbox-group v-model="form.date">
         <yk-checkbox v-for="item in data" :key="item.id" :value="item.id">

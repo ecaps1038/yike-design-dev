@@ -1,10 +1,12 @@
 <template>
   <YkInput
-    v-model="displayValue"
-    :disabled="disabled"
+    ref="inputRef"
+    :model-value="displayValue"
+    :disabled="mergedDisabled"
     :size="mergedSize"
     :class="bem()"
     v-bind="$attrs"
+    @focus="focus"
     @change="change"
     @blur="blur"
     @hoverin="isHovering = true"
@@ -13,7 +15,7 @@
   >
     <template #suffix>
       <div
-        v-show="!disabled && isHovering"
+        v-show="controls && !mergedDisabled && isHovering"
         :class="[bem('buttons'), bem([mergedSize])]"
       >
         <YkButton
@@ -39,10 +41,10 @@
   </YkInput>
 </template>
 <script setup lang="ts">
-import { calculate, numberMatchReg } from './utils'
+import { calculate, numberMatchReg, normalizeNumber } from './utils'
 import { createCssScope, useFormItem } from '../../utils'
 import { InputNumberProps } from './input-number'
-import { toRefs, ref, onMounted, reactive, computed } from 'vue'
+import { toRefs, ref, onMounted, reactive, computed, watch } from 'vue'
 import { IconUpOutline, IconDownOutline } from '../../svg-icon'
 import { YkInput, YkButton } from '../../../index'
 
@@ -57,15 +59,10 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
   precision: 0,
   size: 'l',
   disabled: false,
+  controls: true,
 })
 
 const bem = createCssScope('input-number')
-
-const { size } = toRefs(props)
-
-const { mergedSize } = useFormItem({
-  size,
-})
 
 const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
 const isHovering = ref<boolean>(false)
@@ -76,10 +73,17 @@ const limit = reactive({
 // 触发“连击”的所需时间
 const TimeBeforeCombo = 250
 // “连击”的速度
-const ComboSpeed = 150
+const ComboSpeed = 60
 const valueRefs = toRefs(props)
 const lastValue = ref<number>(0)
-const displayValue = ref<string>('')
+const inputRef = ref<InstanceType<typeof YkInput>>()
+
+const { disabled, size } = valueRefs
+
+const { mergedSize, mergedDisabled } = useFormItem({
+  disabled,
+  size,
+})
 
 // 计算精度
 const precision = computed(() => {
@@ -96,10 +100,6 @@ const getInitialValue = () => {
     return 0
   }
   return props.min
-}
-
-const getDisplayValue = () => {
-  return lastValue.value!.toFixed(precision.value)
 }
 
 // mode: 0 = 减模式, 1 = 加模式
@@ -137,14 +137,11 @@ const checkLimit = () => {
 onMounted(() => {
   lastValue.value = valueRefs.modelValue?.value ?? getInitialValue()
   checkLimit()
-
-  if (props.modelValue) {
-    displayValue.value = getDisplayValue()
-  }
 })
 
 const increase = () => {
-  if (lastValue.value >= valueRefs.max.value) {
+  if (limit.isMax) {
+    stopCombo()
     return
   }
   lastValue.value = calculate(
@@ -157,7 +154,8 @@ const increase = () => {
 }
 
 const decrease = () => {
-  if (lastValue.value <= valueRefs.min.value) {
+  if (limit.isMin) {
+    stopCombo()
     return
   }
   lastValue.value = calculate(
@@ -178,30 +176,49 @@ const keydown = (ev: KeyboardEvent) => {
   }
 }
 
-const change = (value: string) => {
+const change = () => {
+  update()
+}
+
+const focus = () => {
+  return
+}
+
+const blur = (value: string) => {
   // 使用正则匹配数字 不合法视为 ‘0’
   lastValue.value = value
     ? Number((value.match(numberMatchReg) ?? ['0'])[0])
     : 0
   if (precision.value === 0) {
     lastValue.value = Math.trunc(lastValue.value)
+  } else {
+    lastValue.value = normalizeNumber(lastValue.value, precision.value)
   }
-  checkLimit()
-}
-
-const blur = () => {
+  update()
   if (limit.isMax) {
     lastValue.value = valueRefs.max.value
   }
   if (limit.isMin) {
     lastValue.value = valueRefs.min.value
   }
-  update()
+  inputRef.value?.setValue(displayValue.value)
 }
 
 const update = () => {
   checkLimit()
-  displayValue.value = getDisplayValue()
-  emits('update:modelValue', precision.value)
+  emits('update:modelValue', lastValue.value)
 }
+
+const displayValue = computed(() => {
+  return lastValue.value.toFixed(precision.value)
+})
+
+// 模型同步
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    lastValue.value = newValue ?? getInitialValue()
+    checkLimit()
+  },
+)
 </script>

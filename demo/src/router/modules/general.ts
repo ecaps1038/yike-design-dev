@@ -91,10 +91,6 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/scrollbar/doc.md'),
   },
   {
-    path: 'alert',
-    component: () => import('@/examples/alert/doc.md'),
-  },
-  {
     path: 'tree',
     component: () => import('@/examples/tree/doc.md'),
   },
@@ -145,6 +141,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
   {
     path: 'form',
     component: () => import('@/examples/form/doc.md'),
+  },
+  {
+    path: 'input-tag',
+    component: () => import('@/examples/input-tag/doc.md'),
   },
   {
     path: 'spinner',

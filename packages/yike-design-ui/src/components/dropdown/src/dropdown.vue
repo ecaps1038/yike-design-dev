@@ -1,97 +1,96 @@
 <template>
   <div :class="[bem(), _disabled]">
-    <Tooltip
+    <yk-tooltip
       v-model:open="isOpen"
       :arrow="arrow"
       :trigger="trigger"
-      :z-index="zIndex"
+      :animation="animation"
       :placement="placement"
-      :close-delay="closeDelay"
       :open-delay="openDelay"
+      :close-delay="closeDelay"
+      :overlay-class="overlayClass"
       :overlay-style="overlayStyle"
-      :overlay-class-name="overlayClassName"
+      :z-index="zIndex"
     >
       <div :class="bem('title')">
-        <YkButton v-if="title" :size="size || 'l'" :type="type || 'secondary'">
+        <yk-button v-if="title" :size="size" :type="type">
           {{ title }}
           <div ref="iconRef" :class="bem('icon')">
-            <IconDownOutline />
+            <icon-down-outline />
           </div>
-        </YkButton>
+        </yk-button>
         <slot v-else name="title"></slot>
       </div>
 
       <template #content>
         <slot></slot>
       </template>
-    </Tooltip>
+    </yk-tooltip>
   </div>
 </template>
 
 <script setup lang="ts">
 import YkButton from '../../button'
-import Tooltip from '../../tooltip'
+import YkTooltip from '../../tooltip'
 import { IconDownOutline } from '../../svg-icon'
 import { createCssScope } from '../../utils'
-import { ref, toRefs, provide, watch } from 'vue'
-import type { DropdownProps } from './dropdown'
+import { ref, provide, watch } from 'vue'
+import type { DropdownProps, DropdownEmits } from './dropdown'
 import '../style'
 
 defineOptions({
   name: 'YkDropdown',
 })
 
-const emit = defineEmits<{
-  selected: [value: string | number | object]
-  visibleChange: [value: boolean]
-}>()
-
 const bem = createCssScope('dropdown')
-const props = withDefaults(defineProps<DropdownProps>(), {
-  title: '',
-  trigger: 'hover',
-  type: 'secondary',
-  placement: 'bottom',
-  size: 'l',
-  zIndex: 1,
-  open: false,
-  openDelay: 80,
-  closeDelay: 80,
-  disabled: false,
-  arrow: true,
-  overlayStyle: () => ({}),
-  overlayClassName: '',
-})
+const emit = defineEmits<DropdownEmits>()
+
+// prettier-ignore
+const props = withDefaults(
+  defineProps<DropdownProps>(), 
+  {
+    title: '',
+    size: 'l',
+    open: false,
+    arrow: true,
+    disabled: false,
+    type: 'secondary',
+    placement: 'bottom',
+    trigger: 'hover',
+    animation: 'downBottom',
+    openDelay: 0,
+    closeDelay: 80,
+    overlayClass: '',
+    overlayStyle: () => ({}),
+    zIndex: 1,
+  }
+)
 
 // refs
-const { size, trigger, disabled } = toRefs(props)
+// prettier-ignore
 const selectedValue = ref<any>(null)
 const isOpen = ref(props.open)
 const iconRef = ref<HTMLElement>()
-const _disabled = disabled.value ? 'disabled' : false
+const _disabled = props.disabled ? 'disabled' : false
 
-provide('selectedValue', selectedValue)
-provide('isOpen', isOpen)
-provide('size', size)
+provide('option', {
+  ...props,
+  isOpen,
+  selectedValue,
+})
 
-watch(
-  () => selectedValue.value,
-  (newSelected, oldSelected) => {
-    if (_disabled) return
-    if (newSelected !== oldSelected) {
-      emit('selected', newSelected)
-    }
-  },
-)
+watch(selectedValue, (newSelected, oldSelected) => {
+  if (_disabled) return
+  if (newSelected !== oldSelected) {
+    emit('selected', newSelected)
+  }
+})
 
-watch(
-  () => isOpen.value,
-  (newVal) => {
-    const deg = newVal ? '180deg' : '0deg'
-    const iconNode = iconRef.value
+watch(isOpen, (newVal) => {
+  const deg = newVal ? '180deg' : '0deg'
+  const iconNode = iconRef.value
 
-    iconNode && (iconNode.style.transform = `rotate(${deg})`)
-    emit('visibleChange', newVal)
-  },
-)
+  iconNode && (iconNode.style.transform = `rotate(${deg})`)
+  emit('visibleChange', newVal)
+})
 </script>

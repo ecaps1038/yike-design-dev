@@ -48,7 +48,7 @@ const onAddTab = () => {
   indexL++
   tabs.value.push({
     name: indexL,
-    label: `Tab${indexL + 1}`,
+    label: `Tab${indexL}`,
     showSlot: indexL % 2 === 0,
   })
   acitve.value = indexL

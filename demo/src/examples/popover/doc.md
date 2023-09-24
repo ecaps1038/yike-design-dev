@@ -25,7 +25,7 @@
 | title   | 气泡标题 | string | "标题"         |
 | content | 气泡内容 | string | "popover 组件" |
 
-其他参数同 <a href="tooltip" style="color:red">`tooltip`</a> 组件
+其他参数同 <a href="#module/tooltip" style="color:red">`tooltip`</a> 组件
 
 ### Slot
 

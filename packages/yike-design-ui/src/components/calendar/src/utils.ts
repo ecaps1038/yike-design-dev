@@ -46,7 +46,7 @@ export function useRows(date: ComputedRef<Dayjs>) {
     );
     // 补齐剩余天数
     list = [...prevMonthDays, ...currentMonthDays];
-    const remaning = 42 - list.length;
+    const remaning = Math.ceil((days + count) / 7) * 7 - list.length;
     const nextMonthDays: CalendarCell[] = Array.from({ length: remaning }).map(
       (_, idx) => ({ text: idx + 1, type: 'next' }),
     );

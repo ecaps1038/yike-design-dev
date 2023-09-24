@@ -8,6 +8,8 @@ export type InputNumberProps = {
   precision?: number;
   size?: Size;
   disabled?: boolean;
+  message?: string;
+  controls?: boolean;
 
   formatter?: (value: number) => string;
 };

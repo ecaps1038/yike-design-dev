@@ -2,24 +2,24 @@
 
 :::snippet
 基本用法
-这里展示水平分割线基本用法
+展示水平分割线基本用法。
 <DividerPrimary/>
 :::
 
 :::snippet
-设置标题
-可以在分割线上自定义文本内容
+标题设置
+可以在分割线上自定义文本内容。
 <DividerHorizontal/>
 :::
 
 :::snippet
-设置分割线样式
-可以在分割线上自定义分割线样式 含分割线类型，分割线宽度
+分割线样式
+在分割线上自定义分割线样式，含分割线类型和分割线宽度。
 <DividerStyle/>
 :::
 :::snippet
-设置竖直方向分割线
-可以设置分割线竖直方向
+竖分割线
+设置竖方向分割线。
 <DividerVertical/>
 :::
 
@@ -27,8 +27,8 @@
 
 | 参数            | 描述           | 类型   | 可选值                       | 默认值       |
 | --------------- | -------------- | ------ | ---------------------------- | ------------ |
-| contentPosition | 自定义文本位置 | string | `left`、`middle`、`right`    | `left`       |
+| content-position | 自定义文本位置 | string | `left`、`middle`、`right`    | `left`       |
 | width           | 分割线宽度     | number |                              | `1`          |
 | height          | 分割线高度     | number |                              | `1em`        |
-| borderStyle     | 分割线类型     | number | `soild`、`dotted` 、`double` | `soild`      |
+| border-style     | 分割线类型     | number | `soild`、`dotted` 、`double` | `soild`      |
 | direction       | 分割线方向     | string | `horizontal` 、`vertical`    | `horizontal` |

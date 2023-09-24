@@ -1,14 +1,16 @@
 ## YkInputNumber 数字输入框
 
+数字输入框用于准确地输入数字。
+
 :::snippet
 基本用法
-数字输入框用于准确地输入数字。
+数字输入框的基本用法。
 <InputNumberPrimary/>
 :::
 
 :::snippet
 尺寸
-与输入框一样，它有四种尺寸：`s`，`m`，`l`，`xl`。
+与输入框一样，有四种尺寸：`s`，`m`，`l`，`xl`。
 <InputNumberSize/>
 :::
 
@@ -35,10 +37,11 @@
 | precision            | 显示精度           | number              | 0         |
 | size                 | 数字输入框的尺寸   | 's'｜'m'｜'l'｜'xl' | 'l'       |
 | disabled             | 是否禁用数字输入框 | boolean             | false     |
+| controls             | 是否开启控制按钮   | boolean             | true      |
 
 其余属性继承自 [Input](/module/input#Input)
 
-### 事件
+### Events
 
 | 事件     | 描述           |
 | -------- | -------------- |

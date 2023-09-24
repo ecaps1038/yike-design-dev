@@ -38,7 +38,7 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const tags = ref([
+const tags: any = ref([
   { name: 'Tag 1' },
   { name: 'Tag 1', type: 'success' },
   { name: 'Tag 1', type: 'warning', closeable: true },

@@ -38,7 +38,7 @@
 
     <pagination-jumper
       v-if="showJumper && !simple"
-      :total-pages="total"
+      :total-pages="totalPages"
       :size="size"
       :disabled="disabled"
       @jump="handlePageChange"
@@ -100,7 +100,7 @@ const handlePageChange = (page: number) => {
 const handlePageSizeChange = (pageSize: number) => {
   if (!props.disabled) {
     internalPageSize.value = pageSize
-    emits('change', pageSize)
+    emits('pageSizeChange', pageSize)
   }
 }
 

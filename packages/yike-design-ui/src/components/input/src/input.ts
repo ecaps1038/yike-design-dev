@@ -7,7 +7,7 @@ export type InputProps = {
   size?: Size;
   type?: 'text' | 'password';
   placeholder?: string;
-  modelValue?: string | number;
+  modelValue?: string;
   disabled?: boolean;
   readonly?: boolean;
   required?: boolean;
@@ -19,4 +19,5 @@ export type InputProps = {
   limit?: number;
   style?: CSSProperties;
   message?: string;
+  inputStyle?: CSSProperties; // input原生style
 };
