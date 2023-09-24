@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-radio v-model="radioValue" :value="active">选框</yk-radio>
     <yk-button @click="handleChange">切换状态</yk-button>
   </yk-space>

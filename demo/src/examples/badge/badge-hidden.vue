@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space>
       <yk-badge is-dot :hidden="hiddenFlag">
         <yk-avatar size="l" shape="square"></yk-avatar>
@@ -16,34 +16,31 @@
     </yk-space>
     <yk-space>
       <yk-badge :count="2" offset="left" :hidden="hiddenFlag">
-        <div
-          style="
-            width: 100px;
-            height: 40px;
-            border-radius: 8px;
-            background: #f6f6f8;
-          "
-        ></div>
+        <div class="yk-badge-demo-block"></div>
       </yk-badge>
     </yk-space>
     <yk-space>
       <yk-badge :count="100" offset="right" :hidden="hiddenFlag">
-        <div
-          style="
-            width: 100px;
-            height: 40px;
-            border-radius: 8px;
-            background: #f6f6f8;
-          "
-        ></div>
+        <div class="yk-badge-demo-block"></div>
       </yk-badge>
     </yk-space>
   </yk-space>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 const hiddenFlag = ref<boolean>(false)
+
 const handleClick = () => {
   hiddenFlag.value = !hiddenFlag.value
 }
 </script>
+
+<style>
+.yk-badge-demo-block {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #f6f6f8;
+}
+</style>

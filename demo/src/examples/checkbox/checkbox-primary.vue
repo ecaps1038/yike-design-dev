@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space align="center">
       <span>受控：</span>
       <yk-checkbox v-model:checked="value">Option 1</yk-checkbox>

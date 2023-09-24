@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space>
       <yk-button status="primary" @click="handlePrimary">常规消息</yk-button>
       <yk-button status="success" @click="handleSuccess">成功消息</yk-button>

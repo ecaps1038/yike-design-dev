@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-radio-group v-model="radio" type="button" size="xl">
       <yk-radio value="before-yesterday">前天</yk-radio>
       <yk-radio value="yesterday">昨天</yk-radio>
