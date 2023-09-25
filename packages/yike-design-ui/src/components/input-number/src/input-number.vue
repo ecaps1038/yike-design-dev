@@ -60,12 +60,16 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
   size: 'l',
   disabled: false,
   controls: true,
+  formatter: (value: string) => {
+    return value
+  },
 })
 
 const bem = createCssScope('input-number')
 
 const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
 const isHovering = ref<boolean>(false)
+const isFocus = ref<boolean>(false)
 // 触发“连击”的所需时间
 const TimeBeforeCombo = 250
 // “连击”的速度
@@ -176,6 +180,7 @@ const change = () => {
 }
 
 const focus = () => {
+  isFocus.value = true
   return
 }
 
@@ -196,7 +201,7 @@ const blur = (value: string) => {
     lastValue.value = valueRefs.min.value
   }
   update()
-  console.log(lastValue.value, displayValue.value)
+  isFocus.value = false
   inputRef.value?.setValue(displayValue.value)
 }
 
@@ -205,7 +210,12 @@ const update = () => {
 }
 
 const displayValue = computed(() => {
-  return lastValue.value.toFixed(precision.value)
+  const lastDisplayValue = lastValue.value.toFixed(precision.value)
+
+  if (!isFocus.value) {
+    return valueRefs.formatter.value(lastDisplayValue) ?? lastDisplayValue
+  }
+  return lastDisplayValue
 })
 
 // 模型同步
