@@ -17,15 +17,15 @@ onMounted(() => {
 
   Array.from(docH3es).forEach((el: HTMLElement) => {
     anchors.value.push({
-      href: `#${el.id}`,
-      title: el.id,
+      href: '#'.concat(el.id),
+      title: el.id.replace(/-/g, ' '),
     })
   })
 })
 </script>
 
 <template>
-  <div ref="docRef" class="yk-demo-doc" :class="{ 'width-1200': !hasNavBar }">
+  <div ref="docRef" class="yk-demo-doc" :class="{ width1200: !hasNavBar }">
     <div ref="wrapperRef" class="wrapper">
       <slot />
     </div>
@@ -39,35 +39,35 @@ onMounted(() => {
 .yk-demo-doc {
   --anchor-width: 212px;
   flex: 1;
-  padding: 0 0 64px 64px;
+  padding: 32px 64px;
+  padding-right: 0;
   width: calc(var(--nav-bar-width));
+  transition: all 0.2s;
 
   .wrapper {
     float: left;
     width: calc(100% - var(--anchor-width));
   }
-}
 
-.width-1200 {
-  max-width: 1200px;
-}
+  .anchor-wrap {
+    position: fixed;
+    top: 88px;
+    right: 0;
+    float: left;
+    margin-top: 88px;
+    padding-right: 14px;
+    padding-left: 56px;
+    width: var(--anchor-width);
+  }
 
-.anchor-wrap {
-  position: sticky;
-  top: 88px;
-  float: left;
-  padding-right: 14px;
-  padding-left: 56px;
-  width: var(--anchor-width);
-}
+  @media (810px < width <= 1200px) {
+    padding-left: 32px;
+  }
 
-/* stylelint-disable-next-line media-feature-range-notation */
-@media (max-width: 810px) {
-  .yk-demo-doc {
-    padding: unset;
+  @media (width <= 810px) {
+    padding: 24px;
 
     .wrapper {
-      padding: 0 16px;
       width: 100%;
     }
 
@@ -75,5 +75,9 @@ onMounted(() => {
       display: none;
     }
   }
+}
+
+.width1200 {
+  max-width: 1200px;
 }
 </style>

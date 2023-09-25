@@ -19,7 +19,7 @@
         :class="[bem('buttons'), bem([mergedSize])]"
       >
         <YkButton
-          :disabled="limit.isMax"
+          :disabled="isMax"
           :size="mergedSize"
           type="secondary"
           @click="increase"
@@ -28,7 +28,7 @@
           <IconUpOutline />
         </YkButton>
         <YkButton
-          :disabled="limit.isMin"
+          :disabled="isMin"
           :size="mergedSize"
           type="secondary"
           @click="decrease"
@@ -44,7 +44,7 @@
 import { calculate, numberMatchReg, normalizeNumber } from './utils'
 import { createCssScope, useFormItem } from '../../utils'
 import { InputNumberProps } from './input-number'
-import { toRefs, ref, onMounted, reactive, computed, watch } from 'vue'
+import { toRefs, ref, onMounted, computed, watch } from 'vue'
 import { IconUpOutline, IconDownOutline } from '../../svg-icon'
 import { YkInput, YkButton } from '../../../index'
 
@@ -60,16 +60,16 @@ const props = withDefaults(defineProps<InputNumberProps>(), {
   size: 'l',
   disabled: false,
   controls: true,
+  formatter: (value: string) => {
+    return value
+  },
 })
 
 const bem = createCssScope('input-number')
 
 const emits = defineEmits(['update:modelValue', 'increase', 'decrease'])
 const isHovering = ref<boolean>(false)
-const limit = reactive({
-  isMax: false,
-  isMin: false,
-})
+const isFocus = ref<boolean>(false)
 // 触发“连击”的所需时间
 const TimeBeforeCombo = 250
 // “连击”的速度
@@ -84,6 +84,7 @@ const { mergedSize, mergedDisabled } = useFormItem({
   disabled,
   size,
 })
+let nextValue
 
 // 计算精度
 const precision = computed(() => {
@@ -129,40 +130,38 @@ const stopCombo = () => {
 }
 
 // 极值约束
-const checkLimit = () => {
-  limit.isMax = lastValue.value >= valueRefs.max.value ? true : false
-  limit.isMin = lastValue.value <= valueRefs.min.value ? true : false
-}
+const isMin = computed(() => {
+  return lastValue.value <= valueRefs.min.value
+})
+
+const isMax = computed(() => {
+  return lastValue.value >= valueRefs.max.value
+})
 
 onMounted(() => {
   lastValue.value = valueRefs.modelValue?.value ?? getInitialValue()
-  checkLimit()
 })
 
 const increase = () => {
-  if (limit.isMax) {
+  if (isMax.value) {
     stopCombo()
     return
   }
-  lastValue.value = calculate(
-    lastValue.value,
-    valueRefs.step.value,
-    precision.value,
-  )
+  nextValue = calculate(lastValue.value, valueRefs.step.value, precision.value)
+  lastValue.value =
+    nextValue >= valueRefs.max.value ? valueRefs.max.value : nextValue
   update()
   emits('increase')
 }
 
 const decrease = () => {
-  if (limit.isMin) {
+  if (isMin.value) {
     stopCombo()
     return
   }
-  lastValue.value = calculate(
-    lastValue.value,
-    -valueRefs.step.value,
-    precision.value,
-  )
+  nextValue = calculate(lastValue.value, -valueRefs.step.value, precision.value)
+  lastValue.value =
+    nextValue <= valueRefs.min.value ? valueRefs.min.value : nextValue
   update()
   emits('decrease')
 }
@@ -181,6 +180,7 @@ const change = () => {
 }
 
 const focus = () => {
+  isFocus.value = true
   return
 }
 
@@ -194,23 +194,28 @@ const blur = (value: string) => {
   } else {
     lastValue.value = normalizeNumber(lastValue.value, precision.value)
   }
-  update()
-  if (limit.isMax) {
+  if (isMax.value) {
     lastValue.value = valueRefs.max.value
   }
-  if (limit.isMin) {
+  if (isMin.value) {
     lastValue.value = valueRefs.min.value
   }
+  update()
+  isFocus.value = false
   inputRef.value?.setValue(displayValue.value)
 }
 
 const update = () => {
-  checkLimit()
   emits('update:modelValue', lastValue.value)
 }
 
 const displayValue = computed(() => {
-  return lastValue.value.toFixed(precision.value)
+  const lastDisplayValue = lastValue.value.toFixed(precision.value)
+
+  if (!isFocus.value) {
+    return valueRefs.formatter.value(lastDisplayValue) ?? lastDisplayValue
+  }
+  return lastDisplayValue
 })
 
 // 模型同步
@@ -218,7 +223,6 @@ watch(
   () => props.modelValue,
   (newValue) => {
     lastValue.value = newValue ?? getInitialValue()
-    checkLimit()
   },
 )
 </script>

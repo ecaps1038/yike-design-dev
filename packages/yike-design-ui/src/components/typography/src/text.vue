@@ -1,50 +1,32 @@
 <template>
-  <component :is="wrapDecoration" :class="textClass">
+  <component :is="tag" :class="bem([type, _tag, ...classList])">
     <slot></slot>
   </component>
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, useSlots } from 'vue'
 import { textProps } from './typography'
+import { createCssScope } from '../../utils'
 
 defineOptions({
   name: 'YkText',
 })
 
-const props = withDefaults(defineProps<textProps>(), {
-  strong: false,
-  type: 'default',
-  mark: false,
-  underline: false,
-  del: false,
-})
-
-const { strong, mark, underline, del } = toRefs(props)
-
-const textClass = computed(() => {
-  return {
-    [`yk-text--${props.type}`]: props.type,
-    'yk-text': true,
-    'yk-typography': true,
+const bem = createCssScope('text')
+// prettier-ignore
+const props = withDefaults(
+  defineProps<textProps>(), 
+  {
+    mark: false,
+    strong: false,
+    underline: false,
+    del: false,
   }
-})
+)
 
-const slots = useSlots()
-
-const wrap = (dec: boolean, tag: string) => {
-  return dec ? tag : ''
-}
-
-const wrapDecoration = computed(() => {
-  if (slots && slots.length) {
-    return 'div'
-  }
-  const decorateWrap =
-    wrap(mark.value, 'mark') +
-    wrap(underline.value, 'underline') +
-    wrap(del.value, 'del') +
-    wrap(strong.value, 'strong')
-  return decorateWrap || 'span'
-})
+const TagMap = { ...props, type: false }
+const [_tag, ...classList] = Object.entries(TagMap)
+  .filter((item) => item[1])
+  .map((item) => item[0])
+const tag = _tag || 'span'
 </script>

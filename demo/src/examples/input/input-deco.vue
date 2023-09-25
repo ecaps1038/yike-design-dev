@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-input placeholder="四" style="width: 360px">
       <template #prefix><yk-text>今天是星期</yk-text></template>
     </yk-input>

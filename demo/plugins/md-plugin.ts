@@ -5,10 +5,9 @@ export function mdCustomH3(md: MarkdownIt) {
     const title = tokens[idx + 1].content;
     const level = tokens[idx].tag.at(-1);
 
-    // prettier-ignore
-    return `<yk-title 
-      :level="${level}" 
-      id="${title.replace(' ', '')}" 
+    return `<yk-title
+      :level="${level}"
+      id="${title.replace(/[ ]/g, '-')}"
     >`;
   };
 

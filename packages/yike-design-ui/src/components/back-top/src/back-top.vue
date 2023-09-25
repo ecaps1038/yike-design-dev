@@ -1,5 +1,4 @@
 <template>
-  <!-- <Teleport :to="to"> -->
   <Transition :name="animation">
     <div
       v-show="visible"
@@ -17,7 +16,6 @@
       </slot>
     </div>
   </Transition>
-  <!-- </Teleport> -->
 </template>
 
 <script setup lang="ts">

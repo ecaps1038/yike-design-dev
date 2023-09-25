@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-progress></yk-progress>
     <yk-progress :show-text="false"></yk-progress>
     <yk-progress :percent="50" :stroke-color="'red'"></yk-progress>

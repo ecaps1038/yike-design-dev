@@ -13,15 +13,14 @@ export const calculate = (value: number, step: number, precision: number) => {
   const stepDigits = step.toString().split('.')[1] ?? '';
   const digits = Math.max(valueDigits.length ?? 0, stepDigits.length ?? 0);
   const power = 10 ** digits;
-  const result = (value * power + step * power) / power;
-  // console.error(value, step, valueDigits, stepDigits, result, digits, power);
-  return result;
+  return (value * power + step * power) / power;
 };
 
 export const clearInvalidChar = (value: string) =>
   value ? (value.match(numberMatchReg) ?? ['0'])[0] : '0';
 
 export const normalizeNumber = (value: number, precision: number) => {
+  if (!value || Number.isNaN(value)) return 0;
   const vArray = value.toString().split('.');
   const vInteger = vArray[0];
   let vDigit = vArray[1] ?? '';

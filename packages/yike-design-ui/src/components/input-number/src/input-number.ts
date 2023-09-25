@@ -11,5 +11,5 @@ export type InputNumberProps = {
   message?: string;
   controls?: boolean;
 
-  formatter?: (value: number) => string;
+  formatter?: (value: string) => string;
 };

@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-checkbox
       :checked="checkedAll"
       :indeterminate="indeterminate"

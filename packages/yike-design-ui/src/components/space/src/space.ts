@@ -1,23 +1,49 @@
-import { Size } from '../../utils';
+import { SIZES } from '../../utils';
 
-export const DIRECTION = ['vertical', 'horizontal'] as const;
+// Direction
+export const DIRECTION = [
+  'vertical',
+  'horizontal',
+  'reverseVertical',
+  'reverseHorizontal',
+] as const;
+export type SpaceDirection = (typeof DIRECTION)[number];
 
-export type Direction = (typeof DIRECTION)[number];
+// Align
+const _align = ['start', 'end', 'center'] as const;
+export const ALIGN = [..._align, 'baseline'] as const;
+export type SpaceAlign = (typeof ALIGN)[number];
 
-export const ALIGN = ['start', 'end', 'center', 'baseline'] as const;
+// Justify
+export const JUSTIFY = [..._align, 'spaceAround', 'spaceBetween'] as const;
+export type Justify = (typeof JUSTIFY)[number];
 
-export type Align = (typeof ALIGN)[number];
+// SpaceSize
+export const SPACE_SIZE = ['ss', ...SIZES] as const;
+export type SpaceSize = (typeof SPACE_SIZE)[number];
 
-export type GapSize = Size | number | [number, number];
+// Overflow
+export const OVERFLOW = [
+  'visible',
+  'hidden',
+  'clip',
+  'scroll',
+  'auto',
+] as const;
+export type SpaceOverflow = (typeof OVERFLOW)[number];
 
+// SpaceProps
 export type SpaceProps = {
-  direction?: Direction;
-  align?: Align;
-  wrap?: boolean;
+  inline?: boolean;
+  dir?: SpaceDirection;
+  align?: SpaceAlign;
+  justify?: Justify;
+  wrap?: boolean | 'reverse';
+  overflow?: SpaceOverflow | SpaceOverflow[];
   /**
-   * constant: s|m|l|xl
-   * number
-   * array: [x, y]
+   * @description 间距
+   * @default m
+   * @type Size | number
    */
-  size?: GapSize;
+  size?: SpaceSize | number | string | (number | string)[];
 };

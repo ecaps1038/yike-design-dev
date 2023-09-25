@@ -1,4 +1,123 @@
 @import '../../styles/color/colors.less';
+
 .yk-space {
-  display: inline-flex;
+  display: flex;
+  gap: @space-l;
+  transition: all @animatb ease-in-out;
+
+  &.inline {
+    display: inline-flex;
+  }
+
+  // 排列方向
+  &.dir {
+    &-horizontal-reverse {
+      flex-direction: row-reverse;
+    }
+
+    &-vertical {
+      flex-direction: column;
+    }
+
+    &-vertical-reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+  // 对齐方式（y 轴）
+  &.align {
+    &-start {
+      align-items: flex-start;
+    }
+
+    &-center {
+      align-items: center;
+    }
+
+    &-end {
+      align-items: flex-end;
+    }
+
+    &-baseline {
+      align-items: baseline;
+    }
+
+    &.stretch {
+      align-items: stretch;
+    }
+  }
+
+  // 对齐方式（x 轴）
+  &.justify {
+    &-start {
+      justify-content: flex-start;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+
+    &-end {
+      justify-content: flex-end;
+    }
+
+    &-between {
+      justify-content: space-between;
+    }
+
+    &-around {
+      justify-content: space-around;
+    }
+
+    &-evenly {
+      justify-content: space-evenly;
+    }
+  }
+
+  // 换行（默认值： nowrap）
+  &.wrap {
+    flex-wrap: wrap;
+
+    &-reverse {
+      flex-wrap: wrap-reverse;
+    }
+  }
+
+  // 溢出
+  &.overflow {
+    &-auto {
+      overflow: auto;
+    }
+
+    &-hidden {
+      overflow: hidden;
+    }
+
+    &-scroll {
+      overflow: scroll;
+    }
+
+    &.clip {
+      overflow: clip;
+    }
+  }
+
+  // 间距
+  &.size {
+    &-ss {
+      gap: @space-ss;
+    }
+
+    &-s {
+      gap: @space-s;
+    }
+
+    &-m {
+      gap: @space-m;
+    }
+
+    &-xl {
+      gap: @space-xl;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-@import './code-color.less';
+@import './color-card.less';
 @import './markdown.less';
 
 :root {
@@ -6,22 +6,21 @@
   --top-bar-height: 60px;
 }
 
-// 平滑滚动
 html,
 body {
+  // 平滑滚动
   scroll-behavior: smooth;
   scroll-padding-top: 60px;
   margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', Segoe UI Symbol, 'Noto Color Emoji' !important;
 }
 
 a {
   text-decoration: none;
   color: @lcolor;
   transition: 0.3s;
-}
-
-.top-title {
-  padding-bottom: 20px;
 }
 
 /* scroll */

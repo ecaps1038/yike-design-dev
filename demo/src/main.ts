@@ -7,11 +7,6 @@ import DocPage from './components/DocPage.vue';
 
 // 加载项目全局样式
 import '@/style/main.less';
-import '@/style/color-card.less';
-
-import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
-import hljsVuePlugin from '@highlightjs/vue-plugin';
 
 // Yike Design UI
 import Icon from '@yike-design/ui/src/components/svg-icon';
@@ -21,8 +16,6 @@ import '@yike-design/ui/src/components/styles/index.less';
 import '@yike-design/ui/src/components/notification/style';
 import '@yike-design/ui/src/components/message/style';
 
-hljs.registerLanguage('javascript', javascript);
-
 const app = createApp(App);
 
 app
@@ -31,7 +24,6 @@ app
   .component(DocPage.name, DocPage)
   .component(ColorCard.name, ColorCard)
   .use(Icon)
-  .use(hljsVuePlugin)
   .use(router)
   .mount('#app');
 
