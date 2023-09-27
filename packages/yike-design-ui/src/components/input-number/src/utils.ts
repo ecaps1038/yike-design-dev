@@ -1,7 +1,3 @@
-export const defaultFormatter = (value: number): string => {
-  return value.toString();
-};
-
 export const calculate = (value: number, step: number, precision: number) => {
   if (Number.isInteger(value) && Number.isInteger(step)) {
     const sum = value + step;
@@ -15,9 +11,6 @@ export const calculate = (value: number, step: number, precision: number) => {
   const power = 10 ** digits;
   return (value * power + step * power) / power;
 };
-
-export const clearInvalidChar = (value: string) =>
-  value ? (value.match(numberMatchReg) ?? ['0'])[0] : '0';
 
 export const normalizeNumber = (value: number, precision: number) => {
   if (!value || Number.isNaN(value)) return 0;
