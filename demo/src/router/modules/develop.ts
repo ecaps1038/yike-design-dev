@@ -23,6 +23,10 @@ const developRoutes: RouteRecordRaw = {
       path: 'theme',
       component: () => import('@/views/develop/theme.md'),
     },
+    {
+      path: 'getting-started',
+      component: () => import('@/views/develop/getting-started.md'),
+    },
   ],
   meta: {
     navs,
