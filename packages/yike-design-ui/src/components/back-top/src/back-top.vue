@@ -1,5 +1,4 @@
 <template>
-  <!-- <Teleport :to="to"> -->
   <Transition :name="animation">
     <div
       v-show="visible"
@@ -17,14 +16,13 @@
       </slot>
     </div>
   </Transition>
-  <!-- </Teleport> -->
 </template>
 
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { IconTopOutline } from '../../svg-icon'
+import { transformPxToNumber } from '../../utils'
 import { BackTopProps } from './back-top'
-import { transformPxToNumber } from '../../utils/tools'
 
 defineOptions({
   name: 'YkBackTop',

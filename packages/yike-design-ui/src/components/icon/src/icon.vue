@@ -8,7 +8,7 @@
 import { computed, defineComponent, CSSProperties } from 'vue'
 
 export default defineComponent({
-  name: 'Icon',
+  name: 'YkIcon',
   props: {
     type: String,
     size: [Number, String],

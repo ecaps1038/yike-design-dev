@@ -1,27 +1,32 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import Bar from '@/components/Bar.vue'
-import * as barData from '../router/config/bar.json'
-//菜单
-</script>
-<template>
-  <div class="module-b">
-    <Bar :bar="barData.bar" />
-    <div class="main">
-      <RouterView />
-    </div>
-  </div>
-</template>
-<style scoped lang="less">
-.main {
-  padding: 24px 224px 56px 324px;
+import { ref, computed, provide } from 'vue'
+import { useRoute } from 'vue-router'
+import type { NavBar } from '@/utils/types'
 
-  .module {
-    max-width: 1200px;
-  }
+const route = useRoute()
+const navs = computed(() => (route.meta.navs as NavBar[]) || [])
+const hasNavBar = ref(navs.value.length > 0)
+
+provide('hasNavBar', hasNavBar)
+</script>
+
+<template>
+  <!-- If there is no NavBar, the content is centered horizontally -->
+  <div class="module" :class="{ center: !hasNavBar }">
+    <nav-bar :data="navs" />
+    <router-view />
+  </div>
+  <yk-back-top></yk-back-top>
+</template>
+
+<style scoped>
+.module {
+  position: relative;
+  display: flex;
+  padding-top: var(--top-bar-height);
 }
 
-.mmain {
-  padding: 24px;
+.center {
+  justify-content: center;
 }
 </style>

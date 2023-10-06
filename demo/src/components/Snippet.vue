@@ -1,29 +1,11 @@
-<!-- eslint-disable vue/no-v-html -->
-<template>
-  <div class="case-card">
-    <!-- id 用于锚点定位 -->
-    <yk-title :id="title.replace(/\s/g, '')" :level="3">{{ title }}</yk-title>
-    <slot name="desc"></slot>
-    <div class="container">
-      <slot name="demo"></slot>
-    </div>
-    <yk-space class="space" :size="8">
-      <div class="icons" @click="onCopy">
-        <icon-copy-outline />
-      </div>
-      <div class="icons" :class="{ select: showCode }" @click="clickShow">
-        <icon-code-outline />
-      </div>
-    </yk-space>
-    <div v-show="showCode" ref="codes" class="codes">
-      <pre class="hljs"><code v-html="html"></code></pre>
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
-import { tryCopy } from '@/utils/tools'
-import hljs from 'highlight.js'
+import { useClipboard } from '@vueuse/core'
+import { getHighlighter } from 'shikiji'
+
+defineOptions({ name: 'YkSnippet' })
+
+const { copy } = useClipboard()
 const proxy: any = getCurrentInstance()?.proxy
 const props = defineProps({
   title: {
@@ -36,81 +18,118 @@ const props = defineProps({
   },
 })
 
-const html = hljs.highlightAuto(decodeURIComponent(props.code)).value
-
-//复制模块
-const codes = ref(null)
-//信息模块
-
-//拷贝内容
-const onCopy = (): void => {
-  tryCopy(codes.value)
-  proxy.$message({ message: '复制成功', type: 'success', duration: 1000 })
-}
-
-//关于代码的开关
+const { title, code } = props
+const normalizeTitle = title.replace(/\s+/g, '-')
+const originCode = decodeURIComponent(code)
 const showCode = ref(false)
-const clickShow = (): void => {
-  showCode.value = !showCode.value
+const html = ref('')
+
+const shiki = getHighlighter({
+  themes: ['vitesse-light', 'vitesse-dark'],
+  langs: ['vue'],
+})
+
+shiki.then((highlighter) => {
+  html.value = highlighter.codeToHtml(originCode, {
+    lang: 'vue',
+    themes: {
+      dark: 'vitesse-dark',
+      light: 'vitesse-light',
+    },
+  })
+})
+
+function onCopy() {
+  copy(originCode)
+  proxy.$message({
+    message: '复制成功',
+    type: 'success',
+    duration: 1000,
+  })
 }
 </script>
 
+<!-- eslint-disable vue/no-v-html -->
+<template>
+  <yk-title :id="normalizeTitle" :level="3">{{ title }}</yk-title>
+  <slot name="desc"></slot>
+  <div class="demo-block">
+    <slot name="demo"></slot>
+  </div>
+  <yk-space class="flex-end" :size="8">
+    <div class="icon" @click="onCopy"><icon-copy-outline /></div>
+    <div
+      class="icon"
+      :class="{ active: showCode }"
+      @click="showCode = !showCode"
+    >
+      <icon-code-outline />
+    </div>
+  </yk-space>
+
+  <div v-show="showCode" v-html="html"></div>
+</template>
+
 <style scoped lang="less">
-/* stylelint-disable */
-.case-card {
-  margin-top: 28px;
-  max-width: 1200px;
-
-  .container {
-    margin: 12px 0 8px;
-    padding: 20px;
-    border: 1px solid @line-color-s;
-    border-radius: @radius-m;
-    transition: all @animats;
+.yk-title {
+  &:hover::after {
+    opacity: 1;
   }
 
-  .space {
-    display: flex;
-    justify-content: flex-end;
+  &::after {
+    content: '#';
+    margin-left: 12px;
+    color: rgb(var(--lcolor));
+    opacity: 0;
+    vertical-align: bottom;
+    transition: opacity 0.2s;
   }
+}
 
-  .icons {
+.demo-block {
+  margin: 12px 0 8px;
+  padding: 20px;
+  border: 1px solid @line-color-s;
+  border-radius: @radius-m;
+  transition: all @animats;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+
+  .icon {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 28px;
     height: 28px;
     border-radius: @radius-m;
+    color: @font-color-m;
     background-color: @bg-color-m;
     transition: all @animats;
-    color: @font-color-m;
     cursor: pointer;
+
+    &:hover {
+      background-color: @bg-color-s;
+    }
 
     .yk-icon {
       font-size: @size-m;
       color: @font-color-m;
       transition: all @animats;
     }
-
-    &:hover {
-      background-color: @bg-color-s;
-
-      .yk-icon {
-        color: @font-color-l;
-      }
-    }
   }
 
-  .select {
+  .active {
     background-color: @font-color-l;
-    .yk-icon {
-      color: @bg-color-l;
-    }
+
     &:hover {
       background-color: @font-color-l;
-      .yk-icon {
-        color: @bg-color-l;
-      }
+    }
+
+    .yk-icon {
+      color: @bg-color-l;
     }
   }
 }

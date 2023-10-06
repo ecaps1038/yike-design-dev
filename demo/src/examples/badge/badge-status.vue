@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space>
       <yk-badge is-dot out-dot>
         <yk-avatar size="l" shape="square"></yk-avatar>

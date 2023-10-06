@@ -1,6 +1,6 @@
 import { InjectionKey } from 'vue';
-import { SchemaType, SchemaRuleType } from '../../utils/validate';
-import { Size, Layout } from '../../utils';
+import { SchemaType, SchemaRuleType, Size, Layout } from '../../utils';
+
 export type Field = string;
 export type ValidateStatus = 'success' | 'error' | 'primary';
 export interface FormProps {

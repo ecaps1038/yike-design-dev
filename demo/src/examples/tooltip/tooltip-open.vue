@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-checkbox v-model:checked="open">切换气泡显示状态</yk-checkbox>
     <yk-tooltip v-model:open="open" placement="right" trigger="none">
       <yk-button type="outline">tooltip</yk-button>

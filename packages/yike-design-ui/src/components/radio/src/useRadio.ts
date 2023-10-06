@@ -2,6 +2,7 @@ import { UPDATE_MODEL_EVENT, provideKey } from './constants';
 import { SetupContext, computed, inject } from 'vue';
 import { RadioProps } from './radio';
 import type { RadioEmits } from './radio';
+
 export const useRadio = (
   props: RadioProps,
   emits?: SetupContext<RadioEmits>['emit'],

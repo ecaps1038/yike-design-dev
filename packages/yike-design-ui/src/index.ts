@@ -1,5 +1,6 @@
 import type { Component, App } from 'vue';
 
+export * from './components/svg-icon';
 import YkUpload from './components/upload';
 import { YkRadio, YkRadioGroup } from './components/radio';
 import { YkCheckbox, YkCheckboxGroup } from './components/checkbox';
@@ -23,8 +24,14 @@ import YkPopconfirm from './components/popconfirm';
 import YkInputNumber from './components/input-number';
 import { YkTabs, YkTabPane } from './components/tabs';
 import { YkForm, YkFormItem } from './components/form';
+import YkInputTag from './components/input-tag';
 import YkPagination from './components/pagination';
 import YkTextArea from './components/text-area';
+import YkTag from './components/tag';
+import YkCalendar from './components/calendar';
+import YkSkeleton from './components/skeleton';
+import YkDivider from './components/divider';
+import YkLink from './components/link';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
@@ -47,6 +54,7 @@ import {
   YkImagePreviewGroup,
 } from './components/image';
 import YkSpinner from './components/spinner';
+import { vLoading } from './components/spinner/src/directive';
 
 const components: {
   [propName: string]: Component;
@@ -83,7 +91,13 @@ const components: {
   YkPagination,
   YkForm,
   YkFormItem,
+  YkInputTag,
   YkTextArea,
+  YkTag,
+  YkCalendar,
+  YkSkeleton,
+  YkDivider,
+  YkLink,
   YkAlert,
   YkButton,
   YkTheme,
@@ -139,7 +153,13 @@ export {
   YkPagination,
   YkForm,
   YkFormItem,
+  YkInputTag,
   YkTextArea,
+  YkTag,
+  YkCalendar,
+  YkSkeleton,
+  YkDivider,
+  YkLink,
   YkAlert,
   YkButton,
   YkTheme,
@@ -176,5 +196,6 @@ export default {
     }
     app.config.globalProperties.$notification = YkNotification;
     app.config.globalProperties.$message = YkMessage;
+    app.directive('loading', vLoading);
   },
 };

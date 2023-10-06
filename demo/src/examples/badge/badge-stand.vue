@@ -1,5 +1,5 @@
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space align="center">
       <yk-badge :count="2" status="primary"></yk-badge>
       <yk-badge :count="2"></yk-badge>

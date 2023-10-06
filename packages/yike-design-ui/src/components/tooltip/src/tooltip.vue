@@ -1,134 +1,155 @@
 <template>
-  <div :class="bem()">
-    <transition name="show">
-      <template v-if="!(destroyTooltipOnHide && !showTooltip)">
+  <div ref="tooltipRef" :class="bem()">
+    <DefaultSlot
+      @focus="handleFocus"
+      @mouseenter="handleHover"
+      @mouseleave="handleHover"
+      @click.stop="handleClick"
+      @contextmenu.prevent="handleContextmenu"
+    ></DefaultSlot>
+
+    <transition :name="animation">
+      <template v-if="!(destroyTooltipOnHide && !showPopper)">
         <div
-          v-show="showTooltip"
-          ref="tooltip"
-          :class="className"
+          v-show="showPopper"
+          ref="popperRef"
+          :class="getPlacementClassName"
           :style="[overlayStyle, { zIndex }]"
           @click.stop
-          @mouseenter="openTooltip"
-          @mouseleave="onLeave"
+          @mouseenter="openPopper"
+          @mouseleave="handleHover"
         >
           <div v-if="arrow" :class="bem('arrow')"></div>
           <slot name="content">{{ title }}</slot>
         </div>
       </template>
     </transition>
-    <DefaultSlot
-      @focus="onFocus"
-      @mouseenter="onEnter"
-      @mouseleave="onLeave"
-      @click.stop="onClick"
-      @contextmenu.prevent="onOpenMenu"
-    ></DefaultSlot>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { TooltipProps, TooltipEmit } from './tooltip'
-import { computed, ref, watch } from 'vue'
-import { useEventListener, usePlacement, useDefaultSlots } from './hooks'
-import { createCssScope } from '../../utils/bem'
+import type { TooltipProps, TooltipEmit, Trigger } from './tooltip'
+import { usePlacement, useDefaultSlots } from './hooks'
+import { createCssScope } from '../../utils'
+import { onClickOutside } from '@vueuse/core'
+import { computed, ref, toRefs, watch } from 'vue'
+import '../style'
 
 defineOptions({
   name: 'YkTooltip',
 })
+
 const bem = createCssScope('tooltip')
-
-// props 属性定义
-const props = withDefaults(defineProps<TooltipProps>(), {
-  title: 'hello tooltip',
-  placement: 'top',
-  trigger: 'hover',
-  open: false,
-  openDelay: 0,
-  closeDelay: 300,
-  autoAdjustOverflow: false,
-  overlayStyle: () => ({}),
-  destroyTooltipOnHide: false,
-  arrow: true,
-})
-
-// 自定义事件
 const emit = defineEmits<TooltipEmit>()
-const tooltip = ref<null | HTMLElement>()
-
-// 使用默认插槽
 const DefaultSlot = useDefaultSlots()
 
-// 组件控制和事件控制展示气泡双向绑定
-const showTooltip = ref(props.open)
-watch(showTooltip, (show) => emit('update:open', show))
-watch(
-  () => props.open,
-  (open) => (showTooltip.value = open),
+// prettier-ignore
+const props = withDefaults(
+  defineProps<TooltipProps>(), {
+    title: 'hello',
+    open: false,
+    arrow: true,
+    placement: 'top',
+    trigger: 'hover',
+    animation: 'show',
+    openDelay: 0,
+    closeDelay: 300,
+    overlayClass: '',
+    overlayStyle: () => ({}),
+    autoAdjustOverflow: false,
+    destroyTooltipOnHide: false,
+  }
 )
 
-// 修改tooltip 状态
-const changeTooltipType = (() => {
+const {
+  arrow,
+  placement,
+  trigger,
+  animation,
+  openDelay,
+  closeDelay,
+  overlayClass,
+  overlayStyle,
+  autoAdjustOverflow,
+  destroyTooltipOnHide,
+} = toRefs(props)
+
+const tooltipRef = ref<HTMLElement>()
+const popperRef = ref<HTMLElement>()
+const showPopper = ref(props.open)
+
+watch(
+  () => props.open,
+  (newVal) => (showPopper.value = newVal),
+)
+watch(showPopper, (newVal) => emit('update:open', newVal))
+
+// 计算气泡方位类名
+const baseClass = bem('content')
+const placements = usePlacement(popperRef, placement.value)
+const getPlacementClassName = computed(() => {
+  const classNames = [
+    baseClass,
+    overlayClass.value,
+    autoAdjustOverflow.value || placement.value,
+  ]
+
+  if (autoAdjustOverflow.value) {
+    classNames.push(placements.join(''))
+  }
+
+  return classNames
+})
+
+/** 切换 Popper 组件的可见性状态，带有延迟效果。 */
+const togglePopperVisibility = (() => {
   let timer: any
-  // 修改tooltip 状态
-  return function (openType: boolean, delay: number) {
+
+  return function (isOpen: boolean) {
     clearTimeout(timer)
-    if (props.trigger === 'none' || showTooltip.value === openType) return
+
+    if (trigger.value === 'none' || showPopper.value === isOpen) return
+    const delay = isOpen ? openDelay : closeDelay
+
     timer = setTimeout(() => {
-      showTooltip.value = openType
-      emit('openChange', showTooltip.value)
-    }, delay)
+      showPopper.value = isOpen
+      emit('openChange', showPopper.value)
+    }, delay.value)
   }
 })()
 
-// 打开气泡
-function openTooltip() {
-  changeTooltipType(true, props.openDelay)
-}
+const openPopper = () => togglePopperVisibility(true)
+const closePopper = () => togglePopperVisibility(false)
 
-// 关闭气泡
-function closeTooltip() {
-  changeTooltipType(false, props.closeDelay)
-}
-
-// 展示隐藏 气泡 事件函数
-function onEnter() {
-  if (props.trigger === 'hover' || props.trigger.includes('hover'))
-    openTooltip()
-}
-function onLeave() {
-  if (props.trigger === 'hover' || props.trigger.includes('hover'))
-    closeTooltip()
-}
-function onClick() {
-  if (props.trigger === 'click' || props.trigger.includes('click')) {
-    if (showTooltip.value) closeTooltip()
-    else openTooltip()
-  }
-}
-function onOpenMenu() {
-  if (props.trigger === 'contextMenu' || props.trigger.includes('contextMenu'))
-    openTooltip()
-}
-function onFocus() {
-  if (props.trigger === 'focus' || props.trigger.includes('focus'))
-    openTooltip()
-}
-
-useEventListener('click', () => {
-  if (showTooltip.value) closeTooltip()
+onClickOutside(tooltipRef, () => {
+  if (showPopper.value) closePopper()
 })
 
-// 计算气泡方位类名
-const placement = usePlacement(tooltip, props.placement)
+function handleHover(evt: MouseEvent) {
+  if (!checkTrigger('hover')) return
+  if (evt.type === 'mouseenter') openPopper()
+  else closePopper()
+}
 
-// 类名计算
-const className = computed(() => {
-  const { autoAdjustOverflow, overlayClassName } = props
-  return [
-    ...bem('content', {
-      [autoAdjustOverflow ? placement.join('') : props.placement]: true,
-    }),
-    overlayClassName || '',
-  ]
-})
+function handleClick() {
+  if (!checkTrigger('click')) return
+  if (showPopper.value) closePopper()
+  else openPopper()
+}
+
+function handleContextmenu() {
+  if (checkTrigger('contextmenu')) openPopper()
+}
+
+function handleFocus() {
+  if (checkTrigger('focus')) openPopper()
+}
+
+/**
+ * 检查 trigger 类型
+ * @param {Trigger} type - 要检查的类型
+ */
+function checkTrigger(type: Trigger) {
+  return trigger.value === type || trigger.value.includes(type)
+}
 </script>

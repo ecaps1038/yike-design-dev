@@ -23,6 +23,7 @@
     "test:coverage": "pnpm --filter @yike-design/test test:coverage"
   },
   "dependencies": {
+    "dayjs": "^1.11.9",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -32,10 +33,10 @@
     "@typescript-eslint/parser": "^6.2.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "eslint-import-resolver-typescript": "^3.5.5",
-    "eslint-plugin-import": "^2.28.0",
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^8.9.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.16.1",
     "husky": "^8.0.0",

@@ -13,6 +13,7 @@
     "isolatedModules": false,
     "noUncheckedIndexedAccess": true,
     "strictNullChecks": false,
+    "allowJs": true,
     "noEmit": true,
     "jsx": "preserve",
     "paths": {

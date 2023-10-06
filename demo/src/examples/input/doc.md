@@ -1,14 +1,16 @@
 ## YkInput 输入框
 
+输入框用于自由高效地录入数据。
+
 :::snippet
 基本用法
-输入框用于自由高效地录入数据。
+输入框的基本用法。
 <InputPrimary/>
 :::
 
 :::snippet
 尺寸
-输入框定义了四种默认尺寸 s, m, l, xl ，默认为 l 。
+输入框定义了四种默认尺寸 `s`, `m`, `l`, `xl` ，默认为 `l` 。
 <InputSize/>
 :::
 
@@ -20,19 +22,19 @@
 
 :::snippet
 前置后置标签
-可以在输入框的前后附加文字、图标等元素作为输入提示。
+在输入框的前后附加文字、图标等元素作为输入提示。
 <InputDeco/>
 :::
 
 :::snippet
 前置后置元素
-可以在输入框的高亮边框外放置元素
+在输入框的高亮边框外放置元素.
 <InputAmbient/>
 :::
 
 :::snippet
 加载指示器
-可以添加对应的参数来显示输入框的加载指示器，这在异步获取数据时很有用。
+添加对应的参数来显示输入框的加载指示器，这在异步获取数据时很有用。
 <InputLoading/>
 :::
 
@@ -44,13 +46,13 @@
 
 :::snippet
 字数统计与限制
-可以添加对应的参数来显示输入框的字数显示器，它可以直观显示当前字数，它也可以配合字数限制工作。
+通过 `show-counter` 控制是否在右侧显示输入字符数；通过 `limit` 控制最大输入的字符数。同时设置将会同时显示字符数统计与最大字符数。
 <InputCounterLimit/>
 :::
 
 :::snippet
 文字提示
-可以添加当输入框聚焦时显示的文字提示，它可以用于指导用户填写严格的数据。
+通过 `message` 设置输入框下方的文字提示。这在指导用户填写严格数据时很有用。
 <InputMessage/>
 :::
 
@@ -68,30 +70,30 @@
 
 ### API
 
-#### Input 属性
+#### Input Props
 
-| 参数          | 描述                               | 类型                                      | 默认值    |
-| ------------- | ---------------------------------- | ----------------------------------------- | --------- |
-| v-model:value | 绑定模型                           | Ref                                       | ''        |
-| id            | 输入框的 id 属性                   | string                                    | ''        |
-| name          | 输入框的 name 属性                 | string                                    | ''        |
-| required      | 输入框的 required 属性             | boolean                                   | false     |
-| size          | 输入框的大小                       | 's'｜'m'｜'l'｜'xl'                       | 'l'       |
-| type          | 输入框的输入类型                   | 'text' ｜ 'password'                      | 'text'    |
-| placeholder   | 输入框的占位文字                   | string                                    | ''        |
-| value         | 输入框的初始值                     | string                                    | ''        |
-| disabled      | 输入框是否禁用                     | boolean                                   | false     |
-| readonly      | 输入框是否只读                     | boolean                                   | false     |
-| clearable     | 输入框是否显示清空按钮             | boolean                                   | false     |
-| visible       | 密码类型输入框是否显示查看密码按钮 | boolean                                   | true      |
-| statue        | 输入框的状态                       | 'danger'｜'success'｜'warning'｜'primary' | 'primary' |
-| loading       | 输入框是否为加载中状态             | boolean                                   | false     |
-| show-counter  | 输入框是否显示字数统计             | boolean                                   | false     |
-| limit         | 输入框最大输入字符数               | number                                    | -1        |
-| message       | 输入框聚焦时显示的文字提示         | string                                    | ''        |
-| style         | 组件的样式                         | CSSProperties                             | undefined |
+| 参数                 | 描述                               | 类型                                      | 默认值    |
+| -------------------- | ---------------------------------- | ----------------------------------------- | --------- |
+| v-model(model-value) | 绑定模型                           | Ref                                       | ''        |
+| id                   | 输入框的 id 属性                   | string                                    | ''        |
+| name                 | 输入框的 name 属性                 | string                                    | ''        |
+| required             | 输入框的 required 属性             | boolean                                   | false     |
+| size                 | 输入框的大小                       | 's'｜'m'｜'l'｜'xl'                       | 'l'       |
+| type                 | 输入框的输入类型                   | 'text' ｜ 'password'                      | 'text'    |
+| placeholder          | 输入框的占位文字                   | string                                    | ''        |
+| value                | 输入框的初始值                     | string                                    | ''        |
+| disabled             | 输入框是否禁用                     | boolean                                   | false     |
+| readonly             | 输入框是否只读                     | boolean                                   | false     |
+| clearable            | 输入框是否显示清空按钮             | boolean                                   | false     |
+| visible              | 密码类型输入框是否显示查看密码按钮 | boolean                                   | true      |
+| statue               | 输入框的状态                       | 'danger'｜'success'｜'warning'｜'primary' | 'primary' |
+| loading              | 输入框是否为加载中状态             | boolean                                   | false     |
+| show-counter         | 输入框是否显示字数统计             | boolean                                   | false     |
+| limit                | 输入框最大输入字符数               | number                                    | -1        |
+| message              | 输入框聚焦时显示的文字提示         | string                                    | ''        |
+| style                | 组件的样式                         | CSSProperties                             | undefined |
 
-#### InputSearch 属性
+#### InputSearch Props
 
 | 参数        | 描述                   | 类型                | 默认值 |
 | ----------- | ---------------------- | ------------------- | ------ |
@@ -102,7 +104,7 @@
 | clearable   | 搜索框是否显示清空按钮 | false ｜ true       | true   |
 | loading     | 搜索框是否为加载中状态 | false ｜ true       | false  |
 
-#### Input 事件
+#### Input Events
 
 | 事件   | 描述                             |
 | ------ | -------------------------------- |
@@ -112,13 +114,13 @@
 | change | 输入框输入字符、退格、粘贴时触发 |
 | submit | 输入框聚焦时按 Enter 触发        |
 
-#### InputSearch 事件
+#### InputSearch Events
 
 | 事件   | 描述                                      |
 | ------ | ----------------------------------------- |
 | search | 搜索框聚焦时按 Enter 或按默认搜索按钮触发 |
 
-#### Input 插槽
+#### Input Slots
 
 | 插槽    | 描述           |
 | ------- | -------------- |
@@ -127,7 +129,7 @@
 | prepend | 输入框前置元素 |
 | append  | 输入框后置元素 |
 
-#### InputSearch 插槽
+#### InputSearch Slots
 
 | 插槽   | 描述           |
 | ------ | -------------- |

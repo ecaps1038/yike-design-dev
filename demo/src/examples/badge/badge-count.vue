@@ -1,6 +1,6 @@
 <!-- eslint-disable no-irregular-whitespace -->
 <template>
-  <yk-space direction="vertical">
+  <yk-space dir="vertical">
     <yk-space>
       <yk-badge :count="2">
         <yk-avatar size="l" shape="square"></yk-avatar>

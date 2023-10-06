@@ -1,28 +1,23 @@
 <template>
-  <component :is="wrapTitle" :class="titleClass">
+  <component :is="`h${level}`" :class="bem([type])">
     <slot></slot>
   </component>
 </template>
+
 <script setup lang="ts">
-import { useSlots, computed } from 'vue'
 import { titleProps } from './typography'
+import { createCssScope } from '../../utils'
 
-const props = withDefaults(defineProps<titleProps>(), {
-  level: 1,
-  type: 'default',
-})
+defineOptions({ name: 'YkTitle' })
 
-const slots = useSlots()
+const bem = createCssScope('title')
 
-const titleClass = computed(() => {
-  return {
-    [`yk-title--${props.type}`]: props.type,
-    'yk-title': true,
-    'yk-typography': true,
+console.log(bem())
+
+// prettier-ignore
+const props = withDefaults(
+  defineProps<titleProps>(), {
+    level: 1,
   }
-})
-
-const wrapTitle = computed(() => {
-  return slots && slots.length ? 'div' : `h${props.level}`
-})
+)
 </script>

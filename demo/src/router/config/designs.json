@@ -1,0 +1,15 @@
+[
+  {
+    "title": "设计指南",
+    "list": [
+      {
+        "name": "设计资源",
+        "src": "yike-design"
+      },
+      {
+        "name": "设计原则",
+        "src": "principle"
+      }
+    ]
+  }
+]

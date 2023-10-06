@@ -26,7 +26,7 @@ interface IconData {
 }
 
 const maps = {
-  outline: '线形图标',
+  outline: '线性图标',
   fill: '面性图标',
   color: '多彩图标',
 };

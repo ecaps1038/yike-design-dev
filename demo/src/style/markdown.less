@@ -1,0 +1,180 @@
+/* stylelint-disable order/properties-order */
+.shiki,
+.shiki span {
+  background-color: @bg-color-s !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: @bg-color-s !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+[data-theme='dark'] .shiki,
+[data-theme='dark'] .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: @bg-color-s !important;
+  /* Optional, if you also want font styles */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.yk-demo-doc {
+  pre,
+  .table-container {
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: none;
+    }
+  }
+
+  p {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    line-height: 1.75em;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  code {
+    padding: 0.2em 0.35em;
+    font-size: 0.85rem;
+    font-family: 'IBM Plex Mono', Consolas, 'Andale Mono WT', 'Andale Mono',
+      'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
+      'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco,
+      'Courier New', Courier, monospace;
+    border-radius: 3px;
+  }
+
+  pre {
+    overflow-x: auto;
+    margin: @space-l 0;
+    padding: @space-m;
+    border-radius: 8px;
+
+    code {
+      padding: 0;
+      background-color: transparent;
+    }
+  }
+
+  li:not(.yk-anchor-item) {
+    margin: @space-m 0 @space-m @space-l;
+    padding-left: 0;
+    list-style-type: decimal;
+    line-height: 1.6;
+  }
+
+  p > code {
+    margin: 0 1px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    color: @font-color-l;
+    background: @gray-1;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    margin: @space-m 0 40px 0;
+    border: 1px solid @line-color-s;
+    border-radius: @radius-m;
+    transition: border @animats;
+  }
+
+  table {
+    width: 100%;
+    min-width: 800px;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+
+    tr:hover {
+      background-color: @bg-color-m;
+    }
+
+    td:nth-child(3) {
+      color: @scolor;
+    }
+
+    th {
+      padding-left: @space-m;
+      font-size: @size-s;
+      font-weight: 600;
+      text-align: left;
+      background-color: @bg-color-m;
+      transition: background-color @animats;
+      line-height: 44px;
+    }
+
+    td {
+      padding: 10px @space-m;
+      max-width: 240px;
+      border-top: 1px solid @line-color-s;
+      text-align: left;
+      transition: border @animats;
+    }
+
+    .light {
+      color: @scolor;
+    }
+
+    .yk-doc-link {
+      color: @lcolor;
+    }
+  }
+
+  .yk-pure-doc {
+    margin: 12px 0px 8px;
+  }
+}
+
+.yk-icon-list {
+  display: flex;
+  overflow: hidden;
+  max-width: 1200px;
+  *zoom: 1;
+  flex-wrap: wrap;
+  padding-inline-start: 0px;
+
+  .yk-icon-container {
+    padding: 16px;
+    width: 160px;
+    border: 0.8px solid @line-color-s;
+    text-align: center;
+    list-style: none !important;
+    cursor: pointer;
+
+    svg {
+      display: block;
+      margin: 0 auto 10px;
+      height: 64px;
+      font-size: 32px;
+      color: @font-color-l;
+      transition: font-size 0.1s linear, width 0.1s linear;
+      line-height: 64px;
+    }
+
+    svg:hover {
+      font-size: 42px;
+    }
+  }
+
+  .yk-icon-name {
+    color: @font-color-m;
+  }
+}

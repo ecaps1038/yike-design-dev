@@ -62,8 +62,8 @@
 
 <script setup lang="ts">
 import { ref, Ref, onMounted, watchEffect, watch } from 'vue'
-import { TreeOption } from '../../tree/src/tree'
 import { IconCloseOutline } from '../../svg-icon'
+import { TreeOption } from '../../tree'
 import { Key } from '../../utils'
 
 const props = defineProps<{

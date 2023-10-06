@@ -101,6 +101,7 @@ class Base {
       return template(data);
     }
     if (isString(template)) {
+      // eslint-disable-next-line no-useless-escape
       return template.replace(/\#\{.+?\}/g, (variable) => {
         const key = variable.slice(2, -1);
         if (key in data) {

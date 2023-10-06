@@ -91,10 +91,6 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/scrollbar/doc.md'),
   },
   {
-    path: 'alert',
-    component: () => import('@/examples/alert/doc.md'),
-  },
-  {
     path: 'tree',
     component: () => import('@/examples/tree/doc.md'),
   },
@@ -147,6 +143,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/form/doc.md'),
   },
   {
+    path: 'input-tag',
+    component: () => import('@/examples/input-tag/doc.md'),
+  },
+  {
     path: 'spinner',
     component: () => import('@/examples/spinner/doc.md'),
   },
@@ -157,6 +157,26 @@ const generalRoutes: Array<RouteRecordRaw> = [
   {
     path: 'pagination',
     component: () => import('@/examples/pagination/doc.md'),
+  },
+  {
+    path: 'tag',
+    component: () => import('@/examples/tag/doc.md'),
+  },
+  {
+    path: 'calendar',
+    component: () => import('@/examples/calendar/doc.md'),
+  },
+  {
+    path: 'skeleton',
+    component: () => import('@/examples/skeleton/doc.md'),
+  },
+  {
+    path: 'divider',
+    component: () => import('@/examples/divider/doc.md'),
+  },
+  {
+    path: 'link',
+    component: () => import('@/examples/link/doc.md'),
   },
 ];
 

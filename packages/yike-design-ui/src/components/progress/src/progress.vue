@@ -3,10 +3,10 @@
     <template v-if="props.type === 'line'">
       <div :class="['yk-progress-line-wrapper', ykProgressSizeCls[props.type]]">
         <div
-          class="yk-progress-inner"
+          :class="['yk-progress-inner', ykProgressColorCls[props.type]['bg']]"
           :style="{
             '--progress-inner-w': progressPercent,
-            '--progress-inner-color': setProgressState,
+            '--progress-inner--custom': props.strokeColor,
           }"
         ></div>
         <div v-if="props.showText" class="yk-progress-text">
@@ -14,8 +14,10 @@
             <div>{{ progressPercent }}</div>
             <div
               v-if="getIconName(props.status)"
-              class="yk-progress-icon"
-              :style="{ color: getIconColor(props.status) }"
+              :class="[
+                'yk-progress-icon',
+                ykProgressColorCls[props.type]['icon'],
+              ]"
             >
               <component :is="getIconName(props.status)"></component>
             </div>
@@ -34,8 +36,7 @@
             :cy="ykProgressCircleStyle.cy"
             :stroke-width="ykProgressCircleStyle.strokeWidth"
             fill="transparent"
-            class="yk-progress-circle"
-            stroke="#e8e8e8"
+            class="yk-progress-circle-bg"
           ></circle>
           <circle
             :r="ykProgressCircleStyle.r"
@@ -43,8 +44,13 @@
             :cy="ykProgressCircleStyle.cy"
             :stroke-width="ykProgressCircleStyle.strokeWidth"
             fill="transparent"
-            class="yk-progress-circle"
-            :stroke="setProgressState"
+            :class="[
+              'yk-progress-circle',
+              ykProgressColorCls[props.type]['stroke'],
+            ]"
+            :style="{
+              '--progress-circle--custom': props.strokeColor,
+            }"
             :stroke-dasharray="progressValues.circumference"
             :stroke-dashoffset="progressValues.dashoffset"
           ></circle>
@@ -53,8 +59,10 @@
           <slot name="format" :percent="props.percent">
             <div
               v-if="getIconName(props.status)"
-              class="yk-progress-circle-icon"
-              :style="{ color: getIconColor(props.status) }"
+              :class="[
+                'yk-progress-circle-icon',
+                ykProgressColorCls[props.type]['icon'],
+              ]"
             >
               <component :is="getIconName(props.status, true)"></component>
             </div>
@@ -65,13 +73,16 @@
     </template>
   </div>
 </template>
+
 <script setup lang="ts">
 import { computed } from 'vue'
-import { getIconColor, getIconName, getSvgSize } from './util'
+import { getIconName, getSvgSize } from './util'
 import { ProgressProps } from './progress'
+
 defineOptions({
   name: 'YkProgress',
 })
+
 const props = withDefaults(defineProps<ProgressProps>(), {
   type: 'line',
   percent: 20,
@@ -88,10 +99,22 @@ const ykProgressSizeCls = computed(() => ({
   circle: `yk-progress-circle--${props.size}`,
 }))
 
-// 设置进度条颜色
-const setProgressState = computed(
-  () => getIconColor(props.status) || props.strokeColor,
-)
+// 状态颜色class
+const ykProgressColorCls = computed(() => ({
+  line: {
+    bg: props.strokeColor
+      ? `yk-progress-inner--custom`
+      : `yk-progress-inner--${props.status}`,
+    icon: `yk-progress-icon--${props.status}`,
+  },
+  circle: {
+    stroke: props.strokeColor
+      ? `yk-progress-circle--custom`
+      : `yk-progress-circle--${props.status}`,
+    icon: `yk-progress-circle-icon--${props.status}`,
+  },
+}))
+
 // 环形进度条
 const ykProgressCircleStyle = computed(() => {
   const sizeVal = getSvgSize(props.size)

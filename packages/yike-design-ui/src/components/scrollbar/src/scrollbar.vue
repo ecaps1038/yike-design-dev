@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import Thumb from './thumb.vue'
 import {
   computed,
   CSSProperties,
@@ -42,14 +43,15 @@ import {
 } from 'vue'
 import { createCssScope, toPx } from '../../utils'
 import { ScrollbarProps, scrollbarContextKey } from './scrollbar'
-import Thumb from './thumb.vue'
 import { useEventListener, useResizeObserver } from '@vueuse/core'
+import '../style'
 
 const GAP = 4
 
 defineOptions({
   name: 'YkScrollbar',
 })
+
 const props = withDefaults(defineProps<ScrollbarProps>(), {
   size: 5,
   space: 2,
@@ -137,10 +139,12 @@ provide(
   }),
 )
 
+// eslint-disable-next-line no-undef
 const scrollBy: (options?: ScrollToOptions | undefined) => void = (options) => {
   $wrap.value?.scrollBy(options)
 }
 
+// eslint-disable-next-line no-undef
 const scrollTo: (options?: ScrollToOptions | undefined) => void = (options) => {
   $wrap.value?.scrollTo(options)
 }

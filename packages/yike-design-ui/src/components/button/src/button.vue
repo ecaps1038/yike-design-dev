@@ -9,9 +9,7 @@
     ]"
     :disabled="disabled || loading"
   >
-    <svg v-if="loading" viewBox="25 25 50 50">
-      <circle r="20" cy="50" cx="50"></circle>
-    </svg>
+    <yk-spinner v-if="loading" :size="getSize(size)" />
 
     <span v-if="$slots.icon" :class="icon">
       <slot name="icon" />
@@ -20,22 +18,19 @@
   </button>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'YKButton',
-}
-</script>
 <script setup lang="ts">
 import { computed } from 'vue'
+import { getSize } from './utils'
+import { createCssScope } from '../../utils'
+import YkSpinner from '../../spinner'
 import { ButtonProps } from './button'
-
-import { createCssScope } from '../../utils/bem'
-
-const bem = createCssScope('button')
+import '../style'
 
 defineOptions({
-  name: 'YKButton',
+  name: 'YkButton',
 })
+
+const bem = createCssScope('button')
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'primary',
   size: 'l',

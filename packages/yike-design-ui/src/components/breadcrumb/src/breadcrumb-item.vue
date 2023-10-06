@@ -8,10 +8,8 @@
     </span>
     <span :class="bem('separator')">
       <component :is="separatorComponent" v-if="separatorComponent" />
-      <yk-icon v-else-if="separatorIcon" :name="separatorIcon" />
-      <span v-else>
-        {{ separator }}
-      </span>
+      <!-- <yk-icon v-else-if="separatorIcon" :name="separatorIcon" /> -->
+      <span v-else>{{ separator }}</span>
     </span>
   </span>
 </template>
@@ -19,20 +17,22 @@
 <script lang="ts" setup>
 import { getCurrentInstance, inject, reactive } from 'vue'
 import { BreadcrumbItemProps, breadcrumbName } from './breadcrumb'
-import { createCssScope } from '../../utils/bem'
+import { createCssScope } from '../../utils'
 import type { Router } from 'vue-router'
+// import YkIcon from '../../icon'
 
-const bem = createCssScope('breadcrumb')
 defineOptions({
   name: `YkBreadcrumbItem`,
 })
+
+const bem = createCssScope('breadcrumb')
 const props = defineProps<BreadcrumbItemProps>()
 const instance = getCurrentInstance()!
 
 const breadcrumbProps = inject(breadcrumbName)!
 
 const {
-  props: { separator, separatorIcon },
+  props: { separator },
   slots,
 } = reactive(breadcrumbProps)
 const separatorComponent = slots.separator
@@ -44,5 +44,3 @@ const onClick = () => {
   router.push(props.to)
 }
 </script>
-
-<style lang="scss" scoped></style>

@@ -2,13 +2,13 @@
 
 :::snippet
 基本用法
-这里展示基本用法
+复选框基本用法。
 <CheckboxPrimary/>
 :::
 
 :::snippet
-禁用状态
-禁用复选框
+禁用
+复选框禁用状态。
 <CheckboxDisabled/>
 :::
 

@@ -14,9 +14,9 @@
     </span>
   </button>
 </template>
+
 <script setup lang="ts">
 import { SwitchProps, switchEmits } from './switch'
-
 import { computed, ref, watch } from 'vue'
 
 defineOptions({

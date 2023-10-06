@@ -8,14 +8,13 @@
     </template>
   </div>
 </template>
-<script setup lang="ts">
-import { TreeInjectionKey, TreeProps } from './tree'
-import { createCssScope } from '../../utils/bem'
-import Node from './node.vue'
-import { Key } from '../../utils'
-import { tree2list } from './internal'
-import '../style/index'
 
+<script setup lang="ts">
+import Node from './node.vue'
+import { TreeInjectionKey, TreeProps } from './tree'
+import { createCssScope, Key } from '../../utils'
+import { getOffspringKeys } from './util'
+import { tree2list } from './internal'
 import {
   watch,
   ref,
@@ -27,15 +26,14 @@ import {
   reactive,
 } from 'vue'
 import { IconRightFill } from '../../svg-icon'
-import { getOffspringKeys } from './util'
 import { YkScrollbar } from '../../scrollbar'
-
-const bem = createCssScope('tree')
+import '../style'
 
 defineOptions({
   name: 'YkTree',
 })
 
+const bem = createCssScope('tree')
 const props = withDefaults(defineProps<TreeProps>(), {
   blockNode: false,
   multiple: false,

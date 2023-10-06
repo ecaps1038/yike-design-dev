@@ -1,45 +1,15 @@
 @import '../../styles/mixin.less';
 @import './variables.less';
+
 /* stylelint-disable */
 .yk-button--loading {
   opacity: 0.7 !important;
-  svg {
+  .yk-spinner {
     margin-right: 4px;
-    width: 14px;
-    transform-origin: center;
-    animation: rotate4 2s linear infinite;
   }
 
   circle {
-    fill: none;
-    stroke: hsl(227, 16%, 89%);
-    stroke-width: 3;
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-    stroke-linecap: round;
-    animation: dash4 1.5s ease-in-out infinite;
-  }
-
-  @keyframes rotate4 {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes dash4 {
-    0% {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-    }
-
-    50% {
-      stroke-dasharray: 90, 200;
-      stroke-dashoffset: -35px;
-    }
-
-    100% {
-      stroke-dashoffset: -125px;
-    }
+    stroke: #fff !important;
   }
 }
 
@@ -61,7 +31,7 @@
   user-select: none;
   color: @btn-primary-color-text;
   circle {
-    stroke: @btn-primary-color-text;
+    stroke: @btn-primary-color-text !important;
   }
 
   &__icon {
@@ -72,7 +42,7 @@
     .normal() {
       color: ~'@{btn-@{type}-color-text}';
       circle {
-        stroke: ~'@{btn-@{type}-color-text}';
+        stroke: ~'@{btn-@{type}-color-text}' !important;
       }
       background-color: ~'@{btn-@{type}-color-bg}';
       border-color: ~'@{btn-@{type}-color-border}';
@@ -92,7 +62,7 @@
     .normal() {
       color: ~'@{btn-@{type}-color-text_@{status}}';
       circle {
-        stroke: ~'@{btn-@{type}-color-text_@{status}}';
+        stroke: ~'@{btn-@{type}-color-text_@{status}}' !important;
       }
       background-color: ~'@{btn-@{type}-color-bg_@{status}}';
       border-color: ~'@{btn-@{type}-color-border_@{status}}';
