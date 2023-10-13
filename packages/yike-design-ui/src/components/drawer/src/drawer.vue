@@ -150,6 +150,7 @@ const onEscape = (ev: KeyboardEvent) => {
 }
 
 const onClickOutside = (ev: Event) => {
+  if (!props.show) return
   if (!drawerMain.value?.contains(ev.target as Node)) {
     close()
   }
@@ -161,7 +162,7 @@ onMounted(() => {
   }
 })
 
-watch(props, (oldValue, newValue) => {
+watch(props, (newValue) => {
   if (newValue.show) {
     onOpen()
   }
