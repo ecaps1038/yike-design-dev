@@ -6,6 +6,7 @@
     <yk-alert type="error" message="这里是 error 提示" />
   </div>
 </template>
+
 <style lang="less">
 .yk-alert-group {
   display: grid;
