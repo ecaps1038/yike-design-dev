@@ -27,8 +27,6 @@ defineOptions({
 
 const bem = createCssScope('breadcrumb')
 const props = defineProps<BreadcrumbItemProps>()
-const instance = getCurrentInstance()!
-
 const breadcrumbProps = inject(breadcrumbName)!
 
 const {
@@ -37,6 +35,7 @@ const {
 } = reactive(breadcrumbProps)
 const separatorComponent = slots.separator
 
+const instance = getCurrentInstance()!
 const router = instance.appContext.config.globalProperties.$router as Router
 
 const onClick = () => {
