@@ -1,4 +1,5 @@
 @import '../../styles/color/colors.less';
+
 @sizes: {
   s: 14px;
   m: 18px;
@@ -6,23 +7,29 @@
   xl: 26px;
 };
 
-each(@sizes,{ 
-  .yk-rate-icon-@{key}{
-  width: @value; 
-  height: @value;
- } 
-})
-  .yk-rate {
+.yk-rate {
   display: inline-flex;
+
+  // prettier-ignore
+  each(@sizes, { 
+    .yk-rate-icon-@{key}{
+      width: @value; 
+      height: @value;
+    }
+  })
+
   &--s {
     column-gap: @space-ss;
   }
+
   &--m {
     column-gap: 6px;
   }
+
   &--l {
     column-gap: @space-s;
   }
+
   &--xl {
     column-gap: 10px;
   }
@@ -68,26 +75,28 @@ each(@sizes,{
   }
 }
 
-.yk-rate.yk-rate--disabled,
-.yk-rate.yk-rate--readonly {
+yk-rate--disabled,
+yk-rate--readonly {
   .yk-rate-item {
     transform: none;
   }
+
   .yk-rate-icon {
     transition: none;
+
     &:hover {
       transform: none;
     }
   }
 }
 
-.yk-rate.yk-rate--readonly {
+yk-rate--readonly {
   .yk-rate-icon {
     cursor: default;
   }
 }
 
-.yk-rate.yk-rate--disabled {
+yk-rate--disabled {
   .yk-rate-icon {
     cursor: not-allowed;
   }

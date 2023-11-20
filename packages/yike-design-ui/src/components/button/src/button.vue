@@ -14,7 +14,7 @@
     <span v-if="$slots.icon" :class="icon">
       <slot name="icon" />
     </span>
-    <slot></slot>
+    <slot />
   </button>
 </template>
 

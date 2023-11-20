@@ -114,10 +114,13 @@ const onOpen = () => {
   if (isFullscreenDrawer.value) {
     drawerStats.open(drawerId.value)
   }
-  shouldVisible.value = true
   if (!props.scrollable) {
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.offsetWidth
+    document.documentElement.style.marginRight = `${scrollbarWidth}px`
     document.body.style.overflow = 'hidden'
   }
+  shouldVisible.value = true
   if (props.escapable) {
     document.body.addEventListener('keydown', onEscape)
   }
@@ -141,6 +144,7 @@ const onDestory = () => {
   }
   if (drawerStats.isLast(drawerId.value) && !props.scrollable) {
     document.body.style.overflow = ''
+    document.documentElement.style.marginRight = ''
   }
   shouldVisible.value = false
 }
@@ -150,6 +154,7 @@ const onEscape = (ev: KeyboardEvent) => {
 }
 
 const onClickOutside = (ev: Event) => {
+  if (!props.show) return
   if (!drawerMain.value?.contains(ev.target as Node)) {
     close()
   }
@@ -161,7 +166,7 @@ onMounted(() => {
   }
 })
 
-watch(props, (oldValue, newValue) => {
+watch(props, (newValue) => {
   if (newValue.show) {
     onOpen()
   }
