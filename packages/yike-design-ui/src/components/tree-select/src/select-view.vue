@@ -56,6 +56,15 @@
           />
         </div>
       </div>
+      <div
+        v-show="
+          isOverSelect && inputValue?.toString().length && props.allowClear
+        "
+        class="yk-select-view__icon--closed"
+        @click="clearInputValue"
+      >
+        <IconCloseOutline />
+      </div>
     </div>
   </div>
 </template>
