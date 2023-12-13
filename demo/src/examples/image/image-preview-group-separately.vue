@@ -15,8 +15,9 @@ import { ref } from 'vue'
 const visible = ref(false)
 const images = [
   'https://www.huohuo90.com:3005/logo/yike.png',
-  'https://w.wallhaven.cc/full/gp/wallhaven-gpm5ke.jpg',
-  'https://w.wallhaven.cc/full/m9/wallhaven-m9xyg8.jpg',
+  'https://www.huohuo90.com:3005/logo/yike1.png',
+  'https://www.huohuo90.com:3005/logo/yike2.png',
+  'https://www.huohuo90.com:3005/logo/yike3.png',
 ]
 </script>
 7
