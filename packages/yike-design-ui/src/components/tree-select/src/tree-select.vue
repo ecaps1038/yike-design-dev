@@ -8,12 +8,14 @@
         :placeholder="props.placeholder"
         :allow-clear="props.allowClear"
         :size="props.size"
+        :multiple="props.multiple"
         :bordered="props.bordered"
         :disabled="props.disabled"
         :tree-options="options"
         @send-focus="sendFocus"
         @send-un-select-key="sendUnSelectKey"
         @send-select-key="sendSelectKey"
+        @send-clear-key="sendClearKey"
       ></SelectView>
     </div>
     <transition
@@ -27,7 +29,7 @@
         class="yk-tree-select__container-box"
       >
         <yk-tree
-          v-model:checkedKeys="checkedKeys"
+          v-model:selectedKeys="checkedKeys"
           :options="props.options"
           :multiple="props.multiple"
           :default-expanded-keys="props.defaultExpandedKeys"
@@ -93,7 +95,9 @@ const refSelectKey = ref<Key>('')
 
 // 改变selectKeys
 const checkedKeys = ref<Key[]>([])
-
+const sendClearKey = () => {
+  checkedKeys.value = []
+}
 const sendUnSelectKey = (unSelectKey: Ref<Key>) => {
   refUnSelectKey.value = unSelectKey.value
 }

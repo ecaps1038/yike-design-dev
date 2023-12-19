@@ -9,7 +9,7 @@
       :class="props.disabled ? `yk-select-view--cover` : ``"
     ></div>
     <div
-      v-if="props.currentItems.length <= 1"
+      v-if="!props.multiple"
       :class="
         props.isFocus && props.bordered
           ? `yk-select-view__input yk-select-view__input--focused`
@@ -45,8 +45,16 @@
       @click="multipleFocus"
     >
       <div ref="scroll" class="scrollContent" @wheel="TagsWheel">
+        <input
+          v-show="props.currentItems.length < 1"
+          :placeholder="props.placeholder ? props.placeholder : ``"
+          :disabled="props.disabled"
+          class="yk-select-view__input--default"
+          type="text"
+        />
         <div
           v-for="(item, index) in props.currentItems"
+          :key="item.key"
           class="yk-select-view__tags"
         >
           <div class="text">{{ item.label }}</div>
@@ -58,10 +66,10 @@
       </div>
       <div
         v-show="
-          isOverSelect && inputValue?.toString().length && props.allowClear
+          isOverSelect && props.currentItems.length > 0 && props.allowClear
         "
         class="yk-select-view__icon--closed"
-        @click="clearInputValue"
+        @click="clearSelectedItems"
       >
         <IconCloseOutline />
       </div>
@@ -76,6 +84,7 @@ import { TreeOption } from '../../tree'
 import { Key } from '../../utils'
 
 const props = defineProps<{
+  multiple: boolean
   currentItems: TreeOption[]
   isFocus: boolean
   bordered: boolean
@@ -94,6 +103,7 @@ const emits = defineEmits<{
   (e: 'send-focus', focusShadow: Ref<boolean>): void
   (e: 'send-un-select-key', unSelectKey: Ref<Key>): void
   (e: 'send-select-key', selectKey: Ref<Key>): void
+  (e: 'send-clear-key'): void
 }>()
 
 const sendFocus = (focusShadow: Ref<boolean>) => {
@@ -105,7 +115,9 @@ const sendUnSelectKey = (unSelectKey: Ref<Key>) => {
 const sendSelectKey = (selectKey: Ref<Key>) => {
   emits('send-select-key', selectKey)
 }
-
+const sendClearSelectKey = () => {
+  emits('send-clear-key')
+}
 const input = ref<HTMLElement | null>(null)
 
 const scroll = ref<HTMLElement | null>(null)
@@ -128,7 +140,11 @@ const leaveYkSlect = () => {
 }
 const clearInputValue = () => {
   inputValue.value = ''
-  sendUnSelectKey(ref(findByLabel(props.treeOptions, inputValue.value)[0].key))
+}
+
+const clearSelectedItems = () => {
+  props.currentItems.splice(0, props.currentItems.length - 1)
+  sendClearSelectKey()
 }
 
 const closedItem = (item: TreeOption, index: number) => {
@@ -170,6 +186,13 @@ onMounted(() => {
     scrollWidth.value = width
   }
 })
+watch(
+  () => props.multiple,
+  () => {
+    clearInputValue()
+    clearSelectedItems()
+  },
+)
 watchEffect(() => {
   if (props.currentItems.length == 1) {
     inputValue.value = props.currentItems[0].label
