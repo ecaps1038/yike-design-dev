@@ -1,5 +1,37 @@
 ## 快速上手
 
-### 我们需要告诉别人如何去使用这套组件
+### 安装方式
 
-这里编写组件的安装和使用说明
+```
+npm install --save-dev @yike-design/ui
+```
+
+### 按需引入
+
+> vite.config.ts
+
+```ts
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { YikeResolver } from 'yike-design-resolver' // https://vitejs.dev/config/ export default
+defineConfig({
+  plugins: [
+    vue(),
+    AutoImport({ resolvers: [YikeResolver()] }),
+    Components({ resolvers: [YikeResolver({ sideEffect: true })] }),
+  ],
+})
+```
+
+main.ts
+
+```ts
+import '@yike-design/ui/es/components/styles/index.less'
+```
+
+package.json
+
+```ts
+"yike-design-resolver": "^0.0.7" "yike-design-resolver": "0.0.1"
+"unplugin-vue-components": "^0.26.0", "unplugin-auto-import": "^0.17.5"
+```
