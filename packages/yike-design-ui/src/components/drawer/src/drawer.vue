@@ -92,12 +92,21 @@ const props = withDefaults(defineProps<DrawerProps>(), {
 
 const target = ref<HTMLElement | Element>(document.body)
 const drawerId = ref<number>(getDrawerOrder())
-const emits = defineEmits(['close', 'open', 'before-close'])
+const emits = defineEmits<{
+  (e: 'open'): void
+  (e: 'close'): void
+  (e: 'before-close'): void
+}>()
 const focuser = ref<HTMLElement>()
 const drawerMain = ref<HTMLElement>()
 const shouldVisible = ref<boolean>()
 const isFullscreenDrawer = ref<boolean>(props.to === 'body')
 const bem = createCssScope('drawer')
+const scrollbarWidth = computed(
+  () => window.innerWidth - document.documentElement.offsetWidth,
+)
+let originalOverflow: string
+let originalMarginRight: string
 
 nextTick(() => {
   target.value = getElement(props.to)
@@ -114,10 +123,13 @@ const onOpen = () => {
   if (isFullscreenDrawer.value) {
     drawerStats.open(drawerId.value)
   }
-  shouldVisible.value = true
   if (!props.scrollable) {
+    originalMarginRight = document.documentElement.style.marginRight
+    document.documentElement.style.marginRight = `${scrollbarWidth.value}px`
+    originalOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
   }
+  shouldVisible.value = true
   if (props.escapable) {
     document.body.addEventListener('keydown', onEscape)
   }
@@ -140,7 +152,8 @@ const onDestory = () => {
     drawerStats.close()
   }
   if (drawerStats.isLast(drawerId.value) && !props.scrollable) {
-    document.body.style.overflow = ''
+    document.body.style.overflow = originalOverflow ?? ''
+    document.documentElement.style.marginRight = originalMarginRight ?? ''
   }
   shouldVisible.value = false
 }
@@ -150,6 +163,7 @@ const onEscape = (ev: KeyboardEvent) => {
 }
 
 const onClickOutside = (ev: Event) => {
+  if (!props.show) return
   if (!drawerMain.value?.contains(ev.target as Node)) {
     close()
   }
@@ -161,7 +175,7 @@ onMounted(() => {
   }
 })
 
-watch(props, (oldValue, newValue) => {
+watch(props, (newValue) => {
   if (newValue.show) {
     onOpen()
   }

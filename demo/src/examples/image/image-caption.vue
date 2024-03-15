@@ -1,7 +1,7 @@
 <template>
   <yk-space size="xl">
     <yk-image
-      src="https://w.wallhaven.cc/full/m9/wallhaven-m9xyg8.jpg"
+      src="https://www.huohuo90.com:3005/logo/yike.png"
       width="320"
       height="200"
       fit="cover"
@@ -9,7 +9,7 @@
       description="包容万物，从源头出发，一切从简。"
     ></yk-image>
     <yk-image
-      src="https://w.wallhaven.cc/full/m9/wallhaven-m9xyg8.jpg"
+      src="https://www.huohuo90.com:3005/logo/yike1.png"
       width="320"
       height="200"
       fit="cover"

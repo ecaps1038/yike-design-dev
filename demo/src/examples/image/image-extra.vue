@@ -1,7 +1,7 @@
 <template>
   <yk-space size="xl">
     <yk-image
-      src="https://w.wallhaven.cc/full/gp/wallhaven-gpm5ke.jpg"
+      src="https://www.huohuo90.com:3005/logo/yike3.png"
       width="320"
       height="200"
       fit="cover"
@@ -20,7 +20,7 @@
       </template>
     </yk-image>
     <yk-image
-      src="https://w.wallhaven.cc/full/gp/wallhaven-gpm5ke.jpg"
+      src="https://www.huohuo90.com:3005/logo/yike2.png"
       width="320"
       height="200"
       fit="cover"

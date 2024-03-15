@@ -1,25 +1,20 @@
 <template>
   <Transition name="zoom-in-top">
-    <div v-if="visible" :class="cls">
-      <div v-if="props.showIcon" :class="`${prefixCls}-icon`">
+    <div v-if="visible" :class="classList">
+      <div v-if="showIcon" :class="ns('icon')">
         <slot name="icon">
-          <component :is="getIconName(props.type)"></component>
+          <component :is="getIconName(type)"></component>
         </slot>
       </div>
 
-      <div :class="`${prefixCls}-content`">
-        <div v-if="props.title" :class="`${prefixCls}-title`">
-          {{ props.title }}
+      <div :class="ns('content')">
+        <div v-if="title" :class="ns('title')">
+          {{ title }}
         </div>
-        <div :class="`${prefixCls}-description`">{{ props.message }}</div>
+        <div :class="ns('description')">{{ message }}</div>
       </div>
 
-      <button
-        v-if="props.closable"
-        type="button"
-        :class="`${prefixCls}-close-icon`"
-        @click="handleClose"
-      >
+      <button v-if="closable" :class="ns('close-icon')" @click="handleClose">
         <slot name="closeElement">
           <IconCrossOutline />
         </slot>
@@ -31,37 +26,39 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { getIconName } from './util'
+import { createCssScope } from '../../utils'
 import type { AlertEmits, AlertProps } from './alert'
 
-defineOptions({
-  name: 'YkAlert',
-})
+defineOptions({ name: 'YkAlert' })
 
-const props = withDefaults(defineProps<AlertProps>(), {
-  type: 'info',
-  closable: false,
-  showIcon: true,
-  center: false,
-  banner: false,
-})
+// prettier-ignore
+const props = withDefaults(
+  defineProps<AlertProps>(),
+  {
+    type: 'info',
+    closable: false,
+    showIcon: true,
+    center: false,
+    banner: false,
+  }
+)
 
 const emit = defineEmits<AlertEmits>()
+const ns = createCssScope('alert')
+const hasTitle = props.title ? 'with-title' : ''
+
+const classList = computed(() => {
+  return [
+    ns([props.type, hasTitle]),
+    {
+      center: props.center,
+      banner: props.banner,
+    },
+  ]
+})
 
 const visible = ref(true)
-
-const prefixCls = 'yk-alert'
-
-const cls = computed(() => [
-  prefixCls,
-  `${prefixCls}-${props.type}`,
-  {
-    [`${prefixCls}-with-title`]: props.title,
-    [`${prefixCls}-center`]: props.center,
-    [`${prefixCls}-banner`]: props.banner,
-  },
-])
-
-const handleClose = (ev: MouseEvent) => {
+function handleClose(ev: MouseEvent) {
   visible.value = false
   emit('close', ev)
 }
