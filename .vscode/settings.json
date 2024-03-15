@@ -3,7 +3,6 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
     "source.fixAll.stylelint": "explicit"
   },
   "[less]": {
