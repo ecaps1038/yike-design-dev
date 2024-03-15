@@ -15,9 +15,6 @@
     "jsx": "preserve",
     "types": ["node", "vite/client", "vitest/globals"],
     "lib": ["esnext", "dom"],
-    "paths": {
-      "@yike-design/ui": ["./packages/yike-design-ui"]
-    }
   },
   "exclude": ["**/node_modules/**", "**/demo/**", "**/example/**"]
 }
