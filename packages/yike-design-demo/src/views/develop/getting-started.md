@@ -42,3 +42,13 @@ main.ts
 import '@yike-design/ui/es/components/styles/index.less';
 
 ```
+
+package.json
+
+```
+"yike-design-resolver": "^0.0.7"
+"yike-design-resolver": "0.0.1"
+"unplugin-vue-components": "^0.26.0",
+"unplugin-auto-import": "^0.17.5"
+
+```
