@@ -29,12 +29,12 @@ jobs:
       - name: Build docs
         run: |
           pnpm run build:demo
-          cp ./demo/dist/index.html ./demo/dist/404.html
+          cp ./packages/yike-design-demo/dist/index.html ./packages/yike-design-demo/dist/404.html
 
       - name: Deploy site
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           clean: true
           branch: gh-pages
-          folder: ./demo/dist
+          folder: ./packages/yike-design-demo/dist
           token: ${{secrets.GIT_TOKEN}}
