@@ -1,0 +1,29 @@
+{
+  "name": "yike-design-resolver",
+  "version": "0.0.1",
+  "description": "YikeDesign Vue Unplugin Resolver",
+  "author": "YikeDesign Team",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecaps1038/yike-design-dev"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "lint-staged": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
