@@ -4,7 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import vitePluginMarkdown from './plugins/vite-plugin-md';
 import Components from 'unplugin-vue-components/vite';
 import { join } from 'path';
-import { YikeDevResolver } from 'yike-design-resolver';
+import { YikeDevResolver } from '@yike-design/resolver';
 
 export default defineConfig({
   resolve: {

@@ -1,11 +1,20 @@
 {
-  "name": "yike-design-resolver",
+  "name": "@yike-design/resolver",
   "version": "0.0.1",
   "description": "YikeDesign Vue Unplugin Resolver",
   "author": "YikeDesign Team",
   "license": "MIT",
   "main": "dist/index.js",
   "bin": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "vue",
+    "unplugin",
+    "resolver"
+  ],
+  "private": false,
   "files": [
     "dist"
   ],
