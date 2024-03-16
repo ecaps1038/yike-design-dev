@@ -13,7 +13,7 @@ npm install --save-dev @yike-design/ui
 ```ts
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { YikeResolver } from 'yike-design-resolver' // https://vitejs.dev/config/ export default
+import { YikeResolver } from '@yike-design/resolver' // https://vitejs.dev/config/ export default
 defineConfig({
   plugins: [
     vue(),
@@ -31,7 +31,11 @@ import '@yike-design/ui/es/components/styles/index.less'
 
 package.json
 
-```ts
-"yike-design-resolver": "^0.0.7" "yike-design-resolver": "0.0.1"
-"unplugin-vue-components": "^0.26.0", "unplugin-auto-import": "^0.17.5"
+```json
+{
+  "@yike-design-ui": "^0.0.7",
+  "@yike-design/resolver": "^0.0.1",
+  "unplugin-vue-components": "^0.26.0",
+  "unplugin-auto-import": "^0.17.5"
+}
 ```
