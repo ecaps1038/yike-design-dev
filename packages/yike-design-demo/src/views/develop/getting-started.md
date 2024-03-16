@@ -33,7 +33,7 @@ package.json
 
 ```json
 {
-  "@yike-design-ui": "^0.0.7",
+  "@yike-design-ui": "^0.0.8",
   "@yike-design/resolver": "^0.0.1",
   "unplugin-vue-components": "^0.26.0",
   "unplugin-auto-import": "^0.17.5"

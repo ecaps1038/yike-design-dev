@@ -127,7 +127,7 @@ importers:
         specifier: workspace:*
         version: link:../yike-design-resolver
       '@yike-design/ui':
-        specifier: ^0.0.7
+        specifier: ^0.0.8
         version: link:../yike-design-ui
       unplugin-auto-import:
         specifier: ^0.17.5
