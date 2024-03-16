@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import { getCurrentInstance } from 'vue'
+const proxy: any = getCurrentInstance()?.proxy
 // import { YkButton } from '@yike-design/ui'
+const handleClick = () => {
+  proxy.$message({ type: 'primary', message: '通用提示' })
+}
 </script>
 
 <template>
@@ -13,7 +18,7 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <yk-space>
-    <yk-button>主要按钮</yk-button>
+    <yk-button @click="handleClick">主要按钮</yk-button>
     <yk-button type="secondary">次要按钮</yk-button>
     <yk-button type="outline">线框按钮</yk-button>
     <IconCupOutline />
