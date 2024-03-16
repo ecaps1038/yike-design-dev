@@ -1,7 +1,7 @@
 import type { ComponentInfo, ComponentResolver } from './types';
 import { isExclude } from './_utils';
 
-const matchComponents = [
+export const matchComponents = [
   { pattern: /^YkUpload$/, componentDir: 'upload' },
   { pattern: /^(YkRadio|YkRadioGroup)$/, componentDir: 'radio' },
   { pattern: /^(YkCheckbox|YkCheckboxGroup)$/, componentDir: 'checkbox' },

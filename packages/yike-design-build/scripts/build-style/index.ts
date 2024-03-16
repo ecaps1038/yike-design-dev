@@ -71,6 +71,20 @@ function cssjsPlugin(): Plugin {
     async generateBundle(outputOptions, bundle) {
       for (const filename of Object.keys(bundle)) {
         // const chunk = bundle[filename];
+        const indexExist = fs.existsSync(
+          resolvePath('es\\', filename.replace('index.js', 'index.css')),
+        );
+        if (!indexExist) {
+          this.emitFile({
+            type: 'asset',
+            fileName: filename.replace('index.js', 'index.css'),
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            // FIX ME
+            // Change the content of index.js to be correct
+            source: '',
+          });
+        }
         this.emitFile({
           type: 'asset',
           fileName: filename.replace('index.js', 'css.js'),

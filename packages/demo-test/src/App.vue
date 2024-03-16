@@ -18,6 +18,9 @@ import HelloWorld from './components/HelloWorld.vue'
     <yk-button type="outline">线框按钮</yk-button>
     <IconCupOutline />
   </yk-space>
+  <yk-input-search>
+    <IconCupOutline />
+  </yk-input-search>
   <HelloWorld msg="Vite + Vue" />
 </template>
 

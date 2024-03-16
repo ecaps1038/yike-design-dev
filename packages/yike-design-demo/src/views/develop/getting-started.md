@@ -14,6 +14,7 @@ npm install --save-dev @yike-design/ui
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { YikeResolver } from '@yike-design/resolver' // https://vitejs.dev/config/ export default
+
 defineConfig({
   plugins: [
     vue(),
@@ -27,6 +28,13 @@ main.ts
 
 ```ts
 import '@yike-design/ui/es/components/styles/index.less'
+// 引入全局方法
+import { YkMessage, YkNotification } from '@yike-design/ui'
+
+const app = createApp(App)
+
+app.config.globalProperties.$notification = YkNotification
+app.config.globalProperties.$message = YkMessage
 ```
 
 package.json
