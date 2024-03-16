@@ -18,9 +18,22 @@ import HelloWorld from './components/HelloWorld.vue'
     <yk-button type="outline">线框按钮</yk-button>
     <IconCupOutline />
   </yk-space>
-  <yk-input-search>
-    <IconCupOutline />
-  </yk-input-search>
+  <yk-space dir="vertical">
+    <yk-input-search loading placeholder="正在查找..." style="width: 360px" />
+    <yk-input-search style="width: 360px">
+      <template #prefix>
+        <IconSearchOutline />
+      </template>
+      <template #suffix>
+        <yk-button type="secondary">搜索</yk-button>
+      </template>
+    </yk-input-search>
+    <yk-input-search size="xl" placeholder="搜点什么" style="width: 360px">
+      <template #suffix>
+        <yk-button size="xl"><IconSearchOutline /></yk-button>
+      </template>
+    </yk-input-search>
+  </yk-space>
   <HelloWorld msg="Vite + Vue" />
 </template>
 
