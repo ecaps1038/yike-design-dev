@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "pnpm --filter @yike-design/build build && pnpm --filter yike-design-resolver build && pnpm gen:icon",
+    "prepare": "pnpm --filter @yike-design/build build && pnpm --filter @yike-design/resolver build && pnpm gen:icon",
     "dev:demo": "pnpm --filter demo dev",
     "test": "pnpm --filter demo-test dev",
     "build:demo": "pnpm --filter demo build",
@@ -21,7 +21,7 @@
     "build:less": "pnpm --filter @yike-design/build build && pnpm --filter @yike-design/ui build:less",
     "gen:icon": "pnpm --filter @yike-design/ui gen:icon",
     "gen:less": "pnpm --filter @yike-design/ui gen:less",
-    "build:resolver": "pnpm --filter yike-design-resolver build"
+    "build:resolver": "pnpm --filter @yike-design/resolver build"
   },
   "dependencies": {
     "dayjs": "^1.11.9",

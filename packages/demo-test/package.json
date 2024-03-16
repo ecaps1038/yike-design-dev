@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "vue": "^3.4.21",
-    "@yike-design/ui": "workspace:*",
-    "yike-design-resolver": "workspace:*",
+    "@yike-design/ui": "^0.0.7",
+    "@yike-design/resolver": "workspace:*",
     "unplugin-vue-components": "^0.26.0",
     "unplugin-auto-import": "^0.17.5"
   },

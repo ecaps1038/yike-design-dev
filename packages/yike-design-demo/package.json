@@ -25,6 +25,6 @@
     "unplugin-vue-components": "^0.25.1",
     "unplugin-auto-import": "^0.17.5",
     "@yike-design/ui": "workspace:*",
-    "yike-design-resolver": "workspace:*"
+    "@yike-design/resolver": "workspace:*"
   }
 }
