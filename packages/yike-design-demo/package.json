@@ -1,0 +1,30 @@
+{
+  "name": "demo",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "@vueuse/core": "^10.2.1",
+    "markdown-it": "^12.3.2",
+    "pinia": "^2.1.4",
+    "seemly": "^0.3.6",
+    "vue": "^3.3.4",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^12.2.3",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "markdown-it-shikiji": "^0.6.8",
+    "shikiji": "^0.6.8",
+    "unplugin-vue-components": "^0.25.1",
+    "unplugin-auto-import": "^0.17.5",
+    "@yike-design/ui": "workspace:*",
+    "@yike-design/resolver": "workspace:*"
+  }
+}

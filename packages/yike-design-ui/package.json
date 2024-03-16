@@ -1,6 +1,6 @@
 {
   "name": "@yike-design/ui",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "type": "module",
   "description": "yike-design-ui",
   "author": "ecaps1038 https://github.com/ecaps1038",
@@ -21,7 +21,7 @@
     "yike"
   ],
   "main": "lib/index.js",
-  "module": "es/index.mjs",
+  "module": "es/index.js",
   "types": "es/index.d.ts",
   "files": [
     "es",
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
-    "vue": "^3.3.4"
+    "vue": "^3.2.2"
   },
   "devDependencies": {
     "@yike-design/build": "workspace:*",

@@ -3,7 +3,6 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
     "source.fixAll.stylelint": "explicit"
   },
   "[less]": {
@@ -27,10 +26,10 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[markdown]": {
-    "editor.wordWrap": "off",
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  // "[markdown]": {
+  //   "editor.wordWrap": "off",
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
   "references.preferredLocation": "peek",
   "stylelint.validate": ["vue", "less", "css"],
   "vue.codeActions.enabled": false,
