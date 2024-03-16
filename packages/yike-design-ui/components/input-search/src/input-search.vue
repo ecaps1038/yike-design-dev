@@ -13,9 +13,11 @@
       <slot name="prefix" />
     </template>
     <template #append>
-      <slot name="suffix">
-        <yk-button @click="search">搜索</yk-button>
-      </slot>
+      <div @click="search">
+        <slot name="suffix">
+          <yk-button>搜索</yk-button>
+        </slot>
+      </div>
     </template>
   </yk-input>
 </template>
