@@ -1,5 +1,14 @@
 [
   {
+    "title": "安装",
+    "list": [
+      {
+        "name": "快速上手",
+        "src": "startup"
+      }
+    ]
+  },
+  {
     "title": "通用",
     "list": [
       {

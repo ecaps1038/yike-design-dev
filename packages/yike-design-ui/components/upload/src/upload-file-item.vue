@@ -42,14 +42,24 @@
 </template>
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
-import { getArcPath, getFileTypeIconName } from './utils'
+import { getArcPath } from './utils'
 import { generateUid, createCssScope } from '../../utils'
 import type { FileItemProps } from './upload'
 import {
   IconDeleteOutline,
   IconTickOutline,
   IconLoading1Outline,
+  IconPdfOutline,
+  IconExcelOutline,
+  IconPptOutline,
+  IconVideoOutline,
+  IconAudioFileOutline,
+  IconWordOutline,
+  IconTxtOutline,
+  IconImageOutline,
+  IconFileOutline,
 } from '../../svg-icon'
+
 const props = withDefaults(defineProps<FileItemProps>(), {
   progress: 0,
   fileContent: () => ({
@@ -58,7 +68,6 @@ const props = withDefaults(defineProps<FileItemProps>(), {
     uid: generateUid(),
   }),
 })
-
 const bem = createCssScope('upload-file')
 
 const { status, name, uid } = toRefs(props.fileContent)
@@ -76,5 +85,37 @@ const handleRemove = () => {
 }
 const handleReUpload = () => {
   emits('handleReUpload', uid.value)
+}
+
+const getFileTypeIconName = (fileName: string) => {
+  const fileExtension = fileName.split('.').pop()?.toLowerCase()
+  switch (fileExtension) {
+    case 'jpg':
+    case 'png':
+    case 'jpeg':
+    case 'gif':
+      return IconImageOutline
+    case 'pdf':
+      return IconPdfOutline
+    case 'mp4':
+    case 'mkv':
+      return IconVideoOutline
+    case 'doc':
+    case 'docx':
+      return IconWordOutline
+    case 'xls':
+    case 'xlsx':
+      return IconExcelOutline
+    case 'ppt':
+    case 'pptx':
+      return IconPptOutline
+    case 'wmv':
+    case 'mp3':
+      return IconAudioFileOutline
+    case 'txt':
+      return IconTxtOutline
+    default:
+      return IconFileOutline
+  }
 }
 </script>

@@ -2,6 +2,10 @@ import { RouteRecordRaw } from 'vue-router';
 
 const generalRoutes: Array<RouteRecordRaw> = [
   {
+    path: 'startup',
+    component: () => import('@/views/develop/getting-started.md'),
+  },
+  {
     path: 'color',
     component: () => import('@/examples/color/doc.md'),
   },

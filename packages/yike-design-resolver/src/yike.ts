@@ -149,7 +149,7 @@ export interface YikeResolverOptions {
 /**
  * Resolver for Yike Design Vue
  *
- * Requires Yike-design/web-vue@2.11.0 or later
+ * Requires @yike-design/ui@0.0.11 or later
  *
  * @author @flsion
  * @link https://Yike.design/ for Yike-design

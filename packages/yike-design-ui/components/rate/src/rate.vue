@@ -40,6 +40,7 @@
 import { RateProps } from './rate'
 import { computed, onMounted, ref } from 'vue'
 import { createCssScope } from '../../utils'
+import { IconStarFill } from '../../svg-icon'
 
 defineOptions({
   name: 'YkRate',
@@ -58,7 +59,7 @@ const props = withDefaults(defineProps<RateProps>(), {
   readonly: false, // 只读
   disabled: false, // 禁用
   color: '',
-  icon: 'IconStarFill',
+  icon: IconStarFill,
   size: 'l',
 })
 

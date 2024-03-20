@@ -66,13 +66,13 @@ export function findFileByUid(
 export function getFileTypeIconName(fileName: string): string | undefined {
   const fileExtension = fileName.split('.').pop()?.toLowerCase();
   const fileTypeIcons = {
-    word: 'IconWordFileOutline',
+    word: 'IconWordOutline',
     pdf: 'IconPdfOutline',
-    excel: 'IconExcelFileOutline',
-    ppt: 'IconPptFileOutline',
+    excel: 'IconExcelOutline',
+    ppt: 'IconPptOutline',
     mp4: 'IconVideoOutline',
     audio: 'IconAudioFileOutline',
-    text: 'IconTxtFileOutline',
+    text: 'IconTxtOutline',
     png: 'IconImageOutline',
     jpg: 'IconImageOutline',
     video: 'IconVideoOutline',

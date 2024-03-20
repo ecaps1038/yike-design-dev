@@ -10,6 +10,6 @@ export type RateProps = {
   readonly?: boolean;
   disabled?: boolean;
   color?: string;
-  icon?: string;
+  icon?: any;
   size?: Size;
 };
