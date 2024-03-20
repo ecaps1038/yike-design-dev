@@ -1,6 +1,19 @@
 # 更新日志 
 
 
+### [0.0.11](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.10...v0.0.11) (2024-03-20)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **icon:** fix upload and rate icons ([11423ff](https://github.com/ecaps1038/yike-design-dev/commit/11423ff5e81691125cc218592241e9b1f7122d1d))
+* 优化pagination组件样式 ([618734b](https://github.com/ecaps1038/yike-design-dev/commit/618734b57e6e90cf106cb852c3a64bfeab266097))
+
+
+### ✨ Features | 新功能
+
+* **publish:** ci publish ([974ff74](https://github.com/ecaps1038/yike-design-dev/commit/974ff74c60d0e8fe0d642c1f9e95f2acbb9145a5))
+
 ### [0.0.10](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.9...v0.0.10) (2024-03-17)
 
 
