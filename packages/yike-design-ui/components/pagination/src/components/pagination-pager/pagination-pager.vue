@@ -20,7 +20,6 @@
     >
       1
     </span>
-
     <span
       v-if="showPrevEllispsis && !simple"
       :class="[cssScope('item'), cssScope('item-ellipsis')]"
@@ -28,7 +27,6 @@
     >
       ...
     </span>
-
     <span
       v-for="pager in pagers"
       :key="pager"
@@ -127,11 +125,13 @@ const showNextEllispsis = computed(() =>
 )
 
 const pagers = computed(() => {
+  if (props.totalPages == 3) {
+    return [2]
+  }
   const array: number[] = []
   if (props.simple || pagerSize.value < 2) {
     return array
   }
-
   if (props.current <= showPrevEllispsisThreshold.value) {
     for (let i = 0; i < pagerSize.value; i++) {
       array.push(i + 2)
@@ -157,6 +157,7 @@ const pagers = computed(() => {
     }
     array.reverse()
   }
+
   return array
 })
 
