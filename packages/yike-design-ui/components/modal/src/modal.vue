@@ -118,7 +118,7 @@ onMounted(() => {
 })
 
 const escapeClose = (ev: KeyboardEvent) => {
-  if (ev.key === 'Escape') closeModal()
+  if (ev.key === 'Escape' && props.modelValue) closeModal()
 }
 const closeMaskToCloseModal = () => {
   props.closeable && emit('update:modelValue', false)
