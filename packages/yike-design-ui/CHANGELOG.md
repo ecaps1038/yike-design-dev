@@ -1,6 +1,14 @@
 # 更新日志 
 
 
+### [0.0.12](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.11...v0.0.12) (2024-03-20)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **modal:** should not trigger keydown event when modelValue is false ([73af440](https://github.com/ecaps1038/yike-design-dev/commit/73af440194f37d2c143aac8c1a1cc62808d06a8a))
+* **pagination:** fix lost page 2 when total page is 3 ([e32feb6](https://github.com/ecaps1038/yike-design-dev/commit/e32feb6bac447fbf0c4fee4336aece6bd972f408))
+
 ### [0.0.11](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.10...v0.0.11) (2024-03-20)
 
 
