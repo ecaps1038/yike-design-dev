@@ -1,7 +1,7 @@
 import type { ComponentInfo, ComponentResolver } from './types';
 import { isExclude } from './_utils';
 
-const matchComponents = [
+export const matchComponents = [
   { pattern: /^YkUpload$/, componentDir: 'upload' },
   { pattern: /^(YkRadio|YkRadioGroup)$/, componentDir: 'radio' },
   { pattern: /^(YkCheckbox|YkCheckboxGroup)$/, componentDir: 'checkbox' },
@@ -149,7 +149,7 @@ export interface YikeResolverOptions {
 /**
  * Resolver for Yike Design Vue
  *
- * Requires Yike-design/web-vue@2.11.0 or later
+ * Requires @yike-design/ui@0.0.11 or later
  *
  * @author @flsion
  * @link https://Yike.design/ for Yike-design

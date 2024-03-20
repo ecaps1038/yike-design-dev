@@ -80,11 +80,17 @@
     &:not(&-ellipsis):hover {
       background-color: @pagination-pager-bg-color__hover;
     }
+    &-next {
+      margin-right: 0;
+    }
+    &-prev {
+      margin-left: 0;
+    }
   }
 }
 
 .yk-pagination-page-size {
-  margin-left: @pagination-margin-size;
+  margin-left: @pagination-margin-size*2;
 }
 
 .yk-pagination-jumper {
@@ -97,7 +103,7 @@
   }
 
   &__label {
-    margin-right: @pagination-margin-size * 2;
+    margin: 0 @pagination-margin-size * 2;
     white-space: nowrap;
     color: @font-color-l;
   }

@@ -19,7 +19,7 @@ const goPage = (path: string) => router.push({ path })
 
     <!-- start -->
     <div class="start-btns">
-      <yk-button size="l" @click="goPage('develop')">开始使用</yk-button>
+      <yk-button size="l" @click="goPage('module/startup')">开始使用</yk-button>
       <yk-button type="secondary" size="l" @click="goPage('design')">
         设计文件
       </yk-button>

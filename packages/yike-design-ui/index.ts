@@ -53,7 +53,6 @@ import {
 } from './components/image';
 import YkSpinner from './components/spinner';
 import { vLoading } from './components/spinner/src/directive';
-
 const components: {
   [propName: string]: Component;
 } = {
@@ -184,6 +183,7 @@ export {
   YkImagePreview,
   YkImagePreviewGroup,
   YkSpinner,
+  vLoading,
 };
 
 // 全局注册
