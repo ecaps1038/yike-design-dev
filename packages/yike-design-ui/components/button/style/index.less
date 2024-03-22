@@ -1,6 +1,10 @@
 @import '../../styles/mixin.less';
 @import './variables.less';
 
+@typeList: secondary, outline;
+@statusList: primary, success, warning, danger;
+@sizeList: s, m, xl;
+
 .yk-button {
   display: inline-flex;
   justify-content: center;
@@ -12,7 +16,6 @@
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
-
   .btn-type();
   .btn-size();
 
@@ -31,6 +34,13 @@
       stroke: #fff !important;
     }
   }
+
+  // yk-button--[status]
+  each(@statusList, {
+    &--@{value} {
+      .btn-status(primary, @value);
+    }
+  });
 
   .genTypeAndStatus();
   .gen-size();
@@ -57,8 +67,6 @@
 }
 
 .genTypeAndStatus() {
-  @typeList: secondary, outline;
-
   each(@typeList, {
     &--@{value} {
       .btn-type(@value);
@@ -74,15 +82,10 @@
     &--@{type}.yk-button--@{value} {
       .btn-status(@type, @value);
     }
-    &--@{value} {
-      .btn-status(primary, @value);
-    }
   });
 }
 
 .gen-size() {
-  @sizeList: s, m, xl;
-
   each(@sizeList, {
     &--@{value} {
       .btn-size(@value);
