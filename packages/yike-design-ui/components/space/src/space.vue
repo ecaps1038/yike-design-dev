@@ -15,6 +15,8 @@ const props = withDefaults(
   defineProps<SpaceProps>(),
   {
     size: 'l',
+    align: 'start',
+    justify: 'start',
     dir: 'horizontal',
     overflow: 'visible',
     wrap: false,
@@ -60,8 +62,8 @@ const classList = computed(() => {
     classes.push(`overflow-${overflow.value}`)
   }
 
-  classes.push(`align-${align?.value}`)
-  classes.push(`justify-${justify?.value}`)
+  classes.push(`align-${align.value}`)
+  classes.push(`justify-${justify.value}`)
 
   return classes
 })

@@ -1,7 +1,7 @@
 <template>
   <yk-space
     v-if="type === 'radio'"
-    :direction="direction"
+    :dir="direction"
     :size="mergedSize"
     :type="type"
     :class="bem([type, mergedSize, direction])"

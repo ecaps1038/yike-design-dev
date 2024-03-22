@@ -56,7 +56,7 @@ function onCopy() {
   <div class="demo-block">
     <slot name="demo"></slot>
   </div>
-  <yk-space class="flex-end" :size="8">
+  <yk-space class="snippet-icon" justify="end" :size="8">
     <div class="icon" @click="onCopy"><icon-copy-outline /></div>
     <div
       class="icon"
@@ -94,10 +94,7 @@ function onCopy() {
   transition: all @animats;
 }
 
-.flex-end {
-  display: flex;
-  justify-content: flex-end;
-
+.snippet-icon {
   .icon {
     display: flex;
     justify-content: center;
