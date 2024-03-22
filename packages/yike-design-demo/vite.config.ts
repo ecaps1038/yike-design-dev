@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import createVuePlugin from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vitePluginMarkdown from './plugins/vite-plugin-md';
+import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { join } from 'path';
 import { YikeDevResolver } from '@yike-design/resolver';
@@ -21,9 +22,16 @@ export default defineConfig({
       },
     }),
     vueJsx(),
+    AutoImport({
+      resolvers: [YikeDevResolver()],
+    }),
     Components({
       dirs: ['./src/components', './src/views'],
-      resolvers: [YikeDevResolver],
+      resolvers: [
+        YikeDevResolver({
+          sideEffect: true,
+        }),
+      ],
     }),
   ],
   css: {
@@ -32,7 +40,7 @@ export default defineConfig({
       less: {
         charset: false,
         additionalData:
-          '@import (reference) "@yike-design/ui/components/styles/index.less";',
+          '@import (reference) "@yike-design/ui/components/styles/color/colors.less";',
       },
     },
   },
