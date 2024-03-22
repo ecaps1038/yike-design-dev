@@ -6,7 +6,6 @@
   "scripts": {
     "prepare": "pnpm --filter @yike-design/build build && pnpm --filter @yike-design/resolver build && pnpm gen:icon",
     "dev:demo": "pnpm --filter demo dev",
-    "test": "pnpm --filter demo-test dev",
     "build:demo": "pnpm --filter demo build",
     "preview:demo": "pnpm --filter demo preview",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue . --fix",
