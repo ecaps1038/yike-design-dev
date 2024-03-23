@@ -37,9 +37,11 @@
                 <IconCloseOutline />
               </div>
             </div>
-            <div :class="bem('content')">
-              <slot />
-            </div>
+            <yk-scrollbar :height="contentHeight">
+              <div :class="bem('content')">
+                <slot />
+              </div>
+            </yk-scrollbar>
             <div v-if="showFooter" :class="bem('footer')">
               <div class="yk-modal-footer-option">
                 <slot name="footer">
@@ -66,6 +68,7 @@ import { modalBaseProps } from './modal'
 import { IconCloseOutline } from '../../svg-icon'
 import YkButton from '../../button'
 import YkSpace from '../../space'
+import YkScrollbar from '../../scrollbar'
 import '../style'
 
 defineOptions({
