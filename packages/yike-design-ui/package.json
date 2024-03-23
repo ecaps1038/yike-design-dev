@@ -23,6 +23,14 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
+  "imports": {
+    "#comps": "./components",
+    "#utils": "./components/utils",
+    "#styles": "./components/styles",
+    "#comps/*": "./components/*",
+    "#utils/*": "./components/utils/*",
+    "#styles/*": "./components/styles/*"
+  },
   "files": [
     "es",
     "lib",
