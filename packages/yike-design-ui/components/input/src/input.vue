@@ -11,19 +11,21 @@
     </span>
     <div
       :class="[
-        bem('inner'),
-        bem({
-          [`${status}`]: !mergedDisabled,
-          [`${status}--focus`]: isFocus && !mergedDisabled && !isError,
-          loading: loading,
-          disabled: mergedDisabled,
-          readonly: readonly,
-          rightbr0: !!$slots.append,
-          leftbr0: !!$slots.prepend,
-          error: isError,
-          'error-focus': isError,
-        }),
-        bem([mergedSize]),
+        bem(
+          'inner',
+          {
+            [`${status}`]: !mergedDisabled,
+            [`${status}--focus`]: isFocus && !mergedDisabled && !isError,
+            loading: loading,
+            disabled: mergedDisabled,
+            readonly: readonly,
+            rightbr0: !!$slots.append,
+            leftbr0: !!$slots.prepend,
+            error: isError,
+            'error-focus': isError,
+          },
+          [mergedSize],
+        ),
       ]"
     >
       <slot name="prefix" />
