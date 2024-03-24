@@ -1,24 +1,69 @@
-@import './color/colors.less';
+@import './basis.less';
 
 //混合出背景色
 @bg-dark-color-1: @gray;
-@bg-dark-color-2: color-mix(in srgb, @gray, #fff 3.2%);
-@bg-dark-color-3: color-mix(in srgb, @gray, #fff 6.4%);
-@bg-dark-color-4: color-mix(in srgb, @gray, #fff 8.8%);
-@bg-light-color-1: #fff;
-@bg-light-color-2: color-mix(in srgb, #fff, @gray 3.6%);
-@bg-light-color-3: color-mix(in srgb, #fff, @gray 6.8%);
-@bg-light-color-4: color-mix(in srgb, #fff, @gray 9.4%);
+@bg-dark-color-2: mix(@gray, #ffffff, 96.8%);
+@bg-dark-color-3: mix(@gray, #ffffff, 93.6%);
+@bg-dark-color-4: mix(@gray, #ffffff, 91.2%);
+@bg-light-color-1: @white;
+@bg-light-color-2: mix(@white, #000000, 96.4%);
+@bg-light-color-3: mix(@white, #000000, 93.6%);
+@bg-light-color-4: mix(@white, #000000, 91.8%);
 
 //默认
 :root {
   // -------- Functional color light -----------
-  --pcolor: palette(@pcolor-light); // 全局主色
-  --lcolor: palette(@lcolor-light); // 链接色
-  --scolor: palette(@scolor-light); // 成功色
-  --wcolor: palette(@wcolor-light); // 警告色
-  --ecolor: palette(@ecolor-light); // 错误色
-  --gray: palette(@gray); //中性色
+  --pcolor: @pcolor-light; // 全局主色
+  --pcolor1: rgba(@pcolor-light, 0.08);
+  --pcolor2: rgba(@pcolor-light, 0.12);
+  --pcolor3: rgba(@pcolor-light, 0.16);
+  --pcolor4: rgba(@pcolor-light, 0.24);
+  --pcolor5: rgba(@pcolor-light, 0.32);
+  --pcolor6: mix(@pcolor-light, #ffffff, 88%);
+  --pcolor8: mix(@pcolor-light, #000000, 92%);
+  --pcolor9: mix(@pcolor-light, #000000, 84%);
+  --pcolor10: mix(@pcolor-light, #000000, 68%);
+  --scolor: @scolor-light; // 成功色
+  --scolor1: rgba(@scolor-light, 0.08);
+  --scolor2: rgba(@scolor-light, 0.12);
+  --scolor3: rgba(@scolor-light, 0.16);
+  --scolor4: rgba(@scolor-light, 0.24);
+  --scolor5: rgba(@scolor-light, 0.32);
+  --scolor6: mix(@scolor-light, #ffffff, 88%);
+  --scolor8: mix(@scolor-light, #000000, 92%);
+  --scolor9: mix(@scolor-light, #000000, 84%);
+  --scolor10: mix(@scolor-light, #000000, 68%);
+  --wcolor: @wcolor-light; // 警告色
+  --wcolor1: rgba(@wcolor-light, 0.08);
+  --wcolor2: rgba(@wcolor-light, 0.12);
+  --wcolor3: rgba(@wcolor-light, 0.16);
+  --wcolor4: rgba(@wcolor-light, 0.24);
+  --wcolor5: rgba(@wcolor-light, 0.32);
+  --wcolor6: mix(@wcolor-light, #ffffff, 88%);
+  --wcolor8: mix(@wcolor-light, #000000, 92%);
+  --wcolor9: mix(@wcolor-light, #000000, 84%);
+  --wcolor10: mix(@wcolor-light, #000000, 68%);
+  --ecolor: @ecolor-light; // 错误色
+  --ecolor1: rgba(@ecolor-light, 0.08);
+  --ecolor2: rgba(@ecolor-light, 0.12);
+  --ecolor3: rgba(@ecolor-light, 0.16);
+  --ecolor4: rgba(@ecolor-light, 0.24);
+  --ecolor5: rgba(@ecolor-light, 0.32);
+  --ecolor6: mix(@ecolor-light, #ffffff, 88%);
+  --ecolor8: mix(@ecolor-light, #000000, 92%);
+  --ecolor9: mix(@ecolor-light, #000000, 84%);
+  --ecolor10: mix(@ecolor-light, #000000, 68%);
+  --lcolor: @lcolor-light; // 链接色
+  --gray: @gray; //中性色
+  --gray1: rgba(@gray, 0.08);
+  --gray2: rgba(@gray, 0.12);
+  --gray3: rgba(@gray, 0.16);
+  --gray4: rgba(@gray, 0.24);
+  --gray5: rgba(@gray, 0.32);
+  --gray6: rgba(@gray, 0.48);
+  --gray7: rgba(@gray, 0.64);
+  --gray8: rgba(@gray, 0.72);
+  --gray9: rgba(@gray, 0.88);
 
   //----背景色----
   --bgColor1: @bg-light-color-1;
@@ -31,13 +76,58 @@
 
 // 暗色主题
 [data-theme='dark'] {
-  // -------- Functional color light -----------
-  --pcolor: palette(@pcolor-dark); // 全局主色
-  --lcolor: palette(@lcolor-dark); // 链接色
-  --scolor: palette(@scolor-dark); // 成功色
-  --wcolor: palette(@wcolor-dark); // 警告色
-  --ecolor: palette(@ecolor-dark); // 错误色
-  --gray: palette(@white); //中性色
+  // -------- Functional color dark -----------
+  --pcolor: @pcolor-dark; // 全局主色
+  --pcolor1: rgba(@pcolor-dark, 0.08);
+  --pcolor2: rgba(@pcolor-dark, 0.12);
+  --pcolor3: rgba(@pcolor-dark, 0.16);
+  --pcolor4: rgba(@pcolor-dark, 0.24);
+  --pcolor5: rgba(@pcolor-dark, 0.32);
+  --pcolor6: mix(@pcolor-dark, #ffffff, 88%);
+  --pcolor8: mix(@pcolor-dark, #000000, 92%);
+  --pcolor9: mix(@pcolor-dark, #000000, 84%);
+  --pcolor10: mix(@pcolor-dark, #000000, 68%);
+  --scolor: @scolor-dark; // 成功色
+  --scolor1: rgba(@scolor-dark, 0.08);
+  --scolor2: rgba(@scolor-dark, 0.12);
+  --scolor3: rgba(@scolor-dark, 0.16);
+  --scolor4: rgba(@scolor-dark, 0.24);
+  --scolor5: rgba(@scolor-dark, 0.32);
+  --scolor6: mix(@scolor-dark, #ffffff, 88%);
+  --scolor8: mix(@scolor-dark, #000000, 92%);
+  --scolor9: mix(@scolor-dark, #000000, 84%);
+  --scolor10: mix(@scolor-dark, #000000, 68%);
+  --wcolor: @wcolor-dark; // 警告色
+  --wcolor1: rgba(@wcolor-dark, 0.08);
+  --wcolor2: rgba(@wcolor-dark, 0.12);
+  --wcolor3: rgba(@wcolor-dark, 0.16);
+  --wcolor4: rgba(@wcolor-dark, 0.24);
+  --wcolor5: rgba(@wcolor-dark, 0.32);
+  --wcolor6: mix(@wcolor-dark, #ffffff, 88%);
+  --wcolor8: mix(@wcolor-dark, #000000, 92%);
+  --wcolor9: mix(@wcolor-dark, #000000, 84%);
+  --wcolor10: mix(@wcolor-dark, #000000, 68%);
+  --ecolor: @ecolor-dark; // 错误色
+  --ecolor1: rgba(@ecolor-dark, 0.08);
+  --ecolor2: rgba(@ecolor-dark, 0.12);
+  --ecolor3: rgba(@ecolor-dark, 0.16);
+  --ecolor4: rgba(@ecolor-dark, 0.24);
+  --ecolor5: rgba(@ecolor-dark, 0.32);
+  --ecolor6: mix(@ecolor-dark, #ffffff, 88%);
+  --ecolor8: mix(@ecolor-dark, #000000, 92%);
+  --ecolor9: mix(@ecolor-dark, #000000, 84%);
+  --ecolor10: mix(@ecolor-dark, #000000, 68%);
+  --lcolor: @lcolor-dark; // 链接色
+  --gray: @white; //中性色
+  --gray1: rgba(@white, 0.08);
+  --gray2: rgba(@white, 0.12);
+  --gray3: rgba(@white, 0.16);
+  --gray4: rgba(@white, 0.24);
+  --gray5: rgba(@white, 0.32);
+  --gray6: rgba(@white, 0.48);
+  --gray7: rgba(@white, 0.64);
+  --gray8: rgba(@white, 0.72);
+  --gray9: rgba(@white, 0.88);
 
   //----背景色----
   --bgColor1: @bg-dark-color-1;

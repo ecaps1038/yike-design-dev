@@ -33,7 +33,6 @@ import YkLink from './components/link';
 import YkAlert from './components/alert';
 import YkButton from './components/button';
 import YkTheme from './components/theme';
-import YkIcon from './components/icon';
 import { YkAvatar, YkAvatarGroup } from './components/avatar';
 import YkSpace from './components/space';
 import { YkTimeline, YkTimelineItem } from './components/timeline';
@@ -98,7 +97,6 @@ const components: {
   YkAlert,
   YkButton,
   YkTheme,
-  YkIcon,
   YkAvatar,
   YkAvatarGroup,
   YkSpace,
@@ -160,7 +158,6 @@ export {
   YkAlert,
   YkButton,
   YkTheme,
-  YkIcon,
   YkParagraph,
   YkAvatar,
   YkAvatarGroup,
