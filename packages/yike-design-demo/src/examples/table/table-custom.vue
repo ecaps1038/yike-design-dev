@@ -1,5 +1,9 @@
 <template>
-  <yk-table :data="dataList" @selection-change="handleSelectionChange">
+  <yk-table
+    ref="tableRef"
+    :data="dataList"
+    @selection-change="handleSelectionChange"
+  >
     <yk-table-column type="selection"></yk-table-column>
     <yk-table-column property="name" label="用户名"></yk-table-column>
     <yk-table-column property="email" label="邮箱"></yk-table-column>
@@ -22,7 +26,10 @@
   </yk-table>
 </template>
 <script setup lang="ts">
-const dataList = [
+import { reactive , ref } from 'vue'
+
+const tableRef = ref(null)
+const dataList = reactive([
   {
     name: '浩哥看沟通',
     email: 'xigeotmete@qq.com',
@@ -52,14 +59,13 @@ const dataList = [
     bir: '2052.1.1',
     // desc: '这句话不知道 当讲不当讲，反正就是想讲一讲的',
   },
-]
+])
 
 const handleSelectionChange = (val) => {
   console.log(val)
 }
 const handleAdd = (e) => {
   console.log('🚀 Add ~ e:', e)
-  console.log('🚀 Add ~ index:', e.$index)
 }
 const handleDelete = (index) => {
   console.log('🚀 Delete ~ e:', index)
