@@ -2,6 +2,7 @@
 
 .yk-table {
   overflow-x: auto;
+
   > table {
     position: relative;
     overflow: hidden;
@@ -10,6 +11,7 @@
     height: fit-content;
     box-sizing: border-box;
     border-spacing: 0;
+
     .td {
       padding: @space-m @space-xl;
     }
@@ -18,10 +20,12 @@
   th {
     padding: 0 @space-xl;
     background-color: @bg-color-s;
+
     .cell {
       font-weight: 600;
     }
   }
+
   &__cell {
     position: relative;
     z-index: 1;
@@ -34,9 +38,8 @@
     box-sizing: border-box;
     vertical-align: middle;
     .font-s();
+
     .cell {
-      display: flex;
-      align-items: center;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal;
@@ -48,9 +51,11 @@
 
   &__row {
     background-color: @bg-color-l;
+
     &:hover {
       background-color: @bg-color-m;
     }
+
     .yk-table__cell {
       padding: 0 @space-xl;
     }
@@ -59,6 +64,7 @@
   .text-center {
     text-align: center;
   }
+
   .text-right {
     text-align: right;
   }

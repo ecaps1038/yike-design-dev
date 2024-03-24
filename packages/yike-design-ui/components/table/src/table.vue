@@ -2,7 +2,8 @@
   <div :class="bem()">
     <table>
       <TableHeader />
-      <TableBody />
+      <TableBody v-if="$props.data" />
+      <slot name="tbody" />
     </table>
     <div v-show="false" ref="hiddenColumns">
       <slot />

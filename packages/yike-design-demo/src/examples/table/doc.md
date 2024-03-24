@@ -24,6 +24,12 @@
 <TableCustomHeader/>
 :::
 
+:::snippet
+自定义内容
+通过设置 slot 来自定义内容。
+<TableTbody/>
+:::
+
 ### API
 
 #### Table 属性
@@ -50,9 +56,10 @@
 | formatter | 用来格式化内容     | function(row, column, cellValue, index) | —       |
 | align     | 对齐方式           | left / center / right                   | left    |
 
-#### Table-column 插槽
+#### Table 插槽
 
 | 参数    | 描述                                               |
 | ------- | -------------------------------------------------- |
 | default | 自定义列的内容 作用域参数为 { row, column, index } |
 | header  | 自定义表头的内容， 作用域参数为 { column, index }  |
+| tbody   | 自定义表的内容                                     |
