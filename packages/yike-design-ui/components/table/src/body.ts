@@ -22,13 +22,13 @@ export default defineComponent({
       {
         class: [bem('body')],
       },
-      data.map((row) => {
+      data.map((row, index) => {
         return h(
           'tr',
           {
             class: [bem('row')],
           },
-          columnList.map((column, index) => {
+          columnList.map((column) => {
             const data = {
               row,
               index,
