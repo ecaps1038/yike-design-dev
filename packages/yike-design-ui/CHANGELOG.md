@@ -1,6 +1,35 @@
 # 更新日志 
 
 
+### [0.0.13](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.12...v0.0.13) (2024-03-25)
+
+
+### ✨ Features | 新功能
+
+* **test:** remove doc default button style ([43e237e](https://github.com/ecaps1038/yike-design-dev/commit/43e237e00b917fafdeeb4c3f34fd05f7b2d4c96b))
+
+
+### ✏️ Documentation | 文档
+
+* Modal组件文档优化 ([b55c32d](https://github.com/ecaps1038/yike-design-dev/commit/b55c32dc7e4ce3323774e1a4c44330993a73ea07))
+* modal组件文档修改 ([91998a3](https://github.com/ecaps1038/yike-design-dev/commit/91998a35b4d9fd8151e6559e0bfc32ab7e8028b0))
+* **started:** modify start code style ([9722a20](https://github.com/ecaps1038/yike-design-dev/commit/9722a20ae3f64b9880858d63c9c40f45320e983f))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **button:** fix status style repeat ([f70340e](https://github.com/ecaps1038/yike-design-dev/commit/f70340e78aae096b273aef74866166caa31c154b))
+* **button:** simplify class names ([9ad8b2e](https://github.com/ecaps1038/yike-design-dev/commit/9ad8b2edd8193f975c3f4b994a2816821c7f57cd))
+* **input:** remove multiple bem ([96a3d27](https://github.com/ecaps1038/yike-design-dev/commit/96a3d276711c38b72a172405cab544f50e5cf425))
+* modal组件新增content-hight属性 ([ba18e91](https://github.com/ecaps1038/yike-design-dev/commit/ba18e91e120192c164482c80ed2733f6504157ff))
+* **space:** fix space undifined ([#337](https://github.com/ecaps1038/yike-design-dev/issues/337)) ([743931f](https://github.com/ecaps1038/yike-design-dev/commit/743931f0a451104853b482f00e9aeca3f9ec03a0))
+* **styles:** 优化颜色混合模式 ([111b962](https://github.com/ecaps1038/yike-design-dev/commit/111b9624a2b2fc3f11c4db53e27bbb7083ca8c9c))
+* **styles:** 优化颜色混合模式 ([4392dc8](https://github.com/ecaps1038/yike-design-dev/commit/4392dc8c19964311eacd54f6b2e3bfb18904ceb0))
+* **table:** 优化样式 ([02bca5e](https://github.com/ecaps1038/yike-design-dev/commit/02bca5e8b30bf72638698c59851ec1539e314ae6))
+* **table:** 简单增加内容插槽 ([a880f3d](https://github.com/ecaps1038/yike-design-dev/commit/a880f3da423e91771153349f9666f70dd8bcd342))
+* table组件样式调整 ([0648ff4](https://github.com/ecaps1038/yike-design-dev/commit/0648ff4ef4ebb215084eb8dda15f2f0906e31889))
+* table组件样式调整 ([e1a8480](https://github.com/ecaps1038/yike-design-dev/commit/e1a8480519ba90bafd09046786c08a2e44982d01))
+
 ### [0.0.12](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.11...v0.0.12) (2024-03-20)
 
 
