@@ -1,5 +1,5 @@
 <template>
-  <yk-table>
+  <yk-table :data="dataList">
     <yk-table-column property="name" label="用户名"></yk-table-column>
     <yk-table-column property="email" label="邮箱"></yk-table-column>
     <yk-table-column property="bir" label="生日"></yk-table-column>
