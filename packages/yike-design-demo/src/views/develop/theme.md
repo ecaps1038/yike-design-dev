@@ -8,7 +8,7 @@ Yike Design 使用 less 作为预编译语言。为寻求最合理最少的变�
 
 **全局引入**：
 
-文件在 `@yike-design/ui/components/styles/colors/color.less`
+文件在 `@yike-design/ui/components/styles/basis.less`
 
 **Vite 引入方法**：
 
@@ -50,7 +50,7 @@ module.exports = {
 
 ### 源码
 
-其中，`yike-design/ui/src/components/styles/colors/color.less` 文件存放所有全局变量，在项目使用上，全局变量完全可以直接修改该文档内容。
+其中，`yike-design/ui/src/components/styles/basis.less` 文件存放所有全局变量，在项目使用上，全局变量完全可以直接修改该文档内容。
 
 ```less
 // -------- Colors -----------
