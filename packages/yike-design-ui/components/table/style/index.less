@@ -1,6 +1,8 @@
-@import '../../styles/color/colors.less';
+@import '../../styles/basis.less';
 
 .yk-table {
+  overflow-x: auto;
+
   > table {
     position: relative;
     overflow: hidden;
@@ -9,25 +11,36 @@
     height: fit-content;
     box-sizing: border-box;
     border-spacing: 0;
+
+    .td {
+      padding: @space-m @space-xl;
+    }
   }
 
   th {
+    padding: 0 @space-xl;
     background-color: @bg-color-s;
+
+    .cell {
+      font-weight: 600;
+    }
   }
 
   &__cell {
     position: relative;
     z-index: 1;
-    padding: 18px 0px;
     min-width: 0;
-    font-size: 14px;
+    max-width: 240px;
+    height: 56px;
+    border-bottom: 1px solid @line-color-s;
     text-align: left;
     text-overflow: ellipsis;
     box-sizing: border-box;
     vertical-align: middle;
+    .font-s();
+
     .cell {
       overflow: hidden;
-      padding: 0 20px;
       text-overflow: ellipsis;
       white-space: normal;
       box-sizing: border-box;
@@ -36,20 +49,22 @@
     }
   }
 
-  &__cell {
-    border-bottom: 1px solid #1e202514;
-  }
-
   &__row {
     background-color: @bg-color-l;
+
     &:hover {
-      background-color: @bg-color-s;
+      background-color: @bg-color-m;
+    }
+
+    .yk-table__cell {
+      padding: 0 @space-xl;
     }
   }
 
   .text-center {
     text-align: center;
   }
+
   .text-right {
     text-align: right;
   }

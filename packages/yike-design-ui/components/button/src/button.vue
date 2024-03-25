@@ -1,16 +1,10 @@
 <template>
   <button
-    :class="[
-      bem([type, status, shape, size], {
-        loading: loading,
-        long: long,
-        disabled: disabled,
-      }),
-    ]"
+    :class="[bem([type, status, shape, size], { loading, long, disabled })]"
     :disabled="disabled || loading"
   >
-    <yk-spinner v-if="loading" :size="getSize(size)" />
-    <span v-if="$slots.icon" :class="icon">
+    <yk-spinner v-if="loading" :size="iconSize" />
+    <span v-if="$slots.icon" :class="iconClassName">
       <slot name="icon" />
     </span>
     <slot></slot>
@@ -18,30 +12,32 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { getSize } from './utils'
-import { createCssScope } from '../../utils'
 import YkSpinner from '../../spinner'
+import { computed } from 'vue'
 import { ButtonProps } from './button'
+import { createCssScope } from '../../utils'
 import '../style'
 
-defineOptions({
-  name: 'YkButton',
-})
+defineOptions({ name: 'YkButton' })
 
 const bem = createCssScope('button')
-const props = withDefaults(defineProps<ButtonProps>(), {
-  type: 'primary',
-  size: 'l',
-  shape: 'default',
-  long: false,
-  loading: false,
-  disabled: false,
+// prettier-ignore
+const props = withDefaults(
+  defineProps<ButtonProps>(), 
+  {
+    long: false,
+    loading: false,
+    disabled: false,
+  }
+)
+
+const iconSize = computed(() => {
+  const sizeMap = { s: 12, m: 14, l: 14, xl: 16 }
+  return sizeMap[props.size!]
 })
 
-const icon = computed(() => {
-  return {
-    'yk-button__icon': props.shape != 'circle' && props.shape != 'square',
-  }
+const iconClassName = computed(() => {
+  if (props.shape === 'circle' || props.shape === 'square') return
+  return 'yk-button__icon'
 })
 </script>

@@ -4,7 +4,7 @@
     "jsx": "preserve",
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "lib": ["DOM", "ESNext"],
     "declaration": true,
     "skipLibCheck": true,
@@ -15,7 +15,15 @@
     "emitDeclarationOnly": true,
     "useDefineForClassFields": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "#comps": ["./components"],
+      "#utils": ["./components/utils"],
+      "#styles": ["./components/styles"],
+      "#comps/*": ["./components/*"],
+      "#utils/*": ["./components/utils/*"],
+      "#styles/*": ["./components/styles/*"]
+    }
   },
   "exclude": ["dist", "es", "lib"]
 }

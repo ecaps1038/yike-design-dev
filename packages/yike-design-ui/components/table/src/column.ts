@@ -96,7 +96,7 @@ export default defineComponent({
           } else {
             children = column.label;
           }
-          return h('div', { class: 'cell' }, [
+          return h('div', { class: 'cell text-' + props.align }, [
             renderHeader ? renderHeader({ column, index }) : children,
           ]);
         },

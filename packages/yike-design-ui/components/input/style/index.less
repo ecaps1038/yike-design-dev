@@ -1,10 +1,27 @@
-@import '../../styles/color/colors.less';
+@import '../../styles/basis.less';
 @import './functions.less';
 @import '../../spinner/style/index.less';
 .yk-input {
   display: inline-flex;
   align-items: center;
   transition: all @animatb ease-in-out;
+  &__inner {
+    display: inline-flex;
+    align-items: center;
+    transition: all @animatb ease-in-out;
+    .input-size(s, 22px, @space-s, @size-ss, @radius-s);
+    .input-size(m, 30px, @space-m, @size-s, @radius-s);
+    .input-size(l, 34px, @space-m, @size-s, @radius-m);
+    .input-size(xl, 46px, @space-l, @size-m, @radius-m);
+
+    .input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-l);
+    .input-status(danger, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-l);
+    .input-status(success, transparent, @scolor-2, @scolor, @scolor-1, @scolor, @bg-color-l);
+    .input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-l);
+    .input-status(error, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-l);
+    .input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);
+    .input-status(readonly,  @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s);
+  }
 }
 
 .yk-input__spinner {
@@ -13,18 +30,18 @@
   margin-right: 6px;
 }
 
-.yk-input--disabled input {
+.yk-input__inner--disabled input {
   cursor: not-allowed;
   color: @font-color-s !important;
 }
 
-.yk-input--leftbr0,
-.yk-input--leftbr0 input {
+.yk-input__inner--leftbr0,
+.yk-input__inner--leftbr0 input {
   .left-no-border-radius();
 }
 
-.yk-input--rightbr0,
-.yk-input--rightbr0 input {
+.yk-input__inner--rightbr0,
+.yk-input__inner--rightbr0 input {
   .right-no-border-radius();
 }
 
@@ -110,16 +127,3 @@
 .yk-input--error {
   .input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-l);
 }
-
-.input-size(s, 22px, @space-s, @size-ss, @radius-s);
-.input-size(m, 30px, @space-m, @size-s, @radius-s);
-.input-size(l, 34px, @space-m, @size-s, @radius-m);
-.input-size(xl, 46px, @space-l, @size-m, @radius-m);
-
-.input-status(primary, @bg-color-s, @bg-color-s, @pcolor, @bg-color-m, @pcolor, @bg-color-l);
-.input-status(danger, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-l);
-.input-status(success, transparent, @scolor-2, @scolor, @scolor-1, @scolor, @bg-color-l);
-.input-status(warning, transparent, @wcolor-2, @wcolor, @wcolor-1, @wcolor, @bg-color-l);
-.input-status(error, transparent, @ecolor-2, @ecolor, @ecolor-1, @ecolor, @bg-color-l);
-.input-status(disabled, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m, @bg-color-m);
-.input-status(readonly,  @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s, @bg-color-s);

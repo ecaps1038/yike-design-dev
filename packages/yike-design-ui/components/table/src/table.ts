@@ -22,7 +22,7 @@ export interface Table<T> extends ComponentInternalInstance {
 export interface TableProps {
   // id?: string;
   data: Record<string, any>[];
-  height: string | number;
+  height?: string | number;
 }
 
 export interface TableColumn<T> {

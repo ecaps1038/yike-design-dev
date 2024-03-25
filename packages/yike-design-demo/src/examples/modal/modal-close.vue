@@ -15,4 +15,4 @@ const closeModal = () => {
   proxy.$message({ type: 'success', message: '这里是对话框关闭的回调函数' })
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

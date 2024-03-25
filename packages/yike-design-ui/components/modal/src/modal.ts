@@ -8,4 +8,5 @@ export type modalBaseProps = {
   showMask?: boolean;
   escapable?: boolean;
   showFooter?: boolean;
+  contentHeight?: string | number;
 };

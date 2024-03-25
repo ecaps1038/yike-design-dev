@@ -2,7 +2,7 @@
 
 ### 安装方式
 
-```
+```ts
 npm install --save-dev @yike-design/ui
 ```
 
