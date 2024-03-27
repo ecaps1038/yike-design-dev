@@ -1,7 +1,9 @@
 <template>
-  <yk-space dir="vertical">
-    <yk-pagination :total="30"></yk-pagination>
-    <yk-pagination :total="40"></yk-pagination>
-    <yk-pagination :total="50"></yk-pagination>
+  <yk-space dir="vertical" overflow="auto">
+    <yk-pagination
+      fix-width
+      :total="1000"
+      :layouts="['pager', 'prev', 'next']"
+    />
   </yk-space>
 </template>
