@@ -25,6 +25,12 @@
 :::
 
 :::snippet
+禁用
+属性 `disabled` 可以禁用组件。
+<PaginationDisabled />
+:::
+
+:::snippet
 布局
 属性 `layouts` 可以自定义分页组件的布局。
 <PaginationLayouts />
