@@ -1,5 +1,5 @@
 <template>
-  <div :class="[bem(), _disabled]">
+  <div :class="bem([_disabled])">
     <yk-tooltip
       v-model:open="isOpen"
       :arrow="arrow"
@@ -47,10 +47,9 @@ const emit = defineEmits<DropdownEmits>()
 
 // prettier-ignore
 const props = withDefaults(
-  defineProps<DropdownProps>(), 
+  defineProps<DropdownProps>(),
   {
     title: '',
-    size: 'l',
     open: false,
     arrow: true,
     disabled: false,

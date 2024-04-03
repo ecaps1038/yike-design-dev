@@ -32,7 +32,7 @@ defineOptions({
   name: 'YkDropdownItem',
 })
 
-const bem = createCssScope('dropdown-item')
+const bem = createCssScope('dropdown__item')
 // prettier-ignore
 const props = withDefaults(
   defineProps<DropdownItemProps>(),
@@ -49,7 +49,6 @@ const props = withDefaults(
 const {
   selectedValue,
   isOpen,
-  size,
   arrow,
   trigger,
   openDelay,
@@ -73,10 +72,7 @@ const _disabled = disabled ? 'disabled' : false
 const _animation = animation || animationOption[dir]
 const _placement = placementOption[dir] as DropdownOption['placement']
 
-const getClassName = computed(() => {
-  return [bem(), _disabled, `size-${size}`]
-})
-
+const getClassName = computed(() => bem([_disabled]))
 const getOverlayStyle = computed(() => {
   return [
     overlayStyle,
