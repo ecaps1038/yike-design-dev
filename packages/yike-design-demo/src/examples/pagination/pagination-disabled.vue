@@ -3,7 +3,7 @@
     <yk-switch v-model="disabled"></yk-switch>
     <yk-pagination
       :total="100"
-      :layouts="['total', 'prev', 'pager', 'next', 'jumper', 'pageSize']"
+      :layouts="['total', 'prev', 'pager', 'next', 'pageSize', 'jumper']"
       :disabled="disabled"
     />
   </yk-space>

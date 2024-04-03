@@ -10,7 +10,7 @@
     <yk-pagination
       :total="2345"
       :size="size"
-      :layouts="['total', 'prev', 'pager', 'next', 'jumper', 'pageSize']"
+      :layouts="['total', 'prev', 'pager', 'next', 'pageSize', 'jumper']"
     />
     <yk-pagination :total="2345" :size="size" simple />
   </yk-space>
