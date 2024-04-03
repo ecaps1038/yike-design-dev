@@ -1,5 +1,5 @@
 <template>
-  <yk-space dir="vertical" overflow="auto">
+  <yk-space dir="vertical">
     <yk-radio-group v-model="size" type="button">
       <yk-radio value="s">s</yk-radio>
       <yk-radio value="m">m</yk-radio>
@@ -7,7 +7,11 @@
       <yk-radio value="xl">xl</yk-radio>
     </yk-radio-group>
 
-    <yk-pagination :total="2345" :size="size" />
+    <yk-pagination
+      :total="2345"
+      :size="size"
+      :layouts="['total', 'prev', 'pager', 'next', 'jumper', 'pageSize']"
+    />
     <yk-pagination :total="2345" :size="size" simple />
   </yk-space>
 </template>
