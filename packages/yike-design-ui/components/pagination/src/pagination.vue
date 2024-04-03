@@ -1,140 +1,139 @@
 <template>
-  <div
-    :class="
-      cssScope({
-        disabled,
-        s: size === 's',
-        m: size === 'm',
-        l: size === 'l',
-        xl: size === 'xl',
-      })
-    "
-  >
-    <pagination-total
-      v-if="showTotal && !simple"
-      :total="total"
-    ></pagination-total>
-
-    <pagination-pager
-      :total-pages="totalPages"
-      :simple="simple"
-      :current="internalCurrent"
-      :page-size="internalPageSize"
-      :fix-width="fixWidth"
-      :pager-count="pagerCount"
-      :disabled="disabled"
+  <div v-if="simple" :class="classes">
+    <Control icon="prev" :disabled="isFirstPage" @click="onPrev" />
+    <YkInputNumber
+      v-model="_current"
+      :min="1"
+      :max="lastPage"
+      :controls="false"
       :size="size"
-      @change="handlePageChange"
-    ></pagination-pager>
-
-    <pagination-page-size
-      v-if="showPageSize && !simple"
-      :size="size"
-      :disabled="disabled"
-      :default-page-size="defaultPageSize"
-      :page-size-options="pageSizeOptions"
-      @page-size-change="handlePageSizeChange"
-    ></pagination-page-size>
-
-    <pagination-jumper
-      v-if="showJumper && !simple"
-      :total-pages="totalPages"
-      :size="size"
-      :disabled="disabled"
-      @jump="handlePageChange"
-    ></pagination-jumper>
+    />
+    <div :class="bem('total')">{{ lastPage }}</div>
+    <Control icon="next" :disabled="isLastPage" @click="onNext" />
+  </div>
+  <div v-else-if="!hidden" :class="classes">
+    <template v-for="[key, comp] in Object.entries(_layouts)" :key="key">
+      <component :is="comp" />
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, provide, computed } from 'vue'
-import {
-  PAGINATION_CSS_NAMESPACE,
+import Pager from './pager.vue'
+import Jumper from './jumper.vue'
+import Control from './control.vue'
+import PageSize from './page-size.vue'
+import YkInputNumber from '../../input-number'
+
+import type {
   PaginationProps,
   PaginationEmits,
+  LayoutMapType,
 } from './pagination'
-import { useCssScope } from './utils'
+import { createCssScope } from '../../utils'
+import { ref, computed, watch, h, provide } from 'vue'
 import '../style'
 
-import PaginationTotal from './components/pagination-total/pagination-total.vue'
-import PaginationPager from './components/pagination-pager/pagination-pager.vue'
-import PaginationPageSize from './components/pagination-page-size/pagination-page-size.vue'
-import PaginationJumper from './components/pagination-jumper/pagination-jumper.vue'
+defineOptions({ name: 'YkPagination' })
 
-defineOptions({
-  name: 'YkPagination',
-})
-
-provide(PAGINATION_CSS_NAMESPACE, 'pagination')
-const props = withDefaults(defineProps<PaginationProps>(), {
-  defaultCurrent: 1,
-  defaultPageSize: 10,
-  disabled: false,
-  pagerCount: 7,
-  pageSizeOptions: () => [10, 20, 30, 40, 50],
-  size: 'l',
-  simple: false,
-  showTotal: false,
-  showJumper: false,
-  showPageSize: false,
-})
+const bem = createCssScope('pagination')
 const emits = defineEmits<PaginationEmits>()
 
-const cssScope = useCssScope()
-
-const internalCurrent = ref<number>(1)
-const internalPageSize = ref<number>(10)
-const totalPages = computed(() =>
-  internalPageSize.value < 0
-    ? 1
-    : Math.ceil(props.total / internalPageSize.value),
+// prettier-ignore
+const props = withDefaults(
+  defineProps<PaginationProps>(),
+  {
+    current: 1,
+    pageSize: 10,
+    defaultCurrent: 1,
+    defaultPageSize: 10,
+    pagerCount: 7,
+    simple: false,
+    fixWidth: false,
+    disabled: false,
+    hideOnSinglePage: false,
+    layouts: () => ['prev', 'pager', 'next'],
+    pageSizeOptions: () => [10, 20, 30, 40, 50],
+  }
 )
 
-const handlePageChange = (page: number) => {
-  if (!props.disabled) {
-    internalCurrent.value = page
-    emits('change', page)
-  }
-}
+const _current = ref(props.defaultCurrent)
+const _pageSize = ref(props.defaultPageSize)
 
-const handlePageSizeChange = (pageSize: number) => {
-  if (!props.disabled) {
-    internalPageSize.value = pageSize
-    emits('pageSizeChange', pageSize)
-  }
-}
+const lastPage = computed(() => Math.ceil(props.total / _pageSize.value))
+const hidden = computed(() => props.hideOnSinglePage && lastPage.value === 1)
+const classes = computed(() => bem({ disabled: props.disabled }, [props.size]))
+const isFirstPage = computed(() => _current.value === 1)
+const isLastPage = computed(() => _current.value === lastPage.value)
+const size = computed(() => props.size)
 
-watch(
-  () => [props.current, props.defaultCurrent],
-  ([current, defaultCurrent]) => {
-    if (props.disabled) {
-      internalCurrent.value = 0
-    } else {
-      internalCurrent.value = current
-        ? current
-        : defaultCurrent
-        ? defaultCurrent
-        : 1
-    }
-  },
-  { immediate: true },
-)
-
-watch(
-  () => [props.pageSize, props.defaultPageSize],
-  ([pageSize, defaultPageSize]) => {
-    internalPageSize.value = pageSize
-      ? pageSize
-      : defaultPageSize
-      ? defaultPageSize
-      : 10
-  },
-  { immediate: true },
-)
-
-watch(internalCurrent, (newVal) => {
-  if (!props.disabled) {
-    emits('update:current', newVal)
-  }
+provide('info', {
+  _current,
+  _pageSize,
+  lastPage,
+  isFirstPage,
+  isLastPage,
+  size,
 })
+
+const layoutMap: LayoutMapType = {
+  pager: h(Pager, {
+    pagerCount: props.pagerCount,
+    fixWidth: props.fixWidth,
+  }),
+  prev: h(Control, {
+    icon: 'prev',
+    onClick: onPrev,
+  }),
+  next: h(Control, {
+    icon: 'next',
+    onClick: onNext,
+  }),
+  total: h('div', null, `共 ${props.total} 条`),
+  jumper: h(Jumper),
+  pageSize: h(PageSize, {
+    pageSizeOptions: props.pageSizeOptions,
+    'onUpdate:pageSize': (pageSize: number) => {
+      if (!props.disabled) _pageSize.value = pageSize
+    },
+  }),
+}
+
+// prettier-ignore
+const _layouts = props.layouts.reduce(
+  (acc, cur) => {
+    acc[cur] = layoutMap[cur]
+    return acc
+  }, {} as LayoutMapType
+)
+
+watch(
+  () => props.current,
+  (val) => (_current.value = val),
+)
+watch(_current, (newVal) => {
+  emits('update:current', newVal)
+  emits('change', newVal)
+})
+
+watch(
+  () => props.pageSize,
+  (val) => (_pageSize.value = val),
+)
+watch(_pageSize, (newVal) => {
+  emits('update:pageSize', newVal)
+  emits('pageSizeChange', newVal)
+})
+
+function onPrev() {
+  if (!props.disabled && _current.value > 1) {
+    _current.value--
+  }
+}
+
+function onNext() {
+  if (!props.disabled && _current.value < lastPage.value) {
+    _current.value++
+  }
+}
 </script>
