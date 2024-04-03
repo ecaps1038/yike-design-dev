@@ -66,8 +66,9 @@ const getPages = computed(() => {
     }
     const min = current - middlePageIndex
     const max = current + middlePageIndex
+    const index = props.fixWidth && showAfterMore.value ? min + 1 : min
 
-    for (let i = props.fixWidth ? min + 1 : min; i <= max; i++) {
+    for (let i = index; i <= max; i++) {
       result.push(i)
     }
   } else {
