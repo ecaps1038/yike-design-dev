@@ -48,7 +48,6 @@ const props = withDefaults(
     defaultCurrent: 1,
     defaultPageSize: 10,
     pagerCount: 7,
-    size: 'l',
     simple: false,
     fixWidth: false,
     disabled: false,
