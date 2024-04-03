@@ -1,6 +1,7 @@
 @import '../../styles/basis.less';
 @import '../../styles//mixin.less';
 @import '../../tooltip/style/index.less';
+
 .yk-dropdown {
   position: relative;
 
@@ -9,7 +10,8 @@
     --tooltip-theme-font-color: @font-color-l;
   }
 
-  &.disabled {
+  &.yk-dropdown--disabled,
+  &__item--disabled {
     .disabled();
   }
 
@@ -20,40 +22,26 @@
     min-height: auto;
     max-height: none;
   }
-}
 
-.yk-dropdown__icon {
-  display: inline-block;
-  margin-left: 6px;
-  transition: transform @animatb ease;
-}
-
-.yk-dropdown-item {
-  position: relative;
-  padding: 0 @space-m;
-  line-height: 32px;
-  border-radius: @radius-s;
-  cursor: pointer;
-
-  &.disabled {
-    .disabled();
+  &__icon {
+    display: inline-block;
+    margin-left: 6px;
+    transition: transform @animatb ease;
   }
 
-  &:hover {
-    background-color: @bg-color-s;
-  }
+  &__item {
+    position: relative;
+    padding: 0 @space-m;
+    line-height: 32px;
+    border-radius: @radius-s;
+    cursor: pointer;
 
-  &.size-s {
-    font-size: 9px;
-    line-height: 24px;
-  }
+    &.disabled {
+      .disabled();
+    }
 
-  &.size-m {
-    line-height: 28px;
-  }
-
-  &.size-xl {
-    font-size: 16px;
-    line-height: 38px;
+    &:hover {
+      background-color: @bg-color-s;
+    }
   }
 }
