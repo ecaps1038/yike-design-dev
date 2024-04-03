@@ -79,14 +79,10 @@
   }
 }
 
-.pgn-size(@size: l) {
-  height: ~'@{pgn-size_@{size}}';
-  font-size: ~'@{pgn-font-size_@{size}}';
-}
-
 .pgn-item(@size: l) {
   min-width: ~'@{pgn-size_@{size}}';
   height: ~'@{pgn-size_@{size}}';
+  font-size: ~'@{pgn-font-size_@{size}}';
   border-radius: ~'@{pgn-radius_@{size}}';
   line-height: ~'@{pgn-size_@{size}}';
 }

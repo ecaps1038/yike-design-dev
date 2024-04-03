@@ -6,6 +6,7 @@
       :min="1"
       :max="lastPage"
       :controls="false"
+      :size="size"
     />
     <div :class="bem('total')">{{ lastPage }}</div>
     <Control icon="next" :disabled="isLastPage" @click="onNext" />
@@ -47,6 +48,7 @@ const props = withDefaults(
     defaultCurrent: 1,
     defaultPageSize: 10,
     pagerCount: 7,
+    size: 'l',
     simple: false,
     fixWidth: false,
     disabled: false,
@@ -71,6 +73,7 @@ provide('info', {
   lastPage,
   isFirstPage,
   isLastPage,
+  size: ref(props.size),
 })
 
 const layoutMap: LayoutMapType = {

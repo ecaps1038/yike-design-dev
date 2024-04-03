@@ -34,4 +34,5 @@ export type PgnInfo = {
   lastPage: Ref<number>;
   isFirstPage: Ref<boolean>;
   isLastPage: Ref<boolean>;
+  size: Ref<Size>;
 };

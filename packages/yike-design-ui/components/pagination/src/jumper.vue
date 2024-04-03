@@ -6,6 +6,7 @@
       :min="1"
       :max="lastPage"
       :controls="false"
+      :size="size"
     />
   </div>
 </template>
@@ -16,6 +17,6 @@ import { createCssScope } from '../../utils'
 import type { PgnInfo } from './pagination'
 import { inject } from 'vue'
 
-const { _current, lastPage } = inject('info') as PgnInfo
+const { _current, lastPage, size } = inject('info') as PgnInfo
 const bem = createCssScope('pagination-jumper')
 </script>
