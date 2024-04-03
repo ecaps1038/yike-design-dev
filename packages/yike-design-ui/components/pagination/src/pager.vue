@@ -88,7 +88,7 @@ function handleCurrentChange(e: MouseEvent) {
 }
 
 function onMore(mode: 'prev' | 'next') {
-  const carry = props.pagerCount - 2
+  const carry = props.pagerCount - (props.fixWidth ? 3 : 2)
 
   if (mode === 'prev') {
     const target = cur.value - carry
