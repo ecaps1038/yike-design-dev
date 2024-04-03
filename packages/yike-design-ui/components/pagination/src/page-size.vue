@@ -18,11 +18,11 @@
 
 <script setup lang="ts">
 import { YkDropdown, YkDropdownItem } from '../../dropdown'
-import type { PaginationProps } from './pagination'
+import type { PaginationProps, PgnInfo } from './pagination'
 import { createCssScope } from '../../utils'
-import { computed, ref } from 'vue'
+import { computed, ref, inject } from 'vue'
 
-type PageSizeProps = Required<Pick<PaginationProps, 'pageSizeOptions' | 'size'>>
+type PageSizeProps = Required<Pick<PaginationProps, 'pageSizeOptions'>>
 type PageSizeEmits = {
   (e: 'update:pageSize', pageSize: number): void
 }
@@ -30,6 +30,8 @@ type PageSizeEmits = {
 defineProps<PageSizeProps>()
 const emits = defineEmits<PageSizeEmits>()
 const bem = createCssScope('pagination-page-size')
+
+const { size } = inject('info') as PgnInfo
 const selectedPageSize = ref(10)
 
 const title = computed(() => {

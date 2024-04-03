@@ -65,6 +65,7 @@ const hidden = computed(() => props.hideOnSinglePage && lastPage.value === 1)
 const classes = computed(() => bem({ disabled: props.disabled }, [props.size]))
 const isFirstPage = computed(() => _current.value === 1)
 const isLastPage = computed(() => _current.value === lastPage.value)
+const size = computed(() => props.size)
 
 provide('info', {
   _current,
@@ -72,7 +73,7 @@ provide('info', {
   lastPage,
   isFirstPage,
   isLastPage,
-  size: ref(props.size),
+  size,
 })
 
 const layoutMap: LayoutMapType = {
@@ -91,7 +92,6 @@ const layoutMap: LayoutMapType = {
   total: h('div', null, `共 ${props.total} 条`),
   jumper: h(Jumper),
   pageSize: h(PageSize, {
-    size: props.size!,
     pageSizeOptions: props.pageSizeOptions,
     'onUpdate:pageSize': (pageSize: number) => {
       if (!props.disabled) _pageSize.value = pageSize
