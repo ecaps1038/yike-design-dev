@@ -1,6 +1,8 @@
+import { Size } from '../../utils';
+
 export type modalBaseProps = {
   title: string;
-  size?: 'small' | 'large';
+  size: Size;
   modelValue: boolean;
   to?: string;
   scrollable?: boolean;

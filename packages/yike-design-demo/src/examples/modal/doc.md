@@ -40,7 +40,7 @@
 
 | 参数             | 描述                          | 类型                  | 默认值  |
 | ---------------- | ----------------------------- | --------------------- | ------- |
-| `size`           | 尺寸                          | `small \| large`      | `large` |
+| `size`           | 尺寸                          | `s \| m \| l \| xl`      | `l` |
 | `show-footer`    | 底部区域展示                  | `boolean`             | `true`  |
 | `title`          | modal 标题                    | `string`              | `-`     |
 | `to`             | modal 默认展开的 dom 选择器   | `string`              | `body`  |
