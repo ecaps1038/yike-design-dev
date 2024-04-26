@@ -47,7 +47,7 @@
       </div>
     </div>
     <!-- picture list -->
-    <div v-if="isPicture && !draggable" :class="bem('pictures')">
+    <yk-space v-if="isPicture && !draggable" wrap :size="8">
       <span v-for="item in currentList" :class="bem('picture')">
         <upload-picture-item
           :key="item.uid"
@@ -58,6 +58,7 @@
           :avatar="avatar"
           @handle-remove="handleRemove"
           @handle-re-upload="handleReUpload"
+          @handle-upload="handleUpload"
           @handle-abort="handleAbort"
           @handle-edit="handleEdit"
           @handle-review="handleReview"
@@ -75,7 +76,7 @@
           </span>
         </div>
       </div>
-    </div>
+    </yk-space>
   </div>
   <yk-image-preview-group
     v-model:visible="reviewVisible"
@@ -92,7 +93,7 @@
     v-model="editModalVisible"
     :scrollable="false"
     title="图片裁剪"
-    size="small"
+    size="s"
     @on-submit="handleSubmit"
   >
     <cropPicture ref="cropRef" :file-content="currentUploadAvatar" />
@@ -120,6 +121,7 @@ import { IconUpload2Outline, IconPlusOutline } from '../../svg-icon'
 import YkModal from '../../modal'
 import YkButton from '../../button'
 import { YkText } from '../../typography'
+import { YkSpace } from '../../space'
 defineOptions({
   name: 'YkUpload',
 })

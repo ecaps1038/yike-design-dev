@@ -23,16 +23,7 @@
     width: 100%;
     flex-direction: column-reverse;
   }
-  &__pictures {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    height: auto;
-  }
   &__picture {
-    margin-right: @space-m;
-    margin-bottom: @space-m;
     width: 80px;
     height: 80px;
   }
@@ -41,7 +32,6 @@
   }
   &__picture-button {
     position: relative;
-    margin-right: 40px;
     width: 80px;
     height: 80px;
     border: 1px dashed @line-color-s;
@@ -79,12 +69,5 @@
     &--circle {
       border-radius: 50%;
     }
-  }
-
-  &-pictures {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    max-width: 100%;
   }
 }
