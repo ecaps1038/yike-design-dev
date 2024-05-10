@@ -48,7 +48,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue'
+import { computed, watch, ref, onMounted } from 'vue'
 import type { CSSProperties } from 'vue'
 import { ImageProps } from './image'
 import { pick, normalizeImageSizeProp, vObserveVisibility } from './utils'
@@ -135,4 +135,8 @@ const onImageClick = () => {
   if (!props.preview) return
   previewVOpen.value = true
 }
+
+onMounted(() => {
+  setLoadStatus('loading')
+})
 </script>
