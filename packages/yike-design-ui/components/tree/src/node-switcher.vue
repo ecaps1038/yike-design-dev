@@ -6,6 +6,7 @@ import { TreeInjectionKey, TreeNodeInjectionKey } from './tree'
 const bem = createCssScope('tree-node-switcher')
 
 const nodeContext = inject(TreeNodeInjectionKey)
+
 const context = inject(TreeInjectionKey)
 </script>
 
