@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+### [0.0.17](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.16...v0.0.17) (2024-05-11)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 优化pagination样式 ([cf5b9f9](https://github.com/ecaps1038/yike-design-dev/commit/cf5b9f9663016203fb8c16cb638d379b6343ab45))
+
 ### [0.0.16](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.15...v0.0.16) (2024-05-11)
 
 
