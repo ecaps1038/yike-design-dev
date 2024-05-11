@@ -1,6 +1,14 @@
 # 更新日志 
 
 
+### [0.0.16](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.15...v0.0.16) (2024-05-11)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 优化pagination ([6625fc1](https://github.com/ecaps1038/yike-design-dev/commit/6625fc1a61b00eccfb32a66fb802dd99e5dea64b))
+* **tree:** resolve error of tree component ([#352](https://github.com/ecaps1038/yike-design-dev/issues/352)) ([a54354b](https://github.com/ecaps1038/yike-design-dev/commit/a54354bb8897187733b7c0a08c5a42c55d923020))
+
 ### [0.0.15](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.6...v0.0.15) (2024-05-11)
 
 
