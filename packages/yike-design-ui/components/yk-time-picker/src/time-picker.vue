@@ -42,6 +42,7 @@
             <ul>
               <li
                 v-for="h in 24"
+                ref="cellRef"
                 :class="[
                   'yk-timepicker-cell',
                   { 'yk-timepicker-cell-selected': selected.hour[h - 1] },
@@ -93,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref } from 'vue'
 import { startWithZero, getNowTimeData } from './util'
 import type {
   TimeSelected,
@@ -102,7 +103,12 @@ import type {
   ScrollBehavior,
 } from './time-picker'
 
-const inputValue = ref<string | undefined>(undefined)
+const props = defineProps(['modelValue', 'defaultValue'])
+const emit = defineEmits(['update:modelValue'])
+
+const inputValue = ref<string | undefined>(
+  props.modelValue || props.defaultValue,
+)
 const selectedValue = ref<TimeValue>({
   hour: '',
   minute: '',
@@ -123,6 +129,7 @@ const minColRef = ref<HTMLElement>()
 const secColRef = ref<HTMLElement>()
 const openTimepicker = ref(false)
 const isDelete = ref(false)
+const cellRef = ref([])
 
 let itemHeight: number
 
@@ -188,9 +195,8 @@ function onOpenPickerChange(open: boolean) {
         'instant',
       )
     }
-    nextTick(() => {
-      getCellHeight()
-    })
+    getCellHeight()
+    handleTimeString('instant')
   }
 }
 
@@ -198,27 +204,7 @@ function onChangeInput() {
   if (!inputValue.value && selectedValue.value.hour) {
     inputValue.value = joinTimeStr(selectedValue.value)
   } else if (inputValue.value) {
-    if (inputValue.value.length < 8) return
-    const timeArr = inputValue.value.split(':')
-    timeArr.forEach((item, index) => {
-      if (index === 0) {
-        if (item.length === 2 && parseInt(item) >= 0 && parseInt(item) <= 23) {
-          selectedValue.value.hour = item
-          handleHighlight('hour', parseInt(item) + 1)
-          handleColumnScroll('hour', parseInt(item) + 1, 'smooth')
-        }
-      } else {
-        if (item.length === 2 && parseInt(item) >= 0 && parseInt(item) <= 59) {
-          selectedValue.value[index === 1 ? 'minute' : 'second'] = item
-          handleHighlight(index === 1 ? 'minute' : 'second', parseInt(item) + 1)
-          handleColumnScroll(
-            index === 1 ? 'minute' : 'second',
-            parseInt(item) + 1,
-            'smooth',
-          )
-        }
-      }
-    })
+    handleTimeString()
   }
 }
 
@@ -228,6 +214,7 @@ function onConfirm() {
   }
   openTimepicker.value = false
   inputValue.value = joinTimeStr(confirmedValue.value)
+  emit('update:modelValue', inputValue.value)
 }
 
 function onFocusInput() {
@@ -257,10 +244,11 @@ function onClickNow() {
 }
 
 function getCellHeight() {
-  const cellRef = document.querySelector('.yk-timepicker-cell')
-  if (!cellRef) return
-  const margin = parseInt(getComputedStyle(cellRef).marginTop)
-  itemHeight = cellRef.clientHeight + margin
+  const cell: HTMLElement = cellRef.value[0]
+  if (!cellRef.value) return
+  const margin = parseInt(getComputedStyle(cell).marginTop)
+  console.log(cell.scrollHeight)
+  itemHeight = cell.clientHeight + margin
 }
 
 // 处理选中数字后的列表滚动
@@ -311,5 +299,30 @@ function initOtherUnit(type: TimeType) {
       selectedValue.value[key] === '' && (selectedValue.value[key] = '00')
     }
   }
+}
+
+function handleTimeString(scrollBehavior: ScrollBehavior = 'smooth') {
+  // todo：这里的逻辑是判断时间字符串是否合法，目前只用了长度判断，后续要正则
+  if (!inputValue.value || inputValue.value.length < 8) return
+  const timeArr = inputValue.value.split(':')
+  timeArr.forEach((item, index) => {
+    if (index === 0) {
+      if (item.length === 2 && parseInt(item) >= 0 && parseInt(item) <= 23) {
+        selectedValue.value.hour = item
+        handleHighlight('hour', parseInt(item) + 1)
+        handleColumnScroll('hour', parseInt(item) + 1, scrollBehavior)
+      }
+    } else {
+      if (item.length === 2 && parseInt(item) >= 0 && parseInt(item) <= 59) {
+        selectedValue.value[index === 1 ? 'minute' : 'second'] = item
+        handleHighlight(index === 1 ? 'minute' : 'second', parseInt(item) + 1)
+        handleColumnScroll(
+          index === 1 ? 'minute' : 'second',
+          parseInt(item) + 1,
+          scrollBehavior,
+        )
+      }
+    }
+  })
 }
 </script>

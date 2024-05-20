@@ -15,13 +15,13 @@
 :::snippet
 双向绑定
 支持`v-model`进行数据的双向绑定。
-<BasicTimePicker/>
+<DoubleBind/>
 :::
 
 :::snippet
 默认值
 只有默认值的情况，可通过`defaultValue`传递。
-<BasicTimePicker/>
+<DefaultValue/>
 :::
 
 :::snippet
