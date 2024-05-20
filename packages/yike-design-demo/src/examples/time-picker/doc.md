@@ -14,25 +14,25 @@
 
 :::snippet
 双向绑定
-支持`v-model`进行数据的双向绑定。
+支持 `v-model` 进行数据的双向绑定。
 <DoubleBind/>
 :::
 
 :::snippet
 默认值
-只有默认值的情况，可通过`defaultValue`传递。
+只有默认值的情况，可通过 `defaultValue` 传递。
 <DefaultValue/>
 :::
 
 :::snippet
 尺寸
-有四种尺寸可供选择
-<BasicTimePicker/>
+有四种尺寸可供选择.
+<SizeChoice/>
 :::
 
 :::snippet
 禁用
-禁用状态
+禁用状态.
 <BasicTimePicker/>
 :::
 

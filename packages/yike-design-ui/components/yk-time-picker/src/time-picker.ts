@@ -14,5 +14,12 @@ export interface TimeSelected {
   second: boolean[];
 }
 
+export interface TimePickerProps {
+  modelValue: string;
+  defaultValue: string;
+  size: string;
+  style: string;
+}
+
 export type TimeType = 'hour' | 'minute' | 'second';
 export type ScrollBehavior = 'smooth' | 'instant';

@@ -16,8 +16,8 @@
     <yk-input
       v-model="inputValue"
       placeholder="请选择时间"
-      size="m"
-      :style="{ width: '200px' }"
+      :size="size"
+      :style="style"
       @focus="onFocusInput"
       @change="onChangeInput"
     >
@@ -101,9 +101,15 @@ import type {
   TimeType,
   TimeValue,
   ScrollBehavior,
+  TimePickerProps,
 } from './time-picker'
 
-const props = defineProps(['modelValue', 'defaultValue'])
+const props = withDefaults(defineProps<TimePickerProps>(), {
+  modelValue: '',
+  defaultValue: '',
+  size: 'l',
+  style: '',
+})
 const emit = defineEmits(['update:modelValue'])
 
 const inputValue = ref<string | undefined>(
