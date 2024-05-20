@@ -21,6 +21,7 @@ export interface TimePickerProps {
   disabled?: boolean;
   style?: Partial<CSSStyleDeclaration> | null;
   type?: string;
+  disableConfirm?: boolean;
   disabledHours?: () => number[];
   disabledMinutes?: () => number[];
   disabledSeconds?: () => number[];

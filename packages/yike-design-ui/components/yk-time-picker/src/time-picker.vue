@@ -90,7 +90,7 @@
             </ul>
           </div>
         </div>
-        <div class="yk-timepicker-footer">
+        <div v-if="!disableConfirm" class="yk-timepicker-footer">
           <yk-button type="secondary" size="s" @click="onClickNow">
             此刻
           </yk-button>
@@ -118,6 +118,7 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
   size: 'l',
   style: null,
   disalbed: false,
+  disableConfirm: false,
   disabledHours: () => [],
   disabledMinutes: () => [],
   disabledSeconds: () => [],
@@ -151,26 +152,36 @@ const cellRef = ref([])
 
 let itemHeight: number
 
-// 扩展 可复用
+// 计算单个时间选项是否禁用
 const isDisabled = computed(() => {
   const disabledHourArr = props.disabledHours()
   const disabledMinutesArr = props.disabledMinutes()
   const disabledSecondsArr = props.disabledSeconds()
   return (type: TimeType, index: number) => {
+    let _arr: number[] = []
     switch (type) {
       case 'hour':
-        return disabledHourArr.includes(index)
+        _arr = disabledHourArr
+        break
       case 'minute':
-        return disabledMinutesArr.includes(index)
+        _arr = disabledMinutesArr
+        break
       case 'second':
-        return disabledSecondsArr.includes(index)
+        _arr = disabledSecondsArr
+        break
+      default:
+        break
     }
+    return _arr.includes(index)
   }
 })
 
 function selcetCell(type: TimeType, value: number) {
   if (isDisabled.value(type, value - 1)) return
   selectedValue.value[type] = startWithZero(value - 1)
+  // 跳过确认步骤时
+  props.disableConfirm &&
+    (confirmedValue.value[type] = startWithZero(value - 1))
   initOtherUnit(type)
   inputValue.value = joinTimeStr(selectedValue.value)
   handleHighlight(type, value)

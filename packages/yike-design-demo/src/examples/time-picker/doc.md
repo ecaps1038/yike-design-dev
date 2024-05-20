@@ -45,7 +45,7 @@
 :::snippet
 跳过确认
 跳过确认步骤，直接点击确认时间
-<BasicTimePicker/>
+<IgnoreConfirm/>
 :::
 
 :::snippet
