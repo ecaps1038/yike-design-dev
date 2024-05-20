@@ -33,13 +33,13 @@
 :::snippet
 禁用
 禁用状态.
-<BasicTimePicker/>
+<DisabledPicker/>
 :::
 
 :::snippet
 禁用部分时间选项
 通过设置 `disabledHours` `disabledMinutes` `disabledSeconds`，可以禁用 时 / 分 / 秒的部分选项。
-<BasicTimePicker/>
+<DisabledOptions/>
 :::
 
 :::snippet

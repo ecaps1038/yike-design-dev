@@ -48,11 +48,15 @@
       list-style: none;
       user-select: none;
 
-      &:hover {
+      &:not(&-disabled):hover {
         background-color: @gray-1;
       }
       &-selected {
         background-color: @gray-1;
+      }
+      &-disabled {
+        color: @gray-4;
+        cursor: not-allowed;
       }
     }
   }

@@ -15,10 +15,15 @@ export interface TimeSelected {
 }
 
 export interface TimePickerProps {
-  modelValue: string;
-  defaultValue: string;
-  size: string;
-  style: string;
+  modelValue?: string;
+  defaultValue?: string;
+  size?: string;
+  disabled?: boolean;
+  style?: Partial<CSSStyleDeclaration> | null;
+  type?: string;
+  disabledHours?: () => number[];
+  disabledMinutes?: () => number[];
+  disabledSeconds?: () => number[];
 }
 
 export type TimeType = 'hour' | 'minute' | 'second';

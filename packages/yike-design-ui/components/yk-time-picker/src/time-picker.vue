@@ -18,6 +18,7 @@
       placeholder="请选择时间"
       :size="size"
       :style="style"
+      :disabled="disabled"
       @focus="onFocusInput"
       @change="onChangeInput"
     >
@@ -46,6 +47,7 @@
                 :class="[
                   'yk-timepicker-cell',
                   { 'yk-timepicker-cell-selected': selected.hour[h - 1] },
+                  { 'yk-timepicker-cell-disabled': isDisabled('hour', h - 1) },
                 ]"
                 @click.left="selcetCell('hour', h)"
               >
@@ -60,6 +62,9 @@
                 :class="[
                   'yk-timepicker-cell',
                   { 'yk-timepicker-cell-selected': selected.minute[m - 1] },
+                  {
+                    'yk-timepicker-cell-disabled': isDisabled('minute', m - 1),
+                  },
                 ]"
                 @click.left="selcetCell('minute', m)"
               >
@@ -74,6 +79,9 @@
                 :class="[
                   'yk-timepicker-cell',
                   { 'yk-timepicker-cell-selected': selected.second[s - 1] },
+                  {
+                    'yk-timepicker-cell-disabled': isDisabled('second', s - 1),
+                  },
                 ]"
                 @click.left="selcetCell('second', s)"
               >
@@ -94,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { startWithZero, getNowTimeData } from './util'
 import type {
   TimeSelected,
@@ -108,7 +116,11 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
   modelValue: '',
   defaultValue: '',
   size: 'l',
-  style: '',
+  style: null,
+  disalbed: false,
+  disabledHours: () => [],
+  disabledMinutes: () => [],
+  disabledSeconds: () => [],
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -139,7 +151,25 @@ const cellRef = ref([])
 
 let itemHeight: number
 
+// 扩展 可复用
+const isDisabled = computed(() => {
+  const disabledHourArr = props.disabledHours()
+  const disabledMinutesArr = props.disabledMinutes()
+  const disabledSecondsArr = props.disabledSeconds()
+  return (type: TimeType, index: number) => {
+    switch (type) {
+      case 'hour':
+        return disabledHourArr.includes(index)
+      case 'minute':
+        return disabledMinutesArr.includes(index)
+      case 'second':
+        return disabledSecondsArr.includes(index)
+    }
+  }
+})
+
 function selcetCell(type: TimeType, value: number) {
+  if (isDisabled.value(type, value - 1)) return
   selectedValue.value[type] = startWithZero(value - 1)
   initOtherUnit(type)
   inputValue.value = joinTimeStr(selectedValue.value)
@@ -253,7 +283,6 @@ function getCellHeight() {
   const cell: HTMLElement = cellRef.value[0]
   if (!cellRef.value) return
   const margin = parseInt(getComputedStyle(cell).marginTop)
-  console.log(cell.scrollHeight)
   itemHeight = cell.clientHeight + margin
 }
 
