@@ -63,7 +63,7 @@
 :::snippet
 附加内容
 选择框底部显示自定义的内容。
-<BasicTimePicker/>
+<ExtraContent/>
 :::
 
 :::snippet

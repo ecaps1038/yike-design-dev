@@ -90,6 +90,9 @@
             </ul>
           </div>
         </div>
+        <div v-if="$slots.extra" class="yk-timepicker-footer-extra-wrapper">
+          <slot name="extra"></slot>
+        </div>
         <div v-if="!disableConfirm" class="yk-timepicker-footer">
           <yk-button type="secondary" size="s" @click="onClickNow">
             此刻
