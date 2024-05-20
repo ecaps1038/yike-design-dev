@@ -14,6 +14,12 @@ export interface TimeSelected {
   second: boolean[];
 }
 
+export interface TimeStep {
+  hour?: number;
+  minute?: number;
+  second?: number;
+}
+
 export interface TimePickerProps {
   modelValue?: string;
   defaultValue?: string;
@@ -22,6 +28,7 @@ export interface TimePickerProps {
   style?: Partial<CSSStyleDeclaration> | null;
   type?: string;
   disableConfirm?: boolean;
+  step?: TimeStep | null;
   disabledHours?: () => number[];
   disabledMinutes?: () => number[];
   disabledSeconds?: () => number[];

@@ -57,7 +57,7 @@
 :::snippet
 定制步长
 通过设置 `step`，可以定制需要显示的时、分、秒的步长。
-<BasicTimePicker/>
+<CustomStep/>
 :::
 
 :::snippet

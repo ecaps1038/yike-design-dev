@@ -51,7 +51,7 @@
                 ]"
                 @click.left="selcetCell('hour', h)"
               >
-                {{ startWithZero(h - 1) }}
+                {{ getNeededValue('hour', h - 1) }}
               </li>
             </ul>
           </div>
@@ -68,7 +68,7 @@
                 ]"
                 @click.left="selcetCell('minute', m)"
               >
-                {{ startWithZero(m - 1) }}
+                {{ getNeededValue('minute', m - 1) }}
               </li>
             </ul>
           </div>
@@ -85,7 +85,7 @@
                 ]"
                 @click.left="selcetCell('second', s)"
               >
-                {{ startWithZero(s - 1) }}
+                {{ getNeededValue('second', s - 1) }}
               </li>
             </ul>
           </div>
@@ -117,8 +117,9 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
   defaultValue: '',
   size: 'l',
   style: null,
-  disalbed: false,
+  disabled: false,
   disableConfirm: false,
+  step: null,
   disabledHours: () => [],
   disabledMinutes: () => [],
   disabledSeconds: () => [],
@@ -303,21 +304,22 @@ function handleColumnScroll(
   value: number,
   behavior: ScrollBehavior,
 ) {
-  const bias = itemHeight * (value - 1)
-  if (bias) {
-    switch (type) {
-      case 'hour':
-        hourColRef.value?.scrollTo({ top: bias, behavior })
-        break
-      case 'minute':
-        minColRef.value?.scrollTo({ top: bias, behavior })
-        break
-      case 'second':
-        secColRef.value?.scrollTo({ top: bias, behavior })
-        break
-      default:
-        break
-    }
+  let bias = 0
+  switch (type) {
+    case 'hour':
+      bias = itemHeight * Math.floor((value - 1) / (props.step?.hour || 1))
+      hourColRef.value?.scrollTo({ top: bias, behavior })
+      break
+    case 'minute':
+      bias = itemHeight * Math.floor((value - 1) / (props.step?.minute || 1))
+      minColRef.value?.scrollTo({ top: bias, behavior })
+      break
+    case 'second':
+      bias = itemHeight * Math.floor((value - 1) / (props.step?.second || 1))
+      secColRef.value?.scrollTo({ top: bias, behavior })
+      break
+    default:
+      break
   }
   initColumnScroll()
 }
@@ -370,5 +372,13 @@ function handleTimeString(scrollBehavior: ScrollBehavior = 'smooth') {
       }
     }
   })
+}
+
+function getNeededValue(type: TimeType, raw: number) {
+  let step = 1
+  if (type === 'hour') step = props.step?.hour || 1
+  if (type === 'minute') step = props.step?.minute || 1
+  if (type === 'second') step = props.step?.second || 1
+  return raw % step === 0 ? startWithZero(Math.floor(raw / step) * step) : ''
 }
 </script>
