@@ -29,10 +29,13 @@ export interface TimePickerProps {
   type?: string;
   disableConfirm?: boolean;
   step?: TimeStep | null;
+  use12Hours?: boolean;
+  format?: string;
   disabledHours?: () => number[];
   disabledMinutes?: () => number[];
   disabledSeconds?: () => number[];
 }
 
+export type HalfDay = 'pm' | 'am';
 export type TimeType = 'hour' | 'minute' | 'second';
 export type ScrollBehavior = 'smooth' | 'instant';

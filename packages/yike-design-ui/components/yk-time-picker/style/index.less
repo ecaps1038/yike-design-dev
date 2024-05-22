@@ -23,9 +23,10 @@
     overflow: auto;
     height: 260px;
     flex: 1;
+    border-right: 1px solid @gray-2;
 
-    &:nth-child(-n + 2) {
-      border-right: 1px solid @gray-2;
+    &:last-child {
+      border-right: none;
     }
     &::-webkit-scrollbar-track {
       background-color: #fff;

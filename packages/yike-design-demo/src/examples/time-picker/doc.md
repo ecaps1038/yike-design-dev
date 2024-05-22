@@ -51,7 +51,7 @@
 :::snippet
 定制格式
 通过设置 `format`，可以定制需要显示的时、分、秒。
-<BasicTimePicker/>
+<FormatTime/>
 :::
 
 :::snippet
@@ -69,7 +69,7 @@
 :::snippet
 十二小时制
 通过设置 `use12Hours`，可以定制需要显示的时、分、秒。
-<BasicTimePicker/>
+<TwelveTime/>
 :::
 
 ### API

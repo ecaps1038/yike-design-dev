@@ -39,11 +39,11 @@
     <template #content>
       <div class="yk-timepicker-container">
         <div class="yk-timepicker">
-          <div ref="hourColRef" class="yk-timepicker-column">
+          <div v-if="hourColumn" ref="hourColRef" class="yk-timepicker-column">
             <ul>
               <li
-                v-for="h in 24"
-                ref="cellRef"
+                v-for="h in hourNum"
+                ref="cellHourRef"
                 :class="[
                   'yk-timepicker-cell',
                   { 'yk-timepicker-cell-selected': selected.hour[h - 1] },
@@ -55,10 +55,11 @@
               </li>
             </ul>
           </div>
-          <div ref="minColRef" class="yk-timepicker-column">
+          <div v-if="minuteColumn" ref="minColRef" class="yk-timepicker-column">
             <ul>
               <li
                 v-for="m in 60"
+                ref="cellMinutRef"
                 :class="[
                   'yk-timepicker-cell',
                   { 'yk-timepicker-cell-selected': selected.minute[m - 1] },
@@ -72,10 +73,11 @@
               </li>
             </ul>
           </div>
-          <div ref="secColRef" class="yk-timepicker-column">
+          <div v-if="secondColumn" ref="secColRef" class="yk-timepicker-column">
             <ul>
               <li
                 v-for="s in 60"
+                ref="cellSecondRef"
                 :class="[
                   'yk-timepicker-cell',
                   { 'yk-timepicker-cell-selected': selected.second[s - 1] },
@@ -86,6 +88,32 @@
                 @click.left="selcetCell('second', s)"
               >
                 {{ getNeededValue('second', s - 1) }}
+              </li>
+            </ul>
+          </div>
+          <div
+            v-if="normalizedUse12Hours"
+            ref="halfColRef"
+            class="yk-timepicker-column"
+          >
+            <ul>
+              <li
+                :class="[
+                  'yk-timepicker-cell',
+                  { 'yk-timepicker-cell-selected': halfDay === 'am' },
+                ]"
+                @click.left="onClickHalfDay('am')"
+              >
+                AM
+              </li>
+              <li
+                :class="[
+                  'yk-timepicker-cell',
+                  { 'yk-timepicker-cell-selected': halfDay === 'pm' },
+                ]"
+                @click.left="onClickHalfDay('pm')"
+              >
+                PM
               </li>
             </ul>
           </div>
@@ -106,13 +134,14 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { startWithZero, getNowTimeData } from './util'
+import { startWithZero, getNowTimeData, checkTimeStr } from './util'
 import type {
   TimeSelected,
   TimeType,
   TimeValue,
   ScrollBehavior,
   TimePickerProps,
+  HalfDay,
 } from './time-picker'
 
 const props = withDefaults(defineProps<TimePickerProps>(), {
@@ -123,15 +152,15 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
   disabled: false,
   disableConfirm: false,
   step: null,
+  use12Hours: false,
+  format: 'hh:mm:ss',
   disabledHours: () => [],
   disabledMinutes: () => [],
   disabledSeconds: () => [],
 })
 const emit = defineEmits(['update:modelValue'])
 
-const inputValue = ref<string | undefined>(
-  props.modelValue || props.defaultValue,
-)
+const inputValue = ref<string | undefined>()
 const selectedValue = ref<TimeValue>({
   hour: '',
   minute: '',
@@ -152,7 +181,11 @@ const minColRef = ref<HTMLElement>()
 const secColRef = ref<HTMLElement>()
 const openTimepicker = ref(false)
 const isDelete = ref(false)
-const cellRef = ref([])
+const cellMinutRef = ref([])
+const cellHourRef = ref([])
+const cellSecondRef = ref([])
+const halfColRef = ref()
+const halfDay = ref<HalfDay>('pm')
 
 let itemHeight: number
 
@@ -179,6 +212,50 @@ const isDisabled = computed(() => {
     return _arr.includes(index)
   }
 })
+const hourNum = computed(() => {
+  return normalizedUse12Hours.value ? 13 : 24
+})
+const hourColumn = computed(() => {
+  return [/hh:mm:ss/gi, /hh:mm/gi, /hh/gi].some((regex) =>
+    regex.test(normalizedFormat.value),
+  )
+})
+const minuteColumn = computed(() => {
+  return [/hh:mm:ss/gi, /mm:ss/gi, /mm/gi].some((regex) =>
+    regex.test(normalizedFormat.value),
+  )
+})
+const secondColumn = computed(() => {
+  return [/hh:mm:ss/gi, /mm:ss/gi, /ss/gi].some((regex) =>
+    regex.test(normalizedFormat.value),
+  )
+})
+const normalizedFormat = computed(() => {
+  if (/a/gi.test(props.format) && !normalizedUse12Hours.value) {
+    return props.format.replace(/\sa/gi, '')
+  } else if (!/a/gi.test(props.format) && normalizedUse12Hours.value) {
+    return props.format + ' a'
+  }
+  return props.format
+})
+const normalizedUse12Hours = computed(() => {
+  if (!/hh/gi.test(props.format)) return false
+  return props.use12Hours
+})
+const normalizedDefaultValue = computed(() => {
+  if (!checkTimeStr(props.defaultValue, normalizedFormat.value)) {
+    return ''
+  }
+  return props.defaultValue
+})
+const normalizedModelValue = computed(() => {
+  if (!checkTimeStr(props.modelValue, normalizedFormat.value)) {
+    return ''
+  }
+  return props.defaultValue
+})
+
+inputValue.value = normalizedModelValue.value || normalizedDefaultValue.value
 
 function selcetCell(type: TimeType, value: number) {
   if (isDisabled.value(type, value - 1)) return
@@ -202,9 +279,23 @@ function handleHighlight(type: TimeType, value: number) {
 
 // 拼接时间字符串
 function joinTimeStr(selectedValue: TimeValue): string {
-  return `${selectedValue.hour.length ? selectedValue.hour : '00'}:${
-    selectedValue.minute.length ? selectedValue.minute : '00'
-  }:${selectedValue.second.length ? selectedValue.second : '00'}`
+  const hour = hourColumn.value
+    ? selectedValue.hour.length
+      ? selectedValue.hour
+      : '00'
+    : ''
+  const minute = minuteColumn.value
+    ? (hourColumn.value ? ':' : '') +
+      (selectedValue.minute.length ? selectedValue.minute : '00')
+    : ''
+  const second = secondColumn.value
+    ? (minuteColumn.value ? ':' : '') +
+      (selectedValue.second.length ? selectedValue.second : '00')
+    : ''
+  const half = normalizedUse12Hours.value
+    ? ` ${halfDay.value.toUpperCase()}`
+    : ''
+  return `${hour}${minute}${second}${half}`
 }
 
 // 关闭选择器时重置为上一次确定值的状态
@@ -279,7 +370,16 @@ function onClickDelete() {
 }
 
 function onClickNow() {
-  const { hour, minute, second } = getNowTimeData()
+  let { hour, minute, second } = getNowTimeData()
+  if (normalizedUse12Hours.value) {
+    if (parseInt(hour) < 12) halfDay.value = 'am'
+    else {
+      halfDay.value = 'pm'
+      hour = hour == '12' ? '12' : parseInt(hour) - 12 + ''
+    }
+    handleColumnScroll('pm', 0, 'smooth')
+  }
+
   selectedValue.value.hour = hour
   selectedValue.value.minute = minute
   selectedValue.value.second = second
@@ -294,16 +394,23 @@ function onClickNow() {
   })
 }
 
+function onClickHalfDay(type: HalfDay) {
+  halfDay.value = type
+  handleColumnScroll(halfDay.value, 0, 'smooth')
+  inputValue.value = joinTimeStr(selectedValue.value)
+}
+
 function getCellHeight() {
-  const cell: HTMLElement = cellRef.value[0]
-  if (!cellRef.value) return
+  const cell: HTMLElement =
+    cellHourRef.value[0] || cellMinutRef.value[0] || cellSecondRef.value[0]
+  if (!cellMinutRef.value) return
   const margin = parseInt(getComputedStyle(cell).marginTop)
   itemHeight = cell.clientHeight + margin
 }
 
 // 处理选中数字后的列表滚动
 function handleColumnScroll(
-  type: TimeType,
+  type: TimeType | 'am' | 'pm',
   value: number,
   behavior: ScrollBehavior,
 ) {
@@ -320,6 +427,13 @@ function handleColumnScroll(
     case 'second':
       bias = itemHeight * Math.floor((value - 1) / (props.step?.second || 1))
       secColRef.value?.scrollTo({ top: bias, behavior })
+      break
+    case 'am':
+      halfColRef.value?.scrollTo({ top: bias, behavior })
+      break
+    case 'pm':
+      bias = itemHeight
+      halfColRef.value?.scrollTo({ top: bias, behavior })
       break
     default:
       break
@@ -353,9 +467,12 @@ function initOtherUnit(type: TimeType) {
 }
 
 function handleTimeString(scrollBehavior: ScrollBehavior = 'smooth') {
-  // todo：这里的逻辑是判断时间字符串是否合法，目前只用了长度判断，后续要正则
-  if (!inputValue.value || inputValue.value.length < 8) return
-  const timeArr = inputValue.value.split(':')
+  if (
+    !inputValue.value ||
+    !checkTimeStr(inputValue.value, normalizedFormat.value)
+  )
+    return
+  const timeArr = inputValue.value.replace(/\s[ap]m/gi, '').split(':')
   timeArr.forEach((item, index) => {
     if (index === 0) {
       if (item.length === 2 && parseInt(item) >= 0 && parseInt(item) <= 23) {
@@ -375,8 +492,12 @@ function handleTimeString(scrollBehavior: ScrollBehavior = 'smooth') {
       }
     }
   })
+  if (normalizedUse12Hours.value) {
+    handleColumnScroll(halfDay.value, 0, 'instant')
+  }
 }
 
+// 根据步长过滤出可选数字
 function getNeededValue(type: TimeType, raw: number) {
   let step = 1
   if (type === 'hour') step = props.step?.hour || 1
