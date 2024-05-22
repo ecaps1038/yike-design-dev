@@ -27,7 +27,7 @@ defineConfig({
 main.ts
 
 ```ts
-import '@yike-design/ui/es/components/styles/index.less'
+import '@yike-design/ui/es/index.less'
 // 引入全局方法
 import { YkMessage, YkNotification } from '@yike-design/ui'
 
