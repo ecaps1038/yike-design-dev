@@ -16,7 +16,7 @@
     "new": "node ./config/script/new-component.mjs",
     "postinstall": "npx husky install",
     "preinstall": "npx only-allow pnpm",
-    "version:release": "pnpm --filter @yike-design/ui release && git push --follow-tags",
+    "version:release": "pnpm run build:comp && pnpm --filter @yike-design/ui release && git push --follow-tags",
     "build:comp": "pnpm --filter @yike-design/build build && pnpm --filter @yike-design/ui build:comp && pnpm --filter @yike-design/ui build:less",
     "build:less": "pnpm --filter @yike-design/build build && pnpm --filter @yike-design/ui build:less",
     "gen:icon": "pnpm --filter @yike-design/ui gen:icon",
