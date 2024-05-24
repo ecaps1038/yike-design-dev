@@ -26,7 +26,7 @@ export interface TimePickerProps {
   size?: string;
   disabled?: boolean;
   style?: Partial<CSSStyleDeclaration> | null;
-  type?: string;
+  type?: PickerType;
   disableConfirm?: boolean;
   step?: TimeStep | null;
   use12Hours?: boolean;
@@ -39,3 +39,4 @@ export interface TimePickerProps {
 export type HalfDay = 'pm' | 'am';
 export type TimeType = 'hour' | 'minute' | 'second';
 export type ScrollBehavior = 'smooth' | 'instant';
+export type PickerType = 'time' | 'time-range';

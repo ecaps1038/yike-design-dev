@@ -9,7 +9,7 @@
 :::snippet
 范围选择器
 时间输入器的范围选择器。
-<BasicTimePicker/>
+<RangePicker/>
 :::
 
 :::snippet

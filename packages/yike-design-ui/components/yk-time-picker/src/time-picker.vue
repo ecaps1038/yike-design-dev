@@ -14,6 +14,7 @@
     @open-change="onOpenPickerChange"
   >
     <yk-input
+      v-if="type === 'time'"
       v-model="inputValue"
       placeholder="请选择时间"
       :size="size"
@@ -36,6 +37,38 @@
         />
       </template>
     </yk-input>
+
+    <div v-else class="range-picker-wrapper">
+      <yk-input
+        v-model="startInputValue"
+        placeholder="开始时间"
+        size="m"
+        style="width: 140px"
+        @focus="onFocusInput"
+        @change="onChangeInput"
+      ></yk-input>
+      <div>-</div>
+      <yk-input
+        v-model="endInputValue"
+        placeholder="结束时间"
+        size="m"
+        style="width: 140px"
+        @focus="onFocusInput"
+        @change="onChangeInput"
+      ></yk-input>
+      <IconCloseOutline
+        v-if="isDelete"
+        class="input-icon delete-icon"
+        @mouseleave="isDelete = false"
+        @click="onClickDelete"
+      />
+      <IconTimeOutline
+        v-else
+        class="input-icon"
+        @mouseenter="isDelete = true"
+      />
+    </div>
+
     <template #content>
       <div class="yk-timepicker-container">
         <div class="yk-timepicker">
@@ -152,6 +185,7 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
   disabled: false,
   disableConfirm: false,
   step: null,
+  type: 'time',
   use12Hours: false,
   format: 'hh:mm:ss',
   disabledHours: () => [],
@@ -161,6 +195,8 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
 const emit = defineEmits(['update:modelValue'])
 
 const inputValue = ref<string | undefined>()
+const startInputValue = ref<string | undefined>()
+const endInputValue = ref<string | undefined>()
 const selectedValue = ref<TimeValue>({
   hour: '',
   minute: '',
