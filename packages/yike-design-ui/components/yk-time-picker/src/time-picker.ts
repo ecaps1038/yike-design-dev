@@ -36,7 +36,14 @@ export interface TimePickerProps {
   disabledSeconds?: () => number[];
 }
 
+export interface PickerValue {
+  time: TimeValue;
+  startTime: TimeValue;
+  endTime: TimeValue;
+}
+
 export type HalfDay = 'pm' | 'am';
 export type TimeType = 'hour' | 'minute' | 'second';
 export type ScrollBehavior = 'smooth' | 'instant';
 export type PickerType = 'time' | 'time-range';
+export type RangeTime = 'time' | 'startTime' | 'endTime';

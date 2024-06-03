@@ -38,13 +38,13 @@
       </template>
     </yk-input>
 
-    <div v-else class="range-picker-wrapper">
+    <div v-else ref="rangeWrapperRef" class="range-picker-wrapper">
       <yk-input
         v-model="startInputValue"
         placeholder="开始时间"
         size="m"
         style="width: 140px"
-        @focus="onFocusInput"
+        @focus="onFocusStartInput"
         @change="onChangeInput"
       ></yk-input>
       <div>-</div>
@@ -53,7 +53,7 @@
         placeholder="结束时间"
         size="m"
         style="width: 140px"
-        @focus="onFocusInput"
+        @focus="onFocusEndInput"
         @change="onChangeInput"
       ></yk-input>
       <IconCloseOutline
@@ -175,6 +175,8 @@ import type {
   ScrollBehavior,
   TimePickerProps,
   HalfDay,
+  PickerValue,
+  RangeTime,
 } from './time-picker'
 
 const props = withDefaults(defineProps<TimePickerProps>(), {
@@ -197,15 +199,15 @@ const emit = defineEmits(['update:modelValue'])
 const inputValue = ref<string | undefined>()
 const startInputValue = ref<string | undefined>()
 const endInputValue = ref<string | undefined>()
-const selectedValue = ref<TimeValue>({
-  hour: '',
-  minute: '',
-  second: '',
+const selectedValue = ref<PickerValue>({
+  time: { hour: '', minute: '', second: '' },
+  startTime: { hour: '', minute: '', second: '' },
+  endTime: { hour: '', minute: '', second: '' },
 })
-const confirmedValue = ref<TimeValue>({
-  hour: '',
-  minute: '',
-  second: '',
+const confirmedValue = ref<PickerValue>({
+  time: { hour: '', minute: '', second: '' },
+  startTime: { hour: '', minute: '', second: '' },
+  endTime: { hour: '', minute: '', second: '' },
 })
 const selected = ref<TimeSelected>({
   hour: Array(24).fill(false),
@@ -215,6 +217,7 @@ const selected = ref<TimeSelected>({
 const hourColRef = ref<HTMLElement>()
 const minColRef = ref<HTMLElement>()
 const secColRef = ref<HTMLElement>()
+const rangeWrapperRef = ref<HTMLElement>()
 const openTimepicker = ref(false)
 const isDelete = ref(false)
 const cellMinutRef = ref([])
@@ -222,7 +225,8 @@ const cellHourRef = ref([])
 const cellSecondRef = ref([])
 const halfColRef = ref()
 const halfDay = ref<HalfDay>('pm')
-
+const isStartTime = ref(false)
+const isEndTime = ref(false)
 let itemHeight: number
 
 // 计算单个时间选项是否禁用
@@ -293,14 +297,35 @@ const normalizedModelValue = computed(() => {
 
 inputValue.value = normalizedModelValue.value || normalizedDefaultValue.value
 
+// 选中时间数字时
 function selcetCell(type: TimeType, value: number) {
   if (isDisabled.value(type, value - 1)) return
-  selectedValue.value[type] = startWithZero(value - 1)
-  // 跳过确认步骤时
-  props.disableConfirm &&
-    (confirmedValue.value[type] = startWithZero(value - 1))
-  initOtherUnit(type)
-  inputValue.value = joinTimeStr(selectedValue.value)
+  if (props.type !== 'time-range') {
+    selectedValue.value.time[type] = startWithZero(value - 1)
+    // 跳过确认步骤时
+    props.disableConfirm &&
+      (confirmedValue.value.time[type] = startWithZero(value - 1))
+    initOtherUnit(type)
+    inputValue.value = joinTimeStr(selectedValue.value.time)
+  } else {
+    // 范围选择器
+    if (isStartTime.value) {
+      selectedValue.value.startTime[type] = startWithZero(value - 1)
+      // 跳过确认步骤时
+      props.disableConfirm &&
+        (confirmedValue.value.startTime[type] = startWithZero(value - 1))
+      initOtherUnit(type, 'startTime')
+      startInputValue.value = joinTimeStr(selectedValue.value.startTime)
+    } else if (isEndTime.value) {
+      selectedValue.value.endTime[type] = startWithZero(value - 1)
+      // 跳过确认步骤时
+      props.disableConfirm &&
+        (confirmedValue.value.endTime[type] = startWithZero(value - 1))
+      initOtherUnit(type, 'endTime')
+      endInputValue.value = joinTimeStr(selectedValue.value.endTime)
+    }
+  }
+
   handleHighlight(type, value)
   handleColumnScroll(type, value, 'smooth')
 }
@@ -337,24 +362,24 @@ function joinTimeStr(selectedValue: TimeValue): string {
 // 关闭选择器时重置为上一次确定值的状态
 function resetStatus() {
   // 尚未有已保存的值
-  if (!confirmedValue.value.hour) {
+  if (!confirmedValue.value.time.hour) {
     inputValue.value = ''
   } else {
-    inputValue.value = joinTimeStr(confirmedValue.value)
+    inputValue.value = joinTimeStr(confirmedValue.value.time)
   }
   for (let key in selectedValue.value) {
-    selectedValue.value[key] = confirmedValue.value[key]
+    selectedValue.value.time[key] = confirmedValue.value.time[key]
   }
   for (let key in selected.value) {
     for (let i = 0; i < selected.value[key].length; i++) {
-      selected.value[key][i] = parseInt(confirmedValue.value[key]) === i
+      selected.value[key][i] = parseInt(confirmedValue.value.time[key]) === i
     }
   }
 }
 
 function resetConfirmedValue() {
   for (let key in confirmedValue.value) {
-    confirmedValue.value[key] = ''
+    confirmedValue.value.time[key] = ''
   }
 }
 
@@ -369,7 +394,7 @@ function onOpenPickerChange(open: boolean) {
     for (let key in confirmedValue.value) {
       handleColumnScroll(
         key as TimeType,
-        parseInt(confirmedValue.value[key]) + 1,
+        parseInt(confirmedValue.value.time[key]) + 1,
         'instant',
       )
     }
@@ -379,24 +404,43 @@ function onOpenPickerChange(open: boolean) {
 }
 
 function onChangeInput() {
-  if (!inputValue.value && selectedValue.value.hour) {
-    inputValue.value = joinTimeStr(selectedValue.value)
+  if (!inputValue.value && selectedValue.value.time.hour) {
+    inputValue.value = joinTimeStr(selectedValue.value.time)
   } else if (inputValue.value) {
     handleTimeString()
   }
 }
 
 function onConfirm() {
-  for (let key in confirmedValue.value) {
-    confirmedValue.value[key] = selectedValue.value[key]
+  const _range: RangeTime =
+    props.type === 'time' ? 'time' : isStartTime.value ? 'startTime' : 'endTime'
+  for (let key in confirmedValue.value[_range]) {
+    console.log()
+    confirmedValue.value[_range][key] = selectedValue.value[_range][key]
   }
   openTimepicker.value = false
-  inputValue.value = joinTimeStr(confirmedValue.value)
+  inputValue.value = joinTimeStr(confirmedValue.value[_range])
   emit('update:modelValue', inputValue.value)
 }
 
 function onFocusInput() {
   openTimepicker.value = true
+}
+
+function onFocusStartInput() {
+  isStartTime.value = true
+  isEndTime.value = false
+  rangeWrapperRef.value &&
+    rangeWrapperRef.value.dispatchEvent(new Event('focus'))
+  onFocusInput()
+}
+
+function onFocusEndInput() {
+  isStartTime.value = false
+  isEndTime.value = true
+  rangeWrapperRef.value &&
+    rangeWrapperRef.value.dispatchEvent(new Event('focus'))
+  onFocusInput()
 }
 
 function onClickDelete() {
@@ -416,15 +460,18 @@ function onClickNow() {
     handleColumnScroll('pm', 0, 'smooth')
   }
 
-  selectedValue.value.hour = hour
-  selectedValue.value.minute = minute
-  selectedValue.value.second = second
-  inputValue.value = joinTimeStr(selectedValue.value)
+  selectedValue.value.time.hour = hour
+  selectedValue.value.time.minute = minute
+  selectedValue.value.time.second = second
+  inputValue.value = joinTimeStr(selectedValue.value.time)
   ;['hour', 'minute', 'second'].forEach((item: string) => {
-    handleHighlight(item as TimeType, parseInt(selectedValue.value[item]) + 1)
+    handleHighlight(
+      item as TimeType,
+      parseInt(selectedValue.value.time[item]) + 1,
+    )
     handleColumnScroll(
       item as TimeType,
-      parseInt(selectedValue.value[item]) + 1,
+      parseInt(selectedValue.value.time[item]) + 1,
       'smooth',
     )
   })
@@ -433,7 +480,7 @@ function onClickNow() {
 function onClickHalfDay(type: HalfDay) {
   halfDay.value = type
   handleColumnScroll(halfDay.value, 0, 'smooth')
-  inputValue.value = joinTimeStr(selectedValue.value)
+  inputValue.value = joinTimeStr(selectedValue.value.time)
 }
 
 function getCellHeight() {
@@ -479,25 +526,26 @@ function handleColumnScroll(
 
 // 处理空值列的滚动
 function initColumnScroll() {
-  if (selectedValue.value.hour === '00') {
+  if (selectedValue.value.time.hour === '00') {
     handleHighlight('hour', 1)
     hourColRef.value?.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
-  if (selectedValue.value.minute === '00') {
+  if (selectedValue.value.time.minute === '00') {
     handleHighlight('minute', 1)
     minColRef.value?.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
-  if (selectedValue.value.second === '00') {
+  if (selectedValue.value.time.second === '00') {
     handleHighlight('second', 1)
     secColRef.value?.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 }
 
 // 当选中某个时间时，要判断另外两个type的selectedValue是否是空，若是则初始化为00跟ui表现保持一致
-function initOtherUnit(type: TimeType) {
+function initOtherUnit(type: TimeType, rangeTime: RangeTime = 'time') {
   for (let key in selectedValue.value) {
     if (key !== type) {
-      selectedValue.value[key] === '' && (selectedValue.value[key] = '00')
+      selectedValue.value[rangeTime][key] === '' &&
+        (selectedValue.value.time[key] = '00')
     }
   }
 }
@@ -512,13 +560,13 @@ function handleTimeString(scrollBehavior: ScrollBehavior = 'smooth') {
   timeArr.forEach((item, index) => {
     if (index === 0) {
       if (item.length === 2 && parseInt(item) >= 0 && parseInt(item) <= 23) {
-        selectedValue.value.hour = item
+        selectedValue.value.time.hour = item
         handleHighlight('hour', parseInt(item) + 1)
         handleColumnScroll('hour', parseInt(item) + 1, scrollBehavior)
       }
     } else {
       if (item.length === 2 && parseInt(item) >= 0 && parseInt(item) <= 59) {
-        selectedValue.value[index === 1 ? 'minute' : 'second'] = item
+        selectedValue.value.time[index === 1 ? 'minute' : 'second'] = item
         handleHighlight(index === 1 ? 'minute' : 'second', parseInt(item) + 1)
         handleColumnScroll(
           index === 1 ? 'minute' : 'second',
