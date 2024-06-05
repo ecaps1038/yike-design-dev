@@ -23,7 +23,7 @@ export interface TimeStep {
 export interface TimePickerProps {
   modelValue?: string;
   defaultValue?: string;
-  size?: string;
+  size?: InputSize;
   disabled?: boolean;
   style?: Partial<CSSStyleDeclaration> | null;
   type?: PickerType;
@@ -47,3 +47,4 @@ export type TimeType = 'hour' | 'minute' | 'second';
 export type ScrollBehavior = 'smooth' | 'instant';
 export type PickerType = 'time' | 'time-range';
 export type RangeTime = 'time' | 'startTime' | 'endTime';
+type InputSize = 's' | 'm' | 'l' | 'xl';

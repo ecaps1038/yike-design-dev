@@ -76,8 +76,17 @@
 
 `<time-picker>` Props
 
-| 参数       | 描述       | 类型                              | 默认值     | (md 表格结构) |
-| ---------- | ---------- | --------------------------------- | ---------- | ------------- |
-| type       | 按钮的类型 | 'primary'或'secondary'或'outline' | primary    |
-| 单元格信息 | 单元格信息 | 单元格信息                        | 单元格信息 |
-| 单元格信息 | 单元格信息 | 单元格信息                        | 单元格信息 |
+| 参数                  | 描述                                               | 类型                                                         | 默认值     |
+| --------------------- | -------------------------------------------------- | ------------------------------------------------------------ | ---------- |
+| type                  | 选择器类型                                         | 'time' 或 'time-range'                                       | 'time'     |
+| model-value (v-model) | 绑定值                                             | string                                                       | -          |
+| default-value         | 默认值                                             | string                                                       | -          |
+| disabled              | 是否禁用                                           | boolean                                                      | false      |
+| format                | 展示日期的格式                                     | string                                                       | 'HH:mm:ss' |
+| size                  | 输入框尺寸                                         | 's' 或 'm' 或 'l' 或 'xl'                                    | 'm'        |
+| use12-hours           | 12 小时制                                          | boolean                                                      | false      |
+| step                  | 设置 时 / 分 / 秒 的选择间隔                       | { hour?: number; minute?: number; second?: number;}          |
+| disabled-hours        | 禁用的部分小时选项                                 | () => number[]                                               | -          |
+| disabled-minutes      | 禁用的部分分钟选项                                 | (selectedHour?: number) => number[]                          | -          |
+| disabled-seconds      | 禁用的部分秒数选项                                 | (selectedHour?: number, selectedMinute?: number) => number[] | -          |
+| disable-confirm       | 禁用确认步骤，开启后直接点选时间不需要点击确认按钮 | boolean                                                      | false      |
