@@ -287,22 +287,69 @@ const normalizedUse12Hours = computed(() => {
   return props.use12Hours
 })
 const normalizedDefaultValue = computed(() => {
-  if (!checkTimeStr(props.defaultValue, normalizedFormat.value)) {
-    return ''
-  }
+  if (!checkDefault(props.defaultValue)) return ''
   return props.defaultValue
 })
 const normalizedModelValue = computed(() => {
-  if (!checkTimeStr(props.modelValue, normalizedFormat.value)) {
-    return ''
-  }
+  if (!checkDefault(props.modelValue)) return ''
   return props.defaultValue
 })
 const _range = computed(() =>
   props.type === 'time' ? 'time' : isStartTime.value ? 'startTime' : 'endTime',
 )
 
-inputValue.value = normalizedModelValue.value || normalizedDefaultValue.value
+init()
+
+function init() {
+  if (props.type === 'time') {
+    inputValue.value =
+      (normalizedModelValue.value as string) ||
+      (normalizedDefaultValue.value as string)
+    handleTimeString('instant', 'time')
+    transformToConfirm('time')
+  } else {
+    startInputValue.value =
+      (normalizedModelValue.value as string[])[0] ||
+      (normalizedDefaultValue.value as string[])[0]
+    handleTimeString('instant', 'startTime')
+    transformToConfirm('startTime')
+
+    endInputValue.value =
+      (normalizedModelValue.value as string[])[1] ||
+      (normalizedDefaultValue.value as string[])[1]
+    handleTimeString('instant', 'endTime')
+    transformToConfirm('endTime')
+  }
+}
+
+function transformToConfirm(timeRange: RangeTime) {
+  for (let key in confirmedValue.value[timeRange]) {
+    confirmedValue.value[timeRange][key] = selectedValue.value[timeRange][key]
+  }
+}
+
+function checkDefault(value: string | string[]) {
+  const checkFormatTime = props.type === 'time' && typeof value === 'string'
+  const checkFormatRangeTime =
+    props.type === 'time-range' && Array.isArray(value)
+
+  if (
+    checkFormatTime &&
+    !checkTimeStr(value as string, normalizedFormat.value)
+  ) {
+    return false
+  }
+
+  if (
+    checkFormatRangeTime &&
+    (value as string[]).some(
+      (item) => !checkTimeStr(item, normalizedFormat.value),
+    )
+  ) {
+    return false
+  }
+  return true
+}
 
 // 选中时间数字时
 function selcetCell(type: TimeType, value: number) {
