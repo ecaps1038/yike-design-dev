@@ -51,7 +51,7 @@ import {
   YkImagePreviewGroup,
 } from './components/image';
 import YkSpinner from './components/spinner';
-import YkTimePicker from './components/yk-time-picker';
+import YkTimePicker from './components/time-picker';
 import { vLoading } from './components/spinner/src/directive';
 const components: {
   [propName: string]: Component;
