@@ -1,0 +1,86 @@
+@import '../../styles/basis.less';
+
+.yk-timepicker-container {
+  width: 200px;
+
+  .yk-timepicker-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px 0;
+    border-top: 1px solid @gray-2;
+    &-extra-wrapper {
+      padding: 6px 10px;
+      border-top: 1px solid @gray-2;
+    }
+  }
+}
+
+.yk-timepicker {
+  display: flex;
+  cursor: pointer;
+
+  .yk-timepicker-column {
+    overflow: auto;
+    height: 260px;
+    flex: 1;
+    border-right: 1px solid @gray-2;
+
+    &:last-child {
+      border-right: none;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar {
+      width: 0;
+      // width: 8px;
+      color: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: none;
+    }
+
+    ul::after {
+      content: '';
+      display: block;
+      height: 216px;
+    }
+
+    .yk-timepicker-cell {
+      margin: 8px 0;
+      text-align: center;
+      line-height: 2;
+      list-style: none;
+      user-select: none;
+
+      &:not(&-disabled):hover {
+        background-color: @gray-1;
+      }
+      &-selected {
+        background-color: @gray-1;
+      }
+      &-disabled {
+        color: @gray-4;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.input-icon {
+  cursor: pointer;
+  border-radius: 50%;
+  &.delete-icon {
+    background-color: @gray-1;
+  }
+}
+
+.range-picker-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  width: 330px;
+  border-radius: @radius-m;
+  background-color: @gray-1;
+}

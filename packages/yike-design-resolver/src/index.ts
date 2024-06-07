@@ -24,6 +24,7 @@ export function sideEffects(importName: string) {
       break;
     }
   }
+  console.log(componentDir);
   return `@yike-design/ui/components/${componentDir}/style`;
 }
 

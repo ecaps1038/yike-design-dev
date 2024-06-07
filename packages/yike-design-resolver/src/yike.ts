@@ -56,6 +56,7 @@ export const matchComponents = [
   },
   { pattern: /^YkSpinner$/, componentDir: 'spinner' },
   { pattern: /^vLoading$/, componentDir: 'directive' },
+  { pattern: /^YkTimePicker$/, componentDir: 'time-picker' },
 ];
 export function kebabCase(key: string) {
   const result = key.replace(/([A-Z])/g, ' $2').trim();
