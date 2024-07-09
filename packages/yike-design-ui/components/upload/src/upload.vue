@@ -101,7 +101,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, getCurrentInstance, reactive } from 'vue'
+import { ref, computed, getCurrentInstance, reactive, watch } from 'vue'
 import {
   UploadProps,
   ImageTypes,
@@ -334,4 +334,10 @@ const handleSubmit = async () => {
   onUploadRequest(newFile)
   editModalVisible.value = false
 }
+watch(
+  () => props.fileList,
+  () => {
+    currentList.value = generateListUid(props.fileList)
+  },
+)
 </script>
