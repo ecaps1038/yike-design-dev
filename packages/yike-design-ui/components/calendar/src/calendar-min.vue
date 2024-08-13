@@ -11,9 +11,9 @@ defineOptions({
   name: 'YkCalendar',
 })
 
-const bem = createCssScope('calendar')
-const btab = createCssScope('calendar-table')
-const btaday = createCssScope('calendar-day')
+const bem = createCssScope('calendar-min')
+const btab = createCssScope('calendar-min-table')
+const btaday = createCssScope('calendar-min-day')
 
 const props = defineProps(calendarProps)
 
@@ -28,7 +28,7 @@ const date = computed(() => {
 })
 const emit = defineEmits(calendarEmits)
 
-const { rows, weekDays } = useRows(date)
+const { rows, weekDaysMin } = useRows(date)
 const {
   selectDate,
   handlePick,
@@ -43,22 +43,42 @@ const {
   <div :class="bem()">
     <div :class="bem('header')">
       <slot name="header" :data="getHeadeSlotData()">
-        <div :class="bem('title')">{{ currentDate }}</div>
-        <yk-space size="m">
-          <yk-button type="outline" size="s" @click="selectDate('prev-year')">
-            前一年
+        <yk-space size="s" align="center">
+          <yk-button
+            type="outline"
+            size="s"
+            shape="square"
+            @click="selectDate('prev-year')"
+          >
+            <IconLeft1Outline />
           </yk-button>
-          <yk-button type="outline" size="s" @click="selectDate('prev-month')">
-            上个月
+          <yk-button
+            type="outline"
+            size="s"
+            shape="square"
+            @click="selectDate('prev-month')"
+          >
+            <IconLeftOutline />
           </yk-button>
+          <div :class="bem('title')">{{ currentDate }}</div>
           <yk-button type="outline" size="s" @click="selectDate('tody')">
             今天
           </yk-button>
-          <yk-button type="outline" size="s" @click="selectDate('next-month')">
-            下个月
+          <yk-button
+            type="outline"
+            size="s"
+            shape="square"
+            @click="selectDate('next-month')"
+          >
+            <IconRightOutline />
           </yk-button>
-          <yk-button type="outline" size="s" @click="selectDate('next-year')">
-            后一年
+          <yk-button
+            type="outline"
+            size="s"
+            shape="square"
+            @click="selectDate('next-year')"
+          >
+            <IconRight1Outline />
           </yk-button>
         </yk-space>
       </slot>
@@ -67,7 +87,7 @@ const {
       <table :class="btab()" cellpadding="0" cellspacing="0">
         <thead>
           <tr>
-            <th v-for="week in weekDays" :key="week">{{ week }}</th>
+            <th v-for="week in weekDaysMin" :key="week">{{ week }}</th>
           </tr>
         </thead>
         <tbody>
@@ -79,7 +99,7 @@ const {
               @click="handlePick(cell)"
             >
               <slot name="date-cell" :data="getSlotData(cell)">
-                {{ cell.text }}
+                <p>{{ cell.text }}</p>
               </slot>
             </td>
           </tr>

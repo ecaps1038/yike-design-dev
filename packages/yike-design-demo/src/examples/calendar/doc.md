@@ -7,6 +7,12 @@
 :::
 
 :::snippet
+精简版
+这里展示日历精简版本
+<CalendarMin/>
+:::
+
+:::snippet
 自定义显示单元格内容
 使用具名插槽`date-cell`定义单元格显示的内容，可以获取到 `date` (当前日期)，`isSelected` 选择状态，`day` 格式化时间(YYYY-MM-DD)，`type` 类型(`prev | current | next`)
 <CalendarSlot/>

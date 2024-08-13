@@ -24,6 +24,17 @@ export function useRows(date: ComputedRef<Dayjs>) {
     ];
   });
 
+  //min
+  const weekMapingMin = ['日', '一', '二', '三', '四', '五', '六'];
+  // 表头日期展示
+  const weekDaysMin = computed(() => {
+    // 从周期计算开始截取 如果从0开始那么就截取 0 然后拼接 剩下的
+    return [
+      ...weekMapingMin.slice(firstDayofWeek),
+      ...weekMapingMin.slice(0, firstDayofWeek),
+    ];
+  });
+
   const rows = computed(() => {
     let list: CalendarCell[] = [];
     // 获取当前月的第一天是星期几
@@ -61,6 +72,7 @@ export function useRows(date: ComputedRef<Dayjs>) {
   return {
     rows,
     weekDays,
+    weekDaysMin,
   };
 }
 

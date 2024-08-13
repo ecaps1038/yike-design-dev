@@ -26,7 +26,7 @@ import YkInputTag from './components/input-tag';
 import YkPagination from './components/pagination';
 import YkTextArea from './components/text-area';
 import YkTag from './components/tag';
-import YkCalendar from './components/calendar';
+import { YkCalendar, YkCalendarMin } from './components/calendar';
 import YkSkeleton from './components/skeleton';
 import YkDivider from './components/divider';
 import YkLink from './components/link';
@@ -92,6 +92,7 @@ const components: {
   YkTextArea,
   YkTag,
   YkCalendar,
+  YkCalendarMin,
   YkSkeleton,
   YkDivider,
   YkLink,
@@ -154,6 +155,7 @@ export {
   YkTextArea,
   YkTag,
   YkCalendar,
+  YkCalendarMin,
   YkSkeleton,
   YkDivider,
   YkLink,

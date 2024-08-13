@@ -31,6 +31,7 @@ export const matchComponents = [
   { pattern: /^YkTextArea$/, componentDir: 'text-area' },
   { pattern: /^YkTag$/, componentDir: 'tag' },
   { pattern: /^YkCalendar$/, componentDir: 'calendar' },
+  { pattern: /^YkCalendarMin$/, componentDir: 'calendar' },
   { pattern: /^YkSkeleton$/, componentDir: 'skeleton' },
   { pattern: /^YkDivider$/, componentDir: 'divider' },
   { pattern: /^YkLink$/, componentDir: 'link' },
