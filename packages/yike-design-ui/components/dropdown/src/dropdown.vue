@@ -1,5 +1,5 @@
 <template>
-  <div :class="[bem(), _disabled]">
+  <div :class="bem([_disabled])">
     <yk-tooltip
       v-model:open="isOpen"
       :arrow="arrow"
@@ -38,9 +38,7 @@ import { ref, provide, watch } from 'vue'
 import type { DropdownProps, DropdownEmits } from './dropdown'
 import '../style'
 
-defineOptions({
-  name: 'YkDropdown',
-})
+defineOptions({ name: 'YkDropdown' })
 
 const bem = createCssScope('dropdown')
 const emit = defineEmits<DropdownEmits>()
@@ -50,7 +48,6 @@ const props = withDefaults(
   defineProps<DropdownProps>(), 
   {
     title: '',
-    size: 'l',
     open: false,
     arrow: true,
     disabled: false,

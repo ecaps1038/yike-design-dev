@@ -1,5 +1,5 @@
 <template>
-  <yk-modal v-model="visible" title="这里是标题小弹窗" size="small">
+  <yk-modal v-model="visible" title="这里是标题小弹窗" size="s">
     <span>这一块是modal对话框的内容部分，这里支持各种标签，组件</span>
   </yk-modal>
   <yk-button @click="showModal">modal 对话框</yk-button>

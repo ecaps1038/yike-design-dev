@@ -29,7 +29,6 @@ import { ImagePreviewGroupProps } from './preview'
 import { useState } from './hooks/use-state'
 import { YkImage, YkImagePreview } from '..'
 import YkSpace from '../../space'
-import '../style'
 
 defineOptions({
   name: 'YkImageGroup',

@@ -48,7 +48,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue'
+import { computed, watch, ref, onMounted } from 'vue'
 import type { CSSProperties } from 'vue'
 import { ImageProps } from './image'
 import { pick, normalizeImageSizeProp, vObserveVisibility } from './utils'
@@ -56,7 +56,6 @@ import { createCssScope } from '../../utils'
 import useImageLoadState from './hooks/use-image-load-status'
 import { IconImageBackupOutline } from '../../svg-icon'
 import Preview from './preview.vue'
-import '../style'
 
 defineOptions({
   name: 'YkImage',
@@ -102,16 +101,30 @@ const sizeStyle = computed(() => ({
 
 const isShowFooter = computed(() => props.title || props.description)
 
-watch(
-  () => props.src,
-  () => setLoadStatus('loading'),
-)
+//记录当前是否在可视区域，为监听到src变化可及时更新
+const nowVisible = ref<boolean>(false)
 
 const handleVisibilityChange = (visible: boolean) => {
   if (props.isLazy) {
     if (!imageSrc.value && visible) imageSrc.value = props.src
   } else imageSrc.value = props.src
+  nowVisible.value = visible
 }
+
+watch(
+  () => props.src,
+  (newSrc) => {
+    setLoadStatus('loading')
+    if (nowVisible.value) {
+      //更新src时在可视区域内直接渲染
+      imageSrc.value = newSrc
+    }
+    if (props.isLazy && !nowVisible.value) {
+      //更新src时在非可视区域，但是需要懒加载先清空旧src等待加载
+      imageSrc.value = ''
+    }
+  },
+)
 
 const onImgLoaded = () => setLoadStatus('loaded')
 
@@ -121,4 +134,8 @@ const onImageClick = () => {
   if (!props.preview) return
   previewVOpen.value = true
 }
+
+onMounted(() => {
+  setLoadStatus('loading')
+})
 </script>

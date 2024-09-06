@@ -11,6 +11,7 @@
     >
       {{ textVal }}
     </div>
+    <span v-if="props.showWordLimit" class="word-limit">{{ limitNum }}</span>
     <textarea
       ref="textAreaRef"
       :value="textVal"
@@ -27,7 +28,6 @@
       @compositionupdate="onComposition"
       @compositionend="onComposition"
     ></textarea>
-    <span v-if="props.showWordLimit" class="word-limit">{{ limitNum }}</span>
     <button
       v-if="clearable && !disabled"
       aria-label="清空内容"

@@ -26,7 +26,7 @@ import YkInputTag from './components/input-tag';
 import YkPagination from './components/pagination';
 import YkTextArea from './components/text-area';
 import YkTag from './components/tag';
-import YkCalendar from './components/calendar';
+import { YkCalendar, YkCalendarMin } from './components/calendar';
 import YkSkeleton from './components/skeleton';
 import YkDivider from './components/divider';
 import YkLink from './components/link';
@@ -51,6 +51,7 @@ import {
   YkImagePreviewGroup,
 } from './components/image';
 import YkSpinner from './components/spinner';
+import YkTimePicker from './components/time-picker';
 import { vLoading } from './components/spinner/src/directive';
 const components: {
   [propName: string]: Component;
@@ -91,6 +92,7 @@ const components: {
   YkTextArea,
   YkTag,
   YkCalendar,
+  YkCalendarMin,
   YkSkeleton,
   YkDivider,
   YkLink,
@@ -115,6 +117,7 @@ const components: {
   YkImagePreview,
   YkImagePreviewGroup,
   YkSpinner,
+  YkTimePicker,
 };
 
 export {
@@ -152,6 +155,7 @@ export {
   YkTextArea,
   YkTag,
   YkCalendar,
+  YkCalendarMin,
   YkSkeleton,
   YkDivider,
   YkLink,
@@ -180,6 +184,7 @@ export {
   YkImagePreview,
   YkImagePreviewGroup,
   YkSpinner,
+  YkTimePicker,
   vLoading,
 };
 

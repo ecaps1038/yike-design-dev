@@ -10,11 +10,6 @@
   &__title {
     .font-s();
   }
-  &__button-group {
-    button {
-      margin: 0 2.5px;
-    }
-  }
   &__body {
     border-radius: 3px;
   }
@@ -65,5 +60,91 @@
   &:hover {
     cursor: pointer;
     background-color: @scolor-1;
+  }
+}
+//min
+.yk-calendar-min {
+  color: @font-color-l;
+  table {
+    width: auto;
+    min-width: auto;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding-bottom: @space-m;
+  }
+  &__title {
+    .font-m();
+    font-weight: 600;
+  }
+  &__body {
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+  }
+}
+
+.yk-calendar-min-table {
+  table-layout: fixed;
+  th {
+    .font-m();
+    padding: 0 !important;
+    text-align: center !important;
+  }
+  td {
+    box-sizing: border-box;
+    text-align: center;
+    &.is-selected {
+      p {
+        font-weight: 600;
+        color: @white !important;
+        background-color: @pcolor;
+      }
+    }
+  }
+  td.prev,
+  td.next {
+    color: @font-color-ss !important;
+  }
+  td.current {
+    color: @font-color-l;
+  }
+  tr {
+    td:nth-child(3) {
+      color: @font-color-l;
+    }
+  }
+  tr:first-child {
+    td {
+      border-top: 1px solid @line-color-s;
+    }
+  }
+}
+
+.yk-calendar-min-day {
+  padding: 12px !important;
+
+  border: 0 !important;
+  box-sizing: border-box;
+  p {
+    .font-m();
+    margin: 0;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: @radius-s;
+    line-height: 32px;
+    text-align: center;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: @pcolor-1;
+  }
+}
+.tody {
+  p {
+    color: @pcolor;
   }
 }

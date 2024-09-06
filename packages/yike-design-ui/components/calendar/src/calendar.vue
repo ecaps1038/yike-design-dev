@@ -4,6 +4,7 @@ import { createCssScope } from '../../utils'
 import { useRows, useCallback } from './utils'
 import { calendarProps, calendarEmits } from './calendar'
 import ykButton from '../../button'
+import YkSpace from '../../space'
 import dayjs from 'dayjs'
 
 defineOptions({
@@ -43,7 +44,7 @@ const {
     <div :class="bem('header')">
       <slot name="header" :data="getHeadeSlotData()">
         <div :class="bem('title')">{{ currentDate }}</div>
-        <div :class="bem('button-group')">
+        <yk-space size="m">
           <yk-button type="outline" size="s" @click="selectDate('prev-year')">
             前一年
           </yk-button>
@@ -59,7 +60,7 @@ const {
           <yk-button type="outline" size="s" @click="selectDate('next-year')">
             后一年
           </yk-button>
-        </div>
+        </yk-space>
       </slot>
     </div>
     <div :class="bem('body')">

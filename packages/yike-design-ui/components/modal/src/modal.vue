@@ -23,7 +23,7 @@
               bem('main'),
               bem({
                 shadow: !props.showMask,
-                size: size === 'small',
+                [`${size}`]: size,
               }),
             ]"
           >
@@ -78,7 +78,7 @@ defineOptions({
 const props = withDefaults(defineProps<modalBaseProps>(), {
   modelValue: false,
   title: '',
-  size: 'large',
+  size: 'l',
   showFooter: true,
   to: 'body',
   scrollable: false,

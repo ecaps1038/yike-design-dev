@@ -31,6 +31,7 @@ export const matchComponents = [
   { pattern: /^YkTextArea$/, componentDir: 'text-area' },
   { pattern: /^YkTag$/, componentDir: 'tag' },
   { pattern: /^YkCalendar$/, componentDir: 'calendar' },
+  { pattern: /^YkCalendarMin$/, componentDir: 'calendar' },
   { pattern: /^YkSkeleton$/, componentDir: 'skeleton' },
   { pattern: /^YkDivider$/, componentDir: 'divider' },
   { pattern: /^YkLink$/, componentDir: 'link' },
@@ -56,6 +57,7 @@ export const matchComponents = [
   },
   { pattern: /^YkSpinner$/, componentDir: 'spinner' },
   { pattern: /^vLoading$/, componentDir: 'directive' },
+  { pattern: /^YkTimePicker$/, componentDir: 'time-picker' },
 ];
 export function kebabCase(key: string) {
   const result = key.replace(/([A-Z])/g, ' $2').trim();

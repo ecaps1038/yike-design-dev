@@ -36,7 +36,7 @@
       v-model="editModalVisible"
       :scrollable="false"
       title="图片裁剪"
-      size="small"
+      size="s"
       @on-submit="handleSubmit"
     >
       <cropPicture ref="cropRef" :file-content="fileContent" />

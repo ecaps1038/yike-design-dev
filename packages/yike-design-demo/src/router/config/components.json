@@ -117,6 +117,10 @@
       {
         "name": "Upload 文件上传",
         "src": "upload"
+      },
+      {
+        "name": "TimePicker 时间选择器",
+        "src": "time-picker"
       }
     ]
   },

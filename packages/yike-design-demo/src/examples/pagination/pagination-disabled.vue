@@ -1,21 +1,16 @@
 <template>
-  <div>
+  <yk-space dir="vertical">
+    <yk-switch v-model="disabled"></yk-switch>
     <yk-pagination
-      disabled
-      :total="50"
-      show-jumper
-      show-page-size
-      show-total
-    ></yk-pagination>
-  </div>
-  <div style="margin-top: 10px">
-    <yk-pagination
-      disabled
-      :total="50"
-      simple
-      show-jumper
-      show-page-size
-      show-total
-    ></yk-pagination>
-  </div>
+      :total="100"
+      :layouts="['total', 'prev', 'pager', 'next', 'pageSize', 'jumper']"
+      :disabled="disabled"
+    />
+  </yk-space>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const disabled = ref(true)
+</script>
