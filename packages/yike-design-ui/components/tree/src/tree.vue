@@ -81,7 +81,7 @@ watch(
 )
 
 // 处理节点的展开收缩逻辑
-const expandedKeys = defineModel('expandedKeys', {
+const expandedKeys = defineModel<Key[]>('expandedKeys', {
   local: true,
   default: [],
 })
