@@ -11,5 +11,5 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const size = ref('l')
+const size = ref<'s' | 'l' | 'm' | 'xl'>('l')
 </script>
