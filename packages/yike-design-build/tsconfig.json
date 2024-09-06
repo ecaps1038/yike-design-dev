@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "target": "ES2015",
     "allowJs": true,
-    "strict": false,
+    "strict": true,
     "skipLibCheck": true,
     "lib": ["DOM", "ES2020"],
   },
