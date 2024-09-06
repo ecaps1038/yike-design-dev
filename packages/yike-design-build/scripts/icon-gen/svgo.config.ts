@@ -33,7 +33,7 @@ const options: Config = {
           { ':style': 'innerStyle' },
           { ':stroke-width': 'strokeWidth' },
           { ':stroke-linecap': 'strokeLinecap' },
-          { ':stroke-linejoin': 'strokeLinejoin' },
+          // { ':stroke-linejoin': 'strokeLinejoin' },
         ],
       },
     },
