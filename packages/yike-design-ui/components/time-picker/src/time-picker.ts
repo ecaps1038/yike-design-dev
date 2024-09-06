@@ -1,3 +1,6 @@
+import { CSSProperties } from 'vue';
+import { Size } from '../../utils';
+
 // 导出类型
 export interface TimeValue {
   // 索引签名，以便ts知道如何处理未知属性
@@ -23,9 +26,9 @@ export interface TimeStep {
 export interface TimePickerProps {
   modelValue?: string;
   defaultValue?: string | string[];
-  size?: InputSize;
+  size?: Size;
   disabled?: boolean;
-  style?: Partial<CSSStyleDeclaration> | null;
+  style?: Partial<CSSProperties> | null;
   type?: PickerType;
   disableConfirm?: boolean;
   step?: TimeStep | null;
@@ -47,4 +50,3 @@ export type TimeType = 'hour' | 'minute' | 'second';
 export type ScrollBehavior = 'smooth' | 'instant';
 export type PickerType = 'time' | 'time-range';
 export type RangeTime = 'time' | 'startTime' | 'endTime';
-type InputSize = 's' | 'm' | 'l' | 'xl';
