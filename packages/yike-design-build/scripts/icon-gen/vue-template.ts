@@ -21,14 +21,14 @@ export const getIconVue = ({
         size?: string | number
         strokeWidth?: number
         strokeLinecap?: 'butt' | 'round' | 'square'
-        strokeLinejoin?: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round'
+        // strokeLinejoin?: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round'
         rotate?: number
         spin?: boolean
       }>(),
       {
         strokeWidth: 0,
         strokeLinecap: 'butt',
-        strokeLinejoin: 'arcs',
+        // strokeLinejoin: 'arcs',
         size: 'inherit',
         rotate: undefined,
         spin: false,
