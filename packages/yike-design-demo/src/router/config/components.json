@@ -174,10 +174,6 @@
       {
         "name": "Tree 树",
         "src": "tree"
-      },
-      {
-        "name": "TreeSelect 树形选择",
-        "src": "tree-select"
       }
     ]
   },
