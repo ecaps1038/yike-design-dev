@@ -38,7 +38,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ['env.d.ts'],
+      external: ['env.d.ts', 'svg-icon'],
     },
   },
   base: '/',
