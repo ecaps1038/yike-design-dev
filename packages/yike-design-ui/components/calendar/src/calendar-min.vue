@@ -6,6 +6,12 @@ import { calendarProps, calendarEmits } from './calendar'
 import ykButton from '../../button'
 import YkSpace from '../../space'
 import dayjs from 'dayjs'
+import {
+  IconLeftOutline,
+  IconRightOutline,
+  IconLeft1Outline,
+  IconRight1Outline,
+} from '../../svg-icon'
 
 defineOptions({
   name: 'YkCalendar',
