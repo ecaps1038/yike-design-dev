@@ -34,7 +34,6 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import { YkSpace } from '@yike-design/ui'
 // 定义参数
 const state = reactive<any>({
   isMultiple: false,

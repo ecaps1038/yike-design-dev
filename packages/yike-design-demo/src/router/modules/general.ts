@@ -98,10 +98,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'tree',
     component: () => import('@/examples/tree/doc.md'),
   },
-  // {
-  //   path: 'tree-select',
-  //   component: () => import('@/examples/treeSelect/doc.md'),
-  // },
+  {
+    path: 'tree-select',
+    component: () => import('@/examples/treeSelect/doc.md'),
+  },
   {
     path: 'slider',
     component: () => import('@/examples/slider/doc.md'),
