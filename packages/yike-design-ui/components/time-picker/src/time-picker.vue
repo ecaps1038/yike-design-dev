@@ -1,5 +1,5 @@
 <template>
-  <yk-tooltip
+  <YkTooltip
     :arrow="false"
     placement="bottom"
     :trigger="['focus', 'none']"
@@ -13,7 +13,7 @@
     }"
     @open-change="onOpenPickerChange"
   >
-    <yk-input
+    <YkInput
       v-if="type === 'time'"
       v-model="inputValue"
       placeholder="请选择时间"
@@ -36,10 +36,10 @@
           @mouseenter="isDelete = true"
         />
       </template>
-    </yk-input>
+    </YkInput>
 
     <div v-else ref="rangeWrapperRef" class="range-picker-wrapper">
-      <yk-input
+      <YkInput
         ref="startInputRef"
         v-model="startInputValue"
         placeholder="开始时间"
@@ -47,9 +47,9 @@
         style="width: 140px"
         @focus="onFocusStartInput"
         @change="onChangeInput"
-      ></yk-input>
+      ></YkInput>
       <div>-</div>
-      <yk-input
+      <YkInput
         ref="endInputRef"
         v-model="endInputValue"
         placeholder="结束时间"
@@ -57,7 +57,7 @@
         style="width: 140px"
         @focus="onFocusEndInput"
         @change="onChangeInput"
-      ></yk-input>
+      ></YkInput>
       <IconCloseOutline
         v-if="isDelete"
         class="input-icon delete-icon"
@@ -157,19 +157,21 @@
           <slot name="extra"></slot>
         </div>
         <div v-if="!disableConfirm" class="yk-timepicker-footer">
-          <yk-button type="secondary" size="s" @click="onClickNow">
+          <YkButton type="secondary" size="s" @click="onClickNow">
             此刻
-          </yk-button>
-          <yk-button size="s" @click="onConfirm">确定</yk-button>
+          </YkButton>
+          <YkButton size="s" @click="onConfirm">确定</YkButton>
         </div>
       </div>
     </template>
-  </yk-tooltip>
+  </YkTooltip>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { startWithZero, getNowTimeData, checkTimeStr } from './util'
+import { YkInput, YkTooltip, YkButton } from '../../../index'
+import { IconCloseOutline, IconTimeOutline } from '../../svg-icon'
 import type {
   TimeSelected,
   TimeType,
