@@ -116,7 +116,7 @@ export class Schema {
             let bv = validator.type[type as keyof TypeValidator] || null;
             if (!bv) {
               if (rule.validator) {
-                bv = validator.custom.validate(rule.validator);
+                bv = validator.custom.validate(rule.validator)(rule.validator);
                 if (
                   Object.prototype.toString.call(bv) === '[object Array]' &&
                   bv[0].then

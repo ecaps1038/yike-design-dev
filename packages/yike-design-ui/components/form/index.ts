@@ -5,4 +5,5 @@ import { withInstall } from '../utils';
 export const YkForm = withInstall(Form);
 export const YkFormItem = withInstall(FormItem);
 export default YkForm;
+export type FormInstance = InstanceType<typeof Form>;
 export * from './src/form';
