@@ -6,7 +6,7 @@ import {
   YkFormItem,
 } from '../../yike-design-ui/components/form/index'
 import { YkInput } from '../../yike-design-ui/components/input'
-import { nextTick, reactive } from 'vue'
+import { nextTick, reactive, toRaw } from 'vue'
 import { YkCheckbox } from '../../yike-design-ui'
 import { RuleType } from '../../yike-design-ui/components/utils/validate/interface'
 describe('Form', () => {
@@ -110,5 +110,49 @@ describe('Form', () => {
     form.check = true
     const res2 = await formRef.validate()
     expect(res2).toBe(undefined)
+  })
+
+  it('resetFields', async () => {
+    const defaultInfo = {
+      check: false,
+      name: 'momei',
+      others: {
+        address: 'nanjing',
+      },
+      toDoList: [
+        {
+          name: 'codeing',
+        },
+      ],
+    }
+    const form = reactive(JSON.parse(JSON.stringify(defaultInfo)))
+    const wrapper = mount({
+      setup() {
+        return () => (
+          <YkForm model={form} ref="formRef">
+            <YkFormItem label="name" field="name" required>
+              <YkInput v-model={form.name}></YkInput>
+            </YkFormItem>
+            <YkFormItem label="address" field="others.address" required>
+              <YkInput v-model={form.others.address}></YkInput>
+            </YkFormItem>
+            <YkFormItem label="task" field="toDoList[0].name" required>
+              <YkInput v-model={form.toDoList[0].name}></YkInput>
+            </YkFormItem>
+            <YkFormItem label="check" field="check" required>
+              <YkCheckbox v-model:cheked={form.check}></YkCheckbox>
+            </YkFormItem>
+          </YkForm>
+        )
+      },
+    })
+    await nextTick()
+    const formRef = wrapper.findComponent({ ref: 'formRef' }).vm as FormInstance
+    form.name = 'change'
+    form.others.address = 'nantong'
+    form.toDoList[0].name = 'eat'
+    form.check = true
+    formRef.resetFields()
+    expect(toRaw(form)).toStrictEqual(defaultInfo)
   })
 })

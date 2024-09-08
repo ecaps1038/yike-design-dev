@@ -1,3 +1,5 @@
+import { get, set } from 'lodash-unified';
+
 /**
  * 防抖函数
  * @param func 需要防抖的函数
@@ -150,4 +152,25 @@ export function generateUid() {
   const randomPart = Math.floor(Math.random() * 10000); // 生成 0-9999 之间的随机数
   const timestampPart = Date.now(); // 获取当前时间戳
   return parseInt(`${randomPart}${timestampPart}`, 10); // 将随机数和时间戳拼接为一个整数类型的 UID
+}
+/**
+ *获取对象属性by path
+ * @param obj
+ * @param path
+ * @param defaultVal
+ * @returns
+ */
+export function getObjVal(
+  obj: object,
+  path: string | string[],
+  defaultVal?: any,
+) {
+  return {
+    get value() {
+      return get(obj, path, defaultVal);
+    },
+    set value(val: any) {
+      set(obj, path, val);
+    },
+  };
 }

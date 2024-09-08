@@ -25,12 +25,15 @@
         </yk-checkbox>
       </yk-checkbox-group>
     </yk-form-item>
+    <yk-form-item label="住址" field="others.address" required>
+      <yk-input v-model="form.others.address" placeholder="请输入"></yk-input>
+    </yk-form-item>
     <yk-form-item label="我同意" field="agree" :rules="rulesMap.agree">
       <yk-checkbox v-model:checked="form.agree"></yk-checkbox>
     </yk-form-item>
     <yk-form-item>
       <yk-space>
-        <yk-button type="primary" @click="resetForm(formRef)">重置</yk-button>
+        <yk-button type="primary" @click="resetForm">重置</yk-button>
         <yk-button @click="submitForm">提交</yk-button>
       </yk-space>
     </yk-form-item>
@@ -49,6 +52,9 @@ const form = reactive({
   age: 20,
   phone: '',
   agree: false,
+  others: {
+    address: '南京',
+  },
 })
 const rulesMap = {
   name: [
@@ -116,11 +122,8 @@ const data = ref([
   { id: '2', label: '今天' },
   { id: '3', label: '明天' },
 ])
-const resetForm = (formEl) => {
-  if (!formEl) {
-    return
-  }
-  formEl.resetFields()
+const resetForm = () => {
+  formRef.value.resetFields()
   console.log('reset')
 }
 const submitForm = async () => {
