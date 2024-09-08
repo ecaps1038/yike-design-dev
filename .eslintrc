@@ -7,13 +7,13 @@
     "es6": true,
     "jest": true,
     "node": true,
-    "browser": true
+    "browser": true,
   },
 
   // 全局变量定义
   "globals": {
     // 定义一个全局变量 defineModel
-    "defineModel": true
+    "defineModel": true,
   },
 
   // 指定代码解析器和选项
@@ -30,8 +30,8 @@
     "sourceType": "module",
 
     "ecmaFeatures": {
-      "jsx": true // 支持JSX语法
-    }
+      "jsx": true, // 支持JSX语法
+    },
   },
 
   // 继承的规则配置
@@ -52,7 +52,7 @@
     "plugin:import/recommended",
 
     // 使用 import/typescript 插件的 TypeScript 规则
-    "plugin:import/typescript"
+    "plugin:import/typescript",
   ],
 
   // 使用的插件
@@ -64,8 +64,8 @@
       "warn",
       {
         // 最多允许 1 个空行
-        "max": 1
-      }
+        "max": 1,
+      },
     ],
 
     // 禁用在单行元素中将HTML内容与元素标签必须放在同一行。
@@ -77,6 +77,8 @@
     // 禁用语句末尾的分号
     "semi": ["off", "never"],
 
+    // 关闭禁止未使用的表达式
+    "@typescript-eslint/no-unused-expressions": "off",
     // 关闭对非空断言的检查
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unused-vars": "off",
@@ -106,8 +108,8 @@
         "args": "after-used",
 
         // 忽略下划线开头的变量
-        "argsIgnorePattern": "^_"
-      }
+        "argsIgnorePattern": "^_",
+      },
     ],
 
     // 关闭对 setup 中解构 props 的检查
@@ -117,6 +119,6 @@
     "import/no-unresolved": "off",
 
     // 关闭将导出标记为默认导出的警告
-    "import/no-named-as-default": "off"
-  }
+    "import/no-named-as-default": "off",
+  },
 }
