@@ -62,13 +62,17 @@ const addField = (formItemInstance: FormItemInstance) => {
   }
 }
 
+const removeField = (field: string) => {
+  delete validateMap[field]
+}
+
 const updateValidateState = (field: string, formItemInstance: any) => {
   Object.assign(validateMap[field], formItemInstance)
 }
 
 const resetFields = () => {
   Object.keys(validateMap).forEach((field) => {
-    validateMap[field].resetValidate()
+    validateMap[field].resetField()
   })
 }
 
@@ -87,6 +91,7 @@ provide(
     rules,
     addField,
     updateValidateState,
+    removeField,
   }),
 )
 

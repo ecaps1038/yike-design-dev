@@ -23,8 +23,22 @@ import {
   formItemContextKey,
   FormItemStatus,
 } from './form'
-import { createCssScope, isArray, Schema } from '../../utils'
-import { inject, computed, onMounted, reactive, provide } from 'vue'
+import {
+  createCssScope,
+  deepClone,
+  getObjVal,
+  isArray,
+  Schema,
+} from '../../utils'
+import {
+  inject,
+  computed,
+  onMounted,
+  reactive,
+  provide,
+  ref,
+  onBeforeMount,
+} from 'vue'
 
 defineOptions({
   name: 'YkFormItem',
@@ -41,7 +55,7 @@ const validateStatus = reactive<FormItemStatus>({
   isError: false,
   message: '',
 })
-
+const propVal = getObjVal(formContext.model, props.field)
 const computedDisabled = computed(() => props.disabled || formContext.disabled)
 
 const mergedLabelWidth = computed(
@@ -85,7 +99,7 @@ const validateField = (trigger?: string): Promise<any> => {
   }
 
   const _field = props.field
-  const _value = formContext?.model[_field]
+  const _value = propVal.value
   const schema = new Schema(
     {
       [_field]: rules.map(({ ...rule }) => {
@@ -139,21 +153,33 @@ const resetValidate = () => {
   validateStatus.status = 'primary'
   validateStatus.message = ''
 }
+let formItemInfo = ref<FormItemInstance>()
 
+const resetField = () => {
+  propVal.value = formItemInfo.value.initValue
+  resetValidate()
+}
 onMounted(() => {
   if (props.field) {
-    const formItemInfo: FormItemInstance = reactive({
+    formItemInfo.value = reactive({
       field: props.field,
       disabled: computedDisabled,
       status: 'primary',
       isError: false,
       rules: mergedRules,
+      initValue: deepClone(propVal.value),
       validate: validateField,
       resetValidate,
+      resetField,
     })
-    formContext.addField?.(formItemInfo)
+    formContext.addField?.(formItemInfo.value)
   }
 })
+onBeforeMount(() => {
+  formContext.removeField?.(props.field)
+})
+
+defineExpose(formItemInfo.value)
 
 provide(
   formItemContextKey,

@@ -30,6 +30,7 @@ export interface FormContext {
   layout: Layout;
   addField: (formItemInstance: FormItemInstance) => void;
   updateValidateState: (field: Field, formItemInstance: any) => void;
+  removeField: (field: Field) => void;
 }
 
 export const formContextKey: InjectionKey<FormContext> =
@@ -58,8 +59,10 @@ export interface FormItemInstance {
   message?: string;
   status?: ValidateStatus;
   rules?: SchemaRuleType[];
+  initValue: any;
   validate: () => Promise<any>;
   resetValidate: () => void;
+  resetField: () => void;
 }
 
 export type ValidateStatusMap = {

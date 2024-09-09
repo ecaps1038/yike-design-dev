@@ -1,3 +1,5 @@
+import { isArray, isObject, isString, isUndefined } from './validate/is';
+
 /**
  * 防抖函数
  * @param func 需要防抖的函数
@@ -150,4 +152,123 @@ export function generateUid() {
   const randomPart = Math.floor(Math.random() * 10000); // 生成 0-9999 之间的随机数
   const timestampPart = Date.now(); // 获取当前时间戳
   return parseInt(`${randomPart}${timestampPart}`, 10); // 将随机数和时间戳拼接为一个整数类型的 UID
+}
+
+/**
+ * 解析对象路径 'a.[1].b'==>['a',1,'b']
+ * @param path
+ * @returns
+ */
+export function parsePath(path: string): (string | number)[] {
+  return path.split('.').flatMap((part) => {
+    // 处理数组索引
+    const match = part.match(/(\w+)\[(\d+)\]/);
+    if (match) {
+      const [, key, indexStr] = match;
+      const index = parseInt(indexStr, 10);
+      return [key, index];
+    }
+    return part;
+  });
+}
+/**
+ * 设置对象属性by path
+ * @param obj
+ * @param path
+ * @param value
+ * @returns
+ */
+export function setObjByPath(
+  obj: object,
+  path: string | string[],
+  value = undefined,
+) {
+  // 将路径转换为数组
+  const keys = isString(path) ? parsePath(path) : path;
+
+  // 遍历路径并创建缺失的属性
+  let current = obj;
+  for (let i = 0; i < keys.length - 1; i++) {
+    const key = keys[i];
+    if (current[key] === undefined) {
+      current[key] = {};
+    }
+    current = current[key];
+  }
+
+  // 设置最终值
+  current[keys[keys.length - 1]] = value;
+  return obj;
+}
+
+/**
+ * 获取对象属性by path
+ * @param obj
+ * @param path
+ * @param value
+ * @returns
+ */
+export function getObjByPath(
+  obj: object,
+  path: string | string[],
+  value = undefined,
+) {
+  // 将路径转换为数组
+  const keys = isString(path) ? parsePath(path) : path;
+
+  // 遍历路径
+  for (const key of keys) {
+    if (isUndefined(obj)) return value;
+    obj = obj[key];
+  }
+
+  return obj;
+}
+
+/**
+ *获取对象属性by path
+ * @param obj
+ * @param path
+ * @param defaultVal
+ * @returns
+ */
+export function getObjVal(
+  obj: object,
+  path: string | string[],
+  defaultVal?: any,
+) {
+  return {
+    get value() {
+      return getObjByPath(obj, path, defaultVal);
+    },
+    set value(val: any) {
+      setObjByPath(obj, path, val);
+    },
+  };
+}
+/**
+ * 深拷贝
+ * @param target
+ * @param chache
+ * @returns
+ */
+export function deepClone(target: unknown, chache = new WeakMap()) {
+  if (!isObject(target) && !isArray(target)) {
+    return target;
+  }
+  if (chache.has(target)) {
+    return chache.get(target);
+  }
+  chache.set(target, target);
+
+  if (isArray(target)) {
+    target = target.map((item) => deepClone(item, chache));
+  } else {
+    const cloneObj = {};
+    target = Object.keys(target).reduce((acc, key) => {
+      acc[key] = deepClone(target[key], chache);
+      return acc;
+    }, cloneObj);
+  }
+  return target;
 }
