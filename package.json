@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "dayjs": "^1.11.13",
-    "vue": "^3.5.3"
+    "vue": "^3.5.3",
+    "@yike-design/ui": "workspace:*"
   },
   "devDependencies": {
     "@testing-library/vue": "^8.1.0",

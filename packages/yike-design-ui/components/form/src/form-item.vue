@@ -23,7 +23,13 @@ import {
   formItemContextKey,
   FormItemStatus,
 } from './form'
-import { createCssScope, getObjVal, isArray, Schema } from '../../utils'
+import {
+  createCssScope,
+  deepClone,
+  getObjVal,
+  isArray,
+  Schema,
+} from '../../utils'
 import {
   inject,
   computed,
@@ -33,7 +39,6 @@ import {
   ref,
   onBeforeMount,
 } from 'vue'
-import { clone } from 'lodash-unified'
 
 defineOptions({
   name: 'YkFormItem',
@@ -162,7 +167,7 @@ onMounted(() => {
       status: 'primary',
       isError: false,
       rules: mergedRules,
-      initValue: clone(propVal.value),
+      initValue: deepClone(propVal.value),
       validate: validateField,
       resetValidate,
       resetField,

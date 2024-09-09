@@ -4,11 +4,11 @@ import {
   FormInstance,
   YkForm,
   YkFormItem,
-} from '../../yike-design-ui/components/form/index'
-import { YkInput } from '../../yike-design-ui/components/input'
+} from '@yike-design/ui/components/form/index'
+import { YkInput } from '@yike-design/ui/components/input'
 import { nextTick, reactive, toRaw } from 'vue'
-import { YkCheckbox } from '../../yike-design-ui'
-import { RuleType } from '../../yike-design-ui/components/utils/validate/interface'
+import { YkCheckbox } from '@yike-design/ui/components/checkbox'
+import { RuleType } from '@yike-design/ui/components/utils/validate/interface'
 describe('Form', () => {
   it('create', () => {
     const wrapper = mount(YkForm)
