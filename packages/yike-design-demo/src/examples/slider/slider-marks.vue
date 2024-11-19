@@ -23,7 +23,7 @@ const marks = ref<SliderMark[]>([
   },
   {
     key: 60,
-    labelNode: createVNode('em', null, '60%'),
+    labelNode: createVNode('em', null, '60°C'),
   },
 ])
 </script>

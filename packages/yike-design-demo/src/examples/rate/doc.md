@@ -42,18 +42,12 @@
 <RateCount/>
 :::
 
-:::snippet
-全部功能
-
-<RateAll/>
-:::
-
 ### API
 
 | 参数                  | 描述           | 类型                | 默认值            |
 | --------------------- | -------------- | ------------------- | ----------------- |
 | count                 | 评分的总数     | string ｜ number    | 5                 |
-| size                  | 尺寸           | `s`｜`m`｜`l`｜`xl` | `'l'`               |
+| size                  | 尺寸           | `s`｜`m`｜`l`｜`xl` | `'l'`             |
 | model-value (v-model) | 绑定值         | string ｜ number    | -                 |
 | default-value         | 默认值         | string ｜ number    | 0                 |
 | allow-half            | 是否允许半选   | boolean             | false             |

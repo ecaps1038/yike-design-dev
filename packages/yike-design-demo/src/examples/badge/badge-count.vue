@@ -32,11 +32,7 @@
       <div class="btn-group">
         <yk-button
           type="outline"
-          style="
-            border-right: 1px solid #fff;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          "
+          style="border-top-right-radius: 0; border-bottom-right-radius: 0"
           @click="MessageCount2--"
         >
           -

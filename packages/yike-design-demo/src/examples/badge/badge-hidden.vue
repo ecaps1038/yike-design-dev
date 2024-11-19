@@ -11,7 +11,7 @@
         <yk-avatar size="l" shape="square"></yk-avatar>
       </yk-badge>
       <yk-button style="margin-left: 20px" type="outline" @click="handleClick">
-        hidden
+        {{ name }}
       </yk-button>
     </yk-space>
     <yk-space>
@@ -30,9 +30,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const hiddenFlag = ref<boolean>(false)
+const name = ref('hidden')
 
 const handleClick = () => {
   hiddenFlag.value = !hiddenFlag.value
+  if (hiddenFlag.value) {
+    name.value = 'appear'
+  } else {
+    name.value = 'hidden'
+  }
 }
 </script>
 

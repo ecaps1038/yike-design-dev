@@ -51,7 +51,7 @@ const MessageCount = ref(3)
 
 <style>
 .btn-group .yk-button:first-child {
-  border-right: 1px solid #fff;
+  border-right: 1px solid rgb(255 255 255 / 40%);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }

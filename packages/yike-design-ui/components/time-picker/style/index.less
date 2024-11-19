@@ -14,6 +14,9 @@
     }
   }
 }
+.yk-tooltip__content {
+  background-color: @bg-color-m;
+}
 
 .yk-timepicker {
   display: flex;
@@ -29,12 +32,12 @@
       border-right: none;
     }
     &::-webkit-scrollbar-track {
-      background-color: #fff;
+      background-color: @bg-color-l;
     }
     &::-webkit-scrollbar {
       width: 0;
       // width: 8px;
-      color: #fff;
+      color: @font-color-l;
     }
     &::-webkit-scrollbar-thumb {
       border: none;
@@ -49,14 +52,17 @@
     .yk-timepicker-cell {
       margin: 8px 0;
       text-align: center;
-      line-height: 2;
+      color: @font-color-m;
       list-style: none;
+      line-height: 2;
       user-select: none;
 
       &:not(&-disabled):hover {
         background-color: @gray-1;
       }
       &-selected {
+        font-weight: 500;
+        color: @font-color-l;
         background-color: @gray-1;
       }
       &-disabled {

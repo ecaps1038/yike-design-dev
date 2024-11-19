@@ -6,8 +6,6 @@
     :open="openTimepicker"
     :close-delay="0"
     :overlay-style="{
-      backgroundColor: '#fff',
-      color: '#000',
       padding: '2px 0 8px',
       transform: 'translateY(-8px)',
     }"
