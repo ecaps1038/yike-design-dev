@@ -55,7 +55,7 @@
 | accept    | 接受文件类型         | accept                           | \*                |
 | maxSize   | 文件大小限制         | number                           | 3\*1024\*1024(3M) |
 | multiple  | 是否允许多文件上传   | boolean                          | true              |
-| limit     | 控制文件上传数量      | number                           | 0                  |
+| limit     | 控制文件上传数量     | number                           | 0                 |
 | shape     | 图片列表形状         | 'default' \| 'circle'            | 'default'         |
 | uploadUrl | 文件上传路径         | string                           | ''                |
 | fileList  | 当前文件列表         | `{name:'file-name',url:'url'}[]` | []                |
@@ -68,6 +68,6 @@
 | 方法               | 描述       | 出参类型                          |
 | ------------------ | ---------- | --------------------------------- |
 | handleSuccess      | 成功回调   | (res:response,currentList:File[]) |
-| handleDelete       | 删除回调   | (currentList:File[])              |
+| handleDelete       | 删除回调   | (index,currentList:File[])        |
 | handleError        | 错误回调   | (err:response,currentList:File[]) |
 | handleBeforeUpload | 上传前回调 | (file:File)                       |
