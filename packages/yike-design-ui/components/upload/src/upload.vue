@@ -295,8 +295,11 @@ const handleAbort = (uid: number) => {
 }
 
 const handleRemove = (uid: number) => {
+  emits('handleDelete', [
+    findFileByUid(uid, currentList.value),
+    currentList.value,
+  ])
   currentList.value.splice(findFileByUid(uid, currentList.value), 1)
-  emits('handleDelete', currentList.value)
   proxy.$message.success(`已删除`)
 }
 
