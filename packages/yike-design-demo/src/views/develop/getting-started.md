@@ -4,6 +4,10 @@
 
 ```ts
 npm install --save-dev @yike-design/ui
+npm install --save-dev @yike-design/resovler
+npm install --save-dev unplugin-auto-import
+npm install --save-dev unplugin-vue-components
+
 ```
 
 ### 按需引入
