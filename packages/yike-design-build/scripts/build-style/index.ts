@@ -6,37 +6,50 @@ import less from 'less';
 import CleanCSS from 'clean-css';
 import { build } from 'vite';
 
-const buildComponentCssModule = () => {
+const buildComponentCssModule = async () => {
   const files = glob.sync('**/*.{less,js}', {
     cwd: resolvePath('components'),
   });
+
   for (const filename of files) {
     const absolute = resolvePath(componentSrc, 'components', filename);
-    fs.copySync(absolute, resolvePath(`es/components/${filename}`));
-    fs.copySync(absolute, resolvePath(`lib/components/${filename}`));
-    if (!/.less$/.test(filename)) continue;
-    const lessContent = fs.readFileSync(absolute, 'utf8');
-    less.render(
-      lessContent,
-      {
-        paths: [resolvePath(`components/${path.dirname(filename)}`)],
-      },
-      (err, output) => {
-        if (err) {
-          return err;
-        } else if (output && output.css) {
-          const cssFilename = filename.replace('.less', '.css');
-          fs.writeFileSync(
-            resolvePath(`es/components/${cssFilename}`),
-            output.css,
+    const targets = [
+      resolvePath(`es/components/${filename}`),
+      resolvePath(`lib/components/${filename}`),
+    ];
+
+    // 直接复制源文件
+    for (const target of targets) {
+      await fs.ensureDir(path.dirname(target));
+      await fs.copy(absolute, target);
+    }
+
+    // 编译 .less 为 .css
+    if (/\.less$/.test(filename)) {
+      const lessContent = await fs.readFile(absolute, 'utf8');
+
+      try {
+        const { css } = await less.render(lessContent, {
+          paths: [
+            resolvePath('components'), // 确保能找到 styles 下的基础变量
+            path.dirname(absolute),
+          ],
+          filename: absolute,
+          javascriptEnabled: true,
+        });
+
+        const cssFilename = filename.replace(/\.less$/, '.css');
+        for (const outputRoot of ['es', 'lib']) {
+          const outputPath = resolvePath(
+            `${outputRoot}/components/${cssFilename}`,
           );
-          fs.writeFileSync(
-            resolvePath(`lib/components/${cssFilename}`),
-            output.css,
-          );
+          await fs.ensureDir(path.dirname(outputPath));
+          await fs.writeFile(outputPath, css);
         }
-      },
-    );
+      } catch (err) {
+        console.error(`Less compile error in ${filename}:`, err);
+      }
+    }
   }
 };
 
@@ -64,35 +77,29 @@ const buildCssIndex = async () => {
 };
 
 import type { Plugin } from 'vite';
-
 function cssjsPlugin(): Plugin {
   return {
     name: 'vite:cssjs',
-    async generateBundle(outputOptions, bundle) {
+    async generateBundle(_, bundle) {
       for (const filename of Object.keys(bundle)) {
-        // const chunk = bundle[filename];
-        const indexExist = fs.existsSync(
-          resolvePath('es\\', filename.replace('index.js', 'index.css')),
-        );
-        if (!indexExist) {
+        if (!/style\/index\.js$/.test(filename)) continue;
+
+        const cssFile = filename.replace('index.js', 'index.css');
+
+        // Emit an empty CSS asset if it hasn't been generated yet (fallback)
+        if (!fs.existsSync(resolvePath('es', cssFile))) {
           this.emitFile({
             type: 'asset',
-            fileName: filename.replace('index.js', 'index.css'),
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            // FIX ME
-            // Change the content of index.js to be correct
+            fileName: cssFile,
             source: '',
           });
         }
+
+        // Emit css.js which re-exports index.cssbuildStyle
         this.emitFile({
           type: 'asset',
           fileName: filename.replace('index.js', 'css.js'),
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          // FIX ME
-          // Change the content of index.js to be correct
-          source: "'../index.css'",
+          source: `import './index.css';\n`,
         });
       }
     },
@@ -139,10 +146,10 @@ const buildStyleModule = async () => {
   });
 };
 
-const buildStyle = () => {
-  buildComponentCssModule();
-  buildCssIndex();
-  buildStyleModule();
+const buildStyle = async () => {
+  await buildComponentCssModule(); // 编译 less -> css
+  await buildCssIndex(); // 生成 dist/index.css 和 index.min.css
+  await buildStyleModule(); // vite 编译所有 style/index.ts 为 js 文件
 };
 
 export default buildStyle;
