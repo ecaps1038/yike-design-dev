@@ -11,8 +11,7 @@ import '@/style/main.less';
 import { YkTitle, YkMessage, YkNotification } from '@yike-design/ui/index';
 import { vLoading } from '@yike-design/ui/components/spinner/src/directive';
 import '@yike-design/ui/components/styles/index.less';
-import '@yike-design/ui/index.less';
-
+// import '@yike-design/ui/index.less';
 const app = createApp(App);
 
 app

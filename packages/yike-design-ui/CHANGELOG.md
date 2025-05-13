@@ -1,6 +1,25 @@
 # 更新日志 
 
 
+### [0.0.20](https://github.com/ecaps1038/yike-design-dev/compare/v0.0.19...v0.0.20) (2024-12-11)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **form:** fix validate & add test & up dep ([#358](https://github.com/ecaps1038/yike-design-dev/issues/358)) ([6e05ee0](https://github.com/ecaps1038/yike-design-dev/commit/6e05ee0f2b9438a979e22f0faf05a28587c2c0e7))
+* **input:** 优化样式 ([6e0a7c7](https://github.com/ecaps1038/yike-design-dev/commit/6e0a7c752758b455404087abf6e4305546cbd0ff))
+* **upload:** 修改删除返回删除位置 ([02d1ea2](https://github.com/ecaps1038/yike-design-dev/commit/02d1ea2ed0e4c7f43956d09eed26958377c2c805))
+
+
+### ✏️ Documentation | 文档
+
+* **upload:** 修改删除返回删除位置 ([ff9f899](https://github.com/ecaps1038/yike-design-dev/commit/ff9f89920cb02f6559a61d4263c2c775d6367ba7))
+
+
+### ✨ Features | 新功能
+
+* **modal:** add optional size ([de8bb79](https://github.com/ecaps1038/yike-design-dev/commit/de8bb7966b1568b1184a000584468a7e8c7148be))
+
 ### 0.0.19 (2024-09-07)
 
 
