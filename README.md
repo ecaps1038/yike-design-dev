@@ -48,8 +48,6 @@ Yike-Design 前端UI组件库
 
 我会将开发和对外分开，对外相关文档请访 [yike-design](https://www.huohuo90.com:3005)。
 
-[CONTRIBUTING.md](https://github.com/ecaps1038/yike-design-dev/blob/monorepo-dev/CONTRIBUTING.md)
-
 ---
 
 # 以下为贡献指南
