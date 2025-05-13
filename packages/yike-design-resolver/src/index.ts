@@ -16,13 +16,25 @@ export function sideEffects(importName: string) {
   return `@yike-design/ui/es/components/${componentDir}/style/css.js`;
 }
 
+export function sideDevEffects(importName: string) {
+  let componentDir = kebabCase(importName);
+  for (const item of matchComponents) {
+    if (item.pattern.test(importName)) {
+      componentDir = item.componentDir;
+      break;
+    }
+  }
+
+  return `@yike-design/ui/components/${componentDir}/style/index.less`;
+}
+
 const yikeSrcPath = '@yike-design/ui';
 
 export function YikeDevResolver(compName: string) {
   // console.log('Resolving component:', compName);
 
   if (compName.startsWith('Yk')) {
-    const stylePath = sideEffects(compName);
+    const stylePath = sideDevEffects(compName);
     // console.log('Resolved Yk component style path:', stylePath);
     return {
       name: compName,

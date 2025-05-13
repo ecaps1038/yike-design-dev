@@ -37,6 +37,7 @@ export const matchComponents = [
   { pattern: /^YkLink$/, componentDir: 'link' },
   { pattern: /^YkAlert$/, componentDir: 'alert' },
   { pattern: /^YkButton$/, componentDir: 'button' },
+  { pattern: /^YkSelect$/, componentDir: 'select' },
   { pattern: /^YkTheme$/, componentDir: 'theme' },
   { pattern: /^YkIcon$/, componentDir: 'icon' },
   { pattern: /^(YkAvatar|YkAvatarGroup)$/, componentDir: 'avatar' },

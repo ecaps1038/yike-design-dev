@@ -186,6 +186,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'time-picker',
     component: () => import('@/examples/time-picker/doc.md'),
   },
+  {
+    path: 'select',
+    component: () => import('@/examples/select/doc.md'),
+  },
 ];
 
 export default generalRoutes;

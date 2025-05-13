@@ -75,6 +75,10 @@
     "title": "数据录入",
     "list": [
       {
+        "name": "Select 选择器",
+        "src": "select"
+      },
+      {
         "name": "Checkbox 复选框",
         "src": "checkbox"
       },
