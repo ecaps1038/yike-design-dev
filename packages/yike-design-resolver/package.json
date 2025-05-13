@@ -1,6 +1,6 @@
 {
   "name": "@yike-design/resolver",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "YikeDesign Vue Unplugin Resolver",
   "author": "YikeDesign Team",
   "license": "MIT",
@@ -25,7 +25,8 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
-    "lint-staged": "npx lint-staged"
+    "lint-staged": "npx lint-staged",
+    "release": "standard-version"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
