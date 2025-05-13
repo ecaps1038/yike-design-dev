@@ -220,6 +220,12 @@ importers:
       '@vueuse/core':
         specifier: ^10.2.1
         version: 10.5.0(vue@3.3.4)
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
       lodash-unified:
         specifier: ^1.0.3
         version: 1.0.3(@types/lodash-es@4.17.12)(lodash-es@4.17.21)(lodash@4.17.21)

@@ -19,7 +19,7 @@ export function sideEffects(importName: string) {
 const yikeSrcPath = '@yike-design/ui';
 
 export function YikeDevResolver(compName: string) {
-  console.log('Resolving component:', compName);
+  // console.log('Resolving component:', compName);
 
   if (compName.startsWith('Yk')) {
     const stylePath = sideEffects(compName);
@@ -46,7 +46,7 @@ export function YikeDevResolver(compName: string) {
 }
 
 export function YikeResolver(compName: string) {
-  console.log('Resolving component:', compName);
+  // console.log('Resolving component:', compName);
 
   if (compName.startsWith('Yk')) {
     const stylePath = sideEffects(compName);

@@ -48,7 +48,7 @@ package.json
 ```json
 {
   "dependencies": {
-    "@yike-design/resolver": "^0.0.2",
+    "@yike-design/resolver": "^0.0.3",
     "@yike-design/ui": "^0.0.21",
     "dayjs": "^1.11.13",
     "unplugin-auto-import": "^19.2.0",
