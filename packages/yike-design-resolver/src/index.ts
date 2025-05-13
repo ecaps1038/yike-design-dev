@@ -23,7 +23,7 @@ export function YikeDevResolver(compName: string) {
 
   if (compName.startsWith('Yk')) {
     const stylePath = sideEffects(compName);
-    console.log('Resolved Yk component style path:', stylePath);
+    // console.log('Resolved Yk component style path:', stylePath);
     return {
       name: compName,
       from: `${yikeSrcPath}/index.ts`,
@@ -32,10 +32,10 @@ export function YikeDevResolver(compName: string) {
   }
 
   if (compName.startsWith('Icon')) {
-    console.log(
-      'Resolved Icon component style path:',
-      `${yikeSrcPath}/components/svg-icon`,
-    );
+    // console.log(
+    //   'Resolved Icon component style path:',
+    //   `${yikeSrcPath}/components/svg-icon`,
+    // );
     return {
       name: compName,
       from: `${yikeSrcPath}/components/svg-icon`,
@@ -59,10 +59,10 @@ export function YikeResolver(compName: string) {
   }
 
   if (compName.startsWith('Icon')) {
-    console.log(
-      'Resolved Icon component style path:',
-      `${yikeSrcPath}/es/components/svg-icon`,
-    );
+    // console.log(
+    //   'Resolved Icon component style path:',
+    //   `${yikeSrcPath}/es/components/svg-icon`,
+    // );
     return {
       name: compName,
       from: `${yikeSrcPath}/es/components/svg-icon`,
