@@ -1,5 +1,5 @@
 <template>
-  <div :class="bem('wrapper', { disabled })">
+  <div :class="bem('wrapper', { disabled }, [uid])">
     <div
       :class="
         bem('trigger', {
@@ -11,7 +11,7 @@
       "
       @click="toggleDropdown"
     >
-      <span v-if="!multiple" :class="bem('selected-value')">
+      <span v-if="!multiple" :class="bem('selected')">
         {{ selectedLabel }}
       </span>
       <template v-else>
@@ -25,8 +25,14 @@
             :class="bem('tag-close')"
             @click.stop="removeSelected(item.value)"
           >
-            ×
+            <IconCrossOutline
+              :class="bem('tag-close')"
+              @click.stop="removeSelected(item.value)"
+            />
           </span>
+        </span>
+        <span :class="bem('selected')">
+          {{ filterPlaceholder }}
         </span>
       </template>
       <span :class="bem('arrow', { open: isOpen })">
@@ -80,7 +86,7 @@
 import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { createCssScope } from '../../utils'
 import { SelectProps } from './select'
-import { IconDownOutline } from '../../svg-icon'
+import { IconDownOutline, IconCrossOutline } from '../../svg-icon'
 defineOptions({ name: 'YkSelect' })
 
 const bem = createCssScope('select')
@@ -100,6 +106,8 @@ const emit = defineEmits<{
   (e: 'change', value: any): void
   (e: 'visible-change', visible: boolean): void
 }>()
+
+const uid = ref(`id-${Math.random().toString(36).substr(2, 9)}`) // 生成一个唯一的ID
 
 const isOpen = ref(false)
 const hoverIndex = ref<string | number | boolean | null>(null)
@@ -197,13 +205,20 @@ const handleFilter = () => {
 
 // 点击外部关闭下拉
 const handleClickOutside = (event: MouseEvent) => {
-  const el = document.querySelector(`.${bem('wrapper')}`)
-  if (el && !el.contains(event.target as Node)) {
+  const els = document.querySelectorAll(`.${bem('wrapper')}`)
+  let isInsideAny = false
+
+  els.forEach((el) => {
+    if (el.contains(event.target as Node)) {
+      isInsideAny = true
+    }
+  })
+
+  if (!isInsideAny) {
     isOpen.value = false
     emit('visible-change', false)
   }
 }
-
 // 生命周期
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)

@@ -70,7 +70,7 @@
     }
   }
 
-  li:not(.yk-anchor-item) {
+  li:not(.yk-anchor-item, .yk-select__option) {
     margin: @space-m 0 @space-m @space-l;
     padding-left: 0;
     list-style-type: decimal;
@@ -165,7 +165,9 @@
       height: 64px;
       font-size: 32px;
       color: @font-color-l;
-      transition: font-size 0.1s linear, width 0.1s linear;
+      transition:
+        font-size 0.1s linear,
+        width 0.1s linear;
       line-height: 64px;
     }
 

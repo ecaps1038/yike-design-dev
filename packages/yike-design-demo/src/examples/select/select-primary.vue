@@ -5,6 +5,11 @@
       :options="options"
       @change="handleSingleChange"
     />
+    <yk-select
+      v-model="singleValue2"
+      :options="options2"
+      @change="handleSingleChange"
+    />
   </yk-space>
 </template>
 
@@ -19,7 +24,14 @@ const options = [
   { value: 'option5', label: '选项5' },
 ]
 
+const options2 = [
+  { value: 'option1', label: '选项1' },
+  { value: 'option2', label: '选项2' },
+  { value: 'option5', label: '选项5' },
+]
+
 const singleValue = ref()
+const singleValue2 = ref()
 
 const handleSingleChange = (value: string) => {
   console.log('单选值变化:', value)

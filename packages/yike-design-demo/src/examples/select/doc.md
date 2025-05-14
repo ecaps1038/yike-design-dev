@@ -5,3 +5,8 @@
 单击选择
 <SelectPrimary/>
 :::
+:::snippet
+多选
+多项选择
+<SelectMultiple/>
+:::
