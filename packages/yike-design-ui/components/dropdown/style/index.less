@@ -14,7 +14,10 @@
   &__item--disabled {
     .disabled();
   }
-
+  &__item--disabled:hover {
+    cursor: not-allowed;
+    background-color: transparent !important;
+  }
   .yk-tooltip__content {
     padding: @space-ss;
     min-width: auto;
