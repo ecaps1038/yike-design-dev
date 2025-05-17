@@ -21,7 +21,8 @@ const context = inject(TreeInjectionKey)
     @click="
       context?.onExpand?.(nodeContext?.option.key!, nodeContext?.expanded.value)
     "
+    @click.stop
   >
-    <component :is="(context?.expandIcon?.() as any)" />
+    <component :is="context?.expandIcon?.() as any" />
   </span>
 </template>
