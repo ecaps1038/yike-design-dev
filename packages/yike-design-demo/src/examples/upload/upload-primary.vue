@@ -4,11 +4,12 @@
     :file-list="fileUrl"
     desc="上传内容要求"
     :max-size="0"
+    @handle-success="handleSuccess"
+    @handle-before-upload="handleBeforeUpload"
   ></yk-upload>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-// const uploadUrl = 'http://chat.finecoder.cn:3976/upload'
 const uploadUrl = 'https://www.huohuo90.com:3005/upload'
 const fileUrl = ref([
   {
@@ -16,4 +17,10 @@ const fileUrl = ref([
     name: '默认图片',
   },
 ])
+const handleSuccess = (res: any) => {
+  console.log(res)
+}
+const handleBeforeUpload = (file: any) => {
+  console.log(file)
+}
 </script>

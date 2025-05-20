@@ -8,7 +8,6 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-// const uploadUrl = 'http://192.168.1.207:3976/upload'
 const uploadUrl = 'https://www.huohuo90.com:3005/upload'
 const fileUrl = ref([
   {
