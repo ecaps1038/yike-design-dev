@@ -4,7 +4,7 @@
 
 ```ts
 npm install --save-dev @yike-design/ui
-npm install --save-dev @yike-design/resovler
+npm install --save-dev @yike-design/resolver
 npm install --save-dev unplugin-auto-import
 npm install --save-dev unplugin-vue-components
 npm install -D less
