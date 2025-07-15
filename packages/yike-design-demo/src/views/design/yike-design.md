@@ -4,7 +4,7 @@
 
 ### 设计资源
 
-- Sketch：[Yike Design 设计稿](http://www.huohuo90.com/resource)
+- Sketch：[Yike Design 设计稿](https://huohuo90.com/resource)
 - Figma：[Yike Design 设计稿](https://www.figma.com/file/EMPOindzRJTKt1Gx6Egojq/Yike-design?type=design&node-id=0%3A278&mode=design&t=i37wpFDTiUm26TWx-1)
 - 图标库：[Yike Design Icons](https://www.iconfont.cn/collections/detail?cid=44410)
 
