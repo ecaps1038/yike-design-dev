@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "sourceMap": true,
     "outDir": "dist",
     "module": "CommonJS",
@@ -11,7 +12,9 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["DOM", "ES2020"]
+    "lib": ["DOM", "ES2020"],
+    "declaration": true,
+//    "ignoreDeprecations": "6.0"
   },
   "include": ["src"]
 }

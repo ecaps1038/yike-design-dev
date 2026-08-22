@@ -1,10 +1,12 @@
 import { matchComponents } from './yike';
+import type { ComponentResolveResult } from './types';
 
 function kebabCase(key: string) {
   const result = key.replace(/([A-Z])/g, ' $1').trim();
   return result.split(' ').join('-').toLowerCase();
 }
-export function sideEffects(importName: string) {
+
+export function sideEffects(importName: string): string {
   let componentDir = kebabCase(importName);
   for (const item of matchComponents) {
     if (item.pattern.test(importName)) {
@@ -16,7 +18,7 @@ export function sideEffects(importName: string) {
   return `@yike-design/ui/es/components/${componentDir}/style/css.js`;
 }
 
-export function sideDevEffects(importName: string) {
+export function sideDevEffects(importName: string): string {
   let componentDir = kebabCase(importName);
   for (const item of matchComponents) {
     if (item.pattern.test(importName)) {
@@ -30,7 +32,7 @@ export function sideDevEffects(importName: string) {
 
 const yikeSrcPath = '@yike-design/ui';
 
-export function YikeDevResolver(compName: string) {
+export function YikeDevResolver(compName: string): ComponentResolveResult | null {
   // console.log('Resolving component:', compName);
 
   if (compName.startsWith('Yk')) {
@@ -57,7 +59,7 @@ export function YikeDevResolver(compName: string) {
   return null;
 }
 
-export function YikeResolver(compName: string) {
+export function YikeResolver(compName: string): ComponentResolveResult | null {
   // console.log('Resolving component:', compName);
 
   if (compName.startsWith('Yk')) {

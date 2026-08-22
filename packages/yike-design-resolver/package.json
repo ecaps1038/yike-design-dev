@@ -5,6 +5,7 @@
   "author": "YikeDesign Team",
   "license": "MIT",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": "dist/index.js",
   "publishConfig": {
     "access": "public"
