@@ -2,3 +2,14 @@ packages:
   - packages/*
   # - demo
   - '!**/test/**'
+
+# 该仓库的源码依赖了大量“传递依赖”（例如 demo 的 vite 插件直接 import fs-extra、
+# resolver 的 tsc 需要 unplugin 的类型），因此需要把依赖公共提升到根 node_modules。
+# pnpm 10+ 起 .npmrc 中的 shamefully-hoist 不再生效，需在此处配置。
+allowBuilds:
+  esbuild: false
+  unrs-resolver: false
+  vue-demi: false
+
+publicHoistPattern:
+  - '*'
