@@ -43,6 +43,18 @@
       {
         "name": "Divider 分割线",
         "src": "divider"
+      },
+      {
+        "name": "Layout 布局",
+        "src": "layout"
+      },
+      {
+        "name": "Grid 栅格",
+        "src": "grid"
+      },
+      {
+        "name": "Flex 弹性布局",
+        "src": "flex"
       }
     ]
   },

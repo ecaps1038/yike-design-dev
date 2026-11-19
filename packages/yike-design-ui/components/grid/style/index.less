@@ -1,0 +1,108 @@
+@import '../../styles/basis.less';
+
+.yk-row {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.yk-row--nowrap {
+  flex-wrap: nowrap;
+}
+
+.yk-row--justify-start {
+  justify-content: flex-start;
+}
+
+.yk-row--justify-end {
+  justify-content: flex-end;
+}
+
+.yk-row--justify-center {
+  justify-content: center;
+}
+
+.yk-row--justify-space-between {
+  justify-content: space-between;
+}
+
+.yk-row--justify-space-around {
+  justify-content: space-around;
+}
+
+.yk-row--justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+.yk-row--align-start {
+  align-items: flex-start;
+}
+
+.yk-row--align-center {
+  align-items: center;
+}
+
+.yk-row--align-end {
+  align-items: flex-end;
+}
+
+.yk-row--align-stretch {
+  align-items: stretch;
+}
+
+.yk-row--align-baseline {
+  align-items: baseline;
+}
+
+.yk-col {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+.base-span(@index) when (@index > 0) {
+  .base-span((@index - 1));
+
+  .yk-col-@{index} {
+    flex: 0 0 ~'calc(@{index} / 24 * 100%)';
+    max-width: ~'calc(@{index} / 24 * 100%)';
+  }
+
+  .yk-col-offset-@{index} {
+    margin-left: ~'calc(@{index} / 24 * 100%)';
+  }
+}
+
+.base-span(24);
+
+.resp-span(@breakpoint, @index) when (@index > 0) {
+  .resp-span(@breakpoint, (@index - 1));
+
+  .yk-col-@{breakpoint}-@{index} {
+    flex: 0 0 ~'calc(@{index} / 24 * 100%)';
+    max-width: ~'calc(@{index} / 24 * 100%)';
+  }
+
+  .yk-col-@{breakpoint}-offset-@{index} {
+    margin-left: ~'calc(@{index} / 24 * 100%)';
+  }
+}
+
+@media (min-width: 576px) {
+  .resp-span(sm, 24);
+}
+
+@media (min-width: 768px) {
+  .resp-span(md, 24);
+}
+
+@media (min-width: 992px) {
+  .resp-span(lg, 24);
+}
+
+@media (min-width: 1200px) {
+  .resp-span(xl, 24);
+}

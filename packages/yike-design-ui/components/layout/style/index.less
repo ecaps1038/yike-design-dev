@@ -1,0 +1,107 @@
+@import '../../styles/basis.less';
+
+.yk-layout {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+  color: @font-color-l;
+  background-color: @bg-color-s;
+}
+
+.yk-layout--horizontal {
+  flex-direction: row;
+}
+
+.yk-layout-header {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  padding: 0 @space-l;
+  color: @font-color-l;
+  background-color: @bg-color-l;
+  line-height: 64px;
+}
+
+.yk-layout-footer {
+  padding: @space-m @space-l;
+  font-size: @size-s;
+  text-align: center;
+  color: @font-color-s;
+  background-color: @bg-color-m;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+.yk-layout-content {
+  padding: @space-l;
+  min-width: 0;
+  color: @font-color-l;
+  flex: auto;
+  box-sizing: border-box;
+}
+
+.yk-layout-sider {
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-right: 1px solid @line-color-s;
+  background-color: @bg-color-l;
+  transition:
+    width @animatb,
+    flex-basis @animatb;
+
+  &__children {
+    overflow: auto;
+    padding: @space-m;
+    padding-bottom: 48px;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  &__trigger {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    font-size: @size-m;
+    border-top: 1px solid @line-color-s;
+    color: @font-color-m;
+    background-color: @bg-color-m;
+    transition: background-color @animatb;
+    cursor: pointer;
+
+    &:hover {
+      background-color: @bg-color-ss;
+    }
+  }
+
+  &--dark {
+    border-right-color: @gray;
+    color: @white;
+    background-color: @gray;
+
+    .yk-layout-sider__trigger {
+      border-top-color: rgba(255 255 255 / 12%);
+      color: @white;
+      background-color: rgba(255 255 255 / 8%);
+
+      &:hover {
+        background-color: rgba(255 255 255 / 16%);
+      }
+    }
+  }
+
+  &--collapsed {
+    .yk-layout-sider__children {
+      overflow: hidden;
+      padding: @space-m @space-ss;
+    }
+  }
+}

@@ -179,6 +179,18 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/divider/doc.md'),
   },
   {
+    path: 'layout',
+    component: () => import('@/examples/layout/doc.md'),
+  },
+  {
+    path: 'grid',
+    component: () => import('@/examples/grid/doc.md'),
+  },
+  {
+    path: 'flex',
+    component: () => import('@/examples/flex/doc.md'),
+  },
+  {
     path: 'link',
     component: () => import('@/examples/link/doc.md'),
   },

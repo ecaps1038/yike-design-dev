@@ -65,4 +65,10 @@ export const matchComponents: MatchComponent[] = [
   { pattern: /^YkSpinner$/, componentDir: 'spinner' },
   { pattern: /^YkTimePicker$/, componentDir: 'time-picker' },
   { pattern: /^YkDatePicker$/, componentDir: 'date-picker' },
+  {
+    pattern: /^YkLayout(Header|Sider|Content|Footer)?$/,
+    componentDir: 'layout',
+  },
+  { pattern: /^(YkRow|YkCol)$/, componentDir: 'grid' },
+  { pattern: /^YkFlex$/, componentDir: 'flex' },
 ];

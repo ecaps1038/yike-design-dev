@@ -54,6 +54,15 @@ import {
 import YkSpinner from './components/spinner';
 import YkTimePicker from './components/time-picker';
 import YkDatePicker from './components/date-picker';
+import {
+  YkLayout,
+  YkLayoutHeader,
+  YkLayoutSider,
+  YkLayoutContent,
+  YkLayoutFooter,
+} from './components/layout';
+import { YkRow, YkCol } from './components/grid';
+import YkFlex from './components/flex';
 import { vLoading } from './components/spinner/src/directive';
 const components: {
   [propName: string]: Component;
@@ -122,6 +131,14 @@ const components: {
   YkSpinner,
   YkTimePicker,
   YkDatePicker,
+  YkLayout,
+  YkLayoutHeader,
+  YkLayoutSider,
+  YkLayoutContent,
+  YkLayoutFooter,
+  YkRow,
+  YkCol,
+  YkFlex,
 };
 
 export {
@@ -191,6 +208,14 @@ export {
   YkSpinner,
   YkTimePicker,
   YkDatePicker,
+  YkLayout,
+  YkLayoutHeader,
+  YkLayoutSider,
+  YkLayoutContent,
+  YkLayoutFooter,
+  YkRow,
+  YkCol,
+  YkFlex,
   vLoading,
 };
 
