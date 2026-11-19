@@ -23,6 +23,9 @@ export default defineConfig({
     }),
     vueJsx(),
     AutoImport({
+      // 当前 demo 没有使用自动导入的 API，关闭 d.ts 生成避免构建时反复改写
+      // 已提交的 auto-imports.d.ts（`pnpm build:demo` 会把它写脏）。
+      dts: false,
       resolvers: [YikeDevResolver],
     }),
     Components({

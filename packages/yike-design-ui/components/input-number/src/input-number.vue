@@ -46,7 +46,8 @@ import { createCssScope, useFormItem } from '../../utils'
 import { InputNumberProps } from './input-number'
 import { toRefs, ref, onMounted, computed, watch } from 'vue'
 import { IconUpOutline, IconDownOutline } from '../../svg-icon'
-import { YkInput, YkButton } from '../../../index'
+import { YkInput } from '../../input'
+import { YkButton } from '../../button'
 
 defineOptions({
   name: 'YkInputNumber',

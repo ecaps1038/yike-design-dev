@@ -2,13 +2,14 @@
   <yk-table
     ref="tableRef"
     :data="dataList"
+    row-key="id"
     @selection-change="handleSelectionChange"
   >
-    <yk-table-column type="selection"></yk-table-column>
-    <yk-table-column property="name" label="用户名"></yk-table-column>
-    <yk-table-column property="email" label="邮箱"></yk-table-column>
-    <yk-table-column property="bir" label="生日"></yk-table-column>
-    <yk-table-column property="desc" label="操作">
+    <yk-table-column type="checkbox" width="64" />
+    <yk-table-column property="name" label="用户名" />
+    <yk-table-column property="email" label="邮箱" />
+    <yk-table-column property="bir" label="生日" />
+    <yk-table-column property="desc" label="操作" width="220">
       <template #default="{ row, index }">
         <yk-button type="secondary" status="primary" @click="handleAdd(row)">
           添加
@@ -25,51 +26,27 @@
     </yk-table-column>
   </yk-table>
 </template>
+
 <script setup lang="ts">
-import { reactive , ref } from 'vue'
+import { ref } from 'vue'
 
-const tableRef = ref(null)
-const dataList = reactive([
-  {
-    name: '浩哥看沟通',
-    email: 'xigeotmete@qq.com',
-    bir: '1994.03.12',
-  },
-  {
-    name: 'Line2',
-    email: '',
-    bir: '1994.03.12',
-  },
-
-  {
-    name: 'DF的删除测试',
-    email: 'xx',
-    bir: '2052.1.1',
-    // desc: '这句话不知道 当讲不当讲，反正就是想讲一讲的',
-  },
-  {
-    name: 'DF的编辑测试',
-    email: 'nn',
-    bir: '2052.1.1',
-    // desc: '这句话不知道 当讲不当讲，反正就是想讲一讲的',
-  },
-  {
-    name: 'DFIndex测试',
-    email: 'tt',
-    bir: '2052.1.1',
-    // desc: '这句话不知道 当讲不当讲，反正就是想讲一讲的',
-  },
+const tableRef = ref()
+const dataList = ref([
+  { id: 1, name: '浩哥看沟通', email: 'xigeotmete@qq.com', bir: '1994.03.12' },
+  { id: 2, name: 'Line2', email: '', bir: '1994.03.12' },
+  { id: 3, name: 'DF的删除测试', email: 'xx', bir: '2052.1.1' },
+  { id: 4, name: 'DF的编辑测试', email: 'nn', bir: '2052.1.1' },
 ])
 
-const handleSelectionChange = (val) => {
-  console.log(val)
+const handleSelectionChange = (selection: unknown[]) => {
+  return selection
 }
-const handleAdd = (e) => {
-  console.log('🚀 Add ~ e:', e)
+
+const handleAdd = (row: unknown) => {
+  return row
 }
-const handleDelete = (index) => {
-  console.log('🚀 Delete ~ e:', index)
-  dataList.splice(index, 1)
-  console.log('🚀 ~ handleDelete ~ dataList:', dataList)
+
+const handleDelete = (index: number) => {
+  dataList.value.splice(index, 1)
 }
 </script>

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - monorepo-dev
+      - main
+  pull_request:
+    branches:
+      - monorepo-dev
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint / TypeCheck / Test / Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 版本从 package.json 的 packageManager 字段读取，避免 CI 与本地不一致
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm type-check
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build components
+        run: pnpm build:comp
+
+      - name: Build docs
+        run: pnpm build:demo

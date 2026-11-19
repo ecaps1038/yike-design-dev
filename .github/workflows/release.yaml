@@ -9,26 +9,33 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
         with:
-          version: 8
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org/
+          cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
+
+      # 发布前先跑质量门禁，避免把坏版本发到 npm
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm type-check
+
+      - name: Unit tests
+        run: pnpm test
 
       - name: Build @yike-design/ui
         run: pnpm run build:comp
 
-      - name: Build docs
-        run: |
-          pnpm run build:demo
-
-      - name: Pubilsh package to npm
-        run: pnpm publish --filter @yike-design/ui --access public --no-git-checks
+      - name: Publish package to npm
+        run: pnpm --filter @yike-design/ui publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

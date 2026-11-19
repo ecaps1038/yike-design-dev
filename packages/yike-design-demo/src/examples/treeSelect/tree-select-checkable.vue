@@ -10,6 +10,7 @@
       <YkSwitch v-model="state.checkStrictly"></YkSwitch>
     </YkSpace>
     <YkTreeSelect
+      v-model="state.value"
       :options="state.treeData"
       placeholder="这是默认的placeholer输入提示"
       :checkable="state.checkable"
@@ -21,6 +22,7 @@
 import { reactive } from 'vue'
 // 定义参数
 const state = reactive<any>({
+  value: [],
   checkable: true,
   checkStrictly: false,
   treeData: [

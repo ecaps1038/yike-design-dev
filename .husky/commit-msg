@@ -1,1 +1,1 @@
-npx lint-staged --allow-empty
+node .husky/script/verifyCommitMsg.js

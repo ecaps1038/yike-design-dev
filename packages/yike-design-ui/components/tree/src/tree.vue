@@ -82,8 +82,7 @@ watch(
 
 // 处理节点的展开收缩逻辑
 const expandedKeys = defineModel<Key[]>('expandedKeys', {
-  local: true,
-  default: [],
+  default: () => [],
 })
 const handleExpandPKey = (key: Key) => {
   onExpand(key, false, true)
@@ -113,8 +112,7 @@ const onExpand = (key: Key, close = false, first = false) => {
 
 // 处理节点选中的逻辑
 const selectedKeys = defineModel<Key[]>('selectedKeys', {
-  local: true,
-  default: [],
+  default: () => [],
 })
 onMounted(() => {
   if (props.defaultSelectedKeys.length === 0) {
@@ -147,8 +145,7 @@ watch(
 
 // handle node check logic
 const checkedKeys = defineModel<Key[]>('checkedKeys', {
-  default: [],
-  local: true,
+  default: () => [],
 })
 const _checkedKeys = ref<Key[]>([])
 
@@ -180,7 +177,7 @@ watch(
 )
 
 /** 根据 checkStrategy 获取外部需要的 keys */
-const getOuterWantKeys = () => {
+function getOuterWantKeys() {
   // 父子节点关联取消的时候，失效
   if (checkStrategy.value === 'all' || checkStrictly.value) {
     checkedKeys.value = [..._checkedKeys.value]

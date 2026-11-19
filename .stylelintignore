@@ -21,3 +21,9 @@
 /dist/
 /lib/
 /node_modules/
+**/dist/
+**/es/
+**/lib/
+**/coverage/
+**/svg-icon/
+**/*.map

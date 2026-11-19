@@ -18,6 +18,11 @@ defineOptions({
   name: 'YkForm',
 })
 
+const emit = defineEmits<{
+  (e: 'submit', event: Event): void
+  (e: 'reset'): void
+}>()
+
 const bem = createCssScope('form')
 const validateMap: ValidateStatusMap = {}
 const props = withDefaults(defineProps<FormProps>(), {
@@ -28,14 +33,18 @@ const props = withDefaults(defineProps<FormProps>(), {
 })
 const { model, disabled, rules, labelWidth, size, layout } = toRefs(props)
 
+/**
+ * 校验整个表单。
+ * @param callback 校验完成回调，errors 为 undefined 表示通过
+ * @param trigger 只校验指定触发方式的规则（如 change / blur）
+ */
 const validate = async (
   callback?: (errors: undefined | Record<string, any>) => void,
+  trigger?: string,
 ): Promise<any> => {
   const validateList: Promise<any>[] = []
-  let hasError = false
   Object.keys(validateMap).forEach((field) => {
-    validateList.push(validateMap[field].validate())
-    hasError = hasError || (validateMap[field]?.isError ?? false)
+    validateList.push(validateMap[field].validate(trigger))
   })
   return Promise.all(validateList).then((result) => {
     const errors: Record<string, any> = {}
@@ -55,6 +64,23 @@ const validate = async (
   })
 }
 
+/** 校验单个字段 */
+const validateField = (field: string, trigger?: string): Promise<any> => {
+  const item = validateMap[field]
+  if (!item) return Promise.resolve()
+  return item.validate(trigger)
+}
+
+/** 清除校验状态，不传 fields 时清除全部 */
+const clearValidate = (fields?: string | string[]) => {
+  const list = fields
+    ? Array.isArray(fields)
+      ? fields
+      : [fields]
+    : Object.keys(validateMap)
+  list.forEach((field) => validateMap[field]?.resetValidate())
+}
+
 const addField = (formItemInstance: FormItemInstance) => {
   const _field = formItemInstance.field
   validateMap[_field] = {
@@ -67,17 +93,19 @@ const removeField = (field: string) => {
 }
 
 const updateValidateState = (field: string, formItemInstance: any) => {
+  if (!validateMap[field]) return
   Object.assign(validateMap[field], formItemInstance)
 }
 
 const resetFields = () => {
   Object.keys(validateMap).forEach((field) => {
-    validateMap[field].resetField()
+    validateMap[field]?.resetField()
   })
+  emit('reset')
 }
 
-const handleSubmit = (e: Event) => {
-  return
+const handleSubmit = (event: Event) => {
+  emit('submit', event)
 }
 
 provide(
@@ -97,6 +125,8 @@ provide(
 
 defineExpose({
   validate,
+  validateField,
   resetFields,
+  clearValidate,
 })
 </script>

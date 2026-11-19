@@ -1,88 +1,138 @@
-@import '../../styles/basis.less';
-
 .yk-select-view {
   position: relative;
   width: 100%;
+  font-size: @size-s;
+  color: @font-color-l;
+}
+
+.yk-select-view__trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 @space-m;
+  min-height: 32px;
+  border: 1px solid @line-color-m;
+  border-radius: @radius-m;
   background-color: @bg-color-l;
-  .yk-select-view--cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    cursor: not-allowed;
-    transform: translateX();
+  gap: @space-s;
+  cursor: pointer;
+  transition: border-color @animatb;
+
+  &:hover {
+    border-color: @pcolor;
   }
 
-  .yk-select-view__input {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
-    padding: 0 @space-l 0 @space-m;
-    width: 100%;
-    height: @space-l * 2;
-    border: 1px solid @line-color-l;
-    border-radius: @radius-s;
-    transition: all 0.3s;
-    .yk-select-view__icon__closed {
-      padding: 0 0 0 @space-s;
-      width: 25px;
-      cursor: pointer;
-      color: @pcolor-10;
-    }
-    .scrollContent {
-      display: flex;
-      align-items: center;
-      transform: translateX(-100px);
-    }
-    .text {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 10px 0 10px;
-      white-space: nowrap;
-    }
-    .yk-select-view__tags {
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      margin: 0 10px 0 0;
-      padding: 0 @space-s 0 @space-s;
-      height: @space-m * 2;
-      border-radius: @radius-s;
-      background-color: @pcolor-3;
-      flex-wrap: nowrap;
-      line-height: @space-m * 2;
-      cursor: default;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    .yk-select-view__input--default {
-      width: inherit;
-      border: none;
-      color: @font-color-m;
-      background-color: unset;
-      outline: none;
-    }
-    &:hover {
-      border-color: @pcolor;
-    }
-
-    .yk-select-view__icon--closed {
-      border-radius: @radius-m;
-      color: @font-color-m;
-      // background-color:@bg-color-m;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
+  &:focus-visible {
+    outline: 2px solid @pcolor-3;
+    outline-offset: 1px;
   }
 }
 
-.yk-select-view__input--focused {
-  border-color: @pcolor!important;
-  box-shadow: 0 0 4px @pcolor;
+.yk-select-view__trigger--focused {
+  border-color: @pcolor;
+}
+
+.yk-select-view__trigger--no-border {
+  border-color: transparent;
+}
+
+.yk-select-view__trigger--disabled {
+  color: @font-color-ss;
+  background-color: @bg-color-s;
+  cursor: not-allowed;
+  opacity: 0.6;
+
+  &:hover {
+    border-color: @line-color-m;
+  }
+}
+
+.yk-select-view__value {
+  overflow: hidden;
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.yk-select-view__placeholder {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: @font-color-ss;
+  flex: 1;
+}
+
+.yk-select-view__tags {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: @space-ss;
+}
+
+.yk-select-view__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: @space-ss;
+  padding: 0 @space-s;
+  max-width: 100%;
+  height: 24px;
+  border-radius: @radius-s;
+  color: @font-color-m;
+  background-color: @bg-color-s;
+  line-height: 24px;
+}
+
+.yk-select-view__tag-close {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  color: @font-color-ss;
+  transition:
+    color @animatf,
+    background-color @animatf;
+  cursor: pointer;
+
+  &:hover {
+    color: @font-color-l;
+    background-color: @gray-2;
+  }
+}
+
+.yk-select-view__suffix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: @font-color-ss;
+  flex-shrink: 0;
+}
+
+.yk-select-view__clear {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  color: @font-color-ss;
+  cursor: pointer;
+
+  &:hover {
+    color: @font-color-l;
+    background-color: @gray-2;
+  }
+}
+
+.yk-select-view__arrow {
+  transition: transform @animatb;
+}
+
+.yk-select-view__arrow--open {
+  transform: rotate(180deg);
 }

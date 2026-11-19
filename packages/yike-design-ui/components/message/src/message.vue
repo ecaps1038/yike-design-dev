@@ -36,7 +36,6 @@ const props = withDefaults(defineProps<MessageProps>(), {
   duration: 3000,
   offset: 12,
   zIndex: 100,
-  onClose: () => ({}),
 })
 
 const emits = defineEmits(['close'])

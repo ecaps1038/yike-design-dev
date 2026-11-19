@@ -9,7 +9,7 @@
   </TransitionGroup>
 </template>
 <script lang="ts" setup>
-import { MessageGroupProps } from './message'
+import { MessageGroupProps, MessageOptions, MessageProps } from './message'
 import Message from './message.vue'
 
 withDefaults(defineProps<MessageGroupProps>(), {
@@ -26,9 +26,12 @@ const onLeave = () => {
   emits('destroy')
 }
 
-const getProps = (item: any) => {
-  return Object.keys(item)
-    .filter((k) => !['id', 'onClose'].includes(k))
-    .reduce((res, k) => Object.assign(res, { [k]: item[k] }), {})
+const getProps = (item: MessageOptions): MessageProps => {
+  const props: Record<string, any> = {}
+  Object.keys(item).forEach((key) => {
+    if (['id', 'onClose', 'onDestroy'].includes(key)) return
+    props[key] = item[key as keyof MessageOptions]
+  })
+  return props as MessageProps
 }
 </script>

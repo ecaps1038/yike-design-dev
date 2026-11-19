@@ -3,10 +3,19 @@
     <div :class="bem('label')" :style="{ width: `${mergedLabelWidth}px` }">
       {{ label }}
     </div>
-    <div :class="bem('field')">
+    <div
+      :class="bem('field')"
+      :aria-invalid="validateStatus.isError"
+      :aria-describedby="validateStatus.isError ? errorId : undefined"
+    >
       <slot />
       <Transition name="fade">
-        <div v-if="validateStatus.isError" :class="bem('extra')">
+        <div
+          v-if="validateStatus.isError"
+          :id="errorId"
+          :class="bem('extra')"
+          role="alert"
+        >
           {{ validateStatus.message }}
         </div>
       </Transition>
@@ -34,10 +43,10 @@ import {
   inject,
   computed,
   onMounted,
+  onBeforeUnmount,
   reactive,
   provide,
   ref,
-  onBeforeMount,
 } from 'vue'
 
 defineOptions({
@@ -55,7 +64,18 @@ const validateStatus = reactive<FormItemStatus>({
   isError: false,
   message: '',
 })
-const propVal = getObjVal(formContext.model, props.field)
+const propVal = props.field
+  ? getObjVal(formContext.model, props.field)
+  : {
+      get value(): unknown {
+        return undefined
+      },
+      // 没有 field 时 resetField 不产生实际副作用
+      set value(_value: unknown) {
+        /* noop */
+      },
+    }
+const errorId = `yk-form-item-${Math.random().toString(36).slice(2, 10)}`
 const computedDisabled = computed(() => props.disabled || formContext.disabled)
 
 const mergedLabelWidth = computed(
@@ -88,6 +108,8 @@ const validateField = (trigger?: string): Promise<any> => {
   if (trigger) {
     // 根据rules列表中的trigger进行筛选
     rules = rules.filter((rule) => {
+      // 未声明 trigger 的规则在任意触发时机都参与校验
+      if (!rule.trigger) return true
       if (isArray(rule.trigger)) {
         return rule.trigger.includes(trigger)
       }
@@ -156,6 +178,7 @@ const resetValidate = () => {
 let formItemInfo = ref<FormItemInstance>()
 
 const resetField = () => {
+  if (!formItemInfo.value) return
   propVal.value = formItemInfo.value.initValue
   resetValidate()
 }
@@ -175,11 +198,18 @@ onMounted(() => {
     formContext.addField?.(formItemInfo.value)
   }
 })
-onBeforeMount(() => {
-  formContext.removeField?.(props.field)
+onBeforeUnmount(() => {
+  if (props.field) formContext.removeField?.(props.field)
 })
 
-defineExpose(formItemInfo.value)
+defineExpose({
+  validate: validateField,
+  resetValidate,
+  resetField,
+  get info() {
+    return formItemInfo.value
+  },
+})
 
 provide(
   formItemContextKey,
@@ -187,7 +217,7 @@ provide(
     size: mergedSize,
     layout,
     validateInstance: validateStatus,
-    disabled: computedDisabled.value,
+    disabled: computedDisabled,
     validate: validateField,
   }),
 )

@@ -1,12 +1,16 @@
 <template>
   <div>
-    <YkTreeSelect :options="state.treeData"></YkTreeSelect>
+    <YkTreeSelect
+      v-model="state.value"
+      :options="state.treeData"
+    ></YkTreeSelect>
   </div>
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue'
 // 定义参数
 const state = reactive<any>({
+  value: '11',
   treeData: [
     {
       key: '1',

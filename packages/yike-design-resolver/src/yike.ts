@@ -1,7 +1,14 @@
-import type { ComponentInfo, ComponentResolver } from './types';
-import { isExclude } from './_utils';
+export type MatchComponent = {
+  pattern: RegExp;
+  componentDir: string;
+};
 
-export const matchComponents = [
+/**
+ * 组件名到组件目录的映射。
+ * 仅用于按需引入时定位 `style/css.js`（组件 JS 由 unplugin 从包入口解析）。
+ * 新增组件时记得在这里补一条；未匹配到的组件会按 `YkFooBar -> foo-bar` 约定推导。
+ */
+export const matchComponents: MatchComponent[] = [
   { pattern: /^YkUpload$/, componentDir: 'upload' },
   { pattern: /^(YkRadio|YkRadioGroup)$/, componentDir: 'radio' },
   { pattern: /^(YkCheckbox|YkCheckboxGroup)$/, componentDir: 'checkbox' },
@@ -39,7 +46,6 @@ export const matchComponents = [
   { pattern: /^YkButton$/, componentDir: 'button' },
   { pattern: /^YkSelect$/, componentDir: 'select' },
   { pattern: /^YkTheme$/, componentDir: 'theme' },
-  { pattern: /^YkIcon$/, componentDir: 'icon' },
   { pattern: /^(YkAvatar|YkAvatarGroup)$/, componentDir: 'avatar' },
   { pattern: /^YkSpace$/, componentDir: 'space' },
   { pattern: /^(YkTimeline|YkTimelineItem)$/, componentDir: 'timeline' },
@@ -57,133 +63,6 @@ export const matchComponents = [
     componentDir: 'image',
   },
   { pattern: /^YkSpinner$/, componentDir: 'spinner' },
-  { pattern: /^vLoading$/, componentDir: 'directive' },
   { pattern: /^YkTimePicker$/, componentDir: 'time-picker' },
+  { pattern: /^YkDatePicker$/, componentDir: 'date-picker' },
 ];
-export function kebabCase(key: string) {
-  const result = key.replace(/([A-Z])/g, ' $2').trim();
-  return result.split(' ').join('-').toLowerCase();
-}
-export function pascalCase(str: string) {
-  return capitalize(camelCase(str));
-}
-
-export function camelCase(str: string) {
-  return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''));
-}
-
-export function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function getComponentStyleDir(
-  importName: string,
-  importStyle: boolean | 'css' | 'less',
-) {
-  if (['ConfigProvider', 'Icon'].includes(importName)) return undefined;
-
-  let componentDir = kebabCase(importName);
-  for (const item of matchComponents) {
-    if (item.pattern.test(importName)) {
-      componentDir = item.componentDir;
-      break;
-    }
-  }
-  if (importStyle === 'less') {
-    return `@yike-design/ui/es/components/${componentDir}/style/index.js`;
-  }
-  if (importStyle === 'css' || importStyle) {
-    return `@yike-design/ui/es/components/${componentDir}/style/index.css`;
-  }
-}
-
-function canResolveIcons(
-  options?: ResolveIconsOption,
-): options is AllowResolveIconOption {
-  if (options === undefined) return false;
-  if (typeof options === 'boolean') return options;
-  else return options.enable;
-}
-
-function getResolveIconPrefix(options?: ResolveIconsOption) {
-  if (canResolveIcons(options)) {
-    if (typeof options === 'boolean' && options) return '';
-    else if (options.enable) return options.iconPrefix ?? '';
-    else return '';
-  }
-  return '';
-}
-
-export type DisallowResolveIconOption = undefined | false | { enable: false };
-export type AllowResolveIconOption =
-  | true
-  | { enable: true; iconPrefix?: string };
-export type ResolveIconsOption =
-  | DisallowResolveIconOption
-  | AllowResolveIconOption;
-
-export interface YikeResolverOptions {
-  /**
-   * exclude components that do not require automatic import
-   *
-   * @default []
-   */
-  exclude?: string | RegExp | (string | RegExp)[];
-  /**
-   * import style css or less with components
-   *
-   * @default 'css'
-   */
-  importStyle?: boolean | 'css' | 'less';
-  /**
-   * resolve icons
-   *
-   * @default false
-   */
-  resolveIcons?: ResolveIconsOption;
-  /**
-   * Control style automatic import
-   *
-   * @default true
-   */
-  sideEffect?: boolean;
-}
-
-/**
- * Resolver for Yike Design Vue
- *
- * Requires @yike-design/ui@0.0.11 or later
- *
- * @author @flsion
- * @link https://Yike.design/ for Yike-design
- *
- */
-export function YikeResolver(
-  options: YikeResolverOptions = {},
-): ComponentResolver {
-  return {
-    type: 'component',
-    resolve: (name: string) => {
-      if (name.startsWith('Icon')) {
-        const config = {
-          name,
-          as: name,
-          from: '@yike-design/ui/es/components/svg-icon',
-        };
-        return config;
-      }
-      if (name.match(/^Yk[A-Z]/) && !isExclude(name, options.exclude)) {
-        const importStyle = options.importStyle ?? 'css';
-
-        const importName = name;
-        const config: ComponentInfo = {
-          name: importName,
-          from: '@yike-design/ui',
-        };
-        if (options.sideEffect !== false)
-          config.sideEffects = getComponentStyleDir(importName, importStyle);
-        return config;
-      }
-    },
-  };
-}

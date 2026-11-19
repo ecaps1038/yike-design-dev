@@ -64,4 +64,4 @@
 | closeText         | 自定义‘收起’文字                   | string                         | '收起'  |
 | copyable          | 拷贝文案按钮                       | boolean                        | `false` |
 | openChange        | 展开更多时触发                     | (open: boolean) => void        | -       |
-| copyBefore        | 复制前触发，用于处理需要复制的文字 | (value: Ref\<string\>) => void | -       |
+| copyBefore        | 复制前触发，用于处理需要复制的文字 | (value: string) => void         | -       |

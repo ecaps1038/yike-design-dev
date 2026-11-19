@@ -60,7 +60,7 @@ export interface FormItemInstance {
   status?: ValidateStatus;
   rules?: SchemaRuleType[];
   initValue: any;
-  validate: () => Promise<any>;
+  validate: (trigger?: string) => Promise<any>;
   resetValidate: () => void;
   resetField: () => void;
 }

@@ -187,6 +187,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/time-picker/doc.md'),
   },
   {
+    path: 'date-picker',
+    component: () => import('@/examples/date-picker/doc.md'),
+  },
+  {
     path: 'select',
     component: () => import('@/examples/select/doc.md'),
   },

@@ -17,7 +17,8 @@
 
 <script setup lang="ts">
 import { SwitchProps, switchEmits } from './switch'
-import { computed, ref, watch } from 'vue'
+import { computed, ref, toRefs, watch } from 'vue'
+import { useFormItem } from '../../utils'
 
 defineOptions({
   name: 'YkSwitch',
@@ -33,6 +34,13 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   uncheckedValue: false,
 })
 
+const { disabled, size } = toRefs(props)
+const { mergedDisabled, mergedSize, validate } = useFormItem({
+  disabled,
+  size,
+})
+
+const switchSize = computed(() => (mergedSize.value === 's' ? 's' : 'm'))
 const currentValue = ref(props.modelValue)
 
 watch(
@@ -44,12 +52,12 @@ watch(
 
 const isChecked = computed(() => currentValue.value === props.checkedValue)
 
-const isDisabled = computed(() => props.disabled || props.loading)
+const isDisabled = computed(() => mergedDisabled.value || props.loading)
 
 const classes = computed(() => {
   return [
     'yk-switch',
-    `yk-switch--${props.size}`,
+    `yk-switch--${switchSize.value}`,
     {
       ['yk-switch--checked']: isChecked.value,
       ['yk-switch--loading']: props.loading,
@@ -68,6 +76,7 @@ const handleClick = (e: Event) => {
   currentValue.value = !isChecked.value
     ? props.checkedValue
     : props.uncheckedValue
+  validate('change')
   emit('update:modelValue', currentValue.value)
   emit('change', currentValue.value, e)
 }

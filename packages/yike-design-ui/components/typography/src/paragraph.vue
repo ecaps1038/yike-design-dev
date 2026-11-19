@@ -130,7 +130,7 @@ function truncateMultilineText(
 function handleCopy() {
   const text = ref(textRef.value!.innerText)
 
-  emit('copyBefore', text)
+  emit('copyBefore', text.value)
   copy(text.value)
 
   proxy.$message({

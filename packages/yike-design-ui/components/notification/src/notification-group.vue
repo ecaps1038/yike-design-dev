@@ -12,7 +12,11 @@
   </TransitionGroup>
 </template>
 <script lang="ts" setup>
-import { NotificationGroupProps } from './notification'
+import {
+  NotificationGroupProps,
+  NotificationOptions,
+  NotificationProps,
+} from './notification'
 import Notification from './notification.vue'
 import { ref, computed } from 'vue'
 
@@ -32,10 +36,13 @@ const onLeave = () => {
   emits('destroy')
 }
 
-const getProps = (item: any) => {
-  return Object.keys(item)
-    .filter((k) => !['id', 'onClose'].includes(k))
-    .reduce((res, k) => Object.assign(res, { [k]: item[k] }), {})
+const getProps = (item: NotificationOptions): NotificationProps => {
+  const props: Record<string, any> = {}
+  Object.keys(item).forEach((key) => {
+    if (['id', 'onClose', 'onDestroy'].includes(key)) return
+    props[key] = item[key as keyof NotificationOptions]
+  })
+  return props as NotificationProps
 }
 
 const slideName = computed(() => {

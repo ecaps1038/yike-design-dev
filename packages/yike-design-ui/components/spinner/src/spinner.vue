@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { SpinnerProps, resolveSize, resolveColor } from './spinner'
 import { createCssScope } from '../../utils'
+import { IconLoadingOutline } from '../../svg-icon'
 import { computed, ref } from 'vue'
 import '../style'
 

@@ -1,6 +1,7 @@
 <template>
   <div>
     <YkTreeSelect
+      v-model="state.value"
       :options="state.treeData"
       file-tree
       :file-icons="{
@@ -21,6 +22,7 @@ import {
 } from '@yike-design/ui/components/svg-icon'
 // 定义参数
 const state = reactive<any>({
+  value: undefined,
   treeData: [
     {
       key: '1',

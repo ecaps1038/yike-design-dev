@@ -53,6 +53,7 @@ import {
 } from './components/image';
 import YkSpinner from './components/spinner';
 import YkTimePicker from './components/time-picker';
+import YkDatePicker from './components/date-picker';
 import { vLoading } from './components/spinner/src/directive';
 const components: {
   [propName: string]: Component;
@@ -120,6 +121,7 @@ const components: {
   YkImagePreviewGroup,
   YkSpinner,
   YkTimePicker,
+  YkDatePicker,
 };
 
 export {
@@ -188,6 +190,7 @@ export {
   YkImagePreviewGroup,
   YkSpinner,
   YkTimePicker,
+  YkDatePicker,
   vLoading,
 };
 

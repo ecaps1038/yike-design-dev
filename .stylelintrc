@@ -12,14 +12,6 @@
     {
       "files": ["**/*.(html|vue)"],
       "customSyntax": "postcss-html"
-    },
-    {
-      "files": ["./demo/src/examples/**/*.vue"],
-      "rules": {
-        "max-empty-lines": 0,
-        "declaration-empty-line-before": "never",
-        "rule-empty-line-before": "never"
-      }
     }
   ],
   "rules": {
@@ -30,6 +22,7 @@
     "no-empty-source": null,
     "no-descending-specificity": null,
     "declaration-empty-line-before": null,
+    "declaration-property-value-no-unknown": null,
     "selector-pseudo-class-no-unknown": [
       true,
       {

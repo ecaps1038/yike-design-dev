@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "sourceMap": true,
+    "declaration": true,
     "outDir": "dist",
     "module": "CommonJS",
     "target": "ES2015",

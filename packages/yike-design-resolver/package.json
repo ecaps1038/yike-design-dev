@@ -5,7 +5,7 @@
   "author": "YikeDesign Team",
   "license": "MIT",
   "main": "dist/index.js",
-  "bin": "dist/index.js",
+  "types": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -24,7 +24,7 @@
   },
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc",
+    "build": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc",
     "lint-staged": "npx lint-staged",
     "release": "standard-version"
   },

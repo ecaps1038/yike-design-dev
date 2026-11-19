@@ -13,12 +13,13 @@ export default defineComponent({
     const columnList = store?.state.columns;
 
     return {
+      store,
       columnList,
       bem: parent!.bem,
     };
   },
   render() {
-    const { columnList, bem } = this;
+    const { columnList, bem, store } = this;
     return h(
       'thead',
       {
@@ -28,10 +29,19 @@ export default defineComponent({
         'tr',
         {},
         columnList?.map((column, index) => {
+          const sort = store?.state.sort.value;
+          const ariaSort =
+            sort && sort.columnId === column.id && sort.order
+              ? sort.order === 'asc'
+                ? 'ascending'
+                : 'descending'
+              : undefined;
           return h(
             'th',
             {
-              class: [bem('cell')],
+              class: [bem('cell'), `text-${column.align}`],
+              style: column.width ? { width: `${column.width}px` } : undefined,
+              'aria-sort': ariaSort,
             },
             column.renderHeader({ column, index }),
           );

@@ -1,5 +1,5 @@
 <template>
-  <YkScrollbar v-if="props.scrollbar" v-bind="props.scrollbar">
+  <YkScrollbar v-if="props.scrollbar" v-bind="scrollbarProps">
     <div ref="$anchor" :class="cls">
       <anchor-list
         :active="active"
@@ -64,6 +64,11 @@ const cls = computed(() => {
     'yk-anchor-show-marker': props.showMarker,
   }
 })
+
+// scrollbar 支持传 boolean（true 时用默认配置），这里统一成 props 对象
+const scrollbarProps = computed(() =>
+  typeof props.scrollbar === 'object' ? props.scrollbar : {},
+)
 
 const active = ref<string>('')
 const $anchor = shallowRef<HTMLDivElement>()

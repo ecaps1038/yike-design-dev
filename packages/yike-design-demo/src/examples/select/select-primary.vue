@@ -1,14 +1,11 @@
 <template>
-  <yk-space dir="vertical">
-    <yk-select
-      v-model="singleValue"
-      :options="options"
-      @change="handleSingleChange"
-    />
+  <yk-space dir="vertical" align="start">
+    <yk-select v-model="singleValue" :options="options" style="width: 260px" />
     <yk-select
       v-model="singleValue2"
       :options="options2"
-      @change="handleSingleChange"
+      placeholder="请选择选项"
+      style="width: 260px"
     />
   </yk-space>
 </template>
@@ -30,14 +27,6 @@ const options2 = [
   { value: 'option5', label: '选项5' },
 ]
 
-const singleValue = ref()
+const singleValue = ref('option1')
 const singleValue2 = ref()
-
-const handleSingleChange = (value: string) => {
-  console.log('单选值变化:', value)
-}
-
-const handleMultipleChange = (value: string[]) => {
-  console.log('多选值变化:', value)
-}
 </script>

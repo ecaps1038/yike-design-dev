@@ -3,5 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-const inputValue = '你好，Yike Design'
+import { ref } from 'vue'
+
+const inputValue = ref('你好，Yike Design')
 </script>

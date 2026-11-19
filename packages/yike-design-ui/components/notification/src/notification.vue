@@ -83,7 +83,6 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   position: 'topRight',
   handleCancel: () => ({}),
   handleSubmit: () => ({}),
-  onClose: () => ({}),
 })
 
 const emits = defineEmits(['close', 'lockNotifications', 'unlockNotifications'])

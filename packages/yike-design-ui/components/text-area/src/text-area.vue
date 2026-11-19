@@ -1,7 +1,9 @@
 <template>
   <div
     ref="containerRef"
-    :class="bem({ focus: isFocus }, { disabled: props.disabled })"
+    :class="
+      bem({ focus: isFocus, error: isError }, { disabled: mergedDisabled })
+    "
   >
     <div
       v-if="props.autoSize"
@@ -19,7 +21,7 @@
       cols=""
       :placeholder="props.placeholder"
       :class="[bem('inner', { autoSize: !!props?.autoSize })]"
-      :disabled="props.disabled"
+      :disabled="mergedDisabled"
       :style="areaStyle"
       @focus="onFocus"
       @blur="onBlur"
@@ -29,7 +31,7 @@
       @compositionend="onComposition"
     ></textarea>
     <button
-      v-if="clearable && !disabled"
+      v-if="clearable && !mergedDisabled"
       aria-label="清空内容"
       :class="[bem('button')]"
       @click="clear"
@@ -40,11 +42,12 @@
 </template>
 <script setup lang="ts">
 import { TextAreaProps } from './text-area'
-import { createCssScope } from '../../utils'
+import { createCssScope, useFormItem } from '../../utils'
 import {
   ref,
   computed,
   shallowRef,
+  toRefs,
   CSSProperties,
   onMounted,
   nextTick,
@@ -62,6 +65,12 @@ defineOptions({
 const props = withDefaults(defineProps<TextAreaProps>(), {
   id: '',
   maxLength: 0,
+})
+
+const { disabled, status } = toRefs(props)
+const { mergedDisabled, isError, validate } = useFormItem({
+  disabled,
+  status,
 })
 
 const textAreaRef = shallowRef<HTMLInputElement>()
@@ -86,6 +95,7 @@ const onFocus = (e: FocusEvent) => {
 
 const onBlur = (e: FocusEvent) => {
   isFocus.value = false
+  validate('blur')
   emits('blur', e)
 }
 
@@ -93,12 +103,14 @@ const clearable: any = computed(() => props.clearable && textVal.value)
 const clear: any = () => {
   emits('clear', '')
   onChange('')
+  validate('change')
   emits('update:modelValue', '')
 }
 
 const onChange = (value: string) => {
   const isChange = props.modelValue !== value
   isChange && !isFocus.value && emits('change', value)
+  if (isChange) validate('change')
 }
 const limitNum: any = computed(() => {
   if (!props.showWordLimit) {

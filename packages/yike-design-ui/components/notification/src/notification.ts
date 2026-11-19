@@ -12,8 +12,6 @@ export type NotificationProps = {
   dangerouslyUseHTMLString?: boolean;
   position?: NotificationPosition;
 
-  onClose?: () => void;
-  onDestroy?: () => void;
   handleCancel?: () => void;
   handleSubmit?: () => void;
 };
@@ -21,6 +19,10 @@ export type NotificationProps = {
 export interface NotificationOptions extends NotificationProps {
   id?: number | string;
   appendTo?: HTMLElement | string;
+  /** 通知关闭时的回调 */
+  onClose?: () => void;
+  /** 通知销毁时的回调 */
+  onDestroy?: () => void;
 }
 
 export type NotificationGroupProps = {

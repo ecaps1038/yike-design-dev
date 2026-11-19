@@ -1,64 +1,125 @@
 @import '../../styles/basis.less';
 
 .yk-table {
-  overflow-x: auto;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  font-size: @size-s;
+  color: @font-color-l;
 
-  > table {
+  table {
     position: relative;
     overflow: hidden;
     width: 100%;
     max-width: 100%;
     height: fit-content;
-    box-sizing: border-box;
     border-spacing: 0;
-
-    .td {
-      padding: @space-m @space-xl;
-    }
+    border-collapse: separate;
+    table-layout: fixed;
+    box-sizing: border-box;
   }
 
   th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     padding: 0 @space-xl;
+    text-align: left;
     background-color: @bg-color-s;
+  }
 
-    .cell {
-      font-weight: 600;
+  &__header-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: @space-ss;
+  }
+
+  &__header-cell.is-sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: color @animatb;
+
+    &:hover {
+      color: @pcolor;
     }
+  }
+
+  &__sort {
+    display: inline-flex;
+    flex-direction: column;
+    color: @font-color-ss;
+    line-height: 1;
+  }
+
+  &__sort-icon {
+    width: 10px;
+    height: 10px;
+  }
+
+  &__sort-icon.is-active {
+    color: @pcolor;
   }
 
   &__cell {
     position: relative;
     z-index: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0 @space-xl;
     min-width: 0;
     max-width: 240px;
     height: 56px;
     border-bottom: 1px solid @line-color-s;
     text-align: left;
-    text-overflow: ellipsis;
-    box-sizing: border-box;
     vertical-align: middle;
     .font-s();
 
     .cell {
+      box-sizing: border-box;
       overflow: hidden;
+      line-height: 1.4;
       text-overflow: ellipsis;
       white-space: normal;
-      box-sizing: border-box;
       word-break: break-all;
-      line-height: 1.4;
+    }
+
+    .cell.is-ellipsis {
+      white-space: nowrap;
     }
   }
 
   &__row {
     background-color: @bg-color-l;
+    transition: background-color @animatf;
 
     &:hover {
       background-color: @bg-color-m;
     }
+  }
 
-    .yk-table__cell {
-      padding: 0 @space-xl;
+  &__empty-body {
+    .yk-table__empty {
+      padding: @space-xl;
+      height: 120px;
+      text-align: center;
+      color: @font-color-ss;
     }
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: @space-s;
+    color: @font-color-m;
+    background-color: @bg-color-l;
+    opacity: 0.85;
   }
 
   .text-center {
@@ -67,5 +128,23 @@
 
   .text-right {
     text-align: right;
+  }
+}
+
+.yk-table--stripe {
+  .yk-table__row:nth-child(even) {
+    background-color: @bg-color-s;
+  }
+}
+
+.yk-table--border {
+  border: 1px solid @line-color-s;
+
+  .yk-table__cell {
+    border-right: 1px solid @line-color-s;
+
+    &:last-child {
+      border-right: none;
+    }
   }
 }

@@ -1,5 +1,4 @@
 import { TitleType, TextType } from '../../utils';
-import type { Ref } from 'vue';
 
 export type titleProps = {
   type?: TitleType;
@@ -24,7 +23,7 @@ export interface paragraphProps {
 }
 
 export type paragraphEmits = {
-  copyBefore: [value: Ref<string>];
+  copyBefore: [value: string];
   changeOpen: [open: boolean];
   'update:open': [open: boolean];
 };

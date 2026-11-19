@@ -109,7 +109,7 @@ class Base {
             try {
               return JSON.stringify(data[key]);
             } catch (_) {
-              return data[key];
+              return String(data[key]);
             }
           }
           return String(data[key]);

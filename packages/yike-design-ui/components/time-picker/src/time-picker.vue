@@ -168,7 +168,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { startWithZero, getNowTimeData, checkTimeStr } from './util'
-import { YkInput, YkTooltip, YkButton } from '../../../index'
+import { YkInput } from '../../input'
+import { YkTooltip } from '../../tooltip'
+import { YkButton } from '../../button'
 import { IconCloseOutline, IconTimeOutline } from '../../svg-icon'
 import type {
   TimeSelected,
@@ -432,11 +434,9 @@ function resetStatus() {
     }
   } else {
     // 尚未有已保存的值
-    if (
-      !(
-        confirmedValue.value.startTime.hour && confirmedValue.value.endTime.hour
-      )
-    ) {
+    if (!(
+      confirmedValue.value.startTime.hour && confirmedValue.value.endTime.hour
+    )) {
       startInputValue.value = ''
       endInputValue.value = ''
     } else {

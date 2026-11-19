@@ -6,14 +6,15 @@ export type MessageProps = {
   duration?: number;
   offset?: number;
   zIndex?: number;
-
-  onClose?: () => void;
-  onDestroy?: () => void;
 };
 
 export interface MessageOptions extends MessageProps {
   id?: number | string;
   appendTo?: HTMLElement | string | Element;
+  /** 消息关闭时的回调 */
+  onClose?: () => void;
+  /** 消息销毁时的回调 */
+  onDestroy?: () => void;
 }
 
 export type MessageGroupProps = {

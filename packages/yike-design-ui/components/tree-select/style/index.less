@@ -1,15 +1,42 @@
 @import '../../styles/basis.less';
 
-.yk-tree-select__main-container {
+.yk-tree-select {
   position: relative;
-  .yk-tree-select__container-box {
-    position: absolute;
-    top: @space-xl * 2;
-    left: 0;
-    z-index: 10;
-    padding: @space-m @space-s @space-xl @space-s;
-    width: 100%;
-    background-color: @bg-color-l;
-    box-shadow: @shadow-m;
-  }
+  display: inline-block;
+  max-width: 100%;
+  font-size: @size-s;
+  color: @font-color-l;
+  vertical-align: middle;
 }
+
+.yk-tree-select__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: @space-s;
+  width: 100%;
+  min-width: 160px;
+  max-height: 320px;
+  border: 1px solid @line-color-s;
+  border-radius: @radius-m;
+  background-color: @bg-color-l;
+  box-shadow: @shadow-m;
+}
+
+.yk-tree-select-fade-enter-active,
+.yk-tree-select-fade-leave-active {
+  transition:
+    opacity @animatf,
+    transform @animatf;
+}
+
+.yk-tree-select-fade-enter-from,
+.yk-tree-select-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+@import './select-view.less';

@@ -3,12 +3,14 @@
     <div
       role="button"
       :aria-disabled="disabled"
+      :aria-expanded="opened"
+      :aria-controls="contentId"
       tabindex="0"
       :class="[
         bem('header'),
         bem({
-          opened: isActive,
-          disabled: disabled,
+          opened,
+          disabled,
         }),
       ]"
       @keydown="toggleByKeyboard"
@@ -31,7 +33,13 @@
       @before-leave="onBeforeClose"
       @leave="onClosed"
     >
-      <div v-show="isActive" :class="bem('content')" :aria-hidden="!isActive">
+      <div
+        v-show="opened"
+        :id="contentId"
+        :class="bem('content')"
+        :aria-hidden="!opened"
+        role="region"
+      >
         <slot />
       </div>
     </Transition>
@@ -39,10 +47,11 @@
 </template>
 
 <script setup lang="ts">
-import { CollapseProps } from './collapse'
+import { CollapseProps, CollapseItemKey , collapseInjectKey, genCollapseId } from './collapse'
 import { createCssScope } from '../../utils'
-import { onMounted, ref } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 import { IconRightOutline } from '../../svg-icon'
+
 defineOptions({
   name: 'YkCollapse',
 })
@@ -52,22 +61,47 @@ const props = withDefaults(defineProps<CollapseProps>(), {
   title: '',
   active: false,
   disabled: false,
+  name: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'update:active', active: boolean): void
+  (e: 'change', active: boolean): void
+}>()
+
+const groupContext = inject(collapseInjectKey, null)
+
+const itemName: CollapseItemKey = props.name ?? genCollapseId('yk-collapse')
+const contentId = genCollapseId('yk-collapse-content')
 
 const isActive = ref<boolean>(props.active)
 
-onMounted(() => {
-  // isActive.value = props.active
-})
+watch(
+  () => props.active,
+  (active) => {
+    if (!groupContext) isActive.value = active
+  },
+)
+
+const opened = computed(() =>
+  groupContext ? groupContext.isOpened(itemName) : isActive.value,
+)
 
 const toggle = () => {
-  if (!props.disabled) {
-    isActive.value = !isActive.value
+  if (props.disabled) return
+  if (groupContext) {
+    groupContext.toggle(itemName)
+    emit('change', groupContext.isOpened(itemName))
+    return
   }
+  isActive.value = !isActive.value
+  emit('update:active', isActive.value)
+  emit('change', isActive.value)
 }
 
 const toggleByKeyboard = (ev: KeyboardEvent) => {
-  if (ev.key === 'Enter') {
+  if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+    ev.preventDefault()
     toggle()
   }
 }

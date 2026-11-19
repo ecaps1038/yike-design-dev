@@ -1,5 +1,8 @@
+import type { Status } from '../../utils';
+
 export type TextAreaProps = {
   disabled?: boolean;
+  status?: Status;
   modelValue?: string;
   clearable?: boolean;
   placeholder?: string;

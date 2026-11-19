@@ -108,7 +108,7 @@ const navbarClass = computed(() => {
   padding: 6px 12px;
   border: 1px solid @gray-1;
   border-radius: 0 @radius-s @radius-s 0;
-  background: rgba(255 255 255 / 10%);
+  background: rgb(255 255 255 / 10%);
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);

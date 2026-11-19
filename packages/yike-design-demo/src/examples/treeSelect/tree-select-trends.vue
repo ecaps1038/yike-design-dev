@@ -21,6 +21,7 @@
     </YkSpace>
     <br />
     <YkTreeSelect
+      v-model="state.value"
       :options="state.treeData"
       empty-text="当前没有任何数据！"
       placeholder="这是默认的placeholer输入提示"
@@ -36,6 +37,7 @@
 import { reactive } from 'vue'
 // 定义参数
 const state = reactive<any>({
+  value: undefined,
   isMultiple: false,
   defaultKeys: [1, 2],
   disabled: false,
