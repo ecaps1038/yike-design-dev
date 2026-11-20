@@ -1,0 +1,154 @@
+@import '../../styles/basis.less';
+
+.yk-menu {
+  overflow: hidden;
+  margin: 0;
+  padding: @space-ss;
+  font-size: @size-s;
+  border-radius: @radius-m;
+  color: @font-color-l;
+  background-color: @bg-color-l;
+  list-style: none;
+}
+
+.yk-menu--vertical {
+  display: flex;
+  flex-direction: column;
+  gap: @space-ss;
+}
+
+.yk-menu--horizontal {
+  display: flex;
+  align-items: center;
+  gap: @space-ss;
+}
+
+.yk-menu--dark {
+  color: @white;
+  background-color: @gray;
+}
+
+.yk-menu-item {
+  position: relative;
+  list-style: none;
+}
+
+.yk-menu-item__title {
+  display: flex;
+  align-items: center;
+  gap: @space-s;
+  box-sizing: border-box;
+  padding: 0 @space-m;
+  height: 40px;
+  border-radius: @radius-m;
+  cursor: pointer;
+  transition:
+    background-color @animatb,
+    color @animatb;
+
+  &:hover {
+    background-color: @bg-color-m;
+  }
+
+  &:focus-visible {
+    outline: 2px solid @pcolor-3;
+    outline-offset: 1px;
+  }
+}
+
+.yk-menu-item__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.yk-menu-item__label {
+  overflow: hidden;
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.yk-menu-item__arrow {
+  width: 12px;
+  height: 12px;
+  color: @font-color-ss;
+  transition: transform @animatb;
+}
+
+.yk-menu-item__arrow--open {
+  transform: rotate(90deg);
+}
+
+.yk-menu-item__sub {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.yk-menu-item__sub--vertical {
+  padding-left: @space-l;
+}
+
+.yk-menu-item__sub--horizontal {
+  overflow: hidden;
+  margin-top: @space-ss;
+  padding-left: @space-l;
+}
+
+.yk-menu-item__sub--popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  display: none;
+  margin-top: @space-ss;
+  padding: @space-ss;
+  min-width: 160px;
+  border: 1px solid @line-color-s;
+  border-radius: @radius-m;
+  background-color: @bg-color-l;
+  box-shadow: @shadow-m;
+}
+
+.yk-menu-item--child .yk-menu-item__title {
+  height: 36px;
+}
+
+.yk-menu-item--selected > .yk-menu-item__title {
+  font-weight: 500;
+  color: @pcolor;
+  background-color: @pcolor-1;
+}
+
+.yk-menu-item--disabled > .yk-menu-item__title {
+  color: @font-color-ss;
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
+.yk-menu-item--open > .yk-menu-item__sub--popup {
+  display: block;
+}
+
+.yk-menu--horizontal > .yk-menu-item:hover > .yk-menu-item__sub--popup {
+  display: block;
+}
+
+.yk-menu--dark .yk-menu-item__title:hover {
+  background-color: rgba(255 255 255 / 10%);
+}
+
+.yk-menu--dark .yk-menu-item__arrow {
+  color: rgba(255 255 255 / 60%);
+}
+
+.yk-menu--dark .yk-menu-item--selected > .yk-menu-item__title {
+  color: @white;
+  background-color: @pcolor;
+}
+
+.yk-menu--dark .yk-menu-item__sub--popup {
+  border-color: @gray;
+  background-color: @gray;
+}

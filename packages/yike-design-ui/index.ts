@@ -63,6 +63,10 @@ import {
 } from './components/layout';
 import { YkRow, YkCol } from './components/grid';
 import YkFlex from './components/flex';
+import YkMenu from './components/menu';
+import YkDescriptions from './components/descriptions';
+import YkSteps from './components/steps';
+import YkResult from './components/result';
 import { vLoading } from './components/spinner/src/directive';
 const components: {
   [propName: string]: Component;
@@ -139,6 +143,10 @@ const components: {
   YkRow,
   YkCol,
   YkFlex,
+  YkMenu,
+  YkDescriptions,
+  YkSteps,
+  YkResult,
 };
 
 export {
@@ -216,6 +224,10 @@ export {
   YkRow,
   YkCol,
   YkFlex,
+  YkMenu,
+  YkDescriptions,
+  YkSteps,
+  YkResult,
   vLoading,
 };
 

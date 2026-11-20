@@ -78,6 +78,14 @@
         "src": "pagination"
       },
       {
+        "name": "Menu 菜单",
+        "src": "menu"
+      },
+      {
+        "name": "Steps 步骤条",
+        "src": "steps"
+      },
+      {
         "name": "Scrollbar 滚动条",
         "src": "scrollbar"
       }
@@ -180,6 +188,10 @@
         "src": "table"
       },
       {
+        "name": "Descriptions 描述列表",
+        "src": "descriptions"
+      },
+      {
         "name": "Tabs 标签页",
         "src": "tabs"
       },
@@ -235,6 +247,10 @@
       {
         "name": "Progress 进度条",
         "src": "progress"
+      },
+      {
+        "name": "Result 结果页",
+        "src": "result"
       },
       {
         "name": "Spinner 加载",

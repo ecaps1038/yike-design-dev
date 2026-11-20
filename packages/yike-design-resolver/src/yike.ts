@@ -71,4 +71,8 @@ export const matchComponents: MatchComponent[] = [
   },
   { pattern: /^(YkRow|YkCol)$/, componentDir: 'grid' },
   { pattern: /^YkFlex$/, componentDir: 'flex' },
+  { pattern: /^YkMenu$/, componentDir: 'menu' },
+  { pattern: /^YkDescriptions$/, componentDir: 'descriptions' },
+  { pattern: /^YkSteps$/, componentDir: 'steps' },
+  { pattern: /^YkResult$/, componentDir: 'result' },
 ];

@@ -1,0 +1,78 @@
+@import '../../styles/basis.less';
+
+.yk-result {
+  display: flex;
+  align-items: center;
+  padding: @space-xl * 2 @space-xl;
+  font-size: @size-s;
+  text-align: center;
+  color: @font-color-l;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.yk-result__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: @space-xl;
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  border-radius: 50%;
+
+  svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.yk-result__title {
+  font-size: @size-xl;
+  font-weight: 600;
+  color: @font-color-l;
+  line-height: 1.4;
+}
+
+.yk-result__subtitle {
+  margin-top: @space-s;
+  font-size: @size-s;
+  color: @font-color-s;
+  line-height: 1.6;
+}
+
+.yk-result__content {
+  margin-top: @space-l;
+  width: 100%;
+  max-width: 640px;
+  text-align: left;
+  color: @font-color-m;
+}
+
+.yk-result__extra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: @space-xl;
+  gap: @space-s;
+}
+
+.yk-result--success .yk-result__icon {
+  color: @scolor;
+  background-color: @scolor-1;
+}
+
+.yk-result--error .yk-result__icon {
+  color: @ecolor;
+  background-color: @ecolor-1;
+}
+
+.yk-result--warning .yk-result__icon {
+  color: @wcolor;
+  background-color: @wcolor-1;
+}
+
+.yk-result--info .yk-result__icon {
+  color: @pcolor;
+  background-color: @pcolor-1;
+}

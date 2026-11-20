@@ -1,0 +1,159 @@
+@import '../../styles/basis.less';
+
+.yk-steps {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-size: @size-s;
+  color: @font-color-l;
+  list-style: none;
+}
+
+.yk-steps--horizontal {
+  flex-direction: row;
+}
+
+.yk-steps--vertical {
+  flex-direction: column;
+}
+
+.yk-steps__step {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.yk-steps--horizontal .yk-steps__step {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.yk-steps--vertical .yk-steps__step {
+  flex-direction: row;
+  gap: @space-m;
+  min-height: 72px;
+}
+
+.yk-steps--clickable .yk-steps__step {
+  cursor: pointer;
+}
+
+.yk-steps__head {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.yk-steps--vertical .yk-steps__head {
+  flex-direction: column;
+  width: auto;
+}
+
+.yk-steps__icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  font-size: @size-s;
+  border: 1px solid @line-color-m;
+  border-radius: 50%;
+  color: @font-color-s;
+  background-color: @bg-color-l;
+  transition:
+    color @animatb,
+    border-color @animatb,
+    background-color @animatb;
+  flex-shrink: 0;
+  line-height: 1;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.yk-steps__line {
+  flex: 1;
+  margin: 0 @space-s;
+  height: 1px;
+  background-color: @line-color-m;
+}
+
+.yk-steps--vertical .yk-steps__line {
+  flex: 1;
+  margin: @space-s 0;
+  width: 1px;
+  height: auto;
+}
+
+.yk-steps__content {
+  margin-top: @space-s;
+  min-width: 0;
+}
+
+.yk-steps--vertical .yk-steps__content {
+  margin-top: 2px;
+  flex: 1;
+}
+
+.yk-steps__title {
+  overflow: hidden;
+  font-size: @size-s;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: @font-color-m;
+}
+
+.yk-steps__description {
+  margin-top: @space-ss;
+  font-size: @size-ss;
+  color: @font-color-ss;
+}
+
+.yk-steps__step--process .yk-steps__icon {
+  border-color: @pcolor;
+  color: @white;
+  background-color: @pcolor;
+}
+
+.yk-steps__step--process .yk-steps__title {
+  color: @pcolor;
+}
+
+.yk-steps__step--finish .yk-steps__icon {
+  border-color: @pcolor;
+  color: @pcolor;
+}
+
+.yk-steps__step--finish .yk-steps__line {
+  background-color: @pcolor;
+}
+
+.yk-steps__step--finish .yk-steps__title {
+  color: @font-color-l;
+}
+
+.yk-steps__step--error .yk-steps__icon {
+  border-color: @ecolor;
+  color: @white;
+  background-color: @ecolor;
+}
+
+.yk-steps__step--error .yk-steps__title {
+  color: @ecolor;
+}
+
+.yk-steps--s .yk-steps__icon {
+  width: 22px;
+  height: 22px;
+  font-size: @size-ss;
+}
+
+.yk-steps--l .yk-steps__icon {
+  width: 32px;
+  height: 32px;
+}

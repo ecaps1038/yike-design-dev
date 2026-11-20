@@ -73,6 +73,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     path: 'progress',
     component: () => import('@/examples/progress/doc.md'),
   },
+  {
+    path: 'result',
+    component: () => import('@/examples/result/doc.md'),
+  },
 
   {
     path: 'rate',
@@ -139,6 +143,10 @@ const generalRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/examples/table/doc.md'),
   },
   {
+    path: 'descriptions',
+    component: () => import('@/examples/descriptions/doc.md'),
+  },
+  {
     path: 'tabs',
     component: () => import('@/examples/tabs/doc.md'),
   },
@@ -161,6 +169,14 @@ const generalRoutes: Array<RouteRecordRaw> = [
   {
     path: 'pagination',
     component: () => import('@/examples/pagination/doc.md'),
+  },
+  {
+    path: 'menu',
+    component: () => import('@/examples/menu/doc.md'),
+  },
+  {
+    path: 'steps',
+    component: () => import('@/examples/steps/doc.md'),
   },
   {
     path: 'tag',
