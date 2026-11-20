@@ -10,6 +10,10 @@ concurrency:
   group: gh-pages
   cancel-in-progress: true
 
+# 允许使用仓库自带的 GITHUB_TOKEN 推送 gh-pages 分支
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -40,4 +44,3 @@ jobs:
           clean: true
           branch: gh-pages
           folder: ./packages/yike-design-demo/dist
-          token: ${{secrets.GIT_TOKEN}}
