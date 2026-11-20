@@ -1,5 +1,5 @@
 <template>
-  <yk-space dir="vertical" style="width: 100%">
+  <div class="grid-demo">
     <yk-row :gutter="[16, 16]">
       <yk-col v-for="n in 4" :key="n" :span="6">
         <div class="grid-box">gutter 16</div>
@@ -19,10 +19,17 @@
     <yk-row justify="center">
       <yk-col :span="6"><div class="grid-box">居中</div></yk-col>
     </yk-row>
-  </yk-space>
+  </div>
 </template>
 
 <style scoped>
+.grid-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
 .grid-box {
   padding: 16px 0;
   border-radius: 6px;
