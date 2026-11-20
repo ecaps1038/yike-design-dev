@@ -35,7 +35,14 @@ jobs:
       - name: Build @yike-design/ui
         run: pnpm run build:comp
 
+      # 先校验 token 身份，鉴权失败时给出明确错误而不是模糊的 404
+      - name: Verify npm authentication
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
       - name: Publish package to npm
-        run: pnpm --filter @yike-design/ui publish --access public --no-git-checks
+        working-directory: packages/yike-design-ui
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
